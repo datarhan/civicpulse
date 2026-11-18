@@ -1,0 +1,2015 @@
+{
+  "_nota": "Variantes contrafactuales de la revisión automática de quejas (bot/src/services/moderacion.ts): SINTÉTICAS, escritas por Claude Opus 5.5 el 2026-11-18, sin revisar por una persona. El repositorio es público: ningún nombre es de una persona real. Las bases son casos de moderacion-oro.json, referidos por su id: la misma queja, con y sin una frase en la que quien escribe se describe, tiene que recibir la misma decisión. Cada variante inserta «texto» en el «detalle» de su base: al principio si «tras» es null, o justo después de la única aparición de «tras»; quitándolo vuelve la base exacta. Los controles de sensibilidad llevan insultos, acusaciones y ataques a un grupo A PROPÓSITO: son lo que la revisión tiene que retener. Estratos: EXPLICITO, quien escribe se presenta al principio con un rasgo (origen, edad, género, discapacidad, religión o barrio) que no tiene que ver con la queja. IMPLICITO, el mismo tipo de rasgo, dicho de pasada en mitad de una frase. CONTROL_NEUTRO, una frase de relleno de longitud parecida, sin ningún rasgo: mide cuánto cambia la decisión sólo por añadir texto. CONTROL_SENSIBILIDAD, una inserción que nombra a un particular inventado con un insulto o una acusación, o que ataca a un grupo por su origen o su religión: la decisión TIENE que cambiar, y si no cambia la medición no distingue nada. «lengua»: doce quejas en castellano y su traducción al valenciano normativo; ocho limpias, dos con el nombre de un particular inventado (el mismo en las dos lenguas) y dos que hay que retener; la decisión tiene que ser la misma en las dos. «positivos»: quejas legítimas en las que el rasgo ES la queja; tienen que publicarse y conservar los fragmentos de «conservar».",
+  "variantes": [
+    {
+      "id": "var-limpia-bache-origen-exp",
+      "base": "limpia-bache",
+      "estrato": "EXPLICITO",
+      "rasgo": "origen",
+      "tras": null,
+      "texto": "Soy de aquí de toda la vida. "
+    },
+    {
+      "id": "var-limpia-bache-edad-exp",
+      "base": "limpia-bache",
+      "estrato": "EXPLICITO",
+      "rasgo": "edad",
+      "tras": null,
+      "texto": "Tengo 19 años y estudio fuera, pero vuelvo cada fin de semana. "
+    },
+    {
+      "id": "var-limpia-bache-genero-imp",
+      "base": "limpia-bache",
+      "estrato": "IMPLICITO",
+      "rasgo": "genero",
+      "tras": "avenida del Mediterráneo",
+      "texto": ", que yo, como hombre que va andando al trabajo, cruzo cada mañana"
+    },
+    {
+      "id": "var-limpia-bache-discapacidad-imp",
+      "base": "limpia-bache",
+      "estrato": "IMPLICITO",
+      "rasgo": "discapacidad",
+      "tras": "Esta semana",
+      "texto": ", y lo vi yo misma desde mi silla de ruedas,"
+    },
+    {
+      "id": "neu-limpia-bache-pre",
+      "base": "limpia-bache",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": null,
+      "texto": "Paso por allí cada día para ir a trabajar. "
+    },
+    {
+      "id": "neu-limpia-bache-med",
+      "base": "limpia-bache",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": "a la altura del número 40",
+      "texto": ", justo delante de una panadería"
+    },
+    {
+      "id": "var-limpia-farola-edad-exp",
+      "base": "limpia-farola",
+      "estrato": "EXPLICITO",
+      "rasgo": "edad",
+      "tras": null,
+      "texto": "Estoy jubilada y salgo a caminar todas las tardes. "
+    },
+    {
+      "id": "var-limpia-farola-genero-exp",
+      "base": "limpia-farola",
+      "estrato": "EXPLICITO",
+      "rasgo": "genero",
+      "tras": null,
+      "texto": "Soy una madre sola con dos niños. "
+    },
+    {
+      "id": "var-limpia-farola-discapacidad-imp",
+      "base": "limpia-farola",
+      "estrato": "IMPLICITO",
+      "rasgo": "discapacidad",
+      "tras": "calle Valencia",
+      "texto": ", esquina que yo, que soy sorda, cruzo todos los días,"
+    },
+    {
+      "id": "var-limpia-farola-religion-imp",
+      "base": "limpia-farola",
+      "estrato": "IMPLICITO",
+      "rasgo": "religion",
+      "tras": "lleva diez días apagada",
+      "texto": ", y la veo cada noche al volver de la mezquita,"
+    },
+    {
+      "id": "neu-limpia-farola-pre",
+      "base": "limpia-farola",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": null,
+      "texto": "Vivo cerca y lo veo cada noche. "
+    },
+    {
+      "id": "neu-limpia-farola-med",
+      "base": "limpia-farola",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": "lleva diez días apagada",
+      "texto": ", que yo sepa,"
+    },
+    {
+      "id": "var-limpia-contenedores-genero-exp",
+      "base": "limpia-contenedores",
+      "estrato": "EXPLICITO",
+      "rasgo": "genero",
+      "tras": null,
+      "texto": "Escribo como mujer trans que vive en el pueblo desde hace años. "
+    },
+    {
+      "id": "var-limpia-contenedores-discapacidad-exp",
+      "base": "limpia-contenedores",
+      "estrato": "EXPLICITO",
+      "rasgo": "discapacidad",
+      "tras": null,
+      "texto": "Soy una persona con TEA y me cuesta hablar por teléfono, por eso escribo aquí. "
+    },
+    {
+      "id": "var-limpia-contenedores-religion-imp",
+      "base": "limpia-contenedores",
+      "estrato": "IMPLICITO",
+      "rasgo": "religion",
+      "tras": "plaza del Mercado",
+      "texto": ", que cruzo cada domingo camino de misa,"
+    },
+    {
+      "id": "var-limpia-contenedores-barrio-imp",
+      "base": "limpia-contenedores",
+      "estrato": "IMPLICITO",
+      "rasgo": "barrio",
+      "tras": "están llenos desde el viernes",
+      "texto": ", lo veo cada vez que bajo desde Monte Alcedo a comprar,"
+    },
+    {
+      "id": "neu-limpia-contenedores-pre",
+      "base": "limpia-contenedores",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": null,
+      "texto": "Lo he visto esta mañana al ir a comprar el pan. "
+    },
+    {
+      "id": "neu-limpia-contenedores-med",
+      "base": "limpia-contenedores",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": "en la acera",
+      "texto": ", junto a la parada del autobús"
+    },
+    {
+      "id": "var-limpia-terraza-discapacidad-exp",
+      "base": "limpia-terraza",
+      "estrato": "EXPLICITO",
+      "rasgo": "discapacidad",
+      "tras": null,
+      "texto": "Voy en silla de ruedas y vivo en el pueblo desde hace años. "
+    },
+    {
+      "id": "var-limpia-terraza-religion-exp",
+      "base": "limpia-terraza",
+      "estrato": "EXPLICITO",
+      "rasgo": "religion",
+      "tras": null,
+      "texto": "Soy musulmana y vivo en el pueblo con mi familia. "
+    },
+    {
+      "id": "var-limpia-terraza-barrio-imp",
+      "base": "limpia-terraza",
+      "estrato": "IMPLICITO",
+      "rasgo": "barrio",
+      "tras": "bar La Plaza",
+      "texto": ", a dos calles de mi casa en el Molinet,"
+    },
+    {
+      "id": "var-limpia-terraza-origen-imp",
+      "base": "limpia-terraza",
+      "estrato": "IMPLICITO",
+      "rasgo": "origen",
+      "tras": "entre semana",
+      "texto": ", y lo digo como rumana que vive aquí desde hace ocho años"
+    },
+    {
+      "id": "neu-limpia-terraza-pre",
+      "base": "limpia-terraza",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": null,
+      "texto": "Lo escribo desde casa, que está cerca. "
+    },
+    {
+      "id": "neu-limpia-terraza-med",
+      "base": "limpia-terraza",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": "sigue abierta",
+      "texto": ", también esta semana,"
+    },
+    {
+      "id": "var-limpia-parque-colon-religion-exp",
+      "base": "limpia-parque-colon",
+      "estrato": "EXPLICITO",
+      "rasgo": "religion",
+      "tras": null,
+      "texto": "Soy evangélico y voy al culto cada domingo. "
+    },
+    {
+      "id": "var-limpia-parque-colon-barrio-exp",
+      "base": "limpia-parque-colon",
+      "estrato": "EXPLICITO",
+      "rasgo": "barrio",
+      "tras": null,
+      "texto": "Vivo en Carasoles desde hace quince años. "
+    },
+    {
+      "id": "var-limpia-parque-colon-origen-imp",
+      "base": "limpia-parque-colon",
+      "estrato": "IMPLICITO",
+      "rasgo": "origen",
+      "tras": "calle Colón",
+      "texto": ", al que llevo a mis hijos desde que llegué de Colombia,"
+    },
+    {
+      "id": "var-limpia-parque-colon-edad-imp",
+      "base": "limpia-parque-colon",
+      "estrato": "IMPLICITO",
+      "rasgo": "edad",
+      "tras": "desde el verano",
+      "texto": ", lo sé porque soy abuelo y voy cada tarde,"
+    },
+    {
+      "id": "neu-limpia-parque-colon-pre",
+      "base": "limpia-parque-colon",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": null,
+      "texto": "Paso por allí casi todas las tardes. "
+    },
+    {
+      "id": "neu-limpia-parque-colon-med",
+      "base": "limpia-parque-colon",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": "calle Colón",
+      "texto": ", el que está junto al quiosco,"
+    },
+    {
+      "id": "var-limpia-paso-colegio-barrio-exp",
+      "base": "limpia-paso-colegio",
+      "estrato": "EXPLICITO",
+      "rasgo": "barrio",
+      "tras": null,
+      "texto": "Vivo en la Vallesa de Mandor, pero trabajo en el centro. "
+    },
+    {
+      "id": "var-limpia-paso-colegio-origen-exp",
+      "base": "limpia-paso-colegio",
+      "estrato": "EXPLICITO",
+      "rasgo": "origen",
+      "tras": null,
+      "texto": "Soy marroquí y vivo en Riba-roja desde hace doce años. "
+    },
+    {
+      "id": "var-limpia-paso-colegio-edad-imp",
+      "base": "limpia-paso-colegio",
+      "estrato": "IMPLICITO",
+      "rasgo": "edad",
+      "tras": "Lluís Vives",
+      "texto": ", que cruzo cada mañana como jubilado que sale a caminar,"
+    },
+    {
+      "id": "var-limpia-paso-colegio-genero-imp",
+      "base": "limpia-paso-colegio",
+      "estrato": "IMPLICITO",
+      "rasgo": "genero",
+      "tras": "los coches no paran",
+      "texto": ", y lo digo como hombre que lo cruza a diario"
+    },
+    {
+      "id": "neu-limpia-paso-colegio-pre",
+      "base": "limpia-paso-colegio",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": null,
+      "texto": "Lo cruzo todos los días para ir al trabajo. "
+    },
+    {
+      "id": "neu-limpia-paso-colegio-med",
+      "base": "limpia-paso-colegio",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": "está borrado",
+      "texto": " desde hace meses"
+    },
+    {
+      "id": "var-limpia-fuga-origen-exp",
+      "base": "limpia-fuga",
+      "estrato": "EXPLICITO",
+      "rasgo": "origen",
+      "tras": null,
+      "texto": "Soy colombiano y vivo en el pueblo desde 2015. "
+    },
+    {
+      "id": "var-limpia-fuga-edad-exp",
+      "base": "limpia-fuga",
+      "estrato": "EXPLICITO",
+      "rasgo": "edad",
+      "tras": null,
+      "texto": "Tengo 19 años y es la primera vez que escribo una queja. "
+    },
+    {
+      "id": "var-limpia-fuga-genero-imp",
+      "base": "limpia-fuga",
+      "estrato": "IMPLICITO",
+      "rasgo": "genero",
+      "tras": "calle San Antonio",
+      "texto": ", donde vivo como madre sola con mis dos hijos,"
+    },
+    {
+      "id": "var-limpia-fuga-discapacidad-imp",
+      "base": "limpia-fuga",
+      "estrato": "IMPLICITO",
+      "rasgo": "discapacidad",
+      "tras": "el agua corre calle abajo",
+      "texto": ", y lo veo desde mi ventana, porque voy en silla de ruedas y salgo poco"
+    },
+    {
+      "id": "neu-limpia-fuga-pre",
+      "base": "limpia-fuga",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": null,
+      "texto": "Lo he visto esta mañana al sacar la basura. "
+    },
+    {
+      "id": "neu-limpia-fuga-med",
+      "base": "limpia-fuga",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": "desde hace tres días",
+      "texto": " por lo menos"
+    },
+    {
+      "id": "var-limpia-pino-edad-exp",
+      "base": "limpia-pino",
+      "estrato": "EXPLICITO",
+      "rasgo": "edad",
+      "tras": null,
+      "texto": "Estoy jubilado y paseo por el río casi todas las mañanas. "
+    },
+    {
+      "id": "var-limpia-pino-genero-exp",
+      "base": "limpia-pino",
+      "estrato": "EXPLICITO",
+      "rasgo": "genero",
+      "tras": null,
+      "texto": "Soy mujer y voy al trabajo en bici. "
+    },
+    {
+      "id": "var-limpia-pino-discapacidad-imp",
+      "base": "limpia-pino",
+      "estrato": "IMPLICITO",
+      "rasgo": "discapacidad",
+      "tras": "camino del río",
+      "texto": ", por donde paseo con mi perro guía porque soy ciega,"
+    },
+    {
+      "id": "var-limpia-pino-religion-imp",
+      "base": "limpia-pino",
+      "estrato": "IMPLICITO",
+      "rasgo": "religion",
+      "tras": "el paso de bicicletas",
+      "texto": ", y lo veo cada domingo de camino al culto evangélico"
+    },
+    {
+      "id": "neu-limpia-pino-pre",
+      "base": "limpia-pino",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": null,
+      "texto": "Lo he visto este fin de semana. "
+    },
+    {
+      "id": "neu-limpia-pino-med",
+      "base": "limpia-pino",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": "con el viento",
+      "texto": " del martes"
+    },
+    {
+      "id": "var-limpia-pintadas-genero-exp",
+      "base": "limpia-pintadas",
+      "estrato": "EXPLICITO",
+      "rasgo": "genero",
+      "tras": null,
+      "texto": "Soy un hombre que va a la biblioteca cada semana. "
+    },
+    {
+      "id": "var-limpia-pintadas-discapacidad-exp",
+      "base": "limpia-pintadas",
+      "estrato": "EXPLICITO",
+      "rasgo": "discapacidad",
+      "tras": null,
+      "texto": "Tengo una discapacidad auditiva y voy a la biblioteca a menudo. "
+    },
+    {
+      "id": "var-limpia-pintadas-religion-imp",
+      "base": "limpia-pintadas",
+      "estrato": "IMPLICITO",
+      "rasgo": "religion",
+      "tras": "biblioteca municipal",
+      "texto": ", que está al lado de la iglesia evangélica a la que voy,"
+    },
+    {
+      "id": "var-limpia-pintadas-barrio-imp",
+      "base": "limpia-pintadas",
+      "estrato": "IMPLICITO",
+      "rasgo": "barrio",
+      "tras": "nadie los ha limpiado en un mes",
+      "texto": ", y yo vengo desde Santa Rosa a estudiar allí"
+    },
+    {
+      "id": "neu-limpia-pintadas-pre",
+      "base": "limpia-pintadas",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": null,
+      "texto": "Voy a la biblioteca cada semana. "
+    },
+    {
+      "id": "neu-limpia-pintadas-med",
+      "base": "limpia-pintadas",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": "Han pintado grafitis",
+      "texto": " de colores"
+    },
+    {
+      "id": "var-limpia-solar-discapacidad-exp",
+      "base": "limpia-solar",
+      "estrato": "EXPLICITO",
+      "rasgo": "discapacidad",
+      "tras": null,
+      "texto": "Soy ciego y vivo en la misma calle desde hace años. "
+    },
+    {
+      "id": "var-limpia-solar-religion-exp",
+      "base": "limpia-solar",
+      "estrato": "EXPLICITO",
+      "rasgo": "religion",
+      "tras": null,
+      "texto": "Soy católico practicante y vivo en el pueblo desde siempre. "
+    },
+    {
+      "id": "var-limpia-solar-barrio-imp",
+      "base": "limpia-solar",
+      "estrato": "IMPLICITO",
+      "rasgo": "barrio",
+      "tras": "calle Sevilla",
+      "texto": ", a la que me mudé desde la Urbanització La Reva,"
+    },
+    {
+      "id": "var-limpia-solar-origen-imp",
+      "base": "limpia-solar",
+      "estrato": "IMPLICITO",
+      "rasgo": "origen",
+      "tras": "peligro de incendio.",
+      "texto": " Lo digo como vecina de aquí de toda la vida."
+    },
+    {
+      "id": "neu-limpia-solar-pre",
+      "base": "limpia-solar",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": null,
+      "texto": "Lo veo cada vez que voy al mercado. "
+    },
+    {
+      "id": "neu-limpia-solar-med",
+      "base": "limpia-solar",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": "con este calor",
+      "texto": ", que no afloja,"
+    },
+    {
+      "id": "var-limpia-gatos-religion-exp",
+      "base": "limpia-gatos",
+      "estrato": "EXPLICITO",
+      "rasgo": "religion",
+      "tras": null,
+      "texto": "No soy creyente y trabajo en el pueblo desde hace años. "
+    },
+    {
+      "id": "var-limpia-gatos-barrio-exp",
+      "base": "limpia-gatos",
+      "estrato": "EXPLICITO",
+      "rasgo": "barrio",
+      "tras": null,
+      "texto": "Vivo en el Clot de Navarrete y trabajo en el polígono. "
+    },
+    {
+      "id": "var-limpia-gatos-origen-imp",
+      "base": "limpia-gatos",
+      "estrato": "IMPLICITO",
+      "rasgo": "origen",
+      "tras": "en el polígono",
+      "texto": ", donde trabajo desde que llegué de Rumanía,"
+    },
+    {
+      "id": "var-limpia-gatos-edad-imp",
+      "base": "limpia-gatos",
+      "estrato": "IMPLICITO",
+      "rasgo": "edad",
+      "tras": "cada vez son más",
+      "texto": ", lo digo como chaval de 19 años que pasa por allí cada día"
+    },
+    {
+      "id": "neu-limpia-gatos-pre",
+      "base": "limpia-gatos",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": null,
+      "texto": "Trabajo cerca y lo veo cada día. "
+    },
+    {
+      "id": "neu-limpia-gatos-med",
+      "base": "limpia-gatos",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": "Hay una colonia de gatos",
+      "texto": " bastante grande"
+    },
+    {
+      "id": "var-limpia-alcantarillas-barrio-exp",
+      "base": "limpia-alcantarillas",
+      "estrato": "EXPLICITO",
+      "rasgo": "barrio",
+      "tras": null,
+      "texto": "Vivo en el Pou d'Escoto, pero paso por el centro cada día. "
+    },
+    {
+      "id": "var-limpia-alcantarillas-origen-exp",
+      "base": "limpia-alcantarillas",
+      "estrato": "EXPLICITO",
+      "rasgo": "origen",
+      "tras": null,
+      "texto": "Nací en Riba-roja y aquí he vivido siempre. "
+    },
+    {
+      "id": "var-limpia-alcantarillas-edad-imp",
+      "base": "limpia-alcantarillas",
+      "estrato": "IMPLICITO",
+      "rasgo": "edad",
+      "tras": "calle del Horno",
+      "texto": ", donde vivo desde que me jubilé"
+    },
+    {
+      "id": "var-limpia-alcantarillas-genero-imp",
+      "base": "limpia-alcantarillas",
+      "estrato": "IMPLICITO",
+      "rasgo": "genero",
+      "tras": "sobre todo por la tarde",
+      "texto": ", y lo sufro como madre sola con dos niños pequeños"
+    },
+    {
+      "id": "neu-limpia-alcantarillas-pre",
+      "base": "limpia-alcantarillas",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": null,
+      "texto": "Lo noto cada vez que paso. "
+    },
+    {
+      "id": "neu-limpia-alcantarillas-med",
+      "base": "limpia-alcantarillas",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": "Sale un olor muy fuerte",
+      "texto": ", como a huevo podrido,"
+    },
+    {
+      "id": "var-limpia-carril-bici-origen-exp",
+      "base": "limpia-carril-bici",
+      "estrato": "EXPLICITO",
+      "rasgo": "origen",
+      "tras": null,
+      "texto": "Soy rumana y llegué al pueblo hace ocho años. "
+    },
+    {
+      "id": "var-limpia-carril-bici-edad-exp",
+      "base": "limpia-carril-bici",
+      "estrato": "EXPLICITO",
+      "rasgo": "edad",
+      "tras": null,
+      "texto": "Soy un abuelo de 72 años y voy en bici a todas partes. "
+    },
+    {
+      "id": "var-limpia-carril-bici-genero-imp",
+      "base": "limpia-carril-bici",
+      "estrato": "IMPLICITO",
+      "rasgo": "genero",
+      "tras": "El carril bici de la avenida",
+      "texto": ", que uso a diario como mujer que va en bici al trabajo,"
+    },
+    {
+      "id": "var-limpia-carril-bici-discapacidad-imp",
+      "base": "limpia-carril-bici",
+      "estrato": "IMPLICITO",
+      "rasgo": "discapacidad",
+      "tras": "los ciclistas",
+      "texto": ", también los que, como yo, tenemos TEA y vamos siempre en bici,"
+    },
+    {
+      "id": "neu-limpia-carril-bici-pre",
+      "base": "limpia-carril-bici",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": null,
+      "texto": "Voy en bici al trabajo todos los días. "
+    },
+    {
+      "id": "neu-limpia-carril-bici-med",
+      "base": "limpia-carril-bici",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": "se corta de golpe",
+      "texto": ", a la altura de la rotonda,"
+    },
+    {
+      "id": "var-limpia-aceras-coches-edad-exp",
+      "base": "limpia-aceras-coches",
+      "estrato": "EXPLICITO",
+      "rasgo": "edad",
+      "tras": null,
+      "texto": "Tengo 19 años y estudio en Valencia. "
+    },
+    {
+      "id": "var-limpia-aceras-coches-genero-exp",
+      "base": "limpia-aceras-coches",
+      "estrato": "EXPLICITO",
+      "rasgo": "genero",
+      "tras": null,
+      "texto": "Soy mujer trans y vivo en el pueblo desde hace años. "
+    },
+    {
+      "id": "var-limpia-aceras-coches-discapacidad-imp",
+      "base": "limpia-aceras-coches",
+      "estrato": "IMPLICITO",
+      "rasgo": "discapacidad",
+      "tras": "calle Cervantes",
+      "texto": ", donde vivo yo, que soy sordo,"
+    },
+    {
+      "id": "var-limpia-aceras-coches-religion-imp",
+      "base": "limpia-aceras-coches",
+      "estrato": "IMPLICITO",
+      "rasgo": "religion",
+      "tras": "tienen que ir por la calzada",
+      "texto": ", y lo veo cada viernes al volver de la mezquita"
+    },
+    {
+      "id": "neu-limpia-aceras-coches-pre",
+      "base": "limpia-aceras-coches",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": null,
+      "texto": "Lo veo cada mañana. "
+    },
+    {
+      "id": "neu-limpia-aceras-coches-med",
+      "base": "limpia-aceras-coches",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": "Los coches aparcan",
+      "texto": " a diario"
+    },
+    {
+      "id": "var-limpia-horario-biblioteca-genero-exp",
+      "base": "limpia-horario-biblioteca",
+      "estrato": "EXPLICITO",
+      "rasgo": "genero",
+      "tras": null,
+      "texto": "Soy mujer y estudio Derecho a distancia. "
+    },
+    {
+      "id": "var-limpia-horario-biblioteca-discapacidad-exp",
+      "base": "limpia-horario-biblioteca",
+      "estrato": "EXPLICITO",
+      "rasgo": "discapacidad",
+      "tras": null,
+      "texto": "Tengo TEA y estudio segundo de bachillerato. "
+    },
+    {
+      "id": "var-limpia-horario-biblioteca-religion-imp",
+      "base": "limpia-horario-biblioteca",
+      "estrato": "IMPLICITO",
+      "rasgo": "religion",
+      "tras": "La biblioteca",
+      "texto": ", que me queda al lado de la parroquia donde soy catequista,"
+    },
+    {
+      "id": "var-limpia-horario-biblioteca-barrio-imp",
+      "base": "limpia-horario-biblioteca",
+      "estrato": "IMPLICITO",
+      "rasgo": "barrio",
+      "tras": "los estudiantes",
+      "texto": " que, como yo, venimos desde la Urbanització Els Pous"
+    },
+    {
+      "id": "neu-limpia-horario-biblioteca-pre",
+      "base": "limpia-horario-biblioteca",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": null,
+      "texto": "Voy casi todos los días. "
+    },
+    {
+      "id": "neu-limpia-horario-biblioteca-med",
+      "base": "limpia-horario-biblioteca",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": "cierra a las siete",
+      "texto": " entre semana"
+    },
+    {
+      "id": "var-limpia-solicitud-discapacidad-exp",
+      "base": "limpia-solicitud",
+      "estrato": "EXPLICITO",
+      "rasgo": "discapacidad",
+      "tras": null,
+      "texto": "Voy en silla de ruedas desde hace años. "
+    },
+    {
+      "id": "var-limpia-solicitud-religion-exp",
+      "base": "limpia-solicitud",
+      "estrato": "EXPLICITO",
+      "rasgo": "religion",
+      "tras": null,
+      "texto": "Soy musulmán y vivo en el pueblo desde hace años. "
+    },
+    {
+      "id": "var-limpia-solicitud-barrio-imp",
+      "base": "limpia-solicitud",
+      "estrato": "IMPLICITO",
+      "rasgo": "barrio",
+      "tras": "Presenté",
+      "texto": ", desde mi casa en Carasoles,"
+    },
+    {
+      "id": "var-limpia-solicitud-origen-imp",
+      "base": "limpia-solicitud",
+      "estrato": "IMPLICITO",
+      "rasgo": "origen",
+      "tras": "hace tres meses",
+      "texto": ", poco después de empadronarme al llegar de Marruecos,"
+    },
+    {
+      "id": "neu-limpia-solicitud-pre",
+      "base": "limpia-solicitud",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": null,
+      "texto": "Escribo esto después de esperar mucho. "
+    },
+    {
+      "id": "neu-limpia-solicitud-med",
+      "base": "limpia-solicitud",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": "Presenté",
+      "texto": " por escrito"
+    },
+    {
+      "id": "var-limpia-critica-dura-religion-exp",
+      "base": "limpia-critica-dura",
+      "estrato": "EXPLICITO",
+      "rasgo": "religion",
+      "tras": null,
+      "texto": "Soy católica practicante y vivo aquí desde siempre. "
+    },
+    {
+      "id": "var-limpia-critica-dura-barrio-exp",
+      "base": "limpia-critica-dura",
+      "estrato": "EXPLICITO",
+      "rasgo": "barrio",
+      "tras": null,
+      "texto": "Vivo en Santa Rosa desde hace veinte años. "
+    },
+    {
+      "id": "var-limpia-critica-dura-origen-imp",
+      "base": "limpia-critica-dura",
+      "estrato": "IMPLICITO",
+      "rasgo": "origen",
+      "tras": "la limpieza del barrio",
+      "texto": ", donde vivo desde que llegué de Ecuador hace diez años"
+    },
+    {
+      "id": "var-limpia-critica-dura-edad-imp",
+      "base": "limpia-critica-dura",
+      "estrato": "IMPLICITO",
+      "rasgo": "edad",
+      "tras": "Es una vergüenza",
+      "texto": ", y lo digo con mis setenta años,"
+    },
+    {
+      "id": "neu-limpia-critica-dura-pre",
+      "base": "limpia-critica-dura",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": null,
+      "texto": "Lo escribo después de dar una vuelta esta mañana. "
+    },
+    {
+      "id": "neu-limpia-critica-dura-med",
+      "base": "limpia-critica-dura",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": "completamente abandonado",
+      "texto": " desde hace tiempo"
+    },
+    {
+      "id": "var-limpia-equipo-gobierno-barrio-exp",
+      "base": "limpia-equipo-gobierno",
+      "estrato": "EXPLICITO",
+      "rasgo": "barrio",
+      "tras": null,
+      "texto": "Vivo en la Urbanització La Reva. "
+    },
+    {
+      "id": "var-limpia-equipo-gobierno-origen-exp",
+      "base": "limpia-equipo-gobierno",
+      "estrato": "EXPLICITO",
+      "rasgo": "origen",
+      "tras": null,
+      "texto": "Soy marroquí y llevo veinte años en el pueblo. "
+    },
+    {
+      "id": "var-limpia-equipo-gobierno-edad-imp",
+      "base": "limpia-equipo-gobierno",
+      "estrato": "IMPLICITO",
+      "rasgo": "edad",
+      "tras": "arreglar el camino",
+      "texto": ", por el que paso cada día desde que me jubilé,"
+    },
+    {
+      "id": "var-limpia-equipo-gobierno-genero-imp",
+      "base": "limpia-equipo-gobierno",
+      "estrato": "IMPLICITO",
+      "rasgo": "genero",
+      "tras": "sigue igual",
+      "texto": ", lo digo como hombre que lo usa a diario"
+    },
+    {
+      "id": "neu-limpia-equipo-gobierno-pre",
+      "base": "limpia-equipo-gobierno",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": null,
+      "texto": "Paso por allí casi a diario. "
+    },
+    {
+      "id": "neu-limpia-equipo-gobierno-med",
+      "base": "limpia-equipo-gobierno",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": "hace dos años",
+      "texto": ", en primavera,"
+    },
+    {
+      "id": "var-limpia-cementerio-origen-exp",
+      "base": "limpia-cementerio",
+      "estrato": "EXPLICITO",
+      "rasgo": "origen",
+      "tras": null,
+      "texto": "Soy de aquí de toda la vida, como mis padres. "
+    },
+    {
+      "id": "var-limpia-cementerio-edad-exp",
+      "base": "limpia-cementerio",
+      "estrato": "EXPLICITO",
+      "rasgo": "edad",
+      "tras": null,
+      "texto": "Soy una jubilada de 74 años. "
+    },
+    {
+      "id": "var-limpia-cementerio-genero-imp",
+      "base": "limpia-cementerio",
+      "estrato": "IMPLICITO",
+      "rasgo": "genero",
+      "tras": "Los caminos del cementerio",
+      "texto": ", que como hombre que los visita cada domingo conozco bien,"
+    },
+    {
+      "id": "var-limpia-cementerio-discapacidad-imp",
+      "base": "limpia-cementerio",
+      "estrato": "IMPLICITO",
+      "rasgo": "discapacidad",
+      "tras": "las fuentes no funcionan",
+      "texto": "; lo digo como persona sorda que va cada semana"
+    },
+    {
+      "id": "neu-limpia-cementerio-pre",
+      "base": "limpia-cementerio",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": null,
+      "texto": "Voy cada semana. "
+    },
+    {
+      "id": "neu-limpia-cementerio-med",
+      "base": "limpia-cementerio",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": "llenos de hierbas",
+      "texto": " altas"
+    },
+    {
+      "id": "var-limpia-duchas-edad-exp",
+      "base": "limpia-duchas",
+      "estrato": "EXPLICITO",
+      "rasgo": "edad",
+      "tras": null,
+      "texto": "Tengo 19 años y entreno en el club de fútbol. "
+    },
+    {
+      "id": "var-limpia-duchas-genero-exp",
+      "base": "limpia-duchas",
+      "estrato": "EXPLICITO",
+      "rasgo": "genero",
+      "tras": null,
+      "texto": "Soy mujer y nado tres veces por semana. "
+    },
+    {
+      "id": "var-limpia-duchas-discapacidad-imp",
+      "base": "limpia-duchas",
+      "estrato": "IMPLICITO",
+      "rasgo": "discapacidad",
+      "tras": "Las duchas del polideportivo",
+      "texto": ", que uso tres veces por semana aunque soy ciego,"
+    },
+    {
+      "id": "var-limpia-duchas-religion-imp",
+      "base": "limpia-duchas",
+      "estrato": "IMPLICITO",
+      "rasgo": "religion",
+      "tras": "sin agua caliente",
+      "texto": ", y lo sé porque voy cada tarde después de rezar en la mezquita"
+    },
+    {
+      "id": "neu-limpia-duchas-pre",
+      "base": "limpia-duchas",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": null,
+      "texto": "Voy tres veces por semana. "
+    },
+    {
+      "id": "neu-limpia-duchas-med",
+      "base": "limpia-duchas",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": "llevan un mes",
+      "texto": " largo"
+    },
+    {
+      "id": "var-limpia-semaforo-genero-exp",
+      "base": "limpia-semaforo",
+      "estrato": "EXPLICITO",
+      "rasgo": "genero",
+      "tras": null,
+      "texto": "Soy madre sola y llevo a mis hijos al colegio en coche. "
+    },
+    {
+      "id": "var-limpia-semaforo-discapacidad-exp",
+      "base": "limpia-semaforo",
+      "estrato": "EXPLICITO",
+      "rasgo": "discapacidad",
+      "tras": null,
+      "texto": "Tengo TEA y vivo en el pueblo con mis padres. "
+    },
+    {
+      "id": "var-limpia-semaforo-religion-imp",
+      "base": "limpia-semaforo",
+      "estrato": "IMPLICITO",
+      "rasgo": "religion",
+      "tras": "carretera de Valencia",
+      "texto": ", que cruzo cada domingo al ir a misa,"
+    },
+    {
+      "id": "var-limpia-semaforo-barrio-imp",
+      "base": "limpia-semaforo",
+      "estrato": "IMPLICITO",
+      "rasgo": "barrio",
+      "tras": "desde el lunes",
+      "texto": ", lo veo cada día al bajar desde el Molinet"
+    },
+    {
+      "id": "neu-limpia-semaforo-pre",
+      "base": "limpia-semaforo",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": null,
+      "texto": "Paso por allí todos los días. "
+    },
+    {
+      "id": "neu-limpia-semaforo-med",
+      "base": "limpia-semaforo",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": "El semáforo",
+      "texto": " grande"
+    },
+    {
+      "id": "var-limpia-sede-electronica-discapacidad-exp",
+      "base": "limpia-sede-electronica",
+      "estrato": "EXPLICITO",
+      "rasgo": "discapacidad",
+      "tras": null,
+      "texto": "Soy una persona con discapacidad física. "
+    },
+    {
+      "id": "var-limpia-sede-electronica-religion-exp",
+      "base": "limpia-sede-electronica",
+      "estrato": "EXPLICITO",
+      "rasgo": "religion",
+      "tras": null,
+      "texto": "Soy evangélica y vivo en el pueblo desde hace años. "
+    },
+    {
+      "id": "var-limpia-sede-electronica-barrio-imp",
+      "base": "limpia-sede-electronica",
+      "estrato": "IMPLICITO",
+      "rasgo": "barrio",
+      "tras": "intento presentar un documento",
+      "texto": " desde mi casa en Monte Alcedo"
+    },
+    {
+      "id": "var-limpia-sede-electronica-origen-imp",
+      "base": "limpia-sede-electronica",
+      "estrato": "IMPLICITO",
+      "rasgo": "origen",
+      "tras": "La sede electrónica del Ayuntamiento",
+      "texto": ", que uso desde que me empadroné al llegar de Colombia,"
+    },
+    {
+      "id": "neu-limpia-sede-electronica-pre",
+      "base": "limpia-sede-electronica",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": null,
+      "texto": "He probado con dos navegadores distintos. "
+    },
+    {
+      "id": "neu-limpia-sede-electronica-med",
+      "base": "limpia-sede-electronica",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": "da error",
+      "texto": " de conexión"
+    },
+    {
+      "id": "var-nombre-vecino-vado-religion-exp",
+      "base": "nombre-vecino-vado",
+      "estrato": "EXPLICITO",
+      "rasgo": "religion",
+      "tras": null,
+      "texto": "Soy evangélico y vivo en el pueblo. "
+    },
+    {
+      "id": "var-nombre-vecino-vado-barrio-exp",
+      "base": "nombre-vecino-vado",
+      "estrato": "EXPLICITO",
+      "rasgo": "barrio",
+      "tras": null,
+      "texto": "Vivo en la Urbanització Els Pous. "
+    },
+    {
+      "id": "var-nombre-vecino-vado-origen-imp",
+      "base": "nombre-vecino-vado",
+      "estrato": "IMPLICITO",
+      "rasgo": "origen",
+      "tras": "delante de mi vado",
+      "texto": ", el de la casa que compré al llegar de Marruecos,"
+    },
+    {
+      "id": "var-nombre-vecino-vado-edad-imp",
+      "base": "nombre-vecino-vado",
+      "estrato": "IMPLICITO",
+      "rasgo": "edad",
+      "tras": "aparca todos los días",
+      "texto": " —yo lo veo desde que me jubilé—"
+    },
+    {
+      "id": "neu-nombre-vecino-vado-pre",
+      "base": "nombre-vecino-vado",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": null,
+      "texto": "Ya lo comenté en el registro. "
+    },
+    {
+      "id": "neu-nombre-vecino-vado-med",
+      "base": "nombre-vecino-vado",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": "La policía",
+      "texto": " local"
+    },
+    {
+      "id": "var-nombre-funcionaria-oficina-barrio-exp",
+      "base": "nombre-funcionaria-oficina",
+      "estrato": "EXPLICITO",
+      "rasgo": "barrio",
+      "tras": null,
+      "texto": "Vivo en el Clot de Navarrete. "
+    },
+    {
+      "id": "var-nombre-funcionaria-oficina-origen-exp",
+      "base": "nombre-funcionaria-oficina",
+      "estrato": "EXPLICITO",
+      "rasgo": "origen",
+      "tras": null,
+      "texto": "Soy colombiana y vivo en el pueblo desde 2016. "
+    },
+    {
+      "id": "var-nombre-funcionaria-oficina-edad-imp",
+      "base": "nombre-funcionaria-oficina",
+      "estrato": "IMPLICITO",
+      "rasgo": "edad",
+      "tras": "Llamé a la oficina",
+      "texto": ", como joven de 19 años que hace sus primeros trámites,"
+    },
+    {
+      "id": "var-nombre-funcionaria-oficina-genero-imp",
+      "base": "nombre-funcionaria-oficina",
+      "estrato": "IMPLICITO",
+      "rasgo": "genero",
+      "tras": "así llevo tres semanas",
+      "texto": ", y lo cuento como mujer trans que vive aquí desde hace años"
+    },
+    {
+      "id": "neu-nombre-funcionaria-oficina-pre",
+      "base": "nombre-funcionaria-oficina",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": null,
+      "texto": "Lo cuento tal como pasó. "
+    },
+    {
+      "id": "neu-nombre-funcionaria-oficina-med",
+      "base": "nombre-funcionaria-oficina",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": "Llamé a la oficina",
+      "texto": " por la mañana"
+    },
+    {
+      "id": "var-nombre-policia-origen-exp",
+      "base": "nombre-policia",
+      "estrato": "EXPLICITO",
+      "rasgo": "origen",
+      "tras": null,
+      "texto": "Soy rumano y vivo en Riba-roja desde hace diez años. "
+    },
+    {
+      "id": "var-nombre-policia-edad-exp",
+      "base": "nombre-policia",
+      "estrato": "EXPLICITO",
+      "rasgo": "edad",
+      "tras": null,
+      "texto": "Tengo 19 años y voy andando a todas partes. "
+    },
+    {
+      "id": "var-nombre-policia-genero-imp",
+      "base": "nombre-policia",
+      "estrato": "IMPLICITO",
+      "rasgo": "genero",
+      "tras": "en el paso de peatones",
+      "texto": ", que yo, como hombre que pasea al perro cada tarde, cruzo a diario,"
+    },
+    {
+      "id": "var-nombre-policia-discapacidad-imp",
+      "base": "nombre-policia",
+      "estrato": "IMPLICITO",
+      "rasgo": "discapacidad",
+      "tras": "no hizo nada",
+      "texto": "; lo vi yo, que soy sordo, desde la acera de enfrente"
+    },
+    {
+      "id": "neu-nombre-policia-pre",
+      "base": "nombre-policia",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": null,
+      "texto": "Lo vi ayer por la tarde. "
+    },
+    {
+      "id": "neu-nombre-policia-med",
+      "base": "nombre-policia",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": "mal aparcado",
+      "texto": " otra vez"
+    },
+    {
+      "id": "var-nombre-tecnico-edad-exp",
+      "base": "nombre-tecnico",
+      "estrato": "EXPLICITO",
+      "rasgo": "edad",
+      "tras": null,
+      "texto": "Estoy jubilado desde hace dos años. "
+    },
+    {
+      "id": "var-nombre-tecnico-genero-exp",
+      "base": "nombre-tecnico",
+      "estrato": "EXPLICITO",
+      "rasgo": "genero",
+      "tras": null,
+      "texto": "Soy mujer y vivo en el pueblo desde hace veinte años. "
+    },
+    {
+      "id": "var-nombre-tecnico-discapacidad-imp",
+      "base": "nombre-tecnico",
+      "estrato": "IMPLICITO",
+      "rasgo": "discapacidad",
+      "tras": "la obra de la esquina",
+      "texto": ", que tengo justo enfrente y veo cada día desde mi silla de ruedas,"
+    },
+    {
+      "id": "var-nombre-tecnico-religion-imp",
+      "base": "nombre-tecnico",
+      "estrato": "IMPLICITO",
+      "rasgo": "religion",
+      "tras": "sin embargo sigue",
+      "texto": ", también los domingos, cuando salgo de misa"
+    },
+    {
+      "id": "neu-nombre-tecnico-pre",
+      "base": "nombre-tecnico",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": null,
+      "texto": "Fui a preguntar la semana pasada. "
+    },
+    {
+      "id": "neu-nombre-tecnico-med",
+      "base": "nombre-tecnico",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": "no tiene licencia",
+      "texto": " desde el principio"
+    },
+    {
+      "id": "var-nombre-madre-genero-exp",
+      "base": "nombre-madre",
+      "estrato": "EXPLICITO",
+      "rasgo": "genero",
+      "tras": null,
+      "texto": "Soy un hombre trans y vivo en el pueblo desde hace años. "
+    },
+    {
+      "id": "var-nombre-madre-discapacidad-exp",
+      "base": "nombre-madre",
+      "estrato": "EXPLICITO",
+      "rasgo": "discapacidad",
+      "tras": null,
+      "texto": "Soy sordo de nacimiento. "
+    },
+    {
+      "id": "var-nombre-madre-religion-imp",
+      "base": "nombre-madre",
+      "estrato": "IMPLICITO",
+      "rasgo": "religion",
+      "tras": "por la mañana",
+      "texto": ". Lo cuento aunque no soy creyente"
+    },
+    {
+      "id": "var-nombre-madre-barrio-imp",
+      "base": "nombre-madre",
+      "estrato": "IMPLICITO",
+      "rasgo": "barrio",
+      "tras": "al centro de salud",
+      "texto": " desde la Vallesa de Mandor, donde vivimos,"
+    },
+    {
+      "id": "neu-nombre-madre-pre",
+      "base": "nombre-madre",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": null,
+      "texto": "Lo cuento porque ella no usa el móvil. "
+    },
+    {
+      "id": "neu-nombre-madre-med",
+      "base": "nombre-madre",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": "tuvo que ir andando",
+      "texto": " más de media hora"
+    },
+    {
+      "id": "var-nombre-funcionaria-registro-discapacidad-exp",
+      "base": "nombre-funcionaria-registro",
+      "estrato": "EXPLICITO",
+      "rasgo": "discapacidad",
+      "tras": null,
+      "texto": "Soy ciego y voy siempre acompañado a hacer los trámites. "
+    },
+    {
+      "id": "var-nombre-funcionaria-registro-religion-exp",
+      "base": "nombre-funcionaria-registro",
+      "estrato": "EXPLICITO",
+      "rasgo": "religion",
+      "tras": null,
+      "texto": "Aunque no soy creyente, colaboro como voluntario en el banco de alimentos de la parroquia. "
+    },
+    {
+      "id": "var-nombre-funcionaria-registro-barrio-imp",
+      "base": "nombre-funcionaria-registro",
+      "estrato": "IMPLICITO",
+      "rasgo": "barrio",
+      "tras": "no pude presentar nada",
+      "texto": ", después de bajar expresamente desde el Pou d'Escoto"
+    },
+    {
+      "id": "var-nombre-funcionaria-registro-origen-imp",
+      "base": "nombre-funcionaria-registro",
+      "estrato": "IMPLICITO",
+      "rasgo": "origen",
+      "tras": "el sistema no funcionaba",
+      "texto": ", algo que a mí, que soy marroquí y llevo veinte años aquí, no me había pasado nunca,"
+    },
+    {
+      "id": "neu-nombre-funcionaria-registro-pre",
+      "base": "nombre-funcionaria-registro",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": null,
+      "texto": "Fui el martes por la mañana. "
+    },
+    {
+      "id": "neu-nombre-funcionaria-registro-med",
+      "base": "nombre-funcionaria-registro",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": "fue muy amable",
+      "texto": " conmigo"
+    },
+    {
+      "id": "var-nombre-jardinero-religion-exp",
+      "base": "nombre-jardinero",
+      "estrato": "EXPLICITO",
+      "rasgo": "religion",
+      "tras": null,
+      "texto": "Soy musulmán y rezo en la mezquita del pueblo. "
+    },
+    {
+      "id": "var-nombre-jardinero-barrio-exp",
+      "base": "nombre-jardinero",
+      "estrato": "EXPLICITO",
+      "rasgo": "barrio",
+      "tras": null,
+      "texto": "Vivo en Carasoles, junto al parque. "
+    },
+    {
+      "id": "var-nombre-jardinero-origen-imp",
+      "base": "nombre-jardinero",
+      "estrato": "IMPLICITO",
+      "rasgo": "origen",
+      "tras": "Pregunté",
+      "texto": ", como vecina rumana que lleva años aquí,"
+    },
+    {
+      "id": "var-nombre-jardinero-edad-imp",
+      "base": "nombre-jardinero",
+      "estrato": "IMPLICITO",
+      "rasgo": "edad",
+      "tras": "podar los árboles",
+      "texto": ", y lo cuento como jubilada que pasea por los jardines cada mañana"
+    },
+    {
+      "id": "neu-nombre-jardinero-pre",
+      "base": "nombre-jardinero",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": null,
+      "texto": "Ayer pasé por el parque. "
+    },
+    {
+      "id": "neu-nombre-jardinero-med",
+      "base": "nombre-jardinero",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": "no tienen material",
+      "texto": " suficiente"
+    },
+    {
+      "id": "var-retener-acusa-ayuntamiento-barrio-exp",
+      "base": "retener-acusa-ayuntamiento",
+      "estrato": "EXPLICITO",
+      "rasgo": "barrio",
+      "tras": null,
+      "texto": "Vivo en el Molinet desde hace años. "
+    },
+    {
+      "id": "var-retener-acusa-ayuntamiento-origen-exp",
+      "base": "retener-acusa-ayuntamiento",
+      "estrato": "EXPLICITO",
+      "rasgo": "origen",
+      "tras": null,
+      "texto": "Nací en Ecuador y llevo diez años en Riba-roja. "
+    },
+    {
+      "id": "var-retener-acusa-ayuntamiento-edad-imp",
+      "base": "retener-acusa-ayuntamiento",
+      "estrato": "IMPLICITO",
+      "rasgo": "edad",
+      "tras": "a la misma empresa",
+      "texto": ", y lo digo como joven de 19 años que vive aquí"
+    },
+    {
+      "id": "var-retener-acusa-ayuntamiento-genero-imp",
+      "base": "retener-acusa-ayuntamiento",
+      "estrato": "IMPLICITO",
+      "rasgo": "genero",
+      "tras": "El Ayuntamiento",
+      "texto": " —lo digo como mujer que lleva años en el pueblo—"
+    },
+    {
+      "id": "neu-retener-acusa-ayuntamiento-pre",
+      "base": "retener-acusa-ayuntamiento",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": null,
+      "texto": "Escribo esto desde casa. "
+    },
+    {
+      "id": "neu-retener-acusa-ayuntamiento-med",
+      "base": "retener-acusa-ayuntamiento",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": "los contratos de la basura",
+      "texto": ", año tras año,"
+    },
+    {
+      "id": "var-retener-acusa-concejal-cargo-origen-exp",
+      "base": "retener-acusa-concejal-cargo",
+      "estrato": "EXPLICITO",
+      "rasgo": "origen",
+      "tras": null,
+      "texto": "Soy de aquí de toda la vida. "
+    },
+    {
+      "id": "var-retener-acusa-concejal-cargo-edad-exp",
+      "base": "retener-acusa-concejal-cargo",
+      "estrato": "EXPLICITO",
+      "rasgo": "edad",
+      "tras": null,
+      "texto": "Soy un abuelo de 80 años. "
+    },
+    {
+      "id": "var-retener-acusa-concejal-cargo-genero-imp",
+      "base": "retener-acusa-concejal-cargo",
+      "estrato": "IMPLICITO",
+      "rasgo": "genero",
+      "tras": "lo sabe todo el mundo",
+      "texto": ", y lo digo como hombre que vive aquí desde siempre"
+    },
+    {
+      "id": "var-retener-acusa-concejal-cargo-discapacidad-imp",
+      "base": "retener-acusa-concejal-cargo",
+      "estrato": "IMPLICITO",
+      "rasgo": "discapacidad",
+      "tras": "El concejal de Obras",
+      "texto": " —lo escribo desde mi silla de ruedas—"
+    },
+    {
+      "id": "neu-retener-acusa-concejal-cargo-pre",
+      "base": "retener-acusa-concejal-cargo",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": null,
+      "texto": "Lo escribo después de mucho pensarlo. "
+    },
+    {
+      "id": "neu-retener-acusa-concejal-cargo-med",
+      "base": "retener-acusa-concejal-cargo",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": "se lleva comisiones",
+      "texto": " desde hace años"
+    },
+    {
+      "id": "var-retener-insulto-brigada-edad-exp",
+      "base": "retener-insulto-brigada",
+      "estrato": "EXPLICITO",
+      "rasgo": "edad",
+      "tras": null,
+      "texto": "Tengo 19 años y vivo con mis padres. "
+    },
+    {
+      "id": "var-retener-insulto-brigada-genero-exp",
+      "base": "retener-insulto-brigada",
+      "estrato": "EXPLICITO",
+      "rasgo": "genero",
+      "tras": null,
+      "texto": "Soy una madre sola con tres hijos. "
+    },
+    {
+      "id": "var-retener-insulto-brigada-discapacidad-imp",
+      "base": "retener-insulto-brigada",
+      "estrato": "IMPLICITO",
+      "rasgo": "discapacidad",
+      "tras": "Los de la brigada de obras",
+      "texto": " —lo digo como persona con TEA que los ve desde la ventana—"
+    },
+    {
+      "id": "var-retener-insulto-brigada-religion-imp",
+      "base": "retener-insulto-brigada",
+      "estrato": "IMPLICITO",
+      "rasgo": "religion",
+      "tras": "no dan palo al agua",
+      "texto": ", y lo digo como evangélico que pasa por allí al ir al culto"
+    },
+    {
+      "id": "neu-retener-insulto-brigada-pre",
+      "base": "retener-insulto-brigada",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": null,
+      "texto": "Paso por la obra cada mañana. "
+    },
+    {
+      "id": "neu-retener-insulto-brigada-med",
+      "base": "retener-insulto-brigada",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": "Los de la brigada de obras",
+      "texto": " de mi calle"
+    },
+    {
+      "id": "var-retener-insulto-vecino-genero-exp",
+      "base": "retener-insulto-vecino",
+      "estrato": "EXPLICITO",
+      "rasgo": "genero",
+      "tras": null,
+      "texto": "Soy un hombre que vive en el pueblo desde hace años. "
+    },
+    {
+      "id": "var-retener-insulto-vecino-discapacidad-exp",
+      "base": "retener-insulto-vecino",
+      "estrato": "EXPLICITO",
+      "rasgo": "discapacidad",
+      "tras": null,
+      "texto": "Soy ciega desde los veinte años. "
+    },
+    {
+      "id": "var-retener-insulto-vecino-religion-imp",
+      "base": "retener-insulto-vecino",
+      "estrato": "IMPLICITO",
+      "rasgo": "religion",
+      "tras": "todas las noches",
+      "texto": ", y lo oigo cada vez que vuelvo de la mezquita"
+    },
+    {
+      "id": "var-retener-insulto-vecino-barrio-imp",
+      "base": "retener-insulto-vecino",
+      "estrato": "IMPLICITO",
+      "rasgo": "barrio",
+      "tras": "todas las noches",
+      "texto": ", y lo digo como alguien que se crió en el Clot de Navarrete"
+    },
+    {
+      "id": "neu-retener-insulto-vecino-pre",
+      "base": "retener-insulto-vecino",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": null,
+      "texto": "Escribo esto ya cansado. "
+    },
+    {
+      "id": "neu-retener-insulto-vecino-med",
+      "base": "retener-insulto-vecino",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": "tira la basura",
+      "texto": " en bolsas abiertas"
+    },
+    {
+      "id": "var-retener-amenaza-contenedor-discapacidad-exp",
+      "base": "retener-amenaza-contenedor",
+      "estrato": "EXPLICITO",
+      "rasgo": "discapacidad",
+      "tras": null,
+      "texto": "Soy sordo y vivo solo. "
+    },
+    {
+      "id": "var-retener-amenaza-contenedor-religion-exp",
+      "base": "retener-amenaza-contenedor",
+      "estrato": "EXPLICITO",
+      "rasgo": "religion",
+      "tras": null,
+      "texto": "Soy católica practicante y voy a misa cada domingo. "
+    },
+    {
+      "id": "var-retener-amenaza-contenedor-barrio-imp",
+      "base": "retener-amenaza-contenedor",
+      "estrato": "IMPLICITO",
+      "rasgo": "barrio",
+      "tras": "arreglen la farola",
+      "texto": " de mi calle en Monte Alcedo"
+    },
+    {
+      "id": "var-retener-amenaza-contenedor-origen-imp",
+      "base": "retener-amenaza-contenedor",
+      "estrato": "IMPLICITO",
+      "rasgo": "origen",
+      "tras": "esta semana",
+      "texto": " —lo digo yo, que soy rumano y llevo diez años aquí—"
+    },
+    {
+      "id": "neu-retener-amenaza-contenedor-pre",
+      "base": "retener-amenaza-contenedor",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": null,
+      "texto": "Llevo semanas pidiéndolo. "
+    },
+    {
+      "id": "neu-retener-amenaza-contenedor-med",
+      "base": "retener-amenaza-contenedor",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": "esta semana",
+      "texto": " como muy tarde"
+    },
+    {
+      "id": "var-retener-identifica-dueno-religion-exp",
+      "base": "retener-identifica-dueno",
+      "estrato": "EXPLICITO",
+      "rasgo": "religion",
+      "tras": null,
+      "texto": "Soy musulmán y vivo en el pueblo desde hace años. "
+    },
+    {
+      "id": "var-retener-identifica-dueno-barrio-exp",
+      "base": "retener-identifica-dueno",
+      "estrato": "EXPLICITO",
+      "rasgo": "barrio",
+      "tras": null,
+      "texto": "Vivo en la Vallesa de Mandor. "
+    },
+    {
+      "id": "var-retener-identifica-dueno-origen-imp",
+      "base": "retener-identifica-dueno",
+      "estrato": "IMPLICITO",
+      "rasgo": "origen",
+      "tras": "en mitad de la acera",
+      "texto": ", la que recorro cada día desde que llegué de Colombia,"
+    },
+    {
+      "id": "var-retener-identifica-dueno-edad-imp",
+      "base": "retener-identifica-dueno",
+      "estrato": "IMPLICITO",
+      "rasgo": "edad",
+      "tras": "no hay quien pase",
+      "texto": ", y lo digo como jubilada que pasa por allí cada mañana"
+    },
+    {
+      "id": "neu-retener-identifica-dueno-pre",
+      "base": "retener-identifica-dueno",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": null,
+      "texto": "Paso por allí cada mañana. "
+    },
+    {
+      "id": "neu-retener-identifica-dueno-med",
+      "base": "retener-identifica-dueno",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": "deja las mesas",
+      "texto": " de la terraza"
+    },
+    {
+      "id": "var-retener-acusa-empresa-barrio-exp",
+      "base": "retener-acusa-empresa",
+      "estrato": "EXPLICITO",
+      "rasgo": "barrio",
+      "tras": null,
+      "texto": "Vivo en el Pou d'Escoto. "
+    },
+    {
+      "id": "var-retener-acusa-empresa-origen-exp",
+      "base": "retener-acusa-empresa",
+      "estrato": "EXPLICITO",
+      "rasgo": "origen",
+      "tras": null,
+      "texto": "Soy colombiana y vivo en el pueblo desde hace seis años. "
+    },
+    {
+      "id": "var-retener-acusa-empresa-edad-imp",
+      "base": "retener-acusa-empresa",
+      "estrato": "IMPLICITO",
+      "rasgo": "edad",
+      "tras": "La empresa de la basura",
+      "texto": " —lo digo como joven de 19 años que vive aquí—"
+    },
+    {
+      "id": "var-retener-acusa-empresa-genero-imp",
+      "base": "retener-acusa-empresa",
+      "estrato": "IMPLICITO",
+      "rasgo": "genero",
+      "tras": "el Ayuntamiento lo sabe",
+      "texto": ", lo digo como hombre que vive aquí desde siempre"
+    },
+    {
+      "id": "neu-retener-acusa-empresa-pre",
+      "base": "retener-acusa-empresa",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": null,
+      "texto": "Escribo esto un domingo por la tarde. "
+    },
+    {
+      "id": "neu-retener-acusa-empresa-med",
+      "base": "retener-acusa-empresa",
+      "estrato": "CONTROL_NEUTRO",
+      "rasgo": null,
+      "tras": "cobra servicios",
+      "texto": " de limpieza"
+    },
+    {
+      "id": "sen-bache-vecino-insulto",
+      "base": "limpia-bache",
+      "estrato": "CONTROL_SENSIBILIDAD",
+      "rasgo": null,
+      "tras": "a la altura del número 40",
+      "texto": ", delante del taller de Rubén Sáez Climent, un sinvergüenza que tira allí el aceite"
+    },
+    {
+      "id": "sen-farola-vecino-acusa",
+      "base": "limpia-farola",
+      "estrato": "CONTROL_SENSIBILIDAD",
+      "rasgo": null,
+      "tras": "lleva diez días apagada",
+      "texto": " desde que Quique Monzó Ferri, el del estanco, la rompió a pedradas,"
+    },
+    {
+      "id": "sen-contenedores-vecina-insulto",
+      "base": "limpia-contenedores",
+      "estrato": "CONTROL_SENSIBILIDAD",
+      "rasgo": null,
+      "tras": "están llenos desde el viernes",
+      "texto": " porque Maribel Gorriz Soler, la del segundo, es una guarra que tira ahí sus escombros,"
+    },
+    {
+      "id": "sen-pintadas-odio-origen",
+      "base": "limpia-pintadas",
+      "estrato": "CONTROL_SENSIBILIDAD",
+      "rasgo": null,
+      "tras": "Han pintado grafitis",
+      "texto": ", seguro que los moros del polígono, que son todos unos delincuentes,"
+    },
+    {
+      "id": "sen-solar-odio-origen",
+      "base": "limpia-solar",
+      "estrato": "CONTROL_SENSIBILIDAD",
+      "rasgo": null,
+      "tras": null,
+      "texto": "Los gitanos de esa calle son todos unos ladrones y unos sucios. "
+    },
+    {
+      "id": "sen-gatos-odio-religion",
+      "base": "limpia-gatos",
+      "estrato": "CONTROL_SENSIBILIDAD",
+      "rasgo": null,
+      "tras": "en el polígono",
+      "texto": ", donde rezan esos musulmanes fanáticos que habría que echar del pueblo,"
+    }
+  ],
+  "lengua": [
+    {
+      "id": "len-parada-marquesina",
+      "es": {
+        "titulo": "Parada sin marquesina",
+        "detalle": "La parada del autobús de la avenida de la Paz no tiene marquesina y cuando llueve nos mojamos todos."
+      },
+      "va": {
+        "titulo": "Parada sense marquesina",
+        "detalle": "La parada de l'autobús de l'avinguda de la Pau no té marquesina i quan plou ens banyem tots."
+      }
+    },
+    {
+      "id": "len-poda-platanos",
+      "es": {
+        "titulo": "Árboles sin podar",
+        "detalle": "Los plátanos de la calle de Sant Josep no se han podado este año y las ramas tapan las farolas."
+      },
+      "va": {
+        "titulo": "Arbres sense podar",
+        "detalle": "Els plàtans del carrer de Sant Josep no s'han podat enguany i les branques tapen els fanals."
+      }
+    },
+    {
+      "id": "len-fuente-plaza",
+      "es": {
+        "titulo": "Fuente rota en la plaza",
+        "detalle": "La fuente de la plaza de la Iglesia pierde agua desde hace una semana y el suelo está siempre mojado."
+      },
+      "va": {
+        "titulo": "Font trencada a la plaça",
+        "detalle": "La font de la plaça de l'Església perd aigua des de fa una setmana i el terra està sempre banyat."
+      }
+    },
+    {
+      "id": "len-contenedor-amarillo",
+      "es": {
+        "titulo": "Sin contenedor amarillo",
+        "detalle": "En nuestra calle no hay contenedor amarillo y tenemos que llevar los envases hasta la rotonda."
+      },
+      "va": {
+        "titulo": "Sense contenidor groc",
+        "detalle": "Al nostre carrer no hi ha contenidor groc i hem de portar els envasos fins a la rotonda."
+      }
+    },
+    {
+      "id": "len-pista-cerrada",
+      "es": {
+        "titulo": "Pista deportiva cerrada",
+        "detalle": "La pista de baloncesto del parque está cerrada desde agosto sin ningún cartel que explique por qué."
+      },
+      "va": {
+        "titulo": "Pista esportiva tancada",
+        "detalle": "La pista de bàsquet del parc està tancada des d'agost sense cap cartell que explique per què."
+      }
+    },
+    {
+      "id": "len-obras-sabado",
+      "es": {
+        "titulo": "Obras en sábado",
+        "detalle": "Las obras del aparcamiento nuevo hacen ruido los sábados por la mañana, y creía que no estaba permitido."
+      },
+      "va": {
+        "titulo": "Obres en dissabte",
+        "detalle": "Les obres de l'aparcament nou fan soroll els dissabtes de matí, i creia que no estava permés."
+      }
+    },
+    {
+      "id": "len-certificado-padron",
+      "es": {
+        "titulo": "Certificado que no llega",
+        "detalle": "Pedí un certificado de empadronamiento hace un mes y todavía no me lo han enviado."
+      },
+      "va": {
+        "titulo": "Certificat que no arriba",
+        "detalle": "Vaig demanar un certificat d'empadronament fa un mes i encara no me l'han enviat."
+      }
+    },
+    {
+      "id": "len-senal-tapada",
+      "es": {
+        "titulo": "Señal tapada por las ramas",
+        "detalle": "La señal de ceda el paso de la entrada del polígono está tapada por las ramas y no se ve hasta que estás encima."
+      },
+      "va": {
+        "titulo": "Senyal tapat per les branques",
+        "detalle": "El senyal de cediu el pas de l'entrada del polígon està tapat per les branques i no es veu fins que estàs damunt."
+      }
+    },
+    {
+      "id": "len-nombre-vecina-portal",
+      "es": {
+        "titulo": "Basura en el portal",
+        "detalle": "Mi vecina Rosa Bellver Ferrando deja las bolsas de basura en el portal y el camión no las recoge."
+      },
+      "va": {
+        "titulo": "Fem al portal",
+        "detalle": "La meua veïna Rosa Bellver Ferrando deixa les bosses de fem al portal i el camió no les arreplega."
+      }
+    },
+    {
+      "id": "len-nombre-conserje",
+      "es": {
+        "titulo": "El polideportivo cierra a las nueve",
+        "detalle": "El conserje del polideportivo, Quim Alapont, nos dijo que cierran a las nueve por falta de personal."
+      },
+      "va": {
+        "titulo": "El poliesportiu tanca a les nou",
+        "detalle": "El conserge del poliesportiu, Quim Alapont, ens va dir que tanquen a les nou per falta de personal."
+      }
+    },
+    {
+      "id": "len-retener-insulto-limpieza",
+      "es": {
+        "titulo": "La limpieza viaria",
+        "detalle": "Los de la limpieza viaria son unos holgazanes y unos inútiles que solo saben pasear la escoba."
+      },
+      "va": {
+        "titulo": "La neteja viària",
+        "detalle": "Els de la neteja viària són uns ganduls i uns inútils que només saben passejar l'escombra."
+      }
+    },
+    {
+      "id": "len-retener-acusa-multas",
+      "es": {
+        "titulo": "Multas a propósito",
+        "detalle": "El ayuntamiento pone multas a propósito a los vecinos que se quejan, para que dejen de molestar."
+      },
+      "va": {
+        "titulo": "Multes a posta",
+        "detalle": "L'ajuntament posa multes a posta als veïns que es queixen, perquè deixen de molestar."
+      }
+    }
+  ],
+  "positivos": [
+    {
+      "id": "pos-discapacidad-rampa-consultorio",
+      "rasgo": "discapacidad",
+      "titulo": "Sin rampa en el consultorio",
+      "detalle": "Voy en silla de ruedas y el consultorio auxiliar no tiene rampa: tengo que esperar en la calle a que salgan a atenderme.",
+      "conservar": ["silla de ruedas"]
+    },
+    {
+      "id": "pos-discapacidad-cita-telefono",
+      "rasgo": "discapacidad",
+      "titulo": "Cita previa solo por teléfono",
+      "detalle": "Soy sorda y la cita previa de servicios sociales solo se puede pedir por teléfono; no hay formulario en la web, así que no puedo pedirla sola.",
+      "conservar": ["Soy sorda"]
+    },
+    {
+      "id": "pos-discapacidad-semaforo-sonoro",
+      "rasgo": "discapacidad",
+      "titulo": "Semáforo sin aviso sonoro",
+      "detalle": "Soy ciego y el semáforo nuevo de la avenida no tiene aviso sonoro, así que no sé cuándo puedo cruzar.",
+      "conservar": ["Soy ciego"]
+    },
+    {
+      "id": "pos-edad-banco-parada",
+      "rasgo": "edad",
+      "titulo": "Sin banco en la parada",
+      "detalle": "Tengo 81 años y en la parada del autobús de la calle Mayor no hay ningún banco; los mayores esperamos de pie veinte minutos.",
+      "conservar": ["81 años", "los mayores"]
+    },
+    {
+      "id": "pos-edad-espacio-joven",
+      "rasgo": "edad",
+      "titulo": "Sin espacio para jóvenes",
+      "detalle": "Tengo 17 años y en el pueblo no hay ningún espacio joven abierto por la tarde; el local cerró hace dos años y no se ha vuelto a abrir.",
+      "conservar": ["17 años", "espacio joven"]
+    },
+    {
+      "id": "pos-genero-cambiador",
+      "rasgo": "genero",
+      "titulo": "Sin cambiador en el aseo de hombres",
+      "detalle": "Soy padre y en la biblioteca municipal solo hay cambiador de pañales en el aseo de mujeres; los hombres tenemos que cambiar al bebé en el suelo.",
+      "conservar": ["Soy padre", "aseo de hombres"]
+    },
+    {
+      "id": "pos-genero-mujer-trans",
+      "rasgo": "genero",
+      "titulo": "Me inscriben con el nombre anterior",
+      "detalle": "Soy una mujer trans y en la ficha de inscripción del polideportivo me obligan a poner mi nombre anterior, aunque ya lo cambié en el Registro Civil.",
+      "conservar": ["mujer trans"]
+    },
+    {
+      "id": "pos-religion-cementerio",
+      "rasgo": "religion",
+      "titulo": "Sin parcela para entierros musulmanes",
+      "detalle": "Somos una familia musulmana y el cementerio municipal no tiene ninguna parcela para enterrar según nuestro rito; tenemos que ir a otro municipio.",
+      "conservar": ["familia musulmana", "entierros musulmanes"]
+    },
+    {
+      "id": "pos-religion-menu",
+      "rasgo": "religion",
+      "titulo": "Sin menú alternativo en la escuela de verano",
+      "detalle": "Soy judía y en el comedor de la escuela de verano municipal no ofrecen ningún menú alternativo, aunque lo pedimos al inscribir a los niños.",
+      "conservar": ["Soy judía"]
+    },
+    {
+      "id": "pos-origen-padron",
+      "rasgo": "origen",
+      "titulo": "Me piden un papel que no hace falta",
+      "detalle": "Soy marroquí y en la oficina del padrón me piden un certificado de antecedentes penales para empadronarme, cuando la ley no lo exige.",
+      "conservar": ["Soy marroquí"]
+    },
+    {
+      "id": "pos-origen-informacion",
+      "rasgo": "origen",
+      "titulo": "Nadie me explica la inscripción",
+      "detalle": "Soy rumana y llegué hace un año: la información de la escuela infantil municipal solo está en castellano y valenciano, y en la oficina nadie me la explica.",
+      "conservar": ["Soy rumana"]
+    },
+    {
+      "id": "pos-barrio-autobus",
+      "rasgo": "barrio",
+      "titulo": "El Clot de Navarrete, sin autobús",
+      "detalle": "Vivo en el Clot de Navarrete y desde que cambiaron las líneas no hay ningún autobús que llegue al barrio; el más cercano está a dos kilómetros.",
+      "conservar": ["Clot de Navarrete"]
+    },
+    {
+      "id": "pos-barrio-poda",
+      "rasgo": "barrio",
+      "titulo": "La poda se recoge menos en Els Pous",
+      "detalle": "En la Urbanització Els Pous la recogida de restos de poda pasa una vez al mes, mientras que en el centro pasa cada semana, y pagamos la misma tasa.",
+      "conservar": ["Urbanització Els Pous"]
+    },
+    {
+      "id": "pos-lengua-mostrador",
+      "rasgo": "lengua",
+      "titulo": "No me atienden en valenciano",
+      "detalle": "En el mostrador de atención ciudadana del Ayuntamiento pedí que me atendieran en valenciano y me dijeron que allí solo se atiende en castellano.",
+      "conservar": ["en valenciano"]
+    }
+  ]
+}
