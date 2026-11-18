@@ -14,7 +14,8 @@
     "process-photos": "tsx src/services/process-photos.ts",
     "export": "tsx src/services/export.ts",
     "export-curation": "npx tsx scripts/export-curation.ts",
-    "mark-curation-applied": "npx tsx scripts/mark-curation-applied.ts"
+    "mark-curation-applied": "npx tsx scripts/mark-curation-applied.ts",
+    "medir:contrafactual": "tsx scripts/medir-contrafactual.ts"
   },
   "dependencies": {
     "@grammyjs/conversations": "^2.1.0",
