@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-17T13:59:56.674Z",
+  "generatedAt": "2026-11-18T13:33:12.343Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -42,7 +42,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-17T13:59:56.583Z"
+      "generatedAt": "2026-11-18T13:33:12.251Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -61,7 +61,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-17T13:59:56.583Z"
+      "generatedAt": "2026-11-18T13:33:12.251Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -80,7 +80,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-17T13:59:56.583Z"
+      "generatedAt": "2026-11-18T13:33:12.251Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -88,7 +88,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-17T13:59:56.583Z"
+      "generatedAt": "2026-11-18T13:33:12.251Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -96,7 +96,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-17T13:59:56.583Z"
+      "generatedAt": "2026-11-18T13:33:12.251Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -115,7 +115,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-17T13:59:56.583Z"
+      "generatedAt": "2026-11-18T13:33:12.251Z"
     },
     {
       "promiseId": "ac-psoe-1ryndd8",
@@ -135,11 +135,11 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMihgJBVV95cUxOdkFOSjdIQWp5SkMtMmhKWGtaTFZBbE5jQ0FmdlJvZkpaUXZCd0M3R0wxNTFWMTdBOVB1bk9yZEdxS0FfaGUxbzlPOHhhRlNNbVlETGRIY2QtXy1NNWVJR0VmVjc0alMybUJKRDZCcE9scm9vWVphLVFNejRqRjZZTXRmRU45RlFmOXVWYjRpbVNKV0QxNEItZkhQTERqQUNodjgyVVpHNWlxeEpqUHdjWnF4VHNPZDBEdWliZURkR0thU3FielpJNDlWQkl2UjVsbzR4TUhrRXFUSXFBYWh1YkxQWkxTcldSZjFOUlNVcFdlQ1NWT3l0UWhBNnMtYm82MUVvZndB?oc=5",
+          "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQTWZlUzNRSkVxak9ndTZ3X05yZkphYVpUdUxtcklDb0o5amU2bDBEUFVVR21IQmpxNjROSEVON1pab1p0MkdXa1hQS0p2bkZFQWR0TmxubVo3ZDN2elF5TGM4WDJZdl9sQWxsbWVTLUdxM05mVWV1bG9KeHpfdEQ3eXZ6d1gyVnl3ZFhpY3FQYmVtdXY1WlB1LW9kcDIxRm9fNS1XNGkwaWNOT2pWakhUekRXalpMLU5BbTJRclh3UU0xN2ZJdkJlME5VUndKc3ZvcGY4bW1zOGctOGMxUnZCMUtmWDVuUWVQQUd6YmFpdmJVMHcxclpJRXpyNkRuTDFQQmhIeVBrVQ?oc=5",
           "date": "2026-11-16",
           "quote": "Compromís-Front Valencià reivindica ayudas de 200 euros mensuales por hijo y permisos de cuidados entre amistades",
           "kind": "press",
-          "publisher": "Valencia Plaza",
+          "publisher": "Ultima Hora",
           "matchedKeywords": [
             "ayuda",
             "euro"
@@ -147,7 +147,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-17T13:59:56.583Z"
+      "generatedAt": "2026-11-18T13:33:12.251Z"
     },
     {
       "promiseId": "ac-psoe-43brfs",
@@ -212,7 +212,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-17T13:59:56.583Z"
+      "generatedAt": "2026-11-18T13:33:12.251Z"
     },
     {
       "promiseId": "ac-psoe-17y448o",
@@ -237,11 +237,11 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMihgJBVV95cUxOdkFOSjdIQWp5SkMtMmhKWGtaTFZBbE5jQ0FmdlJvZkpaUXZCd0M3R0wxNTFWMTdBOVB1bk9yZEdxS0FfaGUxbzlPOHhhRlNNbVlETGRIY2QtXy1NNWVJR0VmVjc0alMybUJKRDZCcE9scm9vWVphLVFNejRqRjZZTXRmRU45RlFmOXVWYjRpbVNKV0QxNEItZkhQTERqQUNodjgyVVpHNWlxeEpqUHdjWnF4VHNPZDBEdWliZURkR0thU3FielpJNDlWQkl2UjVsbzR4TUhrRXFUSXFBYWh1YkxQWkxTcldSZjFOUlNVcFdlQ1NWT3l0UWhBNnMtYm82MUVvZndB?oc=5",
+          "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQTWZlUzNRSkVxak9ndTZ3X05yZkphYVpUdUxtcklDb0o5amU2bDBEUFVVR21IQmpxNjROSEVON1pab1p0MkdXa1hQS0p2bkZFQWR0TmxubVo3ZDN2elF5TGM4WDJZdl9sQWxsbWVTLUdxM05mVWV1bG9KeHpfdEQ3eXZ6d1gyVnl3ZFhpY3FQYmVtdXY1WlB1LW9kcDIxRm9fNS1XNGkwaWNOT2pWakhUekRXalpMLU5BbTJRclh3UU0xN2ZJdkJlME5VUndKc3ZvcGY4bW1zOGctOGMxUnZCMUtmWDVuUWVQQUd6YmFpdmJVMHcxclpJRXpyNkRuTDFQQmhIeVBrVQ?oc=5",
           "date": "2026-11-16",
           "quote": "Compromís-Front Valencià reivindica ayudas de 200 euros mensuales por hijo y permisos de cuidados entre amistades",
           "kind": "press",
-          "publisher": "Valencia Plaza",
+          "publisher": "Ultima Hora",
           "matchedKeywords": [
             "ayuda",
             "euro"
@@ -281,7 +281,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-17T13:59:56.583Z"
+      "generatedAt": "2026-11-18T13:33:12.251Z"
     },
     {
       "promiseId": "ac-psoe-1bkbwjs",
@@ -325,7 +325,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-17T13:59:56.583Z"
+      "generatedAt": "2026-11-18T13:33:12.251Z"
     },
     {
       "promiseId": "ac-psoe-1xeq50",
@@ -360,11 +360,11 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMihgJBVV95cUxOdkFOSjdIQWp5SkMtMmhKWGtaTFZBbE5jQ0FmdlJvZkpaUXZCd0M3R0wxNTFWMTdBOVB1bk9yZEdxS0FfaGUxbzlPOHhhRlNNbVlETGRIY2QtXy1NNWVJR0VmVjc0alMybUJKRDZCcE9scm9vWVphLVFNejRqRjZZTXRmRU45RlFmOXVWYjRpbVNKV0QxNEItZkhQTERqQUNodjgyVVpHNWlxeEpqUHdjWnF4VHNPZDBEdWliZURkR0thU3FielpJNDlWQkl2UjVsbzR4TUhrRXFUSXFBYWh1YkxQWkxTcldSZjFOUlNVcFdlQ1NWT3l0UWhBNnMtYm82MUVvZndB?oc=5",
+          "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQTWZlUzNRSkVxak9ndTZ3X05yZkphYVpUdUxtcklDb0o5amU2bDBEUFVVR21IQmpxNjROSEVON1pab1p0MkdXa1hQS0p2bkZFQWR0TmxubVo3ZDN2elF5TGM4WDJZdl9sQWxsbWVTLUdxM05mVWV1bG9KeHpfdEQ3eXZ6d1gyVnl3ZFhpY3FQYmVtdXY1WlB1LW9kcDIxRm9fNS1XNGkwaWNOT2pWakhUekRXalpMLU5BbTJRclh3UU0xN2ZJdkJlME5VUndKc3ZvcGY4bW1zOGctOGMxUnZCMUtmWDVuUWVQQUd6YmFpdmJVMHcxclpJRXpyNkRuTDFQQmhIeVBrVQ?oc=5",
           "date": "2026-11-16",
           "quote": "Compromís-Front Valencià reivindica ayudas de 200 euros mensuales por hijo y permisos de cuidados entre amistades",
           "kind": "press",
-          "publisher": "Valencia Plaza",
+          "publisher": "Ultima Hora",
           "matchedKeywords": [
             "euro",
             "entre"
@@ -394,7 +394,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-17T13:59:56.583Z"
+      "generatedAt": "2026-11-18T13:33:12.251Z"
     },
     {
       "promiseId": "ac-psoe-1kui43c",
@@ -416,7 +416,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-17T13:59:56.583Z"
+      "generatedAt": "2026-11-18T13:33:12.251Z"
     },
     {
       "promiseId": "ac-psoe-1t88ans",
@@ -454,7 +454,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-17T13:59:56.583Z"
+      "generatedAt": "2026-11-18T13:33:12.251Z"
     },
     {
       "promiseId": "ac-psoe-168xzn8",
@@ -497,7 +497,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-17T13:59:56.583Z"
+      "generatedAt": "2026-11-18T13:33:12.251Z"
     }
   ],
   "llmEvidence": [],

@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-11-17T13:47:58.312Z",
+  "generatedAt": "2026-11-18T13:23:24.867Z",
   "source": {
     "name": "Boletín Oficial de la Provincia de València",
     "home": "https://bop.dival.es/bop/",
     "note": "Last 30 days · anuncios del Ayuntamiento de Riba-roja de Túria"
   },
   "stats": {
-    "total": 8,
+    "total": 7,
     "daysCovered": 22,
     "daysRequested": 30,
     "fetchFailures": 0,
@@ -82,16 +82,6 @@
       "bulletinDate": "20/10/2026",
       "pdfUrl": "https://bop.dival.es/bop/downloads?anuncioNumReg=2026%2F12611",
       "bulletinUrl": "https://bop.dival.es/bop/downloads?boletinFecha=20%2F10%2F2026"
-    },
-    {
-      "id": "bfb6450801f9",
-      "regNumber": "2026/12565",
-      "title": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre la aprobación del padrón relativo a la tasa por utilización privativa o aprovechamiento especial del dominio público local, por los puestos fijos de venta sitos en el mercado municipal y puestos de mercado ambulante, correspondiente al tercer trimestre del ejercicio 2026",
-      "entity": "Ayuntamiento de Riba-roja de Túria",
-      "date": "2026-10-19",
-      "bulletinDate": "19/10/2026",
-      "pdfUrl": "https://bop.dival.es/bop/downloads?anuncioNumReg=2026%2F12565",
-      "bulletinUrl": "https://bop.dival.es/bop/downloads?boletinFecha=19%2F10%2F2026"
     }
   ]
 }

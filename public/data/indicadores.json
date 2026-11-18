@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-17T14:00:18.136Z",
+  "generatedAt": "2026-11-18T13:33:40.245Z",
   "conjunto": "cv-15k-40k",
   "anioBase": 2024,
   "source": {
@@ -8656,16 +8656,16 @@
         "fuente": "tenders:adjudicados:numberOfProposals=1"
       },
       "denominador": {
-        "valor": 711,
+        "valor": 712,
         "estado": "declarado",
         "fuente": "tenders:adjudicados:conOfertasDeclaradas"
       },
-      "valor": 0.4767932489451477,
+      "valor": 0.476123595505618,
       "formato": "porcentaje",
       "periodo": "2017–2026",
       "caveats": [
         "Un licitador único no es irregular por sí mismo: hay mercados con un solo proveedor capaz. Es el indicador que la Comisión Europea usa para vigilar la competencia en compra pública, y lo que mide es cuánta de ella hubo.",
-        "Ningún contrato adjudicado se queda fuera: los 711 declaran cuántas ofertas recibieron, así que el denominador coincide con el total de adjudicados."
+        "Ningún contrato adjudicado se queda fuera: los 712 declaran cuántas ofertas recibieron, así que el denominador coincide con el total de adjudicados."
       ],
       "citas": [
         {
@@ -8686,11 +8686,11 @@
         "fuente": "tenders:adjudicados:sinPublicidad"
       },
       "denominador": {
-        "valor": 711,
+        "valor": 712,
         "estado": "declarado",
         "fuente": "tenders:adjudicados"
       },
-      "valor": 0.4050632911392405,
+      "valor": 0.4044943820224719,
       "formato": "porcentaje",
       "periodo": "2017–2026",
       "caveats": [
@@ -8715,11 +8715,11 @@
         "fuente": "tenders:adjudicados:top5Importe"
       },
       "denominador": {
-        "valor": 126229708.35999995,
+        "valor": 126491325.77999994,
         "estado": "declarado",
         "fuente": "tenders:adjudicados:importeTotal"
       },
-      "valor": 0.670514005931274,
+      "valor": 0.6691272061390835,
       "formato": "porcentaje",
       "periodo": "2017–2026",
       "caveats": [
@@ -9028,7 +9028,7 @@
         "fuente": {
           "nombre": "SINAC · Sistema de Información Nacional de Aguas de Consumo (Ministerio de Sanidad)",
           "url": "https://sinac.sanidad.gob.es/CiudadanoWeb/ciudadano/informacionAbastecimientoActionEntrada.do",
-          "atribucion": "Fuente: Ministerio de Sanidad, SINAC. Consultado el 2026-11-17; cada boletín lleva su fecha de toma."
+          "atribucion": "Fuente: Ministerio de Sanidad, SINAC. Consultado el 2026-11-18; cada boletín lleva su fecha de toma."
         }
       },
       {

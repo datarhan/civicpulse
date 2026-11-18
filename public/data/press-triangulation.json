@@ -1,18 +1,43 @@
 {
-  "generatedAt": "2026-11-18T12:33:04.375Z",
+  "generatedAt": "2026-11-18T13:33:31.113Z",
   "clusters": [
+    {
+      "clusterId": "1iksd3t",
+      "articleIds": [
+        "1g7rby8",
+        "1qg4l3w",
+        "8m0mzw",
+        "k07i1s"
+      ],
+      "outlets": [
+        "Actualidad Valencia",
+        "El Periódico de Aquí",
+        "Levante-EMV",
+        "Valencia Noticias"
+      ],
+      "fuentesOficiales": [],
+      "earliestDate": "2026-11-17T12:21:36.000Z",
+      "latestDate": "2026-11-18T04:40:40.000Z",
+      "verdictMix": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 0,
+        "promesa-repetida": 0
+      }
+    },
     {
       "clusterId": "eqsunl",
       "articleIds": [
-        "5iht08",
-        "m7i95g"
+        "1jhsn2b",
+        "5iht08"
       ],
       "outlets": [
         "Periòdic del Camp de Túria",
-        "Valencia Plaza"
+        "Ultima Hora"
       ],
       "fuentesOficiales": [],
-      "earliestDate": "2026-11-16T11:03:13.000Z",
+      "earliestDate": "2026-11-16T10:57:53.000Z",
       "latestDate": "2026-11-16T13:01:38.000Z",
       "verdictMix": {
         "verificado": 0,
@@ -24,13 +49,13 @@
     }
   ],
   "stats": {
-    "totalClusters": 1,
-    "triangulated3Plus": 0
+    "totalClusters": 2,
+    "triangulated3Plus": 1
   },
   "builtFrom": {
-    "plenos-agendas.json": "92e3b53fa863",
+    "plenos-agendas.json": "531cfb9cead9",
     "press-claims-verified.json": "08ffc2a2899d",
-    "press.json": "08a2437bfa97",
+    "press.json": "f28f9247d536",
     "promises.json": "78479b1377ce"
   }
 }

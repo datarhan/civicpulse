@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-17T13:58:10.932Z",
+  "generatedAt": "2026-11-18T13:31:22.888Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
@@ -12,13 +12,186 @@
     "closingSoon": 7,
     "withDetail": 49,
     "byMonth": {
-      "2026-11": 12,
+      "2026-11": 14,
       "2026-10": 28,
-      "2026-09": 7,
+      "2026-09": 5,
       "2026-05": 2
     }
   },
   "items": [
+    {
+      "id": "2577",
+      "fo": 2577,
+      "codigo": "2026/00274",
+      "titulo": "Gestor/a tráfico internacional",
+      "publishedAt": "2026-11-18",
+      "deadline": "2027-01-18",
+      "location": "Poligono Industrial Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2577",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00274"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Gestor/a tráfico internacional"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Requisitos: Muy valorable experiencia en importación desde UE Indispensable idiomas: inglés nivel conversación. Se valorarán más idiomas. Vehículo propio"
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "TRANSPORTE Y ALMACENAMIENTO"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "OFICIALES ADMINISTRATIVOS"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Poligono Industrial, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46394"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa Turnos: Turno partido"
+          },
+          {
+            "label": "Salario",
+            "value": "Según experiencia"
+          },
+          {
+            "label": "Funciones",
+            "value": "- Gestión logística y seguimiento de tráfico. - Resolución de incidencias. - Búsqueda de cargas en bolsa Timocom y Wtransnet. - Soporte administrador: control de vacaciones, tacógrafo, etc. - Gestión de los/as conductores/as."
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "1",
+        "categoria": "OFICIALES ADMINISTRATIVOS",
+        "observaciones": "Requisitos: Muy valorable experiencia en importación desde UE Indispensable idiomas: inglés nivel conversación. Se valorarán más idiomas. Vehículo propio",
+        "municipio": "Riba-roja de Túria",
+        "provincia": "Valencia",
+        "cp": "46394",
+        "jornada": "Completa Turnos: Turno partido",
+        "salario": "Según experiencia",
+        "funciones": "- Gestión logística y seguimiento de tráfico. - Resolución de incidencias. - Búsqueda de cargas en bolsa Timocom y Wtransnet. - Soporte administrador: control de vacaciones, tacógrafo, etc. - Gestión de los/as conductores/as.",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2341",
+      "fo": 2341,
+      "codigo": "2026/00043",
+      "titulo": "Albañiles de 1ª y 2ª",
+      "publishedAt": "2026-11-18",
+      "deadline": "2027-01-18",
+      "location": "Provincia de Valencia Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2341",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00043"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Albañiles de 1ª y 2ª"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Empresa seria con continuidad y cartera fija de clientes ofrece flexibilidad horaria, seguiridad laboral, muy bien ambiente de trabajo e incentivos. Requisitos: - Experiencia mínima de 2 años como albañil de primera - Experiencia demostrable en reformas de viviendas y mantenimiento de instalaciones - PRL Construcción 20 horas (imprescindible) - Carnet de conducir B - Capacidad para trabajar en equipo - Persona organizada, polivalente y responsable - Compromiso y profesionalidad"
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "CONSTRUCCIÓN"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "2"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "OFICIAL DE 1ª"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Provincia de Valencia, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa"
+          },
+          {
+            "label": "Observaciones jornada",
+            "value": "Estabilidad laboral real (no por obra)"
+          },
+          {
+            "label": "Horario",
+            "value": "Lunes a Jueves 8:00-18:00 Viernes 8:00-14:00"
+          },
+          {
+            "label": "Salario",
+            "value": "20.000-24.000 brutos"
+          },
+          {
+            "label": "Funciones",
+            "value": "Funciones propias del puesto."
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "2",
+        "categoria": "OFICIAL DE 1ª",
+        "observaciones": "Empresa seria con continuidad y cartera fija de clientes ofrece flexibilidad horaria, seguiridad laboral, muy bien ambiente de trabajo e incentivos. Requisitos: - Experiencia mínima de 2 años como albañil de primera - Experiencia demostrable en reformas de viviendas y mantenimiento de instalaciones - PRL Construcción 20 horas (imprescindible) - Carnet de conducir B - Capacidad para trabajar en equipo - Persona organizada, polivalente y responsable - Compromiso y profesionalidad",
+        "municipio": "Riba-roja de Túria",
+        "provincia": "Valencia",
+        "cp": "46190",
+        "jornada": "Completa",
+        "horario": "Lunes a Jueves 8:00-18:00 Viernes 8:00-14:00",
+        "salario": "20.000-24.000 brutos",
+        "funciones": "Funciones propias del puesto.",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
     {
       "id": "2576",
       "fo": 2576,
@@ -202,7 +375,7 @@
           },
           {
             "label": "Observaciones",
-            "value": "REQUISITOS IMPRESCINDIBLES : Vehículo para acceder al puesto de trabajo Carné de Carretillero Experiencia mínima de 6 meses en el puesto No se tendrán en cuenta candidaturas que no cumplan estos requisitos"
+            "value": "REQUISITOS IMPRESCINDIBLES : Vehículo para acceder al puesto de trabajo Carnet de Carretillero Experiencia mínima de 6 meses en el puesto No se tendrán en cuenta candidaturas que no cumplan estos requisitos"
           },
           {
             "label": "Tipo de contrato",
@@ -244,7 +417,7 @@
         "tipoContrato": "CONTRATO INDEFINIDO",
         "duracion": "PRUEBA + INDEFINIDO",
         "numPuestos": "1",
-        "observaciones": "REQUISITOS IMPRESCINDIBLES : Vehículo para acceder al puesto de trabajo Carné de Carretillero Experiencia mínima de 6 meses en el puesto No se tendrán en cuenta candidaturas que no cumplan estos requisitos",
+        "observaciones": "REQUISITOS IMPRESCINDIBLES : Vehículo para acceder al puesto de trabajo Carnet de Carretillero Experiencia mínima de 6 meses en el puesto No se tendrán en cuenta candidaturas que no cumplan estos requisitos",
         "jornada": "Completa",
         "horario": "Lunes a Jueves de 8.00-13.30 y de 15.00 - 17.15 Viernes de 7.00-14.15",
         "salario": "Según convenio",
@@ -3587,146 +3760,6 @@
         "horario": "Lunes a viernes de 7h a 15h",
         "salario": "Convenio + Complementos (a convenir según valía)",
         "funciones": "- Revisión preventiva de cuadros eléctricos, líneas, conexiones, protecciones y otros elementos de baja tensión. - Detección de anomalías, puntos calientes, sobrecargas o posibles riesgos eléctricos. - Ejecución de pequeñas correcciones, ajustes y reparaciones derivadas de las revisiones realizadas. - Mantenimiento preventivo y correctivo de instalaciones eléctricas industriales. - Realización de pruebas, verificaciones y diagnósticos eléctricos. - Elaboración o apoyo en la recogida de información técnica tras las revisiones realizadas. - Desplazamiento a diferentes instalaciones de clientes con vehículo de empresa. - Cumplimiento de la normativa vigente en materia de seguridad, calidad y prevención de riesgos laborales. - Coordinación con el equipo técnico y responsables de proyecto para reportar incidencias o necesidades detectadas.",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2538",
-      "fo": 2538,
-      "codigo": "2026/00237",
-      "titulo": "Auxiliar de enfermería",
-      "publishedAt": "2026-09-17",
-      "deadline": "2026-11-17",
-      "location": "URBANIZACION LA LLOBATERA, CALLE OBOE 54 Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2538",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00237"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Auxiliar de enfermería"
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "ACTIVIDADES SANITARIAS Y DE SERVICIOS SOCIALES"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "5"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "URBANIZACION LA LLOBATERA, CALLE OBOE 54, Municipio: Riba-roja de Túria, Provincia: Valencia"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa"
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio"
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "5",
-        "jornada": "Completa",
-        "salario": "Según convenio",
-        "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2537",
-      "fo": 2537,
-      "codigo": "2026/00236",
-      "titulo": "Enfermero/a",
-      "publishedAt": "2026-09-17",
-      "deadline": "2026-11-17",
-      "location": "CALLE OBOE 54, URBANIZACION LA LLOBATERA Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2537",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00236"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Enfermero/a"
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "ACTIVIDADES SANITARIAS Y DE SERVICIOS SOCIALES"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "3"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "CALLE OBOE 54, URBANIZACION LA LLOBATERA, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Indiferente"
-          },
-          {
-            "label": "Observaciones jornada",
-            "value": "Hay jornada completa y también podría ser jornada parcial"
-          },
-          {
-            "label": "Salario",
-            "value": "SEGUN CONVENIO"
-          },
-          {
-            "label": "Funciones",
-            "value": "FUNCIONES PROPIAS DEL PUESTO DE ENFERMERÍA EN CENTRO RESIDENCIAL DE PERSONAS CON ENFERMEDAD MENTAL"
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "3",
-        "municipio": "Riba-roja de Túria",
-        "provincia": "Valencia",
-        "cp": "46190",
-        "jornada": "Indiferente",
-        "salario": "SEGUN CONVENIO",
-        "funciones": "FUNCIONES PROPIAS DEL PUESTO DE ENFERMERÍA EN CENTRO RESIDENCIAL DE PERSONAS CON ENFERMEDAD MENTAL",
-        "vehiculo": "Sí",
         "ocupaciones": []
       }
     },

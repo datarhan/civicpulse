@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-11-18T12:33:04.972Z",
+  "generatedAt": "2026-11-18T13:33:31.806Z",
   "source": "queja-contract-relations engine v1 (deterministic)",
   "stats": {
     "frozen": false,
     "quejasScanned": 1,
-    "contractsScanned": 711,
+    "contractsScanned": 712,
     "tierA": 3,
-    "tierB": 29,
+    "tierB": 30,
     "reason": null
   },
   "links": [
@@ -436,6 +436,27 @@
     },
     {
       "quejaId": "Q-KJY6XSVG",
+      "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=lQlfD5LIN7YXhk1FZxEyvw%3D%3D",
+      "tenderId": "5196181",
+      "tenderTitle": "Contrato  administrativo de obras para la ejecución del proyecto reforma y ampliación parcial del edificio La Mallà, por procedimiento abierto simplificado, varios criterios de adjudicación,  con  condición  de  ejecución  de  carácter  social  y  medioambiental.",
+      "tenderAwardDate": "2026-11-17",
+      "tenderAmount": 261617.42,
+      "via": "deterministic",
+      "signals": {
+        "department": {
+          "slug": "urbanismo"
+        },
+        "temporal": {
+          "monthsAfter": 4.584993827160494
+        }
+      },
+      "tier": "B",
+      "score": 0.55,
+      "relationLabel": "misma materia y fechas próximas",
+      "requiresHumanApproval": true
+    },
+    {
+      "quejaId": "Q-KJY6XSVG",
       "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qW6k6jv%2FMO%2FnSoTX3z%2F7wA%3D%3D",
       "tenderId": "96520",
       "tenderTitle": "contrato de obras de colocación de Centros Culturales e instalaciones al servicio de las Urbanizaciones Monte Alcedo y Valencia La Vella, por procedimiento abierto, simplificado mejor relación calidad-precio, varios criterios de adjudicación con cláusulas medioambientales como criterio de adjudicación y con condición especial de ejecución de carácter medioambiental.",
@@ -692,7 +713,7 @@
   "builtFrom": {
     "promises.json": "78479b1377ce",
     "quejas.json": "b52c27d8b38f",
-    "tender-geo.json": "beeea10ef4d4",
-    "tenders.json": "20a337e60c42"
+    "tender-geo.json": "e013423cd6cc",
+    "tenders.json": "44c69212c6e7"
   }
 }

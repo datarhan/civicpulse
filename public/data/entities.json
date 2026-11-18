@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-11-17T14:00:09.538Z",
+  "generatedAt": "2026-11-18T13:33:30.337Z",
   "source": "derived: tenders.json assignees + officials.json · overrides: entity-overrides.json",
   "stats": {
     "companies": 381,
     "people": 21,
     "variantsMerged": 1,
-    "contractRefs": 711
+    "contractRefs": 712
   },
   "companies": [
     {
@@ -49,11 +49,11 @@
       "lastAwardDate": "2025-09-10"
     },
     {
-      "id": "co-uvw12g",
-      "nameKey": "s a agricultores de la vega de valencia sav",
-      "canonicalName": "S.A. AGRICULTORES DE LA VEGA DE VALENCIA (SAV)",
+      "id": "co-gstnhv",
+      "nameKey": "s a agricultores de la vega de valencia",
+      "canonicalName": "S.A. AGRICULTORES DE LA VEGA DE VALENCIA",
       "variants": [
-        "S.A. AGRICULTORES DE LA VEGA DE VALENCIA (SAV)"
+        "S.A. AGRICULTORES DE LA VEGA DE VALENCIA"
       ],
       "contractIds": [
         "285368",
@@ -70,9 +70,9 @@
     {
       "id": "co-4b10do",
       "nameKey": "pavasal empresa constructora sa",
-      "canonicalName": "PAVASAL EMPRESA CONSTRUCTORA SAU",
+      "canonicalName": "PAVASAL EMPRESA CONSTRUCTORA S.A.",
       "variants": [
-        "PAVASAL EMPRESA CONSTRUCTORA SAU"
+        "PAVASAL EMPRESA CONSTRUCTORA S.A."
       ],
       "contractIds": [
         "86685",
@@ -458,9 +458,9 @@
     {
       "id": "co-1ssdab8",
       "nameKey": "transtel sa",
-      "canonicalName": "TRANSTEL SA",
+      "canonicalName": "TRANSTEL,S.A.",
       "variants": [
-        "TRANSTEL SA"
+        "TRANSTEL,S.A."
       ],
       "contractIds": [
         "4474601",
@@ -687,11 +687,11 @@
       "lastAwardDate": "2024-01-02"
     },
     {
-      "id": "co-1c8puro",
-      "nameKey": "andacar 2000 sl",
-      "canonicalName": "ANDACAR 2000 SL",
+      "id": "co-196u850",
+      "nameKey": "andacar 2000 sa",
+      "canonicalName": "ANDACAR 2000, S.A.",
       "variants": [
-        "ANDACAR 2000 SL"
+        "ANDACAR 2000, S.A."
       ],
       "contractIds": [
         "67336#125442",
@@ -798,6 +798,22 @@
       "awardedTotalEur": 325810,
       "firstAwardDate": "2022-12-21",
       "lastAwardDate": "2026-05-29"
+    },
+    {
+      "id": "co-lnaycc",
+      "nameKey": "construmar xativa sl",
+      "canonicalName": "CONSTRUMAR XATIVA S.L.",
+      "variants": [
+        "CONSTRUMAR XATIVA S.L."
+      ],
+      "contractIds": [
+        "5196181",
+        "1498554"
+      ],
+      "contractCount": 2,
+      "awardedTotalEur": 314968.66,
+      "firstAwardDate": "2021-10-21",
+      "lastAwardDate": "2026-11-17"
     },
     {
       "id": "co-11ywuw8",
@@ -941,11 +957,11 @@
       "lastAwardDate": "2024-12-10"
     },
     {
-      "id": "co-15ou5sz",
-      "nameKey": "sece",
-      "canonicalName": "SECE",
+      "id": "co-1jn7e00",
+      "nameKey": "sociedad espanola de construcciones electricas sa",
+      "canonicalName": "Sociedad Española de Construcciones Eléctricas, s.a.",
       "variants": [
-        "SECE"
+        "Sociedad Española de Construcciones Eléctricas, s.a."
       ],
       "contractIds": [
         "58428"
@@ -1163,9 +1179,9 @@
     {
       "id": "co-dyflxg",
       "nameKey": "aglomerados los serranos sa",
-      "canonicalName": "AGLOMERADOS LOS SERRANOS SA",
+      "canonicalName": "AGLOMERADOS LOS SERRANOS, SA",
       "variants": [
-        "AGLOMERADOS LOS SERRANOS SA"
+        "AGLOMERADOS LOS SERRANOS, SA"
       ],
       "contractIds": [
         "329628",
@@ -1227,11 +1243,11 @@
       "lastAwardDate": "2026-07-02"
     },
     {
-      "id": "co-cxnxgo",
-      "nameKey": "elecnor sa",
-      "canonicalName": "ELECNOR, S.A.",
+      "id": "co-1pd3evs",
+      "nameKey": "elecnor servicios y proyectos sa",
+      "canonicalName": "ELECNOR SERVICIOS Y PROYECTOS, S.A.",
       "variants": [
-        "ELECNOR, S.A."
+        "ELECNOR SERVICIOS Y PROYECTOS, S.A."
       ],
       "contractIds": [
         "60362",
@@ -1295,9 +1311,9 @@
     {
       "id": "co-3eqrnc",
       "nameKey": "otis mobility sa",
-      "canonicalName": "OTIS MOBILITY, S.A.",
+      "canonicalName": "OTIS MOBILITY S.A.",
       "variants": [
-        "OTIS MOBILITY, S.A."
+        "OTIS MOBILITY S.A."
       ],
       "contractIds": [
         "4570383",
@@ -1421,11 +1437,11 @@
       "lastAwardDate": "2026-07-20"
     },
     {
-      "id": "co-aqojcg",
-      "nameKey": "sociedad iberica de construcciones electricas sa",
-      "canonicalName": "SOCIEDAD IBERICA DE CONSTRUCCIONES ELECTRICAS S.A.",
+      "id": "co-1y4b630",
+      "nameKey": "sice s a soc iberica const electricas",
+      "canonicalName": "SICE S.A. (SOC.IBERICA CONST.ELECTRICAS)",
       "variants": [
-        "SOCIEDAD IBERICA DE CONSTRUCCIONES ELECTRICAS S.A."
+        "SICE S.A. (SOC.IBERICA CONST.ELECTRICAS)"
       ],
       "contractIds": [
         "132946",
@@ -1778,11 +1794,11 @@
       "lastAwardDate": "2024-11-12"
     },
     {
-      "id": "co-11fj7c6",
-      "nameKey": "publicacions de la universitat de valencia",
-      "canonicalName": "Publicacions de la Universitat de València",
+      "id": "co-wg9zyw",
+      "nameKey": "universitat de valencia",
+      "canonicalName": "UNIVERSITAT DE VALENCIA",
       "variants": [
-        "Publicacions de la Universitat de València"
+        "UNIVERSITAT DE VALENCIA"
       ],
       "contractIds": [
         "1697425",
@@ -2080,9 +2096,9 @@
     {
       "id": "co-x1mooj",
       "nameKey": "asfaltos y construcciones elsan sa",
-      "canonicalName": "ASFALTOS Y CONSTRUCCIONES ELSAN, SA",
+      "canonicalName": "ASFALTOS Y CONSTRUCCIONES  ELSAN SA",
       "variants": [
-        "ASFALTOS Y CONSTRUCCIONES ELSAN, SA"
+        "ASFALTOS Y CONSTRUCCIONES  ELSAN SA"
       ],
       "contractIds": [
         "1561143#2858686",
@@ -2097,9 +2113,9 @@
     {
       "id": "co-vmkwj4",
       "nameKey": "t systems itc iberia sa",
-      "canonicalName": "T-SYSTEMS ITC IBERIA, S.A.U",
+      "canonicalName": "T-Systems ITC Iberia, S.A.U.",
       "variants": [
-        "T-SYSTEMS ITC IBERIA, S.A.U"
+        "T-Systems ITC Iberia, S.A.U."
       ],
       "contractIds": [
         "1701582#3707296"
@@ -2356,21 +2372,6 @@
       "awardedTotalEur": 54900,
       "firstAwardDate": "2018-10-04",
       "lastAwardDate": "2018-10-04"
-    },
-    {
-      "id": "co-lnaycc",
-      "nameKey": "construmar xativa sl",
-      "canonicalName": "CONSTRUMAR XATIVA S.L.",
-      "variants": [
-        "CONSTRUMAR XATIVA S.L."
-      ],
-      "contractIds": [
-        "1498554"
-      ],
-      "contractCount": 1,
-      "awardedTotalEur": 53351.24,
-      "firstAwardDate": "2021-10-21",
-      "lastAwardDate": "2021-10-21"
     },
     {
       "id": "co-90vy0c",
@@ -3335,11 +3336,11 @@
       "lastAwardDate": "2025-12-16"
     },
     {
-      "id": "co-1q2ufww",
-      "nameKey": "movea consulting mobility sl",
-      "canonicalName": "MOVEA CONSULTING MOBILITY SL",
+      "id": "co-ezfzto",
+      "nameKey": "movea consulting",
+      "canonicalName": "MOVEA CONSULTING",
       "variants": [
-        "MOVEA CONSULTING MOBILITY SL"
+        "MOVEA CONSULTING"
       ],
       "contractIds": [
         "4892112"
@@ -3563,15 +3564,15 @@
       "lastAwardDate": "2021-10-06"
     },
     {
-      "id": "co-193x1lk",
-      "nameKey": "imesapi sa",
-      "canonicalName": "IMESAPI, S.A.",
+      "id": "co-1fc06gw",
+      "nameKey": "imesapi",
+      "canonicalName": "imesAPI",
       "variants": [
-        "IMESAPI, S.A."
+        "imesAPI"
       ],
       "contractIds": [
-        "2739773",
-        "1591482"
+        "1591482",
+        "2739773"
       ],
       "contractCount": 2,
       "awardedTotalEur": 21005.89,
@@ -3756,9 +3757,9 @@
       ],
       "contractIds": [
         "4930658#8843228",
-        "4930658#8843229",
         "4930658#8843225",
         "4930658#8843227",
+        "4930658#8843229",
         "4930658#8843230"
       ],
       "contractCount": 5,
@@ -4135,11 +4136,11 @@
       "lastAwardDate": "2021-07-07"
     },
     {
-      "id": "co-1nwqlvs",
-      "nameKey": "sernutec servicios y nuevas tecnologias sl",
-      "canonicalName": "SERNUTEC SERVICIOS Y NUEVAS TECNOLOGIAS SL",
+      "id": "co-koyhtc",
+      "nameKey": "sernutec sl",
+      "canonicalName": "SERNUTEC, S.L.",
       "variants": [
-        "SERNUTEC SERVICIOS Y NUEVAS TECNOLOGIAS SL"
+        "SERNUTEC, S.L."
       ],
       "contractIds": [
         "256923#254044",
@@ -6185,7 +6186,7 @@
   ],
   "builtFrom": {
     "entity-overrides.json": "a41cc20172e9",
-    "officials.json": "6f0e8f207294",
-    "tenders.json": "20a337e60c42"
+    "officials.json": "255bc4566861",
+    "tenders.json": "44c69212c6e7"
   }
 }
