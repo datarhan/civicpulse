@@ -90,11 +90,11 @@ describe('locateQuote', () => {
   })
 
   it('returns -1 and zero for text that is absent', () => {
-    expect(locateQuote('zzz qqq', 'hola mundo')).toEqual({ coverage: 0, at: -1 })
+    expect(locateQuote('zzz qqq', 'hola mundo')).toEqual({ coverage: 0, at: -1, length: 0 })
   })
 
   it('is empty-safe', () => {
-    expect(locateQuote('', 'hola')).toEqual({ coverage: 0, at: -1 })
+    expect(locateQuote('', 'hola')).toEqual({ coverage: 0, at: -1, length: 0 })
   })
 })
 
