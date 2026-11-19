@@ -7,6 +7,8 @@ import {
   alignSpeakerMap,
   locateQuote,
   blocByPublishedSpeaker,
+  blocResolverFor,
+  type AlignmentResult,
 } from '../src/scraper/speaker-map-align'
 import { parseDiarizedTranscript } from '../src/scraper/voice-id'
 import { quoteCoverage } from '../src/scraper/quote-match'
@@ -196,5 +198,62 @@ describe('blocByPublishedSpeaker', () => {
     const out = blocByPublishedSpeaker(conflicted)
     expect(out.has('SPEAKER_20')).toBe(false)
     expect(out.get('SPEAKER_21')).toBe('VOX')
+  })
+})
+
+describe('blocResolverFor — una cita que cruza un cambio de orador', () => {
+  // Resolvía el bloque sólo con la línea donde EMPIEZA la cita. alignSpeakerMap
+  // mira los dos extremos y se abstiene si discrepan; esto no, así que una cita
+  // que cruzaba un cambio de turno heredaba el bloque del primero. Las costuras
+  // de los trozos de transcripción producen justo eso (19-11-2026).
+  const published = [
+    {
+      start: 0,
+      end: 5,
+      speaker: 'SPEAKER_00',
+      text: 'el contrato del agua vence el año que viene',
+    },
+    { start: 5, end: 9, speaker: 'SPEAKER_01', text: 'y no lo vamos a prorrogar sin concurso' },
+    { start: 9, end: 14, speaker: 'SPEAKER_02', text: 'lo pagan los vecinos de su bolsillo' },
+  ]
+  const linea = (index: number, bloc: string | null) => ({
+    index,
+    start: published[index].start,
+    publishedSpeaker: published[index].speaker,
+    mapLabel: bloc ? 'M' : null,
+    bloc,
+    coverage: 1,
+    conflict: false,
+  })
+  const alineacion = (blocs: Array<string | null>): AlignmentResult => ({
+    lines: blocs.map((b, i) => linea(i, b)),
+    stats: { aligned: 0, unaligned: 0, conflicting: 0, matchedButNoBloc: 0 },
+  })
+
+  it('dentro de una línea, el bloque de esa línea', () => {
+    const r = blocResolverFor(published, alineacion(['PSOE', 'PP', 'VOX']))
+    expect(r('no lo vamos a prorrogar sin concurso')).toBe('PP')
+  })
+
+  it('a caballo de dos bloques distintos, nadie', () => {
+    const r = blocResolverFor(published, alineacion(['PSOE', 'PP', 'VOX']))
+    expect(r('vence el año que viene y no lo vamos a prorrogar')).toBeNull()
+  })
+
+  it('aunque discrepe sólo la línea del medio', () => {
+    const r = blocResolverFor(published, alineacion(['PSOE', 'PP', 'PSOE']))
+    expect(
+      r('vence el año que viene y no lo vamos a prorrogar sin concurso lo pagan los vecinos'),
+    ).toBeNull()
+  })
+
+  it('a caballo de dos líneas del mismo bloque, ese bloque', () => {
+    const r = blocResolverFor(published, alineacion(['PSOE', 'PSOE', 'VOX']))
+    expect(r('vence el año que viene y no lo vamos a prorrogar')).toBe('PSOE')
+  })
+
+  it('una línea sin bloque no contradice a la otra', () => {
+    const r = blocResolverFor(published, alineacion(['PSOE', null, 'VOX']))
+    expect(r('vence el año que viene y no lo vamos a prorrogar')).toBe('PSOE')
   })
 })
