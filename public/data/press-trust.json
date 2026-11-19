@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-18T13:33:31.105Z",
+  "generatedAt": "2026-11-19T05:49:29.415Z",
   "windowDays": 30,
   "articles": [
     {
@@ -647,47 +647,13 @@
         "opinionFraction": 0
       },
       "score": 3
-    },
-    {
-      "articleId": "3r3ub6",
-      "articleFingerprint": "101nprs",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia%2C-evento/riba-roja-pedaleja-2026",
-      "date": "2026-10-19T15:57:09.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": null,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 1
-    },
-    {
-      "articleId": "z718i4",
-      "articleFingerprint": "1mvwziw",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/galeria-fotogr%C3%A0fica-una-fira-de-10",
-      "date": "2026-10-19T15:41:40.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": null,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 1
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 17,
+      "articleCount": 15,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 1,
@@ -696,7 +662,7 @@
         "promesa-repetida": 0
       },
       "checkedClaims": 3,
-      "meanTrustScore": 1.82,
+      "meanTrustScore": 1.93,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -910,7 +876,7 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "531cfb9cead9",
+    "plenos-agendas.json": "11eec3c5dce5",
     "press-claims-verified.json": "08ffc2a2899d",
     "press.json": "f28f9247d536",
     "promises.json": "78479b1377ce"
