@@ -2887,8 +2887,8 @@ function ContratoEditorial() {
             respuesta del modelo que no se sostiene —un fragmento que no está en el texto, un motivo
             que no existe, un campo que falta— no se arregla: la revisión se repite más tarde, y si
             sigue fallando se avisa a quien modera. Una queja que la revisión no retiene sólo se
-            publica sin una persona cuando la precisión de esa revisión está medida y registrada,
-            como cuenta la{' '}
+            publica sin una persona cuando están medidas y registradas la precisión de esa revisión
+            y que decide lo mismo diga o no quien escribe quién es, como cuenta la{' '}
             <a href="#politica-automatizacion" style={{ color: 'var(--civic)' }}>
               política de automatización
             </a>

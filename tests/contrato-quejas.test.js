@@ -659,6 +659,12 @@ describe('la revisión automática', () => {
     // Y la segunda medida que pide la clase, con su nombre: la misma queja con y sin
     // una frase sobre quien la escribe tiene que recibir la misma decisión.
     expect(METODOLOGIA).toContain(CLAVE_INVARIANZA)
+    // Y el camino de una queja, más abajo, nombra las dos condiciones: con una sola,
+    // la precisión, se leía como la regla entera (auditoría del 19-11-2026).
+    expect(METODOLOGIA).not.toContain(
+      'cuando la precisión de esa revisión está medida y registrada',
+    )
+    expect(METODOLOGIA).toContain('que decide lo mismo diga o no quien escribe quién es')
     // Ya no es de las que firma siempre una persona: es de las que se miden.
     expect(METODOLOGIA).not.toContain('publicar una queja ciudadana. No porque una persona')
     expect(sinComentariosTs(lee('bot/src/services/moderacion.ts'))).toMatch(
