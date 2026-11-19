@@ -206,10 +206,61 @@ fi
 if [ -f "$SUPERSEDED_MAIN" ]; then INCUMBENTE="$SUPERSEDED_MAIN"; fi
 
 
+# ── Troceo del audio (las dos ramas de API) ───────────────────────────────
+# Más de 25 min se parte en trozos de unos 20 min re-codificados a 64 kbps mono
+# opus. Los cortes ya no caen a ciegas cada 1200 s: cada uno busca el silencio
+# más largo a ±60 s de su marca, y un resto de segundos se suma al trozo anterior
+# (src/scraper/cortes-audio.ts cuenta por qué: 71 de 195 costuras partían una
+# frase, y una declaración publicada quedó cortada en «la redacción»).
+# Deja CHUNK_DIR, N_CHUNKS y OFFSETS (el segundo donde empieza cada trozo).
+trocear_audio() {
+  CHUNK_DIR="$WORKDIR/chunks"
+  mkdir -p "$CHUNK_DIR"
+  OFFSETS=(0)
+  local CORTES="" CIEGOS=0 SIL="$WORKDIR/silencios.log"
+  if [ "$DUR_S" -gt 1500 ]; then
+    ffmpeg -hide_banner -nostats -i "$AUDIO" \
+      -af "$(cd "$REPO_ROOT" && npx tsx scripts/cortes-audio.ts --filtro)" -f null - 2> "$SIL" || true
+    { read -r CORTES; read -r CIEGOS; } < <(cd "$REPO_ROOT" && npx tsx scripts/cortes-audio.ts --duracion "$DUR_S" --silencios "$SIL")
+    if [ -z "$CORTES" ]; then
+      echo "[transcribe] FATAL: no cut points for ${DUR_S}s of audio." >&2
+      exit 1
+    fi
+    IFS=, read -r -a _CORTES <<< "$CORTES"
+    OFFSETS+=("${_CORTES[@]}")
+    echo "[transcribe] audio ${DUR_S}s > 1500s — ${#OFFSETS[@]} chunks cut at ${CORTES//,/, } s (${CIEGOS} with no silence nearby) @ 64 kbps mono opus…"
+    ffmpeg -hide_banner -loglevel error -y \
+      -i "$AUDIO" -f segment -segment_times "$CORTES" -reset_timestamps 1 \
+      -ac 1 -ar 16000 -c:a libopus -b:a 64k \
+      "$CHUNK_DIR/chunk-%03d.ogg"
+  else
+    echo "[transcribe] audio ${DUR_S}s ≤ 1500s — single request @ 64 kbps mono opus…"
+    ffmpeg -hide_banner -loglevel error -y \
+      -i "$AUDIO" -ac 1 -ar 16000 -c:a libopus -b:a 64k \
+      "$CHUNK_DIR/chunk-000.ogg"
+  fi
+  N_CHUNKS=$(ls "$CHUNK_DIR"/chunk-*.ogg | wc -l | tr -d ' ')
+  # A partial download decodes to far less audio than its container header
+  # claims, and ffmpeg then emits correspondingly fewer segments without
+  # failing. That is exactly how session rx4hb4 was published covering 17.5
+  # minutes of a 4h21m pleno: DUR_S said 15650, the segmenter produced ONE
+  # chunk, every upload returned 200, and 44 claims were extracted from 7% of
+  # the session. Comparing the two numbers costs nothing and catches it.
+  if [ "$N_CHUNKS" -lt "${#OFFSETS[@]}" ]; then
+    echo "[transcribe] FATAL: ${DUR_S}s of audio should split into ${#OFFSETS[@]} chunk(s), got ${N_CHUNKS}." >&2
+    echo "[transcribe] The download is truncated or corrupt. Refusing to publish a partial transcript." >&2
+    exit 1
+  fi
+  if [ "$N_CHUNKS" -gt "${#OFFSETS[@]}" ]; then
+    echo "[transcribe] FATAL: asked ffmpeg for ${#OFFSETS[@]} chunk(s), got ${N_CHUNKS}: their offsets would be wrong." >&2
+    exit 1
+  fi
+}
+
 if [ "$WHISPER_ENGINE" = "openai" ]; then
   # ── OpenAI Whisper API branch ────────────────────────────────────────────
-  # Requires OPENAI_API_KEY. Re-encodes to 16 kbps mono opus (small enough
-  # that a 3h pleno stays under the 25 MB upload cap) and sends one request.
+  # Requires OPENAI_API_KEY. Uploads the audio in chunks of about 20 min
+  # (trocear_audio, above), one request per chunk.
   if [ -z "${OPENAI_API_KEY:-}" ]; then
     # Fall back to .env in the repo root if the shell env doesn't have it.
     if [ -f "$REPO_ROOT/.env" ]; then
@@ -245,37 +296,7 @@ if [ "$WHISPER_ENGINE" = "openai" ]; then
   # 64 kbps ≈ 9.6 MB; a ≤25-min single file ≤ 12 MB. Both far under the cap.
   DUR_S=$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 "$AUDIO" 2>/dev/null | cut -d. -f1)
   DUR_S=${DUR_S:-0}
-  CHUNK_SECS=1200
-  CHUNK_DIR="$WORKDIR/chunks"
-  mkdir -p "$CHUNK_DIR"
-  if [ "$DUR_S" -gt 1500 ]; then
-    echo "[transcribe] audio ${DUR_S}s > 1500s — splitting into ${CHUNK_SECS}s chunks @ 64 kbps mono opus…"
-    ffmpeg -hide_banner -loglevel error -y \
-      -i "$AUDIO" -f segment -segment_time "$CHUNK_SECS" -reset_timestamps 1 \
-      -ac 1 -ar 16000 -c:a libopus -b:a 64k \
-      "$CHUNK_DIR/chunk-%03d.ogg"
-  else
-    echo "[transcribe] audio ${DUR_S}s ≤ 1500s — single upload @ 64 kbps mono opus…"
-    ffmpeg -hide_banner -loglevel error -y \
-      -i "$AUDIO" -ac 1 -ar 16000 -c:a libopus -b:a 64k \
-      "$CHUNK_DIR/chunk-000.ogg"
-    CHUNK_SECS=0  # marker: single chunk, no time offset needed
-  fi
-  N_CHUNKS=$(ls "$CHUNK_DIR"/chunk-*.ogg | wc -l | tr -d ' ')
-  # A partial download decodes to far less audio than its container header
-  # claims, and ffmpeg then emits correspondingly fewer segments without
-  # failing. That is exactly how session rx4hb4 was published covering 17.5
-  # minutes of a 4h21m pleno: DUR_S said 15650, the segmenter produced ONE
-  # chunk, every upload returned 200, and 44 claims were extracted from 7% of
-  # the session. Comparing the two numbers costs nothing and catches it.
-  if [ "$CHUNK_SECS" -gt 0 ]; then
-    EXPECTED_CHUNKS=$(( (DUR_S + CHUNK_SECS - 1) / CHUNK_SECS ))
-    if [ "$N_CHUNKS" -lt "$EXPECTED_CHUNKS" ]; then
-      echo "[transcribe] FATAL: ${DUR_S}s of audio should split into ${EXPECTED_CHUNKS} chunk(s), got ${N_CHUNKS}." >&2
-      echo "[transcribe] The download is truncated or corrupt. Refusing to publish a partial transcript." >&2
-      exit 1
-    fi
-  fi
+  trocear_audio
   echo "[transcribe] uploading ${N_CHUNKS} chunk(s) to OpenAI…"
 
   # Post each chunk and collect verbose_json responses. Chunk index → file.
@@ -287,7 +308,7 @@ if [ "$WHISPER_ENGINE" = "openai" ]; then
   : > "$TMP_TXT"
   IDX=0
   for CHUNK in "$CHUNK_DIR"/chunk-*.ogg; do
-    OFFSET=$(( IDX * CHUNK_SECS ))
+    OFFSET="${OFFSETS[$IDX]}"
     RESP_JSON="$WORKDIR/response-${IDX}.json"
     # Per-chunk retry with exponential backoff — handles transient SSL /
     # 429 / 5xx without discarding progress from earlier chunks. 4 tries
@@ -343,37 +364,15 @@ if [ "$WHISPER_ENGINE" = "openai" ]; then
       cat "$RESP_JSON" >&2 2>/dev/null || true
       exit 1
     fi
-    # Append segments with cumulative time offset. Node invocation runs
-    # under env vars so bash doesn't try to expand JS template literals.
-    OFFSET_S="$OFFSET" CHUNK_IDX="$IDX" N_CHUNKS="$N_CHUNKS" RESP_JSON="$RESP_JSON" OUT_PATH="$TMP_TXT" node -e '
-      const fs = require("fs")
-      const data = JSON.parse(fs.readFileSync(process.env.RESP_JSON, "utf8"))
-      const segs = data.segments || []
-      const offset = Number(process.env.OFFSET_S)
-      const chunkIdx = Number(process.env.CHUNK_IDX)
-      const out = fs.createWriteStream(process.env.OUT_PATH, { flags: "a" })
-      // Speaker labels are CHUNK-LOCAL: "A" in chunk 2 is not "A" in chunk 1,
-      // because each upload is diarized independently. Offsetting the numbering
-      // per chunk keeps two different people from being silently merged into
-      // one speaker across a session.
-      //
-      // The SPEAKER_NN spelling is required, not cosmetic: voice-id.ts parses
-      // transcripts with /\((SPEAKER_\d+|UNKNOWN)\)/ and would silently match
-      // zero lines against any other label. The tag stays anonymous — nothing
-      // here claims to know who any of these speakers are.
-      const order = []
-      const label = (sp) => {
-        if (!sp) return "UNKNOWN"
-        if (!order.includes(sp)) order.push(sp)
-        return `SPEAKER_${String(chunkIdx * 20 + order.indexOf(sp)).padStart(2, "0")}`
-      }
-      for (const s of segs) {
-        out.write(`[${(s.start + offset).toFixed(1)} → ${(s.end + offset).toFixed(1)}] (${label(s.speaker)}) ${String(s.text).trim()}\n`)
-      }
-      out.end()
-      const speakers = [...new Set(segs.map((s) => s.speaker).filter(Boolean))]
-      console.error(`[transcribe]   chunk ${chunkIdx + 1}/${process.env.N_CHUNKS}: ${segs.length} segs · +${offset}s offset · ${speakers.length} speaker cluster(s)`)
-    '
+    # Append segments with their chunk's real start offset. A 200 with no text
+    # is refused (exit 1), as the Gemini branch already did: an empty chunk is a
+    # failed read, not twenty minutes of silence. Logic and tests in
+    # src/scraper/trozo-diarizado.ts.
+    if ! (cd "$REPO_ROOT" && OFFSET_S="$OFFSET" CHUNK_IDX="$IDX" N_CHUNKS="$N_CHUNKS" \
+          RESP_JSON="$RESP_JSON" OUT_PATH="$TMP_TXT" npx tsx scripts/trozo-openai.ts); then
+      echo "[transcribe] chunk ${IDX} unusable — refusing to publish a transcript with a hole in it." >&2
+      exit 1
+    fi
     IDX=$(( IDX + 1 ))
   done
   # Every chunk succeeded — but "succeeded" only means every HTTP call
@@ -514,33 +513,7 @@ elif [ "$WHISPER_ENGINE" = "gemini" ]; then
   # 20-min chunks sit inside both ceilings.
   DUR_S=$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 "$AUDIO" 2>/dev/null | cut -d. -f1)
   DUR_S=${DUR_S:-0}
-  CHUNK_SECS=1200
-  CHUNK_DIR="$WORKDIR/chunks"
-  mkdir -p "$CHUNK_DIR"
-  if [ "$DUR_S" -gt 1500 ]; then
-    echo "[transcribe] audio ${DUR_S}s > 1500s — splitting into ${CHUNK_SECS}s chunks @ 64 kbps mono opus…"
-    ffmpeg -hide_banner -loglevel error -y \
-      -i "$AUDIO" -f segment -segment_time "$CHUNK_SECS" -reset_timestamps 1 \
-      -ac 1 -ar 16000 -c:a libopus -b:a 64k \
-      "$CHUNK_DIR/chunk-%03d.ogg"
-  else
-    echo "[transcribe] audio ${DUR_S}s ≤ 1500s — single request @ 64 kbps mono opus…"
-    ffmpeg -hide_banner -loglevel error -y \
-      -i "$AUDIO" -ac 1 -ar 16000 -c:a libopus -b:a 64k \
-      "$CHUNK_DIR/chunk-000.ogg"
-    CHUNK_SECS=0  # marker: single chunk, no time offset needed
-  fi
-  N_CHUNKS=$(ls "$CHUNK_DIR"/chunk-*.ogg | wc -l | tr -d ' ')
-  # The rx4hb4 guard, unchanged: a truncated download decodes to less audio
-  # than its header claims and ffmpeg emits fewer segments without failing.
-  if [ "$CHUNK_SECS" -gt 0 ]; then
-    EXPECTED_CHUNKS=$(( (DUR_S + CHUNK_SECS - 1) / CHUNK_SECS ))
-    if [ "$N_CHUNKS" -lt "$EXPECTED_CHUNKS" ]; then
-      echo "[transcribe] FATAL: ${DUR_S}s of audio should split into ${EXPECTED_CHUNKS} chunk(s), got ${N_CHUNKS}." >&2
-      echo "[transcribe] The download is truncated or corrupt. Refusing to publish a partial transcript." >&2
-      exit 1
-    fi
-  fi
+  trocear_audio
   if [ "$N_CHUNKS" -gt 25 ]; then
     echo "[transcribe] ${N_CHUNKS} chunks exceeds the measured free-tier ceiling of 25 requests/day." >&2
     echo "[transcribe] The run would 429 part-way and publish a partial session. Split it across days" >&2
@@ -553,7 +526,7 @@ elif [ "$WHISPER_ENGINE" = "gemini" ]; then
   : > "$TMP_TXT"
   IDX=0
   for CHUNK in "$CHUNK_DIR"/chunk-*.ogg; do
-    OFFSET=$(( IDX * CHUNK_SECS ))
+    OFFSET="${OFFSETS[$IDX]}"
     REQ_JSON="$WORKDIR/request-${IDX}.json"
     RESP_JSON="$WORKDIR/response-${IDX}.json"
     # The request body is assembled by node, not by a bash heredoc: a 20-min
