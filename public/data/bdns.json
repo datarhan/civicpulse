@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-18T13:28:02.118Z",
+  "generatedAt": "2026-11-19T13:53:43.911Z",
   "source": {
     "url": "https://www.pap.hacienda.gob.es/bdnstrans/api/convocatorias/busqueda",
     "query": "riba-roja",
@@ -13,13 +13,13 @@
     "descartadas": 4,
     "latestDate": "2026-11-17T00:00:00.000Z",
     "concesiones": {
-      "total": 151,
-      "convocatorias": 124,
-      "importe": 46732067.2,
+      "total": 152,
+      "convocatorias": 125,
+      "importe": 46754152.73,
       "otrosInstrumentos": 0,
       "sinImporte": 0,
       "desde": "2022-02-08",
-      "hasta": "2026-10-07"
+      "hasta": "2026-11-17"
     }
   },
   "items": [
@@ -1988,6 +1988,19 @@
     }
   ],
   "concesiones": [
+    {
+      "id": 159849347,
+      "codConcesion": "SB159849347",
+      "bdnsCode": "895390",
+      "convocatoria": "Convocatoria de subvenciones de concurrencia competitiva para la Gestión Forestal y la Prevención de Incendios Forestales EJERCICIO 2026",
+      "fecha": "2026-11-17T00:00:00.000Z",
+      "importe": 22085.53,
+      "instrumento": "SUBVENCIÓN y ENTREGA DINERARIA SIN CONTRAPRESTACIÓN",
+      "esSubvencion": true,
+      "organ": "LOCAL · DIPUTACIÓN PROV. DE VALENCIA · DIPUTACIÓN PROVINCIAL DE VALENCIA",
+      "level1": "LOCAL",
+      "sourceUrl": "https://www.pap.hacienda.gob.es/bdnstrans/GE/es/convocatoria/895390"
+    },
     {
       "id": 157817506,
       "codConcesion": "SB157817506",

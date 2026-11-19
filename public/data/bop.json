@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-11-18T13:23:24.867Z",
+  "generatedAt": "2026-11-19T13:48:56.524Z",
   "source": {
     "name": "Boletín Oficial de la Provincia de València",
     "home": "https://bop.dival.es/bop/",
     "note": "Last 30 days · anuncios del Ayuntamiento de Riba-roja de Túria"
   },
   "stats": {
-    "total": 7,
+    "total": 6,
     "daysCovered": 22,
     "daysRequested": 30,
     "fetchFailures": 0,
@@ -72,16 +72,6 @@
       "bulletinDate": "27/10/2026",
       "pdfUrl": "https://bop.dival.es/bop/downloads?anuncioNumReg=2026%2F12980",
       "bulletinUrl": "https://bop.dival.es/bop/downloads?boletinFecha=27%2F10%2F2026"
-    },
-    {
-      "id": "37ad44c65c99",
-      "regNumber": "2026/12611",
-      "title": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre la delegación de competencias para la celebración la modificación de un punto en las atribuciones del alcalde para la celebración de matrimonios civiles en el mes de octubre de 2026",
-      "entity": "Ayuntamiento de Riba-roja de Túria",
-      "date": "2026-10-20",
-      "bulletinDate": "20/10/2026",
-      "pdfUrl": "https://bop.dival.es/bop/downloads?anuncioNumReg=2026%2F12611",
-      "bulletinUrl": "https://bop.dival.es/bop/downloads?boletinFecha=20%2F10%2F2026"
     }
   ]
 }

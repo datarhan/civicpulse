@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-18T13:33:12.343Z",
+  "generatedAt": "2026-11-19T13:59:01.524Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -42,7 +42,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-18T13:33:12.251Z"
+      "generatedAt": "2026-11-19T13:59:01.408Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -61,7 +61,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-18T13:33:12.251Z"
+      "generatedAt": "2026-11-19T13:59:01.408Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -80,7 +80,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-18T13:33:12.251Z"
+      "generatedAt": "2026-11-19T13:59:01.408Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -88,7 +88,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-18T13:33:12.251Z"
+      "generatedAt": "2026-11-19T13:59:01.408Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -96,7 +96,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-18T13:33:12.251Z"
+      "generatedAt": "2026-11-19T13:59:01.408Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -115,7 +115,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-18T13:33:12.251Z"
+      "generatedAt": "2026-11-19T13:59:01.408Z"
     },
     {
       "promiseId": "ac-psoe-1ryndd8",
@@ -133,21 +133,10 @@
             "rehabilitacion",
             "fachada"
           ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQTWZlUzNRSkVxak9ndTZ3X05yZkphYVpUdUxtcklDb0o5amU2bDBEUFVVR21IQmpxNjROSEVON1pab1p0MkdXa1hQS0p2bkZFQWR0TmxubVo3ZDN2elF5TGM4WDJZdl9sQWxsbWVTLUdxM05mVWV1bG9KeHpfdEQ3eXZ6d1gyVnl3ZFhpY3FQYmVtdXY1WlB1LW9kcDIxRm9fNS1XNGkwaWNOT2pWakhUekRXalpMLU5BbTJRclh3UU0xN2ZJdkJlME5VUndKc3ZvcGY4bW1zOGctOGMxUnZCMUtmWDVuUWVQQUd6YmFpdmJVMHcxclpJRXpyNkRuTDFQQmhIeVBrVQ?oc=5",
-          "date": "2026-11-16",
-          "quote": "Compromís-Front Valencià reivindica ayudas de 200 euros mensuales por hijo y permisos de cuidados entre amistades",
-          "kind": "press",
-          "publisher": "Ultima Hora",
-          "matchedKeywords": [
-            "ayuda",
-            "euro"
-          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-18T13:33:12.251Z"
+      "generatedAt": "2026-11-19T13:59:01.408Z"
     },
     {
       "promiseId": "ac-psoe-43brfs",
@@ -212,7 +201,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-18T13:33:12.251Z"
+      "generatedAt": "2026-11-19T13:59:01.408Z"
     },
     {
       "promiseId": "ac-psoe-17y448o",
@@ -234,17 +223,6 @@
             "dinamizar",
             "comercio",
             "local"
-          ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQTWZlUzNRSkVxak9ndTZ3X05yZkphYVpUdUxtcklDb0o5amU2bDBEUFVVR21IQmpxNjROSEVON1pab1p0MkdXa1hQS0p2bkZFQWR0TmxubVo3ZDN2elF5TGM4WDJZdl9sQWxsbWVTLUdxM05mVWV1bG9KeHpfdEQ3eXZ6d1gyVnl3ZFhpY3FQYmVtdXY1WlB1LW9kcDIxRm9fNS1XNGkwaWNOT2pWakhUekRXalpMLU5BbTJRclh3UU0xN2ZJdkJlME5VUndKc3ZvcGY4bW1zOGctOGMxUnZCMUtmWDVuUWVQQUd6YmFpdmJVMHcxclpJRXpyNkRuTDFQQmhIeVBrVQ?oc=5",
-          "date": "2026-11-16",
-          "quote": "Compromís-Front Valencià reivindica ayudas de 200 euros mensuales por hijo y permisos de cuidados entre amistades",
-          "kind": "press",
-          "publisher": "Ultima Hora",
-          "matchedKeywords": [
-            "ayuda",
-            "euro"
           ]
         },
         {
@@ -281,7 +259,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-18T13:33:12.251Z"
+      "generatedAt": "2026-11-19T13:59:01.408Z"
     },
     {
       "promiseId": "ac-psoe-1bkbwjs",
@@ -325,7 +303,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-18T13:33:12.251Z"
+      "generatedAt": "2026-11-19T13:59:01.408Z"
     },
     {
       "promiseId": "ac-psoe-1xeq50",
@@ -360,14 +338,14 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQTWZlUzNRSkVxak9ndTZ3X05yZkphYVpUdUxtcklDb0o5amU2bDBEUFVVR21IQmpxNjROSEVON1pab1p0MkdXa1hQS0p2bkZFQWR0TmxubVo3ZDN2elF5TGM4WDJZdl9sQWxsbWVTLUdxM05mVWV1bG9KeHpfdEQ3eXZ6d1gyVnl3ZFhpY3FQYmVtdXY1WlB1LW9kcDIxRm9fNS1XNGkwaWNOT2pWakhUekRXalpMLU5BbTJRclh3UU0xN2ZJdkJlME5VUndKc3ZvcGY4bW1zOGctOGMxUnZCMUtmWDVuUWVQQUd6YmFpdmJVMHcxclpJRXpyNkRuTDFQQmhIeVBrVQ?oc=5",
-          "date": "2026-11-16",
-          "quote": "Compromís-Front Valencià reivindica ayudas de 200 euros mensuales por hijo y permisos de cuidados entre amistades",
+          "url": "https://www.ribarroja.es/es/noticia/el-pleno-municipal-de-riba-roja-de-t%C3%BAria-felicita-al-alumnado-de-la-localidad-con-expedientes-acad%C3%A9micos-de-excelencia-durante-el-curso-2025-2026",
+          "date": "2026-11-19",
+          "quote": "El pleno municipal de Riba-roja de Túria felicita al alumnado de la localidad con expedientes académicos de excelencia durante el curso 2025-2026",
           "kind": "press",
-          "publisher": "Ultima Hora",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
           "matchedKeywords": [
-            "euro",
-            "entre"
+            "2025",
+            "localidad"
           ]
         },
         {
@@ -394,7 +372,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-18T13:33:12.251Z"
+      "generatedAt": "2026-11-19T13:59:01.408Z"
     },
     {
       "promiseId": "ac-psoe-1kui43c",
@@ -416,7 +394,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-18T13:33:12.251Z"
+      "generatedAt": "2026-11-19T13:59:01.408Z"
     },
     {
       "promiseId": "ac-psoe-1t88ans",
@@ -442,6 +420,28 @@
           ]
         },
         {
+          "url": "https://www.ribarroja.es/es/noticia/proceso-de-selecci%C3%B3n-del-alumnado-trabajador-y-del-equipo-directivo-y-docente-del-programa-talent-jove-ribactiva-expediente-fotav_2026_17_46",
+          "date": "2026-11-19",
+          "quote": "Proceso de selección del alumnado-trabajador y del equipo directivo y docente del programa TALENT JOVE RIBACTIVA - expediente FOTAV_2026_17_46",
+          "kind": "press",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "matchedKeywords": [
+            "2026",
+            "programa"
+          ]
+        },
+        {
+          "url": "https://www.ribarroja.es/es/noticia/el-pleno-municipal-de-riba-roja-de-t%C3%BAria-felicita-al-alumnado-de-la-localidad-con-expedientes-acad%C3%A9micos-de-excelencia-durante-el-curso-2025-2026",
+          "date": "2026-11-19",
+          "quote": "El pleno municipal de Riba-roja de Túria felicita al alumnado de la localidad con expedientes académicos de excelencia durante el curso 2025-2026",
+          "kind": "press",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "matchedKeywords": [
+            "2025",
+            "2026"
+          ]
+        },
+        {
           "url": "https://www.infoturia.com/riba-roja-de-turia/87032-riba-roja-assigna-140-000-euros-als-clubs-i-per-a-financar-les-seues-activitats.html",
           "date": "2026-11-02",
           "quote": "Riba-roja assigna 140.000 euros als clubs i per a finançar les seues activitats",
@@ -454,7 +454,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-18T13:33:12.251Z"
+      "generatedAt": "2026-11-19T13:59:01.408Z"
     },
     {
       "promiseId": "ac-psoe-168xzn8",
@@ -497,7 +497,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-18T13:33:12.251Z"
+      "generatedAt": "2026-11-19T13:59:01.408Z"
     }
   ],
   "llmEvidence": [],
