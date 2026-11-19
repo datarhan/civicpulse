@@ -4,6 +4,7 @@ import { join } from 'node:path'
 
 import { CATALOGUE } from '../src/i18n'
 import {
+  CLAVE_INVARIANZA,
   CLAVE_MEDICION,
   DESCRIPCION_MOTIVO,
   MOTIVOS_RETENCION,
@@ -655,6 +656,9 @@ describe('la revisión automática', () => {
 
   it('publicar sin una persona pasa por la medición: la política lo dice, y el código también', () => {
     expect(METODOLOGIA).toContain(CLAVE_MEDICION)
+    // Y la segunda medida que pide la clase, con su nombre: la misma queja con y sin
+    // una frase sobre quien la escribe tiene que recibir la misma decisión.
+    expect(METODOLOGIA).toContain(CLAVE_INVARIANZA)
     // Ya no es de las que firma siempre una persona: es de las que se miden.
     expect(METODOLOGIA).not.toContain('publicar una queja ciudadana. No porque una persona')
     expect(sinComentariosTs(lee('bot/src/services/moderacion.ts'))).toMatch(
@@ -665,10 +669,12 @@ describe('la revisión automática', () => {
 
   it('/quejas dice que una persona revisa cada queja mientras no haya medición, y sólo entonces', () => {
     const { measurements } = JSON.parse(lee('.automation-measurements.json'))
-    const medida = measurements.some((m) => m.key === CLAVE_MEDICION)
+    const medida = [CLAVE_MEDICION, CLAVE_INVARIANZA].every((k) =>
+      measurements.some((m) => m.key === k),
+    )
     const frase = 'una persona revisa cada queja antes de publicarla aquí'
-    // La medición es la que abre la publicación automática: el cambio que la
-    // registre tiene que cambiar también esta frase.
+    // Las dos mediciones son las que abren la publicación automática: el cambio que
+    // registre la segunda tiene que cambiar también esta frase.
     if (medida) expect(QUEJAS).not.toContain(frase)
     else expect(QUEJAS).toContain(frase)
   })
