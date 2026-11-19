@@ -29,6 +29,19 @@ describe('lineasDeTrozoOpenAI', () => {
     expect(r.resumen).toMatchObject({ segmentos: 3, oradores: 2, mayorHueco: 31 })
   })
 
+  it('se niega a un segmento sin marcas de tiempo, en vez de ponerlo en el segundo 0', () => {
+    const r = lineasDeTrozoOpenAI(
+      {
+        segments: [
+          { start: 3, end: 4, speaker: 'A', text: 'hola' },
+          { speaker: 'A', text: 'adiós' },
+        ],
+      },
+      { desplazamiento: 1200, indice: 1 },
+    )
+    expect(r.ok).toBe(false)
+  })
+
   it('sin orador, UNKNOWN', () => {
     const r = lineasDeTrozoOpenAI(
       { segments: [{ start: 0, end: 1, text: 'hola' }] },

@@ -48,6 +48,14 @@ export function lineasDeTrozoOpenAI(
       ok: false,
       motivo: `trozo ${indice}: 200 OK sin ningún segmento con texto — no se publica un silencio que nadie ha oído`,
     }
+  // Una marca de tiempo que falta no es el segundo 0: publicarla así pondría la
+  // frase al principio del trozo. Un segmento sin las dos marcas invalida el trozo.
+  const sinMarca = segs.findIndex((s) => !Number.isFinite(s.start) || !Number.isFinite(s.end))
+  if (sinMarca >= 0)
+    return {
+      ok: false,
+      motivo: `trozo ${indice}: el segmento ${sinMarca} no trae marcas de tiempo — no se le inventa una`,
+    }
   const orden: string[] = []
   const etiqueta = (sp: string | null | undefined): string => {
     if (!sp) return 'UNKNOWN'
@@ -63,10 +71,10 @@ export function lineasDeTrozoOpenAI(
   let mayorHueco = 0
   let finAnterior: number | null = null
   for (const s of segs) {
-    const ini = Number(s.start ?? 0)
-    const fin = Number(s.end ?? ini)
+    const ini = Number(s.start)
+    const fin = Number(s.end)
     if (finAnterior !== null) mayorHueco = Math.max(mayorHueco, ini - finAnterior)
-    finAnterior = Math.max(finAnterior ?? fin, fin)
+    finAnterior = finAnterior === null ? fin : Math.max(finAnterior, fin)
     lineas.push(
       `[${(ini + desplazamiento).toFixed(1)} → ${(fin + desplazamiento).toFixed(1)}] (${etiqueta(s.speaker)}) ${String(s.text).trim()}`,
     )
@@ -77,8 +85,8 @@ export function lineasDeTrozoOpenAI(
     resumen: {
       segmentos: segs.length,
       oradores: orden.length,
-      desde: Number(segs[0].start ?? 0) + desplazamiento,
-      hasta: (finAnterior ?? 0) + desplazamiento,
+      desde: Number(segs[0].start) + desplazamiento,
+      hasta: Number(finAnterior) + desplazamiento,
       mayorHueco: Math.round(mayorHueco * 10) / 10,
     },
   }
