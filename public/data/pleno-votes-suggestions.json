@@ -1,16 +1,17 @@
 {
-  "generatedAt": "2026-11-02T10:16:12.550Z",
+  "generatedAt": "2026-11-19T09:32:07.993Z",
   "source": {
     "description": "Vote suggestions inferred automatically from YouTube-derived pleno transcripts. Every record carries requiresHumanApproval:true and MUST be reviewed by a curator before promotion to pleno-votes.json via `npm run pleno-vote`.",
     "contract": "Machine-written; never substitutes for the published human-verified record."
   },
   "stats": {
-    "total": 12,
+    "total": 17,
     "byEngine": {
-      "llm": 5,
-      "regex": 7
+      "regex": 9,
+      "llm": 8
     },
     "byPleno": {
+      "51k7yx": 5,
       "zrbgic": 1,
       "10yl550": 1,
       "k4olcs": 1,
@@ -20,6 +21,185 @@
     }
   },
   "items": [
+    {
+      "plenoId": "51k7yx",
+      "plenoDate": "2026-11-02",
+      "itemNumber": null,
+      "excerpt": "tiva,\n[2747.4 → 2750.0] (SPEAKER_41) pero es una realidad de todos los ayuntamientos, bueno,\n[2750.1 → 2751.0] (SPEAKER_41) de muchos ayuntamientos.\n[2751.3 → 2756.2] (SPEAKER_41) En el govern, quan se posa a governar, aquest mecanisme permet solucionar els problemes.\n[2756.5 → 2757.9] (SPEAKER_41) Passem a la votació d'aquest punt.\n[2759.8 → 2761.6] (SPEAKER_41) Vaia la... No va?\n[2762.3 → 2763.4",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "abstencion"
+        },
+        {
+          "bloc": "PP",
+          "direction": "abstencion"
+        },
+        {
+          "bloc": "VOX",
+          "direction": "abstencion"
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "abstencion"
+        },
+        {
+          "bloc": "EU-Podem",
+          "direction": "abstencion"
+        }
+      ],
+      "confidence": 0.7,
+      "requiresHumanApproval": true,
+      "engine": "regex",
+      "regmeetCheck": {
+        "regmeetOutcome": null,
+        "status": "item-not-found"
+      }
+    },
+    {
+      "plenoId": "51k7yx",
+      "plenoDate": "2026-11-02",
+      "itemNumber": null,
+      "excerpt": "cupació i, a més,\n[3492.1 → 3493.2] (SPEAKER_41) tenir els tres ports,\n[3493.3 → 3506.6] (SPEAKER_41) si poden ser també mancomunats, i tindrem acords polítics dels tres municipis que milloren els treballadors i també els empresaris el dia a dia de les seves empreses.\n[3507.1 → 3508.1] (SPEAKER_41) Passem a la votació.\n[3509.1 → 3509.9] (SPEAKER_41) Que vaya a favor.\n[3512.8 → 3513.7] (SPEAKER_41)",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor"
+        },
+        {
+          "bloc": "PP",
+          "direction": "abstencion"
+        },
+        {
+          "bloc": "VOX",
+          "direction": "a_favor"
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "abstencion"
+        }
+      ],
+      "confidence": 0.7,
+      "requiresHumanApproval": true,
+      "engine": "regex",
+      "regmeetCheck": {
+        "regmeetOutcome": null,
+        "status": "item-not-found"
+      }
+    },
+    {
+      "plenoId": "51k7yx",
+      "plenoDate": "2026-11-02",
+      "itemNumber": 3,
+      "excerpt": "Votxa a favor de la proposta de la sede de posta de treball. Abstensions. Queda aprobada per les veus del grup socialista i de Compromís i Esquerra i la Podem i l'ascensió de Partit Popular i Vox.",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor"
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor"
+        },
+        {
+          "bloc": "EU-Podem",
+          "direction": "a_favor"
+        },
+        {
+          "bloc": "PP",
+          "direction": "abstencion"
+        },
+        {
+          "bloc": "VOX",
+          "direction": "abstencion"
+        }
+      ],
+      "confidence": 0.65,
+      "requiresHumanApproval": true,
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": null,
+        "status": "item-not-found"
+      }
+    },
+    {
+      "plenoId": "51k7yx",
+      "plenoDate": "2026-11-02",
+      "itemNumber": 4,
+      "excerpt": "Doncs queda aprovat per vots a favor del socialista i abstencions del Partit Popular de Vox i d'esquerra unitada podem i compromís. Pase más cien puntos del día, que es educación.",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "abstencion"
+        },
+        {
+          "bloc": "VOX",
+          "direction": "abstencion"
+        },
+        {
+          "bloc": "EU-Podem",
+          "direction": "abstencion"
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "abstencion"
+        }
+      ],
+      "confidence": 0.75,
+      "requiresHumanApproval": true,
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "INTERVENCIÓN, Expediente: 5053/2026/GEN, Aprobación Reconocimiento Extrajudicial de Créditos 28/2026 Relación 12026000001 (Sin Dictaminar)",
+        "status": "match"
+      }
+    },
+    {
+      "plenoId": "51k7yx",
+      "plenoDate": "2026-11-02",
+      "itemNumber": 7,
+      "excerpt": "Queda aprobada pero vaya a favor del grupo socialista, de Vox, de Extrema Unidas Podemos, de Compromís y la abstención del Partido Popular.",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor"
+        },
+        {
+          "bloc": "VOX",
+          "direction": "a_favor"
+        },
+        {
+          "bloc": "EU-Podem",
+          "direction": "a_favor"
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor"
+        },
+        {
+          "bloc": "PP",
+          "direction": "abstencion"
+        }
+      ],
+      "confidence": 0.85,
+      "requiresHumanApproval": true,
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "SECRETARÍA, Expediente: 6014/2023/GEN, Aprobación definitiva por el Ayuntamiento de Riba-roja de Túria de los Estatutos de la Mancomunidad Industrial A3 conforme el artículo 9 de la Ley 21/2018, tras su aprobación definitiva por la Asamblea de la Mancomunidad Industrial A3 (Necesaria mayoría absoluta para su aprobación)",
+        "status": "match"
+      }
+    },
     {
       "plenoId": "zrbgic",
       "plenoDate": "2026-10-05",
