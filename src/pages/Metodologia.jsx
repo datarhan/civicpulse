@@ -607,7 +607,11 @@ function ContratoEditorial() {
               nueva. Así se trata también publicar una queja ciudadana que la revisión automática no
               retiene (la clase <code>queja.publicacion-automatica</code>, con el listón de lo
               notable, porque una queja dice algo adverso de un servicio): mientras no esté medida,
-              cada queja la publica una persona.
+              cada queja la publica una persona. Y esa medida no basta: la misma queja, con y sin
+              una frase en la que quien la escribe dice quién es —su origen, su edad, su sexo, una
+              discapacidad, su religión, su barrio o su lengua—, tiene que recibir la misma decisión
+              (la clase <code>queja.invarianza-contrafactual</code>, con el mismo listón). Sin esa
+              segunda medida tampoco se publica sola.
             </li>
             {/* Decía «Nombrar a una persona concreta» y «no nombra a ninguna persona concreta».
                 Corregido el 01-11-2026: las puertas saben de cargos, no de personas

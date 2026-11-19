@@ -3,6 +3,7 @@ import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { wilsonLowerBound } from '../../src/scraper/automation-policy'
 import {
+  CLAVE_INVARIANZA,
   MOTIVOS_DEL_MODELO,
   VERSION_PROMPT,
   pideInstrucciones,
@@ -39,9 +40,12 @@ import {
  * propio sistema y encuentra que sin guarda la recuperación no la cumple.
  *
  * Aquí se prueba la parte pura —construir los pares, compararlos, contar—, sin
- * red. La medida con el modelo la hace scripts/medir-contrafactual.ts a mano, y
- * de momento NO abre ni cierra nada: se mide primero y se decide después
- * (editorial/moderacion-contrafactual-2026-11-18/plan.md, decisión del 18-11).
+ * red. La medida con el modelo la hace scripts/medir-contrafactual.ts a mano. Es
+ * condición de la publicación automática (`CLAVE_INVARIANZA`, en `requiere` de
+ * `clasePublicacion`): sin ella registrada, la precisión del oro sola no la abre.
+ * Lo que una fila (precisión, muestra) no puede decir —los controles, los techos—
+ * lo exige «la grabación», abajo: registrada, tiene que estar en el repositorio y
+ * dar la misma cifra con el código de hoy.
  */
 const FIX = join(__dirname, 'fixtures')
 const oro = JSON.parse(readFileSync(join(FIX, 'moderacion-oro.json'), 'utf8')) as {
@@ -395,8 +399,32 @@ describe('los motivos del modelo', () => {
  */
 describe('la grabación', () => {
   const FICHERO = join(FIX, 'moderacion-contrafactual-respuestas.json')
-  it.skipIf(!existsSync(FICHERO))('si está en el repositorio, es del prompt de hoy', () => {
-    const g = JSON.parse(readFileSync(FICHERO, 'utf8')) as Grabacion
-    expect(g.version_prompt).toBe(VERSION_PROMPT)
+  const hayGrabacion = existsSync(FICHERO)
+  const leer = () => JSON.parse(readFileSync(FICHERO, 'utf8')) as Grabacion
+  const { measurements } = JSON.parse(
+    readFileSync(join(__dirname, '..', '..', '.automation-measurements.json'), 'utf8'),
+  ) as { measurements: Array<{ key: string; precision: number; sample: number; against?: string }> }
+  const registrada = measurements.find((m) => m.key === CLAVE_INVARIANZA)
+
+  it.skipIf(!hayGrabacion)('si está en el repositorio, es del prompt de hoy', () => {
+    expect(leer().version_prompt).toBe(VERSION_PROMPT)
+  })
+
+  // Una fila (precisión, muestra) no dice si los controles se cumplieron ni si
+  // quedó algo sin juzgar por encima del techo: lo dice la grabación, recalculada.
+  it('si la invarianza está registrada, hay grabación, se sostiene y la cifra es la suya', () => {
+    expect(measurements.length).toBeGreaterThan(0) // el control: el fichero se lee
+    if (!registrada) {
+      expect(registrada).toBeUndefined()
+      return
+    }
+    expect(hayGrabacion, 'invarianza registrada sin grabación que la respalde').toBe(true)
+    const g = leer()
+    expect(g.version_prompt, 'el prompt ha cambiado: vuelve a medir').toBe(VERSION_PROMPT)
+    const m = medirInvarianza(fixture, oro.casos, g)
+    expect(m.registrable.ok, m.registrable.porque.join('; ')).toBe(true)
+    expect(registrada.sample).toBe(m.invarianza.juzgados)
+    expect(registrada.precision).toBeCloseTo(m.invarianza.tasa ?? -1, 3)
+    expect(registrada.against).toContain(`${g.modelo}@${g.version_prompt}`)
   })
 })
