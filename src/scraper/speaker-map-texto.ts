@@ -108,7 +108,8 @@ export const RespuestaTextoSchema = z.object({
 
 /** El trozo de la transcripción publicada al que pertenece una etiqueta. */
 export function trozoDeEtiqueta(label: string): number | null {
-  const m = /^SPEAKER_(\d+)$/.exec(label)
+  // `SPEAKER_40~2597.7` es un tramo acotado de SPEAKER_40 (ver `acotarATramos`).
+  const m = /^SPEAKER_(\d+)(?:~[\d.]+)?$/.exec(label)
   return m ? Math.floor(Number(m[1]) / ETIQUETAS_POR_TROZO) : null
 }
 
@@ -216,7 +217,11 @@ export function candidatasDeRespuesta(hablantes: string): SpeakerCandidate[] {
 
 /** Motivos de rechazo propios de este camino, aparte de los del validador. */
 export type MotivoTexto =
-  'quote-not-in-transcript' | 'etiqueta-en-conflicto' | 'nombre-no-literal' | 'nombre-no-casa'
+  | 'quote-not-in-transcript'
+  | 'etiqueta-en-conflicto'
+  | 'nombre-no-literal'
+  | 'nombre-no-casa'
+  | 'etiqueta-preside'
 
 export interface RechazoTexto {
   label: string
@@ -499,9 +504,88 @@ export function construirFilas(opts: ConstruirFilasOptions): FilasTexto {
     // Ahora sí, todas juntas: la puerta 5 del validador entre etiquetas del grupo.
     const v = validateSpeakerMap({ candidates: elegidas, segments, officials, seats })
     for (const rj of v.rejected) rejected.push(rj)
-    rows.push(...v.rows)
+    // Cada fila lleva TODAS sus pruebas posicionales (misma persona, ya
+    // comprobado): `acotarATramos` hace un tramo de cada una.
+    for (const row of v.rows) {
+      const todas = (filasDe.get(row.label) ?? []).map((f) => f.row.evidence[0])
+      rows.push({ ...row, evidence: todas.length ? todas : row.evidence })
+    }
   }
   return { rows, rejected, reubicadas }
+}
+
+export interface Acotado {
+  /** Una fila por TRAMO, con etiqueta `SPEAKER_NN~inicio`. */
+  rows: SpeakerMapRow[]
+  /** Los segmentos con los tramos re-etiquetados; el texto no cambia. */
+  segments: RawSegment[]
+  rejected: RechazoTexto[]
+}
+
+/**
+ * Una cesión de turno identifica a quien habla DESPUÉS, no a la etiqueta entera.
+ *
+ * La etiqueta de la transcripción publicada es un clúster acústico de un trozo de
+ * 1200 s, y el diarizador mete a varias personas en él: medido el 20-11-2026 sobre
+ * las 16 sesiones, una sola cesión nombraba a todas las líneas de su etiqueta y
+ * así se publicaban como PP el discurso de otro grupo que la etiqueta había tenido
+ * 600 s antes (`1sqj7is` SPEAKER_184) o las palabras de la presidencia
+ * (`brxx5g` SPEAKER_104). Por eso una fila vale sólo para el TRAMO contiguo que su
+ * prueba abre (cesión: las líneas de esa etiqueta justo después) o cierra
+ * (respuesta: las líneas de esa etiqueta justo antes). Ese tramo pasa a tener su
+ * propia etiqueta en los segmentos del mapa, `SPEAKER_NN~inicio`, y el resto de
+ * la etiqueta se queda sin nombre.
+ *
+ * Una etiqueta que se cede la palabra a sí misma, o se responde a sí misma, es la
+ * presidencia fundida con quien interviene: no se nombra (`etiqueta-preside`). Una
+ * retro-referencia no tiene tramo, así que en este camino nunca avala: se queda
+ * débil.
+ */
+export function acotarATramos(
+  rows: readonly SpeakerMapRow[],
+  segments: readonly RawSegment[],
+): Acotado {
+  const out = segments.map((s) => ({ ...s }))
+  const filas: SpeakerMapRow[] = []
+  const rejected: RechazoTexto[] = []
+  const usados = new Set<number>()
+  for (const row of rows) {
+    if (row.evidence.some((e) => e.spokenBy === row.label)) {
+      rejected.push({
+        label: row.label,
+        reason: 'etiqueta-preside',
+        detail: `${row.label} dice su propia prueba: la presidencia y quien interviene comparten etiqueta`,
+      })
+      continue
+    }
+    let algun = false
+    for (const ev of row.evidence) {
+      const i = segmentAt(segments, ev.at)
+      if (i < 0 || ev.relation === 'back-reference') continue
+      const paso = ev.relation === 'turn-grant' ? 1 : -1
+      const tramo: number[] = []
+      for (
+        let j = i + paso;
+        j >= 0 && j < segments.length && segments[j].speaker === row.label;
+        j += paso
+      ) {
+        tramo.push(j)
+      }
+      if (!tramo.length || tramo.some((j) => usados.has(j))) continue
+      tramo.sort((a, b) => a - b)
+      const etiqueta = `${row.label}~${segments[tramo[0]].start.toFixed(1)}`
+      for (const j of tramo) {
+        usados.add(j)
+        out[j].speaker = etiqueta
+      }
+      filas.push({ ...row, label: etiqueta, evidence: [ev] })
+      algun = true
+    }
+    // Sólo retro-referencias (o tramos ya tomados): la fila queda, débil, para el
+    // curador; `blocForLabel` no la avala.
+    if (!algun) filas.push({ ...row, weak: true })
+  }
+  return { rows: filas, segments: out, rejected }
 }
 
 /** Un turno de la diarización por sesión (pyannote): etiqueta global y tramo. */

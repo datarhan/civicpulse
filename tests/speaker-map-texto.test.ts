@@ -11,6 +11,7 @@ import {
 import { normaliseForQuoteMatch } from '../src/scraper/quote-match'
 import type { RawSegment, SpeakerCandidate } from '../src/scraper/speaker-map'
 import {
+  acotarATramos,
   buildTextSpeakerMapPrompt,
   buildUserPromptVentana,
   caminoDelMapa,
@@ -378,5 +379,73 @@ describe('reetiquetarConTurnos — la variante pyannote', () => {
   })
   it('el texto y los tiempos no se tocan', () => {
     expect(r.map((s) => [s.start, s.end, s.text])).toEqual(pub.map((s) => [s.start, s.end, s.text]))
+  })
+})
+
+describe('acotarATramos — una prueba nombra un tramo, no la etiqueta entera', () => {
+  // SPEAKER_05 es un clúster que el diarizador ha llenado con dos personas: Juan
+  // (tras la cesión) y, más tarde, otra intervención que nadie ha identificado.
+  const segs: RawSegment[] = [
+    { start: 0, end: 2, speaker: 'SPEAKER_00', text: 'Juan.' },
+    { start: 2, end: 8, speaker: 'SPEAKER_05', text: 'Gràcies, alcalde. La moció que presentem.' },
+    { start: 8, end: 14, speaker: 'SPEAKER_05', text: 'Demanem que es licite el contracte.' },
+    { start: 14, end: 16, speaker: 'SPEAKER_00', text: 'Més paraules?' },
+    {
+      start: 16,
+      end: 30,
+      speaker: 'SPEAKER_05',
+      text: 'Populisme d’extrema dreta, això és el que és.',
+    },
+  ]
+  const fila = (
+    spokenBy: string,
+    at: number,
+    relation: 'turn-grant' | 'reply' | 'back-reference',
+  ) => ({
+    label: 'SPEAKER_05',
+    bloc: 'PP',
+    slug: 'x',
+    heardAs: 'Juan',
+    evidence: [{ spokenBy, at, quote: 'Juan.', relation }],
+    namesIndividual: false,
+    weak: relation === 'back-reference',
+  })
+
+  it('la cesión nombra las líneas que abre, hasta que habla otro; el resto de la etiqueta queda sin nombre', () => {
+    const r = acotarATramos([fila('SPEAKER_00', 0, 'turn-grant')], segs)
+    expect(r.rows.map((x) => x.label)).toEqual(['SPEAKER_05~2.0'])
+    expect(r.segments.map((s) => s.speaker)).toEqual([
+      'SPEAKER_00',
+      'SPEAKER_05~2.0',
+      'SPEAKER_05~2.0',
+      'SPEAKER_00',
+      'SPEAKER_05',
+    ])
+    // El texto no se toca.
+    expect(r.segments.map((s) => s.text)).toEqual(segs.map((s) => s.text))
+  })
+  it('una respuesta nombra el tramo que cierra', () => {
+    const conRespuesta: RawSegment[] = [
+      ...segs.slice(0, 3),
+      { start: 14, end: 16, speaker: 'SPEAKER_00', text: 'Gràcies, Juan.' },
+    ]
+    const r = acotarATramos([fila('SPEAKER_00', 14, 'reply')], conRespuesta)
+    expect(r.segments.map((s) => s.speaker).slice(1, 3)).toEqual([
+      'SPEAKER_05~2.0',
+      'SPEAKER_05~2.0',
+    ])
+  })
+  it('una etiqueta que se da la palabra a sí misma es la presidencia fundida: no se nombra', () => {
+    const r = acotarATramos([fila('SPEAKER_05', 2, 'turn-grant')], segs)
+    expect(r.rows).toEqual([])
+    expect(r.rejected[0].reason).toBe('etiqueta-preside')
+  })
+  it('una retro-referencia no tiene tramo: la fila queda débil y no avala', () => {
+    const r = acotarATramos([fila('SPEAKER_00', 0, 'back-reference')], segs)
+    expect(r.rows[0].weak).toBe(true)
+    expect(r.segments.map((s) => s.speaker)).toEqual(segs.map((s) => s.speaker))
+  })
+  it('el tramo sigue siendo del trozo de su etiqueta', () => {
+    expect(trozoDeEtiqueta('SPEAKER_43~2597.7')).toBe(2)
   })
 })

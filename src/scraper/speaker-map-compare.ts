@@ -26,7 +26,7 @@
  * Las dos lecturas pasan por `alignSpeakerMap`, la misma alineación que usa el
  * extractor, así que se mide lo que se publicaría y no una aproximación.
  */
-import { alignSpeakerMap } from './speaker-map-align'
+import { alignSpeakerMap, blocResolverFor } from './speaker-map-align'
 import type { RawSegment, SpeakerMap } from './speaker-map'
 import { ventanas, type Separacion } from './speaker-map-texto'
 
@@ -43,6 +43,8 @@ export interface Cubos {
   mixto: number
   /** Uno de los dos mapas nunca miró este tramo. Fuera de toda tasa. */
   noEvaluado: number
+  /** Sólo por etiqueta: ninguna línea de ≥`PALABRAS_CITABLES` palabras. Fuera de toda tasa. */
+  sinCitables: number
 }
 
 export const cubosVacios = (): Cubos => ({
@@ -54,14 +56,17 @@ export const cubosVacios = (): Cubos => ({
   ninguno: 0,
   mixto: 0,
   noEvaluado: 0,
+  sinCitables: 0,
 })
 
 const MIXTO = '__mixto__'
+const SIN_CITABLES = '__sin-citables__'
 const NO_EVALUADO = '__no-evaluado__'
 
 function contar(c: Cubos, a: string | null, b: string | null): void {
   c.total += 1
-  if (a === NO_EVALUADO || b === NO_EVALUADO) c.noEvaluado += 1
+  if (a === SIN_CITABLES || b === SIN_CITABLES) c.sinCitables += 1
+  else if (a === NO_EVALUADO || b === NO_EVALUADO) c.noEvaluado += 1
   else if (a === MIXTO || b === MIXTO) c.mixto += 1
   else if (a && b) {
     if (a === b) c.coinciden += 1
@@ -130,14 +135,30 @@ function estadoPorLinea(published: readonly RawSegment[], map: SpeakerMap | null
  * `MIXTO` si hay dos, `null` si ninguna línea tiene bloque, `NO_EVALUADO` si el
  * mapa no miró ninguna de sus líneas.
  */
+/**
+ * Palabras mínimas para que una línea cuente en el estado de su etiqueta.
+ *
+ * La alineación es por texto dentro de ±300 s, y una línea de una o dos palabras
+ * («Gracias.», «Sí.») casa con cualquier otra igual de una etiqueta vecina: medido
+ * el 20-11-2026, la mayoría de las «contradicciones» por etiqueta eran 1–3 líneas
+ * así, en los DOS mapas. Ninguna cita publicable es tan corta. Se aplica igual a
+ * los dos mapas.
+ */
+export const PALABRAS_CITABLES = 5
+
+const citable = (s: RawSegment) => s.text.split(/\s+/).filter(Boolean).length >= PALABRAS_CITABLES
+
 function estadoPorEtiqueta(
   published: readonly RawSegment[],
   porLinea: ReadonlyArray<string | null>,
 ): Map<string, string | null> {
   const blocs = new Map<string, Set<string>>()
   const evaluadas = new Map<string, number>()
+  const citables = new Set<string>()
   published.forEach((s, i) => {
     if (!blocs.has(s.speaker)) blocs.set(s.speaker, new Set())
+    if (!citable(s)) return
+    citables.add(s.speaker)
     const b = porLinea[i]
     if (b === NO_EVALUADO) return
     evaluadas.set(s.speaker, (evaluadas.get(s.speaker) ?? 0) + 1)
@@ -145,7 +166,8 @@ function estadoPorEtiqueta(
   })
   const out = new Map<string, string | null>()
   for (const [label, set] of blocs) {
-    if (!evaluadas.get(label)) out.set(label, NO_EVALUADO)
+    if (!citables.has(label)) out.set(label, SIN_CITABLES)
+    else if (!evaluadas.get(label)) out.set(label, NO_EVALUADO)
     else if (set.size > 1) out.set(label, MIXTO)
     else out.set(label, set.size === 1 ? [...set][0] : null)
   }
@@ -204,7 +226,7 @@ export function compararMapas(
     const x = ea.get(label) ?? null
     const y = eb.get(label) ?? null
     contar(porEtiqueta, x, y)
-    if (!x && y && y !== MIXTO && y !== NO_EVALUADO) {
+    if (!x && y && y !== MIXTO && y !== NO_EVALUADO && y !== SIN_CITABLES) {
       soloB.push({ label, bloc: y, start: published.find((s) => s.speaker === label)!.start })
     }
   }
@@ -340,4 +362,64 @@ export function wilson(k: number, n: number, z = 1.96): { inferior: number; supe
 export function fraccion(n: number, d: number): string {
   if (d === 0) return `${n}/0 (—)`
   return `${n}/${d} (${((100 * n) / d).toFixed(1).replace('.', ',')} %)`
+}
+
+/** Lo que un mapa dice de una etiqueta publicada, con los dos casos que no son un bloque. */
+export type EstadoEtiqueta = string | 'mixto' | 'no-evaluado' | 'sin-citables' | null
+
+/**
+ * El estado de cada etiqueta publicada según un mapa: su bloque, `mixto`,
+ * `no-evaluado` o `null`. Es lo que cuentan los cubos por etiqueta, expuesto para
+ * sortear la muestra que se escucha.
+ */
+export function estadosPorEtiqueta(
+  published: readonly RawSegment[],
+  map: SpeakerMap | null,
+): Map<string, EstadoEtiqueta> {
+  const out = new Map<string, EstadoEtiqueta>()
+  for (const [label, v] of estadoPorEtiqueta(published, estadoPorLinea(published, map))) {
+    out.set(
+      label,
+      v === MIXTO
+        ? 'mixto'
+        : v === NO_EVALUADO
+          ? 'no-evaluado'
+          : v === SIN_CITABLES
+            ? 'sin-citables'
+            : v,
+    )
+  }
+  return out
+}
+
+/**
+ * Lo que se PUBLICARÍA: el bloque de cada cita extraída según cada mapa, por el
+ * mismo `blocResolverFor` que usa `extract-pleno-claims`. Una cita no es
+ * independiente de otra de su misma etiqueta, así que esto describe el efecto y
+ * no sustituye a la cuenta por etiqueta.
+ */
+export function compararCitas(
+  published: readonly RawSegment[],
+  a: SpeakerMap | null,
+  b: SpeakerMap | null,
+  citas: ReadonlyArray<{ id: string; verbatim: string }>,
+): {
+  cubos: Cubos
+  contradicciones: Array<{ id: string; a: string; b: string; verbatim: string }>
+} {
+  const resolver = (m: SpeakerMap | null) =>
+    m ? blocResolverFor(published, alignSpeakerMap({ published, map: m })) : null
+  const ra = resolver(a)
+  const rb = resolver(b)
+  const cubos = cubosVacios()
+  const contradicciones: Array<{ id: string; a: string; b: string; verbatim: string }> = []
+  for (const c of citas) {
+    const x = ra ? ra(c.verbatim) : NO_EVALUADO
+    const y = rb ? rb(c.verbatim) : NO_EVALUADO
+    contar(cubos, x, y)
+    if (x && y && x !== NO_EVALUADO && y !== NO_EVALUADO && x !== y) {
+      contradicciones.push({ id: c.id, a: x, b: y, verbatim: c.verbatim })
+    }
+  }
+  return { cubos, contradicciones }
 }

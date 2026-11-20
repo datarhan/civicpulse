@@ -4,8 +4,10 @@ import { resolve } from 'node:path'
 import type { RawSegment, SpeakerMap, SpeakerMapRow } from '../src/scraper/speaker-map'
 import {
   blocsPorLinea,
+  compararCitas,
   compararConOro,
   compararMapas,
+  estadosPorEtiqueta,
   fraccion,
   lineasNoEvaluadas,
   tramosDeRelabels,
@@ -236,5 +238,49 @@ describe('fraccion', () => {
   it('numerador, denominador y porcentaje, siempre juntos', () => {
     expect(fraccion(3, 40)).toBe('3/40 (7,5 %)')
     expect(fraccion(0, 0)).toBe('0/0 (—)')
+  })
+})
+
+describe('estadosPorEtiqueta — lo que se sortea para escuchar', () => {
+  it('bloque, null y no evaluado, con los mismos nombres que la hoja', () => {
+    const m = mapa([fila('SPEAKER_01', 'PSOE')])
+    const e = estadosPorEtiqueta(PUB, m)
+    expect(e.get('SPEAKER_01')).toBe('PSOE')
+    expect(e.get('SPEAKER_02')).toBeNull()
+    expect(estadosPorEtiqueta(PUB, null).get('SPEAKER_01')).toBe('no-evaluado')
+  })
+})
+
+describe('sinCitables: una etiqueta sin ninguna línea citable no es una abstención', () => {
+  const pub: RawSegment[] = [
+    ...PUB,
+    { start: 30, end: 31, speaker: 'SPEAKER_09', text: 'Sí.' },
+    { start: 40, end: 41, speaker: 'SPEAKER_09', text: 'Gràcies.' },
+  ]
+  it('va a su propio cubo, fuera de toda tasa', () => {
+    const c = compararMapas(pub, mapa([], {}, pub), mapa([], {}, pub))
+    expect(c.porEtiqueta.sinCitables).toBe(1)
+    expect(c.porEtiqueta.ninguno).toBe(4)
+  })
+  it('y la hoja la nombra así', () => {
+    expect(estadosPorEtiqueta(pub, mapa([], {}, pub)).get('SPEAKER_09')).toBe('sin-citables')
+  })
+})
+
+describe('compararCitas — lo que se publicaría', () => {
+  const a = mapa([fila('SPEAKER_02', 'PP')])
+  const b = mapa([fila('SPEAKER_02', 'Compromís'), fila('SPEAKER_03', 'VOX')])
+  const citas = [
+    { id: 'c1', verbatim: 'La moción que presentamos hoy pide más limpieza en los barrios.' },
+    { id: 'c2', verbatim: 'Votamos en contra porque el contrato ya lo contempla todo.' },
+    { id: 'c3', verbatim: 'Una frase que nadie dijo en esta sesión plenaria.' },
+  ]
+  it('por el mismo blocResolverFor que el extractor: contradice, sólo B, ninguno', () => {
+    const r = compararCitas(PUB, a, b, citas)
+    expect(r.cubos).toMatchObject({ total: 3, contradicen: 1, soloB: 1, ninguno: 1 })
+    expect(r.contradicciones.map((x) => x.id)).toEqual(['c1'])
+  })
+  it('sin mapa no se evaluó, no es «ninguno»', () => {
+    expect(compararCitas(PUB, null, b, citas).cubos.noEvaluado).toBe(3)
   })
 })
