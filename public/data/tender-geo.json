@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-11-19T13:59:19.950Z",
+  "generatedAt": "2026-11-20T13:47:05.266Z",
   "source": {
-    "tenders": "2026-11-19T13:48:04.278Z",
-    "geo": "2026-11-19T13:51:13.638Z"
+    "tenders": "2026-11-20T13:31:34.134Z",
+    "geo": "2026-11-20T13:34:42.722Z"
   },
   "universe": {
     "totalContracts": 707,
@@ -3593,11 +3593,11 @@
     }
   ],
   "builtFrom": {
-    "civic-poi.json": "9503c9f75a82",
+    "civic-poi.json": "4b6596a85a12",
     "gazetteer-supplement.json": "b3013a1e0efe",
-    "geo.json": "ee21503ac7c8",
+    "geo.json": "e5ebd66395c1",
     "place-overrides.json": "5878849f1684",
-    "streets.json": "7a833e58c62a",
-    "tenders.json": "2242672099a1"
+    "streets.json": "f24a91b5ca5d",
+    "tenders.json": "9d89cb4203b8"
   }
 }

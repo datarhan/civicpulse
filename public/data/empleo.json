@@ -1,19 +1,19 @@
 {
-  "generatedAt": "2026-11-19T13:57:14.309Z",
+  "generatedAt": "2026-11-20T13:44:56.262Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 52,
-    "openTotal": 52,
-    "inRibaRoja": 38,
+    "total": 51,
+    "openTotal": 51,
+    "inRibaRoja": 37,
     "closingSoon": 8,
-    "withDetail": 52,
+    "withDetail": 51,
     "byMonth": {
       "2026-11": 17,
-      "2026-10": 28,
+      "2026-10": 27,
       "2026-09": 5,
       "2026-05": 2
     }
@@ -2563,97 +2563,6 @@
         "salario": "SEGUN CONVENIO",
         "vehiculo": "Sí",
         "ocupaciones": []
-      }
-    },
-    {
-      "id": "2547",
-      "fo": 2547,
-      "codigo": "2026/00247",
-      "titulo": "Almacen / Calidad",
-      "publishedAt": "2026-10-21",
-      "deadline": "2026-12-21",
-      "location": "Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2547",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00247"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Almacen / Calidad"
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "INDUSTRIA MANUFACTURERA"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Contrato temporal con posibilidad real de continuar"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "OFICIAL DE 3ª y ESPECIALISTAS"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa Turnos: Turno partido"
-          },
-          {
-            "label": "Horario",
-            "value": "8:00 a 17:00"
-          },
-          {
-            "label": "Salario",
-            "value": "Según valía"
-          },
-          {
-            "label": "Funciones",
-            "value": "- Control de calidad - Preparación de pedidos - Fabricación del embalaje (aglomerado) - Organización y limpieza del almacén - Tareas varias"
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          },
-          {
-            "label": "Habilidades",
-            "value": "- Carnet de conducir y vehículo propio para desplazarse al centro de trabajo - Carnet de carretillero - Uso básico radial - Conocimientos de soldadura"
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "duracion": "Contrato temporal con posibilidad real de continuar",
-        "numPuestos": "1",
-        "categoria": "OFICIAL DE 3ª y ESPECIALISTAS",
-        "municipio": "Riba-roja de Túria",
-        "provincia": "Valencia",
-        "cp": "46190",
-        "jornada": "Completa Turnos: Turno partido",
-        "horario": "8:00 a 17:00",
-        "salario": "Según valía",
-        "funciones": "- Control de calidad - Preparación de pedidos - Fabricación del embalaje (aglomerado) - Organización y limpieza del almacén - Tareas varias",
-        "vehiculo": "Sí",
-        "ocupaciones": [
-          {
-            "nombre": "TÉCNICOS EN GESTIÓN DE STOCKS Y/O ALMACÉN",
-            "experiencia": "1 Años"
-          }
-        ]
       }
     },
     {
