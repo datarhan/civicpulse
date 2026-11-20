@@ -415,3 +415,40 @@ alone. Writes `<id>.txt.refined`; `--apply` applies it after preserving the
 pristine original as `<id>.txt.orig` (written once, reversible). Per-replacement
 audit log at `scripts/logs/refine-transcript-<id>-<ts>.log`. ~$0 on a Gemini Pro
 plan, ~$0.30 metered.
+
+## 6 · Speaker map from the text (`SPEAKER_MAP_BACKEND=texto`, off)
+
+```bash
+SPEAKER_MAP_BACKEND=texto npm run extract:speaker-map -- <plenoId>   # → .cache/speaker-map-texto/
+npx tsx scripts/medir-mapa-texto.ts --gemini DIR --texto DIR          # the measurement
+npx tsx scripts/muestra-escucha-mapa.ts --gemini DIR --texto DIR --out HOJA.tsv
+```
+
+A replacement for the Gemini-audio speaker map that spends no Gemini quota. It
+was built when the free tier returned only 503 and 429 for three days running.
+The published transcript already separates speakers, so Claude (`claude -p`, $0)
+only has to NAME labels from the text, and it writes the same «Bloque 2» the
+audio prompt asks for. The same parser and validator read it. The extra gates the
+text needs, and why, are in the header of `src/scraper/speaker-map-texto.ts`.
+The two that matter most:
+
+- **A grant names the run it opens, not the label.** A published label is one
+  acoustic cluster from a 1200 s chunk, and the diarizer puts several people in
+  it: the chair and a councillor, or two councillors minutes apart. Naming the
+  whole label from one «…Alberto.» attributed another group's speech to PP.
+- **A name is required, whole-word, in the quote and in the resolved
+  councillor.** Party alone never suffices, because «no ho podem acceptar» reads
+  as EU-Podem, a one-seat bloc.
+
+It is **not** the default, and nothing here makes it one. It writes to `.cache/`
+unless given `--out pleno-speaker-map`. Even then it refuses to overwrite a map
+from another model or prompt without `--reemplazar`, and it stops during the
+LOREG freeze. The measurement and the listening sheet that would have to pass
+first are described in `scripts/medir-mapa-texto.ts` and
+`scripts/muestra-escucha-mapa.ts`. Gemini is not ground truth and the eight
+signed relabels are corrections, not a sample, so only a listened sample decides.
+
+The pyannote variant (`--turnos`, from `scripts/pyannote-sesion.py`) relabels
+the published lines with ONE session-wide diarization. Decode to WAV first:
+pyannote 4.0.4 aborts on an mp3 with «resulted in N samples instead of the
+expected 480000».
