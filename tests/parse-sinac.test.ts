@@ -5,6 +5,8 @@ import {
   CALIFICACIONES,
   TIPOS_ANALISIS,
   calificacion,
+  FRASE_CONSEJERIA,
+  fraseDelMinisterio,
   fusionarBoletines,
   parseBoletin,
   parseDetalleRed,
@@ -148,6 +150,32 @@ describe('calificacion', () => {
     expect(calificacion('')).toBeNull()
     for (const c of ['apta', 'no-apta', 'gestionada-consejeria'] as const)
       expect(CALIFICACIONES).toContain(c)
+  })
+})
+
+describe('fraseDelMinisterio: la frase que SINAC sirve doblemente codificada', () => {
+  // En la ficha real la frase llega como «Calificaciï¿½n … Consejerï¿½a»: los
+  // bytes UTF-8 de U+FFFD releídos como Latin-1 y vueltos a codificar. La letra
+  // se perdió en el origen; el censo de vocabulario no debe heredar la basura.
+  it('la ficha real no deja mojibake ni U+FFFD en calificacionTexto', () => {
+    const textos = parseDetalleRed(RED).boletines.map((b) => b.calificacionTexto)
+    expect(textos.some((t) => /gestionada/i.test(t))).toBe(true) // evaluó algo
+    for (const t of textos) {
+      expect(t).not.toMatch(/ï¿½|�/)
+    }
+    expect(textos).toContain(FRASE_CONSEJERIA)
+  })
+
+  it('deshace la doble codificación, y sólo cuando el resultado es UTF-8 válido', () => {
+    expect(fraseDelMinisterio('Calificaciï¿½n gestionada por la Consejerï¿½a')).toBe(
+      FRASE_CONSEJERIA,
+    )
+    expect(fraseDelMinisterio('Calificaci�n gestionada por la Consejer�a')).toBe(FRASE_CONSEJERIA)
+    // Texto bien codificado con tildes Latin-1 no se toca.
+    expect(fraseDelMinisterio('Consejería de Sanidad')).toBe('Consejería de Sanidad')
+    expect(fraseDelMinisterio('  AGUA APTA PARA EL CONSUMO ')).toBe('AGUA APTA PARA EL CONSUMO')
+    // Una frase desconocida con la letra perdida conserva su U+FFFD: no se inventa.
+    expect(fraseDelMinisterio('Frase nueva ï¿½')).toBe('Frase nueva �')
   })
 })
 
