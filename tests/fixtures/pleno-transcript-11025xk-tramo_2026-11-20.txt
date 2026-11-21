@@ -1,0 +1,433 @@
+[1101.4 → 1102.2] (SPEAKER_00) ¿Palabras?
+[1103.8 → 1105.1] (SPEAKER_00) ¿Palabras a la cuestión?
+[1105.9 → 1107.2] (SPEAKER_00) Ninguna cosa más.
+[1108.2 → 1114.1] (SPEAKER_02) Bueno, pues, por remarcar un poco la importancia del trabajo y el esfuerzo que supone esto que traemos,
+[1114.2 → 1115.3] (SPEAKER_02) pues, bueno, cualquier modificación,
+[1115.4 → 1128.4] (SPEAKER_02) sabéis que está, que hablamos de dos años, estará importante y necesaria dentro de ordenar el tema de suelos de dotacionales, creemos que ha sido positiva como alguna otra que traeremos para los multidotacionales y demás.
+[1128.5 → 1130.3] (SPEAKER_02) Espero tener el apoyo de todos.
+[1130.4 → 1130.7] (SPEAKER_02) Gracias.
+[1131.6 → 1134.2] (SPEAKER_00) Pasem a la votació i els parells, perquè he vist que no hi ha parables.
+[1134.7 → 1135.7] (SPEAKER_00) Pasem a votar.
+[1137.5 → 1138.4] (SPEAKER_03) Ja podem començar.
+[1147.5 → 1149.2] (SPEAKER_00) Falterien un vot.
+[1152.9 → 1153.8] (SPEAKER_00) Tercer vot a favor.
+[1153.9 → 1155.7] (SPEAKER_00) Vots d'abstenció, grup socialista,
+[1155.7 → 1156.2] (SPEAKER_02) A favor.
+[1156.2 → 1157.1] (SPEAKER_00) partit popular,
+[1157.5 → 1158.3] (SPEAKER_00) Vox,
+[1158.4 → 1159.7] (SPEAKER_00) esquerra-unida podem,
+[1159.8 → 1161.5] (SPEAKER_00) compromís.
+[1162.6 → 1163.6] (SPEAKER_00) Passem al següent punt,
+[1163.7 → 1165.1] (SPEAKER_00) que és
+[1166.8 → 1168.8] (SPEAKER_00) el punt 3,
+[1169.0 → 1173.5] (SPEAKER_00) una moció conjunta del grup municipal socialista de Ribarrocha, compromís per Ribarrocha i esquerra-unida podem,
+[1173.7 → 1177.6] (SPEAKER_00) dia internacional de l'orgull de la GTBI+, 2026,
+[1177.8 → 1178.3] (SPEAKER_00) Raquel.
+[1180.1 → 1181.2] (SPEAKER_04) Gràcies alcalde.
+[1181.7 → 1188.4] (SPEAKER_04) El primer és donar les gràcies als partits que han format part d'aquesta moció, que han col·laborat.
+[1189.1 → 1197.3] (SPEAKER_04) I avui el que tornem a defendre no és un debat per una ideologia, avui el que estem fent és debatent per els drets humans,
+[1197.5 → 1199.9] (SPEAKER_04) la igualtat davant de la llei i la convivència de...
+[1200.0 → 1203.5] (SPEAKER_20) Gràcies. El 28 de juny no és una festa qualsevol,
+[1204.2 → 1208.2] (SPEAKER_20) és una data que recorda que durant dècades milers de persones van ser perseguides,
+[1208.6 → 1213.4] (SPEAKER_20) humiliades, empresonades o expulsades de les seues famílies simplement per ser qui érem.
+[1214.3 → 1217.9] (SPEAKER_20) L'orgull neix d'eixa lluita per la llibertat i per la dignitat.
+[1218.5 → 1224.2] (SPEAKER_20) Espanya ha sigut capaç de liderar avanços històrics: primer la llei del matrimoni igualitari,
+[1224.4 → 1234.5] (SPEAKER_20) en 2005; la llei d'identitat de gènere, en 2007; després amb la llei d'igualtat de tracte, en 2022; i la llei de 2023 per a la igualtat real i efectiva de les persones trans.
+[1235.2 → 1236.8] (SPEAKER_20) Gràcies a IC Recorregut,
+[1237.0 → 1246.8] (SPEAKER_20) Espanya s'ha reconeguda ara, en 2026, com el país europeu amb major protecció legal de drets LGTBI+, situant-se en la primera posició del Rainbow Map europeu.
+[1247.9 → 1264.7] (SPEAKER_20) Però els drets conquistats no signifiquen que la discriminació hagi desaparegut. La mateixa moció recorda que més de la meitat de les persones LGTBI plus han patit situacions d'odi o discriminació i que els discursos d'odi han augmentat especialment en entorns digitals.
+[1265.6 → 1273.5] (SPEAKER_20) Per això les institucions tenim una obligació: protegir els qui encara pateixen discriminació. I així vull parlar de Ribarroja.
+[1273.9 → 1277.5] (SPEAKER_20) Perquè nosaltres no venim a parlar de teories, venim a parlar de fets.
+[1278.1 → 1283.1] (SPEAKER_20) En 2023 aquest ple va aprovar el primer pla municipal LGTBI,
+[1283.2 → 1285.6] (SPEAKER_20) el primer de tota la comarca de Camp de Turia.
+[1285.8 → 1290.1] (SPEAKER_20) Un pla pioner que incorpora mesures en educació, en cultura,
+[1290.2 → 1292.7] (SPEAKER_20) en esport, en formació del personal municipal,
+[1293.4 → 1296.5] (SPEAKER_20) prevenció de la discriminació i sensibilització ciutadana,
+[1296.6 → 1297.4] (SPEAKER_20) és a dir,
+[1297.5 → 1299.1] (SPEAKER_20) una línia de treball ordenada.
+[1300.0 → 1303.7] (SPEAKER_20) I puc dir, amorvull, que aquest treball ha donat els seus resultats.
+[1305.1 → 1315.3] (SPEAKER_20) Avui vostès saben sobre la taula aquest document que acredita que Rivarrocha de Túria ha sigut reconeguda per la Generalitat Valenciana com a municipi lliure de LGTB-fòbia.
+[1316.4 → 1319.4] (SPEAKER_20) És el reconeixement d'anys i anys de treball,
+[1319.9 → 1325.8] (SPEAKER_20) de polítiques públiques útils i de compromís d'aquest Ajuntament amb la igualtat i la convivència.
+[1326.5 → 1330.6] (SPEAKER_20) I a més, al costat d'este reconeixement, deixa també constància, en aquest ple,
+[1331.4 → 1338.2] (SPEAKER_20) de la relació de les més de 60 accions executades del Pla Municipal LGTBI aprovat també en aquest ple.
+[1338.8 → 1357.5] (SPEAKER_20) Però que enfront dels que parlen d'imposicions ideològiques nosaltres presentem resultats. Enfront dels que volen enfrontar a uns veïns contra uns altres nosaltres defensem la convivència. I enfront dels que qüestionen drets ja consolidats nosaltres defensem que cap ciutadà de Ribarrocha tinga por de ser qui és.
+[1358.2 → 1360.1] (SPEAKER_20) Per això demanem el suport a aquesta moció,
+[1360.7 → 1364.3] (SPEAKER_20) perquè no va contra ningú, va a favor de la llibertat, de la igualtat.
+[1364.2 → 1365.5] (SPEAKER_20) y de la dignidad humana.
+[1368.4 → 1369.3] (SPEAKER_21) Y palabras,
+[1369.5 → 1372.2] (SPEAKER_21) palabras, box.
+[1374.2 → 1376.1] (SPEAKER_22) Muchas gracias, alcalde. Buenas tardes.
+[1376.9 → 1384.7] (SPEAKER_22) Pues desde nuestro grupo municipal lo que queremos comenzar es dejar claro algo que consideramos fundamental,
+[1384.9 → 1391.2] (SPEAKER_22) que es que todas las personas merecen respeto, dignidad y protección frente a cualquier forma de violencia.
+[1392.1 → 1395.8] (SPEAKER_22) o discriminación. En esto no hay discusión posible.
+[1396.4 → 1403.3] (SPEAKER_22) Consideramos que esta moción parte de un diagnóstico que realmente no se corresponde con la realidad de nuestro municipio de Riba Roja de Turia,
+[1403.7 → 1416.3] (SPEAKER_22) que es un pueblo donde la convivencia es la norma, donde no existe un problema estructural de discriminación por razón de orientación sexual o identidad sin necesidad de etiquetar o dividir.
+[1417.0 → 1419.1] (SPEAKER_22) La Constitución Española, como saben muy bien,
+[1419.2 → 1432.1] (SPEAKER_22) en su artículo 14 ya indica que todos los españoles son iguales ante la ley sin que pueda prevalecer discriminación alguna por razón de nacimiento, raza, sexo o cualquier otra circunstancia.
+[1432.4 → 1442.0] (SPEAKER_22) Y este es el principio de nuestro Estado de derecho, garantizar la protección de todos los ciudadanos sin necesidad de establecer categorías diferenciadas ni privilegios.
+[1442.0 → 1447.7] (SPEAKER_22) a colectivos cómo están intentando ustedes con esta moción.
+[1448.1 → 1453.5] (SPEAKER_22) Por ello entendemos que las instituciones públicas deben actuar desde la neutralidad,
+[1453.7 → 1455.8] (SPEAKER_22) es algo fundamental.
+[1456.1 → 1467.1] (SPEAKER_22) Y tienen que representar al conjunto de todos los vecinos y no alinearse con planteamientos ideológicos concretos ni promover divisiones parciales de la sociedad.
+[1467.4 → 1476.4] (SPEAKER_22) El Ayuntamiento no está para señalar colectivos, sino para garantizar servicios públicos de calidad y la igualdad real de todos.
+[1477.0 → 1492.9] (SPEAKER_22) Nos preocupa especialmente que esta moción insista en políticas identitarias, en la promoción institucional de diferentes sensibilidades y en la utilización de recursos públicos para campañas que no se corresponden realmente en nuestros días en Riva Roja.
+[1492.8 → 1496.8] (SPEAKER_22) con necesidades reales detectadas en el municipio.
+[1497.4 → 1508.1] (SPEAKER_22) Creemos que no es una función del Ayuntamiento promover programas de carácter ideológico ni entrar en debates que corresponden al ámbito personal y estrictamente privado.
+[1508.5 → 1519.8] (SPEAKER_22) Y asimismo no compartimos la utilización de espacios públicos e institucionales como edificios municipales para la exhibición de símbolos que no representan al conjunto de ciudadanos.
+[1519.5 → 1520.1] (SPEAKER_22) Ciudadanos.
+[1520.2 → 1527.2] (SPEAKER_22) Las instituciones deben ser neutrales y los edificios públicos deben representar a todos sin excepción.
+[1527.8 → 1546.0] (SPEAKER_22) Por lo tanto, nuestro grupo municipal no puede apoyar esta moción en los términos que la plantean. Reiteramos nuestro compromiso con una sociedad de españoles libres, pero también donde las instituciones sean neutrales, respetuosas y centradas principalmente en los problemas reales de los vecinos.
+[1545.8 → 1553.5] (SPEAKER_22) Esto no es un problema para Riva Roja. Esta moción que hoy presenta es realmente algo que está fuera de lugar.
+[1553.6 → 1557.3] (SPEAKER_22) En consecuencia votaremos en contra de esta presente moción. Muchas gracias.
+[1559.8 → 1563.0] (SPEAKER_21) Me se pedrabores, que abriña poden, José.
+[1563.3 → 1584.5] (SPEAKER_23) Bona vesprada, hui presentem la moció de l'orgull LGTBIQ plus i la presentem redactada, treballada i a més vull destacar per dues qüestions, una d'elles és continuar defensant els nostres drets, continuar defensant les nostres vides i també les nostres reivindicacions i per altra banda presentar esta moció.
+[1584.7 → 1591.2] (SPEAKER_23) També en defensa pròpia, en defensa de les pràctiques polítiques del Partit Popular i de Vox,
+[1591.3 → 1593.4] (SPEAKER_23) sobretot de l'extrema dreta de Vox.
+[1593.9 → 1606.9] (SPEAKER_23) I cada punt que se presenta en esta moció respon a una necessitat. En primer lloc quan parlem de defensa dels drets i condemna contra l'homofobia parlem del punt número 1 i 2.
+[1607.3 → 1617.6] (SPEAKER_23) Parlem de dades concretes, de l'últim informe de l'estat de l'ODI, que el que diu és que un 5,44% de les persones del col·lectiu LGTBIQ plus han patit situacions d'odi.
+[1618.1 → 1631.2] (SPEAKER_23) Un 22 ha patit agressions, un 36 ha patit assetjament i un 29 discriminació. A més, hi ha un dato que és prou preocupant perquè el que indica és que la percepció de l'assetjament s'ha...
+[1632.4 → 1641.8] (SPEAKER_23) Passar del 27% al 40%. És a dir, cada vegada hi ha més gent que té por simplement per existir. Açò són dades reals i objectives.
+[1641.9 → 1645.8] (SPEAKER_23) De lo que parla el portaveu de Vox no són de dades.
+[1646.0 → 1649.5] (SPEAKER_23) Diu coses però no són dades. I a més,
+[1649.6 → 1658.5] (SPEAKER_23) en fer referència a lo que parla l'extrema dreta que diu no volem categoritzar la categoria diferenciada, que és lo que vosaltres dieu que no voleu.
+[1658.4 → 1671.3] (SPEAKER_23) voler ofer, però el que fa l'extrema dreta és afirmar que existeixen terapies per reconduir a persones homosexuals. El que fa és dir que els matrimonis de dos persones del mateix sexe no són matrimonis. El que fa també
+[1671.8 → 1682.1] (SPEAKER_23) És afirmar que les persones trans són enfermes cròniques. El que fa també és dir que lo de los gays és puro vicio. Això és lo que representa el partit de Vox.
+[1682.2 → 1688.1] (SPEAKER_23) Com ja he reiterat diverses voltes, és una basura política, però és lo que vostè representa així a Ribarrocha.
+[1688.4 → 1691.2] (SPEAKER_23) Parlant dels punts número 3,
+[1691.2 → 1692.4] (SPEAKER_23) 6 i 7.
+[1693.0 → 1708.9] (SPEAKER_23) Parlem de la formació. Ja vaig parlar també en este ple que va haver un exemple en el centre de salut del nostre poble que va patir una persona trans i que en formació aquestes accions contra les persones trans segurament es reduirien.
+[1709.1 → 1709.9] (SPEAKER_23) A més...
+[1710.2 → 1719.3] (SPEAKER_23) És essencial formar a tota la plantilla del nostre Ajuntament, perquè així no el que farem és contribuir a millorar a la visualització del col·lectiu LGTB.
+[1719.8 → 1725.1] (SPEAKER_23) Parlem en tercer lloc de la programació cultural i actes de l'orgull, que és el punt 4 i 5.
+[1725.2 → 1734.1] (SPEAKER_23) És molt important que aquest Ajuntament puga promoure accions culturals, educatives i sensibilització de...
+[1734.7 → 1735.8] (SPEAKER_23) El orgullo, el HCI,
+[1736.0 → 1739.5] (SPEAKER_23) porque encuentra y ha políticas de la extrema derecha,
+[1739.5 → 1740.0] (SPEAKER_23) de Vox,
+[1740.1 → 1744.7] (SPEAKER_23) que lo que hacen es prohibir y lo que hacen es una represión cultural al gobierno.
+[1744.9 → 1748.5] (SPEAKER_23) ¿Cómo por ejemplo llevar los libros de la niña que tiene dos papás?
+[1748.7 → 1752.2] (SPEAKER_23) ¿O Quique y las Barbies? ¿O cuándo se enseñan películas con Barbie?
+[1752.3 → 1754.2] (SPEAKER_23) ¿O 20.000 especies de abejas?
+[1754.3 → 1755.1] (SPEAKER_23) ¿O Goose like gear?
+[1755.3 → 1757.6] (SPEAKER_23) ¿O cuándo cancelen obras como Orlando?
+[1757.7 → 1759.6] (SPEAKER_23) Lo que vosotros representáis no es...
+[1759.5 → 1761.5] (SPEAKER_23) cultura, no es familia,
+[1761.7 → 1767.9] (SPEAKER_23) no es libertad y lo que hacéis es categorizarnos y querer llevarnos a lugares públicos.
+[1768.8 → 1784.3] (SPEAKER_23) És el que feu, però que a més a més és el que tenim és un problema amb tot, amb la intolerància, amb el respecte, amb la família i fins i tot amb l'Església, que ja és més respectuosa que l'extrema dreta perquè ja reconeix el sofriment de les persones trans i a més el que fa és qüestionar les teràpies de conversió.
+[1784.5 → 1795.4] (SPEAKER_23) Aquestes teràpies que el Partit Popular i Vox el que han fet és legalitzar-les al treball tant i el que fa l'esquerra és portar-les al Tribunal Constitucional que a més.
+[1795.5 → 1796.0] (SPEAKER_23) És a dir,
+[1796.1 → 1811.0] (SPEAKER_23) vull dir que de moment no estan presents gràcies a l'esquerra del nostre país, perquè moltes voltes el que fa la dreta i l'extrema dreta és dir un discurs que respecte al col·lectiu LGTBI però el que fa és votar contra les persones del col·lectiu LGTBI,
+[1811.1 → 1815.0] (SPEAKER_23) el que feu és votar a favor de teràpies de conversió,
+[1815.0 → 1820.2] (SPEAKER_23) el que feu és votar en contra de qualsevol millora del col·lectiu LGTBI.
+[1820.4 → 1828.9] (SPEAKER_23) de la ley de matrimonio igualitario votar en contra de que una persona homosexual con la seva pareja puga adoptar votar en contra.
+[1829.5 → 1832.9] (SPEAKER_23) Eso la derecha, el Partido Popular y Vox es encarrepejor.
+[1833.0 → 1841.4] (SPEAKER_23) Per tant, acaba dient que esta moció és essencialment important perquè és en defensa de les pràctiques polítiques de la dreta i de l'extrema dreta.
+[1842.1 → 1842.9] (SPEAKER_21) Mis palabras,
+[1843.0 → 1843.6] (SPEAKER_21) compromiso.
+[1844.9 → 1848.4] (SPEAKER_21) Gràcies senyor alcalde,
+[1848.4 → 1864.1] (SPEAKER_21) la veritat és que des del grup municipal de Compromís ens sentim orgullosos de formar part d'esta moció com bé sient habitual els últims anys.
+[1865.1 → 1879.2] (SPEAKER_22) En nuestro posicionamiento ha quedado claro que es en contra de las políticas que están aplicando allá donde gobiernen tanto el Partido Popular como Vox.
+[1881.4 → 1884.8] (SPEAKER_21) D'ara abans José Manuel de Xina,
+[1884.9 → 1892.3] (SPEAKER_21) que més de la meitat de les persones LGTBI+, concretament el 54%, han patit una situació d'odi en l'últim any.
+[1892.8 → 1900.7] (SPEAKER_21) Aquesta està expressada a través de assajament, discriminació o agressió, tant en l'espai públic com en el digital.
+[1901.7 → 1915.5] (SPEAKER_21) Segons l'informe estat de l'odi LGTBI plus 2026 elaborat per la Federació Estatal LGTBI plus al costat de l'Institut de Polítiques i Mets Públics del CSIC,
+[1915.6 → 1918.6] (SPEAKER_21) un dotze punts més que en l'informe anterior,
+[1918.9 → 1926.5] (SPEAKER_21) és a dir, s'ha incrementat. L'estudi també constata que les denúncies per delictes d'odi s'han duplicat des de 2024.
+[1927.2 → 1932.2] (SPEAKER_21) Passant del 17 al 35%, encara que el col·lectiu busca ajuda,
+[1932.3 → 1942.5] (SPEAKER_21) no sempre la troben els organismes públics. D'aquest 74% de les persones que van a denunciar davant les autoritats van tindre algun tipus d'experiència negativa.
+[1943.1 → 1951.7] (SPEAKER_21) Voltes agresions continuen ocultes per la desconfiança en un sistema del qual també van ser víctimes,
+[1952.1 → 1964.3] (SPEAKER_21) o davant l'absència d'autoritats degudament formades i dispositius per a intervindre enfront de situacions complexes i en les quals poden confluir múltiples interseccionalitats.
+[1965.2 → 1969.4] (SPEAKER_21) La Federació Estatal LGTBI Plus alerta que en els últims anys
+[1970.0 → 1982.3] (SPEAKER_21) En els últims 12 anys la prevalència de l'assetjament ha passat del 20 al 36%, la de la discriminació del 23 al 29% i la de les agressions del 7 al 22%.
+[1982.9 → 1992.0] (SPEAKER_21) L'odi afecta de manera més intensa a les persones LGTBI plus en major situació de vulnerabilitat, com són les persones trans,
+[1992.3 → 1995.2] (SPEAKER_21) una de cada dos ha patit agressions físiques,
+[1995.3 → 2007.9] (SPEAKER_21) les joves, els que han aconseguit menor nivell educatiu, els que disposen de menors ingressos o aquelles que presenten altres intersexualitat amb les persones racialistes.
+[2008.2 → 2011.2] (SPEAKER_21) racializadas o las que tienen alguna discapacidad.
+[2012.1 → 2020.8] (SPEAKER_21) El informe presentat per la Federació Estatal de LGTBI plus s'ha analitzat per primera vegada la rellevància de l'odi digital.
+[2021.1 → 2025.5] (SPEAKER_21) Un 44% afirma haver sigut objecte d'alguna mena de violència,
+[2025.6 → 2027.6] (SPEAKER_21) insults, fustigació,
+[2027.7 → 2028.4] (SPEAKER_21) aïllament.
+[2028.5 → 2033.1] (SPEAKER_21) En l'àmbit físic el 36% dels enquestats ha patit assetjament,
+[2033.6 → 2038.7] (SPEAKER_21) el 29% discriminació i el 22% agressions físiques o sexuals.
+[2038.9 → 2039.6] (SPEAKER_21) A més,
+[2039.9 → 2050.7] (SPEAKER_21) un 11% afirma haver patit simultàniament les tres formes i aproximadament la meitat de les víctimes declara haver viscut aquestes situacions més de tres vegades en els últims cinc anys,
+[2051.0 → 2060.8] (SPEAKER_21) la qual cosa evidencia patrons de revictimització. Per això nosaltres estem molt contents que l'Ajuntament de Ribarrocha
+[2061.8 → 2066.0] (SPEAKER_21) Se le hace concedida el distintivo de espacio libre de LGBT-fobia.
+[2066.1 → 2066.5] (SPEAKER_21) Gracias.
+[2069.3 → 2071.8] (SPEAKER_21) Mis palabras Raquel, según intervención.
+[2072.5 → 2073.0] (SPEAKER_20) Gracias.
+[2073.6 → 2074.1] (SPEAKER_20) Bueno,
+[2074.2 → 2081.1] (SPEAKER_20) conviene aclarar algo que se ha dicho en este pleno y es que la igualdad nunca ha sido un privilegio.
+[2081.8 → 2087.3] (SPEAKER_20) Cuando una persona puede caminar tranquilamente por la calle sin que sufra una presión por su orientación sexual,
+[2087.4 → 2088.6] (SPEAKER_20) eso no es un privilegio.
+[2089.0 → 2093.3] (SPEAKER_20) O tampoco que un adolescente en el instituto pueda sufrir bullying por su orientación sexual,
+[2093.5 → 2094.4] (SPEAKER_20) por ser quien es,
+[2094.4 → 2095.8] (SPEAKER_20) eso no es un privilegio.
+[2095.9 → 2101.6] (SPEAKER_20) O porque una familia y otra familia sean consideradas igual y que no les falten al respeto,
+[2101.7 → 2104.0] (SPEAKER_20) eso no es un privilegio, eso es igualdad.
+[2104.3 → 2106.5] (SPEAKER_20) Y eso es muy importante que quede claro.
+[2107.8 → 2108.6] (SPEAKER_20) D'altra banda,
+[2108.7 → 2111.0] (SPEAKER_20) en cuanto a que todos defendemos la dignidad,
+[2111.1 → 2116.3] (SPEAKER_20) gracias a que existe la hemeroteca y me he preso el detalle de hacer un ejercicio de memoria.
+[2116.7 → 2120.0] (SPEAKER_20) No sé si recordamos, pero en 2001 o 2003,
+[2120.4 → 2133.0] (SPEAKER_20) en la historia del mundo, los países comenzarán a donar pasos en el estrés LGTBI y países como Países Bajos o Bélgica aprobarán la ley del matrimonio igualitario.
+[2132.9 → 2138.6] (SPEAKER_20) Dani, per tant en Espanya, vull que encenar a estar a ser pioners en els drets LGTBI,
+[2138.8 → 2145.5] (SPEAKER_20) doncs vàrem pensar que també seria una bona idea que Espanya en 2004-2005 portarà aquesta iniciativa al Congrés dels Diputats.
+[2145.6 → 2147.6] (SPEAKER_20) I ens trobem a un partit popular,
+[2147.7 → 2150.5] (SPEAKER_20) en aquest cas la que era alcaldessa Ana Botella,
+[2150.6 → 2159.4] (SPEAKER_20) en què deia que una manzana i una pera no poden dar dos manzanas, referint-se al col·lectiu LGTBI i referint-se al matrimoni igualitari.
+[2159.3 → 2159.7] (SPEAKER_20) T'invito a la
+[2159.7 → 2160.3] (SPEAKER_24) meva casa.
+[2160.3 → 2161.2] (SPEAKER_20) Malgrat això,
+[2162.0 → 2166.2] (SPEAKER_20) Vaig dir, i es va aprovar en el Congrés la llei del matrimoni homosexual,
+[2166.9 → 2170.1] (SPEAKER_20) convertint-nos en el quart país del món en reconèixer este dret,
+[2170.3 → 2171.9] (SPEAKER_20) és a dir, una fita molt important.
+[2172.8 → 2178.9] (SPEAKER_20) Però què ha ocorrit amb el Partit Popular després de comparar-nos en frutes al col·lectiu LGTBI,
+[2179.0 → 2188.9] (SPEAKER_20) el que fa és recórrer al constitucional les bodes gais per desnaturalitzar el matrimoni, és a dir, continua estant en contra del matrimoni igualitari una vegada aprovat.
+[2188.7 → 2188.9] (SPEAKER_20) Però clar,
+[2189.0 → 2189.9] (SPEAKER_20) i clar,
+[2190.0 → 2192.9] (SPEAKER_20) compare la LGTBI en frutes,
+[2193.0 → 2194.1] (SPEAKER_20) no estan,
+[2194.2 → 2202.2] (SPEAKER_20) voten en contra del matrimoni igualitari en el Congrés, però després Rajoy i la cúpula del PP festegen el matrimoni homosexual de Maroto,
+[2202.3 → 2203.6] (SPEAKER_20) és a dir,
+[2203.6 → 2206.1] (SPEAKER_20) normal, normal que tinguem.
+[2206.7 → 2208.6] (SPEAKER_20) A presentadors com Jesús Vázquez,
+[2208.7 → 2213.3] (SPEAKER_20) que denunciava la hipocresia l'any passat quan es complien 20 anys del matrimoni igualitari,
+[2213.4 → 2214.7] (SPEAKER_20) en el que, bueno,
+[2214.8 → 2216.8] (SPEAKER_20) doncs diria que el que està passant, no?
+[2216.8 → 2219.3] (SPEAKER_20) Que heu recorrisent per a després casar-se.
+[2220.4 → 2232.0] (SPEAKER_20) A partir d'ahí comencem a veure com tots els drets que han anat sorgint gràcies a aquest treball progressista i vegem que no només ha sigut la llei del matrimoni igualitari, ha sigut l'eutanàsia, ha sigut l'avort,
+[2232.0 → 2234.8] (SPEAKER_20) ha sigut el divorci, ha sigut els drets dels trans,
+[2235.0 → 2238.1] (SPEAKER_20) de la igualtat inclús de la llei antitabaco.
+[2239.1 → 2240.9] (SPEAKER_20) I què ens trobem quan vingui el 23?
+[2241.1 → 2248.2] (SPEAKER_20) Doncs que Vox inicia una supercreuada en la que va en contra de tots els traduccions culturals del contingut LGTBI,
+[2248.4 → 2252.7] (SPEAKER_20) però també de les banderes que pensàvem als ajuntaments. És a dir, només a plegar ens trobàvem en això.
+[2253.5 → 2254.9] (SPEAKER_20) I per anar acabant...
+[2256.2 → 2259.2] (SPEAKER_20) I per anar acabant, en esta retirada d'estes banderes,
+[2259.4 → 2267.9] (SPEAKER_20) el que s'estem trobant és que el poder judicial les tira totes cap enrere perquè són anticonstitucionals i perquè ho veuen que no hi ha ningun problema. És a dir,
+[2268.0 → 2270.8] (SPEAKER_20) allò on han anat, el tribunal ho ha tirat cap enrere.
+[2271.1 → 2272.8] (SPEAKER_20) Ens faltava ja per acabar Mazón.
+[2273.3 → 2276.4] (SPEAKER_20) Mazón, per continuar el poder que tenia Ambox,
+[2276.6 → 2282.3] (SPEAKER_20) el que va fer és eliminar el llenguatge inclusiu i la comissió d'igualtat que teníem. És a dir...
+[2282.3 → 2286.0] (SPEAKER_20) continuen anant en contra dels drets del col·lectiu LGTBI.
+[2286.3 → 2302.0] (SPEAKER_20) I ja per últim i l'any passat recordarem que a més volien tornar a legalitzar les terapies de conversió. És a dir, el Partit Popular amb Vox en tots els governs on ha estat no només no està a favor del col·lectiu sinó que a més és un govern inestable.
+[2302.2 → 2308.1] (SPEAKER_20) Inestable perquè no han pogut ni tansevol en Oriola una moció que presentava Vox.
+[2308.2 → 2311.4] (SPEAKER_20) En contra del LGTBI ni el PP no va votar a favor.
+[2311.6 → 2315.6] (SPEAKER_20) És a dir, ni els propis Vox i PP s aclavissen en el col·lectiu LGTBI.
+[2322.0 → 2328.5] (SPEAKER_21) Pregaria que s'ajustarà el temps, has passat dos minuts en la seva intervenció, per tant, la de l'últim minut, si pot xorrar-te-la, te la hores.
+[2329.3 → 2330.0] (SPEAKER_21) Més paraules?
+[2330.9 → 2332.0] (SPEAKER_21) Alguna paraula més?
+[2334.2 → 2336.0] (SPEAKER_22) Alcalde voy a ceñirme al tiempo.
+[2336.6 → 2349.3] (SPEAKER_22) Veo que los partidos de la izquierda son cada vez más alejados de la realidad y de los problemas de los ciudadanos siguen inexorablemente caminando por los comentarios a los que hacen a su desaparición. No me extraña.
+[2349.9 → 2352.5] (SPEAKER_22) Además falta de toda educación.
+[2353.7 → 2360.9] (SPEAKER_22) Este compañero me ha llamado basura y aquí nadie ha dicho nada y a mí no se me ocurrirá llamarle a usted basura. Ahí le tengo bastante...
+[2364.7 → 2366.3] (SPEAKER_22) Yo creo que está grabado.
+[2366.4 → 2370.0] (SPEAKER_22) Ya llamaba a Suracosa que yo en fin les garantizo que no lo voy a hacer.
+[2370.5 → 2391.3] (SPEAKER_22) Pero eso pasa porque no escuchan, siguen creyendo que solo hay una verdad que es la suya y aquel que piensa de otra manera este es o un fascista o esa extrema derecha que yo creo que el nombre de verdad cambienlo porque es que ya de tanto repetirlo al final lo tienen hasta desgastado. Pero es que rechazamos el tono de la moción cuando sugieren de la existencia
+[2391.0 → 2393.1] (SPEAKER_22) La existencia de los procesos generalizados.
+[2393.4 → 2395.8] (SPEAKER_22) Es verdad que no es un privilegio, es un derecho,
+[2395.9 → 2399.8] (SPEAKER_22) pero es un derecho recogido en la Constitución y ya está ese derecho. Si a quién...
+[2400.0 → 2413.3] (SPEAKER_40) Riva Roja no tenemos ese problema. Entonces no compartimos esos determinados planteamientos ideológicos que son tan respetables como los que puedo tener yo,
+[2413.3 → 2426.7] (SPEAKER_40) pero para la izquierda más radical y ya fuera de realidad no lo entienden. Pero esto tiene una razón. Esta moción que traen aquí lo hacen para ocultar todos los casos enormes de corrupción.
+[2426.7 → 2439.9] (SPEAKER_40) que tiene el pasado, que tiene el PSOE. De hecho, me he sacado cada uno desde David Sánchez, Tito, Bernie, Francisco, pero les voy a dar un resumen y con esto termino.
+[2440.8 → 2444.1] (SPEAKER_40) Cargos y exdirigentes del PSOE investigados ahora mismo,
+[2444.2 → 2445.1] (SPEAKER_40) 320.
+[2446.0 → 2448.7] (SPEAKER_40) Condenados ex cargos socialistas, 79.
+[2449.6 → 2451.2] (SPEAKER_40) Investigados en Andalucía,
+[2451.3 → 2452.2] (SPEAKER_40) 162.
+[2452.5 → 2455.3] (SPEAKER_40) Causas abiertas en tribunales del Partido Socialista,
+[2455.6 → 2456.1] (SPEAKER_40) 240.
+[2456.5 → 2463.1] (SPEAKER_40) Y tienen un agravante, que es que los partidos que en el Gobierno les están dando soporte no hacen absolutamente nada.
+[2463.2 → 2466.8] (SPEAKER_40) Nos traen aquí una moción que no es un problema para los ciudadanos.
+[2466.6 → 2491.2] (SPEAKER_40) causas en Valencia 29 la mayoría son casos del Partido Socialista de Cataluña y lamentablemente del Partido Socialista ahora sí que lo voy a decir porque está en su nombre del País Valenciano que es el PSOE valenciano en fin por favor escuchen y entiendan que hay otras personas que piensan de otra manera y que les tienen todo el respeto pero que ese respeto debe hacerse
+[2492.4 → 2500.1] (SPEAKER_40) compartir, ese respeto se tiene que compartir con todos, porque no todos tienen las mismas ideas, y hay que tener respeto. Gracias.
+[2502.3 → 2504.1] (SPEAKER_41) Eh, más probables, eh José Manuel.
+[2507.5 → 2514.2] (SPEAKER_42) Gracias. Yo en primer yo eixat clar que yo no faig referencia mai a res personal, així.
+[2514.8 → 2517.9] (SPEAKER_42) A diferència d'altres regidors i regidores,
+[2518.3 → 2521.5] (SPEAKER_42) jo mai faig referència ni he fet a ninguna cosa personal.
+[2521.6 → 2529.4] (SPEAKER_42) Jo el que he dit és que vostè representa basura política per lo que representa el seu partit polític, no vostè com a persona.
+[2529.6 → 2539.7] (SPEAKER_42) Vostè com a persona jo no vaig a catalogar lo que és ni el que representa perquè no estic així per a això. Però el que sí que estic així és per a catalogar que el que vostè representa és...
+[2540.1 → 2547.2] (SPEAKER_42) Que Vox afirma que existeixen terapies per a reconduir a gais com jo.
+[2547.4 → 2553.4] (SPEAKER_42) Per tant, si el vostre partit polític diu que jo em puc convertir en una terapia, vostè representant una basura política.
+[2554.4 → 2556.0] (SPEAKER_42) Això és aixina.
+[2556.6 → 2558.1] (SPEAKER_42) El que també diu,
+[2558.2 → 2559.7] (SPEAKER_42) a més Santiago Abascal,
+[2559.8 → 2564.4] (SPEAKER_42) és que el matrimoni de dos homes no és matrimoni. Per tant, també és una basura política.
+[2565.2 → 2568.3] (SPEAKER_42) Perquè el que està fent és deslegitimar-me a mi.
+[2569.1 → 2569.9] (SPEAKER_42) En tercer lloc,
+[2570.1 → 2575.1] (SPEAKER_42) el que fa és afirmar que una persona trans és una forma crònica, i això ho ha dit una portaveu de Vox.
+[2576.1 → 2579.6] (SPEAKER_42) El que també diu Vox és que lo de ser gai és vici.
+[2581.5 → 2583.0] (SPEAKER_42) Això és cert.
+[2584.2 → 2584.9] (SPEAKER_42) Per tant,
+[2584.9 → 2587.6] (SPEAKER_42) lo que vostè representa és una basura política,
+[2587.8 → 2591.2] (SPEAKER_42) perquè defensa això. Lo que també fa és...
+[2592.1 → 2593.8] (SPEAKER_42) Llevar, per exemple,
+[2594.0 → 2596.1] (SPEAKER_42) la niña que tiene dos papás,
+[2596.6 → 2600.0] (SPEAKER_42) Kike y las Barbies, que son libros de una biblioteca pública.
+[2600.2 → 2604.2] (SPEAKER_42) Lo que hace es llevarlo, porque quiere invisibilizar el seu partido político,
+[2604.5 → 2607.1] (SPEAKER_42) Realitats LGTBI, como la meua.
+[2607.1 → 2609.8] (SPEAKER_42) Lo que también hace es llevar la película de Barbie.
+[2610.0 → 2612.6] (SPEAKER_42) Lo que también hace es las obras de Orlando Pertan,
+[2612.7 → 2613.7] (SPEAKER_42) reitere que sí,
+[2613.8 → 2616.6] (SPEAKER_42) que lo que usted representa sí es una basura política.
+[2616.8 → 2617.9] (SPEAKER_42) Mire,
+[2618.0 → 2618.2] (SPEAKER_42) això,
+[2618.4 → 2620.8] (SPEAKER_42) i ja per poder acabar.
+[2621.8 → 2629.2] (SPEAKER_42) Amb parle del Partit Popular i també de l'extrema dreta en lo que fa referència a les teràpies de conversió que vostès també les defensen,
+[2629.3 → 2647.7] (SPEAKER_42) lamentablement el Partit Popular les defensa perquè lo que ha fet és intentar legalitzar-les en el govern autonòmic, però ara de moment estan en el Constitucional i de moment estan paralitzades. Però no és ni pel Partit Popular ni és per Vox. I és gràcies a l'esquerra del nostre país per lo que tenim un matrimoni igualitari i per lo que una persona...
+[2647.5 → 2655.3] (SPEAKER_40) an homosexual can adopt or at the moment not go to a conversion therapy and that it be legalized that mistreatment.
+[2655.6 → 2656.6] (SPEAKER_40) It is thanks to the left,
+[2656.7 → 2662.3] (SPEAKER_40) it is thanks to all the people that have fought for the rights of the LGBT collective and it is not thanks to the right nor to the extreme right.
+[2663.9 → 2665.9] (SPEAKER_41) Es para obles cumplirmís,
+[2665.9 → 2667.3] (SPEAKER_41) son intervención.
+[2669.5 → 2674.5] (SPEAKER_42) I, first of all, I don't know where the regidora is.
+[2675.5 → 2684.2] (SPEAKER_42) del Partit Socialista en quant a la les expressions d'Ana Botella.
+[2685.5 → 2697.6] (SPEAKER_42) Deuria saber que el Partit Popular li encantar la fruta. De fet, la seua presidenta de la Comunitat de Madrid en el Congrés dels Diputats li digué al President del Govern que és un hijo de fruta. Però bueno,
+[2697.7 → 2700.3] (SPEAKER_42) això és la seua dinàmica.
+[2701.0 → 2716.4] (SPEAKER_42) Yo tornant al tema de la violencia que pareix lo més greu de tot, diria que la violència no es limita al pla físic. El discurs importa i de vegades les declaracions dels càrrecs polítics generen molta polèmica,
+[2717.1 → 2721.7] (SPEAKER_42) com per exemple els comentaris homòfobs de l'assessora de l'alcalde de Badajoz del PP.
+[2722.5 → 2731.9] (SPEAKER_43) o a ellos que compromiva a solicitar la reprobación de una portavoz de Vox para afirmar que les dones trans no son trans,
+[2732.2 → 2733.7] (SPEAKER_43) no son dones, perdona.
+[2735.0 → 2744.3] (SPEAKER_43) I durant l'orgull LGTBI a Castelló, càrrecs del mateix partit van recomanar a les famílies que evitaren el centre de la ciutat i no acostaren als xiquets.
+[2744.8 → 2752.6] (SPEAKER_43) Aquestes posicions s'inscriuen en una continuïtat discursiva que qüestiona la legitimitat dels drets LGTBI plus,
+[2752.8 → 2756.2] (SPEAKER_43) encara que ja no s'expresse en termes penals.
+[2756.5 → 2761.0] (SPEAKER_43) A aquestes declaracions s'ha sumat una estratègia política més ampla.
+[2761.7 → 2763.2] (SPEAKER_43) A l'octubre del 2025,
+[2763.6 → 2771.7] (SPEAKER_43) Vox va impulsar en el Congrés iniciatives per a derogar la llei 4 barra 2023 de drets LGTBI i trans,
+[2772.6 → 2777.1] (SPEAKER_43) una línia d'actuació que ha sigut replicada en diferents comunitats autònomes.
+[2777.6 → 2786.8] (SPEAKER_43) Estes propostes han avançat en un context de pactes parlamentaris i governs compartits en els quals el PP ha assumit de manera directa o indirecta.
+[2787.3 → 2789.3] (SPEAKER_43) El marc de debat plantejat,
+[2789.4 → 2793.7] (SPEAKER_43) normalitzant la idea que els drets LGTBI són revisables,
+[2793.7 → 2795.8] (SPEAKER_43) prescindibles o ideològics.
+[2796.4 → 2801.8] (SPEAKER_43) No es tráctano más de derogar leyes sino de deslegitimar las seguas necesidades.
+[2802.2 → 2805.7] (SPEAKER_43) Cuanto desrelativiza la identidad del colectivo,
+[2805.7 → 2807.3] (SPEAKER_43) como va a hacer Santiago Abascal,
+[2807.8 → 2817.0] (SPEAKER_43) en diluir el símbolo del orgullo bajo un discurso nacional homochénique y al mismo tiempo cuestionar las políticas públicas específicas de protección.
+[2817.7 → 2827.1] (SPEAKER_43) Es reactiva una lógica histórica coneguda, convertir la diversitat en problema i la igualtat en excés.
+[2827.6 → 2841.0] (SPEAKER_43) Jo li preguntaria al representant de Vox en aquest ajuntament si aquest cap de setmana també ha estat en Figueras o Foch, al sud de Porto,
+[2841.2 → 2842.5] (SPEAKER_43) on se van reunir...
+[2843.2 → 2847.0] (SPEAKER_43) Espera gritar per la remigración,
+[2847.2 → 2848.0] (SPEAKER_43) es a dir,
+[2848.1 → 2851.9] (SPEAKER_43) per la supremacía blanca.
+[2852.5 → 2853.6] (SPEAKER_43) Espere que no,
+[2853.6 → 2853.9] (SPEAKER_43) gracias.
+[2855.7 → 2858.3] (SPEAKER_41) Última intervención, un minuto, si puede ser corto.
+[2859.2 → 2861.6] (SPEAKER_44) Sí, simplemente para acabar y ser breve,
+[2861.8 → 2867.1] (SPEAKER_44) voy a recordar una frase del activista Pedro Cerolo que nos hizo una edición de democracia y convivencia en la que va a decir,
+[2867.3 → 2869.3] (SPEAKER_44) en el seu model de sociedad no cabió,
+[2869.4 → 2870.9] (SPEAKER_44) pero en el meu sí que cab usted,
+[2871.2 → 2873.0] (SPEAKER_44) porque los derechos no excluyen a ningún,
+[2873.1 → 2874.1] (SPEAKER_44) la discriminación sí.
+[2877.1 → 2880.0] (SPEAKER_41) Bueno, ya me ha acabado el debate.
+[2880.4 → 2881.9] (SPEAKER_41) Pasemos a la votación de esta moción.
+[2896.3 → 2896.6] (SPEAKER_41) Sí.
+[2897.2 → 2898.4] (SPEAKER_41) Trece votos a favor,
+[2898.5 → 2902.5] (SPEAKER_41) uno en contra, siete abstenciones, sociedad distante, Partido Popular,
+[2902.6 → 2903.8] (SPEAKER_41) Evox,
+[2903.9 → 2909.7] (SPEAKER_41) Esquerra Republicana y Compromís, que ha aprobado. Pasamos al segundo orden del día,
+[2909.8 → 2913.4] (SPEAKER_41) que es el punto cuatro.
+[2916.0 → 2927.0] (SPEAKER_41) Mostrar el gru municipal socialista de Riva Rocha per exigir a la Generalitat Valenciana l'execució del projecte de prolongació de la línia 9 de metro al centre urbà i construcció de la passarela per a les Vienants de València la Vella. Té la paraula la regidora d'Urbanisme, Teresa.
+[2929.9 → 2931.5] (SPEAKER_44) Sí, bueno, buenas tardes.
+[2931.7 → 2934.5] (SPEAKER_44) Supongo que os habréis leído la moción porque es breve.
+[2934.8 → 2936.5] (SPEAKER_44) A veces lo bueno y breve,
+[2936.6 → 2937.2] (SPEAKER_44) pues no,
+[2937.3 → 2938.3] (SPEAKER_44) dos veces bueno.
+[2939.1 → 2947.0] (SPEAKER_45) Bueno, pues lo que traemos precisamente es la reivindicación, la exigencia desde el respeto a la educación,
+[2947.2 → 2954.7] (SPEAKER_45) pero bueno, también queriendo poner nuestro, levantar la mano y decir la necesidad que tiene nuestro pueblo en que la consellería,
+[2954.7 → 2957.2] (SPEAKER_45) después de toda esta fase que hemos pasado de Dana,
+[2957.3 → 2960.1] (SPEAKER_45) que entendemos que igual que nosotros ellos han estado otras cosas,
+[2960.3 → 2963.7] (SPEAKER_45) pues seguir con esa lucha de este municipio.
+[2964.0 → 2967.7] (SPEAKER_45) que no es otra que el que tener el metro por una parte al centro del pueblo.
+[2968.4 → 2973.9] (SPEAKER_45) Recordarles a todos que nosotros no tuvimos metro en Ribarroja a finales del siglo XIX.
+[2974.3 → 2983.7] (SPEAKER_45) A partir de entonces nuestro servicio a Valencia era perfecto cada 35 minutos. Muchos de nosotros hemos ido a estudiar con el metro. A partir del 2005 esto no fue así.
+[2984.4 → 2993.7] (SPEAKER_45) Desde perdón con el tren, del 2005 nos quedamos sin el tren con la promesa de que se cambiaría el tren por el metro, bueno,
+[2993.7 → 2994.9] (SPEAKER_45) había que avanzar, ¿no?
+[2995.3 → 2998.7] (SPEAKER_45) Y desde el 2005 al 2015,
+[2999.0 → 3007.4] (SPEAKER_45) pues lo que hubo fue un estudio de o una presentación aquí en el Ayuntamiento, yo no estuve presente, pero compañeros míos sí.
+[3007.9 → 3022.4] (SPEAKER_45) en el que abro mi platillo y y explicando muy bien esa ese interés en tener una parada de metro no dos. Tendríamos one parada in the centre, which would be near what is the centre of health, and another stop approximately behind the police.
+[3023.6 → 3025.3] (SPEAKER_45) Perfecto, hasta ahí todo bien.
+[3025.4 → 3031.7] (SPEAKER_45) Nosotros cuando entramos en el Gobierno en el 2015 fuimos conocedores de ese proyecto de la llegada al metro al centro del pueblo,
+[3031.8 → 3034.9] (SPEAKER_45) hecho por un estudio del técnico Colomer,
+[3035.0 → 3037.3] (SPEAKER_45) nos lo presentó, la consellería lo tenía.
+[3038.3 → 3044.4] (SPEAKER_45) Pero sí que es cierto que el metro desgraciadamente en el 2015 se quebró en un apeadero, un apeadero en entrevies,
+[3044.5 → 3059.2] (SPEAKER_45) que muy bien porque ya teníamos con qué ir al metro pero entendemos que no era no era que no queríamos ser ni más ni menos que otros municipios. Queríamos ser igual que dentro de la misma línea pues la parada que tiene el aeropuerto, la parada que tiene Manises que tiene tres creo,
+[3059.4 → 3060.9] (SPEAKER_45) las dos paradas que tiene Cuart.
+[3061.4 → 3065.4] (SPEAKER_45) Y creemos que ese apeadero que tenemos nos hace el servicio,
+[3065.5 → 3069.4] (SPEAKER_45) pero no tiene las prestaciones que debe tener nuestro municipio.
+[3069.6 → 3071.8] (SPEAKER_45) Desde el 2015 hemos peleado por eso,
+[3071.9 → 3077.0] (SPEAKER_45) no hemos parado. Nuestra primera reivindicación, como sabéis, fue el apeadero en Valencia la Bella,
+[3077.1 → 3079.2] (SPEAKER_45) algo que no se había defendido en el gobierno anterior,
+[3079.7 → 3088.4] (SPEAKER_45) una reivindicación de los vecinos de Valencia la Bella que en 2018 fue efectiva, en la que el ayuntamiento quiso porque, como he dicho en otras...
+[3088.1 → 3097.9] (SPEAKER_45) Creo que en ocasiones nosotros pedimos pero también damos. Si hay que aportar, se aporta cuando algo creemos que es necesario e imprescindible. Y esa fue nuestra objetivo con la parada de Valencia-La Bella.
+[3098.3 → 3104.7] (SPEAKER_45) 600.000 euros era esa actuación, 300.000 cada uno de aportación que al final sí que es cierto que asumió en su totalidad.
+[3105.5 → 3106.4] (SPEAKER_45) La consellería.
+[3106.6 → 3109.9] (SPEAKER_45) En esa inauguración del 31 de julio del 2018,
+[3110.0 → 3110.9] (SPEAKER_45) si no recuerdo mal,
+[3111.0 → 3124.7] (SPEAKER_45) el presidente Chimo Puig, además de inaugurar ese apeadero, tomó el compromiso con nuestro alcalde de que el metro llegara al centro como se nos dijo y se nos prometió cuando se nos quitó el tren.
+[3125.4 → 3133.3] (SPEAKER_45) Y a partir de ahí se estuvo trabajando el Ayuntamiento desde el 2015 que ha hecho dentro de ese proyecto que conocíamos que existía para llegar el metro al centro,
+[3133.4 → 3136.3] (SPEAKER_45) comprar el suelo de lo que era la parada,
+[3136.4 → 3151.6] (SPEAKER_45) hacer un concurso de ideas para tener unos proyectos importantes y chulos que no solamente fuesen el enfoque de la llegada al metro sino que además fuese una conexión completa hacia el parque natural porque tenemos ese lujo y ese privilegio que otros municipios no tienen.
+[3152.2 → 3162.8] (SPEAKER_45) Y en el 2019 se retiró un talud, se puso una pasarela provisional criticada algunas veces pero que entendemos que hace una función espectacular con todos sus defectos que pueda tener,
+[3163.0 → 3170.0] (SPEAKER_45) que además habría una ventana en ese barranco que aquello era inmune, aquello no tenía razón de ser con un centro de salud ahí.
+[3170.4 → 3177.5] (SPEAKER_45) Tenías una comunicación de tráfico, tenías un aparcamiento para que la gente pudiera ir y seguíamos teniendo una comunicación.
+[3177.2 → 3182.2] (SPEAKER_45) un acceso que comunicaba todo lo que era desde bodeguetes hacia la parada del bus.
+[3183.4 → 3194.1] (SPEAKER_45) A partir del 2019 que hicimos toda esa actuación, el compromiso de la vecindad siguió, es cierto que tuvimos una pandemia, ya lo sabéis, el COVID, pero en el 2022 ya tuvimos el estudio de viabilidad.
+[3194.7 → 3197.7] (SPEAKER_45) El estudio de viabilidad, que lo hicieron a final del 2022,
+[3197.9 → 3202.0] (SPEAKER_45) nos lo entregaron el 31 de diciembre del 2022,
+[3202.1 → 3207.3] (SPEAKER_45) en el que ese estudio de viabilidad avalaba que el metro podía llegar al centro del pueblo,
+[3207.3 → 3215.1] (SPEAKER_45) porque tenía viabilidad técnica y viabilidad económica. Si no lo conocéis, os invito a que lo veáis, esa viabilidad técnica.
+[3215.8 → 3241.3] (SPEAKER_45) oferta tres opciones para la llegada de ese metro totalmente en subterráneo saliendo algo a cielo raso y saliendo a cielo raso con curva bueno pues esas actuaciones tenían ese compromiso de que ese proyecto siguiera adelante sigue decir que por parte del ayuntamiento sabéis que en el 2023 cambia el gobierno nosotros ahí hubo una confusión ya una confusión no hubo
+[3241.5 → 3256.0] (SPEAKER_45) No estaba claro todavía el tema del gobierno, cómo estaba distribuido, ya lo comentamos en las comisiones informativas y realmente no sabíamos a quién dirigirnos. Era un gobierno entre Vox y PP que todavía no se habían asignado esas delegaciones y nos costó algo llegar a eso.
+[3256.0 → 3260.5] (SPEAKER_45) Pedimos reuniones en agosto del 13,
+[3260.6 → 3262.0] (SPEAKER_45) pedimos reuniones en noviembre.
+[3262.8 → 3267.5] (SPEAKER_45) Y en noviembre se nos dio para el 29 de diciembre de 2023 con el secretario autonómico, el señor Domínguez,
+[3267.6 → 3273.8] (SPEAKER_45) al que le trasladamos todo esto y que además era conocedor de ese proyecto que tenían desde el 2010.
+[3274.2 → 3278.6] (SPEAKER_45) Es cierto que en el octubre del 24 hubo un parón para toda la comunidad valenciana.
+[3278.9 → 3280.3] (SPEAKER_45) Entendemos que no era momento.
+[3280.7 → 3285.0] (SPEAKER_45) Ahora que ya hemos vuelto a la normalidad y que hay municipios que se quedaron sin metro,
+[3285.1 → 3288.2] (SPEAKER_45) ya tienen metro y hay normalidad en el transporte.
+[3288.1 → 3298.2] (SPEAKER_45) -de-demo que llega el tiempo en que tenemos que reivindicar. Y consideramos que es aquí donde se tiene que reivindicar, y espero eh el voto en favo a favor de todo de todos los partidos. Gracias.
+[3298.7 → 3299.0] (SPEAKER_45) Luego
+[3299.0 → 3299.3] (SPEAKER_41) ¿Más palabras?
+[3299.3 → 3300.8] (SPEAKER_45) me me he dejado el otro.
+[3300.8 → 3302.5] (SPEAKER_41) Ajustemos el tiempo, sino más palabras.
+[3302.5 → 3303.0] (SPEAKER_45) Disculpad, disculpad.
+[3303.0 → 3305.0] (SPEAKER_41) Si hay alguien que pase, empezaré. Vale.
+[3305.3 → 3306.9] (SPEAKER_41) ¿Más palabras? Ah, Juan.
+[3309.0 → 3325.0] (SPEAKER_40) Sí, buenas tardes. Desde el Partido Popular lo primero que tenemos que decir es que reconocemos la necesidad de visibilizar un problema grave tanto de seguridad como accesibilidad que tienen los vecinos o están sufriendo Valancelavilla desde hace muchos años. Una demanda que yo conozco desde hace una barbaridad.
+[3325.9 → 3333.3] (SPEAKER_40) Sobre todo decir que el Partido Popular ya denunció en este mismo pleno en el mes de mayo... Es que sólo ha pasado un mes. Es curioso.
+[3334.0 → 3335.7] (SPEAKER_40) Aunque el contenido no fuera el mismo,
+[3335.8 → 3336.8] (SPEAKER_40) la forma era la misma.
+[3336.9 → 3340.6] (SPEAKER_40) La moción que presentó el Partido Popular para mejorar la conexión ciclopeatonal,
+[3341.1 → 3343.8] (SPEAKER_40) bien fuera por la calle del Abeto, recuerdo, o por la pasarela.
+[3344.2 → 3345.2] (SPEAKER_40) Ustedes, este gobierno,
+[3345.4 → 3347.0] (SPEAKER_40) Partido Socialista, votó en contra.
+[3347.8 → 3349.2] (SPEAKER_40) Los ciudadanos lo pueden comprobar.
+[3349.7 → 3354.7] (SPEAKER_40) A nosotros no nos extraña. Yo me imagino que la población que nos oiga sí dirá cómo es posible esto.
+[3354.8 → 3355.2] (SPEAKER_40) Pero en fin,
+[3355.3 → 3361.8] (SPEAKER_40) lo que sí que es cierto es que lamentamos profundamente que estas exigencias que ustedes han remarcado en mayúscula vengan ahora,
+[3362.0 → 3368.6] (SPEAKER_40) después de ocho años que coincidan con el Gobierno socialista del señor Puig, nada más y menos ocho años.
+[3369.0 → 3375.6] (SPEAKER_40) Yo he revisado la hemeroteca y en estos ocho años en cuanto se refiere a infraestructuras para el municipio de Rivarroja he encontrado ninguna.
+[3376.5 → 3376.8] (SPEAKER_41) Sí,
+[3376.9 → 3377.4] (SPEAKER_41) cierro otra cosa,
+[3377.5 → 3379.4] (SPEAKER_41) infraestructuras gordas, gordas.
+[3381.1 → 3385.2] (SPEAKER_41) Vale. Casualmente lo que sí que es cierto es que en esta recta final de año que entramos en elecciones,
+[3385.3 → 3389.1] (SPEAKER_41) aunque ustedes se rían, ya que dicen que somos los que nos reímos,
+[3389.1 → 3389.8] (SPEAKER_40) no se está riendo nadie en
+[3389.8 → 3389.9] (SPEAKER_41) sí
+[3389.9 → 3390.0] (SPEAKER_40) absoluto
+[3390.0 → 3390.9] (SPEAKER_41) por ahí, por aquel fondo.
+[3390.9 → 3392.1] (SPEAKER_40) para que la gente lo oiga.
+[3392.1 → 3392.4] (SPEAKER_41) Vale.
+[3392.4 → 3393.3] (SPEAKER_40) La gente tiene que haber dicho
+[3393.3 → 3393.4] (SPEAKER_41) Lo
+[3393.4 → 3393.5] (SPEAKER_40) algo.
+[3393.5 → 3395.1] (SPEAKER_41) digo, usted es el responsable de...
+[3395.1 → 3396.1] (SPEAKER_40) ¿Lo quieres interpretar?
+[3401.9 → 3404.5] (SPEAKER_41) Alfa, ¿le escuché estrictamente nada, ninguna grabación?
+[3404.5 → 3406.4] (SPEAKER_40) Bueno, igual ahora estaba riéndose por si acaso.
+[3406.4 → 3407.6] (SPEAKER_41) Estrictamente nada, no queda ninguna
+[3407.6 → 3408.1] (SPEAKER_40) Sigo, grabación. por favor.
+[3408.5 → 3410.3] (SPEAKER_40) Lamentamos sin embargo esto. Bueno.
+[3410.9 → 3413.7] (SPEAKER_40) Luego también hay otra cosa que es importante destacar.
+[3414.1 → 3425.9] (SPEAKER_40) Aclaren ustedes por qué en la moción que presenta Teresa hoy da unas cifras, el concejal de urbanizaciones el mes pasado en la misma respuesta que dio de mi moción contestó otro.

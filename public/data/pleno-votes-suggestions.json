@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-11-19T09:32:07.993Z",
+  "generatedAt": "2026-11-19T18:38:27.735Z",
   "source": {
     "description": "Vote suggestions inferred automatically from YouTube-derived pleno transcripts. Every record carries requiresHumanApproval:true and MUST be reviewed by a curator before promotion to pleno-votes.json via `npm run pleno-vote`.",
     "contract": "Machine-written; never substitutes for the published human-verified record."
   },
   "stats": {
-    "total": 17,
+    "total": 18,
     "byEngine": {
       "regex": 9,
-      "llm": 8
+      "llm": 9
     },
     "byPleno": {
       "51k7yx": 5,
@@ -17,7 +17,8 @@
       "k4olcs": 1,
       "19gax3o": 2,
       "c8kr44": 1,
-      "1sk3q3c": 6
+      "1sk3q3c": 6,
+      "1ci5p5s": 1
     }
   },
   "items": [
@@ -550,6 +551,39 @@
       "regmeetCheck": {
         "regmeetOutcome": "rechazada",
         "regmeetTitle": "18/2025/PGRU Moció del Grup Municipal Popular Riba-roja de Túria perquè es pose en marxa un Pla Integral adequat per barris i urbanitzacions per al control de les plagues.",
+        "status": "match"
+      }
+    },
+    {
+      "plenoId": "1ci5p5s",
+      "plenoDate": "2025-06-02",
+      "itemNumber": 7,
+      "excerpt": "Què punxeu? Ara, vots a favor. Abstencions. Vots en contra. [...] Perquè ara és el dia podem. A favor. Compromís. A favor. Vox. En contra. I PP. En contra. Molt bé. Ahí está. Bueno, pues pasemos allá.",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "EU-Podem",
+          "direction": "a_favor"
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor"
+        },
+        {
+          "bloc": "VOX",
+          "direction": "en_contra"
+        },
+        {
+          "bloc": "PP",
+          "direction": "en_contra"
+        }
+      ],
+      "confidence": 0.6,
+      "requiresHumanApproval": true,
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "15/2025/PGRU Moció conjunta dels Grups Municipals Compromís per Riba-roja i EU-Podem per reclamar que la llengua vehicular d’À Punt siga el valencià",
         "status": "match"
       }
     }

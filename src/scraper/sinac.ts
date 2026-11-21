@@ -133,6 +133,40 @@ const FRASES: ReadonlyArray<readonly [RegExp, Calificacion]> = [
   [/^CALIFICACI.{1,3}N GESTIONADA POR LA CONSEJER.{1,3}A$/, 'gestionada-consejeria'],
 ]
 
+/** La frase «gestionada por la Consejería», con las letras que SINAC pierde. */
+export const FRASE_CONSEJERIA = 'Calificación gestionada por la Consejería'
+
+const LATIN1_UTF8 = new TextDecoder('utf-8', { fatal: true })
+
+/**
+ * La frase de calificación, tal cual salvo dos reparaciones de codificación.
+ *
+ * SINAC sirve «Calificaciï¿½n gestionada por la Consejerï¿½a»: en su base la
+ * tilde ya era U+FFFD (letra perdida), y al servirla releyó esos bytes UTF-8
+ * como Latin-1 y los volvió a codificar. El resto de la página llega bien, así
+ * que no es nuestro `TextDecoder` (`scripts/lib/sinac-fetch.ts`).
+ *
+ *  1. Se deshace la doble codificación sólo si TODOS los caracteres caben en
+ *     Latin-1 y sus bytes son UTF-8 válido (decodificador `fatal`): «Consejería»
+ *     bien escrita no lo es, y se queda como está.
+ *  2. La letra perdida no se puede leer. Sólo en la frase que `calificacion`
+ *     ya reconoce se escribe entera (`FRASE_CONSEJERIA`); una frase nueva con
+ *     U+FFFD lo conserva, para que el censo de vocabulario la vea rota.
+ */
+export function fraseDelMinisterio(bruta: string): string {
+  let t = limpio(bruta)
+  const codigos = [...t].map((c) => c.charCodeAt(0))
+  if (codigos.some((n) => n >= 0x80) && codigos.every((n) => n <= 0xff)) {
+    try {
+      t = LATIN1_UTF8.decode(Uint8Array.from(codigos))
+    } catch {
+      // No era doble codificación: tildes Latin-1 legítimas.
+    }
+  }
+  if (t.includes('�') && calificacion(t) === 'gestionada-consejeria') return FRASE_CONSEJERIA
+  return t
+}
+
 /** La frase del ministerio → nuestra calificación, por igualdad. */
 export function calificacion(texto: string): Calificacion | null {
   const t = limpio(texto).toUpperCase()
@@ -259,7 +293,7 @@ export function parseDetalleRed(html: string): DetalleRed {
         )
         const fecha = fechaIso($(tds[0]).text())
         if (!m || !fecha) return
-        const frase = limpio($(tds[1]).text())
+        const frase = fraseDelMinisterio($(tds[1]).text())
         boletines.push({
           id: Number(m[1]),
           tipo,
@@ -314,7 +348,8 @@ export function parseBoletin(html: string): DetalleBoletin {
   const parametros: Parametro[] = []
   $('fieldset.bloqueFieldsetU').each((_, fs) => {
     const legend = limpio($(fs).children('legend').first().text())
-    if (legend === 'Calificacion de la muestra') frase = limpio($(fs).find('label').first().text())
+    if (legend === 'Calificacion de la muestra')
+      frase = fraseDelMinisterio($(fs).find('label').first().text())
     if (!legend.startsWith('Parametros')) return
     $(fs)
       .find('tbody > tr')
@@ -347,6 +382,21 @@ export function parseBoletin(html: string): DetalleBoletin {
  * El archivo: lo ya guardado más lo recién leído, por id, lo nuevo mandando.
  * Ordenado por fecha descendente (y por id, para que el orden sea estable).
  */
+/**
+ * Los boletines archivados, con su frase pasada otra vez por
+ * `fraseDelMinisterio`. La página sólo enseña los últimos, así que un boletín
+ * archivado con la frase mal leída no se vuelve a pedir nunca: sin esto, el
+ * archivo arrastraría la lectura vieja para siempre.
+ */
+export function releerArchivados<T extends { calificacionTexto: string }>(archivados: T[]): T[] {
+  return archivados.map((b) => {
+    const frase = fraseDelMinisterio(b.calificacionTexto)
+    return frase === b.calificacionTexto
+      ? b
+      : { ...b, calificacionTexto: frase, calificacion: calificacion(frase) }
+  })
+}
+
 export function fusionarBoletines<T extends { id: number; fecha: string }>(
   archivados: T[],
   leidos: T[],

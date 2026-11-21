@@ -99,6 +99,7 @@ import { startRun, formatManifest } from '../src/scraper/run-manifest'
 // being a check and becomes a second opinion.
 import { speakerMapBacklog } from './speaker-map-backlog'
 import { getRunStats } from '../src/llm/client'
+import { caminoDelMapa } from '../src/scraper/speaker-map-texto'
 
 const OUT_DIR = resolve('pleno-speaker-map')
 const MODEL = process.env.SPEAKER_MAP_MODEL || 'gemini-3.5-flash'
@@ -516,6 +517,17 @@ function transcribeChunk(
 }
 
 async function main() {
+  const camino = caminoDelMapa(process.env.SPEAKER_MAP_BACKEND)
+  if (!camino) {
+    process.stderr.write(
+      `[speaker-map] SPEAKER_MAP_BACKEND=${process.env.SPEAKER_MAP_BACKEND} no existe (gemini | texto)\n`,
+    )
+    process.exit(2)
+  }
+  if (camino === 'texto') {
+    const { mainTexto } = await import('./extract-speaker-map-texto')
+    return mainTexto(process.argv.slice(2))
+  }
   const args = parseArgs(process.argv.slice(2))
   if (!args.plenoId) {
     process.stderr.write('usage: extract-speaker-map.ts <plenoId> [--chunks N] [--audio FILE]\n')
