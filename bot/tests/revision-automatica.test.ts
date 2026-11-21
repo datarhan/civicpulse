@@ -12,7 +12,11 @@ import { avisarAdmins, type EnvioAdmin } from '../src/services/avisos-admin'
 import { MARCA_RETIRADO } from '../src/services/pii'
 import { buildSnapshot } from '../src/services/snapshot'
 import { buildHealth } from '../src/services/health'
-import { CLAVE_MEDICION, VERSION_PROMPT } from '../src/services/moderacion-criterios'
+import {
+  CLAVE_INVARIANZA,
+  CLAVE_MEDICION,
+  VERSION_PROMPT,
+} from '../src/services/moderacion-criterios'
 import { estadoRevision, pasadaDeRevision, type DepsRevision } from '../src/services/moderacion'
 
 /**
@@ -88,8 +92,11 @@ function telegram() {
   return t satisfies EnvioAdmin
 }
 
+// Las dos medidas que abren la publicación automática: la precisión del oro y la
+// invarianza contrafactual de la revisión. Una sola no basta.
 const medida = [
   { key: CLAVE_MEDICION, precision: 1, sample: 90, measuredAt: '2026-10-01T00:00:00Z' },
+  { key: CLAVE_INVARIANZA, precision: 1, sample: 90, measuredAt: '2026-10-01T00:00:00Z' },
 ]
 
 function deps(
@@ -170,6 +177,18 @@ describe('una queja limpia, con la publicación automática medida', () => {
     expect(tg.editados.at(-1)?.html).toMatch(/Publicada/)
     expect(tg.editados.at(-1)?.html).toMatch(/Revisión automática: nada que retener/)
     expect(republicadas).toEqual(['pedida'])
+  })
+
+  it('con la precisión medida pero sin la invarianza, la limpia espera a una persona', async () => {
+    const q = nuevaQueja(
+      'La farola de la calle Mayor lleva una semana apagada y la calle queda a oscuras.',
+    )
+    const { d } = deps(gemini({ retirar: [], motivos: [] }), telegram(), {
+      medidas: () => medida.filter((m) => m.key === CLAVE_MEDICION),
+    })
+    const r = await pasadaDeRevision(d)
+    expect(r).toMatchObject({ intentadas: 1, limpias: 1, publicadas: 0 })
+    expect(getQueja(db, q.id)?.moderacion).not.toBe('publicada')
   })
 
   it('una segunda pasada no vuelve a llamar al modelo, aunque la queja siga esperando', async () => {

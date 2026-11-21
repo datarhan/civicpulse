@@ -92,8 +92,11 @@ cut from the stored text — and give reasons, from a closed list
 that does not hold up, or a failed call, is retried (5, 15, 60, 180, 360 min);
 after 3 failures or 2 h each admin is told once. A queja with no reasons is
 published without a person only when `decideAutomation` allows the class
-`queja.publicacion-automatica` with a measurement in
-`../.automation-measurements.json`; until then, and always during a LOREG
+`queja.publicacion-automatica`, which needs two measurements in
+`../.automation-measurements.json`: its own precision and
+`queja.invarianza-contrafactual` (the same queja, with and without a sentence in
+which the writer says who they are, gets the same decision —
+`scripts/medir-contrafactual.ts`); until both clear, and always during a LOREG
 freeze, a person decides every one. Every review is logged in
 `revisiones_automaticas` (migration 3), never the removed text.
 

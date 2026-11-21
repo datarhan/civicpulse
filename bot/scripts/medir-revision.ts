@@ -122,7 +122,8 @@ process.stdout.write(
     `Inválidas: ${lista(medida.invalidas)}. Errores: ${lista(medida.errores)}.`,
     `Grabado en ${SALIDA}.`,
     '',
-    'Registrarla ABRE la publicación automática: decídelo una persona. Si se decide, desde la raíz:',
+    'Registrarla, con queja.invarianza-contrafactual también registrada (scripts/medir-contrafactual.ts), ' +
+      'ABRE la publicación automática: decídelo una persona. Si se decide, desde la raíz:',
     `  npm run record-measurement -- --key queja.publicacion-automatica --precision ${
       medida.precision === null ? '<sin limpias>' : medida.precision.toFixed(4)
     } --sample ${medida.publicaria} --against "${modelo}@${VERSION_PROMPT}" --method ` +
