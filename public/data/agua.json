@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-21T05:49:15.095Z",
+  "generatedAt": "2026-11-21T12:45:24.396Z",
   "consultadoEl": "2026-11-21",
   "fuente": {
     "nombre": "SINAC · Sistema de Información Nacional de Aguas de Consumo (Ministerio de Sanidad)",
@@ -19905,7 +19905,7 @@
       "tipo": "radiactividad",
       "fecha": "2022-08-10",
       "calificacion": "gestionada-consejeria",
-      "calificacionTexto": "Calificaciï¿½n gestionada por la Consejerï¿½a",
+      "calificacionTexto": "Calificación gestionada por la Consejería",
       "idRed": 595
     },
     {
@@ -21534,7 +21534,7 @@
       "tipo": "radiactividad",
       "fecha": "2022-01-13",
       "calificacion": "gestionada-consejeria",
-      "calificacionTexto": "Calificaciï¿½n gestionada por la Consejerï¿½a",
+      "calificacionTexto": "Calificación gestionada por la Consejería",
       "idRed": 595
     },
     {

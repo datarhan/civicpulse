@@ -30,7 +30,12 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { existsSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { CALIFICACIONES, fusionarBoletines, type Boletin } from '../src/scraper/sinac'
+import {
+  CALIFICACIONES,
+  fusionarBoletines,
+  releerArchivados,
+  type Boletin,
+} from '../src/scraper/sinac'
 import { INE_PROPIO } from '../src/scraper/dea-especificacion'
 import { startRun, NO_LLM_STATS } from '../src/scraper/run-manifest'
 import { ENTRADA, abrirSesion, leerDetalle, leerFicha, leerRedes } from './lib/sinac-fetch'
@@ -49,7 +54,7 @@ async function main() {
   await mkdir(join(CACHE, hoy), { recursive: true })
 
   const previo = existsSync(OUT) ? JSON.parse(await readFile(OUT, 'utf8')) : null
-  const archivados: Boletin[] = previo?.boletines ?? []
+  const archivados: Boletin[] = releerArchivados(previo?.boletines ?? [])
 
   const sesion = await abrirSesion()
   const { redes, denMunicipio: den } = await leerRedes(sesion, INE_PROPIO)
