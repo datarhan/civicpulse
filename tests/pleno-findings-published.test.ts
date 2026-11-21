@@ -18,6 +18,7 @@ import { findPartiesInText } from '../src/lib/party-alias.js'
 import { rechazoDeFirma } from '../src/scraper/firma-de-persona'
 import { sha256Short } from '../src/scraper/hash'
 import {
+  ATTRIBUTION_RETRACTED_LABEL,
   CORRECTION_REMOVAL_FIELD_RE,
   REASON_DIGEST_RE,
   REDACTION_DIGEST_RE,
@@ -459,7 +460,40 @@ const expectWithdrawn = (id: string): void => {
  * la puerta editorial retiene. Va detrás de la fila del 05-10 de esa ficha, así que ningún lote
  * cambia; las tres filas de sumario anteriores pasan a huella.
  */
-const TOTAL_CORRECTIONS = 244
+/*
+ * 244 → 294 (bloque «las conjeturas del extractor, retiradas»). Cincuenta filas de
+ * `correct-pleno-finding --field quote.<i>.speakerGroup --new ""` (editor `civicpulse-curator`),
+ * el 21-11-2026, en 27 fichas: las citas de la hoja de escucha del 19-10 que aún llevaban el
+ * grupo que puso el extractor por ventana, retirado el 10-08. Retirar una atribución sólo
+ * debilita (nivel A); ninguna se sustituye. Cada una va detrás de las filas que ya tuviera su
+ * ficha, así que ningún lote cambia de ventana; sí cambian los `groups` de 24 casos.
+ */
+/*
+ * 294 → 318 (el mismo bloque, segunda mitad). Veinticuatro filas de
+ * `correct-pleno-finding --field summary` (editor `civicpulse-curator`, texto aprobado por el
+ * operador el 21-11-2026): los sumarios de esas fichas atribuían a un grupo lo que dijo una
+ * intervención, con la misma conjetura. Cada uno sustituye sólo el tramo que nombraba al grupo.
+ * Van detrás de las cincuenta filas de grupo, así que ningún lote cambia de ventana; sí cambian
+ * los tramos que algunos lotes fijan como «sigue diciendo».
+ */
+/*
+ * 318 → 319 (el mismo bloque, una fila más). `f-2026-05-11-acu-ea9d47`: «se cruzan reproches»
+ * seguía contando dos grupos con citas de uno, y la guarda «una frase que cuenta grupos los lleva
+ * en sus citas» lo paró. Pasa a «se formulan reproches», aprobado por el operador.
+ */
+const TOTAL_CORRECTIONS = 319
+
+/** El motivo de las cincuenta filas del 21-11-2026 (bloque «las conjeturas del extractor, retiradas»). */
+const MOTIVO_CONJETURAS =
+  'La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.'
+
+/** El motivo de las veinticuatro filas de sumario del mismo lote. */
+const MOTIVO_SUMARIO_CONJETURAS =
+  'El sumario atribuía a un grupo lo que dijo una intervención, según la etiqueta que puso el extractor por ventana, retirado el 10-08-2026, y que se ha retirado de sus citas; se reescribe sin atribuirlo. No se afirma que la atribución fuera errónea.'
+
+/** El registro de una ficha sin las filas de ese lote: lo que los bloques anteriores fijaron. */
+const sinConjeturas = (cs: readonly Correction[] | undefined): Correction[] =>
+  (cs ?? []).filter((c) => c.reason !== MOTIVO_CONJETURAS && c.reason !== MOTIVO_SUMARIO_CONJETURAS)
 const TOTAL_REMOVALS = 37
 
 /** One row of a review batch's fixture: enough to locate its own entries. */
@@ -811,10 +845,10 @@ describe('published pleno findings — the three retracted in b8fea6f', () => {
     // …and the two sentences that carried the finding are verbatim intact.
     expect(f.summary).toContain('unidad de policía local que asiste a mujeres vulnerables')
     expect(f.summary).toContain('pulseras telemáticas de control de agresores')
-    // Three quotes: the two PSOE ones the summary uses, and the PP one.
+    // Three quotes. Their groups (two PSOE, one PP) were the retired extractor's
+    // guesses and were withdrawn on 2026-11-21 (bloque «las conjeturas del extractor»).
     expect(f.quotes).toHaveLength(3)
-    expect(f.quotes.map((q) => q.speakerGroup)).toEqual(['PSOE', 'PSOE', 'PP'])
-    expect(f.quotes.every((q) => q.speakerGroup !== null)).toBe(true)
+    expect(f.quotes.map((q) => q.speakerGroup)).toEqual([null, null, null])
     expect(f.crossChecked).toHaveLength(3)
     expect(f.corrections?.map((c) => c.field)).toEqual([
       'summary',
@@ -822,6 +856,10 @@ describe('published pleno findings — the three retracted in b8fea6f', () => {
       'crossChecked.2',
       'crossChecked.0',
       'quote.2.text',
+      'quote.0.speakerGroup',
+      'quote.1.speakerGroup',
+      'quote.2.speakerGroup',
+      'summary',
     ])
   })
 
@@ -912,7 +950,7 @@ const LOTE_1: Lote1Case[] = [
     // La cita 2 era «PP» y no lo es: el turno es de un grupo de un solo escaño,
     // y se retiró a «sin identificar» (corrección del 18-10-2026, escuchado el
     // vídeo, 7.036–7.237 s). Nombrar ese grupo sería nombrar a su concejal.
-    groups: ['PSOE', null, 'PSOE', 'PSOE'],
+    groups: [null, null, null, null],
   },
   {
     id: 'f-2026-05-11-acu-1e1bfa',
@@ -947,7 +985,7 @@ const LOTE_1: Lote1Case[] = [
     // as `-045` minus its first four words.
     claims: ['10yl550-045-acu-a870a4', '10yl550-054-acu-a487ce', '10yl550-346-cit-6ee502'],
     // 2026-09-29: la segunda cita es del PSOE, no del PP (bloque «151 → 163»).
-    groups: ['PP', 'PSOE', null],
+    groups: [null, 'PSOE', null],
   },
   {
     id: 'f-2026-05-11-acu-da7902',
@@ -974,7 +1012,7 @@ const LOTE_1: Lote1Case[] = [
     drops: ['señala el desvío de partidas', '«por lo que entiendo»', '«al parecer»'],
     // 2026-09-30: el sumario dice ya que hubo reproches, sin reproducirlos; se ancla la vigente.
     keeps: [
-      'PP y PSOE se cruzan reproches sobre una enmienda del PP a los fondos de protección civil',
+      'se formulan reproches sobre una enmienda a los fondos de protección civil',
       'Un vehículo protección civil.',
     ],
     refs: [
@@ -990,7 +1028,7 @@ const LOTE_1: Lote1Case[] = [
       '10yl550-099-cit-423e57',
     ],
     // 2026-09-29: la primera cita es del PP, no del PSOE (bloque «151 → 163»).
-    groups: ['PP', 'PSOE', 'PP', null],
+    groups: ['PP', null, null, null],
   },
   {
     id: 'f-2026-05-11-cit-73d3cf',
@@ -1018,7 +1056,7 @@ const LOTE_1: Lote1Case[] = [
       '10yl550-176-acu-e7dc83',
     ],
     // 2026-09-29: la tercera y la cuarta quedan sin grupo (bloque «151 → 163»).
-    groups: ['PSOE', null, null, null],
+    groups: [null, null, null, null],
   },
   {
     id: 'f-2026-05-11-cit-7f7619',
@@ -1038,7 +1076,7 @@ const LOTE_1: Lote1Case[] = [
       '10yl550-037-cit-b6051b',
       '10yl550-038-acu-10a7a2',
     ],
-    groups: ['PP', 'PP', null, 'PSOE'],
+    groups: [null, null, null, 'PSOE'],
   },
   {
     id: 'f-2026-05-11-cit-a0a379',
@@ -1061,7 +1099,7 @@ const LOTE_1: Lote1Case[] = [
       '10yl550-280-cit-ab3a68',
       '10yl550-293-acu-8785eb',
     ],
-    groups: [null, 'PP', null, 'PSOE'],
+    groups: [null, null, null, null],
   },
   {
     id: 'f-2026-05-11-cit-bb5f00',
@@ -1081,7 +1119,7 @@ const LOTE_1: Lote1Case[] = [
       '10yl550-299-cit-ca1541',
       '10yl550-298-cit-400cf0',
     ],
-    groups: [null, 'PSOE', null, null],
+    groups: [null, null, null, null],
   },
   {
     id: 'f-2026-04-20-acu-93c1e8',
@@ -1121,7 +1159,7 @@ const LOTE_1: Lote1Case[] = [
     claims: ['k4olcs-063-cit-25e6ea', 'k4olcs-032-cit-98a5be', 'k4olcs-077-pro-02ea8a'],
     // 2026-09-30: la tercera queda sin grupo, que tiene un solo concejal (bloque «184 → 208»).
     // la primera es de un grupo de un solo concejal y queda sin grupo (bloque «salvedad C+D, +8»).
-    groups: [null, 'PSOE', null],
+    groups: [null, null, null],
   },
   {
     id: 'f-2026-03-16-cit-528973',
@@ -1133,7 +1171,7 @@ const LOTE_1: Lote1Case[] = [
     // false was calling it the only one, so the prose is what had to change.
     refs: ['tender|Control microbiológico y físico-químico '],
     claims: ['ma87e0-104-cit-528973'],
-    groups: ['PSOE'],
+    groups: [null],
   },
   {
     id: 'f-2026-01-19-acu-2c074a',
@@ -1196,7 +1234,7 @@ const LOTE_1: Lote1Case[] = [
     // sale la tercera, que decía lo contrario que la transcripción vigente (bloque «salvedad C+D, +8»).
     claims: ['19gax3o-025-afi-5b06c8', '19gax3o-017-cit-1a1dad'],
     // y con ella su grupo (bloque «salvedad C+D, +8»).
-    groups: [null, 'PSOE'],
+    groups: [null, null],
   },
 ]
 
@@ -1555,7 +1593,7 @@ const LOTE_2: Lote2Case[] = [
       'Según la transcripción anterior de la sesión',
       // «sin atribuir», el rótulo de la cita, y no «un grupo no identificado» (bloque «sin
       // atribuir, +16»); se ancla la vigente.
-      'una intervención sin atribuir menciona la necesidad de mejorar la recogida',
+      'otra menciona la necesidad de mejorar la recogida',
     ],
     // Two now: lote 4 took the sensorización platform, whose licitación
     // opened seven weeks after this session.
@@ -1569,7 +1607,7 @@ const LOTE_2: Lote2Case[] = [
       '1qi8axv-057-afi-c1ba98',
       '1qi8axv-057-afi-e76c4d',
     ],
-    groups: ['PSOE', 'PSOE', null, null],
+    groups: [null, null, null, null],
   },
   {
     id: 'f-2025-09-08-acu-70a34f',
@@ -1595,7 +1633,7 @@ const LOTE_2: Lote2Case[] = [
       'c8kr44-243-cit-be89b4',
     ],
     // 2026-09-30: la segunda queda sin grupo, que tiene un solo concejal (bloque «184 → 208»).
-    groups: ['PP', null, 'PSOE', 'PSOE'],
+    groups: [null, null, null, null],
   },
   {
     id: 'f-2025-07-31-acu-144947',
@@ -1687,7 +1725,7 @@ const LOTE_2: Lote2Case[] = [
       '10yl550-300-acu-ae5a28',
     ],
     // 2026-09-29: las tres del PP eran del PSOE; la 3 rectifica a este lote (bloque «151 → 163»).
-    groups: ['PSOE', 'PSOE', 'PSOE', 'PSOE'],
+    groups: [null, 'PSOE', 'PSOE', 'PSOE'],
   },
   {
     id: 'f-2026-03-16-cit-377216',
@@ -1712,7 +1750,7 @@ const LOTE_2: Lote2Case[] = [
     ],
     refs: ['tender|Obras de impermeabilización cubierta Edi'],
     claims: ['ma87e0-104-cit-377216', 'ma87e0-162-cit-092d3e'],
-    groups: ['PSOE', 'PSOE'],
+    groups: [null, null],
   },
   {
     id: 'f-2026-03-16-cit-56214f',
@@ -2170,7 +2208,7 @@ const LOTE_3: Lote3Case[] = [
     // does not contain it at all.
     // 2026-09-30: sale la tercera, del motor sustituido y de otro turno (bloque «163 → 184»).
     claims: ['19gax3o-146-cit-8b29a9', '19gax3o-067-cit-dcdcf6'],
-    groups: ['PSOE', null],
+    groups: [null, null],
   },
   {
     id: 'f-2025-12-23-acu-a1ba00',
@@ -2228,7 +2266,7 @@ const LOTE_3: Lote3Case[] = [
     ],
     // 2026-09-30: la cuarta queda sin grupo, que tiene un solo concejal (bloque «184 → 208»).
     // la primera es de un grupo de un solo concejal y queda sin grupo (bloque «salvedad C+D, +8»).
-    groups: [null, 'PP', 'PSOE', null],
+    groups: [null, null, null, null],
   },
   {
     id: 'f-2026-04-20-cit-947479',
@@ -2279,7 +2317,7 @@ const LOTE_3: Lote3Case[] = [
     // 2026-09-30: se ancla el sumario vigente, reescrito sin esas dos frases (bloque «163 → 184»).
     // Y las dos citas sin grupo se dicen «sin atribuir» (bloque «sin atribuir, +16»).
     keeps: [
-      'otra, también sin atribuir, se refiere a subsanar los problemas del pabellón',
+      'otra se refiere a subsanar los problemas del pabellón',
       'se basan en fondos europeos para la reconstrucción tras la DANA',
     ],
     // The Pacadar cotejo STAYS here too, and this is the row where that costs
@@ -2296,7 +2334,7 @@ const LOTE_3: Lote3Case[] = [
     // hallucinated clause its twin `cit-c80e68` published, truncated.
     claims: ['19gax3o-016-cit-cc8758', '19gax3o-067-cit-0c2099', '19gax3o-114-cit-b7641b'],
     // 2026-09-30: la tercera es la [0] de `5238db` y queda sin grupo (bloque «163 → 184»).
-    groups: ['PSOE', null, null],
+    groups: [null, null, null],
   },
   {
     id: 'f-2025-12-23-afi-3eebaf',
@@ -2373,7 +2411,7 @@ const LOTE_3: Lote3Case[] = [
       '«El plan rehabilita más de 900.000 euros con una bolsa en el ayuntamiento para los autónomos y pequeñas empresas de Riva Roja»',
       'no dice de qué plan se trata',
       // «sin atribuir», el rótulo de la cita (bloque «sin atribuir, +16»).
-      'Una intervención sin atribuir señala que esta iniciativa se extiende',
+      'Otra señala que esta iniciativa se extiende',
     ],
     // A 2019 music performance matched on the word «comercio». Weak, unnamed,
     // pre-dates the session: it stays.
@@ -2383,7 +2421,7 @@ const LOTE_3: Lote3Case[] = [
       'pleno-video|Vídeo del pleno 2025-12-01 · YouTube',
     ],
     claims: ['qz6weg-185-cit-66cd62', 'qz6weg-185-afi-eeb37d', 'qz6weg-278-cit-1e696b'],
-    groups: ['PSOE', 'PSOE', null],
+    groups: [null, null, null],
   },
   {
     id: 'f-2025-12-01-cit-d89862',
@@ -2399,7 +2437,7 @@ const LOTE_3: Lote3Case[] = [
     // quote, is gone. `sourceClaimIds` keeps its entry — the claim still
     // exists in the verified corpus and the finding's id derives from it.
     claims: ['qz6weg-239-cit-d89862', 'qz6weg-237-cit-7bff59', 'qz6weg-249-cit-3e02ef'],
-    groups: ['PP', 'PP', 'PSOE'],
+    groups: [null, null, null],
   },
   {
     id: 'f-2025-11-03-acu-431140',
@@ -2408,7 +2446,7 @@ const LOTE_3: Lote3Case[] = [
     // 2026-09-29: salen las dos atribuciones que el resumen repetía (bloque «151 → 163»).
     drops: [
       'una Iniciativa Legislativa Popular (ILP) sobre este tema',
-      'El PSOE señala su intención',
+      'Otra señala su intención',
       'Compromís reclama',
     ],
     // 2026-09-29: la frase de la ILP, reescrita sin grupo y aún sin tema; se ancla la vigente.
@@ -2434,7 +2472,7 @@ const LOTE_3: Lote3Case[] = [
     ],
     claims: ['1du4rf5-115-acu-431140', '1du4rf5-237-cit-e34df3', '1du4rf5-111-acu-4f6c40'],
     // 2026-09-29: la segunda y la tercera quedan sin grupo (bloque «151 → 163»).
-    groups: ['PP', null, null],
+    groups: [null, null, null],
   },
   {
     id: 'f-2025-10-06-cit-6c4d24',
@@ -2468,7 +2506,7 @@ const LOTE_3: Lote3Case[] = [
       'otxq2c-031-cit-8ffc2f',
       'otxq2c-024-cit-f56122',
     ],
-    groups: ['PP', 'PSOE', 'PSOE', 'PSOE'],
+    groups: [null, null, null, null],
   },
 ]
 
@@ -2506,7 +2544,7 @@ const AFIRMACIONES_DOCUMENTALES_FALSAS = [
     inventado:
       /(?:ambos )?grupos[^.]{0,40}(?:mencionan|citan|hacen referencia)[^.]{0,40}contratos?/i,
     documento: /asesoramiento jur[íi]dico|defensa procesal/i,
-    keeps: 'El PSOE señala su colaboración en programas de prevención y atención',
+    keeps: 'Otra señala su colaboración en programas de prevención y atención',
   },
 ]
 
@@ -2915,7 +2953,7 @@ const LOTE_4: Lote4Case[] = [
     // La cita 2 era «PP» y no lo es: el turno es de un grupo de un solo escaño,
     // y se retiró a «sin identificar» (corrección del 18-10-2026, escuchado el
     // vídeo, 7.036–7.237 s). Nombrar ese grupo sería nombrar a su concejal.
-    groups: ['PSOE', null, 'PSOE', 'PSOE'],
+    groups: [null, null, null, null],
   },
   {
     id: 'f-2026-01-19-acu-2c074a',
@@ -3028,7 +3066,7 @@ const LOTE_4: Lote4Case[] = [
       '1qi8axv-057-afi-c1ba98',
       '1qi8axv-057-afi-e76c4d',
     ],
-    groups: ['PSOE', 'PSOE', null, null],
+    groups: [null, null, null, null],
   },
   {
     id: 'f-2025-09-08-cit-d6d194',
@@ -3064,7 +3102,7 @@ const LOTE_4: Lote4Case[] = [
     ],
     keeps: [
       'se señala la existencia de un contrato para la recogida de residuos sólidos urbanos',
-      'el PSOE manifiesta el inicio de los trabajos en un plan de refugios climáticos',
+      'una intervención manifiesta el inicio de los trabajos en un plan de refugios climáticos',
     ],
     refs: [
       'tender|contrato de OBRAS DE CANALIZACIÓN DE ALI',
@@ -3078,7 +3116,7 @@ const LOTE_4: Lote4Case[] = [
       'c8kr44-146-cit-ccd20c',
     ],
     // 2026-09-30: la tercera queda sin grupo, que tiene un solo concejal (bloque «184 → 208»).
-    groups: ['PSOE', 'PSOE', null, 'PSOE'],
+    groups: [null, null, null, null],
   },
   {
     id: 'f-2025-07-31-acu-144947',
@@ -3672,7 +3710,9 @@ describe('published pleno findings — one verbatim is one bloc', () => {
     // (bloque «250 → 231»). De 61 a 58, y el suelo baja tres.
     // Y el 2026-10-18 la [1] de `1adbf3`, que no era del PP (bloque «241 → 242»). De 58 a 57, y
     // el suelo baja uno.
-    expect(attributed.length).toBeGreaterThan(56)
+    // Y el 2026-11-21 las cincuenta conjeturas del extractor retirado (bloque «las conjeturas del
+    // extractor, retiradas»). De 57 a 7, y el suelo queda justo por debajo.
+    expect(attributed.length).toBeGreaterThan(6)
     expect(findAttributionConflicts(items)).toEqual([])
   })
 })
@@ -3784,19 +3824,19 @@ describe('published pleno findings — una frase que cuenta grupos los lleva en 
     }
   })
 
-  it('el control positivo es ea9d47: cuenta dos grupos, y sus citas llevan los dos', () => {
-    const f = byId('f-2026-05-11-acu-ea9d47')
-    expect(frasesQueCuentanGrupos(f.summary).length).toBeGreaterThan(0)
-    expect([...gruposDeLasCitas(f)].sort()).toEqual(['PP', 'PSOE'])
-    expect(recuentosSinSosten(f)).toEqual([])
-  })
-
   it('en el fichero publicado, toda frase que cuenta grupos tiene citas de dos', () => {
     const cuentan = items.flatMap((f) =>
       [f.title, f.summary].flatMap((t) => frasesQueCuentanGrupos(t)),
     )
     // La mitad que mide: sin frases que cuenten grupos, «ninguna sin sostén» no dice nada.
-    expect(cuentan.length).toBeGreaterThanOrEqual(3)
+    // Hasta el 21-11-2026 había frases que contaban grupos con la conjetura del extractor; ese
+    // día dejaron de nombrarlos (bloque «las conjeturas del extractor») y no queda ninguna, así que
+    // aquí no se puede exigir un mínimo. Lo que prueba que la pasada mira algo: recorre el titular
+    // y el sumario de cada ficha, y los casos plantados de arriba demuestran que dispara.
+    const textos = items.flatMap((f) => [f.title, f.summary])
+    expect(textos).toHaveLength(items.length * 2)
+    expect(items.length).toBeGreaterThan(30)
+    expect(cuentan).toEqual([])
     expect(items.flatMap(recuentosSinSosten)).toEqual([])
   })
 
@@ -4577,7 +4617,7 @@ describe('published pleno findings — a0a379, reanclada a la vigente', () => {
       expect(quoteAppearsIn(f.quotes[i].text, transcriptOf(f.plenoId))).toBe(true)
     }
     // Ninguna otra cita ni ningún grupo se movió.
-    expect(f.quotes.map((q) => q.speakerGroup)).toEqual([null, 'PP', null, 'PSOE'])
+    expect(f.quotes.map((q) => q.speakerGroup)).toEqual([null, null, null, null])
     expect(f.quotes.map((q) => q.sourceClaimId)).toEqual([
       '10yl550-263-cit-a0a379',
       '10yl550-278-acu-ac00a4',
@@ -4613,7 +4653,7 @@ describe('published pleno findings — a0a379, reanclada a la vigente', () => {
       'en-vigente',
     ])
     expect(f.summary).not.toContain('transcripción anterior')
-    expect(f.summary).toContain('mientras que el PSOE señaló las críticas de la oposición')
+    expect(f.summary).toContain('mientras que otra señaló las críticas de la oposición')
     // Lo único que salió del sumario es la salvedad.
     const sumario = (f.corrections ?? []).find(
       (c) => c.field === 'summary' && c.correctedAt.startsWith(DIA),
@@ -4838,7 +4878,7 @@ describe('published pleno findings — 377216, la Chen Machor que el motor susti
     const vigente = normaliseForQuoteMatch(transcriptOf(f.plenoId))
     for (const q of f.quotes) expect(vigente.includes(normaliseForQuoteMatch(q.text))).toBe(true)
     // El reanclaje no toca a quién se atribuye ni de qué declaración sale.
-    expect(f.quotes.map((q) => q.speakerGroup)).toEqual(['PSOE', 'PSOE'])
+    expect(f.quotes.map((q) => q.speakerGroup)).toEqual([null, null])
     expect(f.quotes.map((q) => q.sourceClaimId)).toEqual([
       'ma87e0-104-cit-377216',
       'ma87e0-162-cit-092d3e',
@@ -4875,7 +4915,7 @@ describe('published pleno findings — 377216, la Chen Machor que el motor susti
 
   it('las tres filas son de la cuenta de rol, en orden, y los motivos no nombran a ningún grupo', () => {
     const f = byId(ID)
-    const filas = (f.corrections ?? []).slice(-3)
+    const filas = sinConjeturas(f.corrections).slice(-3)
     expect(filas.map((c) => c.field)).toEqual(['quote.0.text', 'title', 'summary'])
     for (const c of filas) {
       expect(c.editor).toBe('civicpulse-curator')
@@ -4888,7 +4928,7 @@ describe('published pleno findings — 377216, la Chen Machor que el motor susti
     expect(filas[1].corrected).toBe(f.title)
     expect(filas[2].corrected).toBe(f.summary)
     expect(filas[2].original).toContain("(transcrito también como 'Xemachor' o 'Chemachor')")
-    expect(f.corrections).toHaveLength(6)
+    expect(sinConjeturas(f.corrections)).toHaveLength(6)
   })
 })
 
@@ -4907,10 +4947,14 @@ describe('published pleno findings — 1adbf3 y 25e6ea, motivos que el dato ya n
       readFileSync(resolve('public/data/finding-quote-provenance.json'), 'utf8'),
     )
     expect(procedencia.quotes[f.id][0]).toEqual({ status: 'en-vigente', gate: 'hidden' })
-    const fila = (f.corrections ?? []).at(-1)!
+    const fila = sinConjeturas(f.corrections).at(-1)!
     expect(fila.field).toBe('summary')
     expect(fila.editor).toBe(FIRMA)
-    expect(fila.corrected).toBe(f.summary)
+    // El sumario vigente es el de la fila del 21-11-2026 (bloque «las conjeturas del extractor»),
+    // que parte justo del texto que esta fila dejó.
+    expect(fila.corrected).toBe(
+      (f.corrections ?? []).find((c) => c.reason === MOTIVO_SUMARIO_CONJETURAS)?.original,
+    )
     // Nombra su ficha: en /hallazgos las tarjetas van seguidas (fichas-contiguas).
     expect(fila.reason).toContain('la cita 1 de la ficha 1adbf3')
   })
@@ -4939,5 +4983,98 @@ describe('published pleno findings — 1adbf3 y 25e6ea, motivos que el dato ya n
     ).gastos.total
     expect(Math.round(1_700e6 / cierre.actual)).toBe(25)
     expect(Math.round(1_700e6 / cierre.inicial / 10) * 10).toBe(40)
+  })
+})
+
+describe('published pleno findings — las conjeturas del extractor, retiradas', () => {
+  // El 21-11-2026 se retiró el grupo de las cincuenta citas de la hoja de escucha del 19-10 que
+  // aún lo llevaban: lo había puesto el extractor por ventana (retirado el 10-08), que asignaba el
+  // grupo que el texto mencionaba. Retirar sólo debilita: ninguna se sustituye por otro grupo.
+  const RETIRADAS: Array<[string, number]> = [
+    ['f-2026-07-03-cit-df8455', 2],
+    ['f-2026-05-11-acu-a870a4', 0],
+    ['f-2026-05-11-acu-1adbf3', 0],
+    ['f-2026-05-11-acu-1adbf3', 2],
+    ['f-2026-05-11-acu-1adbf3', 3],
+    ['f-2026-05-11-cit-bb5f00', 1],
+    ['f-2026-05-11-cit-73d3cf', 0],
+    ['f-2026-05-11-cit-0907e6', 2],
+    ['f-2026-05-11-cit-0907e6', 3],
+    ['f-2026-05-11-cit-7f7619', 0],
+    ['f-2026-05-11-cit-7f7619', 1],
+    ['f-2026-05-11-cit-a0a379', 1],
+    ['f-2026-05-11-cit-a0a379', 3],
+    ['f-2026-05-11-acu-ea9d47', 1],
+    ['f-2026-05-11-acu-ea9d47', 2],
+    ['f-2026-05-11-acu-7c65c5', 0],
+    ['f-2026-04-20-cit-b9b013', 1],
+    ['f-2026-04-20-cit-b9b013', 3],
+    ['f-2026-04-20-cit-25e6ea', 1],
+    ['f-2026-03-16-cit-377216', 0],
+    ['f-2026-03-16-cit-377216', 1],
+    ['f-2026-03-16-cit-528973', 0],
+    ['f-2026-01-19-afi-5b06c8', 1],
+    ['f-2026-01-19-cit-cc8758', 0],
+    ['f-2026-01-19-cit-8b29a9', 0],
+    ['f-2025-12-23-cit-c905c3', 0],
+    ['f-2025-12-23-cit-c905c3', 1],
+    ['f-2025-12-01-cit-d89862', 0],
+    ['f-2025-12-01-cit-d89862', 1],
+    ['f-2025-12-01-cit-d89862', 2],
+    ['f-2025-12-01-cit-66cd62', 0],
+    ['f-2025-12-01-cit-66cd62', 1],
+    ['f-2025-12-01-cit-bef239', 1],
+    ['f-2025-12-01-cit-bef239', 2],
+    ['f-2025-11-03-acu-431140', 0],
+    ['f-2025-10-06-cit-6c4d24', 0],
+    ['f-2025-10-06-cit-6c4d24', 1],
+    ['f-2025-10-06-cit-6c4d24', 2],
+    ['f-2025-10-06-cit-6c4d24', 3],
+    ['f-2025-10-06-cit-591d40', 0],
+    ['f-2025-10-06-cit-591d40', 1],
+    ['f-2025-10-06-cit-591d40', 2],
+    ['f-2025-10-06-acu-b00839', 1],
+    ['f-2025-10-06-acu-b00839', 2],
+    ['f-2025-09-08-cit-d6d194', 0],
+    ['f-2025-09-08-cit-d6d194', 1],
+    ['f-2025-09-08-cit-d6d194', 3],
+    ['f-2025-09-08-acu-70a34f', 0],
+    ['f-2025-09-08-acu-70a34f', 2],
+    ['f-2025-09-08-acu-70a34f', 3],
+  ]
+  const filas = items.flatMap((f) =>
+    (f.corrections ?? []).filter((c) => c.reason === MOTIVO_CONJETURAS).map((c) => ({ f, c })),
+  )
+
+  it('son cincuenta filas, una por cita, en las fichas y posiciones de la hoja', () => {
+    expect(RETIRADAS).toHaveLength(50)
+    expect(new Set(RETIRADAS.map(([id, i]) => `${id}#${i}`)).size).toBe(50)
+    expect(filas.map(({ f, c }) => `${f.id}#${c.field}`).sort()).toEqual(
+      RETIRADAS.map(([id, i]) => `${id}#quote.${i}.speakerGroup`).sort(),
+    )
+  })
+
+  it('cada una retira el grupo sin sustituirlo, y la cita queda sin grupo', () => {
+    for (const { f, c } of filas) {
+      expect(c.corrected).toBe(ATTRIBUTION_RETRACTED_LABEL)
+      expect(c.original === 'PP' || c.original === 'PSOE').toBe(true)
+      expect(c.editor).toBe('civicpulse-curator')
+      const i = Number(/^quote\.(\d+)\.speakerGroup$/.exec(c.field)![1])
+      expect(f.quotes[i].speakerGroup).toBeNull()
+    }
+  })
+
+  it('el motivo dice el criterio y no nombra a ningún grupo', () => {
+    expect(findPartiesInText(MOTIVO_CONJETURAS)).toEqual([])
+    expect(MOTIVO_CONJETURAS).toContain('no se afirma que fuera errónea')
+  })
+
+  it('van detrás de todo lo que ya tenía cada ficha', () => {
+    for (const { f, c } of filas) {
+      const log = f.corrections ?? []
+      const desde = log.indexOf(c)
+      for (const antes of log.slice(0, desde))
+        expect(antes.correctedAt <= c.correctedAt, `${f.id}: ${antes.field}`).toBe(true)
+    }
   })
 })

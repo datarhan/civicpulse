@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-10-29T20:28:22.922Z",
+  "generatedAt": "2026-11-21T22:15:22.652Z",
   "legalNotice": "Este registro recoge hallazgos editoriales sobre las intervenciones de los plenos. Los redacta un proceso automático a partir de declaraciones extraídas de la transcripción, salvo los que llevan la firma de una persona, y cada ficha indica quién la editó: un nombre como «auto-curation-v1» significa que el título y el resumen los escribió una máquina, no una persona. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican íntegras y sin editar.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -134,7 +134,7 @@
       "plenoId": "1237hbp",
       "plenoDate": "2026-07-03",
       "title": "Pleno 2026-07-03: debate sobre contenedores y contrato de recogida de RSU",
-      "summary": "En el debate se afirma que el Ayuntamiento dispone de herramientas para rescindir el contrato con la empresa licitadora que, según se señala, no cumplía, y que la compra de contenedores se hará con recursos propios. Una intervención sin atribuir recuerda su satisfacción con la adjudicación. El PP formula además una acusación que el verificador no pudo contrastar con ningún dato municipal y que no se reproduce aquí. El registro municipal incluye el «Contrato administrativo para la contratación de la plataforma para la gestión de la sensorización de contenedores e información del servicio de recogida de RSU».",
+      "summary": "En el debate se afirma que el Ayuntamiento dispone de herramientas para rescindir el contrato con la empresa licitadora que, según se señala, no cumplía, y que la compra de contenedores se hará con recursos propios. Una intervención recuerda su satisfacción con la adjudicación. En el debate se formula además una acusación que el verificador no pudo contrastar con ningún dato municipal y que no se reproduce aquí. El registro municipal incluye el «Contrato administrativo para la contratación de la plataforma para la gestión de la sensorización de contenedores e información del servicio de recogida de RSU».",
       "severity": "informational",
       "sourceClaimIds": [
         "1237hbp-004-cit-df8455",
@@ -155,7 +155,7 @@
         },
         {
           "text": "el alcalde en su discurso, en sus comparecencias, ya hablaba de que había que cambiar los contenedores en diciembre. En diciembre. Que ya estaban muy deteriorados.",
-          "speakerGroup": "PP",
+          "speakerGroup": null,
           "sourceClaimId": "1237hbp-041-acu-3157f8"
         },
         {
@@ -239,6 +239,22 @@
           "reason": "El sumario daba con otras palabras el contenido de la cita 3 de la ficha df8455, que la puerta editorial retiene por ser una acusación que el verificador no pudo contrastar con ningún dato municipal; se describe sin su contenido. Revisión de superficies del 29-10-2026.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-10-29T20:28:22.638Z"
+        },
+        {
+          "field": "quote.2.speakerGroup",
+          "original": "PP",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:29.511Z"
+        },
+        {
+          "field": "summary",
+          "original": "En el debate se afirma que el Ayuntamiento dispone de herramientas para rescindir el contrato con la empresa licitadora que, según se señala, no cumplía, y que la compra de contenedores se hará con recursos propios. Una intervención sin atribuir recuerda su satisfacción con la adjudicación. El PP formula además una acusación que el verificador no pudo contrastar con ningún dato municipal y que no se reproduce aquí. El registro municipal incluye el «Contrato administrativo para la contratación de la plataforma para la gestión de la sensorización de contenedores e información del servicio de recogida de RSU».",
+          "corrected": "En el debate se afirma que el Ayuntamiento dispone de herramientas para rescindir el contrato con la empresa licitadora que, según se señala, no cumplía, y que la compra de contenedores se hará con recursos propios. Una intervención recuerda su satisfacción con la adjudicación. En el debate se formula además una acusación que el verificador no pudo contrastar con ningún dato municipal y que no se reproduce aquí. El registro municipal incluye el «Contrato administrativo para la contratación de la plataforma para la gestión de la sensorización de contenedores e información del servicio de recogida de RSU».",
+          "reason": "El sumario atribuía a un grupo lo que dijo una intervención, según la etiqueta que puso el extractor por ventana, retirado el 10-08-2026, y que se ha retirado de sus citas; se reescribe sin atribuirlo. No se afirma que la atribución fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:12:25.688Z"
         }
       ]
     },
@@ -247,7 +263,7 @@
       "plenoId": "10yl550",
       "plenoDate": "2026-05-11",
       "title": "Pleno del 11 de mayo de 2026: Debate sobre movilidad",
-      "summary": "En el pleno del 11 de mayo de 2026, el PP y el PSOE debatieron sobre la pasarela; sus intervenciones no se reproducen aquí porque son acusaciones que el verificador no pudo contrastar con ningún dato municipal. Además, una intervención sin atribuir destacó que 'la barrera está funcionando muy bien'.",
+      "summary": "En el pleno del 11 de mayo de 2026, se debatió sobre la pasarela; las intervenciones no se reproducen aquí porque son acusaciones que el verificador no pudo contrastar con ningún dato municipal. Además, una intervención destacó que 'la barrera está funcionando muy bien'.",
       "severity": "informational",
       "sourceClaimIds": [
         "10yl550-045-acu-a870a4",
@@ -258,7 +274,7 @@
       "quotes": [
         {
           "text": "En mayo del 2024. El partido popular. Estuvo en consellería. Exigiendo. Que nos dijeran. Que según ustedes. Habían prometido. A la ciudadanía. De Riva Roja. Que se había solicitado. La pasarela. Ahí nos dijeron. Que nadie había solicitado nada.",
-          "speakerGroup": "PP",
+          "speakerGroup": null,
           "sourceClaimId": "10yl550-045-acu-a870a4"
         },
         {
@@ -345,6 +361,22 @@
           "reason": "El sumario llamaba «un grupo no identificado» a quien pronuncia una cita que la ficha no atribuye a ningún grupo. Como ya dice el motivo firmado el 30-09-2026 en f-2026-01-19-afi-5238db, esa fórmula afirma que no se sabe quién habla; junto a un grupo nombrado, además, se lee como otro grupo distinto. La ficha no dice ninguna de las dos cosas: rotula la cita «sin atribuir», y así lo dice ahora el sumario, sin atribuirla a nadie ni contar quién habla. Sale también «Por su parte», que tras nombrar a dos grupos presentaba esa intervención como la de un tercero.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-10-05T22:48:09.046Z"
+        },
+        {
+          "field": "quote.0.speakerGroup",
+          "original": "PP",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:29.771Z"
+        },
+        {
+          "field": "summary",
+          "original": "En el pleno del 11 de mayo de 2026, el PP y el PSOE debatieron sobre la pasarela; sus intervenciones no se reproducen aquí porque son acusaciones que el verificador no pudo contrastar con ningún dato municipal. Además, una intervención sin atribuir destacó que 'la barrera está funcionando muy bien'.",
+          "corrected": "En el pleno del 11 de mayo de 2026, se debatió sobre la pasarela; las intervenciones no se reproducen aquí porque son acusaciones que el verificador no pudo contrastar con ningún dato municipal. Además, una intervención destacó que 'la barrera está funcionando muy bien'.",
+          "reason": "El sumario atribuía a un grupo lo que dijo una intervención, según la etiqueta que puso el extractor por ventana, retirado el 10-08-2026, y que se ha retirado de sus citas; se reescribe sin atribuirlo. No se afirma que la atribución fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:12:25.955Z"
         }
       ]
     },
@@ -353,7 +385,7 @@
       "plenoId": "10yl550",
       "plenoDate": "2026-05-11",
       "title": "Pleno del Ayuntamiento de Riba-roja de Túria del 2026-05-11 sobre vivienda",
-      "summary": "En la sesión del pleno del 11 de mayo de 2026, el grupo PSOE sostuvo que Riba-roja es técnicamente un mercado de vivienda tensionado y defendió la constitucionalidad de la ley estatal de vivienda. El debate incluyó además reproches sobre subvenciones europeas que no se reproducen aquí, porque ningún registro municipal los respalda ni los desmiente.",
+      "summary": "En la sesión del pleno del 11 de mayo de 2026, una intervención sostuvo que Riba-roja es técnicamente un mercado de vivienda tensionado y defendió la constitucionalidad de la ley estatal de vivienda. El debate incluyó además reproches sobre subvenciones europeas que no se reproducen aquí, porque ningún registro municipal los respalda ni los desmiente.",
       "severity": "informational",
       "sourceClaimIds": [
         "10yl550-062-acu-1adbf3",
@@ -364,7 +396,7 @@
       "quotes": [
         {
           "text": "Que. Se quedaron en el cajón de los olvidos. Porque no creéis. Ni en la agenda treinta. Ni en Europa. Y habéis perdido un montón. De subvenciones. Por eso.",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "sourceClaimId": "10yl550-062-acu-1adbf3"
         },
         {
@@ -374,12 +406,12 @@
         },
         {
           "text": "técnicamente está justificado que Riva Roja sea un mercado tensionado.",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "sourceClaimId": "10yl550-191-cit-9aa672"
         },
         {
           "text": "La norma, la ley del bien estatal no es inconstitucional. Está tombada, no hay un recurso, pero es constitucional.",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "sourceClaimId": "10yl550-220-acu-0101aa"
         }
       ],
@@ -469,6 +501,38 @@
           "reason": "El sumario decía que esos reproches no se detallaban porque «la transcripción de esas intervenciones está degradada». No lo está: la transcripción vigente de la sesión los recoge enteros (2.832–2.858 s), y la cita 1 de la ficha 1adbf3 consta en ella. Lo que los deja fuera es la puerta editorial, que retiene como acusación no contrastada lo que ningún registro municipal respalda ni desmiente. Se dice el motivo que es; lo que se dijo no cambia.",
           "editor": "Sergei Lutchenko",
           "correctedAt": "2026-10-25T20:05:44.290Z"
+        },
+        {
+          "field": "quote.0.speakerGroup",
+          "original": "PSOE",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:30.065Z"
+        },
+        {
+          "field": "quote.2.speakerGroup",
+          "original": "PSOE",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:30.327Z"
+        },
+        {
+          "field": "quote.3.speakerGroup",
+          "original": "PSOE",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:30.587Z"
+        },
+        {
+          "field": "summary",
+          "original": "En la sesión del pleno del 11 de mayo de 2026, el grupo PSOE sostuvo que Riba-roja es técnicamente un mercado de vivienda tensionado y defendió la constitucionalidad de la ley estatal de vivienda. El debate incluyó además reproches sobre subvenciones europeas que no se reproducen aquí, porque ningún registro municipal los respalda ni los desmiente.",
+          "corrected": "En la sesión del pleno del 11 de mayo de 2026, una intervención sostuvo que Riba-roja es técnicamente un mercado de vivienda tensionado y defendió la constitucionalidad de la ley estatal de vivienda. El debate incluyó además reproches sobre subvenciones europeas que no se reproducen aquí, porque ningún registro municipal los respalda ni los desmiente.",
+          "reason": "El sumario atribuía a un grupo lo que dijo una intervención, según la etiqueta que puso el extractor por ventana, retirado el 10-08-2026, y que se ha retirado de sus citas; se reescribe sin atribuirlo. No se afirma que la atribución fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:12:26.221Z"
         }
       ]
     },
@@ -477,7 +541,7 @@
       "plenoId": "10yl550",
       "plenoDate": "2026-05-11",
       "title": "Pleno del 11 de mayo de 2026: Debate sobre la Feria de Comercio",
-      "summary": "Durante la sesión del pleno se afirma que han decidido reinventar la feria y renovarla. El PSOE señala que la feria no se realizó en 2025 por mandato expreso de los comercios, y una intervención sin atribuir exhibe el acta de una reunión del 29 de enero de 2026 en la que se acordó celebrar la Feria de Comercio los días 8, 9 y 10 de mayo.",
+      "summary": "Durante la sesión del pleno se afirma que han decidido reinventar la feria y renovarla. Una intervención señala que la feria no se realizó en 2025 por mandato expreso de los comercios, y otra exhibe el acta de una reunión del 29 de enero de 2026 en la que se acordó celebrar la Feria de Comercio los días 8, 9 y 10 de mayo.",
       "severity": "informational",
       "sourceClaimIds": [
         "10yl550-270-cit-bb5f00",
@@ -493,7 +557,7 @@
         },
         {
           "text": "la feria no se realizó en 2025 por mandato expreso de los comercios.",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "sourceClaimId": "10yl550-268-cit-7f1b26"
         },
         {
@@ -559,6 +623,22 @@
           "reason": "El sumario llamaba dos veces «un grupo no identificado» a quien pronuncia citas que la ficha no atribuye a ningún grupo. Esa fórmula sustituyó el 1-08 al valor de relleno del extractor y, como ya dice el motivo firmado el 30-09-2026 en f-2026-01-19-afi-5238db, afirma que no se sabe quién habla; junto a un grupo nombrado, además, se lee como otro grupo distinto. La ficha no dice ninguna de las dos cosas: rotula esas citas «sin atribuir». El sumario dice ahora lo que se dijo sin atribuirlo a nadie ni contar quién habla, y sin «mientras que», que oponía la segunda intervención a la del grupo nombrado como si fuera de otro.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-10-05T22:48:09.307Z"
+        },
+        {
+          "field": "quote.1.speakerGroup",
+          "original": "PSOE",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:30.850Z"
+        },
+        {
+          "field": "summary",
+          "original": "Durante la sesión del pleno se afirma que han decidido reinventar la feria y renovarla. El PSOE señala que la feria no se realizó en 2025 por mandato expreso de los comercios, y una intervención sin atribuir exhibe el acta de una reunión del 29 de enero de 2026 en la que se acordó celebrar la Feria de Comercio los días 8, 9 y 10 de mayo.",
+          "corrected": "Durante la sesión del pleno se afirma que han decidido reinventar la feria y renovarla. Una intervención señala que la feria no se realizó en 2025 por mandato expreso de los comercios, y otra exhibe el acta de una reunión del 29 de enero de 2026 en la que se acordó celebrar la Feria de Comercio los días 8, 9 y 10 de mayo.",
+          "reason": "El sumario atribuía a un grupo lo que dijo una intervención, según la etiqueta que puso el extractor por ventana, retirado el 10-08-2026, y que se ha retirado de sus citas; se reescribe sin atribuirlo. No se afirma que la atribución fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:12:26.489Z"
         }
       ]
     },
@@ -567,7 +647,7 @@
       "plenoId": "10yl550",
       "plenoDate": "2026-05-11",
       "title": "Debate sobre vivienda y zonas de mercado residencial tensionado en el pleno del 2026-05-11",
-      "summary": "Durante el pleno, el grupo PSOE señala la figura de las zonas de mercado residencial tensionado. Una intervención sin atribuir afirma que la vivienda construida en los últimos años en el municipio es para uso particular.",
+      "summary": "Durante el pleno, una intervención señala la figura de las zonas de mercado residencial tensionado. Otra afirma que la vivienda construida en los últimos años en el municipio es para uso particular.",
       "severity": "informational",
       "sourceClaimIds": [
         "10yl550-158-cit-73d3cf",
@@ -578,7 +658,7 @@
       "quotes": [
         {
           "text": "figura de las zonas de mercado residencial tensionado",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "sourceClaimId": "10yl550-158-cit-73d3cf"
         },
         {
@@ -699,6 +779,22 @@
           "reason": "El sumario llamaba «un grupo no identificado» a quien pronuncia una cita que la ficha no atribuye a ningún grupo. Esa fórmula sustituyó el 1-08 al valor de relleno del extractor y, como ya dice el motivo firmado el 30-09-2026 en f-2026-01-19-afi-5238db, afirma que no se sabe quién habla; junto a un grupo nombrado, además, se lee como otro grupo distinto. La ficha no dice ninguna de las dos cosas: rotula la cita «sin atribuir», y así lo dice ahora el sumario, sin atribuirla a nadie ni contar quién habla. Sale también «Por su parte», que la presentaba como la intervención de otro grupo.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-10-05T22:48:09.575Z"
+        },
+        {
+          "field": "quote.0.speakerGroup",
+          "original": "PSOE",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:31.113Z"
+        },
+        {
+          "field": "summary",
+          "original": "Durante el pleno, el grupo PSOE señala la figura de las zonas de mercado residencial tensionado. Una intervención sin atribuir afirma que la vivienda construida en los últimos años en el municipio es para uso particular.",
+          "corrected": "Durante el pleno, una intervención señala la figura de las zonas de mercado residencial tensionado. Otra afirma que la vivienda construida en los últimos años en el municipio es para uso particular.",
+          "reason": "El sumario atribuía a un grupo lo que dijo una intervención, según la etiqueta que puso el extractor por ventana, retirado el 10-08-2026, y que se ha retirado de sus citas; se reescribe sin atribuirlo. No se afirma que la atribución fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:12:26.755Z"
         }
       ]
     },
@@ -707,7 +803,7 @@
       "plenoId": "10yl550",
       "plenoDate": "2026-05-11",
       "title": "Debate de educación en el pleno del 2026-05-11 e infraestructuras de formación en Riba-roja de Túria",
-      "summary": "Según la transcripción anterior de la sesión —cuyos literales no constan en la revisada—, una intervención sin atribuir señala dificultades con la entrega del conservatorio, y el PSOE se refiere a un centro de formación para 600 alumnos; otra afirmación suya sobre ese centro no se reproduce aquí, porque ningún registro municipal la respalda ni la desmiente. El registro municipal de contratación recoge, de 2018, el arrendamiento de un inmueble para dotar de aulas adicionales al Conservatorio de Música y Danza; ninguna de las citas lo menciona.",
+      "summary": "Según la transcripción anterior de la sesión —cuyos literales no constan en la revisada—, una intervención señala dificultades con la entrega del conservatorio, y otra se refiere a un centro de formación para 600 alumnos; una afirmación más sobre ese centro no se reproduce aquí, porque ningún registro municipal la respalda ni la desmiente. El registro municipal de contratación recoge, de 2018, el arrendamiento de un inmueble para dotar de aulas adicionales al Conservatorio de Música y Danza; ninguna de las citas lo menciona.",
       "severity": "informational",
       "sourceClaimIds": [
         "10yl550-325-cit-0907e6",
@@ -728,12 +824,12 @@
         },
         {
           "text": "el centro era para 600 alumnos",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "sourceClaimId": "10yl550-028-cit-21892b"
         },
         {
           "text": "se denega al pueblo de Riba Rocha tener ese centro de formación.",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "sourceClaimId": "10yl550-026-acu-7f904c"
         }
       ],
@@ -817,6 +913,30 @@
           "reason": "El sumario llamaba «un grupo no identificado» a quien pronuncia una cita que la ficha no atribuye a ningún grupo. Esa fórmula sustituyó el 1-08 al valor de relleno del extractor y, como ya dice el motivo firmado el 30-09-2026 en f-2026-01-19-afi-5238db, afirma que no se sabe quién habla; junto a un grupo nombrado, además, se lee como otro grupo distinto. La ficha no dice ninguna de las dos cosas: rotula la cita «sin atribuir», y así lo dice ahora el sumario, sin atribuirla a nadie ni contar quién habla.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-10-05T22:48:09.837Z"
+        },
+        {
+          "field": "quote.2.speakerGroup",
+          "original": "PSOE",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:31.376Z"
+        },
+        {
+          "field": "quote.3.speakerGroup",
+          "original": "PSOE",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:31.636Z"
+        },
+        {
+          "field": "summary",
+          "original": "Según la transcripción anterior de la sesión —cuyos literales no constan en la revisada—, una intervención sin atribuir señala dificultades con la entrega del conservatorio, y el PSOE se refiere a un centro de formación para 600 alumnos; otra afirmación suya sobre ese centro no se reproduce aquí, porque ningún registro municipal la respalda ni la desmiente. El registro municipal de contratación recoge, de 2018, el arrendamiento de un inmueble para dotar de aulas adicionales al Conservatorio de Música y Danza; ninguna de las citas lo menciona.",
+          "corrected": "Según la transcripción anterior de la sesión —cuyos literales no constan en la revisada—, una intervención señala dificultades con la entrega del conservatorio, y otra se refiere a un centro de formación para 600 alumnos; una afirmación más sobre ese centro no se reproduce aquí, porque ningún registro municipal la respalda ni la desmiente. El registro municipal de contratación recoge, de 2018, el arrendamiento de un inmueble para dotar de aulas adicionales al Conservatorio de Música y Danza; ninguna de las citas lo menciona.",
+          "reason": "El sumario atribuía a un grupo lo que dijo una intervención, según la etiqueta que puso el extractor por ventana, retirado el 10-08-2026, y que se ha retirado de sus citas; se reescribe sin atribuirlo. No se afirma que la atribución fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:12:27.023Z"
         }
       ]
     },
@@ -825,7 +945,7 @@
       "plenoId": "10yl550",
       "plenoDate": "2026-05-11",
       "title": "Debate sobre movilidad y accesos peatonales en el pleno del 2026-05-11",
-      "summary": "El grupo PP señala la falta de acceso peatonal en la calle de la Beto. En el debate se manifiesta también la necesidad de ampliar la pasarela del puente principal, y el grupo PSOE afirma que la competencia sobre esta infraestructura es de la Generalitat Valenciana.",
+      "summary": "Una intervención señala la falta de acceso peatonal en la calle de la Beto. En el debate se manifiesta también la necesidad de ampliar la pasarela del puente principal, y otra afirma que la competencia sobre esta infraestructura es de la Generalitat Valenciana.",
       "severity": "informational",
       "sourceClaimIds": [
         "10yl550-032-cit-7f7619",
@@ -836,12 +956,12 @@
       "quotes": [
         {
           "text": "no haya acceso peatonal, no hay acera",
-          "speakerGroup": "PP",
+          "speakerGroup": null,
           "sourceClaimId": "10yl550-032-cit-7f7619"
         },
         {
           "text": "Construyendo aceras. En tramos actualmente. Inexistentes. Como es. En la calle de la Beto.",
-          "speakerGroup": "PP",
+          "speakerGroup": null,
           "sourceClaimId": "10yl550-035-cit-d99202"
         },
         {
@@ -922,6 +1042,30 @@
           "reason": "El sumario llamaba «un grupo no identificado» a quien pronuncia una cita que la ficha no atribuye a ningún grupo. Esa fórmula sustituyó el 1-08 al valor de relleno del extractor y, como ya dice el motivo firmado el 30-09-2026 en f-2026-01-19-afi-5238db, afirma que no se sabe quién habla; junto a un grupo nombrado, además, se lee como otro grupo distinto. La ficha no dice ninguna de las dos cosas: rotula la cita «sin atribuir». La frase dice ahora lo que se dijo en impersonal, sin atribuirlo a nadie ni contar intervenciones. Salen también «mientras que» y «Por su parte», que oponían esa intervención a las de los grupos nombrados como si fuera de un tercero.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-10-05T22:48:10.098Z"
+        },
+        {
+          "field": "quote.0.speakerGroup",
+          "original": "PP",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:31.897Z"
+        },
+        {
+          "field": "quote.1.speakerGroup",
+          "original": "PP",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:32.162Z"
+        },
+        {
+          "field": "summary",
+          "original": "El grupo PP señala la falta de acceso peatonal en la calle de la Beto. En el debate se manifiesta también la necesidad de ampliar la pasarela del puente principal, y el grupo PSOE afirma que la competencia sobre esta infraestructura es de la Generalitat Valenciana.",
+          "corrected": "Una intervención señala la falta de acceso peatonal en la calle de la Beto. En el debate se manifiesta también la necesidad de ampliar la pasarela del puente principal, y otra afirma que la competencia sobre esta infraestructura es de la Generalitat Valenciana.",
+          "reason": "El sumario atribuía a un grupo lo que dijo una intervención, según la etiqueta que puso el extractor por ventana, retirado el 10-08-2026, y que se ha retirado de sus citas; se reescribe sin atribuirlo. No se afirma que la atribución fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:12:27.287Z"
         }
       ]
     },
@@ -930,7 +1074,7 @@
       "plenoId": "10yl550",
       "plenoDate": "2026-05-11",
       "title": "Debate sobre la Fira de Comercio en el pleno del 2026-05-11",
-      "summary": "Durante el pleno del 2026-05-11, el grupo PP afirmó que el gobierno afectó la Fira de Comercio, mientras que el PSOE señaló las críticas de la oposición sobre la no realización de la edición de 2025. En el debate se leyó además, textualmente, la valoración de la campaña de 2024 de la que se dio cuenta al pleno en julio de ese año, según la cual fue «recibida muy positivamente».",
+      "summary": "Durante el pleno del 2026-05-11, una intervención afirmó que el gobierno afectó la Fira de Comercio, mientras que otra señaló las críticas de la oposición sobre la no realización de la edición de 2025. En el debate se leyó además, textualmente, la valoración de la campaña de 2024 de la que se dio cuenta al pleno en julio de ese año, según la cual fue «recibida muy positivamente».",
       "severity": "informational",
       "sourceClaimIds": [
         "10yl550-263-cit-a0a379",
@@ -946,7 +1090,7 @@
         },
         {
           "text": "vostés se la han carregat.",
-          "speakerGroup": "PP",
+          "speakerGroup": null,
           "sourceClaimId": "10yl550-278-acu-ac00a4"
         },
         {
@@ -956,7 +1100,7 @@
         },
         {
           "text": "el Partit Popular l'altre dia tragué una notícia dient que el que el gover no feu la fira del 2025",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "sourceClaimId": "10yl550-293-acu-8785eb"
         }
       ],
@@ -1062,6 +1206,30 @@
           "reason": "La frase advertía que la intervención en que descansa su segunda cláusula sólo constaba en la transcripción anterior de la sesión y no en la revisada. Reanclada su cita a la transcripción vigente (12.490,5–12.498,7 s), consta en las dos, y la advertencia ha dejado de ser cierta. Sale la advertencia; lo que se dijo y a quién lo atribuye la ficha no cambian.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-10-11T17:11:01.892Z"
+        },
+        {
+          "field": "quote.1.speakerGroup",
+          "original": "PP",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:32.430Z"
+        },
+        {
+          "field": "quote.3.speakerGroup",
+          "original": "PSOE",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:32.687Z"
+        },
+        {
+          "field": "summary",
+          "original": "Durante el pleno del 2026-05-11, el grupo PP afirmó que el gobierno afectó la Fira de Comercio, mientras que el PSOE señaló las críticas de la oposición sobre la no realización de la edición de 2025. En el debate se leyó además, textualmente, la valoración de la campaña de 2024 de la que se dio cuenta al pleno en julio de ese año, según la cual fue «recibida muy positivamente».",
+          "corrected": "Durante el pleno del 2026-05-11, una intervención afirmó que el gobierno afectó la Fira de Comercio, mientras que otra señaló las críticas de la oposición sobre la no realización de la edición de 2025. En el debate se leyó además, textualmente, la valoración de la campaña de 2024 de la que se dio cuenta al pleno en julio de ese año, según la cual fue «recibida muy positivamente».",
+          "reason": "El sumario atribuía a un grupo lo que dijo una intervención, según la etiqueta que puso el extractor por ventana, retirado el 10-08-2026, y que se ha retirado de sus citas; se reescribe sin atribuirlo. No se afirma que la atribución fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:12:27.567Z"
         }
       ]
     },
@@ -1070,7 +1238,7 @@
       "plenoId": "10yl550",
       "plenoDate": "2026-05-11",
       "title": "Debate sobre seguridad en Riba-roja de Túria en el pleno del 2026-05-11",
-      "summary": "Durante la sesión, PP y PSOE se cruzan reproches sobre una enmienda del PP a los fondos de protección civil; esas intervenciones no se reproducen aquí, porque ningún registro municipal las respalda ni las desmiente. Además, el PP se refiere a la creación de una policía de urbanización en el municipio, y en el debate se mencionan infraestructuras en zonas inundables. En el registro municipal de contratación consta la licitación bajo el título \"Un vehículo protección civil.\".",
+      "summary": "Durante la sesión se formulan reproches sobre una enmienda a los fondos de protección civil; esas intervenciones no se reproducen aquí, porque ningún registro municipal las respalda ni las desmiente. Además, una intervención se refiere a la creación de una policía de urbanización en el municipio, y en el debate se mencionan infraestructuras en zonas inundables. En el registro municipal de contratación consta la licitación bajo el título \"Un vehículo protección civil.\".",
       "severity": "informational",
       "sourceClaimIds": [
         "10yl550-092-acu-ea9d47",
@@ -1086,12 +1254,12 @@
         },
         {
           "text": "en quant a una moció que ha nombrat, en aquesta moció... El que feien era que el cantenc jugaran una esmena en el que apareixer llevaven 8.000 euros de treballs tècnics a la policia local, que realment anaven destinats a projectes d'emergència.",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "sourceClaimId": "10yl550-101-acu-701882"
         },
         {
           "text": "I finalment, en l'espai obert que s'està fent des de l'Ajuntament en les diferents zones del municipi es va parlar de una unitat de policia de urbanitzacions.",
-          "speakerGroup": "PP",
+          "speakerGroup": null,
           "sourceClaimId": "10yl550-320-cit-a652c5"
         },
         {
@@ -1191,6 +1359,38 @@
           "reason": "El sumario llamaba «un grupo no identificado» a quien pronuncia una cita que la ficha no atribuye a ningún grupo. Esa fórmula sustituyó el 1-08 al valor de relleno del extractor y, como ya dice el motivo firmado el 30-09-2026 en f-2026-01-19-afi-5238db, afirma que no se sabe quién habla; junto a un grupo nombrado, además, se lee como otro grupo distinto. La ficha no dice ninguna de las dos cosas: rotula la cita «sin atribuir». La frase dice ahora lo que se dijo en impersonal, sin atribuirlo a nadie ni contar intervenciones.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-10-05T22:48:10.624Z"
+        },
+        {
+          "field": "quote.1.speakerGroup",
+          "original": "PSOE",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:32.946Z"
+        },
+        {
+          "field": "quote.2.speakerGroup",
+          "original": "PP",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:33.208Z"
+        },
+        {
+          "field": "summary",
+          "original": "Durante la sesión, PP y PSOE se cruzan reproches sobre una enmienda del PP a los fondos de protección civil; esas intervenciones no se reproducen aquí, porque ningún registro municipal las respalda ni las desmiente. Además, el PP se refiere a la creación de una policía de urbanización en el municipio, y en el debate se mencionan infraestructuras en zonas inundables. En el registro municipal de contratación consta la licitación bajo el título \"Un vehículo protección civil.\".",
+          "corrected": "Durante la sesión se cruzan reproches sobre una enmienda a los fondos de protección civil; esas intervenciones no se reproducen aquí, porque ningún registro municipal las respalda ni las desmiente. Además, una intervención se refiere a la creación de una policía de urbanización en el municipio, y en el debate se mencionan infraestructuras en zonas inundables. En el registro municipal de contratación consta la licitación bajo el título \"Un vehículo protección civil.\".",
+          "reason": "El sumario atribuía a un grupo lo que dijo una intervención, según la etiqueta que puso el extractor por ventana, retirado el 10-08-2026, y que se ha retirado de sus citas; se reescribe sin atribuirlo. No se afirma que la atribución fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:12:27.834Z"
+        },
+        {
+          "field": "summary",
+          "original": "Durante la sesión se cruzan reproches sobre una enmienda a los fondos de protección civil; esas intervenciones no se reproducen aquí, porque ningún registro municipal las respalda ni las desmiente. Además, una intervención se refiere a la creación de una policía de urbanización en el municipio, y en el debate se mencionan infraestructuras en zonas inundables. En el registro municipal de contratación consta la licitación bajo el título \"Un vehículo protección civil.\".",
+          "corrected": "Durante la sesión se formulan reproches sobre una enmienda a los fondos de protección civil; esas intervenciones no se reproducen aquí, porque ningún registro municipal las respalda ni las desmiente. Además, una intervención se refiere a la creación de una policía de urbanización en el municipio, y en el debate se mencionan infraestructuras en zonas inundables. En el registro municipal de contratación consta la licitación bajo el título \"Un vehículo protección civil.\".",
+          "reason": "«Se cruzan reproches» seguía diciendo que los dos grupos se reprocharon algo, cuando sus citas ya no llevan grupo salvo una; se dice sin contar grupos.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:15:22.652Z"
         }
       ]
     },
@@ -1199,7 +1399,7 @@
       "plenoId": "10yl550",
       "plenoDate": "2026-05-11",
       "title": "Pleno de Riba-roja de Túria 2026-05-11: Debate sobre presupuestos y financiamiento",
-      "summary": "En la sesión, el PSOE formuló reproches sobre el sentido del voto en el presupuesto de marzo. Esas intervenciones no se reproducen aquí: son acusaciones que ningún registro municipal respalda ni desmiente, y la transcripción tampoco registra a quién se dirigían. Según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, en el debate se dio cuenta del seguimiento de un Plan Económico y Financiero; la contratación municipal publicada no recoge ningún expediente de ese seguimiento.",
+      "summary": "En la sesión se formularon reproches sobre el sentido del voto en el presupuesto de marzo. Esas intervenciones no se reproducen aquí: son acusaciones que ningún registro municipal respalda ni desmiente, y la transcripción tampoco registra a quién se dirigían. Según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, en el debate se dio cuenta del seguimiento de un Plan Económico y Financiero; la contratación municipal publicada no recoge ningún expediente de ese seguimiento.",
       "severity": "informational",
       "sourceClaimIds": [
         "10yl550-330-acu-7c65c5",
@@ -1210,7 +1410,7 @@
       "quotes": [
         {
           "text": "no recolzen tampoc al votar en contra dels pressupostos",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "sourceClaimId": "10yl550-330-acu-7c65c5"
         },
         {
@@ -1344,6 +1544,22 @@
           "reason": "El sumario presentaba como un cruce de reproches entre grupos unas intervenciones que la ficha atribuye todas a un mismo grupo desde que el 29-09 se rectificó la atribución de tres de sus citas; ninguna cita de otro grupo sostiene el cruce. La frase dice quién formula los reproches, como la ficha, sin reproducirlos ni decir a quién se dirigían.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-10-04T13:10:58.237Z"
+        },
+        {
+          "field": "quote.0.speakerGroup",
+          "original": "PSOE",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:33.465Z"
+        },
+        {
+          "field": "summary",
+          "original": "En la sesión, el PSOE formuló reproches sobre el sentido del voto en el presupuesto de marzo. Esas intervenciones no se reproducen aquí: son acusaciones que ningún registro municipal respalda ni desmiente, y la transcripción tampoco registra a quién se dirigían. Según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, en el debate se dio cuenta del seguimiento de un Plan Económico y Financiero; la contratación municipal publicada no recoge ningún expediente de ese seguimiento.",
+          "corrected": "En la sesión se formularon reproches sobre el sentido del voto en el presupuesto de marzo. Esas intervenciones no se reproducen aquí: son acusaciones que ningún registro municipal respalda ni desmiente, y la transcripción tampoco registra a quién se dirigían. Según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, en el debate se dio cuenta del seguimiento de un Plan Económico y Financiero; la contratación municipal publicada no recoge ningún expediente de ese seguimiento.",
+          "reason": "El sumario atribuía a un grupo lo que dijo una intervención, según la etiqueta que puso el extractor por ventana, retirado el 10-08-2026, y que se ha retirado de sus citas; se reescribe sin atribuirlo. No se afirma que la atribución fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:12:28.103Z"
         }
       ]
     },
@@ -1352,7 +1568,7 @@
       "plenoId": "k4olcs",
       "plenoDate": "2026-04-20",
       "title": "Pleno ordinario 2026-04-20: Debates sobre transparencia y sistemas de control",
-      "summary": "Una intervención sin atribuir menciona el sistema de debate, captura y grabación de vídeo y control del salón de plenos, mientras que, según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, PSOE señala que las licitaciones estarán disponibles públicamente en la web. Las intervenciones citadas giran en torno a la transparencia, y PSOE destaca adaptaciones a la Carta de Servicios municipal.",
+      "summary": "Una intervención menciona el sistema de debate, captura y grabación de vídeo y control del salón de plenos, mientras que, según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, otra señala que las licitaciones estarán disponibles públicamente en la web. Las intervenciones citadas giran en torno a la transparencia, y se destacan adaptaciones a la Carta de Servicios municipal.",
       "severity": "informational",
       "sourceClaimIds": [
         "k4olcs-019-cit-b9b013",
@@ -1368,7 +1584,7 @@
         },
         {
           "text": "estarán en la web para que todo el mundo pueda comprobar las licitaciones que se han realizado y las adjudicaciones",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "sourceClaimId": "k4olcs-109-cit-531135"
         },
         {
@@ -1378,7 +1594,7 @@
         },
         {
           "text": "Con esos indicadores también la carta de servicios sufre, como he dicho, adaptaciones.",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "sourceClaimId": "k4olcs-008-afi-843b2a"
         }
       ],
@@ -1433,6 +1649,30 @@
           "reason": "«Ambos grupos» contaba como dos grupos distintos a PSOE y a un grupo que el propio sumario daba por no identificado, y que puede ser el mismo PSOE. Además, el sumario anunciaba en futuro lo que la cita sólo nombra: en la sesión es un bien ya adquirido que se incorpora al inventario municipal (transcripción, 1.606–1.653 s), y su contrato consta formalizado en 2024 en el registro de contratación. El sumario describe ahora las intervenciones sin contar grupos y llama «sin atribuir», como la ficha, a la que no lleva grupo; lo que se dijo no cambia.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-10-04T13:10:57.716Z"
+        },
+        {
+          "field": "quote.1.speakerGroup",
+          "original": "PSOE",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:33.727Z"
+        },
+        {
+          "field": "quote.3.speakerGroup",
+          "original": "PSOE",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:33.988Z"
+        },
+        {
+          "field": "summary",
+          "original": "Una intervención sin atribuir menciona el sistema de debate, captura y grabación de vídeo y control del salón de plenos, mientras que, según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, PSOE señala que las licitaciones estarán disponibles públicamente en la web. Las intervenciones citadas giran en torno a la transparencia, y PSOE destaca adaptaciones a la Carta de Servicios municipal.",
+          "corrected": "Una intervención menciona el sistema de debate, captura y grabación de vídeo y control del salón de plenos, mientras que, según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, otra señala que las licitaciones estarán disponibles públicamente en la web. Las intervenciones citadas giran en torno a la transparencia, y se destacan adaptaciones a la Carta de Servicios municipal.",
+          "reason": "El sumario atribuía a un grupo lo que dijo una intervención, según la etiqueta que puso el extractor por ventana, retirado el 10-08-2026, y que se ha retirado de sus citas; se reescribe sin atribuirlo. No se afirma que la atribución fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:12:28.367Z"
         }
       ]
     },
@@ -1456,7 +1696,7 @@
         },
         {
           "text": "Pasemos al siguiente punto que es una moción del Grupo Municipal Socialista para la Defensa de la Educación Pública",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "sourceClaimId": "k4olcs-032-cit-98a5be"
         },
         {
@@ -1573,6 +1813,14 @@
           "reason": "La cita nombraba al grupo municipal de quien habla, y ese grupo tiene un solo concejal: nombrarlo identifica a esa persona por eliminación, que es justo lo que el 30-09-2026 se retiró de la etiqueta y del sumario de esta ficha. Se acorta al tramo que sostiene el sumario, la misma intervención y subcadena literal de la transcripción vigente (3.887–3.904 s); lo que se dijo no cambia.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-10-14T13:53:45.869Z"
+        },
+        {
+          "field": "quote.1.speakerGroup",
+          "original": "PSOE",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:34.252Z"
         }
       ]
     },
@@ -1730,12 +1978,12 @@
       "quotes": [
         {
           "text": "el edificio polivalente de la Chen Machor, también, no sé, estas personas que son vecinos nuestros, Chen Machor",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "sourceClaimId": "ma87e0-104-cit-377216"
         },
         {
           "text": "el proyecto y construcción del edificio polivalente de Chema Chor",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "sourceClaimId": "ma87e0-162-cit-092d3e"
         }
       ],
@@ -1799,6 +2047,22 @@
           "reason": "El sumario decía que el nombre se había transcrito también como «Xemachor» o «Chemachor»: la primera grafía no está en ninguna transcripción de la sesión, era una conjetura del extractor, y la segunda sólo en la sustituida. Además omitía lo que las propias intervenciones y la presentación del presupuesto dicen del edificio, una obra por proyectar y construir, que es lo que separa su caso del contrato de 2019 sobre la cubierta de un edificio ya construido.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-10-12T13:43:52.838Z"
+        },
+        {
+          "field": "quote.0.speakerGroup",
+          "original": "PSOE",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:34.514Z"
+        },
+        {
+          "field": "quote.1.speakerGroup",
+          "original": "PSOE",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:34.780Z"
         }
       ]
     },
@@ -1975,7 +2239,7 @@
       "plenoId": "ma87e0",
       "plenoDate": "2026-03-16",
       "title": "Instalaciones deportivas · una intervención reconoce necesidades pendientes (pleno 2026-03-16)",
-      "summary": "La intervención, atribuida al PSOE, se refiere a financiar 'una parte de las instalaciones deportivas' y reconoce que quedan necesidades por atender. La sesión documenta lo dicho sin adjudicar su veracidad.",
+      "summary": "La intervención se refiere a financiar 'una parte de las instalaciones deportivas' y reconoce que quedan necesidades por atender. La sesión documenta lo dicho sin adjudicar su veracidad.",
       "severity": "informational",
       "sourceClaimIds": [
         "ma87e0-104-cit-528973"
@@ -1983,7 +2247,7 @@
       "quotes": [
         {
           "text": "Con ella se va a financiar también una parte de las instalaciones deportivas. ¿Cuántas veces tenemos aquí? Pues lo entendemos que hay necesidades en las instalaciones deportivas que hay que mejorar. Pues ahí se va a financiar.",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "sourceClaimId": "ma87e0-104-cit-528973"
         }
       ],
@@ -2015,6 +2279,22 @@
           "reason": "El sumario afirmaba una ausencia que el propio corpus de contratación de este sitio desmiente —hay más de un expediente sobre la materia, y varios de ellos son obras de mejora— y encadenaba esa ausencia con un respaldo explícito a la tesis de un grupo. Una ficha de existencia no puede sostener una afirmación de ausencia, y menos tomar partido en el fondo del debate. Se deja el sumario en lo que la cita sostiene.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T16:58:26.436Z"
+        },
+        {
+          "field": "quote.0.speakerGroup",
+          "original": "PSOE",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:35.045Z"
+        },
+        {
+          "field": "summary",
+          "original": "La intervención, atribuida al PSOE, se refiere a financiar 'una parte de las instalaciones deportivas' y reconoce que quedan necesidades por atender. La sesión documenta lo dicho sin adjudicar su veracidad.",
+          "corrected": "La intervención se refiere a financiar 'una parte de las instalaciones deportivas' y reconoce que quedan necesidades por atender. La sesión documenta lo dicho sin adjudicar su veracidad.",
+          "reason": "El sumario atribuía a un grupo lo que dijo una intervención, según la etiqueta que puso el extractor por ventana, retirado el 10-08-2026, y que se ha retirado de sus citas; se reescribe sin atribuirlo. No se afirma que la atribución fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:12:28.632Z"
         }
       ]
     },
@@ -2081,7 +2361,7 @@
       "plenoId": "19gax3o",
       "plenoDate": "2026-01-19",
       "title": "Pleno ordinario 2026-01-19: Debate sobre transparencia en contratación",
-      "summary": "Una intervención sin atribuir afirma que se ha discutido la necesidad de controlar el grado de cumplimiento de lo planificado. El PSOE menciona la aprobación de una guía para sistemas dinámicos de adquisición. El registro municipal incluye varios contratos relacionados con seguimiento y control, asesoramiento jurídico en contratación y servicios de mantenimiento.",
+      "summary": "Una intervención afirma que se ha discutido la necesidad de controlar el grado de cumplimiento de lo planificado. Otra menciona la aprobación de una guía para sistemas dinámicos de adquisición. El registro municipal incluye varios contratos relacionados con seguimiento y control, asesoramiento jurídico en contratación y servicios de mantenimiento.",
       "severity": "informational",
       "sourceClaimIds": [
         "19gax3o-025-afi-5b06c8",
@@ -2096,7 +2376,7 @@
         },
         {
           "text": "hem aprovat la guia rivalesita, el treball dels sistemes dinàmics d'adquisició",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "sourceClaimId": "19gax3o-017-cit-1a1dad"
         }
       ],
@@ -2185,6 +2465,22 @@
           "reason": "El sumario llamaba «un grupo no identificado» a quien pronuncia una cita que la ficha no atribuye a ningún grupo. Esa fórmula sustituyó el 1-08 al valor de relleno del extractor y, como ya dice el motivo firmado el 30-09-2026 en f-2026-01-19-afi-5238db, afirma que no se sabe quién habla; junto a un grupo nombrado, además, se lee como otro grupo distinto. La ficha no dice ninguna de las dos cosas: rotula la cita «sin atribuir», y así lo dice ahora el sumario, sin atribuirla a nadie ni contar quién habla.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-10-05T22:48:10.887Z"
+        },
+        {
+          "field": "quote.1.speakerGroup",
+          "original": "PSOE",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:35.310Z"
+        },
+        {
+          "field": "summary",
+          "original": "Una intervención sin atribuir afirma que se ha discutido la necesidad de controlar el grado de cumplimiento de lo planificado. El PSOE menciona la aprobación de una guía para sistemas dinámicos de adquisición. El registro municipal incluye varios contratos relacionados con seguimiento y control, asesoramiento jurídico en contratación y servicios de mantenimiento.",
+          "corrected": "Una intervención afirma que se ha discutido la necesidad de controlar el grado de cumplimiento de lo planificado. Otra menciona la aprobación de una guía para sistemas dinámicos de adquisición. El registro municipal incluye varios contratos relacionados con seguimiento y control, asesoramiento jurídico en contratación y servicios de mantenimiento.",
+          "reason": "El sumario atribuía a un grupo lo que dijo una intervención, según la etiqueta que puso el extractor por ventana, retirado el 10-08-2026, y que se ha retirado de sus citas; se reescribe sin atribuirlo. No se afirma que la atribución fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:12:28.901Z"
         }
       ]
     },
@@ -2193,7 +2489,7 @@
       "plenoId": "19gax3o",
       "plenoDate": "2026-01-19",
       "title": "Pleno del 2026-01-19: Debate sobre urbanismo",
-      "summary": "En la sesión del pleno del 19 de enero de 2026, el grupo PSOE afirmó que «la parte de la reconstrucción, aunque los contratos no se hacen así, sino a través de trazas». Una intervención sin atribuir señaló que se basan en fondos europeos para la reconstrucción tras la DANA, y otra, también sin atribuir, se refiere a subsanar los problemas del pabellón y del complejo deportivo.",
+      "summary": "En la sesión del pleno del 19 de enero de 2026, una intervención afirmó que «la parte de la reconstrucción, aunque los contratos no se hacen así, sino a través de trazas». Otra señaló que se basan en fondos europeos para la reconstrucción tras la DANA, y otra se refiere a subsanar los problemas del pabellón y del complejo deportivo.",
       "severity": "informational",
       "sourceClaimIds": [
         "19gax3o-016-cit-cc8758",
@@ -2204,7 +2500,7 @@
       "quotes": [
         {
           "text": "la parte de la reconstrucción, aunque los contratos no se hacen así, sino a través de trazas",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "sourceClaimId": "19gax3o-016-cit-cc8758"
         },
         {
@@ -2320,6 +2616,22 @@
           "reason": "El sumario llamaba «un grupo no identificado» y «otra intervención sin grupo identificado» a quienes pronuncian dos citas que la ficha no atribuye a ningún grupo. La primera fórmula sustituyó el 1-08 al valor de relleno del extractor y, como ya dice el motivo firmado el 30-09-2026 en f-2026-01-19-afi-5238db, las dos afirman que no se sabe quién habla; la primera, junto a un grupo nombrado, se lee además como otro grupo distinto. La ficha no dice ninguna de las dos cosas: rotula esas citas «sin atribuir», y así lo dice ahora el sumario, sin atribuirlas a nadie ni contar quién habla. Sale también «Por su parte», que las presentaba como de otro grupo.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-10-05T22:48:11.445Z"
+        },
+        {
+          "field": "quote.0.speakerGroup",
+          "original": "PSOE",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:35.577Z"
+        },
+        {
+          "field": "summary",
+          "original": "En la sesión del pleno del 19 de enero de 2026, el grupo PSOE afirmó que «la parte de la reconstrucción, aunque los contratos no se hacen así, sino a través de trazas». Una intervención sin atribuir señaló que se basan en fondos europeos para la reconstrucción tras la DANA, y otra, también sin atribuir, se refiere a subsanar los problemas del pabellón y del complejo deportivo.",
+          "corrected": "En la sesión del pleno del 19 de enero de 2026, una intervención afirmó que «la parte de la reconstrucción, aunque los contratos no se hacen así, sino a través de trazas». Otra señaló que se basan en fondos europeos para la reconstrucción tras la DANA, y otra se refiere a subsanar los problemas del pabellón y del complejo deportivo.",
+          "reason": "El sumario atribuía a un grupo lo que dijo una intervención, según la etiqueta que puso el extractor por ventana, retirado el 10-08-2026, y que se ha retirado de sus citas; se reescribe sin atribuirlo. No se afirma que la atribución fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:12:29.166Z"
         }
       ]
     },
@@ -2453,7 +2765,7 @@
       "plenoId": "19gax3o",
       "plenoDate": "2026-01-19",
       "title": "Debate de urbanismo y deportes en el pleno de Riba-roja de Túria del 2026-01-19",
-      "summary": "En la sesión, el PSOE afirma que se cambiará el parqué, y una intervención sin atribuir alega que los municipios afectados por la dana no tuvieron tiempo material para plasmar la convocatoria en un documento. El expediente citado inicialmente como respaldo corresponde a la pavimentación del paseo Pacadar, una actuación exterior distinta del cambio de parqué; no consta en la contratación publicada ningún expediente que documente esa obra concreta.",
+      "summary": "En la sesión, una intervención afirma que se cambiará el parqué, y otra alega que los municipios afectados por la dana no tuvieron tiempo material para plasmar la convocatoria en un documento. El expediente citado inicialmente como respaldo corresponde a la pavimentación del paseo Pacadar, una actuación exterior distinta del cambio de parqué; no consta en la contratación publicada ningún expediente que documente esa obra concreta.",
       "severity": "informational",
       "sourceClaimIds": [
         "19gax3o-146-cit-8b29a9",
@@ -2464,7 +2776,7 @@
       "quotes": [
         {
           "text": "i del parquet que efectivament estava canviant i ho anem a canviar.",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "sourceClaimId": "19gax3o-146-cit-8b29a9"
         },
         {
@@ -2559,6 +2871,22 @@
           "reason": "El sumario decía «sin grupo identificado» de quien pronuncia una cita que la ficha no atribuye a ningún grupo. Como ya dice el motivo firmado el 30-09-2026 en f-2026-01-19-afi-5238db, esa fórmula afirma que no se sabe quién habla, y la ficha no dice eso: rotula la cita «sin atribuir», y así lo dice ahora el sumario, sin atribuirla a nadie.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-10-05T22:48:13.619Z"
+        },
+        {
+          "field": "quote.0.speakerGroup",
+          "original": "PSOE",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:35.842Z"
+        },
+        {
+          "field": "summary",
+          "original": "En la sesión, el PSOE afirma que se cambiará el parqué, y una intervención sin atribuir alega que los municipios afectados por la dana no tuvieron tiempo material para plasmar la convocatoria en un documento. El expediente citado inicialmente como respaldo corresponde a la pavimentación del paseo Pacadar, una actuación exterior distinta del cambio de parqué; no consta en la contratación publicada ningún expediente que documente esa obra concreta.",
+          "corrected": "En la sesión, una intervención afirma que se cambiará el parqué, y otra alega que los municipios afectados por la dana no tuvieron tiempo material para plasmar la convocatoria en un documento. El expediente citado inicialmente como respaldo corresponde a la pavimentación del paseo Pacadar, una actuación exterior distinta del cambio de parqué; no consta en la contratación publicada ningún expediente que documente esa obra concreta.",
+          "reason": "El sumario atribuía a un grupo lo que dijo una intervención, según la etiqueta que puso el extractor por ventana, retirado el 10-08-2026, y que se ha retirado de sus citas; se reescribe sin atribuirlo. No se afirma que la atribución fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:12:29.432Z"
         }
       ]
     },
@@ -2768,7 +3096,7 @@
       "plenoId": "1qi8axv",
       "plenoDate": "2025-12-23",
       "title": "Pleno extraordinario y urgente 2025-12-23: Medio ambiente",
-      "summary": "El PSOE afirma que el contrato debatido venía «aprobado por un plan local de residuos» ya existente, que «nos marcaba el camino a seguir», y que incorporaba mejoras directas sobre el tratamiento de la basura y la calidad del servicio. Según la transcripción anterior de la sesión —cuyos literales no constan en la revisada—, una intervención sin atribuir menciona la necesidad de mejorar la recogida diaria de basura hasta el 100%.",
+      "summary": "Una intervención afirma que el contrato debatido venía «aprobado por un plan local de residuos» ya existente, que «nos marcaba el camino a seguir», y que incorporaba mejoras directas sobre el tratamiento de la basura y la calidad del servicio. Según la transcripción anterior de la sesión —cuyos literales no constan en la revisada—, otra menciona la necesidad de mejorar la recogida diaria de basura hasta el 100%.",
       "severity": "informational",
       "sourceClaimIds": [
         "1qi8axv-052-cit-c905c3",
@@ -2779,12 +3107,12 @@
       "quotes": [
         {
           "text": "un contrato que además venía aprobado por un plan local de residuos que nos marcaba el camino a seguir a la hora de elaborar.",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "sourceClaimId": "1qi8axv-052-cit-c905c3"
         },
         {
           "text": "una mejora con respecto al Agenda 2030, independientemente de eso, tenía mejoras directas sobre cómo había que tratar la basura, sobre cómo tenía que mejorar el servicio para que cada vez tuviera más calidad.",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "sourceClaimId": "1qi8axv-052-cit-977367"
         },
         {
@@ -2863,6 +3191,30 @@
           "reason": "El sumario llamaba «un grupo no identificado» a quien pronuncia dos citas, de una misma intervención, que la ficha no atribuye a ningún grupo. Esa fórmula sustituyó el 1-08 al valor de relleno del extractor y, como ya dice el motivo firmado el 30-09-2026 en f-2026-01-19-afi-5238db, afirma que no se sabe quién habla; junto a un grupo nombrado, además, se lee como otro grupo distinto. La ficha no dice ninguna de las dos cosas: rotula esas citas «sin atribuir», y así lo dice ahora el sumario, sin atribuirlas a nadie ni contar quién habla.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-10-05T22:48:11.976Z"
+        },
+        {
+          "field": "quote.0.speakerGroup",
+          "original": "PSOE",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:36.109Z"
+        },
+        {
+          "field": "quote.1.speakerGroup",
+          "original": "PSOE",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:36.380Z"
+        },
+        {
+          "field": "summary",
+          "original": "El PSOE afirma que el contrato debatido venía «aprobado por un plan local de residuos» ya existente, que «nos marcaba el camino a seguir», y que incorporaba mejoras directas sobre el tratamiento de la basura y la calidad del servicio. Según la transcripción anterior de la sesión —cuyos literales no constan en la revisada—, una intervención sin atribuir menciona la necesidad de mejorar la recogida diaria de basura hasta el 100%.",
+          "corrected": "Una intervención afirma que el contrato debatido venía «aprobado por un plan local de residuos» ya existente, que «nos marcaba el camino a seguir», y que incorporaba mejoras directas sobre el tratamiento de la basura y la calidad del servicio. Según la transcripción anterior de la sesión —cuyos literales no constan en la revisada—, otra menciona la necesidad de mejorar la recogida diaria de basura hasta el 100%.",
+          "reason": "El sumario atribuía a un grupo lo que dijo una intervención, según la etiqueta que puso el extractor por ventana, retirado el 10-08-2026, y que se ha retirado de sus citas; se reescribe sin atribuirlo. No se afirma que la atribución fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:12:29.714Z"
         }
       ]
     },
@@ -2991,7 +3343,7 @@
       "plenoId": "qz6weg",
       "plenoDate": "2025-12-01",
       "title": "Pleno ordinario 2025-12-01: Discusión sobre obras del Centro de Salud",
-      "summary": "El grupo PP afirma que las obras en el Centro de Salud están en curso y solicita información al respecto. El PSOE señala su intención de volver a la consellería en enero para revisar el avance del proyecto.",
+      "summary": "Una intervención afirma que las obras en el Centro de Salud están en curso y solicita información al respecto. Otra señala su intención de volver a la consellería en enero para revisar el avance del proyecto.",
       "severity": "informational",
       "sourceClaimIds": [
         "qz6weg-239-cit-d89862",
@@ -3002,17 +3354,17 @@
       "quotes": [
         {
           "text": "las obras del Centro de Salud",
-          "speakerGroup": "PP",
+          "speakerGroup": null,
           "sourceClaimId": "qz6weg-239-cit-d89862"
         },
         {
           "text": "La consecución de la obra que se está haciendo en el Centro de Salud",
-          "speakerGroup": "PP",
+          "speakerGroup": null,
           "sourceClaimId": "qz6weg-237-cit-7bff59"
         },
         {
           "text": "seguiremos con el tema del centro de salud que cuando pase este mes, en enero, volveremos a la consellería para ver cómo va el tema del proyecto",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "sourceClaimId": "qz6weg-249-cit-3e02ef"
         }
       ],
@@ -3052,6 +3404,38 @@
           "reason": "Se retira del cotejo el expediente que nombraba la frase suprimida: ninguna cita del hallazgo lo menciona y su objeto es muy anterior a las obras debatidas.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T18:22:28.878Z"
+        },
+        {
+          "field": "quote.0.speakerGroup",
+          "original": "PP",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:36.646Z"
+        },
+        {
+          "field": "quote.1.speakerGroup",
+          "original": "PP",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:36.907Z"
+        },
+        {
+          "field": "quote.2.speakerGroup",
+          "original": "PSOE",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:37.172Z"
+        },
+        {
+          "field": "summary",
+          "original": "El grupo PP afirma que las obras en el Centro de Salud están en curso y solicita información al respecto. El PSOE señala su intención de volver a la consellería en enero para revisar el avance del proyecto.",
+          "corrected": "Una intervención afirma que las obras en el Centro de Salud están en curso y solicita información al respecto. Otra señala su intención de volver a la consellería en enero para revisar el avance del proyecto.",
+          "reason": "El sumario atribuía a un grupo lo que dijo una intervención, según la etiqueta que puso el extractor por ventana, retirado el 10-08-2026, y que se ha retirado de sus citas; se reescribe sin atribuirlo. No se afirma que la atribución fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:12:29.980Z"
         }
       ]
     },
@@ -3060,7 +3444,7 @@
       "plenoId": "qz6weg",
       "plenoDate": "2025-12-01",
       "title": "Pleno ordinario de Riba-roja de Túria, 2025-12-01: Debates sobre sistemas dinámicos de adquisición y bolsa de autónomos",
-      "summary": "El PSOE afirma que los sistemas dinámicos de adquisición aprobados recientemente incluyen la cesión de una bolsa de autónomos a otros ayuntamientos. Cita además «El plan rehabilita más de 900.000 euros con una bolsa en el ayuntamiento para los autónomos y pequeñas empresas de Riva Roja»: la transcripción recoge la frase entera, pero no dice de qué plan se trata. Una intervención sin atribuir señala que esta iniciativa se extiende a varios municipios como parte de una campaña para el comercio local.",
+      "summary": "Una intervención afirma que los sistemas dinámicos de adquisición aprobados recientemente incluyen la cesión de una bolsa de autónomos a otros ayuntamientos. Cita además «El plan rehabilita más de 900.000 euros con una bolsa en el ayuntamiento para los autónomos y pequeñas empresas de Riva Roja»: la transcripción recoge la frase entera, pero no dice de qué plan se trata. Otra señala que esta iniciativa se extiende a varios municipios como parte de una campaña para el comercio local.",
       "severity": "informational",
       "sourceClaimIds": [
         "qz6weg-185-cit-66cd62",
@@ -3070,12 +3454,12 @@
       "quotes": [
         {
           "text": "Los sistemas dinámicos de adquisición, que se aprobaron hace poco aquí, y con la cesión de la bolsa de autónomos de Riva Roja a otros ayuntamientos para realizar proyectos.",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "sourceClaimId": "qz6weg-185-cit-66cd62"
         },
         {
           "text": "El plan rehabilita más de 900.000 euros con una bolsa en el ayuntamiento para los autónomos y pequeñas empresas de Riva Roja.",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "sourceClaimId": "qz6weg-185-afi-eeb37d"
         },
         {
@@ -3138,6 +3522,30 @@
           "reason": "El sumario llamaba «un grupo no identificado» a quien pronuncia una cita que la ficha no atribuye a ningún grupo. Esa fórmula sustituyó el 1-08 al valor de relleno del extractor y, como ya dice el motivo firmado el 30-09-2026 en f-2026-01-19-afi-5238db, afirma que no se sabe quién habla; junto a un grupo nombrado, además, se lee como otro grupo distinto. La ficha no dice ninguna de las dos cosas: rotula la cita «sin atribuir», y así lo dice ahora el sumario, sin atribuirla a nadie ni contar quién habla.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-10-05T22:48:12.537Z"
+        },
+        {
+          "field": "quote.0.speakerGroup",
+          "original": "PSOE",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:37.446Z"
+        },
+        {
+          "field": "quote.1.speakerGroup",
+          "original": "PSOE",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:37.712Z"
+        },
+        {
+          "field": "summary",
+          "original": "El PSOE afirma que los sistemas dinámicos de adquisición aprobados recientemente incluyen la cesión de una bolsa de autónomos a otros ayuntamientos. Cita además «El plan rehabilita más de 900.000 euros con una bolsa en el ayuntamiento para los autónomos y pequeñas empresas de Riva Roja»: la transcripción recoge la frase entera, pero no dice de qué plan se trata. Una intervención sin atribuir señala que esta iniciativa se extiende a varios municipios como parte de una campaña para el comercio local.",
+          "corrected": "Una intervención afirma que los sistemas dinámicos de adquisición aprobados recientemente incluyen la cesión de una bolsa de autónomos a otros ayuntamientos. Cita además «El plan rehabilita más de 900.000 euros con una bolsa en el ayuntamiento para los autónomos y pequeñas empresas de Riva Roja»: la transcripción recoge la frase entera, pero no dice de qué plan se trata. Otra señala que esta iniciativa se extiende a varios municipios como parte de una campaña para el comercio local.",
+          "reason": "El sumario atribuía a un grupo lo que dijo una intervención, según la etiqueta que puso el extractor por ventana, retirado el 10-08-2026, y que se ha retirado de sus citas; se reescribe sin atribuirlo. No se afirma que la atribución fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:12:30.252Z"
         }
       ]
     },
@@ -3146,7 +3554,7 @@
       "plenoId": "qz6weg",
       "plenoDate": "2025-12-01",
       "title": "01-12-2025: Pleno debate sobre cultura y conservatorios",
-      "summary": "El PSOE afirma —según la transcripción anterior de la sesión, cuyo literal no consta en la revisada— que han trabajado para dos conservatorios, y señala la creación de los conservatorios y el auditorio; el resto de esa intervención, una acusación que el verificador no pudo contrastar con ningún dato municipal, no se reproduce aquí. Los registros municipales incluyen contratos relacionados con obras de restauración y conservación del edificio Escuela Municipal de Música y Conservatorio Profesional Municipal de Música.",
+      "summary": "Una intervención afirma —según la transcripción anterior de la sesión, cuyo literal no consta en la revisada— que han trabajado para dos conservatorios, y señala la creación de los conservatorios y el auditorio; el resto de esa intervención, una acusación que el verificador no pudo contrastar con ningún dato municipal, no se reproduce aquí. Los registros municipales incluyen contratos relacionados con obras de restauración y conservación del edificio Escuela Municipal de Música y Conservatorio Profesional Municipal de Música.",
       "severity": "informational",
       "sourceClaimIds": [
         "qz6weg-039-cit-bef239",
@@ -3162,12 +3570,12 @@
         },
         {
           "text": "es creen els conservatoris i l'auditori.",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "sourceClaimId": "qz6weg-041-cit-29853c"
         },
         {
           "text": "Vostès votaren en contra de l'auditori i dels conservatoris, de les dues coses.",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "sourceClaimId": "qz6weg-041-acu-8fa62c"
         },
         {
@@ -3264,6 +3672,30 @@
           "reason": "El sumario atribuía al portavoz al que se respondía una frase del turno de respuesta del grupo de gobierno, el mismo turno de las otras dos citas de la ficha (transcripción, 4.016–4.095 s). Además, la cita que la sostiene esta misma ficha la marca como procedente de la transcripción anterior de la sesión, y la salvedad pasa a la frase.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-09-30T06:27:17.647Z"
+        },
+        {
+          "field": "quote.1.speakerGroup",
+          "original": "PSOE",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:37.974Z"
+        },
+        {
+          "field": "quote.2.speakerGroup",
+          "original": "PSOE",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:38.243Z"
+        },
+        {
+          "field": "summary",
+          "original": "El PSOE afirma —según la transcripción anterior de la sesión, cuyo literal no consta en la revisada— que han trabajado para dos conservatorios, y señala la creación de los conservatorios y el auditorio; el resto de esa intervención, una acusación que el verificador no pudo contrastar con ningún dato municipal, no se reproduce aquí. Los registros municipales incluyen contratos relacionados con obras de restauración y conservación del edificio Escuela Municipal de Música y Conservatorio Profesional Municipal de Música.",
+          "corrected": "Una intervención afirma —según la transcripción anterior de la sesión, cuyo literal no consta en la revisada— que han trabajado para dos conservatorios, y señala la creación de los conservatorios y el auditorio; el resto de esa intervención, una acusación que el verificador no pudo contrastar con ningún dato municipal, no se reproduce aquí. Los registros municipales incluyen contratos relacionados con obras de restauración y conservación del edificio Escuela Municipal de Música y Conservatorio Profesional Municipal de Música.",
+          "reason": "El sumario atribuía a un grupo lo que dijo una intervención, según la etiqueta que puso el extractor por ventana, retirado el 10-08-2026, y que se ha retirado de sus citas; se reescribe sin atribuirlo. No se afirma que la atribución fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:12:30.521Z"
         }
       ]
     },
@@ -3409,7 +3841,7 @@
       "plenoId": "1du4rf5",
       "plenoDate": "2025-11-03",
       "title": "Pleno ordinario de Riba-roja de Túria, 2025-11-03: Debates sobre responsabilidad política y propuesta de ILP",
-      "summary": "El PP afirma que la responsabilidad en el temporal del 29 de octubre no recae exclusivamente en la Generalitat Valenciana. La moción conjunta debatida en el punto octavo, con motivo del primer aniversario de aquel temporal, reclama formalmente la dimisión del presidente y la vicepresidenta de la Generalitat por su gestión. El punto noveno fue otra moción conjunta, de apoyo a una iniciativa legislativa popular sobre la tauromaquia; en su debate, una intervención distingue esa iniciativa de mociones presentadas en legislaturas anteriores.",
+      "summary": "Una intervención afirma que la responsabilidad en el temporal del 29 de octubre no recae exclusivamente en la Generalitat Valenciana. La moción conjunta debatida en el punto octavo, con motivo del primer aniversario de aquel temporal, reclama formalmente la dimisión del presidente y la vicepresidenta de la Generalitat por su gestión. El punto noveno fue otra moción conjunta, de apoyo a una iniciativa legislativa popular sobre la tauromaquia; en su debate, una intervención distingue esa iniciativa de mociones presentadas en legislaturas anteriores.",
       "severity": "informational",
       "sourceClaimIds": [
         "1du4rf5-115-acu-431140",
@@ -3419,7 +3851,7 @@
       "quotes": [
         {
           "text": "De todas formas, decir que la responsabilidad no es única y exclusivamente la Generalitat Valenciana en el CECOPI.",
-          "speakerGroup": "PP",
+          "speakerGroup": null,
           "sourceClaimId": "1du4rf5-115-acu-431140"
         },
         {
@@ -3531,6 +3963,22 @@
           "reason": "La frase sobre la iniciativa legislativa popular había quedado entre dos sobre el temporal y había perdido la salvedad que la separaba de él, así que invitaba a leerla como parte de ese debate. Es otro punto del orden del día: el noveno, una moción de apoyo a la ILP «No és la meua cultura», sobre la tauromaquia (orden del día de la sesión; transcripción, 6.672–6.721 s). Se ordena el sumario por puntos y se dice de qué trata.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-09-30T05:45:29.656Z"
+        },
+        {
+          "field": "quote.0.speakerGroup",
+          "original": "PP",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:38.512Z"
+        },
+        {
+          "field": "summary",
+          "original": "El PP afirma que la responsabilidad en el temporal del 29 de octubre no recae exclusivamente en la Generalitat Valenciana. La moción conjunta debatida en el punto octavo, con motivo del primer aniversario de aquel temporal, reclama formalmente la dimisión del presidente y la vicepresidenta de la Generalitat por su gestión. El punto noveno fue otra moción conjunta, de apoyo a una iniciativa legislativa popular sobre la tauromaquia; en su debate, una intervención distingue esa iniciativa de mociones presentadas en legislaturas anteriores.",
+          "corrected": "Una intervención afirma que la responsabilidad en el temporal del 29 de octubre no recae exclusivamente en la Generalitat Valenciana. La moción conjunta debatida en el punto octavo, con motivo del primer aniversario de aquel temporal, reclama formalmente la dimisión del presidente y la vicepresidenta de la Generalitat por su gestión. El punto noveno fue otra moción conjunta, de apoyo a una iniciativa legislativa popular sobre la tauromaquia; en su debate, una intervención distingue esa iniciativa de mociones presentadas en legislaturas anteriores.",
+          "reason": "El sumario atribuía a un grupo lo que dijo una intervención, según la etiqueta que puso el extractor por ventana, retirado el 10-08-2026, y que se ha retirado de sus citas; se reescribe sin atribuirlo. No se afirma que la atribución fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:12:30.790Z"
         }
       ]
     },
@@ -3539,7 +3987,7 @@
       "plenoId": "otxq2c",
       "plenoDate": "2025-10-06",
       "title": "Pleno ordinario 2025-10-06: Debate sobre apoyo social e igualdad",
-      "summary": "El PP afirma que trasladará puntos de acuerdo a varias instituciones para mejorar la atención a las mujeres. El PSOE señala su colaboración en programas de prevención y atención, destacando el compromiso con la protección infantil y adolescente.",
+      "summary": "Una intervención afirma que trasladará puntos de acuerdo a varias instituciones para mejorar la atención a las mujeres. Otra señala su colaboración en programas de prevención y atención, destacando el compromiso con la protección infantil y adolescente.",
       "severity": "informational",
       "sourceClaimIds": [
         "otxq2c-037-cit-6c4d24",
@@ -3550,22 +3998,22 @@
       "quotes": [
         {
           "text": "els recursos municipals de suport psicològic, social, jurídic i altres àmbits. I traslladar tots estos punts d'acords al Ministeri d'Igualtat, a la Delegació de Govern, a la Generalitat Valenciana, Federació Valenciana de Municipis i Províncies, al Consell d'Igualtat de Ribarroig i a totes les associacions del nostre municipi que treballen per i per les dones.",
-          "speakerGroup": "PP",
+          "speakerGroup": null,
           "sourceClaimId": "otxq2c-037-cit-6c4d24"
         },
         {
           "text": "Colaboramos con Generalitat, colaboramos con Diputación y participamos en todos los programas de campañas de prevención, atención, reparación",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "sourceClaimId": "otxq2c-072-cit-d5c436"
         },
         {
           "text": "Esta comisión representa una apuesta firme por la protección de la infancia y la adolescencia",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "sourceClaimId": "otxq2c-031-cit-8ffc2f"
         },
         {
           "text": "dota al Ayuntamiento de Riva Roja de una herramienta sólida, moderna y garantista, que nos permitirá seguir atendiendo con rigor, empatía y eficacia a las personas y familias que atraviesan dificultades.",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "sourceClaimId": "otxq2c-024-cit-f56122"
         }
       ],
@@ -3645,6 +4093,46 @@
           "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-10T12:54:23.690Z"
+        },
+        {
+          "field": "quote.0.speakerGroup",
+          "original": "PP",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:38.780Z"
+        },
+        {
+          "field": "quote.1.speakerGroup",
+          "original": "PSOE",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:39.050Z"
+        },
+        {
+          "field": "quote.2.speakerGroup",
+          "original": "PSOE",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:39.320Z"
+        },
+        {
+          "field": "quote.3.speakerGroup",
+          "original": "PSOE",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:39.579Z"
+        },
+        {
+          "field": "summary",
+          "original": "El PP afirma que trasladará puntos de acuerdo a varias instituciones para mejorar la atención a las mujeres. El PSOE señala su colaboración en programas de prevención y atención, destacando el compromiso con la protección infantil y adolescente.",
+          "corrected": "Una intervención afirma que trasladará puntos de acuerdo a varias instituciones para mejorar la atención a las mujeres. Otra señala su colaboración en programas de prevención y atención, destacando el compromiso con la protección infantil y adolescente.",
+          "reason": "El sumario atribuía a un grupo lo que dijo una intervención, según la etiqueta que puso el extractor por ventana, retirado el 10-08-2026, y que se ha retirado de sus citas; se reescribe sin atribuirlo. No se afirma que la atribución fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:12:31.055Z"
         }
       ]
     },
@@ -3653,7 +4141,7 @@
       "plenoId": "otxq2c",
       "plenoDate": "2025-10-06",
       "title": "Debate sobre seguridad y policía local en el pleno del 2025-10-06",
-      "summary": "El grupo PSOE señala la existencia de una unidad de policía local que asiste a mujeres vulnerables junto a psicólogas y trabajadoras sociales. Asimismo, el grupo PP hace referencia al funcionamiento del sistema de pulseras telemáticas de control de agresores.",
+      "summary": "Una intervención señala la existencia de una unidad de policía local que asiste a mujeres vulnerables junto a psicólogas y trabajadoras sociales. Asimismo, otra hace referencia al funcionamiento del sistema de pulseras telemáticas de control de agresores.",
       "severity": "informational",
       "sourceClaimIds": [
         "otxq2c-072-cit-591d40",
@@ -3664,17 +4152,17 @@
       "quotes": [
         {
           "text": "a una unidad de policía local que acompaña a todas las mujeres que lo necesitan.",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "sourceClaimId": "otxq2c-072-cit-591d40"
         },
         {
           "text": "Aquí tenéis a la policía local, aquí tenéis a nuestras psicólogas, a nuestras jurídicas, a nuestras trabajadoras sociales, de servicios sociales, a la técnica",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "sourceClaimId": "otxq2c-075-cit-c869c8"
         },
         {
           "text": "el sistema de polseres telemàtiques de control de tots els agressors, l'anomenat sistema COMETA. Sistema del Centre de Control de Mesures Telemàtiques d'Aïllament.",
-          "speakerGroup": "PP",
+          "speakerGroup": null,
           "sourceClaimId": "otxq2c-033-cit-bfa19f"
         }
       ],
@@ -3740,6 +4228,38 @@
           "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-10T12:54:23.336Z"
+        },
+        {
+          "field": "quote.0.speakerGroup",
+          "original": "PSOE",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:39.840Z"
+        },
+        {
+          "field": "quote.1.speakerGroup",
+          "original": "PSOE",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:40.101Z"
+        },
+        {
+          "field": "quote.2.speakerGroup",
+          "original": "PP",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:40.363Z"
+        },
+        {
+          "field": "summary",
+          "original": "El grupo PSOE señala la existencia de una unidad de policía local que asiste a mujeres vulnerables junto a psicólogas y trabajadoras sociales. Asimismo, el grupo PP hace referencia al funcionamiento del sistema de pulseras telemáticas de control de agresores.",
+          "corrected": "Una intervención señala la existencia de una unidad de policía local que asiste a mujeres vulnerables junto a psicólogas y trabajadoras sociales. Asimismo, otra hace referencia al funcionamiento del sistema de pulseras telemáticas de control de agresores.",
+          "reason": "El sumario atribuía a un grupo lo que dijo una intervención, según la etiqueta que puso el extractor por ventana, retirado el 10-08-2026, y que se ha retirado de sus citas; se reescribe sin atribuirlo. No se afirma que la atribución fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:12:31.322Z"
         }
       ]
     },
@@ -3764,12 +4284,12 @@
         },
         {
           "text": "Han entrat per una banda i s'han anat així per l'altra perquè no podien dir si havien incomplert les ordres d'allunyament.",
-          "speakerGroup": "PP",
+          "speakerGroup": null,
           "sourceClaimId": "otxq2c-088-acu-248640"
         },
         {
           "text": "Y eso sí que es un premio en Madrid en la Federación Estatal de Municipios y Provincias.",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "sourceClaimId": "otxq2c-082-cit-915a1d"
         },
         {
@@ -3890,6 +4410,22 @@
           "reason": "La intervención no es del grupo al que se atribuía: la presidencia concede ese turno a otro grupo, que presenta en él sus enmiendas a la moción (transcripción, 3.640–3.790 s). El grupo que corresponde tiene un solo concejal, así que se retira la atribución en lugar de sustituirla.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-09-30T06:27:18.136Z"
+        },
+        {
+          "field": "quote.1.speakerGroup",
+          "original": "PP",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:40.619Z"
+        },
+        {
+          "field": "quote.2.speakerGroup",
+          "original": "PSOE",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:40.879Z"
         }
       ]
     },
@@ -3898,7 +4434,7 @@
       "plenoId": "c8kr44",
       "plenoDate": "2025-09-08",
       "title": "Pleno 2025-09-08: Debate sobre el contrato de residuos y el plan de refugios climáticos en Riba-roja de Túria",
-      "summary": "En la sesión del 2025-09-08 se señala la existencia de un contrato para la recogida de residuos sólidos urbanos, y el PSOE manifiesta el inicio de los trabajos en un plan de refugios climáticos.",
+      "summary": "En la sesión del 2025-09-08 se señala la existencia de un contrato para la recogida de residuos sólidos urbanos, y una intervención manifiesta el inicio de los trabajos en un plan de refugios climáticos.",
       "severity": "informational",
       "sourceClaimIds": [
         "c8kr44-073-cit-d6d194",
@@ -3909,12 +4445,12 @@
       "quotes": [
         {
           "text": "el contrato que hemos aprobado, ya me ha ido mejor, y el área de contratación, si no me lo traslado, en el sentido que es flexible. Por lo tanto, el contrato se puede modificar, está amparado, y además está aprobado",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "sourceClaimId": "c8kr44-073-cit-d6d194"
         },
         {
           "text": "ahora hemos empezado a trabajar en un plan de refugios climáticos",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "sourceClaimId": "c8kr44-160-cit-e59f43"
         },
         {
@@ -3924,7 +4460,7 @@
         },
         {
           "text": "optamos todas nuestras licitaciones para vehículos eléctricos no solo los propios nuestros",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "sourceClaimId": "c8kr44-146-cit-ccd20c"
         }
       ],
@@ -3998,6 +4534,38 @@
           "reason": "El sumario atribuía una intervención a un grupo municipal con un solo concejal, lo que identifica a esa persona por eliminación; la atribución la puso la curación automática sin firma de curador. Se retira del sumario igual que de la cita; lo que se dijo no cambia.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-09-30T05:48:08.854Z"
+        },
+        {
+          "field": "quote.0.speakerGroup",
+          "original": "PSOE",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:41.140Z"
+        },
+        {
+          "field": "quote.1.speakerGroup",
+          "original": "PSOE",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:41.401Z"
+        },
+        {
+          "field": "quote.3.speakerGroup",
+          "original": "PSOE",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:41.661Z"
+        },
+        {
+          "field": "summary",
+          "original": "En la sesión del 2025-09-08 se señala la existencia de un contrato para la recogida de residuos sólidos urbanos, y el PSOE manifiesta el inicio de los trabajos en un plan de refugios climáticos.",
+          "corrected": "En la sesión del 2025-09-08 se señala la existencia de un contrato para la recogida de residuos sólidos urbanos, y una intervención manifiesta el inicio de los trabajos en un plan de refugios climáticos.",
+          "reason": "El sumario atribuía a un grupo lo que dijo una intervención, según la etiqueta que puso el extractor por ventana, retirado el 10-08-2026, y que se ha retirado de sus citas; se reescribe sin atribuirlo. No se afirma que la atribución fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:12:31.588Z"
         }
       ]
     },
@@ -4006,7 +4574,7 @@
       "plenoId": "c8kr44",
       "plenoDate": "2025-09-08",
       "title": "Debate sobre la limpieza y el mantenimiento en los colegios de Riba-roja de Túria en el pleno del 2025-09-08",
-      "summary": "Según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, el PP señala que el personal docente tuvo que limpiar las aulas debido a la falta de adecuación de las mismas. En otra intervención se destacan las actuaciones de mejora en centros de la localidad como el Camp de Túria —también según la transcripción anterior—, mientras que el PSOE afirma que el mantenimiento se solventó en pocos días.",
+      "summary": "Según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, una intervención señala que el personal docente tuvo que limpiar las aulas debido a la falta de adecuación de las mismas. En otra intervención se destacan las actuaciones de mejora en centros de la localidad como el Camp de Túria —también según la transcripción anterior—, mientras que otra afirma que el mantenimiento se solventó en pocos días.",
       "severity": "informational",
       "sourceClaimIds": [
         "c8kr44-231-acu-70a34f",
@@ -4017,7 +4585,7 @@
       "quotes": [
         {
           "text": "La semana pasada, durante toda la semana, los maestros van tener que estar netejando antes de ellos mismos las aulas, porque las aulas no estaban adecuadas.",
-          "speakerGroup": "PP",
+          "speakerGroup": null,
           "sourceClaimId": "c8kr44-231-acu-70a34f"
         },
         {
@@ -4027,12 +4595,12 @@
         },
         {
           "text": "com diu Eva, s'hem avançat un parell de dies, tres, i està solventat",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "sourceClaimId": "c8kr44-242-cit-671430"
         },
         {
           "text": "s'hem avançat un parell de dies, tres, i està solventat, els manteniments que han fet els col·legis ha sigut un manteniment adequat, així ja ens ho han traslladat totes les directores per anar a Menpaqui, per a tot el món, en tornar a millorar les escoles",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "sourceClaimId": "c8kr44-243-cit-be89b4"
         }
       ],
@@ -4119,6 +4687,38 @@
           "reason": "El sumario daba por firmes dos intervenciones que sólo sostienen citas procedentes de la transcripción anterior de la sesión, sin constar en la revisada: una que la ficha no reproduce y otra que rotula «no consta en la transcripción revisada». La salvedad pasa a las frases; lo que se dijo no cambia.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-09-30T06:26:10.076Z"
+        },
+        {
+          "field": "quote.0.speakerGroup",
+          "original": "PP",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:41.921Z"
+        },
+        {
+          "field": "quote.2.speakerGroup",
+          "original": "PSOE",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:42.183Z"
+        },
+        {
+          "field": "quote.3.speakerGroup",
+          "original": "PSOE",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:04:42.442Z"
+        },
+        {
+          "field": "summary",
+          "original": "Según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, el PP señala que el personal docente tuvo que limpiar las aulas debido a la falta de adecuación de las mismas. En otra intervención se destacan las actuaciones de mejora en centros de la localidad como el Camp de Túria —también según la transcripción anterior—, mientras que el PSOE afirma que el mantenimiento se solventó en pocos días.",
+          "corrected": "Según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, una intervención señala que el personal docente tuvo que limpiar las aulas debido a la falta de adecuación de las mismas. En otra intervención se destacan las actuaciones de mejora en centros de la localidad como el Camp de Túria —también según la transcripción anterior—, mientras que otra afirma que el mantenimiento se solventó en pocos días.",
+          "reason": "El sumario atribuía a un grupo lo que dijo una intervención, según la etiqueta que puso el extractor por ventana, retirado el 10-08-2026, y que se ha retirado de sus citas; se reescribe sin atribuirlo. No se afirma que la atribución fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-21T22:12:31.852Z"
         }
       ]
     }
