@@ -250,6 +250,27 @@ opus. whisper-1 fed ONE multi-hour request degenerates into hallucination loops
 thing (2026-07-29 postmortem, commit `9dd8f07`). Per-chunk uploads also sit far
 under the 25 MB cap.
 
+**The cuts land in a silence, not on the clock** (2026-11-19). Each chunk is
+transcribed and diarized on its own, with nothing from the one before (the
+diarize model takes no `prompt`), so whatever straddles a cut is split: the
+sentence, and the speaker, who comes back under a new chunk-local label. Cut
+blind every 1200 s, 71 of 195 seams in 23 transcripts fell mid-sentence, and
+`rx4hb4-075-pro-4b9e8e` published a quote ending «la redacción» because its
+sentence went on in the next chunk. Now `trocear_audio` runs ffmpeg
+`silencedetect` over the session and `src/scraper/cortes-audio.ts` moves each
+cut to the middle of the longest silence within ±60 s of its mark, logging how
+many found none. A remainder under 30 s joins the chunk before it rather than
+going up alone. The offsets come from the real cut points. Overlapping chunks
+was rejected: reconciling two transcriptions of the same audio rewrites text,
+which a verbatim quote cannot survive.
+
+Two guards ride with it. A chunk that comes back `200` with no text now fails
+the run, as the Gemini branch already did (`src/scraper/trozo-diarizado.ts`),
+and each chunk logs its span of speech and its largest gap. And
+`blocResolverFor` (`src/scraper/speaker-map-align.ts`) returns no bloc for a
+quote whose lines carry two different blocs; it used to take the bloc of the
+line where the quote began.
+
 **Every engine's output must clear the degenerate-transcript sanity gate**
 (`src/scraper/transcript-sanity.ts`). Repetition-loop, dominant-line and
 no-content transcripts are quarantined rather than published, and the pleno
