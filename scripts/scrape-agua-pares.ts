@@ -35,6 +35,7 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import {
   fusionarBoletines,
+  releerArchivados,
   redPrincipal,
   type Boletin,
   type MunicipioAgua,
@@ -77,7 +78,10 @@ async function main() {
   rec.owe(banda.size)
 
   const archivo = new Map<string, MunicipioAgua>(
-    (previo?.municipios ?? []).map((m: MunicipioAgua) => [m.ine, m]),
+    (previo?.municipios ?? []).map((m: MunicipioAgua) => [
+      m.ine,
+      { ...m, boletines: releerArchivados(m.boletines) },
+    ]),
   )
   const sesion = await abrirSesion()
   const municipios: MunicipioAgua[] = []

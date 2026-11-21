@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-18T13:22:29.097Z",
+  "generatedAt": "2026-11-21T12:58:16.324Z",
   "source": {
     "contracts": "https://ribalicita.ribarroja.es/api/v1/data/data.csv?sql=select%20*%20from%20contratos",
     "tenders": "https://ribalicita.ribarroja.es/api/v1/data/data.csv?sql=select%20*%20from%20licitaciones",
@@ -491,37 +491,35 @@
   "identidadDeFilas": {
     "ultima": {
       "medida": true,
-      "comparadoCon": "2026-11-17T13:47:11.620Z",
+      "comparadoCon": "2026-11-20T13:31:34.134Z",
       "conClaveAntes": 809,
       "conClaveAhora": 809,
       "sinClaveAntes": 0,
       "sinClaveAhora": 0,
       "repetidasAntes": 0,
       "repetidasAhora": 0,
-      "comparables": 808,
-      "conservan": 808,
+      "comparables": 809,
+      "conservan": 809,
       "cambian": 0,
       "multifila": {
         "comparables": 272,
         "conservan": 272,
-        "retocadas": 28
+        "retocadas": 0
       },
-      "retocadas": 65,
-      "editadas": 1,
+      "retocadas": 0,
+      "editadas": 0,
       "reutilizadas": 0,
       "idMovidos": 0,
       "altas": 0,
       "bajas": 0,
       "muestras": {
         "cambian": [],
-        "editadas": [
-          "10524767"
-        ],
+        "editadas": [],
         "reutilizadas": [],
         "idMovidos": [],
         "bajas": []
       },
-      "medidoEn": "2026-11-18T13:22:29.097Z"
+      "medidoEn": "2026-11-21T12:58:16.324Z"
     },
     "movimientos": [
       {

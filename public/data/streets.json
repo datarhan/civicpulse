@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-18T13:26:57.299Z",
+  "generatedAt": "2026-11-20T13:35:54.582Z",
   "source": {
     "platform": "OSM Overpass API",
     "endpoint": "https://overpass-api.de/api/interpreter",
@@ -427,6 +427,16 @@
       ]
     },
     {
+      "id": "way-61045825",
+      "name": "Camí de la Cova de Mirapeix",
+      "slug": "cami-de-la-cova-de-mirapeix",
+      "kind": "camino",
+      "point": [
+        39.5170248,
+        -0.5453787
+      ]
+    },
+    {
       "id": "way-61046312",
       "name": "Camí de la Cova del Moreno",
       "slug": "cami-de-la-cova-del-moreno",
@@ -527,6 +537,16 @@
       ]
     },
     {
+      "id": "way-61722757",
+      "name": "Camí del Pouet Tapat",
+      "slug": "cami-del-pouet-tapat",
+      "kind": "camino",
+      "point": [
+        39.5140641,
+        -0.5953446
+      ]
+    },
+    {
       "id": "way-109585248",
       "name": "Camí del Riu",
       "slug": "cami-del-riu",
@@ -544,26 +564,6 @@
       "point": [
         39.5045824,
         -0.5578975
-      ]
-    },
-    {
-      "id": "way-61045825",
-      "name": "Camino de la Cova de Mirapeix",
-      "slug": "camino-de-la-cova-de-mirapeix",
-      "kind": "camino",
-      "point": [
-        39.5170248,
-        -0.5453787
-      ]
-    },
-    {
-      "id": "way-61722757",
-      "name": "Camino del Pouet Tapat",
-      "slug": "camino-del-pouet-tapat",
-      "kind": "camino",
-      "point": [
-        39.5140641,
-        -0.5953446
       ]
     },
     {

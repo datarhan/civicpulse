@@ -1,24 +1,248 @@
 {
-  "generatedAt": "2026-11-18T13:31:22.888Z",
+  "generatedAt": "2026-11-21T13:20:49.674Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 49,
-    "openTotal": 49,
-    "inRibaRoja": 35,
+    "total": 51,
+    "openTotal": 51,
+    "inRibaRoja": 37,
     "closingSoon": 7,
-    "withDetail": 49,
+    "withDetail": 51,
     "byMonth": {
-      "2026-11": 14,
-      "2026-10": 28,
+      "2026-11": 17,
+      "2026-10": 27,
       "2026-09": 5,
       "2026-05": 2
     }
   },
   "items": [
+    {
+      "id": "2578",
+      "fo": 2578,
+      "codigo": "2026/00275",
+      "titulo": "Cuidador/a de persona mayor",
+      "publishedAt": "2026-11-19",
+      "deadline": "2027-01-19",
+      "location": "Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2578",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00275"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Cuidador/a de persona mayor"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Requisitos : Experiencia de 1 año con personas dependientes. Se valorará formación en ayuda a la dependencia o auxiliar de enfermería."
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Municipio: Riba-roja de Túria, Provincia: Valencia"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Parcial"
+          },
+          {
+            "label": "Horario",
+            "value": "Viernes de 18.00 a Domingo 20.30. Descanso de 2,5h cada día."
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio"
+          },
+          {
+            "label": "Funciones",
+            "value": "Cuidado y aseo de la persona y realización tareas domésticas (cocinar, limpiar)."
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "1",
+        "observaciones": "Requisitos : Experiencia de 1 año con personas dependientes. Se valorará formación en ayuda a la dependencia o auxiliar de enfermería.",
+        "jornada": "Parcial",
+        "horario": "Viernes de 18.00 a Domingo 20.30. Descanso de 2,5h cada día.",
+        "salario": "Según convenio",
+        "funciones": "Cuidado y aseo de la persona y realización tareas domésticas (cocinar, limpiar).",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2570",
+      "fo": 2570,
+      "codigo": "2026/00271",
+      "titulo": "Auxiliar administrativo/a",
+      "publishedAt": "2026-11-19",
+      "deadline": "2027-01-19",
+      "location": "Área Industrial de Riba-roja Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2570",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00271"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Auxiliar administrativo/a"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Imprescindible vehículo propio para acceder al puesto de trabajo. Mínimo 6 meses de experiencia en el puesto"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Área Industrial de Riba-roja, Municipio: Riba-roja de Túria, Provincia: Valencia"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa"
+          },
+          {
+            "label": "Horario",
+            "value": "De lunes a jueves de 8-13.30 y de 15-17.15 Viernes de 7-14.15"
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio"
+          },
+          {
+            "label": "Funciones",
+            "value": "Albaranes, trato con agencias y clientes, correos, uso de programas informáticos."
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "1",
+        "observaciones": "Imprescindible vehículo propio para acceder al puesto de trabajo. Mínimo 6 meses de experiencia en el puesto",
+        "jornada": "Completa",
+        "horario": "De lunes a jueves de 8-13.30 y de 15-17.15 Viernes de 7-14.15",
+        "salario": "Según convenio",
+        "funciones": "Albaranes, trato con agencias y clientes, correos, uso de programas informáticos.",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2342",
+      "fo": 2342,
+      "codigo": "2026/00046",
+      "titulo": "Personal limpieza comunidades",
+      "publishedAt": "2026-11-19",
+      "deadline": "2027-01-19",
+      "location": "Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2342",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00046"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Personal limpieza comunidades"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Se necesita cubrir puestos para limpieza de comunidades de vecinos con vehículo propio"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO EVENTUAL POR CIRCUNSTANCIAS DE LA PRODUCCION"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "De 1 a 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "2"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Municipio: Riba-roja de Túria, Provincia: Valencia"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Turnos: Turno mañana, Turno tarde"
+          },
+          {
+            "label": "Horario",
+            "value": "Por determinar."
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio"
+          },
+          {
+            "label": "Funciones",
+            "value": "Limpieza de comunidades"
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          },
+          {
+            "label": "Habilidades",
+            "value": "Persona seria , responsable y profesional"
+          }
+        ],
+        "tipoContrato": "CONTRATO EVENTUAL POR CIRCUNSTANCIAS DE LA PRODUCCION",
+        "duracion": "De 1 a 6 meses",
+        "numPuestos": "2",
+        "observaciones": "Se necesita cubrir puestos para limpieza de comunidades de vecinos con vehículo propio",
+        "jornada": "Turnos: Turno mañana, Turno tarde",
+        "horario": "Por determinar.",
+        "salario": "Según convenio",
+        "funciones": "Limpieza de comunidades",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
     {
       "id": "2577",
       "fo": 2577,
@@ -1644,7 +1868,7 @@
           },
           {
             "label": "Número de puestos",
-            "value": "2"
+            "value": "3"
           },
           {
             "label": "Categoría profesional",
@@ -1677,7 +1901,7 @@
         ],
         "tipoContrato": "CONTRATO DE OBRA O SERVICIO DETERMINADO",
         "duracion": "Más de 6 meses",
-        "numPuestos": "2",
+        "numPuestos": "3",
         "categoria": "PEONES",
         "observaciones": "Requiere : Experiencia mínima 1 año en soldadura TIG Vehículo propio PRL para instalaciones, reparaciones, montajes, estructuras metálicas, cerrajería y carpintería metálica",
         "municipio": "Riba-roja de Túria",
@@ -2339,97 +2563,6 @@
         "salario": "SEGUN CONVENIO",
         "vehiculo": "Sí",
         "ocupaciones": []
-      }
-    },
-    {
-      "id": "2547",
-      "fo": 2547,
-      "codigo": "2026/00247",
-      "titulo": "Almacen / Calidad",
-      "publishedAt": "2026-10-21",
-      "deadline": "2026-12-21",
-      "location": "Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2547",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00247"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Almacen / Calidad"
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "INDUSTRIA MANUFACTURERA"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Contrato temporal con posibilidad real de continuar"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "OFICIAL DE 3ª y ESPECIALISTAS"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa Turnos: Turno partido"
-          },
-          {
-            "label": "Horario",
-            "value": "8:00 a 17:00"
-          },
-          {
-            "label": "Salario",
-            "value": "Según valía"
-          },
-          {
-            "label": "Funciones",
-            "value": "- Control de calidad - Preparación de pedidos - Fabricación del embalaje (aglomerado) - Organización y limpieza del almacén - Tareas varias"
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          },
-          {
-            "label": "Habilidades",
-            "value": "- Carnet de conducir y vehículo propio para desplazarse al centro de trabajo - Carnet de carretillero - Uso básico radial - Conocimientos de soldadura"
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "duracion": "Contrato temporal con posibilidad real de continuar",
-        "numPuestos": "1",
-        "categoria": "OFICIAL DE 3ª y ESPECIALISTAS",
-        "municipio": "Riba-roja de Túria",
-        "provincia": "Valencia",
-        "cp": "46190",
-        "jornada": "Completa Turnos: Turno partido",
-        "horario": "8:00 a 17:00",
-        "salario": "Según valía",
-        "funciones": "- Control de calidad - Preparación de pedidos - Fabricación del embalaje (aglomerado) - Organización y limpieza del almacén - Tareas varias",
-        "vehiculo": "Sí",
-        "ocupaciones": [
-          {
-            "nombre": "TÉCNICOS EN GESTIÓN DE STOCKS Y/O ALMACÉN",
-            "experiencia": "1 Años"
-          }
-        ]
       }
     },
     {
