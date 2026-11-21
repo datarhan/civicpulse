@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-11-15T06:17:53.923Z",
-  "consultadoEl": "2026-11-15",
+  "generatedAt": "2026-11-21T13:14:32.042Z",
+  "consultadoEl": "2026-11-21",
   "conjunto": "cv-15k-40k",
   "fuente": {
     "nombre": "SINAC · Sistema de Información Nacional de Aguas de Consumo (Ministerio de Sanidad)",
     "url": "https://sinac.sanidad.gob.es/CiudadanoWeb/ciudadano/informacionAbastecimientoActionEntrada.do",
-    "atribucion": "Fuente: Ministerio de Sanidad, SINAC. Consultado el 2026-11-15; cada boletín lleva su fecha de toma."
+    "atribucion": "Fuente: Ministerio de Sanidad, SINAC. Consultado el 2026-11-21; cada boletín lleva su fecha de toma."
   },
   "municipios": [
     {
@@ -32,6 +32,22 @@
         }
       ],
       "boletines": [
+        {
+          "id": 19067141,
+          "tipo": "control",
+          "fecha": "2026-11-17",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 797
+        },
+        {
+          "id": 19067131,
+          "tipo": "control",
+          "fecha": "2026-11-12",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 798
+        },
         {
           "id": 19028118,
           "tipo": "control",
@@ -2568,7 +2584,7 @@
           "tipo": "radiactividad",
           "fecha": "2022-09-12",
           "calificacion": "gestionada-consejeria",
-          "calificacionTexto": "Calificaciï¿½n gestionada por la Consejerï¿½a",
+          "calificacionTexto": "Calificación gestionada por la Consejería",
           "idRed": 546
         },
         {
@@ -2681,6 +2697,14 @@
         }
       ],
       "boletines": [
+        {
+          "id": 19062427,
+          "tipo": "control",
+          "fecha": "2026-11-03",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 560
+        },
         {
           "id": 19014021,
           "tipo": "control",
@@ -3754,7 +3778,7 @@
           "tipo": "radiactividad",
           "fecha": "2019-09-21",
           "calificacion": "gestionada-consejeria",
-          "calificacionTexto": "Calificaciï¿½n gestionada por la Consejerï¿½a",
+          "calificacionTexto": "Calificación gestionada por la Consejería",
           "idRed": 7317
         },
         {
@@ -3762,7 +3786,7 @@
           "tipo": "radiactividad",
           "fecha": "2019-01-07",
           "calificacion": "gestionada-consejeria",
-          "calificacionTexto": "Calificaciï¿½n gestionada por la Consejerï¿½a",
+          "calificacionTexto": "Calificación gestionada por la Consejería",
           "idRed": 7317
         },
         {
@@ -3770,7 +3794,7 @@
           "tipo": "radiactividad",
           "fecha": "2018-06-13",
           "calificacion": "gestionada-consejeria",
-          "calificacionTexto": "Calificaciï¿½n gestionada por la Consejerï¿½a",
+          "calificacionTexto": "Calificación gestionada por la Consejería",
           "idRed": 7317
         },
         {
@@ -3778,7 +3802,7 @@
           "tipo": "radiactividad",
           "fecha": "2018-05-22",
           "calificacion": "gestionada-consejeria",
-          "calificacionTexto": "Calificaciï¿½n gestionada por la Consejerï¿½a",
+          "calificacionTexto": "Calificación gestionada por la Consejería",
           "idRed": 7317
         },
         {
@@ -3786,7 +3810,7 @@
           "tipo": "radiactividad",
           "fecha": "2018-04-19",
           "calificacion": "gestionada-consejeria",
-          "calificacionTexto": "Calificaciï¿½n gestionada por la Consejerï¿½a",
+          "calificacionTexto": "Calificación gestionada por la Consejería",
           "idRed": 7317
         }
       ]
@@ -4541,6 +4565,14 @@
         }
       ],
       "boletines": [
+        {
+          "id": 19066385,
+          "tipo": "control",
+          "fecha": "2026-11-12",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 1804
+        },
         {
           "id": 18811727,
           "tipo": "control",
@@ -5342,7 +5374,7 @@
           "tipo": "radiactividad",
           "fecha": "2022-12-07",
           "calificacion": "gestionada-consejeria",
-          "calificacionTexto": "Calificaciï¿½n gestionada por la Consejerï¿½a",
+          "calificacionTexto": "Calificación gestionada por la Consejería",
           "idRed": 986
         },
         {
@@ -5381,7 +5413,7 @@
           "tipo": "radiactividad",
           "fecha": "2021-12-01",
           "calificacion": "gestionada-consejeria",
-          "calificacionTexto": "Calificaciï¿½n gestionada por la Consejerï¿½a",
+          "calificacionTexto": "Calificación gestionada por la Consejería",
           "idRed": 986
         },
         {
@@ -5389,7 +5421,7 @@
           "tipo": "radiactividad",
           "fecha": "2021-11-10",
           "calificacion": "gestionada-consejeria",
-          "calificacionTexto": "Calificaciï¿½n gestionada por la Consejerï¿½a",
+          "calificacionTexto": "Calificación gestionada por la Consejería",
           "idRed": 986
         },
         {
@@ -5457,6 +5489,14 @@
         }
       ],
       "boletines": [
+        {
+          "id": 19035793,
+          "tipo": "control",
+          "fecha": "2026-11-02",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 1348
+        },
         {
           "id": 18664153,
           "tipo": "control",
@@ -5821,7 +5861,7 @@
           "tipo": "radiactividad",
           "fecha": "2018-04-16",
           "calificacion": "gestionada-consejeria",
-          "calificacionTexto": "Calificaciï¿½n gestionada por la Consejerï¿½a",
+          "calificacionTexto": "Calificación gestionada por la Consejería",
           "idRed": 1349
         },
         {
@@ -6593,7 +6633,7 @@
           "tipo": "radiactividad",
           "fecha": "2020-01-23",
           "calificacion": "gestionada-consejeria",
-          "calificacionTexto": "Calificaciï¿½n gestionada por la Consejerï¿½a",
+          "calificacionTexto": "Calificación gestionada por la Consejería",
           "idRed": 25668
         },
         {
@@ -6601,7 +6641,7 @@
           "tipo": "radiactividad",
           "fecha": "2019-09-24",
           "calificacion": "gestionada-consejeria",
-          "calificacionTexto": "Calificaciï¿½n gestionada por la Consejerï¿½a",
+          "calificacionTexto": "Calificación gestionada por la Consejería",
           "idRed": 25668
         },
         {
@@ -6609,7 +6649,7 @@
           "tipo": "radiactividad",
           "fecha": "2019-01-25",
           "calificacion": "gestionada-consejeria",
-          "calificacionTexto": "Calificaciï¿½n gestionada por la Consejerï¿½a",
+          "calificacionTexto": "Calificación gestionada por la Consejería",
           "idRed": 25668
         },
         {
@@ -6617,7 +6657,7 @@
           "tipo": "radiactividad",
           "fecha": "2018-09-11",
           "calificacion": "gestionada-consejeria",
-          "calificacionTexto": "Calificaciï¿½n gestionada por la Consejerï¿½a",
+          "calificacionTexto": "Calificación gestionada por la Consejería",
           "idRed": 25668
         },
         {
@@ -6625,7 +6665,7 @@
           "tipo": "radiactividad",
           "fecha": "2018-05-23",
           "calificacion": "gestionada-consejeria",
-          "calificacionTexto": "Calificaciï¿½n gestionada por la Consejerï¿½a",
+          "calificacionTexto": "Calificación gestionada por la Consejería",
           "idRed": 25668
         }
       ]
@@ -7185,7 +7225,7 @@
           "tipo": "radiactividad",
           "fecha": "2020-07-24",
           "calificacion": "gestionada-consejeria",
-          "calificacionTexto": "Calificaciï¿½n gestionada por la Consejerï¿½a",
+          "calificacionTexto": "Calificación gestionada por la Consejería",
           "idRed": 684
         },
         {
@@ -7193,7 +7233,7 @@
           "tipo": "radiactividad",
           "fecha": "2020-03-05",
           "calificacion": "gestionada-consejeria",
-          "calificacionTexto": "Calificaciï¿½n gestionada por la Consejerï¿½a",
+          "calificacionTexto": "Calificación gestionada por la Consejería",
           "idRed": 684
         },
         {
@@ -7201,7 +7241,7 @@
           "tipo": "radiactividad",
           "fecha": "2019-12-18",
           "calificacion": "gestionada-consejeria",
-          "calificacionTexto": "Calificaciï¿½n gestionada por la Consejerï¿½a",
+          "calificacionTexto": "Calificación gestionada por la Consejería",
           "idRed": 684
         },
         {
@@ -7209,7 +7249,7 @@
           "tipo": "radiactividad",
           "fecha": "2019-06-17",
           "calificacion": "gestionada-consejeria",
-          "calificacionTexto": "Calificaciï¿½n gestionada por la Consejerï¿½a",
+          "calificacionTexto": "Calificación gestionada por la Consejería",
           "idRed": 684
         },
         {
@@ -7217,7 +7257,7 @@
           "tipo": "radiactividad",
           "fecha": "2019-03-07",
           "calificacion": "gestionada-consejeria",
-          "calificacionTexto": "Calificaciï¿½n gestionada por la Consejerï¿½a",
+          "calificacionTexto": "Calificación gestionada por la Consejería",
           "idRed": 684
         }
       ]
@@ -7555,6 +7595,14 @@
         }
       ],
       "boletines": [
+        {
+          "id": 19067122,
+          "tipo": "control",
+          "fecha": "2026-11-13",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 1805
+        },
         {
           "id": 19028159,
           "tipo": "control",
@@ -8531,7 +8579,7 @@
           "tipo": "radiactividad",
           "fecha": "2022-03-30",
           "calificacion": "gestionada-consejeria",
-          "calificacionTexto": "Calificaciï¿½n gestionada por la Consejerï¿½a",
+          "calificacionTexto": "Calificación gestionada por la Consejería",
           "idRed": 15689
         },
         {
@@ -8682,7 +8730,7 @@
           "tipo": "radiactividad",
           "fecha": "2018-03-20",
           "calificacion": "gestionada-consejeria",
-          "calificacionTexto": "Calificaciï¿½n gestionada por la Consejerï¿½a",
+          "calificacionTexto": "Calificación gestionada por la Consejería",
           "idRed": 8295
         },
         {
@@ -9377,6 +9425,14 @@
         }
       ],
       "boletines": [
+        {
+          "id": 19041534,
+          "tipo": "control",
+          "fecha": "2026-11-09",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 4740
+        },
         {
           "id": 19014233,
           "tipo": "control",
@@ -12308,6 +12364,14 @@
         }
       ],
       "boletines": [
+        {
+          "id": 19049646,
+          "tipo": "radiactividad",
+          "fecha": "2026-11-05",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 4729
+        },
         {
           "id": 19014242,
           "tipo": "control",
@@ -16393,6 +16457,14 @@
       ],
       "boletines": [
         {
+          "id": 19035927,
+          "tipo": "control",
+          "fecha": "2026-11-09",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 604
+        },
+        {
           "id": 18916715,
           "tipo": "control",
           "fecha": "2026-10-13",
@@ -16636,6 +16708,14 @@
         }
       ],
       "boletines": [
+        {
+          "id": 19035945,
+          "tipo": "control",
+          "fecha": "2026-11-10",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 217
+        },
         {
           "id": 18936190,
           "tipo": "control",
@@ -19149,6 +19229,14 @@
       ],
       "boletines": [
         {
+          "id": 19062011,
+          "tipo": "control",
+          "fecha": "2026-11-13",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 218
+        },
+        {
           "id": 18970923,
           "tipo": "control",
           "fecha": "2026-10-30",
@@ -19406,6 +19494,22 @@
         }
       ],
       "boletines": [
+        {
+          "id": 19047133,
+          "tipo": "control",
+          "fecha": "2026-11-12",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 13578
+        },
+        {
+          "id": 19047130,
+          "tipo": "control",
+          "fecha": "2026-11-12",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 13578
+        },
         {
           "id": 18946363,
           "tipo": "control",
@@ -19802,7 +19906,7 @@
           "tipo": "radiactividad",
           "fecha": "2022-12-13",
           "calificacion": "gestionada-consejeria",
-          "calificacionTexto": "Calificaciï¿½n gestionada por la Consejerï¿½a",
+          "calificacionTexto": "Calificación gestionada por la Consejería",
           "idRed": 13578
         },
         {
@@ -19818,7 +19922,7 @@
           "tipo": "radiactividad",
           "fecha": "2022-05-09",
           "calificacion": "gestionada-consejeria",
-          "calificacionTexto": "Calificaciï¿½n gestionada por la Consejerï¿½a",
+          "calificacionTexto": "Calificación gestionada por la Consejería",
           "idRed": 20780
         },
         {
@@ -19841,7 +19945,7 @@
           "tipo": "radiactividad",
           "fecha": "2021-12-20",
           "calificacion": "gestionada-consejeria",
-          "calificacionTexto": "Calificaciï¿½n gestionada por la Consejerï¿½a",
+          "calificacionTexto": "Calificación gestionada por la Consejería",
           "idRed": 13578
         },
         {
@@ -19849,7 +19953,7 @@
           "tipo": "radiactividad",
           "fecha": "2021-05-03",
           "calificacion": "gestionada-consejeria",
-          "calificacionTexto": "Calificaciï¿½n gestionada por la Consejerï¿½a",
+          "calificacionTexto": "Calificación gestionada por la Consejería",
           "idRed": 20780
         },
         {
@@ -19882,6 +19986,37 @@
         }
       ],
       "boletines": [
+        {
+          "id": 19033845,
+          "tipo": "control",
+          "fecha": "2026-11-09",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 1766
+        },
+        {
+          "id": 19033841,
+          "tipo": "control",
+          "fecha": "2026-11-09",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 1766
+        },
+        {
+          "id": 19058004,
+          "tipo": "completo",
+          "fecha": "2026-10-23",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 1766,
+          "parametros": [
+            {
+              "nombre": "Nitrato",
+              "valor": 28,
+              "unidad": "mg/L"
+            }
+          ]
+        },
         {
           "id": 18720914,
           "tipo": "control",
@@ -20132,6 +20267,14 @@
         }
       ],
       "boletines": [
+        {
+          "id": 19033851,
+          "tipo": "control",
+          "fecha": "2026-11-09",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 374
+        },
         {
           "id": 18885565,
           "tipo": "control",
@@ -20599,6 +20742,14 @@
           "calificacion": "apta",
           "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
           "idRed": 674
+        },
+        {
+          "id": 19065341,
+          "tipo": "control",
+          "fecha": "2026-10-19",
+          "calificacion": "no-apta",
+          "calificacionTexto": "AGUA NO APTA PARA EL CONSUMO",
+          "idRed": 10247
         },
         {
           "id": 18936311,
@@ -22450,6 +22601,14 @@
         }
       ],
       "boletines": [
+        {
+          "id": 19041644,
+          "tipo": "control",
+          "fecha": "2026-11-10",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 25222
+        },
         {
           "id": 18969750,
           "tipo": "control",
@@ -24666,7 +24825,7 @@
           "tipo": "radiactividad",
           "fecha": "2022-09-19",
           "calificacion": "gestionada-consejeria",
-          "calificacionTexto": "Calificaciï¿½n gestionada por la Consejerï¿½a",
+          "calificacionTexto": "Calificación gestionada por la Consejería",
           "idRed": 181
         }
       ]
@@ -25670,6 +25829,14 @@
       ],
       "boletines": [
         {
+          "id": 19035817,
+          "tipo": "control",
+          "fecha": "2026-11-09",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 14590
+        },
+        {
           "id": 18914542,
           "tipo": "control",
           "fecha": "2026-10-06",
@@ -26418,6 +26585,14 @@
       ],
       "boletines": [
         {
+          "id": 19047115,
+          "tipo": "control",
+          "fecha": "2026-11-13",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 220
+        },
+        {
           "id": 18916656,
           "tipo": "control",
           "fecha": "2026-10-16",
@@ -26709,6 +26884,22 @@
         }
       ],
       "boletines": [
+        {
+          "id": 19035872,
+          "tipo": "control",
+          "fecha": "2026-11-10",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 222
+        },
+        {
+          "id": 19035868,
+          "tipo": "control",
+          "fecha": "2026-11-10",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 21237
+        },
         {
           "id": 18916667,
           "tipo": "control",
@@ -27816,7 +28007,7 @@
           "tipo": "radiactividad",
           "fecha": "2018-05-14",
           "calificacion": "gestionada-consejeria",
-          "calificacionTexto": "Calificaciï¿½n gestionada por la Consejerï¿½a",
+          "calificacionTexto": "Calificación gestionada por la Consejería",
           "idRed": 21237
         }
       ]
@@ -27845,6 +28036,14 @@
         }
       ],
       "boletines": [
+        {
+          "id": 19058353,
+          "tipo": "control",
+          "fecha": "2026-11-12",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 378
+        },
         {
           "id": 18948809,
           "tipo": "control",
@@ -29208,12 +29407,28 @@
       ],
       "boletines": [
         {
+          "id": 19041639,
+          "tipo": "control",
+          "fecha": "2026-11-11",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 20707
+        },
+        {
           "id": 19007237,
           "tipo": "control",
           "fecha": "2026-10-26",
           "calificacion": "apta",
           "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
           "idRed": 25533
+        },
+        {
+          "id": 19038968,
+          "tipo": "control",
+          "fecha": "2026-10-22",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 20707
         },
         {
           "id": 18950469,
@@ -29230,6 +29445,14 @@
           "calificacion": "apta",
           "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
           "idRed": 25534
+        },
+        {
+          "id": 19049931,
+          "tipo": "control",
+          "fecha": "2026-10-14",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 25532
         },
         {
           "id": 18950301,
@@ -31328,6 +31551,14 @@
       ],
       "boletines": [
         {
+          "id": 19047138,
+          "tipo": "control",
+          "fecha": "2026-11-13",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 375
+        },
+        {
           "id": 18946355,
           "tipo": "control",
           "fecha": "2026-10-23",
@@ -32280,6 +32511,14 @@
       ],
       "boletines": [
         {
+          "id": 19035085,
+          "tipo": "control",
+          "fecha": "2026-11-09",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 1765
+        },
+        {
           "id": 19001014,
           "tipo": "control",
           "fecha": "2026-11-02",
@@ -32729,9 +32968,9 @@
     "leidos": 57,
     "fallidos": 2,
     "redes": 187,
-    "boletines": 3377,
+    "boletines": 3406,
     "sinCalificacionLeida": 0,
-    "detallesDescargados": 5,
-    "peticiones": 254
+    "detallesDescargados": 1,
+    "peticiones": 250
   }
 }
