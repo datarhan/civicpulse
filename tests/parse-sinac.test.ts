@@ -7,6 +7,7 @@ import {
   calificacion,
   FRASE_CONSEJERIA,
   fraseDelMinisterio,
+  releerArchivados,
   fusionarBoletines,
   parseBoletin,
   parseDetalleRed,
@@ -405,5 +406,26 @@ describe('otras lecturas: lo que publican terceros, cotejado con el archivo', ()
     const l = cotejarLectura(OTRAS_LECTURAS_AGUA[0], sin)
     expect(l.coincide).toBe(false)
     expect(l.cotejo).not.toContain('coincide')
+  })
+})
+
+describe('releerArchivados: el archivo no arrastra la lectura vieja', () => {
+  it('repara la frase de un boletín archivado que la página ya no enseña', () => {
+    const viejo = {
+      id: 1,
+      fecha: '2022-01-13',
+      calificacion: 'gestionada-consejeria' as const,
+      calificacionTexto: 'Calificaciï¿½n gestionada por la Consejerï¿½a',
+    }
+    const sano = {
+      ...viejo,
+      id: 2,
+      calificacion: 'apta' as const,
+      calificacionTexto: 'AGUA APTA PARA EL CONSUMO',
+    }
+    const [a, b] = releerArchivados([viejo, sano])
+    expect(a.calificacionTexto).toBe(FRASE_CONSEJERIA)
+    expect(a.calificacion).toBe('gestionada-consejeria')
+    expect(b).toBe(sano)
   })
 })
