@@ -82,12 +82,16 @@ export interface AlignmentResult {
  * what selects a speaker. The loop below is the same shape; the test suite
  * asserts the two agree on real data rather than trusting that they do.
  */
-export function locateQuote(needle: string, hay: string): { coverage: number; at: number } {
+export function locateQuote(
+  needle: string,
+  hay: string,
+): { coverage: number; at: number; length: number } {
   const words = normaliseForQuoteMatch(needle).split(' ').filter(Boolean)
-  if (words.length === 0) return { coverage: 0, at: -1 }
+  if (words.length === 0) return { coverage: 0, at: -1, length: 0 }
   const haystack = normaliseForQuoteMatch(hay)
   let best = 0
   let at = -1
+  let length = 0
   for (let i = 0; i < words.length; i += 1) {
     for (let n = words.length - i; n > best; n -= 1) {
       const run = words.slice(i, i + n).join(' ')
@@ -95,11 +99,12 @@ export function locateQuote(needle: string, hay: string): { coverage: number; at
       if (found >= 0) {
         best = n
         at = found
+        length = run.length
         break
       }
     }
   }
-  return { coverage: best / words.length, at }
+  return { coverage: best / words.length, at, length }
 }
 
 /**
@@ -221,16 +226,30 @@ export function blocResolverFor(
   }
   const blocByIndex = new Map(alignment.lines.map((l) => [l.index, l.bloc]))
 
+  // Cada línea que toca la cita, no sólo la primera. Una cita que cruza un
+  // cambio de orador —una costura entre trozos de transcripción la produce sin
+  // que nadie cambie de turno— heredaba el bloque de la línea donde empezaba. Si
+  // dos líneas que toca vouchan bloques distintos, nadie puede decir cuál es: null,
+  // como hace alignSpeakerMap con los dos extremos de una línea.
   return (verbatim: string): string | null => {
-    const { coverage, at } = locateQuote(verbatim, hay)
+    const { coverage, at, length } = locateQuote(verbatim, hay)
     if (at < 0 || coverage < ALIGN_MIN_COVERAGE) return null
-    let index: number | null = null
-    for (const m of marks) {
-      if (m.at <= at) index = m.index
+    const end = at + Math.max(length, 1) - 1
+    let first: number | null = null
+    let last: number | null = null
+    for (const [k, m] of marks.entries()) {
+      if (m.at <= at) first = k
+      if (m.at <= end) last = k
       else break
     }
-    if (index === null) return null
-    return blocByIndex.get(index) ?? null
+    if (first === null || last === null) return null
+    const bloc = blocByIndex.get(marks[first].index) ?? null
+    if (bloc === null) return null
+    for (let k = first + 1; k <= last; k += 1) {
+      const other = blocByIndex.get(marks[k].index) ?? null
+      if (other !== null && other !== bloc) return null
+    }
+    return bloc
   }
 }
 
