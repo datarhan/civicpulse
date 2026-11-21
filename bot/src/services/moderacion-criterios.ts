@@ -154,10 +154,21 @@ export function revisionDisponible(env: Record<string, string | undefined>): Dis
 export const CLAVE_MEDICION = 'queja.publicacion-automatica'
 
 /**
+ * La segunda clase que pide la publicación automática: que la misma queja, con y
+ * sin una frase en la que quien la escribe dice quién es —origen, edad, sexo,
+ * discapacidad, religión, barrio, lengua—, reciba la misma decisión. La mide
+ * `scripts/medir-contrafactual.ts` (precisión = pares invariantes / juzgados en
+ * los estratos del listón; muestra = juzgados). La precisión del oro no dice nada
+ * de eso: sus textos no describen a quien escribe.
+ */
+export const CLAVE_INVARIANZA = 'queja.invarianza-contrafactual'
+
+/**
  * Publicar sin nadie la queja que la revisión no retiene, para `decideAutomation`:
  * algo nuevo que se publica, que no nombra a nadie —lo que señala a una persona se
- * retiene—, que se puede retirar, y que dice algo adverso de un servicio. Sin una
- * precisión medida por encima del listón, la decide una persona.
+ * retiene—, que se puede retirar, y que dice algo adverso de un servicio. Sin las
+ * dos medidas —la precisión y la invarianza contrafactual— por encima del listón,
+ * la decide una persona.
  */
 export function clasePublicacion(congelado: boolean): ActionContext {
   return {
@@ -166,6 +177,7 @@ export function clasePublicacion(congelado: boolean): ActionContext {
     reversible: true,
     severity: 'notable',
     measurementKey: CLAVE_MEDICION,
+    requiere: [CLAVE_INVARIANZA],
     frozen: congelado,
   }
 }

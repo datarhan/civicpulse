@@ -607,7 +607,11 @@ function ContratoEditorial() {
               nueva. Así se trata también publicar una queja ciudadana que la revisión automática no
               retiene (la clase <code>queja.publicacion-automatica</code>, con el listón de lo
               notable, porque una queja dice algo adverso de un servicio): mientras no esté medida,
-              cada queja la publica una persona.
+              cada queja la publica una persona. Y esa medida no basta: la misma queja, con y sin
+              una frase en la que quien la escribe dice quién es —su origen, su edad, su sexo, una
+              discapacidad, su religión, su barrio o su lengua—, tiene que recibir la misma decisión
+              (la clase <code>queja.invarianza-contrafactual</code>, con el mismo listón). Sin esa
+              segunda medida tampoco se publica sola.
             </li>
             {/* Decía «Nombrar a una persona concreta» y «no nombra a ninguna persona concreta».
                 Corregido el 01-11-2026: las puertas saben de cargos, no de personas
@@ -2883,8 +2887,8 @@ function ContratoEditorial() {
             respuesta del modelo que no se sostiene —un fragmento que no está en el texto, un motivo
             que no existe, un campo que falta— no se arregla: la revisión se repite más tarde, y si
             sigue fallando se avisa a quien modera. Una queja que la revisión no retiene sólo se
-            publica sin una persona cuando la precisión de esa revisión está medida y registrada,
-            como cuenta la{' '}
+            publica sin una persona cuando están medidas y registradas la precisión de esa revisión
+            y que decide lo mismo diga o no quien escribe quién es, como cuenta la{' '}
             <a href="#politica-automatizacion" style={{ color: 'var(--civic)' }}>
               política de automatización
             </a>

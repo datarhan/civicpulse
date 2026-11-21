@@ -166,7 +166,7 @@ function lineaDeRevision(q: QuejaRow, r: InfoRevision | undefined): string[] {
         ? `🤖 Revisión automática: tiene que verla una persona — ${describir(motivos)}.`
         : q.moderacion === 'pendiente'
           ? '🤖 Revisión automática: nada que retener, pero la publicación automática no está ' +
-            'permitida todavía (sin una precisión medida suficiente): la decides tú.'
+            'permitida todavía (faltan las medidas que la abren): la decides tú.'
           : '🤖 Revisión automática: nada que retener.',
     )
   }

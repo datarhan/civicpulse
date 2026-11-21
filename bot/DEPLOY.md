@@ -94,9 +94,10 @@ Optional secrets you can set now or later:
   no corre, cada queja la decide una persona como hasta ahora, y `/health` lo dice
   en `moderacion.revision` (`disponible: false`, `falta: "GEMINI_NIVEL"`).
 - `GEMINI_MODERACION_MODEL` — opcional: el modelo de la revisión, si no es
-  `gemini-2.5-flash`. Cambiarlo cambia lo que se midió: la clase
-  `queja.publicacion-automatica` de `.automation-measurements.json` se midió con un
-  modelo y una versión del prompt, y hay que medir otra vez.
+  `gemini-2.5-flash`. Cambiarlo cambia lo que se midió: las clases
+  `queja.publicacion-automatica` y `queja.invarianza-contrafactual` de
+  `.automation-measurements.json` se midieron con un modelo y una versión del prompt,
+  y hay que medir las dos otra vez.
 - `GITHUB_DISPATCH_TOKEN` — un token de acceso personal **de grano fino**, limitado a
   este repositorio (`datarhan/civicpulse`) y con un único permiso, «Actions: Read and
   write». Con él, al confirmar `/olvidar` el bot lanza `pull-quejas.yml` y la web
@@ -115,7 +116,8 @@ flyctl secrets import --app munigraph-ribarroja < secret.env && rm secret.env
 
 Con la revisión encendida, una queja limpia no se publica sola hasta que la clase
 `queja.publicacion-automatica` tenga una precisión medida y registrada por encima del
-listón de lo notable (`npm run check:automation` dice qué falta). Se mide contra los
+listón de lo notable, y la invarianza contrafactual también (abajo;
+`npm run check:automation` dice qué falta). Se mide contra los
 casos de oro con una clave del nivel de pago —el gratuito da unas veinte preguntas al
 día a este modelo, y el medidor para sin grabar nada si se agota—:
 
@@ -124,11 +126,26 @@ cd bot && node --env-file=<fichero con GEMINI_API_KEY de pago> --import tsx scri
 ```
 
 Graba `bot/tests/fixtures/moderacion-oro-respuestas.json` y dice cuántas de las que
-publicaría son seguras. Registrarla abre la publicación automática: se hace a mano, con
+publicaría son seguras. Esa medida sola no abre la publicación automática: la clase pide
+también `queja.invarianza-contrafactual`, que la misma queja con y sin una frase sobre
+quien la escribe —origen, edad, sexo, discapacidad, religión, barrio, lengua— reciba la
+misma decisión. Se mide con la misma clave, unas 1.480 preguntas:
+
+```bash
+cd bot && node --env-file=<fichero con GEMINI_API_KEY de pago> --import tsx scripts/medir-contrafactual.ts
+```
+
+Graba en `editorial/moderacion-contrafactual-2026-11-18/datos/` y escribe un informe;
+cada rotura la lee una persona antes de nada. Su precisión son los pares invariantes
+entre los juzgados (explícito, implícito, lengua) y su muestra, los juzgados.
+
+Registrar las dos abre la publicación automática: se hace a mano, con
 `npm run record-measurement` en la raíz (`--against "<modelo>@<versión del prompt>"`,
-que imprime el medidor), en un cambio que lleva también la grabación y cambia la frase
-de `/quejas` que dice que una persona revisa cada queja. `bot/tests/revision-oro.test.ts`
-y `tests/contrato-quejas.test.js` lo exigen.
+que imprimen los medidores), en un cambio que lleva también las dos grabaciones —la
+contrafactual, copiada a `bot/tests/fixtures/moderacion-contrafactual-respuestas.json`—
+y cambia la frase de `/quejas` que dice que una persona revisa cada queja.
+`bot/tests/revision-oro.test.ts`, `bot/tests/revision-contrafactual.test.ts` y
+`tests/contrato-quejas.test.js` lo exigen.
 
 ### 5. Deploy
 

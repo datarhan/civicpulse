@@ -1,5 +1,29 @@
 [
   {
+    "path": "agua.boletines.calificacion",
+    "values": {
+      "apta": 74,
+      "no-apta": 2,
+      "gestionada-consejeria": 2
+    }
+  },
+  {
+    "path": "agua.boletines.calificacionTexto",
+    "values": {
+      "AGUA APTA PARA EL CONSUMO": 74,
+      "AGUA NO APTA PARA EL CONSUMO": 2,
+      "Calificaciï¿½n gestionada por la Consejerï¿½a": 2
+    }
+  },
+  {
+    "path": "agua.boletines.tipo",
+    "values": {
+      "control": 39,
+      "completo": 35,
+      "radiactividad": 4
+    }
+  },
+  {
     "path": "officials.officials.honorific",
     "values": {
       "Sr.": 14,
@@ -33,7 +57,7 @@
   {
     "path": "plenos.items.kind",
     "values": {
-      "ordinario": 44,
+      "ordinario": 45,
       "extraordinario": 12,
       "urgente": 7
     }
@@ -41,7 +65,7 @@
   {
     "path": "promises.items.kind",
     "values": {
-      "anuncio-gobierno": 11,
+      "anuncio-gobierno": 13,
       "enmienda-pleno": 1
     }
   },
@@ -49,7 +73,7 @@
     "path": "promises.items.status",
     "values": {
       "en-progreso": 9,
-      "documentada": 3
+      "documentada": 5
     }
   },
   {
@@ -59,19 +83,20 @@
       "movilidad": 1,
       "fiscal": 2,
       "cultura": 2,
-      "deporte": 2,
+      "deporte": 3,
       "urbanismo": 1,
       "educacion": 1,
       "social": 1,
-      "medio-ambiente": 1
+      "medio-ambiente": 1,
+      "vivienda": 1
     }
   },
   {
     "path": "tenders.contracts.contractType",
     "values": {
-      "services": 425,
+      "services": 422,
       "other": 14,
-      "supplies": 166,
+      "supplies": 165,
       "construction": 198,
       "patrimonial": 6,
       "public_services_management": 4
@@ -80,8 +105,8 @@
   {
     "path": "tenders.contracts.processType",
     "values": {
-      "restricted": 86,
-      "open": 202,
+      "restricted": 79,
+      "open": 205,
       "minor_contract": 191,
       "negotiated_without_publicity": 103,
       "open_simplified": 226,
@@ -91,18 +116,18 @@
   {
     "path": "tenders.contracts.status",
     "values": {
-      "awarded": 398,
-      "formalized": 317,
+      "awarded": 386,
+      "formalized": 326,
       "unknown": 33,
       "void": 49,
-      "revoked": 7,
+      "revoked": 6,
       "abandoned": 9
     }
   },
   {
     "path": "tenders.tenders.contractType",
     "values": {
-      "services": 219,
+      "services": 220,
       "supplies": 77,
       "construction": 112,
       "patrimonial": 9,
@@ -115,7 +140,7 @@
     "path": "tenders.tenders.processType",
     "values": {
       "restricted": 17,
-      "open": 128,
+      "open": 129,
       "open_simplified": 181,
       "minor_contract": 1,
       "negotiated_without_publicity": 103,
@@ -125,48 +150,21 @@
   {
     "path": "tenders.tenders.sourceStatus",
     "values": {
-      "abandoned": 7,
-      "provisionally_awarded": 23,
-      "void": 7,
-      "revoked": 114,
-      "awarded": 277,
+      "abandoned": 8,
+      "provisionally_awarded": 24,
+      "void": 5,
+      "revoked": 112,
+      "awarded": 280,
       "formalized": 2
     }
   },
   {
     "path": "tenders.tenders.status",
     "values": {
-      "abandoned": 7,
-      "provisionally_awarded": 23,
-      "void": 7,
-      "revoked": 114,
-      "awarded": 277,
-      "formalized": 2,
-      "unknown": 1
-    }
-  },
-  {
-    "path": "agua.boletines.calificacion",
-    "values": {
-      "apta": 71,
-      "no-apta": 2,
-      "gestionada-consejeria": 2
-    }
-  },
-  {
-    "path": "agua.boletines.calificacionTexto",
-    "values": {
-      "AGUA APTA PARA EL CONSUMO": 71,
-      "AGUA NO APTA PARA EL CONSUMO": 2,
-      "Calificaciï¿½n gestionada por la Consejerï¿½a": 2
-    }
-  },
-  {
-    "path": "agua.boletines.tipo",
-    "values": {
-      "control": 37,
-      "completo": 34,
-      "radiactividad": 4
+      "unknown": 9,
+      "evaluation": 29,
+      "awarded": 392,
+      "annulled": 2
     }
   }
 ]

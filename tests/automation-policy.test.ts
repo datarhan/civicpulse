@@ -176,6 +176,64 @@ describe('Tier B — measurement is the unlock, and the default is gated', () =>
   })
 })
 
+describe('requiere — a second property that must be measured too', () => {
+  // The bot's complaint class needs its precision AND the counterfactual
+  // invariance of the review: a precision averaged over texts with no
+  // self-described writer says nothing about that property, so on it the class
+  // is unmeasured, and unmeasured means gated.
+  const SEGUNDA = 'finding.informational.bloc.invariance'
+  const base = {
+    kind: 'publish-finding',
+    reversible: true,
+    measurementKey: 'finding.informational.bloc',
+    requiere: [SEGUNDA],
+  } as const
+  const segunda: Measurement = { ...GOOD, key: SEGUNDA }
+
+  it('the primary measurement alone no longer opens it, and names the missing key', () => {
+    const d = decideAutomation(base, [GOOD], NOW)
+    expect(d.allow).toBe(false)
+    expect(d.tier).toBe('human')
+    expect(d.missingMeasurement).toBe(SEGUNDA)
+    expect(explainMissingMeasurement(d)).toContain(SEGUNDA)
+  })
+
+  it('both clearing the bar → measured', () => {
+    const d = decideAutomation(base, [GOOD, segunda], NOW)
+    expect(d.allow).toBe(true)
+    expect(d.tier).toBe('measured')
+  })
+
+  it('the second alone does not open it: the primary is checked first', () => {
+    const d = decideAutomation(base, [segunda], NOW)
+    expect(d.allow).toBe(false)
+    expect(d.missingMeasurement).toBe(base.measurementKey)
+  })
+
+  it('the second faces the same age, sample and lower-bound checks', () => {
+    const stale = { ...segunda, measuredAt: daysAgo(MEASUREMENT_MAX_AGE_DAYS + 1) }
+    const tiny = { ...segunda, precision: 1, sample: PUBLISH_MIN_SAMPLE - 1 }
+    const under = { ...segunda, precision: PUBLISH_MIN_PRECISION }
+    for (const malo of [stale, tiny, under]) {
+      const d = decideAutomation(base, [GOOD, malo], NOW)
+      expect(d.allow).toBe(false)
+      expect(d.missingMeasurement).toBe(SEGUNDA)
+    }
+  })
+
+  it('freeze still outranks both', () => {
+    expect(decideAutomation({ ...base, frozen: true }, [GOOD, segunda], NOW).allow).toBe(false)
+  })
+
+  it('a class with no requiere behaves exactly as before', () => {
+    const { requiere: _sin, ...sinRequiere } = base
+    expect(decideAutomation(sinRequiere, [GOOD], NOW)).toEqual(
+      decideAutomation({ ...sinRequiere, requiere: [] }, [GOOD], NOW),
+    )
+    expect(decideAutomation(sinRequiere, [GOOD], NOW).allow).toBe(true)
+  })
+})
+
 describe('the bar scales with editorial exposure', () => {
   const at = (precision: number) => [{ ...GOOD, precision }]
 

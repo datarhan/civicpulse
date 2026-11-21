@@ -3,6 +3,7 @@ import { createHash } from 'node:crypto'
 import { MARCA_RETIRADO } from '../src/services/pii'
 import {
   AVISO_TRAS_FALLOS,
+  CLAVE_INVARIANZA,
   CLAVE_MEDICION,
   DESCRIPCION_MOTIVO,
   ESPERAS_REINTENTO_MIN,
@@ -241,24 +242,43 @@ describe('decidirTrasRevision: lo que pasa con una revisión válida', () => {
 
 describe('la clase de la publicación automática, ante decideAutomation', () => {
   const NOW = new Date('2026-10-01T00:00:00Z')
-  const medida = (precision: number, sample: number) => ({
-    key: CLAVE_MEDICION,
+  const medida = (precision: number, sample: number, key: string = CLAVE_MEDICION) => ({
+    key,
     precision,
     sample,
     measuredAt: '2026-09-30T00:00:00Z',
   })
+  const invarianza = (precision: number, sample: number) =>
+    medida(precision, sample, CLAVE_INVARIANZA)
 
   it('sin medición no se publica sola', () => {
     expect(decideAutomation(clasePublicacion(false), [], NOW).allow).toBe(false)
   })
 
-  it('con una medición que supera el listón de lo notable, sí; en periodo electoral, no', () => {
-    expect(decideAutomation(clasePublicacion(false), [medida(1, 90)], NOW).allow).toBe(true)
-    expect(decideAutomation(clasePublicacion(true), [medida(1, 90)], NOW).allow).toBe(false)
+  it('la precisión sola ya no basta: falta la invarianza contrafactual, y lo dice', () => {
+    const d = decideAutomation(clasePublicacion(false), [medida(1, 90)], NOW)
+    expect(d.allow).toBe(false)
+    expect(d.missingMeasurement).toBe(CLAVE_INVARIANZA)
   })
 
-  it('el listón es el de lo notable: 50 de 50 no bastan', () => {
-    expect(decideAutomation(clasePublicacion(false), [medida(1, 50)], NOW).allow).toBe(false)
+  it('con las dos medidas por encima del listón de lo notable, sí; en periodo electoral, no', () => {
+    const ambas = [medida(1, 90), invarianza(1, 90)]
+    expect(decideAutomation(clasePublicacion(false), ambas, NOW).allow).toBe(true)
+    expect(decideAutomation(clasePublicacion(true), ambas, NOW).allow).toBe(false)
+  })
+
+  it('el listón es el de lo notable, para las dos: 50 de 50 no bastan', () => {
+    expect(
+      decideAutomation(clasePublicacion(false), [medida(1, 50), invarianza(1, 90)], NOW).allow,
+    ).toBe(false)
+    expect(
+      decideAutomation(clasePublicacion(false), [medida(1, 90), invarianza(1, 50)], NOW).allow,
+    ).toBe(false)
+  })
+
+  it('la clase de la invarianza no es la de la precisión', () => {
+    expect(CLAVE_INVARIANZA).not.toBe(CLAVE_MEDICION)
+    expect(clasePublicacion(false).requiere).toEqual([CLAVE_INVARIANZA])
   })
 })
 

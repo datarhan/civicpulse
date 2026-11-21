@@ -129,6 +129,18 @@ function main() {
   }
 
   const missing = rows.map(explainMissingMeasurement).filter(Boolean) as string[]
+  // A refusal names only the first key that failed. A class that also `requiere`
+  // further keys needs those recorded too: list every unrecorded one, or the
+  // backlog would show half of what stands between the class and automation.
+  for (const s of SURFACES) {
+    for (const key of s.ctx.requiere ?? []) {
+      if (measurements.some((m) => m.key === key)) continue
+      const d = decideAutomation({ ...s.ctx, frozen }, measurements)
+      if (d.allow) continue
+      const why = explainMissingMeasurement({ ...d, missingMeasurement: key })
+      if (why) missing.push(why)
+    }
+  }
   if (missing.length > 0) {
     process.stdout.write(`\nTo automate the gated classes, record these measurements:\n`)
     for (const m of [...new Set(missing)]) process.stdout.write(`  · ${m}\n`)

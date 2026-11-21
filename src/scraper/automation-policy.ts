@@ -160,6 +160,16 @@ export interface ActionContext {
   reversible?: boolean
   /** Which `Measurement.key` governs this action. */
   measurementKey?: string
+  /**
+   * Further measurement keys that must ALSO clear, checked after `measurementKey`
+   * with the same age, sample and lower-bound rules and the same bar. For a
+   * property the primary figure cannot speak to: the bot's complaint class needs
+   * its precision and the counterfactual invariance of its review, because a
+   * precision averaged over texts whose writer says nothing about themselves is
+   * silent on whether a self-described trait changes the decision — and on that
+   * property the class is unmeasured, which means gated.
+   */
+  requiere?: readonly string[]
   /** Editorial exposure — selects the precision bar. `critical` never automates. */
   severity?: 'informational' | 'notable' | 'critical'
   /** LOREG electoral freeze active. */
@@ -249,65 +259,116 @@ export function decideAutomation(
     }
   }
 
-  const m = measurements.find((x) => x.key === ctx.measurementKey)
+  const primary = checkMeasurement(ctx.measurementKey, ctx.severity, measurements, now)
+  if ('decision' in primary) return primary.decision
+
+  // Every further key faces the same checks, in order. A refusal here always
+  // names the key, so `check:automation` lists it in the backlog: the primary
+  // having cleared, what is missing is this one.
+  const extra: string[] = []
+  for (const key of ctx.requiere ?? []) {
+    const r = checkMeasurement(key, ctx.severity, measurements, now)
+    if ('decision' in r) {
+      return {
+        ...r.decision,
+        reason: `${ctx.measurementKey} clears, but ${r.decision.reason}`,
+        missingMeasurement: key,
+      }
+    }
+    extra.push(r.reason)
+  }
+
+  return {
+    allow: true,
+    tier: 'measured',
+    reason: [primary.reason, ...extra].join('; '),
+    bar: primary.bar,
+  }
+}
+
+type Check = { ok: false; decision: Decision } | { ok: true; reason: string; bar: number }
+
+/**
+ * The evidence checks for ONE measurement key: present, fresh, sampled enough,
+ * and its lower bound over the bar. Shared by the primary key and every
+ * `requiere` key, so the two cannot drift.
+ */
+function checkMeasurement(
+  key: string,
+  severity: ActionContext['severity'],
+  measurements: readonly Measurement[],
+  now: Date,
+): Check {
+  const m = measurements.find((x) => x.key === key)
   if (!m) {
     return {
-      allow: false,
-      tier: 'human',
-      reason: `no recorded precision for ${ctx.measurementKey} — unmeasured means gated`,
-      missingMeasurement: ctx.measurementKey,
-      bar: precisionBarFor(ctx.severity),
+      ok: false,
+      decision: {
+        allow: false,
+        tier: 'human',
+        reason: `no recorded precision for ${key} — unmeasured means gated`,
+        missingMeasurement: key,
+        bar: precisionBarFor(severity),
+      },
     }
   }
 
   const ageDays = (now.getTime() - new Date(m.measuredAt).getTime()) / 86_400_000
   if (!Number.isFinite(ageDays) || ageDays > MEASUREMENT_MAX_AGE_DAYS) {
     return {
-      allow: false,
-      tier: 'human',
-      reason:
-        `measurement for ${ctx.measurementKey} is ${Math.round(ageDays)} days old ` +
-        `(max ${MEASUREMENT_MAX_AGE_DAYS}) — re-measure before publishing unattended`,
-      missingMeasurement: ctx.measurementKey,
+      ok: false,
+      decision: {
+        allow: false,
+        tier: 'human',
+        reason:
+          `measurement for ${key} is ${Math.round(ageDays)} days old ` +
+          `(max ${MEASUREMENT_MAX_AGE_DAYS}) — re-measure before publishing unattended`,
+        missingMeasurement: key,
+      },
     }
   }
 
   if (m.sample < PUBLISH_MIN_SAMPLE) {
     return {
-      allow: false,
-      tier: 'human',
-      reason:
-        `${ctx.measurementKey} measured on only ${m.sample} item(s) ` +
-        `(need ${PUBLISH_MIN_SAMPLE}) — too few to be evidence`,
-      missingMeasurement: ctx.measurementKey,
+      ok: false,
+      decision: {
+        allow: false,
+        tier: 'human',
+        reason:
+          `${key} measured on only ${m.sample} item(s) ` +
+          `(need ${PUBLISH_MIN_SAMPLE}) — too few to be evidence`,
+        missingMeasurement: key,
+      },
     }
   }
 
-  const bar = precisionBarFor(ctx.severity)
+  const bar = precisionBarFor(severity)
   // Compare the LOWER CONFIDENCE BOUND, not the point estimate. See
   // wilsonLowerBound: 48/52 reads as 0.923 and cannot be distinguished from
   // 0.85 at that sample size.
   const lower = wilsonLowerBound(Math.round(m.precision * m.sample), m.sample)
   if (lower < bar) {
     return {
-      allow: false,
-      tier: 'human',
-      reason:
-        `${ctx.measurementKey} measured ${m.precision.toFixed(3)} on ${m.sample} items, but the ` +
-        `95% lower bound is ${lower.toFixed(3)}, under the ${bar} bar` +
-        `${ctx.severity ? ` for severity=${ctx.severity}` : ''} — the sample cannot tell which ` +
-        `side of the bar this class is on. More judged items, or a higher measured precision.`,
-      bar,
+      ok: false,
+      decision: {
+        allow: false,
+        tier: 'human',
+        reason:
+          `${key} measured ${m.precision.toFixed(3)} on ${m.sample} items, but the ` +
+          `95% lower bound is ${lower.toFixed(3)}, under the ${bar} bar` +
+          `${severity ? ` for severity=${severity}` : ''} — the sample cannot tell which ` +
+          `side of the bar this class is on. More judged items, or a higher measured precision.`,
+        bar,
+      },
     }
   }
 
   return {
-    allow: true,
-    tier: 'measured',
+    ok: true,
     reason:
-      `${ctx.measurementKey} measured ${m.precision.toFixed(3)} on ${m.sample} items ` +
+      `${key} measured ${m.precision.toFixed(3)} on ${m.sample} items ` +
       `(95% lower bound ${lower.toFixed(3)}) — clears the ${bar} bar` +
-      `${ctx.severity ? ` for severity=${ctx.severity}` : ''}`,
+      `${severity ? ` for severity=${severity}` : ''}`,
     bar,
   }
 }
