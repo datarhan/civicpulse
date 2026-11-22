@@ -22,6 +22,14 @@
 #   · LOREG electoral freeze active → CLI exits 0 without writing.
 set -euo pipefail
 
+# RETIRADO el 22-11-2026 (decisión 4.1, editorial/flujo-plenos-2026-11-20/plan.md):
+# un hallazgo nuevo lo escribe y lo firma una persona, y este envoltorio hacía
+# commit + push de lo que publicara el auto-curador. No tiene agente de launchd
+# instalado; esta salida impide que alguien lo reinstale sin leer por qué.
+# El borrador a mano sigue: npm run auto-curate -- --dry-run --max 5
+echo "auto-curate-weekly.sh está retirado desde el 22-11-2026 — ver su cabecera" >&2
+exit 1
+
 cd "$(dirname "$0")/.."
 REPO_DIR="$(pwd -P)"
 LOG_DIR="$REPO_DIR/scripts/logs"

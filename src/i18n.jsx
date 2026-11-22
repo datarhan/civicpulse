@@ -1055,7 +1055,7 @@ export const CATALOGUE = {
     'declaraciones.eyebrow': 'Verificación de declaraciones',
     'declaraciones.title': 'Declaraciones en pleno',
     'declaraciones.subtitle':
-      'Lo dicho en los plenos municipales que un extractor automático detecta y la puerta editorial deja enseñar. El verificador sólo lo coteja con los datos abiertos publicados (PLACSP, BDNS, promesas electorales) cuando trae un importe en euros, cita una obra por su nombre o es una promesa. La atribución, cuando la hay, es a nivel de grupo. El veredicto de cada fila lo pone un proceso automático; si alguien lo cambió después, la tarjeta dice quién, o que no consta. Las declaraciones sin atribuir o sin datos se mantienen porque se han hecho, salvo lo que la puerta retiene, como toda acusación sin un dato que la respalde. Llevar una a un hallazgo no la saca de esa puerta, y los hallazgos también los redacta un proceso automático, salvo los que firma una persona: cada ficha dice quién.',
+      'Lo dicho en los plenos municipales que un extractor automático detecta y la puerta editorial deja enseñar. El verificador sólo lo coteja con los datos abiertos publicados (PLACSP, BDNS, promesas electorales) cuando trae un importe en euros, cita una obra por su nombre o es una promesa. La atribución, cuando la hay, es a nivel de grupo. El veredicto de cada fila lo pone un proceso automático; si alguien lo cambió después, la tarjeta dice quién, o que no consta. Las declaraciones sin atribuir o sin datos se mantienen porque se han hecho, salvo lo que la puerta retiene, como toda acusación sin un dato que la respalde. Llevar una a un hallazgo no la saca de esa puerta, y la mayoría de los hallazgos los redactó un proceso automático que dejó de correr en noviembre de 2026; los nuevos los firma una persona, y cada ficha dice quién.',
     'declaraciones.stat.total': 'Total',
     'declaraciones.stat.conEvidencia': 'Cotejadas',
     'declaraciones.filter.verdict': 'Verdicto',
@@ -2178,7 +2178,7 @@ export const CATALOGUE = {
     'hallazgos.lista.cabecera.automatica': 'Redacción automática · {maquina} de {total}',
     'hallazgos.lista.titulo': 'Hallazgos sobre declaraciones en pleno',
     'hallazgos.lista.intro':
-      'Cada hallazgo toma una o más afirmaciones literales de un pleno y las sitúa en su contexto documental (contratos, subvenciones, presupuesto, promesas). Los redacta un proceso automático bajo reglas fijas, salvo los que llevan la firma de una persona; el pie de cada ficha dice quién la editó, y un nombre como «auto-curation-v1» significa que el texto lo escribió una máquina. Cada ficha lista los documentos con los que se ha cotejado —lo corroboren o no— y da derecho de réplica literal al grupo afectado.',
+      'Cada hallazgo toma una o más afirmaciones literales de un pleno y las sitúa en su contexto documental (contratos, subvenciones, presupuesto, promesas). Hasta agosto de 2026 los redactaba un proceso automático bajo reglas fijas, salvo los que llevan la firma de una persona; desde noviembre ese proceso ya no corre, y uno nuevo lo firma una persona; el pie de cada ficha dice quién la editó, y un nombre como «auto-curation-v1» significa que el texto lo escribió una máquina. Cada ficha lista los documentos con los que se ha cotejado —lo corroboren o no— y da derecho de réplica literal al grupo afectado.',
     'hallazgos.lista.eficiencia':
       'Esta página verifica **declaraciones en pleno**. Los hallazgos sobre **cuánto cuesta cada servicio** —que no citan a nadie porque no los dijo nadie: salen de las cifras que el ayuntamiento remite al ministerio— se publican junto a los datos de los que salen, en {enlace}.',
     'hallazgos.lista.eficiencia.enlace': 'eficiencia',
@@ -2200,7 +2200,7 @@ export const CATALOGUE = {
       'Publicados y después retirados. No se reproduce lo que decían: cada uno se retiró por lo que decía —su motivo va debajo de su huella—, así que republicar el texto aquí devolvería a la web exactamente aquello que la retirada quita. Queda la huella — {sha256} del original, por si alguien conserva una copia y quiere comprobar que coincide.',
     'hallazgos.lista.como.titulo': 'Cómo se escribe un hallazgo.',
     'hallazgos.lista.como.texto':
-      'Un proceso automático agrupa las afirmaciones extraídas de las transcripciones del pleno, las coteja con la base documental municipal y redacta el título y el resumen bajo reglas fijas{cuantas}. El pie de cada ficha dice quién la editó, y un nombre como «auto-curation-v1» significa que el texto lo escribió una máquina, no una persona. Los grupos afectados pueden responder con cita literal por la {enlace}.',
+      'Hasta agosto de 2026, un proceso automático agrupaba las afirmaciones extraídas de las transcripciones del pleno, las cotejaba con la base documental municipal y redactaba el título y el resumen bajo reglas fijas{cuantas}. Ese proceso ya no corre: un hallazgo nuevo lo escribe y lo firma una persona. El pie de cada ficha dice quién la editó, y un nombre como «auto-curation-v1» significa que el texto lo escribió una máquina, no una persona. Los grupos afectados pueden responder con cita literal por la {enlace}.',
     'hallazgos.lista.como.cuantas':
       ': de los {total} publicados, **{maquina} los firma una máquina**',
     'hallazgos.lista.como.enlace': 'vía de rectificación',
@@ -2338,7 +2338,7 @@ export const CATALOGUE = {
     'findings.citas.acusacion.sinEditor':
       '{base}; el pie de la ficha dice quién la editó. {cierre}',
     'findings.citas.acusacion.maquina':
-      '{base}, y la ficha la editó un proceso automático ({quien}): es lo habitual en esta página —casi todas las fichas las redacta el mismo proceso—, no una excepción decidida para este caso. {cierre}',
+      '{base}, y la ficha la editó un proceso automático ({quien}): es lo habitual en esta página —casi todas las fichas las redactó el mismo proceso—, no una excepción decidida para este caso. {cierre}',
     'findings.citas.acusacion.persona': '{base}, y la ficha la editó {quien}. {cierre}',
     'cargos.detalle.actividad.eyebrow': 'Actividad de sus áreas',
     'cargos.detalle.actividad.title': 'Qué se ha debatido y verificado en sus concejalías',
@@ -4674,7 +4674,7 @@ export const CATALOGUE = {
     'declaraciones.eyebrow': 'Verificació de declaracions',
     'declaraciones.title': 'Declaracions en plenari',
     'declaraciones.subtitle':
-      "El que s'ha dit als plens municipals que un extractor automàtic detecta i la porta editorial deixa mostrar. El verificador només ho acara amb les dades obertes publicades (PLACSP, BDNS, promeses electorals) quan porta un import en euros, cita una obra pel seu nom o és una promesa. L'atribució, quan n'hi ha, és a nivell de grup. El veredicte de cada fila el posa un procés automàtic; si algú el va canviar després, la targeta diu qui, o que no consta. Les declaracions sense atribuir o sense dades es mantenen perquè es van fer, excepte el que la porta reté, com tota acusació sense una dada que la recolze. Portar-ne una a una troballa no la trau d'eixa porta, i les troballes també les redacta un procés automàtic, excepte les que signa una persona: cada fitxa diu qui.",
+      "El que s'ha dit als plens municipals que un extractor automàtic detecta i la porta editorial deixa mostrar. El verificador només ho acara amb les dades obertes publicades (PLACSP, BDNS, promeses electorals) quan porta un import en euros, cita una obra pel seu nom o és una promesa. L'atribució, quan n'hi ha, és a nivell de grup. El veredicte de cada fila el posa un procés automàtic; si algú el va canviar després, la targeta diu qui, o que no consta. Les declaracions sense atribuir o sense dades es mantenen perquè es van fer, excepte el que la porta reté, com tota acusació sense una dada que la recolze. Portar-ne una a una troballa no la trau d'eixa porta, i la majoria de les troballes les va redactar un procés automàtic que va deixar de funcionar al novembre de 2026; les noves les signa una persona, i cada fitxa diu qui.",
     'declaraciones.stat.total': 'Total',
     'declaraciones.stat.conEvidencia': 'Acarades',
     'declaraciones.filter.verdict': 'Veredicte',
@@ -5687,7 +5687,7 @@ export const CATALOGUE = {
     'hallazgos.lista.cabecera.automatica': 'Redacció automàtica · {maquina} de {total}',
     'hallazgos.lista.titulo': 'Troballes sobre declaracions en ple',
     'hallazgos.lista.intro':
-      'Cada troballa pren una o més afirmacions literals d’un ple i les situa en el seu context documental (contractes, subvencions, pressupost, promeses). Les redacta un procés automàtic amb regles fixes, llevat de les que porten la firma d’una persona; el peu de cada fitxa diu qui la va editar, i un nom com «auto-curation-v1» significa que el text el va escriure una màquina. Cada fitxa llista els documents amb què s’ha acarat —ho corroboren o no— i dona dret de rèplica literal al grup afectat.',
+      'Cada troballa pren una o més afirmacions literals d’un ple i les situa en el seu context documental (contractes, subvencions, pressupost, promeses). Fins a l’agost de 2026 les redactava un procés automàtic amb regles fixes, llevat de les que porten la firma d’una persona; des del novembre eixe procés ja no funciona, i una de nova la signa una persona; el peu de cada fitxa diu qui la va editar, i un nom com «auto-curation-v1» significa que el text el va escriure una màquina. Cada fitxa llista els documents amb què s’ha acarat —ho corroboren o no— i dona dret de rèplica literal al grup afectat.',
     'hallazgos.lista.eficiencia':
       'Esta pàgina verifica **declaracions en ple**. Les troballes sobre **quant costa cada servei** —que no citen ningú perquè no les va dir ningú: ixen de les xifres que l’ajuntament remet al ministeri— es publiquen al costat de les dades de què ixen, en {enlace}.',
     'hallazgos.lista.eficiencia.enlace': 'eficiència',
@@ -5709,7 +5709,7 @@ export const CATALOGUE = {
       'Publicades i després retirades. No es reprodueix el que deien: cadascuna es va retirar pel que deia —el seu motiu va davall de la seua empremta—, així que republicar el text ací tornaria a la web exactament allò que la retirada lleva. En queda l’empremta — {sha256} de l’original, per si algú en conserva una còpia i vol comprovar que coincideix.',
     'hallazgos.lista.como.titulo': 'Com s’escriu una troballa.',
     'hallazgos.lista.como.texto':
-      'Un procés automàtic agrupa les afirmacions extretes de les transcripcions del ple, les acara amb la base documental municipal i redacta el títol i el resum amb regles fixes{cuantas}. El peu de cada fitxa diu qui la va editar, i un nom com «auto-curation-v1» significa que el text el va escriure una màquina, no una persona. Els grups afectats poden respondre amb una cita literal per la {enlace}.',
+      'Fins a l’agost de 2026, un procés automàtic agrupava les afirmacions extretes de les transcripcions del ple, les acarava amb la base documental municipal i redactava el títol i el resum amb regles fixes{cuantas}. Eixe procés ja no funciona: una troballa nova l’escriu i la signa una persona. El peu de cada fitxa diu qui la va editar, i un nom com «auto-curation-v1» significa que el text el va escriure una màquina, no una persona. Els grups afectats poden respondre amb una cita literal per la {enlace}.',
     'hallazgos.lista.como.cuantas':
       ': de les {total} publicades, **{maquina} les signa una màquina**',
     'hallazgos.lista.como.enlace': 'via de rectificació',
@@ -5813,7 +5813,7 @@ export const CATALOGUE = {
     'findings.citas.acusacion.sinEditor':
       '{base}; el peu de la fitxa diu qui la va editar. {cierre}',
     'findings.citas.acusacion.maquina':
-      '{base}, i la fitxa la va editar un procés automàtic ({quien}): és el més habitual en esta pàgina —quasi totes les fitxes les redacta el mateix procés—, no una excepció decidida per a este cas. {cierre}',
+      '{base}, i la fitxa la va editar un procés automàtic ({quien}): és el més habitual en esta pàgina —quasi totes les fitxes les va redactar el mateix procés—, no una excepció decidida per a este cas. {cierre}',
     'findings.citas.acusacion.persona': '{base}, i la fitxa la va editar {quien}. {cierre}',
     'cargos.detalle.actividad.eyebrow': 'Activitat de les seues àrees',
     'cargos.detalle.actividad.title': "Què s'ha debatut i verificat a les seues regidories",

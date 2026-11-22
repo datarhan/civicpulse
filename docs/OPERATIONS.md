@@ -146,8 +146,8 @@ When a push is rejected, every local agent that publishes runs `pull --rebase`, 
 first, which is what happened to `94359907` on 2026-09-16. `scrape-ci-blocked` and
 `auto-curate-promises` do it through `cron_git_push_con_reintento`
 (`scripts/lib/cron-git.sh`), up to five attempts; `hallazgos` and `press-lab` keep
-their own copy, with one retry. `auto-curate-weekly.sh` does not retry, and its agent is
-disabled. A rejection left unretried is worse than one lost run: once the nightly
+their own copy, with one retry. `auto-curate-weekly.sh` was retired on 2026-11-22 and exits 1 at its top: a
+new finding is written and signed by a person. A rejection left unretried is worse than one lost run: once the nightly
 rewrites the same files, every agent's opening pull conflicts, and only
 `scrape-ci-blocked` can resolve that by itself (see «When the push is rejected»).
 
@@ -266,14 +266,14 @@ and GitHub emails the failure.
 
 Anything needing an LLM backend or a residential IP runs here, not in CI.
 
-| When            | How     | Script                                                                                                                                                                                                                                                                                                 |
-| --------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| When            | How     | Script                                                                                                                                                                                                                                                                                                                      |
+| --------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 06:45 daily     | launchd | `scrape-ci-blocked.sh` — the adapters runners cannot reach or that do not fit in the nightly (`paro`, `pleno-agendas`, `asociaciones`, `obras`, `procesos-selectivos`, `sindicatura`, `consell-cv`, `sindic-expedientes`, `rendicion-cuentas`, `transparency`, `pleno-actas`, `pleno-videos-regmeet`, `agua`, `agua-pares`) |
-| 07:30 Mon + Thu | launchd | `review-sweep.sh` — reads every public route, plus one data-picked instance of each `:param` route, as a visitor; then `triage:senalamientos` leaves `editorial/senalamientos/<date>.md`, each live flag with its figures located and a second reading (report-only, commits nothing)                  |
-| 08:30 Mon       | launchd | `auto-curate-promises-daily.sh` — `/promesas` status-change miner                                                                                                                                                                                                                                      |
-| 09:30 Mon + Thu | launchd | `hallazgos-pipeline.sh` — transcribe → extract → verify → auto-curate → push                                                                                                                                                                                                                           |
-| 10:15 Mon       | launchd | `press-lab-pipeline.sh` — `/laboratorio/prensa` press fact-check pass                                                                                                                                                                                                                                  |
-| 11:00 daily     | cron    | `monitor-health-cron.sh` — first `colas:rehacer` (rebuilds curator queues gone stale by a retraction, never one holding an unapplied choice), then the digest                                                                                                                                          |
+| 07:30 Mon + Thu | launchd | `review-sweep.sh` — reads every public route, plus one data-picked instance of each `:param` route, as a visitor; then `triage:senalamientos` leaves `editorial/senalamientos/<date>.md`, each live flag with its figures located and a second reading (report-only, commits nothing)                                       |
+| 08:30 Mon       | launchd | `auto-curate-promises-daily.sh` — `/promesas` status-change miner                                                                                                                                                                                                                                                           |
+| 09:30 Mon + Thu | launchd | `hallazgos-pipeline.sh` — transcribe → extract → verify → push (no auto-curate since 2026-11-22)                                                                                                                                                                                                                            |
+| 10:15 Mon       | launchd | `press-lab-pipeline.sh` — `/laboratorio/prensa` press fact-check pass                                                                                                                                                                                                                                                       |
+| 11:00 daily     | cron    | `monitor-health-cron.sh` — first `colas:rehacer` (rebuilds curator queues gone stale by a retraction, never one holding an unapplied choice), then the digest                                                                                                                                                               |
 
 ### Cadence: why the LLM agents are not daily
 
@@ -356,7 +356,7 @@ subcommand checks keychain, PATH and TCC) and
 one scheduler: leaving the old `crontab` line behind runs it twice.
 
 `scrape-ci-blocked.sh`, `auto-curate-promises-daily.sh`, `hallazgos-pipeline.sh`,
-`press-lab-pipeline.sh` and the currently disabled `auto-curate-weekly.sh` all
+`press-lab-pipeline.sh` and the retired `auto-curate-weekly.sh` all
 commit and push, and all share `scripts/lib/cron-git.sh`. `review-sweep.sh`
 shares the branch guard and nothing else: it is report-only and writes no
 commit, because a reader-review finding is a lead for a person, not data. It **refuses to run
