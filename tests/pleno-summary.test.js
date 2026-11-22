@@ -233,6 +233,51 @@ describe('resumenPlenos', () => {
     ).toBe(embudo.extraidas)
   })
 
+  /**
+   * Una declaración cuyo literal es la traducción de un motor sustituido, o
+   * texto que se inventó, tampoco se sirve. Sin restarla de `retenidas`, la
+   * tarjeta la llamaría «acusación sin contrastar».
+   */
+  it('los literales que no son lo que se dijo salen de las retenidas y tienen su fila', () => {
+    const conTraducidas = {
+      ...snapshots,
+      manifest: {
+        ...snapshots.manifest,
+        totals: {
+          ...snapshots.manifest.totals,
+          // 23 no servidas: 20 acusaciones y tres citas; dos traducidas y una alucinada.
+          retenidas: { acusacion_publica: 20, cita_obra: 3 },
+          retenidasSinProcedencia: 0,
+          literalNoServible: {
+            porMotivo: { 'literal-traducido': 2, 'literal-alucinado': 1 },
+            evaluadas: 50,
+            sinVigente: 0,
+            sinJuzgar: {
+              'fuente-sin-lengua': 4,
+              'sin-linea-sustituida': 0,
+              'vigente-sin-lengua': 3,
+            },
+          },
+        },
+      },
+    }
+    const { embudo } = resumenPlenos(conTraducidas)
+    expect(embudo.retenidas).toBe(20)
+    expect(embudo.literalNoServible).toEqual({ 'literal-traducido': 2, 'literal-alucinado': 1 })
+    expect(
+      embudo.retenidas +
+        embudo.literalNoServible['literal-traducido'] +
+        embudo.literalNoServible['literal-alucinado'] +
+        embudo.sinDatos +
+        embudo.parcial +
+        embudo.verificado,
+    ).toBe(embudo.extraidas)
+  })
+
+  it('un manifiesto de antes de los literales no servibles no inventa ninguno', () => {
+    expect(resumenPlenos(snapshots).embudo.literalNoServible).toEqual({})
+  })
+
   it('un manifiesto de antes de las retiradas no inventa ninguna', () => {
     const { embudo } = resumenPlenos(snapshots)
     expect(embudo.retiradas).toEqual({})

@@ -31,6 +31,8 @@ import {
 const CELDA = { total: 40, sinCorpus: 11, comprobadoSinHallar: 16, noConsta: 13 }
 const POR_MOTIVO = {
   'sin-procedencia': 2,
+  'literal-traducido': 603,
+  'literal-alucinado': 0,
   retirada: 0,
   contradicho: 0,
   'acusacion-opinativa': 1202,
@@ -119,7 +121,7 @@ describe('/laboratorio/cobertura · por qué retiene la puerta, contado', () => 
       expect(linea).toContain(entero(n))
       evaluados += 1
     }
-    expect(evaluados).toBe(5)
+    expect(evaluados).toBe(6)
   })
 
   it('el total que dice retener es la suma del reparto, no una cifra aparte', async () => {

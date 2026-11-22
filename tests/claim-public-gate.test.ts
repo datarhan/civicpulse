@@ -481,6 +481,42 @@ describe('claim-public-gate — el motivo de lo que se retiene', () => {
     expect(motivoDeRetencion(casos[0][1], { sinProcedencia: true })).toBe('sin-procedencia')
   })
 
+  it('un literal que no es lo que se dijo se retiene por su motivo, detrás de sin procedencia', () => {
+    const fundada = casos.find(([, , m]) => m === null)![1]
+    expect(motivoDeRetencion(fundada, { literalNoServible: 'literal-traducido' })).toBe(
+      'literal-traducido',
+    )
+    expect(motivoDeRetencion(fundada, { literalNoServible: 'literal-alucinado' })).toBe(
+      'literal-alucinado',
+    )
+    expect(classifyClaimVisibility(fundada, { literalNoServible: 'literal-traducido' })).toBe(
+      'hidden',
+    )
+    expect(
+      motivoDeRetencion(fundada, { sinProcedencia: true, literalNoServible: 'literal-traducido' }),
+    ).toBe('sin-procedencia')
+  })
+
+  it('una acusación que la puerta ya retiene conserva su motivo aunque el literal tampoco sirva', () => {
+    for (const [, fila, motivo] of casos) {
+      if (motivo === null) continue
+      expect(motivoDeRetencion(fila, { literalNoServible: 'literal-traducido' })).toBe(motivo)
+    }
+    expect(casos.some(([, , m]) => m !== null)).toBe(true)
+  })
+
+  it('el reparto y la puerta leen el mismo mapa de literales no servibles', () => {
+    const items = casos.map(([, fila], i) => ({ ...fila, claim: { ...fila.claim, id: `c${i}` } }))
+    const libre = casos.findIndex(([, , m]) => m === null)
+    const literalNoServible = new Map([[`c${libre}`, 'literal-traducido' as const]])
+    const r = repartirRetenidas(items, { literalNoServible })
+    expect(r.porMotivo['literal-traducido']).toBe(1)
+    const servidos = gateItemsForPublic(items as never, { literalNoServible })
+    expect(servidos.some((s) => s.claim.id === `c${libre}`)).toBe(false)
+    const suma = (o: Record<string, number>) => Object.values(o).reduce((a, n) => a + n, 0)
+    expect(suma(r.porMotivo)).toBe(items.length - servidos.length)
+  })
+
   it('una retirada firmada es su propio motivo', () => {
     const r = conVerif('afirmacion_numerica', {
       verdict: 'sin-datos',
@@ -508,6 +544,8 @@ describe('claim-public-gate — el motivo de lo que se retiene', () => {
     )
     vistos.add('sin-procedencia')
     vistos.add('retirada')
+    vistos.add('literal-traducido')
+    vistos.add('literal-alucinado')
     expect([...vistos].sort()).toEqual([...MOTIVOS_DE_RETENCION].sort())
   })
 

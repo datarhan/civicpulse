@@ -206,6 +206,7 @@ function variasSinOrdenUnaSinDecl() {
   votos.stats.retracted = { plazo: 1 }
   unaAreaSinBarra(mapa)
   unaDeclaracionRetiradaTrasEscuchar(mapa)
+  literalesNoServibles(mapa)
   return mapa
 }
 
@@ -219,6 +220,22 @@ function unaDeclaracionRetiradaTrasEscuchar(mapa) {
   const totals = mapa[RUTAS.manifiesto].totals
   totals.retenidas = { ...totals.retenidas, cita_obra: (totals.retenidas?.cita_obra ?? 0) + 1 }
   totals.retiradas = { 'literal-no-dicho': 1 }
+}
+
+/**
+ * Una declaración retenida por cada motivo de literal no servible. Su fila sólo
+ * se pinta cuando hay alguna, y lo que se publique ese día no lo garantiza, así
+ * que se FABRICA, contada también en `retenidas` por su tipo.
+ */
+function literalesNoServibles(mapa) {
+  const totals = mapa[RUTAS.manifiesto].totals
+  totals.retenidas = { ...totals.retenidas, cita_obra: (totals.retenidas?.cita_obra ?? 0) + 2 }
+  totals.literalNoServible = {
+    porMotivo: { 'literal-traducido': 1, 'literal-alucinado': 1 },
+    evaluadas: 10,
+    sinVigente: 0,
+    sinJuzgar: { 'fuente-sin-lengua': 0, 'sin-linea-sustituida': 0, 'vigente-sin-lengua': 0 },
+  }
 }
 
 /**

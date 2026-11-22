@@ -1275,6 +1275,12 @@ export const CATALOGUE = {
     'plenos.indice.decl.sinProcedencia': 'Retenidas por falta de procedencia',
     'plenos.indice.decl.sinProcedencia.nota':
       'su literal no consta en ninguna transcripción nuestra: no se publican',
+    'plenos.indice.decl.literal-traducido': 'Retenidas por literal traducido',
+    'plenos.indice.decl.literal-traducido.nota':
+      'su literal sólo consta en una transcripción que sustituimos y da en castellano lo que la transcripción publicada recoge en valenciano: no se publican',
+    'plenos.indice.decl.literal-alucinado': 'Retenidas por literal con forma de inventado',
+    'plenos.indice.decl.literal-alucinado.nota':
+      'su literal tiene la forma del texto que un motor de transcripción inventa sobre un silencio: no se publican',
     'plenos.indice.decl.retirada.literal-no-dicho': 'Retiradas tras escuchar la sesión',
     'plenos.indice.decl.retirada.literal-no-dicho.nota':
       'una persona escuchó el audio y su literal no es lo que se dijo: no se publican',
@@ -4964,6 +4970,12 @@ export const CATALOGUE = {
     'plenos.indice.decl.sinProcedencia': 'Retingudes per falta de procedència',
     'plenos.indice.decl.sinProcedencia.nota':
       'el seu literal no consta en cap transcripció nostra: no es publiquen',
+    'plenos.indice.decl.literal-traducido': 'Retingudes per literal traduït',
+    'plenos.indice.decl.literal-traducido.nota':
+      'el seu literal només consta en una transcripció que hem substituït i dona en castellà el que la transcripció publicada recull en valencià: no es publiquen',
+    'plenos.indice.decl.literal-alucinado': 'Retingudes per literal amb forma d’inventat',
+    'plenos.indice.decl.literal-alucinado.nota':
+      'el seu literal té la forma del text que un motor de transcripció s’inventa sobre un silenci: no es publiquen',
     'plenos.indice.decl.retirada.literal-no-dicho': 'Retirades després d’escoltar la sessió',
     'plenos.indice.decl.retirada.literal-no-dicho.nota':
       'una persona va escoltar l’àudio i el seu literal no és el que es va dir: no es publiquen',

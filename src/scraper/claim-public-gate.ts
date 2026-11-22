@@ -9,7 +9,9 @@
  *   hidden  — any acusacion_publica that is opinativa OR not data-grounded;
  *             any `contradicho`, whoever signs it (see below); any claim whose
  *             literal appears in no transcript, or that a person withdrew
- *             after listening to the session (see `classifyClaimVisibility`)
+ *             after listening to the session (see `classifyClaimVisibility`);
+ *             any claim whose literal is a replaced engine's translation or
+ *             ASR hallucination (`literal-no-servible.ts`)
  *   toggle  — non-accusation claims that are not data-grounded (sin-datos)
  *   shown   — data-grounded claims of any type (incl. data-backed accusations):
  *             a verdict in DATA_GROUNDED_VERDICTS that names a real corpus, or
@@ -22,6 +24,33 @@ import type { VerifiedClaimItem } from './pleno-claims-chunks'
 import type { OverlaySource } from './verified-merge'
 import { corpusReales, desenlaceDeCotejo, type DesenlaceDeCotejo } from './claim-verdicts'
 import { motivoDeRetirada } from './declaracion-retirada'
+import type { MotivoLiteralNoServible } from './literal-no-servible'
+
+/**
+ * Lo que la puerta recibe de quien leyó los textos: si el literal no consta en
+ * ninguna transcripción (`sinProcedencia`), o si consta pero no es lo que se
+ * dijo (`literalNoServible`, src/scraper/literal-no-servible.ts). Las dos se
+ * deciden con ficheros del disco, así que llegan como dato y este módulo sigue
+ * siendo puro.
+ */
+export interface OpcionesDeProcedencia {
+  sinProcedencia?: boolean
+  literalNoServible?: MotivoLiteralNoServible | null
+}
+
+/** Las mismas, para una lista: por id. */
+export interface OpcionesDeProcedenciaPorId {
+  sinProcedencia?: ReadonlySet<string>
+  literalNoServible?: ReadonlyMap<string, MotivoLiteralNoServible>
+}
+
+function opcionesDe(id: unknown, opts: OpcionesDeProcedenciaPorId): OpcionesDeProcedencia {
+  if (typeof id !== 'string') return {}
+  return {
+    sinProcedencia: opts.sinProcedencia?.has(id) ?? false,
+    literalNoServible: opts.literalNoServible?.get(id) ?? null,
+  }
+}
 
 /**
  * The three outcomes, as a value rather than only a type.
@@ -219,7 +248,7 @@ function tieneVerificadorAnotado(item: ClaimVisibilityInput): boolean {
  */
 export function classifyClaimVisibility(
   item: ClaimVisibilityInput,
-  opts: { sinProcedencia?: boolean } = {},
+  opts: OpcionesDeProcedencia = {},
 ): ClaimVisibility {
   if (motivoDeRetencion(item, opts) !== null) return 'hidden'
   return estaFundada(item) ? 'shown' : 'toggle'
@@ -248,6 +277,8 @@ export function classifyClaimVisibility(
  */
 export const MOTIVOS_DE_RETENCION = [
   'sin-procedencia',
+  'literal-traducido',
+  'literal-alucinado',
   'retirada',
   'contradicho',
   'acusacion-opinativa',
@@ -265,6 +296,10 @@ export type MotivoDeRetencion = (typeof MOTIVOS_DE_RETENCION)[number]
 export const MOTIVO_DE_RETENCION_ETIQUETA: Record<MotivoDeRetencion, string> = {
   'sin-procedencia':
     'cuyo literal no consta en ninguna transcripción nuestra: no podemos enseñar que se dijeran',
+  'literal-traducido':
+    'cuyo literal sólo consta en una transcripción que sustituimos y da en castellano lo que la transcripción publicada recoge en valenciano: no es el literal de lo que nuestra transcripción recoge',
+  'literal-alucinado':
+    'cuyo literal tiene la forma del texto que un motor de transcripción inventa sobre un silencio —un título, o una frase repetida en bucle—',
   retirada:
     'retiradas por una persona que escuchó la sesión: la transcripción no recoge lo que se dijo',
   contradicho:
@@ -286,9 +321,17 @@ export const MOTIVO_DE_RETENCION_ETIQUETA: Record<MotivoDeRetencion, string> = {
  */
 export function motivoDeRetencion(
   item: ClaimVisibilityInput,
-  opts: { sinProcedencia?: boolean } = {},
+  opts: OpcionesDeProcedencia = {},
 ): MotivoDeRetencion | null {
   if (opts.sinProcedencia) return 'sin-procedencia'
+  // El literal traducido o alucinado va ÚLTIMO, sólo sobre lo que se serviría:
+  // delante, re-etiquetaba acusaciones que la puerta ya retenía por otro motivo
+  // (521 el 22-11-2026) y las cifras por motivo dejaban de decir lo que la
+  // regla nueva quita de la página.
+  return motivoDeContraste(item) ?? opts.literalNoServible ?? null
+}
+
+function motivoDeContraste(item: ClaimVisibilityInput): MotivoDeRetencion | null {
   if (motivoDeRetirada(item) !== null) return 'retirada'
   if (item?.verification?.verdict === 'contradicho') return 'contradicho'
   if (item?.claim?.type !== 'acusacion_publica') return null
@@ -320,7 +363,7 @@ const MOTIVO_DE_ACUSACION_SIN_FUNDAR: Record<DesenlaceDeCotejo, MotivoDeRetencio
  */
 export function repartirRetenidas(
   items: readonly (ClaimVisibilityInput & { claim?: { id?: unknown } | null })[],
-  opts: { sinProcedencia?: ReadonlySet<string> } = {},
+  opts: OpcionesDeProcedenciaPorId = {},
 ): { porTipo: Record<string, number>; porMotivo: Record<MotivoDeRetencion, number> } {
   const porTipo: Record<string, number> = {}
   const porMotivo = Object.fromEntries(MOTIVOS_DE_RETENCION.map((m) => [m, 0])) as Record<
@@ -328,10 +371,7 @@ export function repartirRetenidas(
     number
   >
   for (const it of items ?? []) {
-    const id = it?.claim?.id
-    const motivo = motivoDeRetencion(it, {
-      sinProcedencia: typeof id === 'string' && (opts.sinProcedencia?.has(id) ?? false),
-    })
+    const motivo = motivoDeRetencion(it, opcionesDe(it?.claim?.id, opts))
     if (motivo === null) continue
     porMotivo[motivo] += 1
     const tipo = it?.claim?.type
@@ -378,13 +418,11 @@ export interface GatedItem extends VerifiedClaimItem {
  */
 export function gateItemsForPublic(
   items: VerifiedClaimItem[],
-  opts: { sinProcedencia?: ReadonlySet<string> } = {},
+  opts: OpcionesDeProcedenciaPorId = {},
 ): GatedItem[] {
   const out: GatedItem[] = []
   for (const it of items ?? []) {
-    const visibility = classifyClaimVisibility(it, {
-      sinProcedencia: opts.sinProcedencia?.has(it?.claim?.id ?? '') ?? false,
-    })
+    const visibility = classifyClaimVisibility(it, opcionesDe(it?.claim?.id, opts))
     if (visibility === 'hidden') continue
     out.push({ ...it, visibility })
   }

@@ -165,10 +165,19 @@ export function resumenPlenos({ plenos, agendas, manifest, votes, findings } = {
     Object.entries(t.retiradas ?? {}).filter(([, v]) => typeof v === 'number' && v > 0),
   )
   const retiradasTodas = Object.values(retiradas).reduce((s, v) => s + v, 0)
+  // Las que la puerta retiene porque su literal consta pero no es lo que se
+  // dijo (src/scraper/literal-no-servible.ts): también dentro de
+  // `totals.retenidas`, por su tipo, y se restan por lo mismo que las retiradas.
+  const literalNoServible = Object.fromEntries(
+    Object.entries(t.literalNoServible?.porMotivo ?? {}).filter(
+      ([, v]) => typeof v === 'number' && v > 0,
+    ),
+  )
+  const literalNoServibleTodas = Object.values(literalNoServible).reduce((s, v) => s + v, 0)
   const embudo = {
     extraidas: (t.items ?? 0) + retenidasTodas,
     sesiones: manifest?.plenos?.length ?? 0,
-    retenidas: retenidasTodas - sinProcedencia - retiradasTodas,
+    retenidas: retenidasTodas - sinProcedencia - retiradasTodas - literalNoServibleTodas,
     // El segundo motivo por el que una declaración no llega a publicarse, y de
     // otra clase que el primero: la puerta editorial retiene lo que no podemos
     // CONTRASTAR, y ésta retiene lo que no podemos demostrar que se DIJERA —su
@@ -178,6 +187,7 @@ export function resumenPlenos({ plenos, agendas, manifest, votes, findings } = {
     // deja en verde. La fila sólo se pinta cuando hay alguna.
     retenidasSinProcedencia: sinProcedencia,
     retiradas,
+    literalNoServible,
     sinDatos: t.byVerdict?.['sin-datos'] ?? 0,
     parcial: t.byVerdict?.parcial ?? 0,
     verificado: t.byVerdict?.verificado ?? 0,
