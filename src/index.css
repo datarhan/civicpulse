@@ -997,7 +997,7 @@ body.cp-kiosk .cp-live-container {
   }
   .cp-catalogo tr {
     border: 1px solid var(--border2);
-    border-radius: 8px;
+    border-radius: var(--r-card);
     margin-bottom: 10px;
     padding: 6px 0;
   }
