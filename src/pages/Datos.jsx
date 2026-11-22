@@ -592,6 +592,14 @@ function DatasetsCatalog() {
                   <a href={d.path} target="_blank" rel="noreferrer">
                     JSON
                   </a>
+                  {f?.tabla && (
+                    <>
+                      {' · '}
+                      <a href={d.path.replace(/\.json$/, '.csv')} download>
+                        CSV
+                      </a>
+                    </>
+                  )}
                 </td>
                 <td className="mono" data-rotulo={rotulos['datos.tabla.codigo']}>
                   {f ? (
@@ -609,6 +617,9 @@ function DatasetsCatalog() {
       </table>
       {/* La etiqueta de cada licencia es corta para que la columna se lea; lo
           que significa cada una se dice una vez, aquí. */}
+      <p className="cp-catalogo-leyenda" data-nota-csv="">
+        {t('datos.csv.nota')}
+      </p>
       <div className="cp-catalogo-leyenda" data-leyenda-licencias="">
         <p className="cp-catalogo-leyenda-titulo">{t('datos.leyenda.titulo')}</p>
         <ul>

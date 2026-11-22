@@ -1332,6 +1332,8 @@ export const CATALOGUE = {
     'datos.tabla.actualizado': 'Actualizado',
     'datos.tabla.descarga': 'Descarga',
     'datos.tabla.codigo': 'Código',
+    'datos.csv.nota':
+      'El CSV, donde lo hay, trae una fila por elemento de la lista que describe «Qué es una fila»; las listas que van aparte no entran. Una celda con una lista o un objeto va como JSON, y un texto que empieza por =, +, - o @ lleva un apóstrofo delante, para que una hoja de cálculo no lo tome por una fórmula. Codificación UTF-8.',
     'datos.leyenda.titulo': 'Las licencias de la tabla',
     'datos.leyenda.propia':
       'CC BY 4.0 · CivicPulse: lo que produce CivicPulse. Se puede reutilizar para cualquier fin citándolo; lo detalla el aviso legal.',
@@ -5015,6 +5017,8 @@ export const CATALOGUE = {
     'datos.tabla.actualizado': 'Actualitzat',
     'datos.tabla.descarga': 'Descàrrega',
     'datos.tabla.codigo': 'Codi',
+    'datos.csv.nota':
+      'El CSV, on n’hi ha, porta una fila per element de la llista que descriu «Què és una fila»; les llistes que van a banda no hi entren. Una cel·la amb una llista o un objecte va com a JSON, i un text que comença per =, +, - o @ porta un apòstrof davant, perquè un full de càlcul no el prenga per una fórmula. Codificació UTF-8.',
     'datos.leyenda.titulo': 'Les llicències de la taula',
     'datos.leyenda.propia':
       'CC BY 4.0 · CivicPulse: el que produeix CivicPulse. Es pot reutilitzar per a qualsevol fi citant-lo; ho detalla l’avís legal.',

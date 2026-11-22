@@ -2,6 +2,8 @@ import { retenerLiterales } from './src/scraper/literales-retenidos'
 import { filasQueNombranUnEscano, retenerGruposDeUnEscano } from './src/scraper/grupos-retenidos'
 import { oneSeatBlocsOf } from './src/scraper/corporation-seats'
 import { citaRetenida } from './src/lib/cita-retenida.js'
+import { aCsv, filasDe } from './src/lib/csv-datos.js'
+import { FICHAS } from './src/lib/catalogo-datos.js'
 
 /**
  * Ficheros que viven bajo `public/` y NO deben desplegarse.
@@ -330,6 +332,56 @@ export async function servirHallazgosEnDist(dirDatos) {
  * la guarda volvía a retener el `dist/` ya servido (huellas de huellas).
  * `tests/publication-guard-outdir.test.ts` lo fija.
  */
+/**
+ * El CSV de cada fichero del catálogo de /datos que tiene una lista de filas
+ * (`tabla` en src/lib/catalogo-datos.js), al lado de su JSON en `dist/data`.
+ *
+ * Es lo último del build: después de retirar lo que no se sirve y de reescribir
+ * la copia servida de los hallazgos. Así el CSV sale de lo que de verdad se
+ * sirve, no de `public/`, que todavía lleva lo que la guarda retiene.
+ *
+ *  · Un fichero que la guarda retiró no tiene CSV, y se dice (`sinJson`).
+ *  · Un fichero con una fila sin firmar tumba la compilación: la guarda
+ *    reconoce un borrador por `"requiresHumanApproval": true` en los bytes, y
+ *    en el CSV esa marca quedaría como un `true` suelto que ya no ve.
+ *  · Si la lista que promete la tabla ya no es una lista, también se cae: la
+ *    página enlazaría un CSV que no existe.
+ *
+ * @param {string} dirDatos
+ * @param {Record<string, { tabla?: string }>} [fichas]
+ */
+export async function escribirCsvEnDist(dirDatos, fichas = FICHAS) {
+  const { readFile, writeFile } = await import('node:fs/promises')
+  const { join } = await import('node:path')
+  const escritos = []
+  const sinJson = []
+  for (const [ruta, f] of Object.entries(fichas)) {
+    if (!f.tabla) continue
+    const nombre = ruta.replace(/^\/data\//, '')
+    let texto
+    try {
+      texto = await readFile(join(dirDatos, nombre), 'utf8')
+    } catch (err) {
+      // Sólo «no está», que es lo que deja la guarda al retirarlo. Cualquier
+      // otro fallo es un fichero que no se ha podido mirar, y no se calla.
+      if (err && err.code === 'ENOENT') {
+        sinJson.push(nombre)
+        continue
+      }
+      throw err
+    }
+    if (esBorrador(texto)) {
+      throw new Error(`[csv] ${nombre} lleva filas sin firmar: no se convierte a CSV`)
+    }
+    const filas = filasDe(JSON.parse(texto), f.tabla)
+    if (!filas) throw new Error(`[csv] en ${nombre}, «${f.tabla}» no es una lista`)
+    const csv = nombre.replace(/\.json$/, '.csv')
+    await writeFile(join(dirDatos, csv), aCsv(filas))
+    escritos.push(csv)
+  }
+  return { escritos, sinJson }
+}
+
 export function vitePublicationGuard() {
   /** @type {{ root: string, outDir: string } | null} */
   let deVite = null
@@ -460,6 +512,14 @@ export function vitePublicationGuard() {
 
         // Un fichero que sí se sirve, sin los campos que no deben servirse.
         await servirHallazgosEnDist(resolve(salida, 'data'))
+
+        // Y el CSV del catálogo, de lo que queda servido: lo último.
+        const csv = await escribirCsvEnDist(resolve(salida, 'data'))
+        console.log(
+          `[csv] ${csv.escritos.length} CSV escrito(s) junto a su JSON · ` +
+            `${csv.sinJson.length} sin JSON servido, sin CSV` +
+            (csv.sinJson.length ? `: ${csv.sinJson.join(', ')}` : ''),
+        )
       },
     },
   }
