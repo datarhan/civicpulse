@@ -271,7 +271,7 @@ Anything needing an LLM backend or a residential IP runs here, not in CI.
 | 06:45 daily     | launchd | `scrape-ci-blocked.sh` — the adapters runners cannot reach or that do not fit in the nightly (`paro`, `pleno-agendas`, `asociaciones`, `obras`, `procesos-selectivos`, `sindicatura`, `consell-cv`, `sindic-expedientes`, `rendicion-cuentas`, `transparency`, `pleno-actas`, `pleno-videos-regmeet`, `agua`, `agua-pares`) |
 | 07:30 Mon + Thu | launchd | `review-sweep.sh` — reads every public route, plus one data-picked instance of each `:param` route, as a visitor; then `triage:senalamientos` leaves `editorial/senalamientos/<date>.md`, each live flag with its figures located and a second reading (report-only, commits nothing)                                       |
 | 08:30 Mon       | launchd | `auto-curate-promises-daily.sh` — `/promesas` status-change miner                                                                                                                                                                                                                                                           |
-| 09:30 Mon + Thu | launchd | `hallazgos-pipeline.sh` — transcribe → extract → verify → push (no auto-curate since 2026-11-22)                                                                                                                                                                                                                            |
+| 09:30 Mon + Thu | launchd | `hallazgos-pipeline.sh` — transcribe → extract → recover one stranded extraction → verify → push (no auto-curate since 2026-11-22)                                                                                                                                                                                          |
 | 10:15 Mon       | launchd | `press-lab-pipeline.sh` — `/laboratorio/prensa` press fact-check pass                                                                                                                                                                                                                                                       |
 | 11:00 daily     | cron    | `monitor-health-cron.sh` — first `colas:rehacer` (rebuilds curator queues gone stale by a retraction, never one holding an unapplied choice), then the digest                                                                                                                                                               |
 
@@ -431,6 +431,34 @@ anything. To look: `git for-each-ref refs/respaldo/cron`.
 Only this cron declares `CRON_GIT_RASPADOS_PROPIOS`, because only a snapshot's
 owner can promise to scrape it again. The other pipelines keep aborting on such a
 conflict.
+
+### Extraction: re-probed, and recovered when a run fails
+
+Since 2026-11-22 (plan step 0.2) `hallazgos-pipeline.sh` re-runs the claude-code
+probe (`scripts/lib/claude-probe.sh`) immediately before each extraction, not
+only at 09:30. On 2026-11-19 the morning probe passed, the OAuth session expired
+while `51k7yx` was being transcribed, and its 311 windows all failed. A failed
+re-probe marks the run DEGRADED from that point and leaves the transcript on
+disk.
+
+A recovery pass then extracts what earlier runs left behind:
+`npm run --silent extraccion:pendiente -- --why` lists the transcripts that are
+**audio** (`src/lib/transcript-kind.js`; acta text is the secretary's summary,
+not what was said, so a quote from it is not a councillor's words), pass the
+extractor's quality gate, and have no claims — or were extracted only partly
+(windows left unanswered, listed in `.cache/extraccion-parcial.txt`) — newest
+first. Its stderr, in the run log, says what it left out and why. At most
+`RECUPERA_MAX` (1) per run, since an extraction costs ~465 claude-code calls,
+and each recovered session also gets its vote suggestions.
+
+The extractor exits 1 when it gets nothing, whether claude died or the session
+really yields nothing, so after a failure the run probes claude again. If claude
+is down, the attempt does not count. If claude is up — or the attempt left the session partial again, which a window that never answers would do every run — it counts in
+`.cache/extraccion-fallos.txt`, and after `FALLOS_MAX` (3) the session moves to
+`.cache/extraccion-sin-declaraciones.txt` and is no longer retried
+automatically, so it cannot block the rest of the queue; delete its line to
+retry it. `extract-pleno-claims --pending` run by hand has no audio filter and
+would extract acta text too.
 
 ### The speaker-map sweep: a job measured in weeks, not nights
 

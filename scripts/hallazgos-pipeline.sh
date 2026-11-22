@@ -132,6 +132,103 @@ if [ "$LLM_BACKEND" = claude-code ] &&
   log "  pasada DEGRADADA: se saltan extracción y auto-curación,"
   log "  se mantienen los pasos que no dependen de ese backend (mapas de hablantes, cuota Gemini aparte)"
 fi
+
+# ---- el sondeo se repite justo antes de cada extracción (paso 0.2, 22-11-2026) ----
+# El de arriba corre a las 09:30, y una transcripción puede tardar media hora.
+# El 19-11-2026 el sondeo pasó, la sesión OAuth de claude caducó mientras se
+# transcribía 51k7yx, y sus 311 ventanas fallaron una tras otra: la sesión más
+# reciente se quedó sin declaraciones y la transcripción, pagada. Ahora cada
+# extracción pregunta antes; si claude ya no contesta, la pasada pasa a DEGRADADA
+# desde ahí y lo transcrito espera a la recuperación de una pasada siguiente
+# (`extraccion:pendiente`, más abajo).
+sondea_texto() {
+  [ "$TEXT_BACKEND" = ok ] || return 1
+  [ "$LLM_BACKEND" = claude-code ] || return 0
+  if claude_probe claude "$CLAUDE_CODE_MODEL"; then return 0; fi
+  TEXT_BACKEND=down
+  TEXT_BACKEND_MOTIVO="$CLAUDE_PROBE_MOTIVO"
+  log "claude-code dejó de contestar a mitad de pasada — $CLAUDE_PROBE_MOTIVO"
+  log "  pasada DEGRADADA desde aquí: lo transcrito queda guardado y lo extrae la recuperación de otra pasada"
+  return 1
+}
+
+# Las listas de la recuperación, en .cache/ (ignorada por git), en el árbol del
+# curador, donde corre esta tubería:
+#   · PARCIALES: extracciones a las que les quedaron ventanas SIN RESPUESTA
+#     (claude se cayó a media sesión). Tienen declaraciones, pero no todas; la
+#     recuperación las vuelve a pasar, y la caché del LLM sirve las contestadas.
+#   · FALLOS: «id n» — recuperaciones que fallaron con claude vivo antes y
+#     después. A las FALLOS_MAX, la sesión pasa a EXTRAIDAS_VACIAS y deja de
+#     reintentarse sola: si no, una sesión que nunca sale bloquearía la cola
+#     entera, una pasada tras otra (~465 llamadas cada vez).
+#   · EXTRAIDAS_VACIAS: lo que no se reintenta solo. La vacía una persona.
+PARCIALES=".cache/extraccion-parcial.txt"
+FALLOS=".cache/extraccion-fallos.txt"
+EXTRAIDAS_VACIAS=".cache/extraccion-sin-declaraciones.txt"
+FALLOS_MAX="${FALLOS_MAX:-3}"
+lista_pon() { mkdir -p .cache; grep -qxF -- "$2" "$1" 2>/dev/null || echo "$2" >> "$1"; }
+lista_quita() {
+  [ -f "$1" ] || return 0
+  grep -vxF -- "$2" "$1" > "$1.tmp" || true
+  mv "$1.tmp" "$1"
+}
+fallos_de() { awk -v id="$1" '$1==id {print $2; f=1} END {if(!f) print 0}' "$FALLOS" 2>/dev/null || echo 0; }
+fallos_pon() {
+  mkdir -p .cache
+  { [ -f "$FALLOS" ] && awk -v id="$1" '$1!=id' "$FALLOS"; echo "$1 $2"; } > "$FALLOS.tmp" || true
+  mv "$FALLOS.tmp" "$FALLOS"
+}
+fallos_quita() {
+  [ -f "$FALLOS" ] || return 0
+  awk -v id="$1" '$1!=id' "$FALLOS" > "$FALLOS.tmp" || true
+  mv "$FALLOS.tmp" "$FALLOS"
+}
+
+# Extrae una sesión con la política de $0 y deja en EXTRAE_RC su código de
+# salida y en EXTRAE_PARCIAL 1 si le quedaron ventanas sin respuesta. Apunta o
+# quita la sesión de PARCIALES según eso. Nunca sale !=0.
+#
+# Same $0 policy the auto-curate step enforced until 22-11-2026. The
+# transcription step legitimately needs OPENAI_API_KEY, so the key is present in
+# this shell — which meant the extractor's backend chain could walk agy →
+# claude-code → openai and bill silently whenever the $0 backends were
+# throttled. (Exactly how the press-lab pipeline leaked on 2026-08-01; there it
+# was masked only by the account being out of credits.) Strip the metered keys
+# for THIS command only, so a throttled $0 backend defers the extraction
+# instead of paying for it.
+extrae_sesion() {
+  local sid="$1" salida
+  salida="$(mktemp "${TMPDIR:-/tmp}/extrae.XXXXXX")"
+  EXTRAE_RC=0
+  # `tee`, no un fichero que se imprime al final: una extracción son ~465
+  # llamadas, y el registro tiene que verla avanzar. Con pipefail, el código es
+  # el del extractor.
+  env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY npm run extract:pleno-claims -- "$sid" 2>&1 | tee "$salida" || EXTRAE_RC=$?
+  EXTRAE_PARCIAL=0
+  if grep -qE "^\[extract·claims\] $sid: .*NO ANSWER" "$salida"; then EXTRAE_PARCIAL=1; fi
+  rm -f "$salida"
+  if [ "$EXTRAE_RC" -eq 0 ] && [ "$EXTRAE_PARCIAL" = 1 ]; then
+    lista_pon "$PARCIALES" "$sid"
+    log "⚠ $sid extraída a medias (ventanas SIN RESPUESTA) — apuntada para que la recuperación la complete"
+  elif [ "$EXTRAE_RC" -eq 0 ]; then
+    lista_quita "$PARCIALES" "$sid"
+  fi
+  return 0
+}
+
+# Las sugerencias de voto de una sesión recién extraída. Libel-safe: writes ONLY
+# pleno-votes-suggestions.json (every row requiresHumanApproval), stamps each
+# with the authoritative regmeet.com orden-del-día outcome cross-check, and
+# NEVER writes the published pleno-votes.json — a curator promotes by hand via
+# `npm run promote-vote`. Non-fatal on failure.
+sugiere_votos() {
+  log "extracting vote suggestions for $1 (regmeet cross-check)…"
+  if npm run extract:pleno-votes -- "$1" --engine llm --min-confidence 0.5 --cross-check; then
+    log "✓ $1 vote suggestions refreshed"
+  else
+    log "warn: vote-suggestion extraction failed for $1 (non-fatal)"
+  fi
+}
 # openai (API, metered ~$0.006/min ≈ $0.72 per 2h pleno) replaced mlx as the
 # default on 2026-07-07: MLX large-v3 pinned the local GPU for ~30 min/run and
 # tripped the Metal watchdog on long sessions. Requires OPENAI_API_KEY (from
@@ -195,6 +292,8 @@ EXTRACTED=0     # extracciones de claims sobre esas transcripciones
 MAPPED=0        # mapas de hablantes escritos, también los parciales
 REEXTRACTED=0   # re-extracciones tras un mapa
 COUNT=0
+TRATADAS_HOY=" "   # sesiones que esta pasada ya transcribió (la recuperación no las repite)
+RECUPERADAS=0     # extracciones recuperadas de pasadas anteriores
 # Counted so the final line can say it. A map that covers part of a session is
 # a useful, resumable result — but it is not a ✓, and 2026-08-11 shipped one
 # under a ✓.
@@ -228,37 +327,111 @@ if [ -n "$TARGETS" ]; then
     fi
     if [ "$ok" = 1 ]; then
       TRANSCRIBED=$((TRANSCRIBED+1))
+      TRATADAS_HOY="${TRATADAS_HOY}${id} "
+      if ! sondea_texto; then
+        log "· $id transcrito; extracción EN ESPERA (claude no contesta) — la recupera una pasada siguiente"
+        # Lo que queda del backlog esperaría igual: no se paga otra transcripción
+        # que nada puede leer hoy (ver arriba, «backlog transcribible»).
+        log "backlog transcribible: el resto EN ESPERA — claude ya no contesta"
+        break
+      fi
       log "extracting claims from $id ($LLM_BACKEND/${CLAUDE_CODE_MODEL:-$AGY_MODEL} · \$0 backends only)…"
-      # Same $0 policy the auto-curate step enforced until 22-11-2026. The
-      # transcription step above legitimately needs OPENAI_API_KEY, so the key
-      # is present in this shell — which meant the extractor's backend chain
-      # could walk agy → claude-code → openai and bill silently whenever the
-      # $0 backends were throttled. (Exactly how the press-lab pipeline leaked
-      # on 2026-08-01; there it was masked only by the account being out of
-      # credits.) Strip the metered keys for THIS command only, so a throttled
-      # $0 backend defers the extraction instead of paying for it.
-      if env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY npm run extract:pleno-claims -- "$id"; then
+      extrae_sesion "$id"
+      if [ "$EXTRAE_RC" -eq 0 ]; then
         EXTRACTED=$((EXTRACTED+1)); log "✓ $id claims extracted"
       else
-        log "warn: claim extract failed for $id — transcript kept, claims incomplete"
+        log "warn: claim extract failed for $id — transcript kept, claims incomplete; la recuperación la reintenta"
       fi
-      # Refresh the curator's VOTE-suggestion queue for this pleno. Libel-safe:
-      # writes ONLY pleno-votes-suggestions.json (every row requiresHumanApproval),
-      # stamps each with the authoritative regmeet.com orden-del-día outcome
-      # cross-check, and NEVER writes the published pleno-votes.json — a curator
-      # promotes by hand via `npm run promote-vote`. Non-fatal on failure.
-      log "extracting vote suggestions for $id (regmeet cross-check)…"
-      if npm run extract:pleno-votes -- "$id" --engine llm --min-confidence 0.5 --cross-check; then
-        log "✓ $id vote suggestions refreshed"
-      else
-        log "warn: vote-suggestion extraction failed for $id (non-fatal)"
-      fi
+      sugiere_votos "$id"
     else
       log "warn: transcription failed for $id (even at batch_size=1) — skipping"
     fi
   done <<< "$TARGETS"
 else
   log "no transcribable backlog"
+fi
+
+# ---- recuperación: transcritas sin extraer o extraídas a medias (paso 0.2) ----
+# Una pasada cuya extracción falló dejaba la sesión transcrita y sin extraer
+# para siempre: la transcripción ya no la volvía a ofrecer. `extraccion:pendiente`
+# lista las de AUDIO (no las de acta), aptas, sin ninguna declaración o
+# apuntadas en PARCIALES, la más reciente primero (src/scraper/extraccion-pendiente.ts),
+# y por stderr cuenta las que deja fuera y por qué. Como mucho RECUPERA_MAX por
+# pasada: una extracción son ~465 llamadas de claude-code.
+#
+# El extractor sale 1 cuando no saca nada (manifiesto «no-work»), con el
+# backend caído o con una sesión que de verdad no da nada: desde fuera se leen
+# igual. Así que tras un fallo se vuelve a sondear: si claude ya no contesta, el
+# fallo es suyo y no cuenta; si contesta, cuenta, y a los FALLOS_MAX la sesión
+# sale de la cola (EXTRAIDAS_VACIAS) para no bloquear a las demás.
+RECUPERA_MAX="${RECUPERA_MAX:-1}"
+case "$RECUPERA_MAX" in ''|*[!0-9]*)
+  log "warn: RECUPERA_MAX=$RECUPERA_MAX no es un número — se usa 1"; RECUPERA_MAX=1 ;;
+esac
+declaraciones_de() {
+  # «?» si el fichero no se lee o no trae items[]: un 0 de una forma que cambió
+  # apuntaría la sesión como vacía para siempre.
+  node -e 'try{const d=require("./public/data/pleno-claims-suggestions.json");if(!Array.isArray(d.items))throw 0;process.stdout.write(String(d.items.filter(i=>i&&i.plenoId===process.argv[1]).length))}catch(e){process.stdout.write("?")}' "$1" 2>/dev/null || echo "?"
+}
+if [ "$RECUPERA_MAX" -eq 0 ]; then
+  log "recuperación: RECUPERA_MAX=0 — apagada en esta pasada"
+elif [ "$TEXT_BACKEND" != ok ]; then
+  log "recuperación EN ESPERA: sin backend de texto"
+else
+  if PENDIENTES_EXTRACCION=$(npm run --silent extraccion:pendiente -- --why); then
+    PENDIENTES_EXTRACCION=$(printf '%s\n' "$PENDIENTES_EXTRACCION" | while IFS= read -r m; do
+      [ -z "$m" ] && continue
+      if [[ "$TRATADAS_HOY" != *" $m "* ]]; then echo "$m"; fi
+    done)
+  else
+    log "warn: extraccion:pendiente falló — no se recupera nada en esta pasada"
+    PENDIENTES_EXTRACCION=""
+  fi
+  N_PEND=$(printf '%s\n' "$PENDIENTES_EXTRACCION" | grep -c . || true)
+  if [ "$N_PEND" -eq 0 ]; then
+    log "recuperación: ninguna sesión transcrita espera extracción (lo que quedó fuera, arriba)"
+  else
+    log "recuperación: $N_PEND sesión(es) por extraer o completar ($(echo "$PENDIENTES_EXTRACCION" | tr '\n' ' ')) · tope $RECUPERA_MAX por pasada"
+    INTENTADAS=0
+    while IFS= read -r rid; do
+      [ -z "$rid" ] && continue
+      [ "$INTENTADAS" -ge "$RECUPERA_MAX" ] && { log "recuperación: tope alcanzado — el resto, en otra pasada"; break; }
+      if ! sondea_texto; then
+        log "· recuperación de $rid EN ESPERA (claude no contesta)"; break
+      fi
+      INTENTADAS=$((INTENTADAS+1))
+      log "recuperando la extracción de $rid…"
+      extrae_sesion "$rid"
+      N_DECL=$(declaraciones_de "$rid")
+      TIENE=0
+      if [ "$EXTRAE_RC" -eq 0 ] && [ "$N_DECL" != "?" ] && [ "$N_DECL" -gt 0 ]; then TIENE=1; fi
+      if [ "$TIENE" = 1 ]; then
+        EXTRACTED=$((EXTRACTED+1)); RECUPERADAS=$((RECUPERADAS+1))
+        log "✓ $rid recuperada: $N_DECL declaración(es)$([ "$EXTRAE_PARCIAL" = 1 ] && echo ' — aún a medias')"
+        sugiere_votos "$rid"
+      fi
+      if [ "$TIENE" = 1 ] && [ "$EXTRAE_PARCIAL" = 0 ]; then
+        fallos_quita "$rid"
+      elif ! sondea_texto; then
+        log "· la recuperación de $rid quedó incompleta con claude caído — no cuenta como intento de la sesión"
+        break
+      else
+        # Con claude vivo: sin declaraciones, o a medias otra vez. Las dos cuentan,
+        # porque una ventana que nunca contesta dejaría la sesión a medias en cada
+        # pasada y se quedaría con el único hueco de la recuperación.
+        N_FALLOS=$(( $(fallos_de "$rid") + 1 ))
+        if [ "$N_FALLOS" -ge "$FALLOS_MAX" ]; then
+          fallos_quita "$rid"
+          lista_quita "$PARCIALES" "$rid"
+          lista_pon "$EXTRAIDAS_VACIAS" "$rid"
+          log "⚠ $rid: $N_FALLOS recuperaciones sin completarse con claude vivo (declaraciones=$N_DECL) — apuntada en $EXTRAIDAS_VACIAS, no se reintenta sola (mírala a mano)"
+        else
+          fallos_pon "$rid" "$N_FALLOS"
+          log "warn: la recuperación de $rid no se completó (intento $N_FALLOS de $FALLOS_MAX con claude vivo; rc=$EXTRAE_RC, declaraciones=$N_DECL$([ "$EXTRAE_PARCIAL" = 1 ] && echo ', a medias'))"
+        fi
+      fi
+    done <<< "$PENDIENTES_EXTRACCION"
+  fi
 fi
 
 # ---- what the dependency graph says is owed ----------------------------
@@ -701,7 +874,7 @@ fi
 [ "$TEXT_BACKEND" != ok ] &&
   RUN_VERDICT="${RUN_VERDICT} · DEGRADADA: sin backend de texto (extracción y auto-curación en espera) — claude: ${TEXT_BACKEND_MOTIVO}"
 
-log "done · ${TRANSCRIBED} transcribed · ${EXTRACTED} extracted · ${MAPPED} speaker map(s) · ${REEXTRACTED} re-extracted · ${NEW_FINDINGS} new finding(s) pushed${RUN_VERDICT}"
+log "done · ${TRANSCRIBED} transcribed · ${EXTRACTED} extracted (${RECUPERADAS} recuperada(s)) · ${MAPPED} speaker map(s) · ${REEXTRACTED} re-extracted · ${NEW_FINDINGS} new finding(s) pushed${RUN_VERDICT}"
 if [ -n "$RUN_VERDICT" ]; then
   log "   la pasada NO fue limpia — \`npm run check:runs\` lo detalla:"
   # `|| true` no es decorativo. El veredicto también lo ponen un mapa parcial, el
