@@ -75,7 +75,7 @@
 import { execFileSync } from 'node:child_process'
 import { readdirSync, readFileSync, statSync } from 'node:fs'
 import { homedir } from 'node:os'
-import { join } from 'node:path'
+import { basename, join } from 'node:path'
 import {
   describirHorarios,
   horariosDe,
@@ -102,6 +102,13 @@ export interface AgenteProgramado {
   /** Vacío si el plist no declara un horario legible — se informa, no se salta. */
   horarios: Horario[]
   log: string
+  /**
+   * `WatchPaths` del plist: un agente que no corre a una hora sino cuando cambia
+   * una ruta (com.civicpulse.parte-tras-plenos, 22-11-2026). Le tocaba correr
+   * cuando cambió por última vez lo que vigila; sin eso, `cron-sin-horario` lo
+   * pintaba de rojo cada día por no tener horario.
+   */
+  vigila?: string[]
 }
 
 export interface EstadoAgente {
@@ -112,6 +119,8 @@ export interface EstadoAgente {
   ultimo: Date | null
   /** La hora a la que le tocaba por última vez; null si no tiene horario. */
   tocaba: Date | null
+  /** Lo dispara una ruta, no un reloj; `tocaba` null es «aún no se disparó». */
+  porMarca?: boolean
   omitidoEn: Date | null
   /** Las marcas `pull-estado` de la cola del log, en orden. */
   pulls: EventoPull[]
@@ -248,7 +257,12 @@ export function leerFlota(dir = DIR_AGENTES): AgenteProgramado[] {
   }
   const flota: AgenteProgramado[] = []
   for (const f of ficheros.sort()) {
-    let doc: { Label?: string; StandardOutPath?: string; StartCalendarInterval?: unknown } = {}
+    let doc: {
+      Label?: string
+      StandardOutPath?: string
+      StartCalendarInterval?: unknown
+      WatchPaths?: unknown
+    } = {}
     try {
       doc = JSON.parse(
         execFileSync('plutil', ['-convert', 'json', '-o', '-', join(dir, f)], {
@@ -264,13 +278,36 @@ export function leerFlota(dir = DIR_AGENTES): AgenteProgramado[] {
       label: doc.Label ?? f.replace(/\.plist$/, ''),
       horarios: horariosDe(doc.StartCalendarInterval),
       log: doc.StandardOutPath ?? '',
+      ...(Array.isArray(doc.WatchPaths)
+        ? { vigila: doc.WatchPaths.filter((x): x is string => typeof x === 'string') }
+        : {}),
     })
   }
   return flota
 }
 
+/**
+ * Lo último que cambió en lo vigilado: un fichero, o lo que haya DENTRO de un
+ * directorio. La hora del directorio no cuenta: el instalador lo crea vacío, y
+ * contarla daba por disparado un agente que aún no tenía ninguna marca.
+ */
+function ultimoCambio(rutas: readonly string[]): Date | null {
+  let ms = 0
+  for (const r of rutas) {
+    try {
+      const st = statSync(r)
+      if (!st.isDirectory()) ms = Math.max(ms, st.mtimeMs)
+      else for (const f of readdirSync(r)) ms = Math.max(ms, statSync(join(r, f)).mtimeMs)
+    } catch {
+      /* aún no existe: no se ha disparado */
+    }
+  }
+  return ms ? new Date(ms) : null
+}
+
 export function medirAgente(a: AgenteProgramado, ahora: Date): EstadoAgente {
-  const tocaba = ultimaProgramada(a.horarios, ahora)
+  const porMarca = a.horarios.length === 0 && (a.vigila?.length ?? 0) > 0
+  const tocaba = porMarca ? ultimoCambio(a.vigila!) : ultimaProgramada(a.horarios, ahora)
   let ultimo: Date | null = null
   let omitidoEn: Date | null = null
   let pulls: EventoPull[] = []
@@ -287,10 +324,13 @@ export function medirAgente(a: AgenteProgramado, ahora: Date): EstadoAgente {
     }
   return {
     label: a.label,
-    programado: describirHorarios(a.horarios),
+    programado: porMarca
+      ? `al cambiar ${a.vigila!.map((v) => basename(v)).join(', ')}`
+      : describirHorarios(a.horarios),
     log: a.log,
     ultimo,
     tocaba,
+    ...(porMarca ? { porMarca: true } : {}),
     omitidoEn,
     pulls,
   }
@@ -301,6 +341,8 @@ export function juzgar(estados: EstadoAgente[], toleranciaHoras = TOLERANCIA_HOR
   const margen = toleranciaHoras * 3_600_000
   for (const e of estados) {
     const corto = e.label.replace(/^com\.civicpulse\./, '')
+    // Uno que dispara una marca y aún no tiene ninguna no ha tenido que correr.
+    if (!e.tocaba && e.porMarca) continue
     if (!e.tocaba) {
       out.push({
         code: 'cron-sin-horario',
@@ -308,6 +350,10 @@ export function juzgar(estados: EstadoAgente[], toleranciaHoras = TOLERANCIA_HOR
       })
       continue
     }
+    // Al que dispara una marca se le da el mismo margen DESPUÉS de ella: recién
+    // escrita, el parte aún está corriendo y su log no se ha movido todavía.
+    const enPlazo = e.porMarca && Date.now() - e.tocaba.getTime() <= margen
+    if (!e.ultimo && enPlazo) continue
     if (!e.ultimo) {
       out.push({
         code: 'cron-sin-log',
@@ -315,7 +361,10 @@ export function juzgar(estados: EstadoAgente[], toleranciaHoras = TOLERANCIA_HOR
       })
       continue
     }
-    if (e.ultimo.getTime() < e.tocaba.getTime() - margen) {
+    const atrasado = e.porMarca
+      ? !enPlazo && e.ultimo.getTime() < e.tocaba.getTime()
+      : e.ultimo.getTime() < e.tocaba.getTime() - margen
+    if (atrasado) {
       const horas = Math.round((Date.now() - e.ultimo.getTime()) / 3_600_000)
       out.push({
         code: 'cron-atrasado',

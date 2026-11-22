@@ -273,6 +273,7 @@
     "check:claim-provenance": "npx tsx scripts/check-claim-provenance.ts",
     "retract-attribution": "npx tsx scripts/retract-claim-attribution.ts",
     "relabel-attribution": "npx tsx scripts/relabel-attribution.ts",
+    "rendimiento:plenos": "npx tsx scripts/rendimiento-plenos.ts",
     "subir-veredicto": "npx tsx scripts/subir-veredicto.ts",
     "corregir-rotulo-motor": "npx tsx scripts/corregir-rotulo-motor.ts",
     "check:basemap": "npx tsx scripts/check-basemap.ts",

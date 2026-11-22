@@ -16,7 +16,7 @@
  * never folded into «sin fallos»; after seven days in a row it is its own
  * weekly warning (see `evaluateHealth` and `tocaEnviar`).
  */
-import { readFileSync, writeFileSync, existsSync, readdirSync, statSync } from 'node:fs'
+import { readFileSync, writeFileSync, existsSync, readdirSync, renameSync, statSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { execFileSync, spawnSync } from 'node:child_process'
 import {
@@ -34,6 +34,13 @@ import {
 } from '../src/scraper/health-monitor'
 import { transcriptionPending, TRANSCRIBE_BLOCKLIST_IDS } from '../src/scraper/transcribe-blocklist'
 import { cotejarEnDisco } from './lib/cotejo-compose'
+import { medirEnDisco } from './rendimiento-plenos'
+import {
+  avisoDePasada,
+  leerPrevia,
+  lineaRendimiento,
+  lineaUltimaPasada,
+} from '../src/scraper/rendimiento-plenos'
 
 const STATE = resolve('.health-monitor-state.json')
 const DATA = resolve('public/data')
@@ -61,7 +68,12 @@ function leerEstado(): EstadoDelParte {
 }
 
 function guardarEstado(e: EstadoDelParte): void {
-  writeFileSync(STATE, JSON.stringify(e) + '\n')
+  // tmp + rename: dos partes a la vez (el de las 11:00 y el de tras la tubería
+  // de plenos) ya no se pisan —los pone en fila el cerrojo de
+  // monitor-health-cron.sh—, pero uno que muere a media escritura dejaría un
+  // estado roto que el siguiente leería como «nunca avisé».
+  writeFileSync(`${STATE}.tmp`, JSON.stringify(e) + '\n')
+  renameSync(`${STATE}.tmp`, STATE)
 }
 
 function readJson(p: string): any {
@@ -142,11 +154,26 @@ function nightlyFailStreak(): number {
  * salida se guarda en los dos casos y la lee `clasificarGuarda`: el código
  * decide el rojo, y la marca de la propia guarda, si midió.
  */
+/**
+ * Lo más que puede tardar una guarda. El corte mata a `npm`, no a lo que `npm`
+ * lanzó: una guarda colgada sigue viva por su cuenta, pero el parte ya no la
+ * espera, que es lo que importa aquí. Hasta el 22-11-2026 no tenía tope, y desde
+ * que el parte corre también tras la tubería de plenos (paso 0.4) una guarda de
+ * red colgada dejaría el agente vivo para siempre. Una que lo agota es un fallo
+ * con su motivo, no un verde: no terminó de mirar.
+ */
+const TOPE_GUARDA_MS = 10 * 60_000
+
 function runCheck(script: string): DesenlaceDeGuarda {
   const r = spawnSync('npm', ['run', '--silent', script], {
     encoding: 'utf8',
     stdio: ['ignore', 'pipe', 'pipe'],
+    timeout: TOPE_GUARDA_MS,
+    killSignal: 'SIGKILL',
   })
+  if (r.error && (r.error as NodeJS.ErrnoException).code === 'ETIMEDOUT') {
+    return clasificarGuarda(null, `no terminó en ${TOPE_GUARDA_MS / 60_000} min y se cortó`)
+  }
   // Si ni siquiera arrancó, el porqué está en `error` y no en la salida.
   const salida = `${r.stdout ?? ''}${r.stderr ?? ''}${r.error ? `\n${r.error.message}` : ''}`
   return clasificarGuarda(r.status, salida)
@@ -496,11 +523,24 @@ async function send(text: string): Promise<boolean> {
   return ok
 }
 
+const escaparHtml = (t: string) =>
+  t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+
 async function main() {
   const dryRun = process.argv.includes('--dry-run')
   const force = process.argv.includes('--force')
 
   const previo = leerEstado()
+  // Con el veredicto de la última pasada de plenos al lado: «DEGRADADO» salía
+  // sólo en el log de la tubería, y quien lee el parte no lo veía nunca.
+  let rendimiento: string
+  try {
+    rendimiento = lineaRendimiento(medirEnDisco())
+  } catch (err) {
+    rendimiento = `rendimiento · sin leer (${(err as Error).message})`
+  }
+  const ultimaPasada = leerPrevia(readJson(resolve('.cache/rendimiento-plenos.json')))
+  rendimiento += `\n  ${lineaUltimaPasada(ultimaPasada)}`
   const observations = await gather(previo.sinComprobarDesde)
   // Las rachas de hoy: cada guarda que sigue sin comprobar con su primer día;
   // la que midió ya no está, y así se corta su racha.
@@ -532,6 +572,7 @@ async function main() {
       )
     }
     process.stdout.write(`  integridad: ${resumenIntegridad(o)}\n`)
+    process.stdout.write(`  ${rendimiento}\n`)
     // El porqué de cada una, con sus palabras: «sin comprobar» a secas no dice
     // si falta la base, la red o un directorio entero.
     for (const s of o.sinComprobar) {
@@ -542,6 +583,8 @@ async function main() {
     process.stdout.write('\n')
   }
   const alerts = evaluateHealth(observations)
+  const aPeor = avisoDePasada(ultimaPasada, new Date())
+  if (aPeor) alerts.push(aPeor)
   if (alerts.length === 0) {
     process.stdout.write(`[monitor-health] ${lineaSinAvisos(observations.sinComprobar)}\n`)
     if (!dryRun) {
@@ -550,7 +593,10 @@ async function main() {
     return
   }
 
-  const text = formatAlerts(alerts, observations.sinComprobar)
+  // El renglón de rendimiento viaja al final del parte, pero fuera de la huella:
+  // los días sin hallazgo cambian cada día, y meterlo reenviaría a diario un
+  // parte que no ha cambiado (paso 0.3).
+  const text = `${formatAlerts(alerts, observations.sinComprobar)}\n\n<i>${escaparHtml(rendimiento)}</i>`
   process.stdout.write(`\n${text.replace(/<[^>]+>/g, '')}\n\n`)
 
   if (dryRun) {

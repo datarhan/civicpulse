@@ -63,3 +63,8 @@ public/data/pleno-claims-regrounding-flags.json
 # Raw upstream payloads cached while iterating (CESEL national workbook is ~45 MB)
 .cache/
 .despiece/
+
+# Los cerrojos de las tareas locales (hallazgos-pipeline.sh, press-lab,
+# monitor-health-cron.sh) llevan dentro el pid de quien los tiene desde el
+# 22-11-2026: sin esto salían como sin rastrear durante cada pasada.
+scripts/.*.lock/

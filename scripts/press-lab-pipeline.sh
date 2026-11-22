@@ -76,7 +76,10 @@ fi
 # ---- single-instance lock ---------------------------------------------
 LOCK_DIR="$REPO_DIR/scripts/.press-lab-pipeline.lock"
 if ! mkdir "$LOCK_DIR" 2>/dev/null; then
-  if find "$LOCK_DIR" -maxdepth 0 -mmin +180 >/dev/null 2>&1; then
+  # `find` sale 0 lo encuentre o no: lo que dice si el cerrojo es viejo es lo
+  # que IMPRIME. Con el código de salida (hasta el 22-11-2026) todo cerrojo
+  # «era viejo» y se robaba, así que nunca impidió una segunda pasada.
+  if [ -n "$(find "$LOCK_DIR" -maxdepth 0 -mmin +180 2>/dev/null)" ]; then
     log "stealing stale lock (>3h)"; rmdir "$LOCK_DIR" 2>/dev/null || true
     mkdir "$LOCK_DIR" 2>/dev/null || { log "lock contended — exiting"; exit 0; }
   else

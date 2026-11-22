@@ -274,6 +274,7 @@ Anything needing an LLM backend or a residential IP runs here, not in CI.
 | 09:30 Mon + Thu | launchd | `hallazgos-pipeline.sh` — transcribe → extract → recover one stranded extraction → verify → push (no auto-curate since 2026-11-22)                                                                                                                                                                                          |
 | 10:15 Mon       | launchd | `press-lab-pipeline.sh` — `/laboratorio/prensa` press fact-check pass                                                                                                                                                                                                                                                       |
 | 11:00 daily     | cron    | `monitor-health-cron.sh` — first `colas:rehacer` (rebuilds curator queues gone stale by a retraction, never one holding an unapplied choice), then the digest                                                                                                                                                               |
+| after hallazgos | launchd | `com.civicpulse.parte-tras-plenos` — the same `monitor-health-cron.sh`, started by the marker `hallazgos-pipeline.sh` leaves on exit (`WatchPaths` on `.cache/parte-tras-plenos/`); see «The run's last lines and the digest after it» below                                                                                |
 
 ### Cadence: why the LLM agents are not daily
 
@@ -332,7 +333,9 @@ that was wrong, and both were silent:
 
 So the rule has a second clause: **pushing drags in the hook, and the hook needs
 the credential.** `monitor-health-cron.sh` is the one that genuinely stays in
-cron — it neither calls the model nor pushes.
+cron — it neither calls the model nor pushes. Its second caller,
+`com.civicpulse.parte-tras-plenos`, is a launchd agent only because a file
+change starts it, which cron cannot do; it needs no credential.
 
 And a consequence, once the hook could finally run: **the review does not fit
 inside a push.** Git opens the SSH connection and _then_ runs the hook, so a
@@ -459,6 +462,87 @@ is down, the attempt does not count. If claude is up — or the attempt left the
 automatically, so it cannot block the rest of the queue; delete its line to
 retry it. `extract-pleno-claims --pending` run by hand has no audio filter and
 would extract acta text too.
+
+### The run's last lines and the digest after it
+
+Since 2026-11-22 (plan steps 0.3 and 0.4) a run ends with three things.
+
+**A yield line**, from `npm run --silent rendimiento:plenos`
+(`src/scraper/rendimiento-plenos.ts`):
+
+- extracted claims from **audio** sessions that carry a bloc of
+  `SPEAKER_GROUPS`, over all claims from audio sessions (acta-derived claims can
+  never carry one); a `speakerGroup` outside that list is counted apart, never
+  as attribution;
+- the claims served to the site apart, so the line is not read as what the site
+  shows;
+- speaker maps that are finished (`isMapComplete`), with how many wrote chunks
+  off, how many are half done, how many cannot be read, and how many sessions
+  with a finished map have no claim with a bloc;
+- the newest published finding. Since 2026-11-22 only a person publishes one.
+
+Whatever could not be read prints «?», never 0. Attributing to a bloc with one
+seat names a person (`singleSeatBlocs`, tier C), so the unattended ceiling is
+well under 100 %. The same line, and the last run's verdict below, are in
+`monitor:health --explain` and at the end of every digest it sends (outside the
+fingerprint, since the days-since-finding change daily). Both are printed on
+nights where nothing changed too.
+
+**A verdict against the previous run** (`.cache/rendimiento-plenos.json`,
+disposable; a file that cannot be read is said so). «DEGRADADO» used to mean
+«the manifest has any error or warning», which was every run from 26-10 to
+19-11. Now it means the run did worse:
+
+- a numerator of attribution went down: claims with a bloc, sessions with a
+  bloc, or maps finished **without** written-off chunks (a map that is finished
+  only because it gave up on its failed chunks is not new attribution);
+- or one session lost claims with a bloc, even if another gained more;
+- or the manifest has more errors than the last run that could count them.
+  Warnings are not compared: they grow with the number of windows.
+
+A drop can be a correct retraction or relabel; it is worded «bajó desde la
+pasada anterior» and a person looks. «SIN AVANCE (n pasadas)» means work is
+pending and nothing went up, and says how many numerators it could compare when
+not all; it
+is printed but does not make the run unclean. The manifest counts are always
+printed (`manifiesto: N error(es), M aviso(s)`, or «sin manifiestos en la
+ventana», or «sin leer»), the last two never compared as a zero, and its
+ERROR/WARN lines are copied beneath whenever there are any, on both exits.
+Partial maps, a failed verify and a missing text backend keep their own words. A
+DEGRADADO also reaches the digest as its own warning (`avisoDePasada`), once per
+run and for five days at most, so a day with no other alert still carries it.
+
+**A marker that starts the digest.** `monitor:health` ran only at 11:00, and a
+Monday or Thursday run ends between about 10:55 and 11:45, so those days'
+digest described a run half done. On any exit except a signal the pipeline
+writes `.cache/parte-tras-plenos/marca` (written aside and moved over it: the
+agent watches the directory, and rewriting an existing file in place does not
+change it). The launchd agent `com.civicpulse.parte-tras-plenos` (installed by
+`launchd-install-llm-pipelines.sh`) then runs `monitor-health-cron.sh` with
+`PARTE_ORIGEN=hallazgos-pipeline`, logging to
+`scripts/logs/parte-tras-plenos.log`. It is a separate agent rather than a call
+from the pipeline because a hung digest inside it would keep
+`com.civicpulse.hallazgos` alive, and launchd does not start a second instance
+of a running job. `check:cron` judges it by its marker: its log must be newer
+than the marker within the usual tolerance. **Known gap:** a run killed by a
+signal after 11:00 writes no marker, and the 11:00 digest stepped aside for it,
+so that day has no digest; the next 11:00 one covers it. With the signal traps, bash acts on a
+manual `kill` only when the current step (whisper, say) returns.
+
+Both locks now hold the pid of their owner. `monitor-health-cron.sh` takes its
+own (`scripts/.monitor-health.lock`), so the two callers cannot send the same
+Telegram twice or rebuild the queues at once. The 11:00 run steps aside only
+while the pipeline is really running: a live process named
+`hallazgos-pipeline.sh` whose pid is in the pipeline's lock. A lock whose pid is
+gone is a run that died; it is taken at once, since that is the day the digest
+must go out (a lock without a pid falls back to its age). Each guard inside
+`monitor:health` is cut at 10 minutes and reported red with that reason; the
+cut kills `npm`, not what it started.
+
+Fixed on the way: the stale-lock test in `hallazgos-pipeline.sh` and
+`press-lab-pipeline.sh` read `find`'s exit code, which is 0 whether or not it
+matched, so every lock «was stale» and was stolen; neither lock had ever stopped
+a second run.
 
 ### The speaker-map sweep: a job measured in weeks, not nights
 
