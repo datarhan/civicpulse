@@ -358,11 +358,11 @@ export function PromiseCard({ p, suggestion, llmEvidence, frozen, officials }) {
                 textDecoration: 'underline',
               }}
             >
-              copia archivada ↗
+              {t('promesas.tarjeta.copiaArchivada')}
             </ExtLink>
           ) : (
             <span style={{ color: 'var(--crit-ink)', fontSize: 'var(--fs-micro)' }}>
-              enlace roto · sin copia archivada
+              {t('promesas.tarjeta.enlaceRoto')}
             </span>
           ))}
         {estado && (
@@ -398,12 +398,12 @@ export function PromiseCard({ p, suggestion, llmEvidence, frozen, officials }) {
               marginBottom: 4,
             }}
           >
-            Sin evidencia curada
+            {t('promesas.tarjeta.sinEvidencia')}
           </div>
           <div>
             {/**
              * «recogida con su fuente» sería MENTIRA dos líneas debajo de
-             * «enlace roto · sin copia archivada», y la revisión lectora lo
+             * el rótulo del enlace roto sin copia (`promesas.tarjeta.enlaceRoto`), y la revisión lectora lo
              * señaló en cuanto se escribió: en la promesa del Metro L9 la
              * fuente está muerta y sin copia, así que ahí la frase dice lo que
              * queda —que la promesa se registró— y nombra lo que falta.
@@ -454,7 +454,7 @@ export function PromiseCard({ p, suggestion, llmEvidence, frozen, officials }) {
           </strong>
           .
           <div style={{ marginTop: 6, fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-            Fundamentación ({suggestion.reasoning.length} evidencias):
+            {rellena(t('promesas.motor.fundamentacion'), { n: suggestion.reasoning.length })}
           </div>
           <ul style={{ margin: '4px 0 0', paddingLeft: 16, fontSize: 'var(--fs-micro)' }}>
             {suggestion.reasoning.slice(0, 3).map((r, i) => (
