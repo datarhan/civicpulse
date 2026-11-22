@@ -96,6 +96,7 @@
     "extract:pleno-votes": "npx tsx scripts/extract-pleno-votes.ts",
     "extract:all-pleno-votes": "npx tsx scripts/extract-pleno-votes.ts --all --engine llm --min-confidence 0.5",
     "extract:pleno-claims": "npx tsx scripts/extract-pleno-claims.ts",
+    "extraccion:pendiente": "npx tsx scripts/extraccion-pendiente.ts",
     "extract:all-pleno-claims": "npx tsx scripts/extract-pleno-claims.ts --all --min-confidence 0.5",
     "embed:verifier-corpus": "npx tsx scripts/embed-verifier-corpus.ts",
     "verify:pleno-claims": "npx tsx scripts/verify-pleno-claims.ts",

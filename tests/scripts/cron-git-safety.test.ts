@@ -177,6 +177,9 @@ const STEP_OUTPUTS: Record<string, string> = {
   // step has nothing to do and the branch under test never runs; the stub
   // handles it specially below.
   'speaker-map:backlog': '',
+  // Otra CONSULTA: las sesiones transcritas sin declaraciones (la recuperación).
+  // El stub contesta STUB_PENDIENTES (vacío por defecto).
+  'extraccion:pendiente': '',
   // Otra CONSULTA: la tubería lee su stdout como la fecha de fin de la veda.
   // El stub contesta STUB_VEDA (vacío por defecto: sin veda).
   'veda:activa': '',
@@ -239,6 +242,9 @@ function makeSandbox(opts: SandboxOpts = {}): string {
     join(dir, 'public/data/plenos.json'),
     '{"items":[{"id":"p1","date":"2020-01-01"}]}\n',
   )
+  // Lo que la recuperación cuenta tras extraer: sin el fichero contesta «?» (no
+  // sé), que no es «0». El repositorio de verdad siempre lo tiene.
+  writeFileSync(join(dir, 'public/data/pleno-claims-suggestions.json'), '{"items":[]}\n')
   if (opts.publicadas) {
     writeFileSync(
       join(dir, 'public/data/pleno-claims-verified.json'),
@@ -294,6 +300,20 @@ fi
 # conservó las declaraciones de antes (lo que imprime el de verdad).
 if [ "$name" = "extract:pleno-claims" ]; then
   case " \${STUB_PRESERVA:-} " in *" \${2:-} "*) echo "[extract·claims] \${2} PRESERVED — stub"; exit 0 ;; esac
+fi
+if [ "$name" = "extraccion:pendiente" ]; then
+  echo "[stub] ran $name" >&2
+  case " \${STUB_FAIL:-} " in *" $name "*) echo "[stub] $name FAILING" >&2; exit 1 ;; esac
+  for _m in \${STUB_PENDIENTES:-}; do echo "$_m"; done
+  exit 0
+fi
+# STUB_DECLARA: sesiones para las que la extracción deja una declaración (sin
+# ella, la recuperación ve «extraída sin ninguna declaración»).
+if [ "$name" = "extract:pleno-claims" ]; then
+  case " \${STUB_DECLARA:-} " in *" \${2:-} "*)
+    printf '{"items":[{"id":"c-%s","plenoId":"%s"}]}\\n' "$2" "$2" > public/data/pleno-claims-suggestions.json
+    echo "[stub] ran $name $2 (1 declaración)"; exit 0 ;;
+  esac
 fi
 if [ "$name" = "veda:activa" ]; then
   echo "[stub] ran $name" >&2
@@ -2367,5 +2387,94 @@ describe('hallazgos-pipeline.sh · veda electoral y tope de re-atribución', () 
     expect(cuenta(r.log, REEXTRAIDA)).toBe(2)
     expect(cuenta(r.log, EN_ESPERA_POR_TOPE)).toBe(1)
     expect(r.log).toMatch(/s1 mapeado, re-extracción EN ESPERA \(tope/)
+  }, 120_000)
+})
+
+/**
+ * Paso 0.2 del plan de plenos (22-11-2026). El 19-11 el sondeo de las 09:30
+ * pasó, la sesión OAuth de claude caducó mientras se transcribía 51k7yx y la
+ * sesión más reciente se quedó sin declaraciones: nada volvía a intentarlo. Ahora
+ * el sondeo se repite antes de cada extracción, y una pasada de recuperación
+ * extrae las transcritas que siguen sin declaraciones, una por pasada.
+ */
+describe('hallazgos-pipeline.sh · recuperación de extracciones y re-sondeo', () => {
+  const cuenta = (log: string, re: RegExp) => log.split('\n').filter((l) => re.test(l)).length
+  /** Un `claude` que contesta las primeras `ok` veces y luego no. */
+  function claudeQueCaduca(dir: string, ok: number): Record<string, string> {
+    const bin = join(dir, 'fakebin')
+    mkdirSync(bin, { recursive: true })
+    const n = join(dir, '.claude-llamadas')
+    writeFileSync(
+      join(bin, 'claude'),
+      `#!/bin/sh\nn=$(cat "${n}" 2>/dev/null || echo 0); n=$((n+1)); echo $n > "${n}"\n` +
+        `if [ $n -le ${ok} ]; then echo ok; exit 0; fi\n` +
+        `echo "Failed to authenticate: OAuth session expired and could not be refreshed" >&2; exit 1\n`,
+    )
+    chmodSync(join(bin, 'claude'), 0o755)
+    return { PATH: `${bin}:${process.env.PATH}`, LLM_BACKEND: 'claude-code' }
+  }
+
+  it('recupera la más reciente, una por pasada, y lo cuenta en la última línea', () => {
+    const dir = makeSandbox()
+    const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', {
+      STUB_PENDIENTES: 'nueva vieja',
+      STUB_DECLARA: 'nueva',
+    })
+    expect(r.log).toMatch(/recuperación: 2 sesión\(es\) transcrita\(s\) sin declaraciones/)
+    expect(r.log).toContain('✓ nueva recuperada: 1 declaración(es)')
+    expect(r.log).not.toMatch(/recuperando la extracción de vieja/)
+    expect(r.log).toMatch(/recuperación: tope alcanzado/)
+    expect(r.log).toMatch(/done · .*\(1 recuperada\(s\)\)/)
+  }, 120_000)
+
+  it('sin nada pendiente lo dice (control: la consulta corrió)', () => {
+    const dir = makeSandbox()
+    const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', {})
+    expect(r.log).toMatch(/recuperación: ninguna sesión transcrita espera extracción/)
+  }, 120_000)
+
+  it('una extracción que contesta sin ninguna declaración se apunta y no se repite', () => {
+    const dir = makeSandbox()
+    const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', { STUB_PENDIENTES: 'vacia' })
+    expect(r.log).toMatch(/recuperando la extracción de vacia/)
+    expect(r.log).toMatch(/⚠ vacia extraída SIN NINGUNA declaración/)
+    expect(readFileSync(join(dir, '.cache/extraccion-sin-declaraciones.txt'), 'utf8').trim()).toBe(
+      'vacia',
+    )
+  }, 120_000)
+
+  it('si la consulta falla, la pasada sigue y lo dice', () => {
+    const dir = makeSandbox()
+    const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', { STUB_FAIL: 'extraccion:pendiente' })
+    expect(r.log).toMatch(/warn: extraccion:pendiente falló/)
+    expect(r.log).toMatch(/done ·/)
+  }, 120_000)
+
+  it('si claude caduca a mitad de pasada, la recuperación espera y la pasada queda DEGRADADA', () => {
+    const dir = makeSandbox()
+    // 1 = el sondeo de las 09:30 pasa; el de antes de extraer, no.
+    const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', {
+      ...claudeQueCaduca(dir, 1),
+      STUB_PENDIENTES: 'nueva',
+      STUB_DECLARA: 'nueva',
+    })
+    expect(r.log).toMatch(
+      /claude-code dejó de contestar a mitad de pasada — Failed to authenticate/,
+    )
+    expect(r.log).toMatch(/recuperación de nueva EN ESPERA/)
+    expect(r.log).not.toMatch(/recuperando la extracción de nueva/)
+    expect(r.log).toMatch(/done · .*DEGRADADA/)
+  }, 120_000)
+
+  it('con claude vivo en los dos sondeos, sí recupera (control del anterior)', () => {
+    const dir = makeSandbox()
+    const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', {
+      ...claudeQueCaduca(dir, 99),
+      STUB_PENDIENTES: 'nueva',
+      STUB_DECLARA: 'nueva',
+    })
+    expect(cuenta(r.log, /dejó de contestar a mitad de pasada/)).toBe(0)
+    expect(r.log).toContain('✓ nueva recuperada')
+    expect(Number(readFileSync(join(dir, '.claude-llamadas'), 'utf8'))).toBeGreaterThanOrEqual(2)
   }, 120_000)
 })
