@@ -264,4 +264,17 @@ describe('el contrato publicado lo dice', () => {
     }
     expect(fuentes).toMatch(/uso privado y sin fin comercial/)
   })
+
+  // Lo vio la lectura independiente del cambio: el catálogo no recoge todas las
+  // fuentes (Open-Meteo, el GTFS de FGV), el padrón sale del CSV del INE y no de
+  // su API JSON, y una queja no enlaza a ningún registro ni a ninguna noticia.
+  it('no llama «listado completo» al catálogo ni da el padrón por la API JSON del INE', () => {
+    expect(fuentes).not.toMatch(/listado completo/)
+    expect(fuentes).not.toMatch(/API JSON del INE/)
+    expect(fuentes).not.toMatch(/Cada dato individual enlaza/)
+  })
+
+  it('las fuentes con licencia abierta se citan con la atribución que exigen', () => {
+    expect(fuentes).toMatch(/licencia abierta[^.]*atribución/)
+  })
 })
