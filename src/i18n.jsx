@@ -2658,7 +2658,7 @@ export const CATALOGUE = {
     'metodologia.enBreve.paso.5': 'Rectificable',
     'metodologia.enBreve.fuentes.pregunta': '¿De dónde salen los datos?',
     'metodologia.enBreve.fuentes.frase':
-      'De fuentes oficiales —el propio Ayuntamiento, los ministerios, la Plataforma de Contratación, el BOE— y de la prensa, citada como prensa. La página de datos lista cada fuente con la fecha de su última lectura.',
+      'De fuentes oficiales —el propio Ayuntamiento, los ministerios, la Plataforma de Contratación, el BOE—, de datos abiertos como OpenStreetMap, de la prensa, citada como prensa, y de las quejas de los vecinos. La página de datos lista cada fuente con la fecha de su última lectura.',
     'metodologia.enBreve.fuentes.ver': 'Ver todas las fuentes →',
     'metodologia.enBreve.maquina.pregunta': '¿Lo publica una máquina?',
     'metodologia.enBreve.maquina.frase':
@@ -6209,7 +6209,7 @@ export const CATALOGUE = {
     'metodologia.enBreve.paso.5': 'Rectificable',
     'metodologia.enBreve.fuentes.pregunta': "D'on ixen les dades?",
     'metodologia.enBreve.fuentes.frase':
-      'De fonts oficials —el mateix Ajuntament, els ministeris, la Plataforma de Contractació, el BOE— i de la premsa, citada com a premsa. La pàgina de dades llista cada font amb la data de la seua última lectura.',
+      'De fonts oficials —el mateix Ajuntament, els ministeris, la Plataforma de Contractació, el BOE—, de dades obertes com OpenStreetMap, de la premsa, citada com a premsa, i de les queixes dels veïns. La pàgina de dades llista cada font amb la data de la seua última lectura.',
     'metodologia.enBreve.fuentes.ver': 'Vore totes les fonts →',
     'metodologia.enBreve.maquina.pregunta': 'Ho publica una màquina?',
     'metodologia.enBreve.maquina.frase':
