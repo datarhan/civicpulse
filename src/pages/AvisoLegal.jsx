@@ -68,9 +68,9 @@ export default function AvisoLegal() {
           Todos los datos mostrados proceden de fuentes públicas del sector público español o de
           proyectos de datos abiertos (Transparencia Act 19/2013, CC-BY 4.0 datos.gob.es, ODbL
           OpenStreetMap, CC0 Wikidata, reutilización abierta PLACSP/BDNS/CONPREL, REST pública de
-          prensa, la API JSON del INE —índice de precios con el que se deflactan las series de
-          coste, y padrón municipal—, el Portal Estadístico de Criminalidad del Ministerio del
-          Interior (Ley 37/2007; «Origen de los datos: Portal Estadístico de Criminalidad»), el
+          prensa, la API JSON del INE (CC BY 4.0) —índice de precios con el que se deflactan las
+          series de coste, y padrón municipal—, el Portal Estadístico de Criminalidad del Ministerio
+          del Interior (Ley 37/2007; «Origen de los datos: Portal Estadístico de Criminalidad»), el
           Sistema de Información Nacional de Aguas de Consumo (SINAC) del Ministerio de Sanidad
           —citado con la fecha de cada boletín, como pide su aviso legal— y su informe anual de
           calidad del agua de consumo («puede reproducirse… siempre que se mencione la fuente»), la
@@ -111,9 +111,10 @@ export default function AvisoLegal() {
           <a href="/datos" style={{ color: 'var(--civic)' }}>
             /datos
           </a>{' '}
-          dice cuál es fichero a fichero. Los titulares y enlaces de la prensa no son datos
-          abiertos. El texto de cada queja es de quien la escribe: CivicPulse lo publica, pero no lo
-          licencia.
+          la dice para cada fichero de su catálogo. Los titulares de medios y de webs
+          institucionales que recoge el laboratorio de prensa no son datos abiertos, y la cita de
+          cada promesa es de su fuente. El texto y la foto de cada queja son de quien la envía:
+          CivicPulse los publica, pero no los licencia.
         </p>
       </Card>
 

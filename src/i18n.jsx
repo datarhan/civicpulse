@@ -1336,11 +1336,11 @@ export const CATALOGUE = {
     'datos.leyenda.propia':
       'CC BY 4.0 · CivicPulse: lo que produce CivicPulse. Se puede reutilizar para cualquier fin citándolo; lo detalla el aviso legal.',
     'datos.leyenda.ley37':
-      'Ley 37/2007: la reutilización de la información del sector público, en las condiciones que fije cada fuente.',
+      'Ley 37/2007: la reutilización de la información del sector público, en las condiciones que fije cada fuente. La web del Ayuntamiento, por ejemplo, sólo permite descargar sus contenidos para uso privado y sin fin comercial, salvo autorización expresa.',
     'datos.leyenda.ue':
       'Decisión 2011/833/UE: la reutilización de los documentos de la Comisión Europea, que rige los anuncios de TED.',
     'datos.leyenda.prensa':
-      'Sin licencia abierta: titulares y enlaces de cada medio. Los derechos son del medio; aquí sólo se enlazan.',
+      'Sin licencia abierta: titulares de medios y de webs institucionales. Los derechos son de quien los publica; aquí se reproduce el titular y se enlaza.',
     'datos.leyenda.abiertas':
       'CC BY 4.0, ODbL 1.0 y CC0 1.0: las licencias abiertas que publica la propia fuente.',
     'datos.licencia.propia': 'CC BY 4.0 · CivicPulse',
@@ -1348,25 +1348,34 @@ export const CATALOGUE = {
     'datos.licencia.ue': 'Decisión 2011/833/UE',
     'datos.licencia.prensa': 'Sin licencia abierta',
     'datos.licencia.nota.quejas':
-      'El texto de cada queja es de quien la escribe: no lo licenciamos.',
-    'datos.fila.officials': 'Un cargo de la corporación',
+      'El texto y la foto de cada queja son de quien la envía: no los licenciamos.',
+    'datos.licencia.nota.promesas':
+      'La cita de cada promesa es de su fuente, que se enlaza: la licencia no la cubre.',
+    'datos.fila.officials': 'Un cargo de la corporación (quienes ya no lo son van aparte)',
     'datos.fila.budget': 'El presupuesto de un ejercicio: totales y capítulos',
     'datos.fila.tenders':
       'Un contrato publicado, sea cual sea su estado (las licitaciones van aparte, en el mismo fichero)',
     'datos.fila.bdns':
-      'Una convocatoria o concesión de subvención, dada o recibida por el Ayuntamiento',
+      'Una convocatoria de subvención, dada o recibida por el Ayuntamiento (las concesiones van aparte, en el mismo fichero)',
     'datos.fila.plenos': 'Una sesión de pleno',
     'datos.fila.plenos-agendas': 'Una sesión de pleno con su orden del día',
-    'datos.fila.empleo': 'Una oferta de empleo de la Agencia de Desarrollo Local',
-    'datos.fila.press': 'Una noticia de un medio local: titular, fecha y enlace',
-    'datos.fila.participa': 'Un proceso de participación ciudadana',
+    'datos.fila.empleo':
+      'Una oferta de empleo que publica la agencia de colocación de la ADL; puede ser de fuera del municipio',
+    'datos.fila.press':
+      'Un titular que nombra al municipio, de un medio o de una web institucional, con su fecha y su enlace',
+    'datos.fila.participa':
+      'Una publicación del portal de participación: una actividad, una encuesta u otra',
     'datos.fila.padron': 'La serie de población del padrón, año a año',
     'datos.fila.paro': 'Un mes de paro registrado en el municipio',
-    'datos.fila.geo': 'Un barrio o zona del municipio, con su centro y su población',
+    'datos.fila.geo':
+      'Un barrio o zona del municipio, con su centro y, cuando OpenStreetMap la da, su población',
     'datos.fila.wikidata': 'Los datos del municipio en Wikidata',
-    'datos.fila.promises': 'Una promesa política, con su estado y su evidencia',
-    'datos.fila.pleno-findings': 'Un hallazgo editorial sobre lo dicho en un pleno',
-    'datos.fila.pleno-votes': 'Una votación de pleno, con su resultado y su desglose',
+    'datos.fila.promises':
+      'Una promesa política, con su estado y su evidencia (las retiradas van aparte)',
+    'datos.fila.pleno-findings':
+      'Un hallazgo editorial sobre lo dicho en un pleno (los retirados van aparte)',
+    'datos.fila.pleno-votes':
+      'Una votación de pleno, con su resultado y su desglose (las retiradas y las correcciones van aparte)',
     'datos.fila.quejas': 'Una queja vecinal, con su categoría y su barrio aproximado',
     'datos.fila.indicadores': 'Un indicador de eficiencia o de gestión',
     'datos.fila.coste-efectivo':
@@ -1376,7 +1385,8 @@ export const CATALOGUE = {
     'datos.fila.ipc': 'La serie del índice de precios con que se deflacta',
     'datos.fila.eficiencia-findings': 'Un hallazgo de eficiencia firmado',
     'datos.fila.incendios': 'Un incendio forestal',
-    'datos.fila.reciclaje': 'La recogida selectiva de un año, del municipio y de sus pares',
+    'datos.fila.reciclaje':
+      'La recogida selectiva de un año en el municipio, con el reparto del resto de municipios en cuantiles',
     'datos.fila.criminalidad': 'Un año de la serie de criminalidad',
     'datos.fila.agua': 'Un boletín de análisis del agua de consumo',
     'datos.fila.agua-pares': 'Un municipio parecido, con sus boletines del agua',
@@ -1388,7 +1398,7 @@ export const CATALOGUE = {
     'datos.fila.procesos-selectivos': 'Un proceso selectivo del Ayuntamiento',
     'datos.fila.asociaciones': 'Una entidad inscrita en el registro municipal',
     'datos.fila.obras': 'Una obra de infraestructura',
-    'datos.fila.boe': 'Una disposición del BOE que nombra al municipio',
+    'datos.fila.boe': 'Un anuncio o disposición del BOE que nombra al municipio',
     'datos.fila.bop': 'Un anuncio del Boletín Oficial de la Provincia',
     'datos.fila.budget-execution': 'Un corte del estado de ejecución: un trimestre o el cierre',
     'datos.fila.tenders-ted': 'Un anuncio en el diario de contratación de la UE',
@@ -1396,8 +1406,10 @@ export const CATALOGUE = {
     'datos.fila.sindicatura':
       'Un informe de fiscalización de la Sindicatura de Comptes que incluye al municipio',
     'datos.fila.rendicion-cuentas': 'Un ejercicio de la Cuenta General',
-    'datos.fila.sindic-expedientes': 'Un expediente del Síndic de Greuges sobre el Ayuntamiento',
-    'datos.fila.ctbg': 'Una reclamación ante el CTBG sobre el Ayuntamiento',
+    'datos.fila.sindic-expedientes':
+      'Un expediente del Síndic de Greuges contra el Ayuntamiento (los de vecinos frente a otras administraciones van aparte)',
+    'datos.fila.ctbg':
+      'Una resolución de ámbito estatal del CTBG que nombra al municipio (las reclamaciones contra el Ayuntamiento van al Consell de Transparència)',
     'datos.fila.consell-cv': 'Una resolución del Consell de Transparència sobre el Ayuntamiento',
     'datos.fila.incendios-perimetros': 'Las geometrías de los perímetros de incendio',
     'datos.fila.civic-poi': 'Un servicio público en el mapa: un colegio, un centro de salud…',
@@ -5007,36 +5019,46 @@ export const CATALOGUE = {
     'datos.leyenda.propia':
       'CC BY 4.0 · CivicPulse: el que produeix CivicPulse. Es pot reutilitzar per a qualsevol fi citant-lo; ho detalla l’avís legal.',
     'datos.leyenda.ley37':
-      'Llei 37/2007: la reutilització de la informació del sector públic, en les condicions que fixe cada font.',
+      'Llei 37/2007: la reutilització de la informació del sector públic, en les condicions que fixe cada font. La web de l’Ajuntament, per exemple, només permet descarregar els seus continguts per a ús privat i sense finalitat comercial, llevat d’autorització expressa.',
     'datos.leyenda.ue':
       'Decisió 2011/833/UE: la reutilització dels documents de la Comissió Europea, que regix els anuncis de TED.',
     'datos.leyenda.prensa':
-      'Sense llicència oberta: titulars i enllaços de cada mitjà. Els drets són del mitjà; ací només s’enllacen.',
+      'Sense llicència oberta: titulars de mitjans i de webs institucionals. Els drets són de qui els publica; ací es reproduïx el titular i s’enllaça.',
     'datos.leyenda.abiertas':
       'CC BY 4.0, ODbL 1.0 i CC0 1.0: les llicències obertes que publica la mateixa font.',
     'datos.licencia.propia': 'CC BY 4.0 · CivicPulse',
     'datos.licencia.ley37': 'Llei 37/2007',
     'datos.licencia.ue': 'Decisió 2011/833/UE',
     'datos.licencia.prensa': 'Sense llicència oberta',
-    'datos.licencia.nota.quejas': 'El text de cada queixa és de qui l’escriu: no el llicenciem.',
-    'datos.fila.officials': 'Un càrrec de la corporació',
+    'datos.licencia.nota.quejas':
+      'El text i la foto de cada queixa són de qui l’envia: no els llicenciem.',
+    'datos.licencia.nota.promesas':
+      'La cita de cada promesa és de la seua font, que s’enllaça: la llicència no la cobreix.',
+    'datos.fila.officials': 'Un càrrec de la corporació (els qui ja no ho són van a banda)',
     'datos.fila.budget': 'El pressupost d’un exercici: totals i capítols',
     'datos.fila.tenders':
       'Un contracte publicat, siga quin siga el seu estat (les licitacions van a banda, en el mateix fitxer)',
     'datos.fila.bdns':
-      'Una convocatòria o concessió de subvenció, donada o rebuda per l’Ajuntament',
+      'Una convocatòria de subvenció, donada o rebuda per l’Ajuntament (les concessions van a banda, en el mateix fitxer)',
     'datos.fila.plenos': 'Una sessió de ple',
     'datos.fila.plenos-agendas': 'Una sessió de ple amb el seu ordre del dia',
-    'datos.fila.empleo': 'Una oferta d’ocupació de l’Agència de Desenvolupament Local',
-    'datos.fila.press': 'Una notícia d’un mitjà local: titular, data i enllaç',
-    'datos.fila.participa': 'Un procés de participació ciutadana',
+    'datos.fila.empleo':
+      'Una oferta d’ocupació que publica l’agència de col·locació de l’ADL; pot ser de fora del municipi',
+    'datos.fila.press':
+      'Un titular que nomena el municipi, d’un mitjà o d’una web institucional, amb la seua data i el seu enllaç',
+    'datos.fila.participa':
+      'Una publicació del portal de participació: una activitat, una enquesta o una altra',
     'datos.fila.padron': 'La sèrie de població del padró, any a any',
     'datos.fila.paro': 'Un mes d’atur registrat en el municipi',
-    'datos.fila.geo': 'Un barri o zona del municipi, amb el seu centre i la seua població',
+    'datos.fila.geo':
+      'Un barri o zona del municipi, amb el seu centre i, quan OpenStreetMap la dona, la seua població',
     'datos.fila.wikidata': 'Les dades del municipi a Wikidata',
-    'datos.fila.promises': 'Una promesa política, amb el seu estat i la seua evidència',
-    'datos.fila.pleno-findings': 'Una troballa editorial sobre el que s’ha dit en un ple',
-    'datos.fila.pleno-votes': 'Una votació de ple, amb el seu resultat i el seu desglossament',
+    'datos.fila.promises':
+      'Una promesa política, amb el seu estat i la seua evidència (les retirades van a banda)',
+    'datos.fila.pleno-findings':
+      'Una troballa editorial sobre el que s’ha dit en un ple (les retirades van a banda)',
+    'datos.fila.pleno-votes':
+      'Una votació de ple, amb el seu resultat i el seu desglossament (les retirades i les correccions van a banda)',
     'datos.fila.quejas': 'Una queixa veïnal, amb la seua categoria i el seu barri aproximat',
     'datos.fila.indicadores': 'Un indicador d’eficiència o de gestió',
     'datos.fila.coste-efectivo':
@@ -5046,7 +5068,8 @@ export const CATALOGUE = {
     'datos.fila.ipc': 'La sèrie de l’índex de preus amb què es deflacta',
     'datos.fila.eficiencia-findings': 'Una troballa d’eficiència signada',
     'datos.fila.incendios': 'Un incendi forestal',
-    'datos.fila.reciclaje': 'La recollida selectiva d’un any, del municipi i dels seus parells',
+    'datos.fila.reciclaje':
+      'La recollida selectiva d’un any en el municipi, amb el repartiment de la resta de municipis en quantils',
     'datos.fila.criminalidad': 'Un any de la sèrie de criminalitat',
     'datos.fila.agua': 'Un butlletí d’anàlisi de l’aigua de consum',
     'datos.fila.agua-pares': 'Un municipi semblant, amb els seus butlletins de l’aigua',
@@ -5058,7 +5081,7 @@ export const CATALOGUE = {
     'datos.fila.procesos-selectivos': 'Un procés selectiu de l’Ajuntament',
     'datos.fila.asociaciones': 'Una entitat inscrita en el registre municipal',
     'datos.fila.obras': 'Una obra d’infraestructura',
-    'datos.fila.boe': 'Una disposició del BOE que nomena el municipi',
+    'datos.fila.boe': 'Un anunci o disposició del BOE que nomena el municipi',
     'datos.fila.bop': 'Un anunci del Butlletí Oficial de la Província',
     'datos.fila.budget-execution': 'Un tall de l’estat d’execució: un trimestre o el tancament',
     'datos.fila.tenders-ted': 'Un anunci en el diari de contractació de la UE',
@@ -5066,8 +5089,10 @@ export const CATALOGUE = {
     'datos.fila.sindicatura':
       'Un informe de fiscalització de la Sindicatura de Comptes que inclou el municipi',
     'datos.fila.rendicion-cuentas': 'Un exercici del Compte General',
-    'datos.fila.sindic-expedientes': 'Un expedient del Síndic de Greuges sobre l’Ajuntament',
-    'datos.fila.ctbg': 'Una reclamació davant el CTBG sobre l’Ajuntament',
+    'datos.fila.sindic-expedientes':
+      'Un expedient del Síndic de Greuges contra l’Ajuntament (els de veïns davant d’altres administracions van a banda)',
+    'datos.fila.ctbg':
+      'Una resolució d’àmbit estatal del CTBG que nomena el municipi (les reclamacions contra l’Ajuntament van al Consell de Transparència)',
     'datos.fila.consell-cv': 'Una resolució del Consell de Transparència sobre l’Ajuntament',
     'datos.fila.incendios-perimetros': 'Les geometries dels perímetres d’incendi',
     'datos.fila.civic-poi': 'Un servei públic en el mapa: un col·legi, un centre de salut…',

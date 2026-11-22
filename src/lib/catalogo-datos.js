@@ -10,14 +10,17 @@
  *     canal de quejas) se publica con CC BY 4.0. Lo decidió el operador el
  *     22-11-2026, y lo dice /aviso-legal («Licencia de los datos»).
  *   · lo que viene de fuera conserva las condiciones de su fuente, las que ya
- *     enumera /aviso-legal: CC BY 4.0 (ICV/GVA), ODbL (OpenStreetMap), CC0
- *     (Wikidata) y, para el sector público español sin licencia propia
- *     declarada, la reutilización de la Ley 37/2007. No se le pone a una fuente
- *     una licencia Creative Commons que no ha publicado.
+ *     enumera /aviso-legal: CC BY 4.0 (ICV/GVA, el INE y lo que el propio
+ *     fichero declare así), ODbL (OpenStreetMap), CC0 (Wikidata) y, para el
+ *     sector público español sin licencia propia declarada, la reutilización de
+ *     la Ley 37/2007. No se le pone a una fuente una licencia Creative Commons
+ *     que no ha publicado, ni se le quita la que sí publica: la prueba lee la
+ *     licencia que declara cada fichero.
  *   · `prensa` — titulares y enlaces de cada medio: no son datos abiertos, y la
  *     fila no los ofrece como tales.
- *   · El texto de cada queja es de quien la escribe: el canal nunca pidió
- *     licenciarlo, y la fila de las quejas lo dice (`nota`).
+ *   · El texto y la foto de cada queja son de quien la envía: el canal nunca
+ *     pidió licenciarlos, y la fila de las quejas lo dice (`nota`). La cita de
+ *     cada promesa es de su fuente, y su fila también lo dice.
  *
  * Que la licencia no contradiga a la fuente que pinta la misma fila lo comprueba
  * tests/catalogo-datos.test.js, leyendo la fuente del propio catálogo.
@@ -103,7 +106,7 @@ export const FICHAS = {
   },
   '/data/padron.json': {
     fila: 'datos.fila.padron',
-    licencia: 'ley-37-2007',
+    licencia: 'cc-by-4.0',
     codigo: 'scripts/scrape-padron.ts',
   },
   '/data/paro.json': {
@@ -121,6 +124,7 @@ export const FICHAS = {
     fila: 'datos.fila.promises',
     licencia: 'propia',
     codigo: 'src/scraper/promises.ts',
+    nota: 'datos.licencia.nota.promesas',
   },
   '/data/pleno-findings.json': {
     fila: 'datos.fila.pleno-findings',
@@ -160,7 +164,7 @@ export const FICHAS = {
   },
   '/data/ipc.json': {
     fila: 'datos.fila.ipc',
-    licencia: 'ley-37-2007',
+    licencia: 'cc-by-4.0',
     codigo: 'scripts/scrape-ipc.ts',
   },
   '/data/eficiencia-findings.json': {
@@ -250,7 +254,7 @@ export const FICHAS = {
   },
   '/data/elections.json': {
     fila: 'datos.fila.elections',
-    licencia: 'ley-37-2007',
+    licencia: 'cc-by-4.0',
     codigo: 'scripts/scrape-elections.ts',
   },
   '/data/sindicatura.json': {
