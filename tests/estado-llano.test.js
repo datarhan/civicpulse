@@ -121,11 +121,44 @@ describe('EstadoLlano: los estados de una promesa', () => {
     for (const s of ALLOWED_STATUSES) expect(estadoLlano(tDe('es'), 'promesa', s), s).toBe(ANTES[s])
   })
 
-  it('cada promesa publicada, y cada retirada, tiene rótulo', () => {
+  // Las retiradas no llevan estado (sólo promiseId, partido, huella, motivo,
+  // editor y fecha), así que la prueba mira las publicadas, todas.
+  it('cada promesa publicada tiene rótulo en los dos idiomas', () => {
     const p = JSON.parse(readFileSync(resolve('public/data/promises.json'), 'utf8'))
-    const estados = [...p.items, ...(p.retractions ?? [])].map((x) => x.status).filter(Boolean)
-    expect(p.items.length).toBeGreaterThan(0)
-    for (const s of estados) expect(estadoLlano(tDe('ca'), 'promesa', s), s).toBeTruthy()
+    const estados = p.items.map((x) => x.status)
+    expect(estados.length).toBeGreaterThan(0)
+    expect(estados.every(Boolean)).toBe(true)
+    for (const idioma of IDIOMAS)
+      for (const s of estados)
+        expect(estadoLlano(tDe(idioma), 'promesa', s), `${idioma}:${s}`).toBeTruthy()
+  })
+
+  // Sin el hueco, `rellena` devuelve la frase sin el estado y nadie lo nota.
+  it('las frases que llevan el rótulo dentro tienen su hueco en los dos idiomas', () => {
+    for (const idioma of IDIOMAS)
+      for (const k of ['promesas.estado.recogida', 'promesas.estado.registrada'])
+        expect(CATALOGUE[idioma][k], `${idioma}:${k}`).toMatch(/«\{estado\}»/)
+  })
+
+  // /metodologia#estados nombra los estados por su código («en-progreso»): en
+  // valencià el rótulo tiene que dejarse reconocer junto a él, y «En curs» es
+  // además el rótulo de otro vocabulario (contrato.estado.in_progress).
+  it('en valencià, «en-progreso» se lee «En progrés», no el «En curs» de los contratos', () => {
+    expect(CATALOGUE.ca['estado.promesa.en-progreso']).toBe('En progrés')
+    expect(CATALOGUE.ca['estado.promesa.en-progreso']).not.toBe(
+      CATALOGUE.ca['contrato.estado.in_progress'],
+    )
+  })
+
+  it('la tarjeta de /promesas no deja en castellano lo que rodea al estado', () => {
+    const fuente = readFileSync(resolve('src/pages/Promesas.jsx'), 'utf8')
+    for (const literal of [
+      'Sin evidencia curada',
+      'enlace roto · sin copia archivada',
+      'copia archivada ↗',
+      'Fundamentación (',
+    ])
+      expect(fuente, literal).not.toContain(literal)
   })
 
   it('ninguna página ni componente vuelve a la tabla escrita a mano', () => {
