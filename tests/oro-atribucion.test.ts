@@ -284,7 +284,8 @@ describe('sobre el repositorio de verdad', () => {
   })
 })
 
-describe('el CLI: congelar y comprobar', () => {
+// Cada prueba lanza el CLI de verdad (tsx); en la CI, varios segundos cada una.
+describe('el CLI: congelar y comprobar', { timeout: 180_000 }, () => {
   const cajas: string[] = []
   afterAll(() => cajas.forEach((c) => rmSync(c, { recursive: true, force: true })))
   const caja = () => {
@@ -366,7 +367,8 @@ describe('el CLI: congelar y comprobar', () => {
       // Comiteado: sortea. Lo que se prueba es que no se niega sin motivo.
       expect(r.status, r.stderr).toBe(0)
     }
-  })
+    // Comiteadas (en CI), corre un sorteo entero: decenas de segundos.
+  }, 180_000)
 
   it('se niega a escribir bajo public/', () => {
     const r = correr(resolve('public/data/oro-prueba'), join(caja(), 's.json'))
