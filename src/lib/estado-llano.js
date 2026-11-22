@@ -31,6 +31,13 @@ export const ESTADO_LLANO = /** @type {const} */ ({
   // (STATUS_LABEL de usePromises.js), con las mismas palabras. Lo que dice
   // cada uno lo define /metodologia#estados.
   promesa: 'estado.promesa',
+  // Los cuatro siguientes tenían ya sus claves en el catálogo; las tablas de
+  // los hooks (OUTCOME_LABEL, DIRECTION_LABEL, SEVERITY_LABEL, STATE_LABEL)
+  // leen de ellas el castellano para las páginas aún sin traducir.
+  desenlace: 'pleno.desenlace',
+  sentido: 'pleno.sentido',
+  gravedad: 'pleno.gravedad',
+  queja: 'quejas.estado',
 })
 
 /**
