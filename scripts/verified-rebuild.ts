@@ -56,6 +56,7 @@ import {
 import type { ClaimVerdict } from '../src/scraper/claim-verifier'
 import { resumirSinDatos } from '../src/scraper/claim-verdicts'
 import { huellaDelBase } from './lib/huella-base'
+import { vedaActiva } from './lib/veda'
 
 const DATA = resolve('public/data')
 export const BASE = resolve(DATA, 'pleno-claims-verified-base.json')
@@ -104,6 +105,34 @@ export function atribucionesDeBloc(items: VerifiedItem[]): number {
  */
 export function rebuildEmpobreceAtribucion(antes: number, despues: number): boolean {
   return despues < antes
+}
+
+/**
+ * En veda electoral (LOREG), las declaraciones a las que este rebuild PONDRÍA o
+ * CAMBIARÍA un grupo respecto de lo publicado. Quitarlo (→ null) no cuenta: eso
+ * lo hace una persona por su CLI, y la guarda de pérdida de arriba ya lo vigila.
+ *
+ * Decisión 4.4 (22-11-2026). Sin esto, una re-atribución hecha justo antes de la
+ * veda cuya verificación falló se publicaba en la primera pasada de la veda que
+ * verificara un pleno nuevo, y /metodologia promete que en veda ninguna
+ * atribución publicada cambia.
+ */
+export function atribucionesQueCambianEnVeda(
+  publicado: readonly { claim?: { id?: string; speakerGroup?: string | null } }[],
+  nuevos: readonly { claim?: { id?: string; speakerGroup?: string | null } }[],
+): { id: string; de: string | null; a: string }[] {
+  const antes = new Map<string, string | null>()
+  for (const it of publicado)
+    if (it?.claim?.id) antes.set(it.claim.id, it.claim.speakerGroup ?? null)
+  const out: { id: string; de: string | null; a: string }[] = []
+  for (const it of nuevos) {
+    const id = it?.claim?.id
+    const a = it?.claim?.speakerGroup ?? null
+    if (!id || !a) continue
+    const de = antes.has(id) ? (antes.get(id) ?? null) : null
+    if (de !== a) out.push({ id, de, a })
+  }
+  return out
 }
 
 /** Escotilla documentada, para cuando la pérdida sea la intención. */
@@ -474,6 +503,29 @@ export async function rebuildVerified(
           suben.map((s) => `  · ${s.id}: ${s.de} → ${s.a}\n`).join('') +
           '  Si la subida es correcta, la firma una persona: revísala y publícala por su vía, o\n' +
           `  pon ${ANULAR_GUARDA_ACUSACIONES}=1 y queda escrito.`,
+      )
+    }
+  }
+
+  // En veda, ningún grupo nuevo ni cambiado llega a lo publicado. Sin escotilla:
+  // la veda acaba sola, y lo que espera se publica en la primera pasada tras ella.
+  // La veda se pregunta sólo si hay algo que pondría o cambiaría un grupo: así
+  // un rebuild que no toca atribuciones no depende de promises.json.
+  const publicadoVeda = existsSync(VERIFIED)
+    ? ((JSON.parse(readFileSync(VERIFIED, 'utf8')) as Snapshot).items ?? [])
+    : []
+  const cambian = atribucionesQueCambianEnVeda(publicadoVeda, items)
+  if (cambian.length > 0) {
+    const veda = vedaActiva()
+    if (veda) {
+      throw new Error(
+        `[rebuild] ABORTADO: veda electoral hasta ${veda}, y este rebuild pondría o cambiaría el ` +
+          `grupo de ${cambian.length} declaración(es):\n` +
+          cambian
+            .slice(0, 10)
+            .map((c) => `  · ${c.id}: ${c.de ?? '—'} → ${c.a}\n`)
+            .join('') +
+          '  En veda no se atribuye nada. La base que lo trae espera al fin de la veda.',
       )
     }
   }

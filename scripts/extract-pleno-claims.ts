@@ -32,6 +32,7 @@ import {
 } from '../src/scraper/corporation-seats'
 import { resetBudget, loadConfigFromEnv, getRunStats } from '../src/llm/client'
 import { startRun, formatManifest } from '../src/scraper/run-manifest'
+import { vedaActiva } from './lib/veda'
 
 const OUT_PATH = resolve('public/data/pleno-claims-suggestions.json')
 // Both of these are read one file at a time, keyed by plenoId, so the
@@ -177,7 +178,19 @@ async function runOne(
     return []
   }
   const agendaItems = loadAgendaFor(plenoId)
-  const allowedSpeakers = loadAllowedSpeakersFor(plenoId)
+  // En veda electoral (LOREG) no se atribuye nada: ni grupo ni persona. Una
+  // sesión sin grupos todavía se extrae igual, con `speakerGroup: null`, que es lo
+  // honesto —«no lo decimos»—; su mapa se hace tras la veda. Las que ya llevan
+  // grupos no llegan aquí: el bucle de abajo las conserva.
+  // Lanza si no puede leer promises.json: sin saber si hay veda no se extrae.
+  const veda = vedaActiva()
+  if (veda) {
+    process.stdout.write(
+      `[extract·claims]   ${plenoId} · veda electoral hasta ${veda}: sin mapa de voces ni voice-id, ` +
+        'toda declaración sale con speakerGroup:null\n',
+    )
+  }
+  const allowedSpeakers = veda ? [] : loadAllowedSpeakersFor(plenoId)
   if (allowedSpeakers.length > 0) {
     process.stdout.write(
       `[extract·claims] ${plenoId}: voice-id allowed speakers (high-tier): ${allowedSpeakers
@@ -191,7 +204,9 @@ async function runOne(
   // absence look like a session where nobody was identifiable.
   const mapPath = resolve('pleno-speaker-map', `${plenoId}.json`)
   let resolveBloc: ((verbatim: string) => string | null) | undefined
-  if (existsSync(mapPath)) {
+  if (veda) {
+    // Ver arriba: en veda, ni el mapa se lee.
+  } else if (existsSync(mapPath)) {
     const map = JSON.parse(readFileSync(mapPath, 'utf8')) as SpeakerMap
     const published = parseDiarizedTranscript(transcript)
     const alignment = alignSpeakerMap({ published, map })
@@ -483,8 +498,29 @@ async function main() {
   process.on('SIGINT', () => onSignal('SIGINT'))
   process.on('SIGTERM', () => onSignal('SIGTERM'))
 
+  // En veda, re-extraer una sesión que ya lleva grupos los quitaría (sale todo
+  // con `speakerGroup: null`), y quitar una atribución publicada también es
+  // mover lo que el sitio dice de un candidato. Esas sesiones se conservan tal
+  // cual; las que no llevan ninguno se extraen como siempre.
+  const vedaDeLaPasada = vedaActiva()
   let completed = 0
   for (const id of ids) {
+    const atribuidas = (previousByPleno.get(id) ?? []).filter(
+      (c) => c.speakerGroup || c.speakerSlug,
+    ).length
+    if (vedaDeLaPasada && atribuidas > 0) {
+      process.stderr.write(
+        `[extract·claims] ${id} CONSERVADA — veda electoral hasta ${vedaDeLaPasada} y ${atribuidas} ` +
+          'declaración(es) con grupo: re-extraerla en veda se lo quitaría. Tras la veda, otra vez.\n',
+      )
+      accumulated.push(...(previousByPleno.get(id) ?? []))
+      // Saltada con su motivo, no intentada: «no la toqué por la veda» no es «la
+      // intenté y no salió nada» (regla 2 de DATA_INTEGRITY).
+      run.skip('loreg-freeze — atribución conservada')
+      completed += 1
+      writeSnapshot()
+      continue
+    }
     try {
       const fresh = await runOne(id, plenos, currentSeats, minConfidence, concurrency)
 

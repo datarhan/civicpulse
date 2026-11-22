@@ -100,6 +100,7 @@ import { startRun, formatManifest } from '../src/scraper/run-manifest'
 import { speakerMapBacklog } from './speaker-map-backlog'
 import { getRunStats } from '../src/llm/client'
 import { caminoDelMapa } from '../src/scraper/speaker-map-texto'
+import { vedaActiva } from './lib/veda'
 
 const OUT_DIR = resolve('pleno-speaker-map')
 const MODEL = process.env.SPEAKER_MAP_MODEL || 'gemini-3.5-flash'
@@ -532,6 +533,18 @@ async function main() {
   if (!args.plenoId) {
     process.stderr.write('usage: extract-speaker-map.ts <plenoId> [--chunks N] [--audio FILE]\n')
     process.exit(2)
+  }
+
+  // En veda electoral no se mapea: el mapa decide a qué grupo se atribuye cada
+  // cita de un candidato. No escribe nada y sale 0, porque no es un fallo; la
+  // tubería ya no llega aquí en veda (pregunta antes a `veda:activa`). El camino
+  // de texto, arriba, hace la misma pregunta y la apunta en su manifiesto.
+  const veda = vedaActiva()
+  if (veda) {
+    process.stdout.write(
+      `[speaker-map] veda electoral hasta ${veda}: no se mapea ${args.plenoId}, no se escribe nada\n`,
+    )
+    return
   }
 
   const apiKey = process.env.GEMINI_API_KEY

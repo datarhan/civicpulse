@@ -208,6 +208,7 @@
     "refresh": "npx tsx scripts/refresh.ts",
     "reconcile:attribution": "npx tsx scripts/reconcile-attribution.ts",
     "speaker-map:backlog": "npx tsx scripts/speaker-map-backlog.ts",
+    "veda:activa": "npx tsx scripts/veda-activa.ts",
     "review:finding-exception": "npx tsx scripts/review-finding-exception.ts",
     "check:summary-gate": "npx tsx scripts/check-summary-gate.ts",
     "check:queues": "npx tsx scripts/check-queues.ts",

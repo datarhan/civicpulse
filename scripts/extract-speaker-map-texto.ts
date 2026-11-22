@@ -47,7 +47,7 @@ import {
   type OfficialLike,
   type OfficialsDoc,
 } from '../src/scraper/corporation-seats'
-import { isFrozen } from '../src/scraper/promises'
+import { vedaActiva } from './lib/veda'
 import { startRun, formatManifest } from '../src/scraper/run-manifest'
 import { decideSnapshotWrite } from '../src/scraper/snapshot-write'
 import {
@@ -175,15 +175,14 @@ export async function mainTexto(argv: string[] = process.argv.slice(2)): Promise
   })
 
   try {
-    const promesas = JSON.parse(readFileSync(resolve('public/data/promises.json'), 'utf8'))
-    if (isFrozen(promesas)) {
+    // La regla compartida, que falla cerrado también con una fecha ilegible.
+    const veda = vedaActiva()
+    if (veda) {
       runLog.owe(1)
       runLog.attempt(1)
       runLog.neverAttempt(1)
       runLog.skip('loreg-freeze')
-      process.stdout.write(
-        `[speaker-map-texto] veda electoral hasta ${promesas.frozenUntil}: no se mapea nada\n`,
-      )
+      process.stdout.write(`[speaker-map-texto] veda electoral hasta ${veda}: no se mapea nada\n`)
       return
     }
 

@@ -30,6 +30,7 @@ import {
   MOTIVOS_DE_DESCARTE,
   POR_QUE_SE_DESCARTA,
 } from '../src/scraper/claim-attribution-carry'
+import { vedaActiva } from './lib/veda'
 import { resolverDeGrupo } from '../src/scraper/claim-provenance'
 import { oneSeatBlocsOf } from '../src/scraper/corporation-seats'
 import { plenosConMapa } from '../src/scraper/etiqueta-de-grupo'
@@ -117,6 +118,13 @@ function main() {
 
   if (!escribir) {
     log('ENSAYO — no se ha escrito nada. Repite con --write para aplicarlo.')
+    return
+  }
+  // En veda electoral el ensayo sigue valiendo (no escribe), pero --write no:
+  // devolver un grupo a una cita es volver a atribuírsela a un candidato.
+  const veda = vedaActiva()
+  if (veda) {
+    log(`veda electoral hasta ${veda}: --write NO se aplica, no se ha escrito nada`)
     return
   }
   if (despues < antes) {

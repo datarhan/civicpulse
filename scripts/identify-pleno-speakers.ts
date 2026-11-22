@@ -62,6 +62,7 @@ import {
   type VoiceprintEntry,
   type DiarizedSegment,
 } from '../src/scraper/voice-id'
+import { vedaActiva } from './lib/veda'
 
 const REPO_ROOT = resolve(dirname(new URL(import.meta.url).pathname), '..')
 const VOICEPRINTS_DIR = resolve(REPO_ROOT, '.voiceprints')
@@ -374,7 +375,15 @@ async function main(): Promise<void> {
       `(${result.highConfidenceCount} high, ${result.mediumConfidenceCount} medium, ${result.unmatchedCount} unmatched)\n`,
   )
 
-  if (opts.apply) {
+  // En veda electoral --apply no reescribe la transcripción con nombres: sería
+  // atribuir frases a candidatos con nombre propio. Las asignaciones de arriba
+  // sí se guardan (pleno-speakers/, no se publica).
+  const veda = opts.apply ? vedaActiva() : null
+  if (veda) {
+    process.stderr.write(
+      `[identify] --apply: veda electoral hasta ${veda} — la transcripción NO se toca\n`,
+    )
+  } else if (opts.apply) {
     const rewritten = rewriteTranscript(transcript, assignments)
     if (rewritten === transcript) {
       process.stderr.write(

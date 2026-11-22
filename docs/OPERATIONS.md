@@ -438,8 +438,31 @@ conflict.
 **multi-week backlog burn**: `extract:speaker-map` works through the sessions
 that have no `pleno-speaker-map/<id>.json`, ~18 chunks per run (Mon + Thu) against the
 Gemini free tier's 20 requests/day. `npm run speaker-map:backlog -- --why`
-reports where it is. Three things follow from the shape, and each one has cost a
-night or more:
+reports where it is. Two gates sit in front of it (decision 4.4, 2026-11-22):
+
+- **Under the LOREG freeze the whole step is skipped.** The run asks
+  `npm run --silent veda:activa` (the shared `isFrozen`, via
+  `scripts/lib/veda.ts`) and logs `veda electoral: <date|no>`; if the query
+  fails it is treated as a freeze. Every script that writes `speakerGroup` or a
+  speaker map checks the freeze itself too — `tests/veda-escritores-atribucion.test.ts`
+  reds on one that does not.
+- **At most `REATRIBUCION_MAX` (2) already-published sessions are re-extracted
+  with attribution per run.** The rest keep their new map and go into
+  `.cache/reatribucion-pendiente.txt` (gitignored), which every later run works
+  through under the same cap — a complete map takes a session out of
+  `speaker-map:backlog`, so without the list nothing would ever re-extract it.
+  The same list catches a re-extraction held for lack of a text backend or one
+  that failed. Sessions with nothing published yet are not capped. Under the
+  freeze, `extract-pleno-claims` also refuses to re-extract a session that
+  already carries groups (re-extracting would strip them). And `verified-rebuild` refuses, under the
+  freeze, a recomposition that would add or change a group, so a
+  re-attribution whose verify failed just before the freeze waits for its end.
+  A re-extraction that an extractor guard leaves without effect
+  (`PRESERVED`/`SKIPPED`/`CONSERVADA`) stays on the list and spends no cap. A freeze longer than
+  eight days leaves `check:runs` reporting the speaker-map pass overdue: that is
+  the freeze, not a dead step.
+
+Three things follow from the shape, and each one has cost a night or more:
 
 - **A backend outage must not stop it.** This step runs on `GEMINI_API_KEY`,
   which is not the text backend the rest of the pipeline uses, and Gemini's

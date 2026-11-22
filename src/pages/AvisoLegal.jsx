@@ -339,6 +339,11 @@ export default function AvisoLegal() {
             retirar una subida ya firmada sigue siendo posible.
           </li>
           <li>
+            No se atribuye a ningún grupo municipal una declaración de pleno: las nuevas se publican
+            sin grupo y las ya atribuidas no cambian. Retirar una atribución sigue siendo posible,
+            siempre por una persona.
+          </li>
+          <li>
             El pleno principal del sitio, incluidas las páginas <code>/presupuesto</code>,{' '}
             <code>/contratos</code>, <code>/cargos</code> y <code>/datos</code>, sigue operativo con
             datos objetivos de fuente pública.

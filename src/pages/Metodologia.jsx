@@ -605,7 +605,7 @@ function ContratoEditorial() {
               cifra está congelada a propósito: es lo que se midió en esa fecha, no una afirmación
               sobre hoy. Hoy ya no vale ni como medida, porque tiene más de 90 días y nunca cubrió
               si el resumen parafrasea bien la cita. Por eso el 22 de noviembre de 2026 se quitó de
-              la tarea nocturna el proceso que redactaba hallazgos, que desde agosto sólo dejaba
+              la tarea de plenos el proceso que redactaba hallazgos, que desde agosto sólo dejaba
               borradores, y un hallazgo nuevo lo escribe y lo firma una persona. Volvería a correr
               sólo con una muestra nueva de al menos 150 hallazgos revisados por personas,
               paráfrasis incluida, con 7 defectos o menos. Así se trata también publicar una queja
@@ -695,10 +695,15 @@ function ContratoEditorial() {
           <p style={{ marginBottom: 0 }}>
             La suspensión electoral (LOREG art. 50) prevalece sobre todo lo anterior: con{' '}
             <code>frozenUntil</code> activo no se publica ni se retracta nada de forma automática.
-            Las mediciones vigentes son públicas en el repositorio (
-            <code>.automation-measurements.json</code>) y caducan a los 90 días, porque una
-            precisión medida contra un modelo que ya no se usa es un dato histórico, no una
-            garantía.
+            Tampoco se atribuye a ningún grupo municipal una cita de un pleno: no se reconstruye el
+            mapa de voces, las declaraciones nuevas salen sin grupo y ninguna atribución ya
+            publicada cambia; retirarla exige una persona. Fuera de la veda, cada pasada de la tarea
+            de plenos (lunes y jueves) vuelve a atribuir como mucho dos sesiones ya publicadas; las
+            demás conservan su mapa de voces y esperan a una pasada siguiente, para que un mapa
+            defectuoso no cambie decenas de sesiones antes de que alguien lo vea. Las mediciones
+            vigentes son públicas en el repositorio (<code>.automation-measurements.json</code>) y
+            caducan a los 90 días, porque una precisión medida contra un modelo que ya no se usa es
+            un dato histórico, no una garantía.
           </p>
         </div>
       </Card>
