@@ -88,6 +88,35 @@ export default function AvisoLegal() {
         </p>
       </Card>
 
+      {/* Decidido por el operador el 22-11-2026, con la tabla de /datos: hasta
+          entonces el código tenía licencia (AGPL-3.0) y los datos propios no.
+          La licencia de cada fichero vive en src/lib/catalogo-datos.js. */}
+      <Card style={{ marginTop: 14 }}>
+        <SectionHead eyebrow="Reutilización" title="Licencia de los datos" />
+        <p>
+          Lo que produce CivicPulse —los hallazgos sobre lo dicho en los plenos, los veredictos de
+          las declaraciones, los estados de las promesas, las votaciones curadas, las correcciones y
+          decisiones curadas y los resultados de sus modelos— se publica con la licencia{' '}
+          <a
+            href="https://creativecommons.org/licenses/by/4.0/deed.es"
+            target="_blank"
+            rel="noreferrer"
+            style={{ color: 'var(--civic)' }}
+          >
+            Creative Commons Atribución 4.0 (CC BY 4.0)
+          </a>
+          : se puede reutilizar para cualquier fin, también comercial, citando a CivicPulse como
+          fuente. Los datos que vienen de otras fuentes conservan sus condiciones de reutilización,
+          las que se enumeran arriba, y la columna «Licencia» de{' '}
+          <a href="/datos" style={{ color: 'var(--civic)' }}>
+            /datos
+          </a>{' '}
+          dice cuál es fichero a fichero. Los titulares y enlaces de la prensa no son datos
+          abiertos. El texto de cada queja es de quien la escribe: CivicPulse lo publica, pero no lo
+          licencia.
+        </p>
+      </Card>
+
       <Card id="rectificacion" style={{ marginTop: 14 }}>
         <SectionHead eyebrow="Derecho de rectificación" title="Cómo pedir una corrección" />
         <p>

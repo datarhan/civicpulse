@@ -1,7 +1,6 @@
 import { useMemo } from 'react'
-import { Card, Pill, SectionHead, ExtLink } from '../components/Primitives'
+import { Card, SectionHead, ExtLink } from '../components/Primitives'
 import { BoeCard } from '../components/BoeCard'
-import { Ic } from '../components/Icons'
 import { usePadron } from '../hooks/usePadron'
 import { useWikidata } from '../hooks/useWikidata'
 import { useAsociaciones } from '../hooks/useAsociaciones'
@@ -38,6 +37,7 @@ import { useCriminalidad } from '../hooks/useCriminalidad'
 import { useAgua, useAguaInforme, useAguaPares } from '../hooks/useAgua'
 import { useBibliotecas } from '../hooks/useBibliotecas'
 import { fmtDateShort, fmtDateLong } from '../lib/formatters'
+import { FICHAS, LICENCIAS, REPOSITORIO } from '../lib/catalogo-datos'
 import { breakdownNeedsCaveat } from '../scraper/pleno-votes'
 
 function formatDate(iso) {
@@ -96,6 +96,7 @@ export function unverifiedBreakdownNote(items) {
 }
 
 function DatasetsCatalog() {
+  const t = useT()
   const officials = useOfficials().data
   const budget = useBudget().data
   const tenders = useTenders().data
@@ -522,86 +523,84 @@ function DatasetsCatalog() {
   const vistos = new Set()
   const catalogo = items.filter((d) => !vistos.has(d.path) && vistos.add(d.path))
 
+  // Una tabla, no una rejilla de fichas (auditoría de las dos lecturas, §22):
+  // quien viene a esta página compara ficheros, y una columna por pregunta se
+  // compara de un vistazo. Lo que el catálogo dice además del recuento —qué es
+  // una fila, la licencia, el código— vive en `src/lib/catalogo-datos.js`. En
+  // una caja estrecha cada fila es un bloque con el rótulo delante de cada
+  // celda (`.cp-catalogo`, src/index.css): ocho columnas no caben en 375 px.
+  const columnas = [
+    'datos.tabla.conjunto',
+    'datos.tabla.fila',
+    'datos.tabla.contenido',
+    'datos.tabla.fuente',
+    'datos.tabla.licencia',
+    'datos.tabla.actualizado',
+    'datos.tabla.descarga',
+    'datos.tabla.codigo',
+  ]
+  const rotulos = Object.fromEntries(columnas.map((k) => [k, t(k)]))
   return (
-    // El `min(…, 100%)` es para la columna que queda sola: sin él conservaba
-    // sus 320 px en una caja de 272 (320 px de pantalla).
-    <div
-      style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(min(320px, 100%), 1fr))',
-        gap: 14,
-      }}
-    >
-      {catalogo.map((d) => (
-        <Card key={d.path} hover data-ficha-catalogo={d.path}>
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'flex-start',
-              gap: 10,
-            }}
-          >
-            <div style={{ minWidth: 0, flex: 1 }}>
-              <div
-                style={{ fontSize: 'var(--fs-body)', fontWeight: 600, letterSpacing: '-.005em' }}
-              >
-                {d.name}
-              </div>
-              <div
-                className="mono"
-                style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 3 }}
-              >
-                {d.rows}
-              </div>
-              <div
-                className="mono"
-                style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}
-              >
-                Fuente: {d.source}
-              </div>
-              <div
-                className="mono"
-                style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}
-              >
-                Actualizado {d.updated}
-              </div>
-            </div>
-            <Ic.chart width={16} height={16} style={{ color: 'var(--ink50)', flexShrink: 0 }} />
-          </div>
-          <div
-            style={{
-              display: 'flex',
-              gap: 4,
-              marginTop: 12,
-              alignItems: 'center',
-              justifyContent: 'space-between',
-            }}
-          >
-            <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
-              {d.fmt.map((f) => (
-                <Pill key={f} tone="ghost" size="xs">
-                  {f}
-                </Pill>
-              ))}
-            </div>
-            <a
-              href={d.path}
-              target="_blank"
-              rel="noreferrer"
-              className="mono"
-              style={{
-                fontSize: 'var(--fs-micro)',
-                color: 'var(--civic)',
-                textDecoration: 'none',
-                fontWeight: 600,
-              }}
-            >
-              abrir →
-            </a>
-          </div>
-        </Card>
-      ))}
+    <div className="cp-catalogo-caja">
+      <table className="cp-catalogo" aria-labelledby="catalogo-titulo">
+        <thead>
+          <tr>
+            {columnas.map((k) => (
+              <th key={k} scope="col">
+                {rotulos[k]}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {catalogo.map((d) => {
+            const f = FICHAS[d.path]
+            const l = f ? LICENCIAS[f.licencia] : null
+            const licencia = l ? (l.clave ? t(l.clave) : l.nombre) : '—'
+            return (
+              <tr key={d.path} data-ficha-catalogo={d.path}>
+                <th scope="row" data-rotulo={rotulos['datos.tabla.conjunto']}>
+                  {d.name}
+                </th>
+                <td data-rotulo={rotulos['datos.tabla.fila']}>{f ? t(f.fila) : '—'}</td>
+                <td className="mono" data-rotulo={rotulos['datos.tabla.contenido']}>
+                  {d.rows}
+                </td>
+                <td className="mono" data-rotulo={rotulos['datos.tabla.fuente']}>
+                  {d.source}
+                </td>
+                <td data-rotulo={rotulos['datos.tabla.licencia']}>
+                  {l?.url ? (
+                    <a href={l.url} target="_blank" rel="noreferrer">
+                      {licencia}
+                    </a>
+                  ) : (
+                    licencia
+                  )}
+                  {f?.nota && <span className="cp-catalogo-nota">{t(f.nota)}</span>}
+                </td>
+                <td className="mono" data-rotulo={rotulos['datos.tabla.actualizado']}>
+                  {d.updated}
+                </td>
+                <td className="mono" data-rotulo={rotulos['datos.tabla.descarga']}>
+                  <a href={d.path} target="_blank" rel="noreferrer">
+                    JSON
+                  </a>
+                </td>
+                <td className="mono" data-rotulo={rotulos['datos.tabla.codigo']}>
+                  {f ? (
+                    <a href={REPOSITORIO + f.codigo} target="_blank" rel="noreferrer">
+                      {f.codigo.split('/').pop()}
+                    </a>
+                  ) : (
+                    '—'
+                  )}
+                </td>
+              </tr>
+            )
+          })}
+        </tbody>
+      </table>
     </div>
   )
 }

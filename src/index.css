@@ -912,6 +912,92 @@ body.cp-kiosk .cp-live-container {
   }
 }
 
+/* /datos — el catálogo como tabla (auditoría de las dos lecturas, §22). Ocho
+   columnas no caben en una caja estrecha —un móvil, o el escritorio con la
+   barra lateral a media anchura—: ahí cada fichero es un bloque y cada celda
+   lleva su rótulo delante (`data-rotulo`). Se mide la caja y no la ventana,
+   porque es la caja la que se queda corta. La cabecera se esconde a la vista
+   pero no a un lector de pantalla. */
+.cp-catalogo-caja {
+  container: catalogo / inline-size;
+}
+.cp-catalogo {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-aux);
+  line-height: 1.4;
+}
+.cp-catalogo th,
+.cp-catalogo td {
+  text-align: left;
+  vertical-align: top;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border2);
+  overflow-wrap: anywhere;
+}
+.cp-catalogo thead th {
+  font-size: var(--fs-micro);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink50);
+}
+.cp-catalogo tbody th {
+  font-weight: 600;
+}
+.cp-catalogo td.mono {
+  font-size: var(--fs-micro);
+  color: var(--ink70);
+}
+.cp-catalogo a {
+  color: var(--civic);
+}
+.cp-catalogo-nota {
+  display: block;
+  margin-top: 4px;
+  font-size: var(--fs-micro);
+  color: var(--ink50);
+}
+@container catalogo (max-width: 959px) {
+  .cp-catalogo thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+  .cp-catalogo,
+  .cp-catalogo tbody,
+  .cp-catalogo tr,
+  .cp-catalogo th,
+  .cp-catalogo td {
+    display: block;
+    width: 100%;
+  }
+  .cp-catalogo tr {
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    padding: 6px 0;
+  }
+  .cp-catalogo th,
+  .cp-catalogo td {
+    border-bottom: 0;
+    padding: 3px 12px;
+  }
+  .cp-catalogo td[data-rotulo]::before {
+    content: attr(data-rotulo);
+    display: block;
+    font-family: inherit;
+    font-size: var(--fs-micro);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--ink50);
+  }
+}
+
 /* /laboratorio — la tabla de medios. Sus celdas no llevan relleno lateral, así
    que su ancho mínimo lo ponen el nombre de medio más largo sin espacios
    («boletinbien.com», 85 px) y los rótulos de las tres cifras (153 px): 238 px,
