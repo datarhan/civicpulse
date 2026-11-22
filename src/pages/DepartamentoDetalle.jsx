@@ -3,13 +3,8 @@ import { Card, Pill, SectionHead, PartyTag } from '../components/Primitives'
 import { PlazoVencidoBadge } from '../components/PlazoVencidoBadge'
 import { celdaPlazosVencidos } from '../lib/plazos-vencidos'
 import { useDepartmentStats } from '../hooks/useDepartmentStats'
-import {
-  usePromises,
-  isPromiseFrozen,
-  PARTY_TONE,
-  STATUS_LABEL,
-  STATUS_TONE,
-} from '../hooks/usePromises'
+import { usePromises, isPromiseFrozen, PARTY_TONE, STATUS_TONE } from '../hooks/usePromises'
+import { estadoLlano } from '../lib/estado-llano'
 import { usePlenoAgendas } from '../hooks/usePlenoAgendas'
 import { usePlenoVotes, OUTCOME_LABEL, OUTCOME_TONE } from '../hooks/usePlenoVotes'
 import { useQuejas, STATE_LABEL, STATE_TONE } from '../hooks/useQuejas'
@@ -193,7 +188,7 @@ function PromisesSection({ slug, frozen }) {
                 </blockquote>
               </div>
               <Pill tone={STATUS_TONE[p.status]} size="xs">
-                {STATUS_LABEL[p.status]}
+                {estadoLlano(t, 'promesa', p.status)}
               </Pill>
             </div>
             {p.dueBy && (

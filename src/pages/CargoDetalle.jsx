@@ -3,7 +3,8 @@ import { Card, CorreoPartible, Pill, SectionHead, ExtLink } from '../components/
 import Compartir from '../components/Compartir'
 import { useOfficials, partyColor, findOfficial } from '../hooks/useOfficials'
 import { eurosBreves, eurosExactos, fmtDateLong, rellena } from '../lib/formatters'
-import { usePromises, STATUS_LABEL, STATUS_TONE } from '../hooks/usePromises'
+import { usePromises, STATUS_TONE } from '../hooks/usePromises'
+import { estadoLlano } from '../lib/estado-llano'
 import { usePlenoAgendas } from '../hooks/usePlenoAgendas'
 import { useQuejas } from '../hooks/useQuejas'
 import { useBioReportRoutes } from '../hooks/useBioReportRoutes'
@@ -1142,7 +1143,7 @@ export default function CargoDetalle() {
                     </div>
                   </div>
                   <Pill tone={STATUS_TONE[p.status]} size="xs">
-                    {STATUS_LABEL[p.status]}
+                    {estadoLlano(t, 'promesa', p.status)}
                   </Pill>
                 </div>
               </Card>

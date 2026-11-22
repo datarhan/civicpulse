@@ -1759,6 +1759,21 @@ export const CATALOGUE = {
     'estado.especificacionEsperada.publicada': 'Publicada',
     'estado.especificacionEsperada.muestra-insuficiente': 'Muestra insuficiente',
     'estado.especificacionEsperada.sin-declaracion-propia': 'Sin coste propio',
+    'estado.promesa.documentada': 'Documentada',
+    'estado.promesa.en-verificacion': 'En verificación',
+    'estado.promesa.en-progreso': 'En progreso',
+    'estado.promesa.cumplida': 'Cumplida',
+    'estado.promesa.parcial': 'Parcial',
+    'estado.promesa.no-ejecutada': 'No ejecutada',
+    'estado.promesa.inviable': 'Inviable',
+    // Las frases de /promesas que llevan dentro el rótulo de un estado: si el
+    // rótulo se traduce y la frase no, la tarjeta mezcla dos idiomas.
+    'promesas.estado.recogida':
+      '«{estado}» dice que la promesa está recogida con su fuente, no que su ejecución esté acreditada.',
+    'promesas.estado.registrada':
+      '«{estado}» dice que la promesa quedó registrada, no que su ejecución esté acreditada — y su fuente ya no se puede consultar.',
+    'promesas.estado.sinDocumento': 'Ningún documento curado acredita todavía su ejecución.',
+    'promesas.motor.propone': 'El motor propone estado:',
     'declaraciones.tipo.promesa': 'Promesa',
     'declaraciones.tipo.afirmacion_numerica': 'Afirmación numérica',
     'declaraciones.tipo.cita_obra': 'Obra citada',
@@ -5420,6 +5435,19 @@ export const CATALOGUE = {
     'estado.especificacionEsperada.publicada': 'Publicada',
     'estado.especificacionEsperada.muestra-insuficiente': 'Mostra insuficient',
     'estado.especificacionEsperada.sin-declaracion-propia': 'Sense cost propi',
+    'estado.promesa.documentada': 'Documentada',
+    'estado.promesa.en-verificacion': 'En verificació',
+    'estado.promesa.en-progreso': 'En curs',
+    'estado.promesa.cumplida': 'Complida',
+    'estado.promesa.parcial': 'Parcial',
+    'estado.promesa.no-ejecutada': 'No executada',
+    'estado.promesa.inviable': 'Inviable',
+    'promesas.estado.recogida':
+      '«{estado}» diu que la promesa està arreplegada amb la seua font, no que se n’haja acreditat l’execució.',
+    'promesas.estado.registrada':
+      '«{estado}» diu que la promesa va quedar registrada, no que se n’haja acreditat l’execució — i la seua font ja no es pot consultar.',
+    'promesas.estado.sinDocumento': 'Cap document curat n’acredita encara l’execució.',
+    'promesas.motor.propone': 'El motor proposa l’estat:',
     'declaraciones.tipo.promesa': 'Promesa',
     'declaraciones.tipo.afirmacion_numerica': 'Afirmació numèrica',
     'declaraciones.tipo.cita_obra': 'Obra citada',

@@ -27,6 +27,10 @@ export const ESTADO_LLANO = /** @type {const} */ ({
   encargo: 'estado.encargo',
   pasada: 'estado.pasada',
   especificacionEsperada: 'estado.especificacionEsperada',
+  // Los estados de una promesa: antes una tabla escrita a mano en castellano
+  // (STATUS_LABEL de usePromises.js), con las mismas palabras. Lo que dice
+  // cada uno lo define /metodologia#estados.
+  promesa: 'estado.promesa',
 })
 
 /**

@@ -6,14 +6,14 @@ import {
   usePromiseSuggestions,
   isPromiseFrozen,
   PARTY_TONE,
-  STATUS_LABEL,
   STATUS_TONE,
   TOPIC_LABEL,
 } from '../hooks/usePromises'
 import { V1_STATUSES, advancesStatus } from '../scraper/promises'
 import { notaDelAyuntamiento } from '../scraper/promise-grounding'
 import { useOfficials } from '../hooks/useOfficials'
-import { fmtDateLong } from '../lib/formatters'
+import { fmtDateLong, rellena } from '../lib/formatters'
+import { estadoLlano } from '../lib/estado-llano'
 import { useT } from '../i18n'
 import { useCitationHealth, citationStatus, citationArchive } from '../hooks/useCitationHealth'
 import { BitacoraCorrecciones } from '../components/BitacoraCorrecciones'
@@ -236,6 +236,8 @@ function NotaDelAyuntamiento({ p, officials }) {
 }
 
 export function PromiseCard({ p, suggestion, llmEvidence, frozen, officials }) {
+  const t = useT()
+  const estado = estadoLlano(t, 'promesa', p.status)
   const citations = useCitationHealth()
   // La fuente ni resuelve ni tiene copia: lo que la tarjeta dice del estado no
   // puede dar por consultable lo que ella misma acaba de marcar como roto.
@@ -363,9 +365,11 @@ export function PromiseCard({ p, suggestion, llmEvidence, frozen, officials }) {
               enlace roto · sin copia archivada
             </span>
           ))}
-        <Pill tone={STATUS_TONE[p.status] || 'ghost'} size="xs">
-          {STATUS_LABEL[p.status] || p.status}
-        </Pill>
+        {estado && (
+          <Pill tone={STATUS_TONE[p.status] || 'ghost'} size="xs">
+            {estado}
+          </Pill>
+        )}
         {p.autoPublished?.reviewState === 'pending-review' && (
           <Pill tone="intel" size="xs" style={{ lineHeight: 1.3 }}>
             publicada automáticamente · revisión pendiente
@@ -404,11 +408,12 @@ export function PromiseCard({ p, suggestion, llmEvidence, frozen, officials }) {
              * fuente está muerta y sin copia, así que ahí la frase dice lo que
              * queda —que la promesa se registró— y nombra lo que falta.
              */}
-            {V1_STATUSES.has(p.status)
-              ? fuenteIlocalizable
-                ? `«${STATUS_LABEL[p.status] || p.status}» dice que la promesa quedó registrada, no que su ejecución esté acreditada — y su fuente ya no se puede consultar.`
-                : `«${STATUS_LABEL[p.status] || p.status}» dice que la promesa está recogida con su fuente, no que su ejecución esté acreditada.`
-              : 'Ningún documento curado acredita todavía su ejecución.'}
+            {V1_STATUSES.has(p.status) && estado
+              ? rellena(
+                  t(fuenteIlocalizable ? 'promesas.estado.registrada' : 'promesas.estado.recogida'),
+                  { estado },
+                )
+              : t('promesas.estado.sinDocumento')}
           </div>
         </div>
       )}
@@ -443,8 +448,10 @@ export function PromiseCard({ p, suggestion, llmEvidence, frozen, officials }) {
 
       {showSuggestion && (
         <MachineProposal confidence={suggestion.confidence}>
-          El motor propone estado:{' '}
-          <strong style={{ color: 'var(--ink)' }}>{STATUS_LABEL[suggestion.proposedStatus]}</strong>
+          {t('promesas.motor.propone')}{' '}
+          <strong style={{ color: 'var(--ink)' }}>
+            {estadoLlano(t, 'promesa', suggestion.proposedStatus)}
+          </strong>
           .
           <div style={{ marginTop: 6, fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
             Fundamentación ({suggestion.reasoning.length} evidencias):
