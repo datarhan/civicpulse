@@ -59,6 +59,19 @@ describe('aCsv', () => {
     expect(filas.map((f) => f.t)).toEqual(['\'=HYPERLINK("x")', "'+1", "'-a", "'@b", '-41'])
   })
 
+  // Una hoja de cálculo en español suele separar por punto y coma, no por coma:
+  // «x;=HYPERLINK(…)» se partiría en dos celdas y la segunda empezaría por «=».
+  // Lo mismo tras un tabulador o un salto de línea. Lo vio la revisión de
+  // seguridad del commit, el 22-11-2026.
+  it('el apóstrofo va también tras un punto y coma, un tabulador o un salto de línea', () => {
+    const csv = aCsv([{ t: 'x;=HYPERLINK("y")' }, { t: 'a\n@b' }, { t: 'c\t+d' }, { t: 'e;f' }])
+    expect(leerCsv(csv).map((f) => f.t)).toEqual(['x;\'=HYPERLINK("y")', "a\n'@b", "c\t'+d", 'e;f'])
+  })
+
+  it('una celda con punto y coma va entre comillas', () => {
+    expect(aCsv([{ t: 'e;f' }])).toBe(`${BOM}t\r\n"e;f"\r\n`)
+  })
+
   it('una lista vacía da un fichero vacío', () => {
     expect(aCsv([])).toBe('')
   })

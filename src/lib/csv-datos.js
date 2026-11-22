@@ -19,24 +19,34 @@
  *     apóstrofo delante. Una hoja de cálculo lo tomaría por una fórmula, y el
  *     texto de una queja lo escribe cualquiera. Un número negativo no lo lleva:
  *     es un número, no un texto.
+ *   · Y lo mismo dentro del texto, tras un punto y coma, un tabulador o un salto
+ *     de línea: una hoja de cálculo en español suele separar por punto y coma,
+ *     y «x;=HYPERLINK(…)» le daría una segunda celda que empieza por «=». Por
+ *     eso una celda con punto y coma va además entre comillas. Lo vio la
+ *     revisión de seguridad del commit, el 22-11-2026.
  *   · Una lista vacía da un fichero vacío, sin cabecera: no hay claves que dar.
  */
 
-const BOM = '﻿'
+const BOM = String.fromCharCode(0xfeff) // la marca UTF-8, escrita para que se vea
 const FORMULA = /^[=+\-@\t\r]/
+/** Un disparador de fórmula al principio de lo que otra hoja leería como celda. */
+const FORMULA_DENTRO = /([;\t\r\n])(?=[=+\-@])/g
 
 /** El valor de una celda, como texto. */
 function texto(v) {
   if (v === null || v === undefined) return ''
   if (typeof v === 'object') return JSON.stringify(v)
-  if (typeof v === 'string') return FORMULA.test(v) ? `'${v}` : v
+  if (typeof v === 'string') {
+    const dentro = v.replace(FORMULA_DENTRO, "$1'")
+    return FORMULA.test(dentro) ? `'${dentro}` : dentro
+  }
   return String(v)
 }
 
-/** La celda, entre comillas si lleva coma, comilla o salto de línea. */
+/** La celda, entre comillas si lleva coma, punto y coma, comilla o salto de línea. */
 function celda(v) {
   const t = texto(v)
-  return /[",\r\n]/.test(t) ? `"${t.replace(/"/g, '""')}"` : t
+  return /[",;\r\n]/.test(t) ? `"${t.replace(/"/g, '""')}"` : t
 }
 
 /**
