@@ -212,7 +212,8 @@ describe('el contrato publicado lo dice', () => {
   })
 
   it('la lista de fuentes dice la licencia del INE', () => {
-    expect(aviso).toMatch(/INE \(CC BY 4\.0\)/)
+    // El código fuente puede partir la línea entre «INE» y su licencia.
+    expect(aviso).toMatch(/INE\s+\(CC BY 4\.0\)/)
   })
 
   // La revisión del plan del 22-11-2026 vio dos cosas en lo que dejó #573. La

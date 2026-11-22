@@ -72,9 +72,10 @@ export default function AvisoLegal() {
         <p>
           Los datos de este sitio salen de lo que publican el Ayuntamiento y otras administraciones,
           de proyectos de datos abiertos, de la prensa y de las quejas que envían los vecinos. Cada
-          dato individual enlaza a la fuente de la que sale: un registro o documento oficial o,
-          cuando sale de la prensa —en la página de promesas y en el laboratorio de prensa—, la
-          noticia que lo recoge. El listado completo está en{' '}
+          dato que viene de fuera enlaza a su fuente: un registro o documento oficial o, cuando sale
+          de la prensa —en la página de promesas y en el laboratorio de prensa—, la noticia que lo
+          recoge. Las quejas son de quien las envía. El catálogo de los ficheros, con la fuente y la
+          licencia de cada uno, está en{' '}
           <a href="/datos" style={{ color: 'var(--civic)' }}>
             /datos
           </a>
@@ -95,10 +96,11 @@ export default function AvisoLegal() {
           Europea (TED) se reutilizan según la Decisión 2011/833/UE.
         </p>
         <p>
-          Con licencia abierta: la API JSON del INE (CC BY 4.0), de la que salen el padrón municipal
-          y el índice de precios con el que se deflactan las series de coste; las capas del Institut
-          Cartogràfic Valencià / Generalitat Valenciana de residuos, de incendios forestales y de
-          resultados electorales (CC BY 4.0); OpenStreetMap (ODbL) y Wikidata (CC0).
+          Entre las de licencia abierta, que se citan con la atribución que exige cada una: el INE
+          (CC BY 4.0), del que salen el padrón municipal y el índice de precios con el que se
+          deflactan las series de coste; las capas del Institut Cartogràfic Valencià / Generalitat
+          Valenciana de residuos, de incendios forestales y de resultados electorales (CC BY 4.0);
+          OpenStreetMap (ODbL) y Wikidata (CC0).
         </p>
       </Card>
 
