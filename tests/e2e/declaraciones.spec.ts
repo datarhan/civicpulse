@@ -67,7 +67,25 @@ test.describe('Reclasificaciones en el registro (/declaraciones)', () => {
       items: Array<{ claim: { id: string; type: string; verbatim: string } }>
     }
 
-    const entradas = Object.entries(reclas.entries)
+    // Sólo las que se sirven: una reclasificada puede estar retenida por la
+    // puerta por otro motivo —k4olcs-146-acu-8c6db4, literal traducido desde el
+    // 22-11-2026— y entonces no tiene fila que mirar. La reclasificación sigue
+    // en su fichero; lo que se prueba es la etiqueta de las que se ven.
+    const { readdirSync } = await import('node:fs')
+    const servidas = new Set(
+      readdirSync('public/data/pleno-claims')
+        .filter((f) => f.endsWith('.json') && f !== 'index.json')
+        .flatMap(
+          (f) =>
+            (
+              JSON.parse(readFileSync(`public/data/pleno-claims/${f}`, 'utf8')) as {
+                items: Array<{ claim: { id: string } }>
+              }
+            ).items,
+        )
+        .map((it) => it.claim.id),
+    )
+    const entradas = Object.entries(reclas.entries).filter(([id]) => servidas.has(id))
     expect(entradas.length).toBeGreaterThan(0)
 
     for (const [claimId, e] of entradas) {
