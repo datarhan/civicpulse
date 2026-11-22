@@ -70,15 +70,67 @@ cron_require_main "hallazgos-pipeline"
 
 # ---- single-instance lock (a run can take hours) ----------------------
 LOCK_DIR="$REPO_DIR/scripts/.hallazgos-pipeline.lock"
+# ¿Lo tiene una pasada viva? Si el cerrojo trae el pid de un proceso que sigue
+# siendo esta tubería, sí; si el pid ya no vive (SIGKILL, apagón), es de una
+# pasada muerta y se toma enseguida. Sin pid —uno de antes del 22-11-2026— se
+# mira la edad. Y la edad se lee por lo que `find` IMPRIME: su código de salida
+# es 0 lo encuentre o no, así que hasta el 22-11-2026 todo cerrojo «era viejo»
+# y se robaba, y nunca impidió una segunda pasada.
+cerrojo_vivo() {
+  local pid
+  pid="$(cat "$LOCK_DIR/pid" 2>/dev/null || true)"
+  if [ -n "$pid" ]; then
+    ps -p "$pid" -o command= 2>/dev/null | grep -q 'hallazgos-pipeline\.sh'
+    return
+  fi
+  [ -z "$(find "$LOCK_DIR" -maxdepth 0 -mmin +360 2>/dev/null)" ]
+}
 if ! mkdir "$LOCK_DIR" 2>/dev/null; then
-  if find "$LOCK_DIR" -maxdepth 0 -mmin +360 >/dev/null 2>&1; then
-    log "stealing stale lock (>6h)"; rmdir "$LOCK_DIR" 2>/dev/null || true
+  if ! cerrojo_vivo; then
+    log "stealing stale lock (its run is gone)"; rm -f "$LOCK_DIR/pid"; rmdir "$LOCK_DIR" 2>/dev/null || true
     mkdir "$LOCK_DIR" 2>/dev/null || { log "lock contended — exiting"; exit 0; }
   else
     log "another run holds the lock — exiting"; exit 0
   fi
 fi
-trap 'rmdir "$LOCK_DIR" 2>/dev/null || true' EXIT
+# Quién lo tiene: el parte de las 11:00 (monitor-health-cron.sh) sólo espera a
+# esta pasada si el cerrojo es de un proceso VIVO. Un cerrojo solo es también el
+# de una pasada que murió de golpe, y ése es el día en que el parte no puede
+# faltar.
+echo "$$" > "$LOCK_DIR/pid" 2>/dev/null || true
+# Al salir, de cualquier forma salvo una señal: suelta el cerrojo y deja la
+# marca que lanza el parte de salud (paso 0.4, 22-11-2026). El parte corría a
+# las 11:00, y una pasada de lunes o jueves termina entre las 10:55 y las 11:45:
+# el parte de esos días hablaba de una pasada a medias. No se lanza desde aquí
+# —un parte colgado dejaría este agente vivo y launchd no arranca otra
+# instancia de un trabajo que corre: lunes y jueves dejarían de correr sin
+# avisar—, sino que lo lanza su propio agente, com.civicpulse.parte-tras-plenos,
+# que vigila este directorio (WatchPaths). Con una señal no: la pasada no llegó
+# a su final, y un SIGTERM de launchd va seguido de un SIGKILL a los 20 s, que
+# también mataría el parte a medias. Una pasada así no tiene parte hasta las
+# 11:00 del día siguiente. Cada orden lleva `|| true`: un fallo aquí, bajo
+# `set -e`, cambiaría el código de salida de una pasada que ya terminó bien.
+#
+# La marca se escribe aparte y se MUEVE encima: WatchPaths vigila el directorio,
+# y reescribir un fichero que ya existe no lo cambia —sólo la primera pasada
+# habría lanzado el parte—. Un rename sí.
+SENAL=""
+MARCA_PARTE_DIR="$REPO_DIR/.cache/parte-tras-plenos"
+al_salir() {
+  rm -f "$LOCK_DIR/pid" 2>/dev/null || true
+  rmdir "$LOCK_DIR" 2>/dev/null || true
+  if [ -z "${SENAL:-}" ]; then
+    { mkdir -p "$MARCA_PARTE_DIR" && date '+%F %T' > "$MARCA_PARTE_DIR/marca.$$" \
+        && mv -f "$MARCA_PARTE_DIR/marca.$$" "$MARCA_PARTE_DIR/marca"; } 2>/dev/null || true
+    log "parte de salud: marca escrita (lo lanza com.civicpulse.parte-tras-plenos)" || true
+  else
+    log "parte de salud: NO se lanza — la pasada murió por una señal" || true
+  fi
+}
+trap al_salir EXIT
+trap 'SENAL=TERM; exit 143' TERM
+trap 'SENAL=INT; exit 130' INT
+trap 'SENAL=HUP; exit 129' HUP
 
 # ---- env --------------------------------------------------------------
 if [ -f "$REPO_DIR/.env" ]; then set -a; . "$REPO_DIR/.env"; set +a; fi
@@ -803,11 +855,78 @@ REDERIVADOS="$(cron_rutas_rederivadas)" \
 # map loose in the working tree for the next run's `pull --rebase --autostash`
 # to shuffle; and a healthy night commits the re-extracted corpus carrying
 # attribution that map established, without the map. Irreproducible either way.
+# ── el parte de la pasada: manifiesto y rendimiento (paso 0.3) ───────────────
+#
+# El manifiesto en tres estados, y ninguno es un cero inventado: `check:runs`
+# sin manifiestos en la ventana imprime «no instrumented runs» y sale 0, y un
+# `check:runs` que no contesta deja el `if` en falso; los dos se dicen como lo
+# que son y no entran en la comparación (ERRORES_MANIFIESTO="?").
+manifiesto_de_pasada() {
+  RUN_REPORT=""
+  MANIFIESTO="manifiesto sin leer (check:runs no contestó)"
+  ERRORES_MANIFIESTO="?"
+  if RUN_REPORT=$(npm run --silent check:runs -- --since 6 --soft 2>&1); then
+    if printf '%s\n' "$RUN_REPORT" | grep -q 'no instrumented runs'; then
+      MANIFIESTO="sin manifiestos en la ventana"
+    else
+      RUN_ERRORS=$(printf '%s\n' "$RUN_REPORT" | grep -c 'ERROR \[' || true)
+      RUN_WARNS=$(printf '%s\n' "$RUN_REPORT" | grep -c 'WARN \[' || true)
+      MANIFIESTO="manifiesto: ${RUN_ERRORS:-0} error(es), ${RUN_WARNS:-0} aviso(s)"
+      ERRORES_MANIFIESTO="${RUN_ERRORS:-0}"
+    fi
+  fi
+}
+
+# El rendimiento y la comparación con la pasada anterior los decide
+# `rendimiento:plenos` (src/scraper/rendimiento-plenos.ts), en TS y no con
+# aritmética de bash sobre un «?». Sale 0 siempre; si aun así no contesta, lo
+# dice.
+RENDIMIENTO_PREVIA=".cache/rendimiento-plenos.json"
+
+# Los renglones ERROR/WARN del manifiesto, debajo, siempre que los haya; con la
+# cabecera de «no fue limpia» si RUN_SUCIA. En las dos salidas: la de «nada
+# cambió» se los saltaba. El `grep` lee de un here-string y no de un `printf |`:
+# con `pipefail`, un parte largo que casa pronto mata al printf con SIGPIPE, el
+# `if` da 141 y el bloque no salía.
+copia_manifiesto() {
+  if [ -n "${RUN_SUCIA:-}" ] || grep -qE '^\s+(ERROR|WARN) \[' <<<"$RUN_REPORT"; then
+    if [ -n "${RUN_SUCIA:-}" ]; then
+      log "   la pasada NO fue limpia — \`npm run check:runs\` y \`npm run rendimiento:plenos\` lo detallan:"
+    else
+      log "   lo que trae el manifiesto (\`npm run check:runs\`):"
+    fi
+    # `|| true` no es decorativo. El veredicto también lo ponen un mapa parcial,
+    # el backend de texto caído o un verify fallido, con un parte que puede no
+    # traer ni un hallazgo: el grep no encuentra nada, sale 1, y con `pipefail`
+    # y `-e` esta línea sacaba la pasada entera con 1, ya publicada. Medido el
+    # 04-10-2026.
+    grep -E '^\s+(ERROR|WARN) \[' <<<"$RUN_REPORT" | sed 's/^/   /' || true
+  fi
+}
+rendimiento_de_pasada() {
+  REND_SALIDA=$(npm run --silent rendimiento:plenos -- --comparar "$RENDIMIENTO_PREVIA" \
+    --errores-manifiesto "$ERRORES_MANIFIESTO" 2>&1) || true
+  REND_LINEA=$(printf '%s\n' "$REND_SALIDA" | grep '^rendimiento ·' | tail -1 || true)
+  REND_VEREDICTO=$(printf '%s\n' "$REND_SALIDA" | grep '^veredicto: ' | tail -1 | sed 's/^veredicto: //' || true)
+  [ -n "$REND_LINEA" ] || REND_LINEA="rendimiento · sin leer (rendimiento:plenos no contestó)"
+  [ -n "$REND_VEREDICTO" ] || REND_VEREDICTO="sin comparar (rendimiento:plenos no contestó)"
+}
+
 # shellcheck disable=SC2086  # deliberado: REDERIVADOS es una lista de rutas
 if ! cron_git_stage_and_check public/data pleno-speaker-map $REDERIVADOS \
        ':(exclude)public/data/quejas.json' \
        ':(exclude)public/data/promises.json'; then
-  log "nothing changed — done (no commit)"; exit 0
+  log "nothing changed — done (no commit)"
+  # Las noches que no cambian nada son justo las que más necesitan el
+  # rendimiento: sin él, «nada cambió» se leía como «todo bien».
+  manifiesto_de_pasada
+  rendimiento_de_pasada
+  log "   ${MANIFIESTO} · veredicto: ${REND_VEREDICTO}"
+  log "   ${REND_LINEA}"
+  RUN_SUCIA=""
+  case "$REND_VEREDICTO" in DEGRADADO*) RUN_SUCIA=1 ;; esac
+  copia_manifiesto
+  exit 0
 fi
 
 NEW_FINDINGS=$(git diff HEAD -- public/data/pleno-findings.json | grep -cE '^\+ +"id": "f-' || true)
@@ -859,27 +978,34 @@ fi
 # --soft so the verdict is FETCHED, never fatal: this runs after the push, and
 # a degraded run whose data landed correctly must not exit non-zero and get
 # retried. The word in the log is the deliverable.
+#
+# Desde el 22-11-2026 (paso 0.3) «DEGRADADO» ya no sale de cualquier error o
+# aviso del manifiesto: del 26-10 al 19-11 lo dijo en todas las pasadas, y una
+# palabra que sale siempre no avisa. Los recuentos se siguen imprimiendo
+# siempre, y los renglones debajo; la palabra la pone `rendimiento:plenos`
+# cuando la pasada fue a PEOR que la anterior —un numerador de la atribución
+# bajó, o el manifiesto trae más errores—, y «SIN AVANCE» cuando quedaba trabajo
+# y no subió nada. Las causas con nombre de abajo (mapa parcial, verify caído,
+# sin backend) siguen con su propia palabra: no son ruido crónico, son motivos.
+manifiesto_de_pasada
+rendimiento_de_pasada
 RUN_VERDICT=""
-if RUN_REPORT=$(npm run --silent check:runs -- --since 6 --soft 2>&1); then
-  RUN_ERRORS=$(printf '%s\n' "$RUN_REPORT" | grep -c 'ERROR \[' || true)
-  RUN_WARNS=$(printf '%s\n' "$RUN_REPORT" | grep -c 'WARN \[' || true)
-  if [ "${RUN_ERRORS:-0}" -gt 0 ] || [ "${RUN_WARNS:-0}" -gt 0 ]; then
-    RUN_VERDICT=" · DEGRADADO: ${RUN_ERRORS} error(es), ${RUN_WARNS} aviso(s) en el manifiesto"
-  fi
-fi
-[ "${PARTIAL_MAPS:-0}" -gt 0 ] && RUN_VERDICT="${RUN_VERDICT} · ${PARTIAL_MAPS} mapa(s) parcial(es)"
+# SUCIA: hay un motivo para no darla por limpia. «SIN AVANCE» va en la línea,
+# con su racha, pero no la ensucia: es un estado, y hasta que la atribución
+# cambie de método (fase 1) es el de casi todas las pasadas.
+RUN_SUCIA=""
+case "$REND_VEREDICTO" in
+  DEGRADADO*) RUN_VERDICT=" · ${REND_VEREDICTO}"; RUN_SUCIA=1 ;;
+  SIN\ AVANCE*) RUN_VERDICT=" · ${REND_VEREDICTO}" ;;
+esac
+[ "${PARTIAL_MAPS:-0}" -gt 0 ] && RUN_VERDICT="${RUN_VERDICT} · ${PARTIAL_MAPS} mapa(s) parcial(es)" && RUN_SUCIA=1
 [ -n "${VERIFY_FALLO:-}" ] &&
-  RUN_VERDICT="${RUN_VERDICT} · verify:pleno-claims FALLÓ: lo publicado no se recompuso (el motivo, en el log)"
+  RUN_VERDICT="${RUN_VERDICT} · verify:pleno-claims FALLÓ: lo publicado no se recompuso (el motivo, en el log)" && RUN_SUCIA=1
 # Una pasada que corrió media tubería no puede firmar la línea de una completa.
 [ "$TEXT_BACKEND" != ok ] &&
-  RUN_VERDICT="${RUN_VERDICT} · DEGRADADA: sin backend de texto (extracción y auto-curación en espera) — claude: ${TEXT_BACKEND_MOTIVO}"
+  RUN_VERDICT="${RUN_VERDICT} · DEGRADADA: sin backend de texto (extracción y auto-curación en espera) — claude: ${TEXT_BACKEND_MOTIVO}" && RUN_SUCIA=1
 
-log "done · ${TRANSCRIBED} transcribed · ${EXTRACTED} extracted (${RECUPERADAS} recuperada(s)) · ${MAPPED} speaker map(s) · ${REEXTRACTED} re-extracted · ${NEW_FINDINGS} new finding(s) pushed${RUN_VERDICT}"
-if [ -n "$RUN_VERDICT" ]; then
-  log "   la pasada NO fue limpia — \`npm run check:runs\` lo detalla:"
-  # `|| true` no es decorativo. El veredicto también lo ponen un mapa parcial, el
-  # backend de texto caído o un verify fallido, con un parte que puede no traer
-  # ni un hallazgo: el grep no encuentra nada, sale 1, y con `pipefail` y `-e`
-  # esta línea sacaba la pasada entera con 1, ya publicada. Medido el 04-10-2026.
-  printf '%s\n' "$RUN_REPORT" | grep -E '^\s+(ERROR|WARN) \[' | sed 's/^/   /' || true
-fi
+log "done · ${TRANSCRIBED} transcribed · ${EXTRACTED} extracted (${RECUPERADAS} recuperada(s)) · ${MAPPED} speaker map(s) · ${REEXTRACTED} re-extracted · ${NEW_FINDINGS} new finding(s) pushed${RUN_VERDICT} · ${MANIFIESTO}"
+log "   ${REND_LINEA}"
+case "$REND_VEREDICTO" in DEGRADADO*|SIN\ AVANCE*) ;; *) log "   veredicto: ${REND_VEREDICTO}" ;; esac
+copia_manifiesto

@@ -52,6 +52,8 @@ const EXENTOS: Record<string, string> = {
   'scripts/retire-otro-sentinel.ts': 'migración a mano: el centinela «Otro» pasa a null',
   'scripts/refresh-curate-queue.ts': 'escribe la cola del curador, no lo publicado',
   'scripts/voice-id-ab.ts': 'medida: escribe un informe en scripts/logs/',
+  'scripts/rendimiento-plenos.ts':
+    'medida: cuenta los grupos y sólo escribe su comparación en .cache/rendimiento-plenos.json',
   'scripts/correct-pleno-finding.ts':
     'CLI de curador: una persona corrige un hallazgo por id, con motivo y firma',
   'scripts/override-speaker-assignment.ts':

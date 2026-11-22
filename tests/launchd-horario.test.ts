@@ -49,12 +49,23 @@ describe('horariosDePlistXml', () => {
 
   // Anti-hueco: los plists versionados son los que se instalan. Si uno deja de
   // leerse, el despiece y `check:cron` pierden al agente sin decirlo.
-  it('todos los plists activos del repositorio declaran un horario legible', () => {
+  it('todos los plists activos del repositorio declaran un horario legible, o la ruta que los dispara', () => {
     const dir = resolve(__dirname, '../scripts')
     const plists = readdirSync(dir).filter((f) => /^com\.civicpulse\..*\.plist$/.test(f))
     expect(plists.length).toBeGreaterThan(0)
+    let porMarca = 0
     for (const f of plists) {
-      expect(horariosDePlistXml(readFileSync(resolve(dir, f), 'utf8')), f).not.toEqual([])
+      const xml = readFileSync(resolve(dir, f), 'utf8')
+      // com.civicpulse.parte-tras-plenos (22-11-2026) no corre a una hora: lo
+      // dispara la marca que deja la tubería de plenos (WatchPaths), y check:cron
+      // lo juzga por esa marca. Uno sin ninguna de las dos cosas no lo vigila nadie.
+      if (/<key>WatchPaths<\/key>\s*<array>\s*<string>[^<]+<\/string>/.test(xml)) {
+        porMarca++
+        continue
+      }
+      expect(horariosDePlistXml(xml), f).not.toEqual([])
     }
+    // Que la excepción no se trague a todos.
+    expect(porMarca).toBeLessThan(plists.length)
   })
 })

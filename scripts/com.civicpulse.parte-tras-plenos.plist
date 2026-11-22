@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.civicpulse.parte-tras-plenos</string>
+
+  <!-- El parte de salud, DESPUÉS de la tubería de plenos (paso 0.4,
+       22-11-2026). El de las 11:00 sigue en cron a diario; los lunes y jueves
+       la tubería acaba hacia esa hora y su parte hablaba de una pasada a
+       medias. hallazgos-pipeline.sh escribe una marca al salir y este agente,
+       que la vigila, corre el parte.
+
+       Un agente aparte y no una llamada desde la tubería: si el parte se
+       colgara dentro de ella, com.civicpulse.hallazgos seguiría vivo, y
+       launchd no arranca otra instancia de un trabajo que corre — lunes y
+       jueves dejarían de correr sin que nada lo dijera. Aquí un parte colgado
+       sólo cuelga el parte, y check:cron lo ve: compara su log con la marca.
+
+       No necesita el llavero (ni modelo ni push); es agente sólo porque lo
+       dispara un fichero, cosa que cron no sabe hacer. -->
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>/Users/sergeilutchenko/dev/CivicPulse/scripts/monitor-health-cron.sh</string>
+  </array>
+
+  <key>WorkingDirectory</key>
+  <string>/Users/sergeilutchenko/dev/CivicPulse</string>
+
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/usr/local/bin:/usr/bin:/bin:/opt/homebrew/bin:/Users/sergeilutchenko/.local/bin</string>
+    <!-- Dice en el log quién lo lanzó, y le salta la comprobación de «la
+         tubería está corriendo»: la marca la escribe la tubería al salir. -->
+    <key>PARTE_ORIGEN</key>
+    <string>hallazgos-pipeline</string>
+  </dict>
+
+  <!-- El directorio, no el fichero: la tubería escribe la marca aparte y la
+       mueve encima (rename), que cambia el directorio en cada pasada. Un
+       WatchPaths sobre el fichero seguiría al fichero viejo; y reescribirlo en
+       su sitio no cambia el directorio, así que sólo la primera pasada
+       lanzaría el parte. -->
+  <key>WatchPaths</key>
+  <array>
+    <string>/Users/sergeilutchenko/dev/CivicPulse/.cache/parte-tras-plenos</string>
+  </array>
+
+  <!-- Su propio log: con el del cron de las 11:00, que se mueve a diario,
+       check:cron no podría decir si este corrió tras la marca. -->
+  <key>StandardOutPath</key>
+  <string>/Users/sergeilutchenko/dev/CivicPulse/scripts/logs/parte-tras-plenos.log</string>
+
+  <key>StandardErrorPath</key>
+  <string>/Users/sergeilutchenko/dev/CivicPulse/scripts/logs/parte-tras-plenos.log</string>
+
+  <key>ProcessType</key>
+  <string>Background</string>
+</dict>
+</plist>

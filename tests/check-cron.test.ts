@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { execFileSync } from 'node:child_process'
-import { mkdtempSync, writeFileSync, utimesSync, rmSync } from 'node:fs'
+import { mkdirSync, mkdtempSync, readFileSync, writeFileSync, utimesSync, rmSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
 
@@ -514,4 +514,99 @@ describe.skipIf(!HAY_PLUTIL)('corrió, pero no publica · llega al parte de salu
     expect(codigo, 'tres pulls fallidos seguidos y la guarda sale 0').toBe(1)
     expect(pickCheckDiagnosis(salida)).toContain('cron-pull-atascado')
   }, 60_000)
+})
+
+/**
+ * Un agente que no corre a una hora sino cuando cambia una ruta (WatchPaths):
+ * com.civicpulse.parte-tras-plenos, desde el 22-11-2026. Sin esto,
+ * `cron-sin-horario` lo pintaba de rojo cada día; con esto, le tocaba correr
+ * cuando la marca cambió, y su log tiene que ser posterior.
+ */
+describe.skipIf(!HAY_PLUTIL)('un agente que dispara una marca', () => {
+  const PLIST_MARCA = (log: string, vigila: string) =>
+    `<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+  <key>Label</key><string>com.civicpulse.marca</string>
+  <key>StandardOutPath</key><string>${log}</string>
+  <key>WatchPaths</key><array><string>${vigila}</string></array>
+</dict></plist>
+`
+  const HORA = 3_600_000
+  function caso(o: { marcaHace?: number; logHace?: number; dirVacioHace?: number }) {
+    const dir = mkdtempSync(join(tmpdir(), 'check-cron-marca-'))
+    const vigila = join(dir, 'vigilado')
+    const log = join(dir, 'parte.log')
+    if (o.marcaHace !== undefined) {
+      mkdirSync(vigila)
+      const m = join(vigila, 'marca')
+      writeFileSync(m, 'x')
+      const t = new Date(Date.now() - o.marcaHace)
+      utimesSync(m, t, t)
+      utimesSync(vigila, t, t)
+    }
+    if (o.dirVacioHace !== undefined) {
+      mkdirSync(vigila)
+      const t = new Date(Date.now() - o.dirVacioHace)
+      utimesSync(vigila, t, t)
+    }
+    if (o.logHace !== undefined) {
+      writeFileSync(log, '[monitor-health-cron] …\n')
+      const t = new Date(Date.now() - o.logHace)
+      utimesSync(log, t, t)
+    }
+    writeFileSync(join(dir, 'com.civicpulse.marca.plist'), PLIST_MARCA(log, vigila))
+    try {
+      const flota = leerFlota(dir)
+      return { flota, h: juzgar([medirAgente(flota[0], new Date())]) }
+    } finally {
+      rmSync(dir, { recursive: true, force: true })
+    }
+  }
+
+  it('el plist del repositorio declara lo que vigila y ningún horario', () => {
+    const flota = leerFlota(resolve('scripts')).filter(
+      (a) => a.label === 'com.civicpulse.parte-tras-plenos',
+    )
+    expect(flota).toHaveLength(1)
+    expect(flota[0].horarios).toEqual([])
+    expect(flota[0].vigila).toEqual([
+      '/Users/sergeilutchenko/dev/CivicPulse/.cache/parte-tras-plenos',
+    ])
+  })
+
+  it('la ruta que vigila es la que escribe la tubería', () => {
+    const sh = readFileSync('scripts/hallazgos-pipeline.sh', 'utf8')
+    expect(sh).toContain('MARCA_PARTE_DIR="$REPO_DIR/.cache/parte-tras-plenos"')
+  })
+
+  it('sin marca todavía, no ha tenido que correr: ni rojo ni «sin horario»', () => {
+    const { flota, h } = caso({})
+    expect(flota[0].vigila).toHaveLength(1)
+    expect(h).toEqual([])
+  })
+
+  it('el directorio vacío que crea el instalador tampoco es una marca', () => {
+    const { h } = caso({ dirVacioHace: 5 * HORA })
+    expect(h).toEqual([])
+  })
+
+  it('corrió después de la marca: no dice nada', () => {
+    expect(caso({ marcaHace: 5 * HORA, logHace: 4 * HORA }).h).toEqual([])
+  })
+
+  it('la marca tiene horas y el log es de antes: atrasado', () => {
+    const { h } = caso({ marcaHace: 5 * HORA, logHace: 72 * HORA })
+    expect(h.map((x) => x.code)).toEqual(['cron-atrasado'])
+    expect(h[0].message).toMatch(/al cambiar vigilado/)
+  })
+
+  it('recién escrita la marca, el parte aún corre: en plazo, ni atrasado ni sin log', () => {
+    expect(caso({ marcaHace: 10 * 60_000, logHace: 72 * HORA }).h).toEqual([])
+    expect(caso({ marcaHace: 10 * 60_000 }).h).toEqual([])
+  })
+
+  it('pasado el plazo y sin log, lo dice', () => {
+    expect(caso({ marcaHace: 5 * HORA }).h.map((x) => x.code)).toEqual(['cron-sin-log'])
+  })
 })

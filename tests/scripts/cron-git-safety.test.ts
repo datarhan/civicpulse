@@ -41,7 +41,7 @@
  * reproducer conditions were really present: the stub ran, the stranger's file
  * really was staged, and the cron's own snapshot really did reach the commit.
  */
-import { execFileSync } from 'node:child_process'
+import { execFileSync, spawn } from 'node:child_process'
 import {
   chmodSync,
   copyFileSync,
@@ -50,6 +50,8 @@ import {
   mkdtempSync,
   readFileSync,
   readdirSync,
+  statSync,
+  utimesSync,
   writeFileSync,
 } from 'node:fs'
 import { tmpdir } from 'node:os'
@@ -197,6 +199,9 @@ const STEP_OUTPUTS: Record<string, string> = {
   // línea. Sin hallazgos por defecto; STUB_CHECK_RUNS le da los renglones (ver
   // el stub).
   'check:runs': '',
+  // Otra CONSULTA: el renglón de rendimiento y el veredicto de la pasada (paso
+  // 0.3). El stub contesta STUB_VEREDICTO y apunta con qué argumentos lo llamó.
+  'rendimiento:plenos': '',
 }
 
 const sandboxes: string[] = []
@@ -281,6 +286,12 @@ function makeSandbox(opts: SandboxOpts = {}): string {
   const stub = `#!/bin/bash
 # Stand-in for one pipeline step, reached through REAL \`npm run\`.
 name="$1"
+# STUB_DUERME_EN: este paso se queda unos segundos, para que una prueba le mande
+# una señal a la tubería mientras corre.
+if [ -n "\${STUB_DUERME_EN:-}" ] && [ "$name" = "\${STUB_DUERME_EN}" ]; then
+  : > .stub-durmiendo
+  sleep "\${STUB_DUERME_SEG:-3}"
+fi
 # \`speaker-map:backlog\` es una CONSULTA: la tubería lee su stdout, renglón a
 # renglón, como la cola de sesiones por mapear, y tiene que nombrar una o el
 # brazo entero queda inalcanzable y sus pruebas pasan sin medir nada. Se
@@ -320,6 +331,15 @@ if [ "$name" = "extract:pleno-claims" ]; then
     printf '{"items":[{"id":"c-%s","plenoId":"%s"}]}\\n' "$2" "$2" > public/data/pleno-claims-suggestions.json
     echo "[stub] ran $name $2 (1 declaración)"; exit 0 ;;
   esac
+fi
+if [ "$name" = "rendimiento:plenos" ]; then
+  echo "[stub] ran $name" >&2
+  shift
+  printf '%s\\n' "$*" >> .stub-rendimiento-args
+  case " \${STUB_FAIL:-} " in *" rendimiento:plenos "*) echo "[stub] rendimiento:plenos FAILING" >&2; exit 1 ;; esac
+  echo "rendimiento · arenero (stub)"
+  echo "veredicto: \${STUB_VEREDICTO:-sin comparar (arenero)}"
+  exit 0
 fi
 if [ "$name" = "veda:activa" ]; then
   echo "[stub] ran $name" >&2
@@ -1538,10 +1558,9 @@ describe('hallazgos-pipeline.sh · el resumen final no puede tumbar la noche', (
     expect(r.committed, 'la pasada no llegó a comitear').not.toEqual([])
     expect(r.originHead, 'la pasada no llegó a publicar').toBe(r.head)
     expect(ultima(r.log), r.log).toMatch(/mapa\(s\) parcial/)
-    expect(
-      ultima(r.log),
-      'el parte trajo hallazgos: el grep encuentra y no hay avería',
-    ).not.toMatch(/en el manifiesto/)
+    expect(ultima(r.log), 'el parte trajo hallazgos: el grep encuentra y no hay avería').toMatch(
+      /manifiesto: 0 error\(es\), 0 aviso\(s\)$/,
+    )
     expect(r.log, 'no entró en el bloque del parte').toContain('la pasada NO fue limpia')
 
     expect(r.status, r.log).toBe(0)
@@ -1560,7 +1579,7 @@ describe('hallazgos-pipeline.sh · el resumen final no puede tumbar la noche', (
       ].join('\n'),
     })
 
-    expect(ultima(r.log), r.log).toMatch(/0 error\(es\), 1 aviso\(s\) en el manifiesto/)
+    expect(ultima(r.log), r.log).toMatch(/manifiesto: 0 error\(es\), 1 aviso\(s\)/)
     const iCabecera = r.log.indexOf('la pasada NO fue limpia')
     expect(iCabecera, 'no entró en el bloque del parte').toBeGreaterThan(-1)
     // El parte va a una variable: el hallazgo sólo llega al log si el resumen
@@ -2590,5 +2609,221 @@ describe('hallazgos-pipeline.sh · recuperación de extracciones y re-sondeo', (
     expect(r.log).toMatch(/recuperando la extracción de otra/)
     expect(r.log).not.toMatch(/recuperando la extracción de p1/)
     expect(r.log).toMatch(/extracting vote suggestions for otra/)
+  }, 120_000)
+})
+
+/**
+ * El parte de la pasada (pasos 0.3 y 0.4, 22-11-2026). «DEGRADADO» lo pone ahora
+ * `rendimiento:plenos` cuando la pasada fue a peor que la anterior —no cualquier
+ * aviso del manifiesto, que lo traían todas—, el renglón de rendimiento sale
+ * también las noches en que nada cambió, y al salir la pasada deja la marca que
+ * dispara el parte de salud.
+ */
+describe('hallazgos-pipeline.sh · el parte de la pasada', () => {
+  const ultima = (log: string) =>
+    log
+      .split('\n')
+      .filter((l) => /done ·/.test(l))
+      .pop() ?? ''
+  const args = (dir: string) => {
+    try {
+      return readFileSync(join(dir, '.stub-rendimiento-args'), 'utf8')
+    } catch {
+      return ''
+    }
+  }
+  const marca = (dir: string) => existsSync(join(dir, '.cache/parte-tras-plenos/marca'))
+  const LIMPIA = { STUB_BACKLOG: ' ' }
+
+  it('una pasada con avisos en el manifiesto y sin ir a peor ya no dice DEGRADADO, pero los cuenta y los copia', () => {
+    const dir = makeSandbox()
+    const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', {
+      ...LIMPIA,
+      STUB_CHECK_RUNS: [
+        '    WARN [low-coverage] extract-pleno-claims: 3 ventanas',
+        '',
+        '[check-runs] 1 run(s) · 0 error(s) · 1 warning(s) · 5 pasada(s) programada(s), 0 vencida(s)',
+      ].join('\n'),
+    })
+    expect(r.status, r.log).toBe(0)
+    // El reproductor: la pasada llegó al resumen y el manifiesto traía un aviso.
+    expect(ultima(r.log), r.log).toMatch(/manifiesto: 0 error\(es\), 1 aviso\(s\)/)
+    expect(ultima(r.log)).not.toMatch(/DEGRADAD/)
+    expect(r.log).not.toContain('la pasada NO fue limpia')
+    expect(r.log).toContain('lo que trae el manifiesto')
+    expect(r.log).toContain('WARN [low-coverage]')
+    expect(r.log).toMatch(/rendimiento · arenero/)
+    expect(r.log).toMatch(/veredicto: sin comparar/)
+    // Y le pasó el recuento de errores para comparar.
+    expect(args(dir)).toMatch(/--comparar \.cache\/rendimiento-plenos\.json --errores-manifiesto 0/)
+  }, 120_000)
+
+  it('cuando va a peor, DEGRADADO sale en la última línea y la pasada no es limpia', () => {
+    const dir = makeSandbox()
+    const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', {
+      ...LIMPIA,
+      STUB_VEREDICTO: 'DEGRADADO — bajó desde la pasada anterior: extraídas con grupo 188→150',
+    })
+    expect(r.status, r.log).toBe(0)
+    expect(ultima(r.log), r.log).toMatch(
+      /· DEGRADADO — bajó desde la pasada anterior: extraídas con grupo 188→150/,
+    )
+    expect(r.log).toContain('la pasada NO fue limpia')
+  }, 120_000)
+
+  it('SIN AVANCE va en la línea, con su racha, pero no la ensucia', () => {
+    const dir = makeSandbox()
+    const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', {
+      ...LIMPIA,
+      STUB_VEREDICTO: 'SIN AVANCE (3 pasada(s) seguidas, desde 2026-11-12) — 17 sesión(es)',
+    })
+    expect(ultima(r.log), r.log).toMatch(/· SIN AVANCE \(3 pasada/)
+    expect(r.log).not.toContain('la pasada NO fue limpia')
+  }, 120_000)
+
+  it('un check:runs que no contesta es «sin leer» y no se compara como un cero', () => {
+    const dir = makeSandbox()
+    const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', {
+      ...LIMPIA,
+      STUB_FAIL: 'check:runs',
+    })
+    expect(r.status, r.log).toBe(0)
+    expect(ultima(r.log), r.log).toMatch(/manifiesto sin leer/)
+    expect(args(dir)).toMatch(/--errores-manifiesto \?/)
+  }, 120_000)
+
+  it('sin manifiestos en la ventana lo dice, y tampoco es un cero', () => {
+    const dir = makeSandbox()
+    const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', {
+      ...LIMPIA,
+      STUB_CHECK_RUNS:
+        '[check-runs] no instrumented runs in the last 6h (0 manifest(s) on disk in total)',
+    })
+    expect(ultima(r.log), r.log).toMatch(/sin manifiestos en la ventana/)
+    expect(args(dir)).toMatch(/--errores-manifiesto \?/)
+  }, 120_000)
+
+  it('si rendimiento:plenos falla, la pasada sale 0 y lo dice', () => {
+    const dir = makeSandbox()
+    const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', {
+      ...LIMPIA,
+      STUB_FAIL: 'rendimiento:plenos',
+    })
+    expect(r.status, r.log).toBe(0)
+    expect(r.log).toMatch(/rendimiento · sin leer \(rendimiento:plenos no contestó\)/)
+    expect(r.log).toMatch(/veredicto: sin comparar \(rendimiento:plenos no contestó\)/)
+  }, 120_000)
+
+  it('una noche en que nada cambió también lleva el renglón y el veredicto', () => {
+    const dir = makeSandbox()
+    const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', { ...LIMPIA, STUB_NOOP: '1' })
+    expect(r.status, r.log).toBe(0)
+    expect(r.log).toContain('nothing changed — done (no commit)')
+    expect(r.committed).toEqual([])
+    expect(r.log).toMatch(/manifiesto: 0 error\(es\), 0 aviso\(s\) · veredicto: sin comparar/)
+    expect(r.log).toMatch(/rendimiento · arenero/)
+  }, 120_000)
+
+  it('al salir deja la marca del parte de salud, también si nada cambió', () => {
+    for (const env of [LIMPIA, { ...LIMPIA, STUB_NOOP: '1' }]) {
+      const dir = makeSandbox()
+      expect(marca(dir)).toBe(false)
+      const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', env)
+      expect(r.status, r.log).toBe(0)
+      expect(marca(dir), r.log).toBe(true)
+      expect(r.log).toContain('parte de salud: marca escrita')
+    }
+  }, 240_000)
+
+  it('y también cuando la pasada falla (set -e): ése es el día que más falta hace', () => {
+    // Un remoto roto saca la pasada en el pull, después de tomar el cerrojo.
+    const dir = makeSandbox({ brokenRemote: true })
+    const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', LIMPIA)
+    expect(r.status, 'la pasada no falló: esto no prueba nada').not.toBe(0)
+    expect(marca(dir), r.log).toBe(true)
+  }, 120_000)
+
+  it('la marca se mueve encima, así que el directorio vigilado cambia en CADA pasada', () => {
+    // WatchPaths vigila el directorio: reescribir en su sitio un fichero que ya
+    // existe no lo cambia, y sólo la primera pasada habría lanzado el parte.
+    const dir = makeSandbox()
+    const d = join(dir, '.cache/parte-tras-plenos')
+    runScript(dir, 'scripts/hallazgos-pipeline.sh', { ...LIMPIA, STUB_NOOP: '1' })
+    const antes = statSync(d).mtimeMs
+    const inodo = statSync(join(d, 'marca')).ino
+    // Atrás en el tiempo, para que la segunda pasada no caiga en el mismo instante.
+    const viejo = new Date(Date.now() - 3_600_000)
+    utimesSync(d, viejo, viejo)
+    runScript(dir, 'scripts/hallazgos-pipeline.sh', { ...LIMPIA, STUB_NOOP: '1' })
+    expect(statSync(d).mtimeMs).toBeGreaterThan(viejo.getTime())
+    expect(statSync(d).mtimeMs).toBeGreaterThanOrEqual(antes - 1000)
+    expect(statSync(join(d, 'marca')).ino, 'la marca se reescribió en su sitio').not.toBe(inodo)
+    expect(readdirSync(d)).toEqual(['marca'])
+  }, 240_000)
+
+  it('una señal a mitad de pasada: sale 143, suelta el cerrojo y NO deja marca', async () => {
+    const dir = makeSandbox()
+    const hijo = spawn('/bin/bash', [join(dir, 'scripts/hallazgos-pipeline.sh')], {
+      cwd: dir,
+      env: {
+        ...process.env,
+        HOME: dir,
+        LLM_BACKEND: 'stub',
+        CLAUDE_CODE_BIN: '/nonexistent-disabled',
+        MAX_PLENOS: '1',
+        STUB_BACKLOG: ' ',
+        STUB_DUERME_EN: 'scrape:pleno-videos',
+      },
+      stdio: ['ignore', 'pipe', 'pipe'],
+    })
+    let log = ''
+    hijo.stdout.on('data', (b) => (log += b))
+    for (let i = 0; i < 400 && !existsSync(join(dir, '.stub-durmiendo')); i++)
+      await new Promise((r) => setTimeout(r, 50))
+    expect(existsSync(join(dir, '.stub-durmiendo')), 'la tubería no llegó al paso').toBe(true)
+    expect(existsSync(join(dir, 'scripts/.hallazgos-pipeline.lock/pid'))).toBe(true)
+    hijo.kill('SIGTERM')
+    const codigo = await new Promise<number | null>((r) => hijo.on('exit', (c) => r(c)))
+    expect(codigo, log).toBe(143)
+    expect(marca(dir), log).toBe(false)
+    expect(existsSync(join(dir, 'scripts/.hallazgos-pipeline.lock')), 'el cerrojo se quedó').toBe(
+      false,
+    )
+    expect(log).toContain('NO se lanza — la pasada murió por una señal')
+  }, 120_000)
+
+  it('un cerrojo con el pid de una pasada muerta se toma en el acto, sin esperar seis horas', () => {
+    const dir = makeSandbox()
+    const lk = join(dir, 'scripts/.hallazgos-pipeline.lock')
+    mkdirSync(lk)
+    // Un pid que no es de nadie vivo: el de un proceso que ya terminó.
+    const muerto = execFileSync('/bin/bash', ['-c', 'echo $$'], { encoding: 'utf8' }).trim()
+    writeFileSync(join(lk, 'pid'), `${muerto}\n`)
+    const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', LIMPIA)
+    expect(r.log).toContain('stealing stale lock')
+    expect(r.status, r.log).toBe(0)
+    expect(marca(dir)).toBe(true)
+  }, 120_000)
+
+  it('una noche en que nada cambió también copia los renglones del manifiesto', () => {
+    const dir = makeSandbox()
+    const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', {
+      ...LIMPIA,
+      STUB_NOOP: '1',
+      STUB_CHECK_RUNS:
+        '    ERROR [no-work] extract-pleno-claims: 0 llamadas\n\n[check-runs] 1 run(s) · 1 error(s)',
+      STUB_VEREDICTO: 'DEGRADADO — errores del manifiesto 0→1',
+    })
+    expect(r.log).toContain('nothing changed — done (no commit)')
+    expect(r.log).toContain('la pasada NO fue limpia')
+    expect(r.log).toMatch(/ {3}ERROR \[no-work\]/)
+  }, 120_000)
+
+  it('una pasada que no tomó el cerrojo no deja marca', () => {
+    const dir = makeSandbox()
+    mkdirSync(join(dir, 'scripts/.hallazgos-pipeline.lock'))
+    const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', LIMPIA)
+    expect(r.log).toContain('another run holds the lock')
+    expect(marca(dir)).toBe(false)
   }, 120_000)
 })

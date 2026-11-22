@@ -48,9 +48,13 @@ set -euo pipefail
 REPO_DIR="$(cd "$(dirname "$0")/.." && pwd -P)"
 AGENTS="$HOME/Library/LaunchAgents"
 LABELS=(com.civicpulse.hallazgos com.civicpulse.press-lab com.civicpulse.review-sweep
-        com.civicpulse.scrape-ci-blocked)
+        com.civicpulse.scrape-ci-blocked com.civicpulse.parte-tras-plenos)
 
-mkdir -p "$AGENTS" "$REPO_DIR/scripts/logs"
+# `parte-tras-plenos` es la excepción a la regla de abajo: no necesita
+# credencial, pero lo dispara la marca que hallazgos-pipeline.sh deja al salir
+# (WatchPaths), y eso cron no lo sabe hacer. El directorio vigilado se crea
+# antes de cargarlo para que launchd tenga algo que vigilar.
+mkdir -p "$AGENTS" "$REPO_DIR/scripts/logs" "$REPO_DIR/.cache/parte-tras-plenos"
 
 case "${1:-install}" in
   uninstall)
@@ -129,6 +133,7 @@ echo
 echo "Horario: scrape-ci-blocked 06:45 a diario · review-sweep 07:30 y hallazgos"
 echo "         09:30 lunes y jueves · press-lab 10:15 los lunes. (auto-curate-promises,"
 echo "         lunes 08:30, se instala aparte con launchd-install-auto-curate-promises.sh.)"
+echo "         parte-tras-plenos: cuando hallazgos termina (el de las 11:00 sigue en cron)."
 echo
 echo "QUITA las líneas equivalentes del crontab o correrán las dos cosas:"
 echo "  crontab -e   # borrar hallazgos-pipeline.sh, press-lab-pipeline.sh,"
