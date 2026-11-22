@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-20T13:46:48.934Z",
+  "generatedAt": "2026-11-22T13:11:59.138Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -42,7 +42,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-20T13:46:48.815Z"
+      "generatedAt": "2026-11-22T13:11:59.049Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -61,7 +61,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-20T13:46:48.815Z"
+      "generatedAt": "2026-11-22T13:11:59.049Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -80,7 +80,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-20T13:46:48.815Z"
+      "generatedAt": "2026-11-22T13:11:59.049Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -88,7 +88,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-20T13:46:48.815Z"
+      "generatedAt": "2026-11-22T13:11:59.049Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -96,7 +96,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-20T13:46:48.815Z"
+      "generatedAt": "2026-11-22T13:11:59.049Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -115,7 +115,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-20T13:46:48.815Z"
+      "generatedAt": "2026-11-22T13:11:59.049Z"
     },
     {
       "promiseId": "ac-psoe-1ryndd8",
@@ -136,7 +136,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-20T13:46:48.815Z"
+      "generatedAt": "2026-11-22T13:11:59.049Z"
     },
     {
       "promiseId": "ac-psoe-43brfs",
@@ -201,7 +201,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-20T13:46:48.815Z"
+      "generatedAt": "2026-11-22T13:11:59.049Z"
     },
     {
       "promiseId": "ac-psoe-17y448o",
@@ -259,7 +259,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-20T13:46:48.815Z"
+      "generatedAt": "2026-11-22T13:11:59.049Z"
     },
     {
       "promiseId": "ac-psoe-1bkbwjs",
@@ -279,18 +279,6 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxOVTRzMU1WeWtleS1VNXF0UzhxX05lZlB3bmo0NkxMek9McWRaRkN0N1AxN21NSUUyMXRRYllpa3UxXzRhdFgyRGttOHpfajA0YnZ6TmJmVnh0S2hLQnV0WFFWbXd2N2tkX0g2enlKVEwySDVMWlp2eWhvMm1pWDhLQ19Yb0E0aGR1RDRCLUxWTXFYRDF5djVJa1puUDJHc0oxV3Z0NE5aUV8wMHV6OG9yX2N1YXRwSDNOZUdlWDZIMmF4aC1CbXlmNFdXWDM1b2VnVWRFWnFTM1dXaTVnSkVnMQ?oc=5",
-          "date": "2026-09-25",
-          "quote": "Riba-roja de Túria impulsa la sensorización de los contenedores de residuos del municipio",
-          "kind": "press",
-          "publisher": "Valencia Plaza",
-          "matchedKeywords": [
-            "sensorizacion",
-            "contenedor",
-            "residuo"
-          ]
-        },
-        {
           "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxQQjNCaUhiZmE0ejlGNnpzSFp1S0xsRjJzLW4tN0pOVXhkeEh5TE9PUWpaSXl3ZU1oRl9rckdsdlAtRlQ2YkU2OWhyRmVkRGl6cjM1bHFBaUNBck1SRnA4anZyQTBlU1lrY2taU2xGNllRczRueHNUOEFHZ1ljOW1xQ3IzN1FpVzVSSng4QVMyMkQwNGRTUzNCM21Nam05T2YwbEJlMXc3X1FseUdsZVZhN0RhQk9hTFpaQkhnalpPRkJUUVVWWmlNaFpldGJpb0puV3B6T0hBSXB5cG11QlZzVnNTMG9xSUpQ0gHuAUFVX3lxTE4zU0djZjcxOWFveXJQcE5RZ0FCaHozLXpfTVU1WkNTZ2pvZXc2YmZKOTRBdGN5bGpfdlN4QU9TaWFFVlg0VUZWdzdUcjB3NDJmbU9lWS0wQTZ0MFlIaF96bU1ZakRXbkRldnp6XzduaHNOZ1cwWjVYdDR3LWlkdFhsUEFidFlXcXNxZW0wSFVzZEszdVFrVjA2ZGE2aWZoeGVHSXN2d1htT1BsWXBFeTIxUGlfaGwwVDhMTFFmTWhKNzlDQXJEOFgwVlhYRXc5QUdyQTUyanpqYUEzeEl2TjFaeVJZbWpyckRobjVPamc?oc=5",
           "date": "2026-10-08",
           "quote": "Riba-roja prepara un ambicioso plan para transformar sus cuatro canteras: “Puede convertirse en uno de los proyectos más importantes de Europa”",
@@ -303,7 +291,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-20T13:46:48.815Z"
+      "generatedAt": "2026-11-22T13:11:59.049Z"
     },
     {
       "promiseId": "ac-psoe-1xeq50",
@@ -372,7 +360,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-20T13:46:48.815Z"
+      "generatedAt": "2026-11-22T13:11:59.049Z"
     },
     {
       "promiseId": "ac-psoe-1kui43c",
@@ -394,7 +382,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-20T13:46:48.815Z"
+      "generatedAt": "2026-11-22T13:11:59.049Z"
     },
     {
       "promiseId": "ac-psoe-1t88ans",
@@ -454,7 +442,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-20T13:46:48.815Z"
+      "generatedAt": "2026-11-22T13:11:59.049Z"
     },
     {
       "promiseId": "ac-psoe-168xzn8",
@@ -497,7 +485,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-20T13:46:48.815Z"
+      "generatedAt": "2026-11-22T13:11:59.049Z"
     }
   ],
   "llmEvidence": [],

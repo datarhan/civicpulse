@@ -1,20 +1,20 @@
 {
-  "generatedAt": "2026-11-21T13:20:49.674Z",
+  "generatedAt": "2026-11-22T13:10:22.112Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 51,
-    "openTotal": 51,
+    "total": 50,
+    "openTotal": 50,
     "inRibaRoja": 37,
-    "closingSoon": 7,
-    "withDetail": 51,
+    "closingSoon": 9,
+    "withDetail": 50,
     "byMonth": {
       "2026-11": 17,
       "2026-10": 27,
-      "2026-09": 5,
+      "2026-09": 4,
       "2026-05": 2
     }
   },
@@ -3799,100 +3799,6 @@
         "horario": "Lunes: 12:00-16:00h Miércoles: 12:00-16:00h Jueves: 15:30-18:00h Viernes: 12:00-16:00h",
         "salario": "415 € brutos con 14 pagas",
         "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2539",
-      "fo": 2539,
-      "codigo": "2026/00238",
-      "titulo": "Electricista",
-      "publishedAt": "2026-09-21",
-      "deadline": "2026-11-21",
-      "location": "Centro de Conservación de Carreteras, autovía A-7/E-15, km 328, sentido Barcelona Paterna (Valencia)",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2539",
-      "inRibaRoja": false,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00238"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Electricista"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Experiencia previa en mantenimiento eléctrico industrial, instalaciones eléctricas o revisiones técnicas en baja tensión. Valorable experiencia en realización de termografías o inspecciones eléctricas. Carnet de conducir B. Necesaria formación vigente de PRL 20h ( parte común+ electricidad). Valorable formación PRL de trabajos COEX, en altura y PEMP. Desplazamientos a instalaciones de cliente con coches/furgonetas de empresa."
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "CONSTRUCCIÓN"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "OFICIAL DE 1ª"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Centro de Conservación de Carreteras, autovía A-7/E-15, km 328, sentido Barcelona, Municipio: Paterna, Provincia: Valencia, CP: 46988"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa Turnos: Turno mañana"
-          },
-          {
-            "label": "Observaciones jornada",
-            "value": "Guardias puntuales"
-          },
-          {
-            "label": "Horario",
-            "value": "Lunes a viernes de 7h a 15h"
-          },
-          {
-            "label": "Salario",
-            "value": "Convenio + Complementos (a convenir según valía)"
-          },
-          {
-            "label": "Funciones",
-            "value": "- Revisión preventiva de cuadros eléctricos, líneas, conexiones, protecciones y otros elementos de baja tensión. - Detección de anomalías, puntos calientes, sobrecargas o posibles riesgos eléctricos. - Ejecución de pequeñas correcciones, ajustes y reparaciones derivadas de las revisiones realizadas. - Mantenimiento preventivo y correctivo de instalaciones eléctricas industriales. - Realización de pruebas, verificaciones y diagnósticos eléctricos. - Elaboración o apoyo en la recogida de información técnica tras las revisiones realizadas. - Desplazamiento a diferentes instalaciones de clientes con vehículo de empresa. - Cumplimiento de la normativa vigente en materia de seguridad, calidad y prevención de riesgos laborales. - Coordinación con el equipo técnico y responsables de proyecto para reportar incidencias o necesidades detectadas."
-          },
-          {
-            "label": "Habilidades",
-            "value": "- Conocimientos sólidos en electricidad de baja tensión, cuadros eléctricos y sistemas industriales. - Capacidad para realizar diagnósticos eléctricos y detectar incidencias en instalaciones. - Conocimiento de normativa eléctrica."
-          },
-          {
-            "label": "Informática",
-            "value": "Ofimática nivel usuario, redacción de informes, etc."
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "1",
-        "categoria": "OFICIAL DE 1ª",
-        "observaciones": "Experiencia previa en mantenimiento eléctrico industrial, instalaciones eléctricas o revisiones técnicas en baja tensión. Valorable experiencia en realización de termografías o inspecciones eléctricas. Carnet de conducir B. Necesaria formación vigente de PRL 20h ( parte común+ electricidad). Valorable formación PRL de trabajos COEX, en altura y PEMP. Desplazamientos a instalaciones de cliente con coches/furgonetas de empresa.",
-        "municipio": "Paterna",
-        "provincia": "Valencia",
-        "cp": "46988",
-        "jornada": "Completa Turnos: Turno mañana",
-        "horario": "Lunes a viernes de 7h a 15h",
-        "salario": "Convenio + Complementos (a convenir según valía)",
-        "funciones": "- Revisión preventiva de cuadros eléctricos, líneas, conexiones, protecciones y otros elementos de baja tensión. - Detección de anomalías, puntos calientes, sobrecargas o posibles riesgos eléctricos. - Ejecución de pequeñas correcciones, ajustes y reparaciones derivadas de las revisiones realizadas. - Mantenimiento preventivo y correctivo de instalaciones eléctricas industriales. - Realización de pruebas, verificaciones y diagnósticos eléctricos. - Elaboración o apoyo en la recogida de información técnica tras las revisiones realizadas. - Desplazamiento a diferentes instalaciones de clientes con vehículo de empresa. - Cumplimiento de la normativa vigente en materia de seguridad, calidad y prevención de riesgos laborales. - Coordinación con el equipo técnico y responsables de proyecto para reportar incidencias o necesidades detectadas.",
         "ocupaciones": []
       }
     },

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-21T12:59:09.591Z",
+  "generatedAt": "2026-11-22T12:51:45.767Z",
   "feeds": [
     {
       "url": "https://www.ribarroja.es/es/noticias/rss.xml",
@@ -17,12 +17,12 @@
       "url": "https://news.google.com/rss/search?q=%22Riba-roja%20de%20T%C3%BAria%22&hl=es&gl=ES&ceid=ES:es",
       "platform": "Google News RSS",
       "ok": true,
-      "items": 48
+      "items": 54
     }
   ],
   "stats": {
-    "total": 107,
-    "sources": 18,
+    "total": 113,
+    "sources": 21,
     "latestDate": "2026-11-20T05:03:28.000Z",
     "carriedForward": 0
   },
@@ -30,20 +30,23 @@
     "Aemet",
     "Ajuntament de Burjassot",
     "Ayuntamiento de Riba-roja de Túria",
+    "ComarcalCV",
     "Comunica GVA",
     "EL PAÍS",
     "Federación de Ajedrez de la Comunidad Valenciana – FACV",
     "Fotocasa",
-    "Fotocasa.es",
     "Las Provincias",
     "Levante-EMV",
     "Meteored España",
+    "Noticias Ciudadanas",
     "Periòdic del Camp de Túria",
     "Turisme Comunitat Valenciana",
     "Universitat de València",
     "Valencia CF",
+    "Valencia Noticias",
     "Valencia Plaza",
     "elDiario.es",
+    "elperiodic.com",
     "rfet.es"
   ],
   "items": [
@@ -108,6 +111,33 @@
       "section": "Educacio"
     },
     {
+      "id": "1j0h5rc",
+      "title": "Obras en la CV-373 para evitar inundaciones en Riba-roja",
+      "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPdjJ3ZE83TU9xRlNEWG5zYWJrM1hKR0RYbm5LYkoxZFJuZzZaNlE2U3NleDhSRi1qanc0WUdCS1BxR0xmdGxVLVdadkh4NXNFUjdjTVpkZUVVdDBnekswc3R6MS10UTY3b0RKZVU3ZHNsY2lFMWs3MjY2RHE1d3FTaTloZ1VaTHFqV05Hejd6Um56dw?oc=5",
+      "source": "Noticias Ciudadanas",
+      "sourceHost": "noticiasciudadanas.com",
+      "date": "2026-11-18T04:46:16.000Z",
+      "fingerprint": "q2oipz"
+    },
+    {
+      "id": "8m0mzw",
+      "title": "Riba-roja renueva el acceso al Parque Logístico por 7,7 millones",
+      "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQNHZNZ3QySl94aXFvcXFCX09XWWZEdUgwNk83akdDM0V4VklsOUlrejNZVkppRi1qUG1GSFBGM1JzcHRQWDI5WEVXQmlRQlhpWFlaeDhUMzVIcUlXUVBHTWNZRlR3MWg0S1ROamFERFBFR1l3ZDBVbG5EZnl4aFBpVG16Q1VlVlQ2NDNhdkV4TnBCelVHNXpyTg?oc=5",
+      "source": "Valencia Noticias",
+      "sourceHost": "valencianoticias.com",
+      "date": "2026-11-18T04:40:40.000Z",
+      "fingerprint": "38pdig"
+    },
+    {
+      "id": "1kpsc1b",
+      "title": "Anuncian un puente para evitar otra riada en uno de los polígonos industriales más grandes de Valencia",
+      "link": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNTUZiNHRnSUxQODk1WEM5U29KNXhlcXlKRDVVV1lfY3N6RVNic3NnM3N0UENfRFF0QUVNaXNiUXN3UGc2c2o2Y3ZBRVkyWW9fVVdweWE4dW5aclI5c29seGNmTnphQWVRZC1RNklRazNLYU9ZaHlfZ1hhR3F3cHgxbkw3eTRteTZVRE94d21fWUVUbGFMTnQzRkE0ZU9aMzFoc3NfZU1YX3pGLXpRNXJmT2RTMnowdFlWSFB3RXo2OWVMZXFIUlpz?oc=5",
+      "source": "elperiodic.com",
+      "sourceHost": "elperiodic.com",
+      "date": "2026-11-17T15:05:39.000Z",
+      "fingerprint": "vyxa8w"
+    },
+    {
       "id": "lkm2pc",
       "title": "Avancen les obres d’emergència en el vial d’accés al Parc Logístic de València",
       "link": "https://www.infoturia.com/riba-roja-de-turia/87331-avancen-les-obres-demergencia-en-el-vial-dacces-al-parc-logistic-de-valencia.html",
@@ -115,6 +145,15 @@
       "sourceHost": "infoturia.com",
       "date": "2026-11-17T14:14:54.000Z",
       "fingerprint": "1mwsfdl"
+    },
+    {
+      "id": "6rvhyi",
+      "title": "Riba-roja se blinda contra futuras DANA con una inversión contra inundaciones de 7,7 millones de la Generalitat en el Parque Logístico",
+      "link": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQZGVYTzZ2QWhiWDU3eDRzQVhJUWNpRTAtMGJ3bVFWYUhVOW9DNkVvdW5tWjR3NTlXalFjaHVRLUZGbHBZTjUyQTh4UTI3amp2NjBkNFVoLTFPQ29ENkpnSDlVNlVPaG1qc3I2OEl1XzZHVkQzQUZMUG0xaGgtWjM0ZU9Rc1RJMFFyWE4tV3JzUU9xSmI5M3liTElFYndPSzhGUXRsLXJVNzRkUW9NRkE2MUtnV2ZjM2ZRRnpsdU1KOVdsV1VOREd1cVMyUXdnUm5ZVzVhMXN4Zmt1dXBPYUhKTkxQWmpCZVljUE03b0l4QjdZVHNiLVdHM1I4YzR0bFI4YnBrVzB0bw?oc=5",
+      "source": "ComarcalCV",
+      "sourceHost": "comarcalcv.com",
+      "date": "2026-11-17T14:06:10.000Z",
+      "fingerprint": "sfovww"
     },
     {
       "id": "uacj7g",
@@ -126,6 +165,15 @@
       "fingerprint": "1328pwc",
       "official": true,
       "section": "Industrials"
+    },
+    {
+      "id": "1b8xp5w",
+      "title": "La Generalitat ejecuta la renovación del vial de acceso al Parque Logístico de Riba-roja para mejorar la protección frente a inundaciones",
+      "link": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBUd2xQNXFvWlNfNkhvY0tZbXg3dFNLNHdjQkFxdVhCdjlFMGhUOVc4NktHa2dtVmZsUndUZUwya2FYdnMwWEMtWjA0cWFSRjlPRjVsT0FHaVRod0ROejhER2YycjZ3YXVFUktBcEhvaw?oc=5",
+      "source": "Comunica GVA",
+      "sourceHost": "comunica.gva.es",
+      "date": "2026-11-17T12:12:21.000Z",
+      "fingerprint": "16ixve"
     },
     {
       "id": "5iht08",
@@ -895,15 +943,6 @@
       "fingerprint": "r7228i"
     },
     {
-      "id": "1rdt48v",
-      "title": "Riba-roja de Túria regulará las tasas de los conservatorios de música y danza a lo largo de este 2026",
-      "link": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxOWHNkR2V2SlB1NDVHOU5LQUZjWHptbFV3VlVXdld3cm8wTkR2eDlDUHZVTXVNWWp0UFVyeU5rOHltc0V2dkc1NW1ldlZqRUhFRE1GY1VrTVdlMmg5SWtNWG9wRWQzR09OZWhvNHBOSk1nNzZlNGVveGhqd1ZjUUVMcTZ6Q3NacWd2N2J4MmZtT3l5cDB3Q3Y1Tzd6OGRSNEY4ZEZzTVZzRG5MWGl1bGN5NWE5TE1fdlVEMWJTZGtBNk9iVnk5a2ZjTlNYS2RBU1ZaTHdNYk56c9IB3AFBVV95cUxQV0piQTJ3ZTA3cERFdDEzT0gxcms0RE5zVmtsOHRSSmJGOGU0MDRVbGhIekladEo3bF95eE5nbnltNGNMUFVfdjlFTF9zOTNOV3FvUk5qcHV1SE8wS213ODVrLU5fQktwaVVlWHNjb284MDVGYzNYeVZvbDVBRVRNN1JvQTdLdE41c2xQblZvQjRQTUdqbGtZTXUwSzh0MlVqdjBLaFpoQzFxRkhhbmpMUTNOTTB0TU5Cb0s3c3VtMHlsaDAtSlZhVzV1ZGNGYWstMmMyWnhSMHlkOWt3?oc=5",
-      "source": "Levante-EMV",
-      "sourceHost": "levante-emv.com",
-      "date": "2026-03-24T07:00:00.000Z",
-      "fingerprint": "1x0anad"
-    },
-    {
       "id": "18rigf2",
       "title": "Riba-roja de Túria aprueba su presupuesto municipal de 2026, el más alto de su historia con 46 millones",
       "link": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOLTg0R21tWmZmVWZDZ1lXbHdFS0ltRERMNm5GbGdnZkdWRkVzcUVrdjQyajBwS2NNS3ViOHZXTzRpZXBuOW16Q3BLa3hFZXQ5MTBXZGhyR1EycmMybk82VGtpbmdfRnlDWG4zaWNFNDFfVnRJWG9jd09ubnVFNW5JR1BFbGVya1JlSnVUT25Wa2ZYS1FlTkw3TDkzUUItdmhhZFJQblRFN2Q4cm1fdjNDc3lBTzE5NkZrY3pRYXUxTmJxZ9IBxwFBVV95cUxQbFMwUVl4el9lVXg4WTZaZF9oWDI2b1VDQUJaWHMtVm5MQ0dWNlk4UG9iYjFzSzlzTEpDMXFKLU9wb3pNc0hlYzRNTWVoVVN6TkVkbXg0TWhlanV3cGJvR3ZjSHZBUmNvb05UZHB1eE5oeW1aWVRleERZb0xvYkNiVmpFenM2dGZZU1lWSkJkdFQ1dzFCYWdwaG5IaUxSOC1Wc3Ryd0pDVE9kWndRRzFWZDFsZ3ZVQWN2cmMtb1YtMDNJZGJnVnZz?oc=5",
@@ -911,15 +950,6 @@
       "sourceHost": "levante-emv.com",
       "date": "2026-03-17T07:00:00.000Z",
       "fingerprint": "4c34wo"
-    },
-    {
-      "id": "1g0d4b4",
-      "title": "El alcalde de Riba-roja de Túria retoma los encuentros 'Espai Obert' con los vecinos para explicar el presupuesto de 2026",
-      "link": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNakRrZUdQNWp6SmZtbThMSVJRb3ZVOWduczNjN1MxY0F0OHZheTJHWEN6QlJHd0R4TUI2eTc3VUh1WnBXRG5sRktvRVVIaXFvX2FPeEY4dXNTX3U3THl6SFRSSy1HYmJNWWFxQjJFMDBjMFpBYkNSdm9lTzJpVnBLcFc1NUNpOEIyOHlEREFnT3Jkbjc4MXJ6cHVMU28xaGhvQkZ2NjF0WEtLUkRpYTlWMHVLN0NYR0xkQzEtOXNzN0FHY0ZHNGRBMnR0V3dHUG95OElvYThqZ2NRQdIB3wFBVV95cUxPSFJ1TXlrSDhIUzdUeHhQVFpwVmp6Vlp0NXoxLTctMS0tQ3hGb2VzNXZ2bUw3Nnk1Z2l0V1QtM0FLa3BPeXhVcmMyMG44MmpQQVd5ZU00U0pDdy1KeUlKUEl3UEpXME9KUVcxTXhxeWFpZi1GWWhiNDdrWXFmem5EREdDNzFLVC1yN3c0dXV6ODFrWWxLcXdHeE1jS2pQd09uTWhyRXk4SUZ0ZHk2QTloT0FGb0ttRFFoWGxGRDg5NXRyOWJFR0pBWlFpNTJJckRSanFuNlg2bm5sUDlmV1Nn?oc=5",
-      "source": "Levante-EMV",
-      "sourceHost": "levante-emv.com",
-      "date": "2026-03-17T07:00:00.000Z",
-      "fingerprint": "kvzgcl"
     },
     {
       "id": "gi1i3n",
@@ -1048,24 +1078,6 @@
       "fingerprint": "iqgrvu"
     },
     {
-      "id": "e3atv4",
-      "title": "36 Casas o chalets con piscina en Riba-roja de Túria",
-      "link": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQTkRrbFpPc1dsWmZncE4tSks4MjJYeGFmZ0ZoejlLaFJQUXBvVFBxQkJsLTNhZGpVazRDWThFeVhVUEhDYkF6X2F2SzRQR0JHM3JrYlVlczFwcGZwUWNObFg4QXpvckEyc19yMWFKMDRTb1RXanZfa2R2bW1Ua1JuUWd5TGNIb2cybWV4M2pYbVk?oc=5",
-      "source": "Fotocasa",
-      "sourceHost": "fotocasa.es",
-      "date": "2020-08-18T20:07:40.000Z",
-      "fingerprint": "pycub8"
-    },
-    {
-      "id": "65nwoo",
-      "title": "El Tiempo: Riba-roja de Túria (València/Valencia) - Agencia Estatal de Meteorología",
-      "link": "https://news.google.com/rss/articles/CBMihAFBVV95cUxPRU45Z2JPeEVSbnF5Zm5vanNaUW01dTVKZEFneXhDTWlndU9OTzhXVDB4RU9pemNFb2dXNUVibEltMDB6d2VpazM5VVlIY1lVcG9TWHBsNmZweUJ2Ym9PZjRIT0RXOHEwSzY1TkI2R3hFV1BvZUYySGF4ZFQ3VjFZaDJycks?oc=5",
-      "source": "Aemet",
-      "sourceHost": "aemet.es",
-      "date": "2020-07-28T06:04:04.000Z",
-      "fingerprint": "1p9nrm8"
-    },
-    {
       "id": "j5h2u8",
       "title": "Weather forecast by locations. Riba-roja de Túria (València/Valencia)",
       "link": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPS1FsWlNudDFic3gtUXZKUXI5NHJYVWxCb0VtaDZwMjE1cTdnNE1Pa1JJNWdRNEFXMHdYUzBDMWowOFpTczloeFlBY29fTlJLemNEaDRRWk1RV2FURENqdDVwMlAxN0lSZkhvY3lNNGNpaEdIdDBYM3cxUUp4dDVTWVRkX2VlWHha?oc=5",
@@ -1075,13 +1087,58 @@
       "fingerprint": "1f0iq5g"
     },
     {
+      "id": "3rymf6",
+      "title": "El Tiempo: Riba-roja de Túria (València/Valencia) - Predicción por horas - Gráfica - Agencia Estatal de Meteorología",
+      "link": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQMkRnbE91Vk9hc0JFVGtrejJYUGFRV2xWOWhXMVdiRlhTTDV0TXpkR29QWGVjaVAwdmIxRzJqbnlhb0ZXd0t2RTh6ZVFsZUxuRzdKSGZMalBlSFg4OUVMWDJMWXdyY01iaVRHYWc0N2pKNm5Ea1gwZlpRV2JOZ1UxWEx5S0VHSUhVekZqWmtvNXU?oc=5",
+      "source": "Aemet",
+      "sourceHost": "aemet.es",
+      "date": "2020-07-27T19:51:59.000Z",
+      "fingerprint": "1p9nrm8"
+    },
+    {
+      "id": "2zbd0o",
+      "title": "39 Casas y pisos con piscina en Riba-roja de Túria",
+      "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQTktGUzFEYlQ1NE9GV2dKMXdvNjlRVVJlWGNmWkJodzE2SDNjOEZmeFNYdmlKbG1xRjdIYVdDcFRGT2hCRnBDYmVaTl92U2p6QnJOeDlMQWZ6ZU00Nk9Gc1lCY3ZvdEFYVkM4SGEwQlFCR3FHNC16T0VjZ0k1OElreXRlaFpicHk1cFB4Q3lzYVpZNW8?oc=5",
+      "source": "Fotocasa",
+      "sourceHost": "fotocasa.es",
+      "date": "2020-07-24T12:10:32.000Z",
+      "fingerprint": "15lpzoo"
+    },
+    {
+      "id": "1kg6yo0",
+      "title": "131 Casas y pisos en Riba-roja de Túria",
+      "link": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNV1pBZGVVb0dJbVZkazJOQjJWaHBSZ3QxNzFWV25xb2R0UU1kVEIyVUVqRGY5aVlkZTczZ1V1SGlfc2x0bW45Z2Q2bjlqdkVFVFdGeUwxWXVXSGU4RWJhUktvNlMydDR6dVFrRmRKbmJ4VGJhMnUxTEVieDdzbTNQZ1N4cFpzTjAy?oc=5",
+      "source": "Fotocasa",
+      "sourceHost": "fotocasa.es",
+      "date": "2019-01-10T23:20:41.000Z",
+      "fingerprint": "hm2d90"
+    },
+    {
       "id": "1bo9oko",
-      "title": "59 Casas y pisos con terraza en Riba-roja de Túria",
+      "title": "61 Casas y pisos con terraza en Riba-roja de Túria",
       "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNb1BMUnh2SE5hRERPQVhPZWdXZU5uVm80RTJYeko5R2FTbDBSNDZpYzhpWFVMQi05VlJQU0FMbXE3aTF5OXk0U182Y3RwNUgzOUk0QnpuR1ZQMWFlV3ZrZ3lwdzlsWVR1aXItVmUxLUpWeUdfdGdoUVZGUFRXM1RhOW15M2JLOGRuQWNxcXFNdDdMVnc?oc=5",
-      "source": "Fotocasa.es",
+      "source": "Fotocasa",
       "sourceHost": "fotocasa.es",
       "date": "2019-01-10T14:04:47.000Z",
       "fingerprint": "9ob2y4"
+    },
+    {
+      "id": "1hmkydb",
+      "title": "Riba-roja de Túria, nueva sede de Unisocietat",
+      "link": "https://news.google.com/rss/articles/CBMiggJBVV95cUxQcXNJUjZCUGwxd3JuLUxYR3BiSzlTUXFEWEdYUmpyNGI5NUJuQWhVUEhiZWN2NkZNTmRqYnUyQjlDZE9OZFo1Zjd4ck9OWHg4NlNSekRER2pieEtTVS1iV0NRdkQ3cU5Tdzl5U25UczB6Qkt0dnZLOTdNRFU5XzlneTY5eXd5QTJiY0c0S1o5R1hDVERPME1HWDU2dDUwNmswaElVOGhKX2oyLWV6eEFwd2Vad0E1VGE3dEVsZkxIS09vVmxUOGY0aVJkdmNmRVFuX1NsT2pEY09aV1FjWEhQX042VzVycVA4b2UtdlY4dTBocFUwTlFHOGUxTlJQelpvOHc?oc=5",
+      "source": "Universitat de València",
+      "sourceHost": "uv.es",
+      "date": "2018-06-07T07:00:00.000Z",
+      "fingerprint": "1jn78s"
+    },
+    {
+      "id": "1xnkzez",
+      "title": "57 Pisos y apartamentos en Riba-roja de Túria",
+      "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxOUVdFUmlYOVVEWU9fNS0xMmt6QlJ6T1JtcjFxX2VqTnA3SWlUc2llUEJsSnhVZk1GWlprZXhSNEdraGVMRTJJblpNaEh4M0tGeDR0ejJoQkZBZmpSMUJNWnhKbTJ0QVRlWXpRMDFQRVlOeXRic2t0SGR3UUFqbkZFZkphdw?oc=5",
+      "source": "Fotocasa",
+      "sourceHost": "fotocasa.es",
+      "date": "2017-06-04T10:10:25.000Z",
+      "fingerprint": "1eihha8"
     },
     {
       "id": "fpuv20",
