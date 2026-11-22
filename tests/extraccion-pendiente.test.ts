@@ -78,4 +78,27 @@ describe('colaDeExtraccion', () => {
     )
     expect(cola.pendientes).toEqual(['a', 'b', 'c', 'sin'])
   })
+
+  it('una extraída a medias vuelve a la cola aunque ya tenga declaraciones', () => {
+    const t = leer(AUDIO)
+    const cola = colaDeExtraccion(
+      [c('media', t, '2026-01-01'), c('entera', t, '2026-02-01')],
+      new Set(['media', 'entera']),
+      new Set(),
+      new Set(['media']),
+    )
+    expect(cola.pendientes).toEqual(['media'])
+    expect(cola.fuera).toEqual([{ id: 'entera', motivo: 'ya-extraida' }])
+  })
+
+  it('una de acta no entra ni apuntada como a medias', () => {
+    const cola = colaDeExtraccion(
+      [c('acta', leer(ACTA), null)],
+      new Set(['acta']),
+      new Set(),
+      new Set(['acta']),
+    )
+    expect(cola.pendientes).toEqual([])
+    expect(cola.fuera[0].motivo).toBe('acta')
+  })
 })

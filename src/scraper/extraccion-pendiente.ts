@@ -15,15 +15,31 @@
  *     citas salen de la transcripción automática, no del acta;
  *   · pasa la misma puerta de calidad que aplica el extractor (`assessTranscript`):
  *     una que el extractor rechazaría no gasta una pasada;
- *   · no tiene ninguna declaración en `pleno-claims-suggestions.json`;
- *   · no está apuntada como «extraída sin declaraciones»: una extracción que
- *     contestó y no encontró nada no se repite sola (~465 llamadas cada vez).
- *     Esa lista la escribe la tubería y la vacía una persona.
+ *   · no tiene ninguna declaración en `pleno-claims-suggestions.json`, o está
+ *     apuntada como extraída a medias (`RUTA_PARCIALES`);
+ *   · no está apuntada como «sin declaraciones» (`RUTA_EXTRAIDAS_VACIAS`): la
+ *     tubería la apunta tras varias recuperaciones fallidas con claude vivo,
+ *     para que una sesión que nunca sale no bloquee la cola (~465 llamadas cada
+ *     vez). Esa lista la vacía una persona.
  *
  * Más reciente primero: la sesión nueva es la que un lector echa de menos.
  */
 import { transcriptKind } from '../lib/transcript-kind.js'
 import { assessTranscript } from './transcript-quality'
+
+/**
+ * Las extraídas que contestaron sin ninguna declaración, una por línea. La
+ * escribe hallazgos-pipeline.sh y la lee `extraccion:pendiente`; una prueba
+ * comprueba que el script de shell nombra esta misma ruta.
+ */
+export const RUTA_EXTRAIDAS_VACIAS = '.cache/extraccion-sin-declaraciones.txt'
+
+/**
+ * Las extraídas a medias: ventanas SIN RESPUESTA porque claude se cayó a mitad de
+ * la sesión. Tienen declaraciones, pero no todas, así que vuelven a la cola. La
+ * escribe hallazgos-pipeline.sh, que también la vacía cuando sale completa.
+ */
+export const RUTA_PARCIALES = '.cache/extraccion-parcial.txt'
 
 export type MotivoFuera = 'acta' | 'sin-marcas' | 'no-apta' | 'ya-extraida' | 'extraida-vacia'
 
@@ -44,11 +60,12 @@ export function colaDeExtraccion(
   candidatas: readonly Candidata[],
   conDeclaraciones: ReadonlySet<string>,
   extraidasVacias: ReadonlySet<string>,
+  parciales: ReadonlySet<string> = new Set(),
 ): Cola {
   const dentro: Candidata[] = []
   const fuera: Cola['fuera'] = []
   for (const c of candidatas) {
-    if (conDeclaraciones.has(c.id)) {
+    if (conDeclaraciones.has(c.id) && !parciales.has(c.id)) {
       fuera.push({ id: c.id, motivo: 'ya-extraida' })
       continue
     }

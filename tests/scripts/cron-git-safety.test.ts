@@ -309,7 +309,13 @@ if [ "$name" = "extraccion:pendiente" ]; then
 fi
 # STUB_DECLARA: sesiones para las que la extracción deja una declaración (sin
 # ella, la recuperación ve «extraída sin ninguna declaración»).
+# STUB_PARCIAL: además imprime la línea del extractor de verdad con ventanas
+# SIN RESPUESTA (claude cayó a media sesión).
 if [ "$name" = "extract:pleno-claims" ]; then
+  case " \${STUB_FAIL:-} " in *" $name "*) echo "[stub] $name FAILING" >&2; exit 1 ;; esac
+  case " \${STUB_PARCIAL:-} " in *" \${2:-} "*)
+    echo "[extract·claims] \${2}: 10 windows (7 answered, 3 NO ANSWER) · 1 kept · 0 dropped" ;;
+  esac
   case " \${STUB_DECLARA:-} " in *" \${2:-} "*)
     printf '{"items":[{"id":"c-%s","plenoId":"%s"}]}\\n' "$2" "$2" > public/data/pleno-claims-suggestions.json
     echo "[stub] ran $name $2 (1 declaración)"; exit 0 ;;
@@ -2420,7 +2426,7 @@ describe('hallazgos-pipeline.sh · recuperación de extracciones y re-sondeo', (
       STUB_PENDIENTES: 'nueva vieja',
       STUB_DECLARA: 'nueva',
     })
-    expect(r.log).toMatch(/recuperación: 2 sesión\(es\) transcrita\(s\) sin declaraciones/)
+    expect(r.log).toMatch(/recuperación: 2 sesión\(es\) por extraer o completar/)
     expect(r.log).toContain('✓ nueva recuperada: 1 declaración(es)')
     expect(r.log).not.toMatch(/recuperando la extracción de vieja/)
     expect(r.log).toMatch(/recuperación: tope alcanzado/)
@@ -2433,14 +2439,62 @@ describe('hallazgos-pipeline.sh · recuperación de extracciones y re-sondeo', (
     expect(r.log).toMatch(/recuperación: ninguna sesión transcrita espera extracción/)
   }, 120_000)
 
-  it('una extracción que contesta sin ninguna declaración se apunta y no se repite', () => {
+  it('una sesión que no da declaraciones con claude vivo sale de la cola a los FALLOS_MAX intentos', () => {
     const dir = makeSandbox()
-    const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', { STUB_PENDIENTES: 'vacia' })
-    expect(r.log).toMatch(/recuperando la extracción de vacia/)
-    expect(r.log).toMatch(/⚠ vacia extraída SIN NINGUNA declaración/)
+    const env = { STUB_PENDIENTES: 'vacia', FALLOS_MAX: '2' }
+    const r1 = runScript(dir, 'scripts/hallazgos-pipeline.sh', env)
+    expect(r1.log).toMatch(/recuperando la extracción de vacia/)
+    expect(r1.log).toMatch(/la recuperación de vacia no dio declaraciones \(intento 1 de 2/)
+    expect(readFileSync(join(dir, '.cache/extraccion-fallos.txt'), 'utf8').trim()).toBe('vacia 1')
+    const r2 = runScript(dir, 'scripts/hallazgos-pipeline.sh', env)
+    expect(r2.log).toMatch(/⚠ vacia: 2 recuperaciones sin declaraciones con claude vivo/)
     expect(readFileSync(join(dir, '.cache/extraccion-sin-declaraciones.txt'), 'utf8').trim()).toBe(
       'vacia',
     )
+    expect(readFileSync(join(dir, '.cache/extraccion-fallos.txt'), 'utf8').trim()).toBe('')
+  }, 240_000)
+
+  it('un fallo con claude caído después no cuenta como intento de la sesión', () => {
+    const dir = makeSandbox()
+    // 1: 09:30 · 2: antes de recuperar · 3: tras el fallo (ya no contesta).
+    const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', {
+      ...claudeQueCaduca(dir, 2),
+      STUB_PENDIENTES: 'nueva',
+    })
+    expect(r.log).toMatch(/recuperando la extracción de nueva/)
+    expect(r.log).toMatch(/falló con claude caído — no cuenta como intento/)
+    expect(existsSync(join(dir, '.cache/extraccion-fallos.txt'))).toBe(false)
+    expect(Number(readFileSync(join(dir, '.claude-llamadas'), 'utf8'))).toBe(3)
+  }, 120_000)
+
+  it('una extracción a medias se apunta, vuelve a la cola y sale de la lista al completarse', () => {
+    const dir = makeSandbox()
+    const r1 = runScript(dir, 'scripts/hallazgos-pipeline.sh', {
+      STUB_PENDIENTES: 'nueva',
+      STUB_DECLARA: 'nueva',
+      STUB_PARCIAL: 'nueva',
+    })
+    expect(r1.log).toMatch(/⚠ nueva extraída a medias/)
+    expect(r1.log).toContain('✓ nueva recuperada: 1 declaración(es) — aún a medias')
+    const parciales = join(dir, '.cache/extraccion-parcial.txt')
+    expect(readFileSync(parciales, 'utf8').trim()).toBe('nueva')
+    const r2 = runScript(dir, 'scripts/hallazgos-pipeline.sh', {
+      STUB_PENDIENTES: 'nueva',
+      STUB_DECLARA: 'nueva',
+    })
+    expect(r2.log).toContain('✓ nueva recuperada: 1 declaración(es)')
+    expect(r2.log).not.toMatch(/aún a medias/)
+    expect(readFileSync(parciales, 'utf8').trim()).toBe('')
+  }, 240_000)
+
+  it('RECUPERA_MAX=0 la apaga y lo dice', () => {
+    const dir = makeSandbox()
+    const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', {
+      STUB_PENDIENTES: 'nueva',
+      RECUPERA_MAX: '0',
+    })
+    expect(r.log).toMatch(/recuperación: RECUPERA_MAX=0 — apagada/)
+    expect(r.log).not.toMatch(/recuperando la extracción/)
   }, 120_000)
 
   it('si la consulta falla, la pasada sigue y lo dice', () => {
@@ -2464,6 +2518,9 @@ describe('hallazgos-pipeline.sh · recuperación de extracciones y re-sondeo', (
     expect(r.log).toMatch(/recuperación de nueva EN ESPERA/)
     expect(r.log).not.toMatch(/recuperando la extracción de nueva/)
     expect(r.log).toMatch(/done · .*DEGRADADA/)
+    // Exactamente dos sondeos: el de las 09:30 y el de antes de recuperar. Si
+    // alguien añade otro antes, `ok=1` dejaría de modelar lo que dice.
+    expect(Number(readFileSync(join(dir, '.claude-llamadas'), 'utf8'))).toBe(2)
   }, 120_000)
 
   it('con claude vivo en los dos sondeos, sí recupera (control del anterior)', () => {
@@ -2476,5 +2533,43 @@ describe('hallazgos-pipeline.sh · recuperación de extracciones y re-sondeo', (
     expect(cuenta(r.log, /dejó de contestar a mitad de pasada/)).toBe(0)
     expect(r.log).toContain('✓ nueva recuperada')
     expect(Number(readFileSync(join(dir, '.claude-llamadas'), 'utf8'))).toBeGreaterThanOrEqual(2)
+  }, 120_000)
+
+  /** El pleno p1 tiene vídeo: el bucle de transcripción lo transcribe. */
+  function conVideoP1(dir: string): void {
+    writeFileSync(
+      join(dir, 'public/data/pleno-videos.json'),
+      '{"items":[{"id":"video-p1","plenoDate":"2020-01-01"}]}\n',
+    )
+    git(dir, 'add', '--', 'public/data/pleno-videos.json')
+    git(dir, 'commit', '-qm', 'arenero: el pleno p1 tiene vídeo')
+    git(dir, 'push', '-q', 'origin', 'main')
+  }
+
+  it('el 19-11: claude caduca tras transcribir — la extracción espera y no se transcribe más', () => {
+    const dir = makeSandbox()
+    conVideoP1(dir)
+    const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', {
+      ...claudeQueCaduca(dir, 1),
+      STUB_NOOP: '1',
+    })
+    expect(r.log, 'no llegó a transcribir p1').toMatch(/transcribing p1/)
+    expect(r.log).toMatch(/p1 transcrito; extracción EN ESPERA \(claude no contesta\)/)
+    expect(r.log).not.toMatch(/extracting claims from p1/)
+    expect(r.log).not.toMatch(/extracting vote suggestions for p1/)
+  }, 120_000)
+
+  it('con claude vivo extrae lo que transcribe, y la recuperación no repite esa sesión', () => {
+    const dir = makeSandbox()
+    conVideoP1(dir)
+    const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', {
+      STUB_NOOP: '1',
+      STUB_PENDIENTES: 'p1 otra',
+      STUB_DECLARA: 'otra',
+    })
+    expect(r.log).toMatch(/extracting claims from p1/)
+    expect(r.log).toMatch(/recuperando la extracción de otra/)
+    expect(r.log).not.toMatch(/recuperando la extracción de p1/)
+    expect(r.log).toMatch(/extracting vote suggestions for otra/)
   }, 120_000)
 })

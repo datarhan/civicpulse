@@ -443,12 +443,22 @@ disk.
 
 A recovery pass then extracts what earlier runs left behind:
 `npm run --silent extraccion:pendiente -- --why` lists the transcripts that are
-**audio** (not acta text, which `/metodologia#citas-transcripcion` keeps out of
-the quotes), pass the extractor's quality gate, and have no claims, newest
-first. At most `RECUPERA_MAX` (1) per run, since an extraction costs ~465
-claude-code calls. An extraction that exits 0 and still leaves the session with
-no claims is written to `.cache/extraccion-sin-declaraciones.txt` and is not
-retried automatically; delete the line to retry it.
+**audio** (`src/lib/transcript-kind.js`; acta text is the secretary's summary,
+not what was said, so a quote from it is not a councillor's words), pass the
+extractor's quality gate, and have no claims — or were extracted only partly
+(windows left unanswered, listed in `.cache/extraccion-parcial.txt`) — newest
+first. Its stderr, in the run log, says what it left out and why. At most
+`RECUPERA_MAX` (1) per run, since an extraction costs ~465 claude-code calls,
+and each recovered session also gets its vote suggestions.
+
+The extractor exits 1 when it gets nothing, whether claude died or the session
+really yields nothing, so after a failure the run probes claude again. If claude
+is down, the attempt does not count. If claude is up, it counts in
+`.cache/extraccion-fallos.txt`, and after `FALLOS_MAX` (3) the session moves to
+`.cache/extraccion-sin-declaraciones.txt` and is no longer retried
+automatically, so it cannot block the rest of the queue; delete its line to
+retry it. `extract-pleno-claims --pending` run by hand has no audio filter and
+would extract acta text too.
 
 ### The speaker-map sweep: a job measured in weeks, not nights
 

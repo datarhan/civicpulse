@@ -12,13 +12,16 @@
  */
 import { existsSync, readFileSync, readdirSync } from 'node:fs'
 import { basename, resolve } from 'node:path'
-import { colaDeExtraccion, type Candidata } from '../src/scraper/extraccion-pendiente'
+import {
+  colaDeExtraccion,
+  RUTA_EXTRAIDAS_VACIAS,
+  RUTA_PARCIALES,
+  type Candidata,
+} from '../src/scraper/extraccion-pendiente'
 
 const TRANSCRIPCIONES = resolve('public/data/pleno-transcripts')
 const SUGERENCIAS = resolve('public/data/pleno-claims-suggestions.json')
 const PLENOS = resolve('public/data/plenos.json')
-/** La escribe hallazgos-pipeline.sh; ignorada por git (.cache/). */
-const EXTRAIDAS_VACIAS = resolve('.cache/extraccion-sin-declaraciones.txt')
 
 function main() {
   const porQue = process.argv.includes('--why')
@@ -29,21 +32,26 @@ function main() {
   }[])
     if (p.date) fechas.set(p.id, p.date)
 
+  // Sin el fichero, o con otra forma, no se sabe qué está extraído, y «no lo sé»
+  // pondría en cola TODAS las de audio (~465 llamadas cada una). Falla cerrado.
+  const sugerencias = JSON.parse(readFileSync(SUGERENCIAS, 'utf8')) as { items?: unknown }
+  if (!Array.isArray(sugerencias.items))
+    throw new Error(`${SUGERENCIAS} no trae una lista items[]: no se sabe qué está extraído`)
   const conDeclaraciones = new Set<string>()
-  if (existsSync(SUGERENCIAS))
-    for (const c of (JSON.parse(readFileSync(SUGERENCIAS, 'utf8')).items ?? []) as {
-      plenoId?: string
-    }[])
-      if (c?.plenoId) conDeclaraciones.add(c.plenoId)
+  for (const c of sugerencias.items as { plenoId?: string }[])
+    if (c?.plenoId) conDeclaraciones.add(c.plenoId)
 
-  const vacias = new Set(
-    existsSync(EXTRAIDAS_VACIAS)
-      ? readFileSync(EXTRAIDAS_VACIAS, 'utf8')
-          .split('\n')
-          .map((l) => l.trim())
-          .filter(Boolean)
-      : [],
-  )
+  const leerLista = (ruta: string) =>
+    new Set(
+      existsSync(ruta)
+        ? readFileSync(ruta, 'utf8')
+            .split('\n')
+            .map((l) => l.trim())
+            .filter(Boolean)
+        : [],
+    )
+  const vacias = leerLista(resolve(RUTA_EXTRAIDAS_VACIAS))
+  const parciales = leerLista(resolve(RUTA_PARCIALES))
 
   const candidatas: Candidata[] = readdirSync(TRANSCRIPCIONES)
     .filter((f) => f.endsWith('.txt'))
@@ -56,7 +64,7 @@ function main() {
       }
     })
 
-  const cola = colaDeExtraccion(candidatas, conDeclaraciones, vacias)
+  const cola = colaDeExtraccion(candidatas, conDeclaraciones, vacias, parciales)
   for (const id of cola.pendientes) process.stdout.write(`${id}\n`)
   if (porQue) {
     const cuenta: Record<string, number> = {}
