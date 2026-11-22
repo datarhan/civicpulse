@@ -237,8 +237,8 @@ export interface PlenoClaimsChunkManifest {
 export interface ResumenLiteralNoServible {
   porMotivo: Record<MotivoLiteralNoServible, number>
   /**
-   * Cuántas pasaron por la regla: las que tienen transcripción vigente y
-   * procedencia. La mayoría salen enseguida porque su literal consta en la
+   * Cuántas pasaron por la regla: las que la puerta serviría por lo demás, con
+   * transcripción vigente y procedencia. La mayoría salen enseguida porque su literal consta en la
    * vigente; las que la regla no pudo decidir están en `sinJuzgar`.
    */
   evaluadas: number

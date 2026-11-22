@@ -26,7 +26,11 @@ import {
   groupItemsByPleno,
   type VerifiedSnapshot,
 } from '../src/scraper/pleno-claims-chunks'
-import { gateItemsForPublic, repartirRetenidas } from '../src/scraper/claim-public-gate'
+import {
+  gateItemsForPublic,
+  motivoDeRetencion,
+  repartirRetenidas,
+} from '../src/scraper/claim-public-gate'
 import { classifyClaimProvenancePreparado } from '../src/scraper/claim-provenance'
 import { motivoDeRetirada, type MotivoDeRetirada } from '../src/scraper/declaracion-retirada'
 import { prepararHeno, type HenoPreparado } from '../src/scraper/quote-match'
@@ -128,8 +132,8 @@ export function idsSinProcedencia(
 }
 
 /**
- * Techo de retención por literal no servible, sobre lo evaluado (las que
- * tienen transcripción vigente y procedencia).
+ * Techo de retención por literal no servible, sobre lo evaluado (lo que la
+ * puerta serviría, con transcripción vigente y procedencia).
  *
  * Esta regla no se infla porque falte un fichero —sin vigente no se juzga, sin
  * sustituida la cita cae en `sinProcedencia`—, pero sí si se estropea el
@@ -285,8 +289,14 @@ export function rewriteChunksFromMonolith(opts: { dryRun?: boolean } = {}): {
         `en ninguna transcripción que tengamos. No se publican.`,
     )
   }
+  // Sólo lo que la puerta serviría: una acusación ya retenida por otro motivo
+  // no se cuenta ni como retenida aquí ni como «no juzgable».
+  const servibles = crudos.filter(
+    (it) =>
+      motivoDeRetencion(it, { sinProcedencia: sinProcedencia.has(it?.claim?.id ?? '') }) === null,
+  )
   const literales = literalesNoServibles(
-    crudos,
+    servibles,
     sinProcedencia,
     (id) => {
       const p = resolve(TRANSCRIPTS_DIR, `${id}.txt`)
@@ -303,7 +313,7 @@ export function rewriteChunksFromMonolith(opts: { dryRun?: boolean } = {}): {
       .join(', ')
     console.warn(
       `[chunk-claims] ${literalNoServible.size} de ${literales.evaluadas} declaración(es) ` +
-        `retenida(s): su literal consta pero no es lo que se dijo (traducido o alucinado). ` +
+        `retenida(s): su literal consta, pero traducido de lo que la vigente recoge o inventado. ` +
         `No juzgables: ${nj}.`,
     )
     const porSesion = new Map<string, number>()

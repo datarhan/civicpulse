@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-19T18:42:30.094Z",
+  "generatedAt": "2026-11-22T19:49:09.023Z",
   "version": "1",
   "plenoId": "1r6yy0",
   "plenoDate": "2023-01-23",
@@ -82,35 +82,6 @@
       },
       "verification": {
         "claimId": "1r6yy0-007-afi-8b65da",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1r6yy0-008-afi-0b4c66",
-        "plenoId": "1r6yy0",
-        "plenoDate": "2023-01-23",
-        "segmentIndex": 8,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "estoy en una relación de tres meses con una empresa",
-        "context": "para demostrar, no, rectificar, que no tengo ningún problema en ningún tipo de información lógica y sensata para demostrar lo que voy a hacer o estoy en una relación de tres meses con una empresa. También diré una cosa.",
-        "topic": "transparencia",
-        "entities": {
-          "count": 3,
-          "countUnit": "meses",
-          "referencedEntity": "vida laboral"
-        },
-        "confidence": 0.9,
-        "reasoning": "El concejal afirma mantener una relación laboral o contractual de tres meses con una empresa, lo cual se puede constatar en su informe de vida laboral o en su declaración de actividades.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1r6yy0-008-afi-0b4c66",
         "verdict": "sin-datos",
         "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
@@ -601,37 +572,6 @@
     },
     {
       "claim": {
-        "id": "1r6yy0-027-cit-e4e772",
-        "plenoId": "1r6yy0",
-        "plenoDate": "2023-01-23",
-        "segmentIndex": 27,
-        "type": "cita_obra",
-        "speakerGroup": null,
-        "verbatim": "yo he citado Pacadar, porque es algo que es un poco delicado para algunos. Nosotros creemos que es el futuro de Rivarrocha y que está ahí, pero bueno, entiendo que a algunos no les agrada.",
-        "context": "l trabajo de un Gobierno, efectivamente. Pero creo que deberían estar orgullosos del trabajo que se hace. Es de veras, ahí está, yo he citado Pacadar, porque es algo que es un poco delicado para algunos. Nosotros creemos que es el futuro de Rivarrocha y que está ahí, pero bueno, entiendo que a algunos no les agrada. Gracias. ¿Alguna palabra más? ¿Paula?",
-        "topic": "urbanismo",
-        "entities": {
-          "referencedEntity": "pacadar"
-        },
-        "confidence": 0.9,
-        "reasoning": "Menciona el emplazamiento o proyecto de Pacadar, una actuación urbanística e industrial en Riba-roja de Túria.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1r6yy0-027-cit-e4e772",
-        "verdict": "sin-datos",
-        "summary": "La afirmación menciona a Pacadar como un tema delicado y relevante para el futuro de Rivarrocha, pero no proporciona datos específicos sobre obras o proyectos concretos.",
-        "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "confidence": 0.2,
-        "source": "verdict-engine"
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
         "id": "1r6yy0-032-afi-7003f9",
         "plenoId": "1r6yy0",
         "plenoDate": "2023-01-23",
@@ -678,67 +618,6 @@
       },
       "verification": {
         "claimId": "1r6yy0-032-pro-3bc481",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": [
-          "promises"
-        ]
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1r6yy0-033-afi-47e043",
-        "plenoId": "1r6yy0",
-        "plenoDate": "2023-01-23",
-        "segmentIndex": 33,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "la Ley de Servicios Sociales nos marca que tenemos que tener tres comisiones, la Comisión Técnica de Valoración y Seguimiento de Prestaciones, la Comisión Técnica de Intervención Social y la Comisión Técnica Organizativa",
-        "context": "En este caso, la Ley de Servicios Sociales nos marca que tenemos que tener tres comisiones, la Comisión Técnica de Valoración y Seguimiento de Prestaciones, la Comisión Técnica de Intervención Social y la Comisión Técnica Organizativa. Los dos primeros ya van a pasar por pleno",
-        "topic": "social",
-        "entities": {
-          "count": 3,
-          "countUnit": "comisiones",
-          "referencedEntity": "ley de servicios sociales"
-        },
-        "confidence": 0.95,
-        "reasoning": "Se cita una cifra concreta (tres comisiones) atribuida al mandato de la Ley de Servicios Sociales, lo cual es contrastable con el texto de dicha ley.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1r6yy0-033-afi-47e043",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1r6yy0-033-pro-607ca1",
-        "plenoId": "1r6yy0",
-        "plenoDate": "2023-01-23",
-        "segmentIndex": 33,
-        "type": "promesa",
-        "speakerGroup": null,
-        "verbatim": "Los dos primeros ya van a pasar por pleno más exactamente el 26 de julio",
-        "context": "la Ley de Servicios Sociales nos marca que tenemos que tener tres comisiones, la Comisión Técnica de Valoración y Seguimiento de Prestaciones, la Comisión Técnica de Intervención Social y la Comisión Técnica Organizativa. Los dos primeros ya van a pasar por pleno más exactamente el 26 de julio. Estos dos serán receptivos",
-        "topic": "social",
-        "entities": {
-          "count": 2,
-          "countUnit": "comisiones",
-          "date": "2023-07-26",
-          "referencedEntity": "comisiones técnicas de valoración y seguimiento, y de intervención social"
-        },
-        "confidence": 0.9,
-        "reasoning": "Es un compromiso para llevar a pleno dos de las comisiones en una fecha específica (26 de julio de 2023), verificable en las actas de dicho pleno.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1r6yy0-033-pro-607ca1",
         "verdict": "sin-datos",
         "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],

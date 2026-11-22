@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-19T18:42:30.094Z",
+  "generatedAt": "2026-11-22T19:49:09.023Z",
   "version": "1",
   "plenoId": "1sqj7is",
   "plenoDate": "2026-03-09",
@@ -214,33 +214,6 @@
     },
     {
       "claim": {
-        "id": "1sqj7is-010-afi-0115d3",
-        "plenoId": "1sqj7is",
-        "plenoDate": "2026-03-09",
-        "segmentIndex": 10,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "todo está establecido en precios de mercado y está asignado en el propio informe",
-        "context": "Respuesta del equipo de gobierno ante preguntas sobre irregularidades procedimentales en el reconocimiento extrajudicial nº 5/2026 (facturas 12025000151 y 12026000008). El portavoz del gobierno defiende que las asignaciones cumplen precios de mercado y están respaldadas por informe.",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "reconocimiento extrajudicial nº 5/2026 · facturas 12025000151 y 12026000008"
-        },
-        "confidence": 0.65,
-        "reasoning": "Afirmación de cumplimiento de precios de mercado en contratos menores; verificable cruzando los importes de las facturas 12025000151 y 12026000008 contra los precios de referencia en la base de licitaciones (Gobierto/PLACSP) y el informe técnico del expediente.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1sqj7is-010-afi-0115d3",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
         "id": "1sqj7is-010-afi-6d4bce",
         "plenoId": "1sqj7is",
         "plenoDate": "2026-03-09",
@@ -295,61 +268,6 @@
     },
     {
       "claim": {
-        "id": "1sqj7is-011-cit-498720",
-        "plenoId": "1sqj7is",
-        "plenoDate": "2026-03-09",
-        "segmentIndex": 11,
-        "type": "cita_convenio",
-        "speakerGroup": null,
-        "verbatim": "Hay una intervención para que antes del día 10 de diciembre se intenten hacer todas las facturas",
-        "context": "Hay una instrucción que todos estos años hacemos desde... Hay una intervención para que antes del día 10 de diciembre se intenten hacer todas las facturas, pero claro, si la despesa es a final del exercici.",
-        "topic": "fiscal",
-        "entities": {
-          "date": "2025-12-10",
-          "referencedEntity": "instrucción interna municipal — cierre de facturas antes del 10 de diciembre"
-        },
-        "confidence": 0.62,
-        "reasoning": "El ponente cita la existencia de una instrucción o circular interna de Intervención municipal que fija el 10 de diciembre como fecha límite para el registro de facturas del ejercicio. Verificable solicitando el texto de dicha instrucción al Ayuntamiento vía transparencia (Ley 19/2013); su existencia y contenido son comprobables en el expediente de Reconocimiento Extrajudicial.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1sqj7is-011-cit-498720",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1sqj7is-012-afi-7ebf44",
-        "plenoId": "1sqj7is",
-        "plenoDate": "2026-03-09",
-        "segmentIndex": 12,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "en ningún momento, dejemos en duda que el servicio no se haya hecho y no se haya contratado a precio de mercado",
-        "context": "En nuestro grupo, en ningún momento, dejemos en duda que el servicio no se haya hecho y no se haya contratado a precio de mercado. Es",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "reconocimiento extrajudicial nº 5/2026 — facturas 12025000151 y 12026000008"
-        },
-        "confidence": 0.55,
-        "reasoning": "El portavoz afirma que los servicios facturados se prestaron efectivamente y se contrataron a precio de mercado; verificable comparando los importes de las facturas aprobadas contra los precios de contratos equivalentes en el portal Gobierto/PLACSP de Riba-roja de Túria.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1sqj7is-012-afi-7ebf44",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
         "id": "1sqj7is-014-pro-9966ca",
         "plenoId": "1sqj7is",
         "plenoDate": "2026-03-09",
@@ -374,35 +292,6 @@
         "checkedAgainst": [
           "promises"
         ]
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1sqj7is-017-afi-0c84c1",
-        "plenoId": "1sqj7is",
-        "plenoDate": "2026-03-09",
-        "segmentIndex": 17,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "hay facturas que tardan en pagarse 9 meses o 80 y pico días según el periodo de medio de pago",
-        "context": "El orador critica los retrasos en el pago de facturas municipales: 'para mí no es válido que un técnico esté de vacaciones para que nos firme una factura. Porque hay facturas que tardan en pagarse 9 meses o 80 y pico días según el periodo de medio de pago y yo creo que el técnico no está 80 días de vacaciones.'",
-        "topic": "fiscal",
-        "entities": {
-          "count": 80,
-          "countUnit": "días (período medio de pago)",
-          "referencedEntity": "período medio de pago a proveedores — informe q4 2025"
-        },
-        "confidence": 0.78,
-        "reasoning": "El orador invoca el PMP oficial (~80 días) publicado trimestralmente. Contrастable contra el punto 12 del orden del día (Cálculo del PMP e Informe de deuda comercial Q4 2025). La cifra '9 meses' podría referirse a facturas del reconocimiento extrajudicial (punto 2). Grupo no identificable con certeza: el hablante se distancia de Esquerra Unida.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1sqj7is-017-afi-0c84c1",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -462,92 +351,6 @@
     },
     {
       "claim": {
-        "id": "1sqj7is-024-afi-552d43",
-        "plenoId": "1sqj7is",
-        "plenoDate": "2026-03-09",
-        "segmentIndex": 24,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "La ejecución presupuestaria alta, de los ayuntamientos, que más alta tiene.",
-        "context": "El interviniente afirma que el Ayuntamiento de Riba-roja de Túria tiene una de las ejecuciones presupuestarias más altas entre los ayuntamientos, atribuyéndolo a la presión de los regidores sobre las áreas.",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "ayuntamiento de riba-roja de túria"
-        },
-        "confidence": 0.5,
-        "reasoning": "Afirmación de ranking verificable cruzando el porcentaje de ejecución del presupuesto municipal de Riba-roja contra el dataset CONPREL / liquidaciones de otros municipios valencianos de tamaño similar; la frase está claramente fragmentada por Whisper.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1sqj7is-024-afi-552d43",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1sqj7is-025-afi-3ecc72",
-        "plenoId": "1sqj7is",
-        "plenoDate": "2026-03-09",
-        "segmentIndex": 25,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "los presupuestos que aprueban en muchas partidas no llegan ni al 16%",
-        "context": "El orador contrasta la ejecución presupuestaria del Ayuntamiento con la de la 'Unidad Valenciana o de la Junta de Valencia' (probable transcripción de Whisper de 'Generalitat Valenciana'), afirmando que en muchas partidas no llegan al 16% de ejecución.",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "generalitat valenciana ejecución presupuestaria"
-        },
-        "confidence": 0.6,
-        "reasoning": "Afirmación cuantificada (16%) sobre la ejecución presupuestaria de la Generalitat Valenciana. Verificable cruzando los informes de liquidación presupuestaria de la GVA publicados en el Portal de Transparencia. El nombre de la entidad está degradado por Whisper, lo que reduce la confianza.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1sqj7is-025-afi-3ecc72",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1sqj7is-028-afi-4ee50f",
-        "plenoId": "1sqj7is",
-        "plenoDate": "2026-03-09",
-        "segmentIndex": 28,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "en un presupuesto de cuarenta y pico millones",
-        "context": "a realidad que en un presupuesto de cuarenta y pico millones, que dura más de doscientos y cuarenta mil, no sé si ya hemos estado alguna vez, que es posible que venga alguna vez",
-        "topic": "fiscal",
-        "entities": {
-          "amountEuros": 40000000,
-          "referencedEntity": "presupuesto municipal riba-roja de túria"
-        },
-        "confidence": 0.7,
-        "reasoning": "El orador cita el tamaño del presupuesto municipal para contextualizar el reconocimiento extrajudicial (punto 2 del orden del día). Contrastable contra budget.json / CONPREL MinHac.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1sqj7is-028-afi-4ee50f",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders, tenders-ted y bdns que la sostenga. En el presupuesto municipal no se buscó. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns"
-        ]
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
         "id": "1sqj7is-028-pro-a54495",
         "plenoId": "1sqj7is",
         "plenoDate": "2026-03-09",
@@ -599,35 +402,6 @@
         "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1sqj7is-029-pro-b1b5f3",
-        "plenoId": "1sqj7is",
-        "plenoDate": "2026-03-09",
-        "segmentIndex": 29,
-        "type": "promesa",
-        "speakerGroup": null,
-        "verbatim": "intentaremos que el año que viene, pues, haya más contratos, que efectivamente sea más rápido",
-        "context": "Tras defender la ejecución presupuestaria, el interviniente añade: «intentaremos que el año que viene, pues, haya más contratos, que efectivamente sea más rápido, si puede ser que no, que venga la mínima estatus judicial, pero lo hemos reducido muchísimo.» Contexto de valoración general de la contratación municipal.",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "contratación municipal ejercicio siguiente"
-        },
-        "confidence": 0.72,
-        "reasoning": "Compromiso futuro de incrementar el volumen y velocidad de contratación, verificable en el siguiente periodo contra el feed de tenders de Gobierto/PLACSP (ya integrado en el proyecto como tenders.json).",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1sqj7is-029-pro-b1b5f3",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": [
-          "promises"
-        ]
       },
       "visibility": "toggle"
     },
@@ -872,34 +646,6 @@
         "checkedAgainst": [
           "promises"
         ]
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1sqj7is-035-afi-285f21",
-        "plenoId": "1sqj7is",
-        "plenoDate": "2026-03-09",
-        "segmentIndex": 35,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "Pues acá se ha aprobado por unanimidad.",
-        "context": "Tras la discusión sobre la autoenmienda al Plan Normativo anual 2026 (punto 3 del orden del día), quien preside anuncia el resultado de la votación antes de pasar al punto 4.",
-        "topic": "transparencia",
-        "entities": {
-          "date": "2026-03-09",
-          "referencedEntity": "plan normativo anual del ayuntamiento de riba-roja de túria para el año 2026 alineado con los ods"
-        },
-        "confidence": 0.82,
-        "reasoning": "El resultado 'unanimidad' sobre el punto 3 (Plan Normativo anual 2026) es verificable cruzando contra el registro de votos del pleno de 2026-03-09 en pleno-votes.json; unanimidad implica 21 votos a favor, 0 en contra, 0 abstenciones.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1sqj7is-035-afi-285f21",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -1300,183 +1046,6 @@
     },
     {
       "claim": {
-        "id": "1sqj7is-057-afi-e25969",
-        "plenoId": "1sqj7is",
-        "plenoDate": "2026-03-09",
-        "segmentIndex": 57,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "hemos sido pioneros en toda España, reconocido no por nosotros, por los técnicos y los ministerios correspondient",
-        "context": "El portavoz defiende la iniciativa aprobada en el punto del orden del día (previsiblemente el Sistema Dinámico de Adquisición o el ENS) frente a críticas de la oposición sobre falta de control y seguridad jurídica, afirmando que el municipio fue el primero en España en adoptarla, con reconocimiento externo de técnicos y ministerios.",
-        "topic": "transparencia",
-        "entities": {
-          "referencedEntity": "sistema dinámico de adquisición / esquema nacional de seguridad"
-        },
-        "confidence": 0.6,
-        "reasoning": "Liderazgo nacional verificable cruzando la fecha de adopción del instrumento en PLACE u otros registros del MHFP/CCN con el historial de municipios. El reconocimiento ministerial es auditable vía comunicaciones oficiales. Confianza moderada porque Whisper trunca el fragmento y no se nombra explícitamente el instrumento.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1sqj7is-057-afi-e25969",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1sqj7is-058-cit-091d2f",
-        "plenoId": "1sqj7is",
-        "plenoDate": "2026-03-09",
-        "segmentIndex": 58,
-        "type": "cita_obra",
-        "speakerGroup": null,
-        "verbatim": "hemos sido pioneros en toda España, reconocido no por nosotros, por los técnicos y los ministerios correspondientes",
-        "context": "El portavoz defiende una herramienta innovadora de contratación pública implantada por el Ayuntamiento, afirmando que han sido pioneros en España según reconocimiento de técnicos y ministerios, no por autoproclamación.",
-        "topic": "transparencia",
-        "entities": {
-          "referencedEntity": "sistema dinámico de adquisición ayuntamiento de riba-roja de túria"
-        },
-        "confidence": 0.55,
-        "reasoning": "Verificable contra publicaciones del MHFP, informes FEMP o BOE sobre SDAs municipales. Atribuido a PSOE porque el hablante defiende la acción de su gobierno ('hay un gobierno, mal que le pese, que también ayuda'). Confianza moderada: la herramienta no se nombra explícitamente en el fragmento.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1sqj7is-058-cit-091d2f",
-        "verdict": "sin-datos",
-        "summary": "Los dos candidatos son contratos reales de herramientas de control/transparencia de licitaciones del Ayuntamiento de Riba-roja de Túria (visor de transparencia de contratación, lote de herramienta de control y planificación), lo que da cierto contexto factual de que existe una herramienta de este…",
-        "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "confidence": 0.2,
-        "source": "verdict-engine"
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1sqj7is-061-cit-eb2ba2",
-        "plenoId": "1sqj7is",
-        "plenoDate": "2026-03-09",
-        "segmentIndex": 61,
-        "type": "cita_convenio",
-        "speakerGroup": null,
-        "verbatim": "por eso hemos firmado acuerdos entre ALIANA y ENGIRIA.",
-        "context": "El orador defiende la política de alianzas del ayuntamiento con autónomos y pymes, mencionando que se han firmado acuerdos con las entidades ALIANA y ENGIRIA (nombres posiblemente distorsionados por Whisper) para que los autónomos y pymes del municipio puedan acceder a estas organizaciones.",
-        "topic": "empleo",
-        "entities": {
-          "referencedEntity": "aliana y engiria (posiblemente asociaciones empresariales; nombres con wer elevado)"
-        },
-        "confidence": 0.52,
-        "reasoning": "Afirmación de convenio o acuerdo firmado entre el ayuntamiento y dos entidades (probablemente asociaciones empresariales valencianas; Whisper puede haber degradado los nombres propios). Verificable contra BDNS, portal de transparencia del ayuntamiento o pleno-votes del mismo período.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1sqj7is-061-cit-eb2ba2",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1sqj7is-063-pro-eeb37e",
-        "plenoId": "1sqj7is",
-        "plenoDate": "2026-03-09",
-        "segmentIndex": 63,
-        "type": "promesa",
-        "speakerGroup": null,
-        "verbatim": "lo vamos a conseguir, poco a poco, es reducir al máximo para que los controles y la fiscalización de los contratos sean los más, donde más podamos llegar",
-        "context": "El orador defiende el uso de reconocimientos extrajudiciales afirmando que ya han intentado reducirlos y que todavía no lo han conseguido del todo, pero promete lograrlo progresivamente para maximizar el control y la fiscalización de los contratos.",
-        "topic": "transparencia",
-        "entities": {
-          "referencedEntity": "reconocimientos extrajudiciales · fiscalización de contratos"
-        },
-        "confidence": 0.52,
-        "reasoning": "Compromiso público de reducir los reconocimientos extrajudiciales y fortalecer la fiscalización contractual, verificable en plenos futuros contando el número y volumen de expedientes de reconocimiento extrajudicial presentados. La atribución a PSOE se infiere del uso de 'nosotros' en posición de gobierno, pero no está explícita en el fragmento, lo que reduce la confianza.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1sqj7is-063-pro-eeb37e",
-        "verdict": "sin-datos",
-        "summary": "La afirmación es una promesa genérica de reducir progresivamente los reconocimientos extrajudiciales de crédito para reforzar el control y la fiscalización de los contratos. Ninguno de los candidatos la respalda.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "derivedBy": [
-          "verdict-engine"
-        ],
-        "confidence": 0.2,
-        "source": "verdict-engine"
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1sqj7is-065-cit-c33f08",
-        "plenoId": "1sqj7is",
-        "plenoDate": "2026-03-09",
-        "segmentIndex": 65,
-        "type": "cita_obra",
-        "speakerGroup": null,
-        "verbatim": "lo que es un SDA que repite, que es un sistema pionero, que nos ha funcionado muy bien, que debe haber, sobre todo por nuestros presupuestos y por los vecinos y vecinas, porque nos traen más dinero",
-        "context": "El interviniente —que defiende el punto 4 del orden del día, aprobación del SDA— insta a la oposición a acudir al área de contratación para que les expliquen técnicamente el Sistema Dinámico de Adquisición, calificándolo de sistema pionero que ha aportado beneficio económico al presupuesto municipal y a los vecinos.",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "sistema dinámico de adquisición (sda)"
-        },
-        "confidence": 0.52,
-        "reasoning": "La doble afirmación —que el SDA es 'sistema pionero' y que 'trae más dinero'— es verificable cruzando la implantación del SDA en otros ayuntamientos españoles (PLACSP/Plataforma de Contratación) y comparando el volumen o precio medio de licitaciones bajo SDA con ejercicios anteriores en tenders.json; la ausencia de cifra concreta reduce la confianza.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1sqj7is-065-cit-c33f08",
-        "verdict": "sin-datos",
-        "summary": "Es una valoración: que el sistema dinámico de adquisición sea pionero, funcione bien o traiga más dinero no lo establece ningún registro. Los contratos derivados del SDA sólo muestran que el sistema existe y se usa.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "derivedBy": [
-          "verdict-engine"
-        ],
-        "confidence": 0.2,
-        "source": "verdict-engine",
-        "reasonSignedBy": "Sergei Lutchenko"
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1sqj7is-066-afi-26fa49",
-        "plenoId": "1sqj7is",
-        "plenoDate": "2026-03-09",
-        "segmentIndex": 66,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "es un sistema pionero, que nos ha funcionado muy bien, que debe haber, sobre todo por nuestros presupuestos y por los vecinos y vecinas, porque nos traen más dinero",
-        "context": "El portavoz defiende el Sistema Dinámico de Adquisición (SDA) en el debate del punto 4 del orden del día, afirmando que es pionero y que ha generado ahorro o ingresos adicionales para el presupuesto municipal.",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "sistema dinámico de adquisición (sda) del ayuntamiento de riba-roja de túria"
-        },
-        "confidence": 0.62,
-        "reasoning": "La afirmación de que el SDA 'nos traen más dinero' y es 'pionero' es verificable parcialmente contra los datos de licitaciones de Gobierto/PLACSP: se puede comparar el coste medio de contratos antes y después de implantar el SDA, y contrastar si otros ayuntamientos valencianos tenían un SDA activo en fecha similar.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1sqj7is-066-afi-26fa49",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
         "id": "1sqj7is-066-afi-dadf77",
         "plenoId": "1sqj7is",
         "plenoDate": "2026-03-09",
@@ -1555,36 +1124,6 @@
         "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1sqj7is-068-pro-adb4e8",
-        "plenoId": "1sqj7is",
-        "plenoDate": "2026-03-09",
-        "segmentIndex": 68,
-        "type": "promesa",
-        "speakerGroup": null,
-        "verbatim": "vamos a hacer más y vamos a seguir trabajando para que la contratación pública sea innovadora, sea transparente y que dé buenos resultados",
-        "context": "Tras defender la intervención de la secretaria general como responsable máxima de contrato y reconocer lo logrado, el portavoz anuncia que continuarán mejorando la contratación pública, justo antes de pasar a la votación del punto (Sistema Dinámico de Adquisición, punto 4 del orden del día).",
-        "topic": "transparencia",
-        "entities": {
-          "referencedEntity": "sistema dinámico de adquisición — contratación pública municipal"
-        },
-        "confidence": 0.62,
-        "reasoning": "Compromiso explícito de mejora de la contratación pública pronunciado al aprobar el SDA. Verificable a medio plazo en Gobierto/PLACSP. speakerGroup PSOE inferido por contexto (grupo gobernante), no nombrado explícitamente.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1sqj7is-068-pro-adb4e8",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -2590,66 +2129,6 @@
         "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1sqj7is-093-pro-aa2457",
-        "plenoId": "1sqj7is",
-        "plenoDate": "2026-03-09",
-        "segmentIndex": 93,
-        "type": "promesa",
-        "speakerGroup": null,
-        "verbatim": "en 2-3 años podemos decir que estaremos en condiciones 2-3 años no menos de ofrecer al mercado pues a lo mejor X viviendas tanto de renta libre",
-        "context": "El orador describe la vía privada de construcción de vivienda, señalando que fondos y empresas quieren invertir ya, y anuncia que en 2-3 años el municipio estaría en condiciones de ofrecer viviendas al mercado de renta libre.",
-        "topic": "vivienda",
-        "entities": {
-          "referencedEntity": "viviendas renta libre"
-        },
-        "confidence": 0.55,
-        "reasoning": "Compromiso temporal concreto (horizonte 2-3 años desde 2026-03-09, ~2028-2029) para disponer de viviendas de renta libre en el mercado; verificable al contrastar con licencias de obra, tenders y padrón. La indefinición del número ('X viviendas') y el modal 'a lo mejor' rebajan la confianza.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1sqj7is-093-pro-aa2457",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": [
-          "promises"
-        ]
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1sqj7is-094-pro-c54cfb",
-        "plenoId": "1sqj7is",
-        "plenoDate": "2026-03-09",
-        "segmentIndex": 94,
-        "type": "promesa",
-        "speakerGroup": null,
-        "verbatim": "en 2-3 años podemos decir que estaremos en condiciones 2-3 años no menos de ofrecer al mercado pues a lo mejor X viviendas tanto de renta libre como de protección social y eso es importante probablemente de más de 1.000 viviendas",
-        "context": "El orador señala que capital y empresas quieren invertir ya en vivienda, y que en 2-3 años el municipio podría ofrecer al mercado más de 1.000 viviendas (renta libre + protección social), calificando la vivienda como uno de los principales problemas del pueblo.",
-        "topic": "vivienda",
-        "entities": {
-          "count": 1000,
-          "countUnit": "viviendas",
-          "referencedEntity": "viviendas renta libre y protección social"
-        },
-        "confidence": 0.62,
-        "reasoning": "Compromiso futuro con cifra concreta (>1.000 unidades, horizonte 2-3 años). Verificable contra licencias urbanísticas y expedientes de actuación. Confianza moderada-baja: la cifra aparece como 'X viviendas' en Whisper (no transcrita), el enunciado está fuertemente hedgeado ('probablemente', 'a lo mejor') y el grupo político no es identificable.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1sqj7is-094-pro-c54cfb",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": [
-          "promises"
-        ]
       },
       "visibility": "toggle"
     }

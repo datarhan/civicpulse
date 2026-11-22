@@ -1,40 +1,9 @@
 {
-  "generatedAt": "2026-11-19T18:42:30.094Z",
+  "generatedAt": "2026-11-22T19:49:09.023Z",
   "version": "1",
   "plenoId": "ma87e0",
   "plenoDate": "2026-03-16",
   "items": [
-    {
-      "claim": {
-        "id": "ma87e0-087-pro-06aff1",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 87,
-        "type": "promesa",
-        "speakerGroup": null,
-        "verbatim": "Nuestro voto está supeditado a que el equipo de gobierno, en este caso el Partido Socialista, se comprometa con nosotros en dos cuestiones.",
-        "context": "El portavoz de Compromís explica la postura de su grupo ante el presupuesto 2026: condicionan su voto a que el PSOE (equipo de gobierno) asuma dos compromisos concretos que vienen reclamando desde hace varios ejercicios presupuestarios.",
-        "topic": "fiscal",
-        "entities": {
-          "count": 2,
-          "countUnit": "cuestiones",
-          "referencedEntity": "presupuesto municipal 2026"
-        },
-        "confidence": 0.82,
-        "reasoning": "Compromís enuncia explícitamente que su voto al presupuesto 2026 es condicional a dos compromisos del PSOE. Verificable contra el resultado del voto plenario y cualquier acuerdo posterior documentado en acta.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-087-pro-06aff1",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": [
-          "promises"
-        ]
-      },
-      "visibility": "toggle"
-    },
     {
       "claim": {
         "id": "ma87e0-088-pro-d22134",
@@ -157,35 +126,6 @@
     },
     {
       "claim": {
-        "id": "ma87e0-089-pro-b35d29",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 89,
-        "type": "promesa",
-        "speakerGroup": null,
-        "verbatim": "Y eso condicionaría nuestro voto en este presupuesto",
-        "context": "Compromís anuncia explícitamente que su voto favorable al presupuesto 2026 queda condicionado al compromiso del PSOE sobre el Museo Faller y la dotación de técnicas de promoción lingüística en la RPT.",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "presupuesto municipal 2026"
-        },
-        "confidence": 0.88,
-        "reasoning": "Declaración de voto condicional directamente verificable contra el resultado registrado en pleno-votes.json para la aprobación inicial del presupuesto 2026 y la posición efectiva de Compromís (1 escaño).",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-089-pro-b35d29",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": [
-          "promises"
-        ]
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
         "id": "ma87e0-090-cit-208421",
         "plenoId": "ma87e0",
         "plenoDate": "2026-03-16",
@@ -264,36 +204,6 @@
       },
       "verification": {
         "claimId": "ma87e0-092-pro-c443d4",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": [
-          "promises"
-        ]
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "ma87e0-092-pro-e3265a",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 92,
-        "type": "promesa",
-        "speakerGroup": null,
-        "verbatim": "vamos a pedir durante este año alguna modificación para que el Departamento de Cultura pueda programar más actuación de música y cultura en Valencia.",
-        "context": "Tras señalar que la promoción cultural no debe limitarse a 'la trobada de música en Valencia', el portavoz de Compromís anuncia que solicitarán una modificación presupuestaria en 2026 para que el Departamento de Cultura amplíe su programación de música y cultura en valencià.",
-        "topic": "cultura",
-        "entities": {
-          "date": "2026-12-31",
-          "referencedEntity": "departamento de cultura del ayuntamiento de riba-roja de túria"
-        },
-        "confidence": 0.78,
-        "reasoning": "Compromiso verificable: Compromís se compromete a pedir una modificación presupuestaria en 2026 para el Departamento de Cultura; seguimiento posible mediante actas de plenos y ejecución presupuestaria del capítulo de cultura.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-092-pro-e3265a",
         "verdict": "sin-datos",
         "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
@@ -1608,219 +1518,6 @@
     },
     {
       "claim": {
-        "id": "ma87e0-120-afi-7f4f80",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 120,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "el capítulo 1 nos lo ofreció la semana pasada y son 20.700.000",
-        "context": "El portavoz del PP debate el presupuesto 2026: cuestiona retóricamente si la cifra del capítulo I —ofrecida por el equipo de gobierno la semana anterior al pleno— supone una variación significativa respecto al borrador que manejan desde octubre de 2024.",
-        "topic": "fiscal",
-        "entities": {
-          "amountEuros": 20700000,
-          "referencedEntity": "capítulo i (personal) presupuesto municipal 2026"
-        },
-        "confidence": 0.85,
-        "reasoning": "Cifra concreta de 20.700.000 € para el Capítulo I atribuida a una oferta del equipo de gobierno la semana previa al pleno; directamente contrastable contra el expediente 565/2026/GEN (plantilla/RPT) o el documento CONPREL.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-120-afi-7f4f80",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders, tenders-ted y bdns que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns"
-        ]
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "ma87e0-121-afi-30c1fa",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 121,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "nosotros tenemos un borrador desde octubre. Desde octubre del 24 y no ha variado mucho",
-        "context": "El concejal reprocha a José Ángel que el borrador presupuestario existe desde octubre de 2024 y apenas ha cambiado, en el marco del debate sobre el presupuesto 2026.",
-        "topic": "fiscal",
-        "entities": {
-          "date": "2024-10-01",
-          "referencedEntity": "borrador presupuesto municipal 2026"
-        },
-        "confidence": 0.72,
-        "reasoning": "Afirmación factual sobre la antigüedad del borrador presupuestario: verificable cruzando actas de comisión informativa o registros internos del ayuntamiento que acrediten si el borrador circuló en octubre de 2024.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-121-afi-30c1fa",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "ma87e0-122-afi-eaa044",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 122,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "nosotros nos hemos propuesto, nos hemos propuesto 19 esmenas",
-        "context": "ayer por la tarde hablamos con José Ángel, por la noche le enviamos las esmenas porque la verdad nosotros nos hemos propuesto, nos hemos propuesto 19 esmenas.",
-        "topic": "fiscal",
-        "entities": {
-          "count": 19,
-          "countUnit": "esmenas",
-          "date": "2026-03-16",
-          "referencedEntity": "presupuesto 2026 · enmiendas presentadas"
-        },
-        "confidence": 0.78,
-        "reasoning": "El grupo opositor afirma haber presentado 19 enmiendas (esmenes en valenciano) al Presupuesto 2026. Es verificable contra el acta del pleno y el expediente presupuestario: el número de enmiendas registradas debe coincidir con este dato.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-122-afi-eaa044",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "ma87e0-122-afi-4fed79",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 122,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "hemos aumentado a partir de la protección civil, para espacios degradados, que ustedes también han aumentado la partida",
-        "context": "Hemos aumentado, queremos decir que hemos aumentado a partir de la protección civil, para espacios degradados, que ustedes también han aumentado la partida, y todos sabemos que una preocupación grande de la ciudadanía de Riva Rocha es la basura y la degradación.",
-        "topic": "medio-ambiente",
-        "entities": {
-          "referencedEntity": "partida protección civil · espacios degradados · presupuesto 2026"
-        },
-        "confidence": 0.52,
-        "reasoning": "El ponente afirma que tanto su grupo (en sus enmiendas) como el equipo de gobierno (PSOE) han aumentado la partida de espacios degradados/protección civil en el borrador presupuestario. Verificable contra budget.json comparando la partida de protección civil y limpieza del Presupuesto 2026 respecto al ejercicio anterior; la ausencia de importe concreto rebaja la confianza.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-122-afi-4fed79",
-        "verdict": "sin-datos",
-        "summary": "La afirmación sostiene que se ha aumentado una partida presupuestaria (protección civil, para espacios degradados) y que la oposición también la aumentó.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "derivedBy": [
-          "verdict-engine"
-        ],
-        "confidence": 0.2,
-        "source": "verdict-engine"
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "ma87e0-123-afi-ae351a",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 123,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "hemos aumentado a partir de la protección civil, para espacios degradados",
-        "context": "Hemos aumentado, queremos decir que hemos aumentado a partir de la protección civil, para espacios degradados, que ustedes también han aumentado la partida",
-        "topic": "seguridad",
-        "entities": {
-          "referencedEntity": "partida protección civil y espacios degradados — enmienda presupuesto 2026"
-        },
-        "confidence": 0.62,
-        "reasoning": "La enmienda al alza en protección civil/espacios degradados es verificable contra el texto de las enmiendas presentadas al presupuesto 2026; no se cita cifra concreta, lo que limita la verificabilidad cuantitativa.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-123-afi-ae351a",
-        "verdict": "sin-datos",
-        "summary": "La afirmación dice que se ha aumentado una partida presupuestaria (a partir de protección civil, para espacios degradados), es decir, una comparación de partidas entre ejercicios. Ninguno de los candidatos es una partida presupuestaria ni muestra una variación interanual.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "derivedBy": [
-          "verdict-engine"
-        ],
-        "confidence": 0.2,
-        "source": "verdict-engine"
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "ma87e0-123-afi-2cd46a",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 123,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "ustedes también han aumentado la partida",
-        "context": "hemos aumentado a partir de la protección civil, para espacios degradados, que ustedes también han aumentado la partida, y todos sabemos que una preocupación grande de la ciudadanía de Riva Rocha es la basura y la degradación de los espacios",
-        "topic": "medio-ambiente",
-        "entities": {
-          "referencedEntity": "partida espacios degradados — presupuesto 2026 equipo de gobierno"
-        },
-        "confidence": 0.6,
-        "reasoning": "Afirmación sobre el proyecto de presupuesto 2026 presentado por el gobierno, verificable contra el capítulo de gasto en la propuesta del PSOE; sin cifra concreta reduce la puntuación.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-123-afi-2cd46a",
-        "verdict": "sin-datos",
-        "summary": "La afirmación dice que \"ustedes también han aumentado la partida\" (presupuestaria) para espacios degradados / protección civil / limpieza. Para respaldarla haría falta un registro presupuestario con una partida concreta y su variación interanual (importes de dos ejercicios comparados).",
-        "evidence": [],
-        "checkedAgainst": [],
-        "derivedBy": [
-          "verdict-engine"
-        ],
-        "confidence": 0.2,
-        "source": "verdict-engine"
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "ma87e0-123-afi-a5e9fd",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 123,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "Hemos aumentado los planes de formación de empleo",
-        "context": "Hemos aumentado los planes de formación de empleo, nosotros pensamos que el plan de formación Riva Dona es un plan bueno",
-        "topic": "empleo",
-        "entities": {
-          "referencedEntity": "planes de formación de empleo — enmienda presupuesto 2026"
-        },
-        "confidence": 0.65,
-        "reasoning": "El incremento propuesto en planes de formación de empleo dentro de las 19 enmiendas es verificable contra el texto de las enmiendas al presupuesto 2026.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-123-afi-a5e9fd",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
         "id": "ma87e0-123-cit-170e96",
         "plenoId": "ma87e0",
         "plenoDate": "2026-03-16",
@@ -1878,160 +1575,6 @@
         ],
         "confidence": 0.2,
         "source": "verdict-engine"
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "ma87e0-124-pro-379d2c",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 124,
-        "type": "promesa",
-        "speakerGroup": null,
-        "verbatim": "debería dotarse el plan de formación Riva Dona, que después lo haga Creu Rocha o no, contratación.",
-        "context": "el plan de formación Riva Dona tiene una aplicación presupuestaria, debería dotarse el plan de formación Riva Dona, que después lo haga Creu Rocha o no, contratación.",
-        "topic": "empleo",
-        "entities": {
-          "referencedEntity": "plan de formación riva dona"
-        },
-        "confidence": 0.5,
-        "reasoning": "Compromiso de la oposición de incluir en sus enmiendas la dotación presupuestaria del Plan de Formación Riva Dona con independencia del ejecutor; seguimiento viable si el presupuesto final aprobado incluye o no esa partida.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-124-pro-379d2c",
-        "verdict": "sin-datos",
-        "summary": "La afirmación es una promesa/petición política: que se dote presupuestariamente el plan de formación \"Riva Dona\" (aplicación presupuestaria existente), sin importe, fecha ni sujeto numérico verificable.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "derivedBy": [
-          "verdict-engine"
-        ],
-        "confidence": 0.2,
-        "source": "verdict-engine"
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "ma87e0-124-pro-7ccc7d",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 124,
-        "type": "promesa",
-        "speakerGroup": null,
-        "verbatim": "nosotros las esmenas van todas enfocadas a que las asociaciones culturales, sociales y cívicas de Riva Rocha sigan beneficiarias frente a las partidas de dinero",
-        "context": "Pensamos, nosotros las esmenas van todas enfocadas a que las asociaciones culturales, sociales y cívicas de Riva Rocha sigan beneficiarias frente a las partidas de dinero. Que pensemos que se van fuera de la población.",
-        "topic": "cultura",
-        "entities": {
-          "referencedEntity": "asociaciones culturales, sociales y cívicas de riba-roja de túria"
-        },
-        "confidence": 0.65,
-        "reasoning": "Compromiso explícito de que la totalidad de las enmiendas presupuestarias de este grupo van dirigidas a mantener subvenciones a asociaciones locales; verificable leyendo el texto íntegro de las enmiendas presentadas al presupuesto 2026.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-124-pro-7ccc7d",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": [
-          "promises"
-        ]
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "ma87e0-124-pro-c61668",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 124,
-        "type": "promesa",
-        "speakerGroup": null,
-        "verbatim": "Nosotros queremos mejorar los teatros infantiles, el mercado municipal, la franquicia",
-        "context": "Nosotros queremos mejorar los teatros infantiles, el mercado municipal, la franquicia, que Riva Rocha sea una ciudad inteligente, más inteligente todavía, que el mobiliario urbano mejore.",
-        "topic": "cultura",
-        "entities": {
-          "referencedEntity": "teatros infantiles, mercado municipal"
-        },
-        "confidence": 0.55,
-        "reasoning": "Compromiso programático de la oposición de mejorar equipamientos culturales y comerciales concretos (teatros infantiles, mercado municipal); verificable si las enmiendas al presupuesto 2026 incluyen partidas específicas para estos equipamientos.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-124-pro-c61668",
-        "verdict": "sin-datos",
-        "summary": "La afirmación es una promesa de intenciones genéricas (\"queremos mejorar los teatros infantiles, el mercado municipal, la franquicia...\") sin cifras, fechas ni sujeto concreto verificable.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "derivedBy": [
-          "verdict-engine"
-        ],
-        "confidence": 0.2,
-        "source": "verdict-engine"
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "ma87e0-125-pro-8353f0",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 125,
-        "type": "promesa",
-        "speakerGroup": null,
-        "verbatim": "las esmenas van todas enfocadas a que las asociaciones culturales, sociales y cívicas de Riva Rocha sigan beneficiarias frente a las partidas de dinero",
-        "context": "El interviniente explica el objetivo de sus enmiendas al presupuesto: que las asociaciones culturales, sociales y cívicas de Riba-roja continúen siendo beneficiarias de las partidas presupuestarias, frente a lo que perciben como fondos que van fuera de la población.",
-        "topic": "social",
-        "entities": {
-          "referencedEntity": "asociaciones culturales, sociales y cívicas de riba-roja de túria"
-        },
-        "confidence": 0.7,
-        "reasoning": "Las enmiendas presentadas al presupuesto 2026 son documentos registrados; se puede verificar en el expediente 565/2026 si las enmiendas de este grupo efectivamente priorizan dotaciones a asociaciones locales.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-125-pro-8353f0",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": [
-          "promises"
-        ]
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "ma87e0-126-afi-095f32",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 126,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "porque ya no solo son 270.000 euros aproximadamente, son más, porque a la vez tenemos todos los trabajadores que trabajan en el departamento de comunicación y todo lo que se extrae a otras empresas, a otros autónomos",
-        "context": "El interviniente critica el gasto en publicidad y propaganda del ayuntamiento, argumentando que los 270.000 euros son solo parte del coste real, al que hay que sumar personal del dpto. de comunicación y contratos externos a empresas y autónomos.",
-        "topic": "fiscal",
-        "entities": {
-          "amountEuros": 270000,
-          "referencedEntity": "gasto en publicidad y propaganda municipal"
-        },
-        "confidence": 0.72,
-        "reasoning": "Cifra concreta (270.000 €) para publicidad/propaganda verificable contra Cap. II del presupuesto y contratos en PLACSP/Gobierto. La afirmación de coste superior por personal propio (Cap. I) y externalizaciones se puede cruzar con nóminas y contratos adjudicados a agencias de comunicación.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-126-afi-095f32",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders, tenders-ted y bdns que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns"
-        ]
       },
       "visibility": "toggle"
     },
@@ -2231,39 +1774,6 @@
     },
     {
       "claim": {
-        "id": "ma87e0-133-pro-a5978a",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 133,
-        "type": "promesa",
-        "speakerGroup": null,
-        "verbatim": "pensamos que se puede mejorar y por eso votaremos en contra de estos presupuestos",
-        "context": "El portavoz critica las transferencias, los gastos y la planificación y gestión presupuestaria, y concluye anunciando el voto en contra del presupuesto municipal 2026.",
-        "topic": "fiscal",
-        "entities": {
-          "date": "2026-03-16",
-          "referencedEntity": "presupuesto municipal 2026"
-        },
-        "confidence": 0.82,
-        "reasoning": "Declaración explícita de voto en contra del presupuesto 2026, verificable cruzando contra pleno-votes.json del pleno de 2026-03-16 (punto 1 del orden del día). El grupo no queda totalmente claro: el orador cita a 'José Manuel de Esquerra Unida' como tercero, lo que descarta que sea del grupo Otro; podría ser PP, VOX o Compromís.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-133-pro-a5978a",
-        "verdict": "sin-datos",
-        "summary": "La afirmación es una promesa de voto: el portavoz anuncia que votará en contra del presupuesto municipal 2026, con críticas generales a transferencias, gastos y gestión. Ninguno de los candidatos respalda esto.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "derivedBy": [
-          "verdict-engine"
-        ],
-        "confidence": 0.2,
-        "source": "verdict-engine"
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
         "id": "ma87e0-136-pro-e5ff1b",
         "plenoId": "ma87e0",
         "plenoDate": "2026-03-16",
@@ -2412,35 +1922,6 @@
     },
     {
       "claim": {
-        "id": "ma87e0-141-afi-eeb263",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 141,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "las 10 propuestas que ha planteado Esquerra Unida Podem, todas ellas están dentro de este presupuesto, algunas completas, otras en modificaciones",
-        "context": "El portavoz defiende la colaboración de Esquerra Unida Podem en la elaboración del presupuesto 2026 y afirma que la totalidad de sus 10 propuestas han sido incluidas, ya sea íntegramente o con modificaciones.",
-        "topic": "fiscal",
-        "entities": {
-          "count": 10,
-          "countUnit": "propuestas",
-          "referencedEntity": "presupuesto municipal 2026 · propuestas esquerra unida podem"
-        },
-        "confidence": 0.78,
-        "reasoning": "Afirmación cuantificada y verificable: el curador puede contrastar las 10 propuestas presentadas por el grupo con las partidas del presupuesto aprobado inicialmente en este pleno (2026-03-16) para comprobar si efectivamente están recogidas, completas o parcialmente.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-141-afi-eeb263",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
         "id": "ma87e0-142-pro-6db3b4",
         "plenoId": "ma87e0",
         "plenoDate": "2026-03-16",
@@ -2466,60 +1947,6 @@
         "checkedAgainst": [
           "promises"
         ]
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "ma87e0-142-cit-59aa79",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 142,
-        "type": "cita_convenio",
-        "speakerGroup": null,
-        "verbatim": "en este plan, en marzo de 2022, van a votar a favor de adherirse al Plan Valenciano de Infraestructuras y Servicios Sociales 2021-2025",
-        "context": "El portavoz del grupo Otro responde al portavoz de Vox recordando que en marzo de 2022 el municipio votó adherirse al Plan Valenciano de Infraestructuras y Servicios Sociales 2021-2025. La forma verbal 'van a votar' es probablemente un artefacto de Whisper por 'votaron'.",
-        "topic": "social",
-        "entities": {
-          "referencedEntity": "plan valenciano de infraestructuras y servicios sociales 2021-2025"
-        },
-        "confidence": 0.6,
-        "reasoning": "La adhesión al Plan Valenciano de Infraestructuras y Servicios Sociales 2021-2025 en marzo de 2022 es verificable en las actas del pleno correspondiente y en el BOE/DOGV; la baja confianza refleja la probable distorsión de Whisper en la conjugación verbal y la amputación del fragmento.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-142-cit-59aa79",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "ma87e0-143-cit-6bab7b",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 143,
-        "type": "cita_convenio",
-        "speakerGroup": null,
-        "verbatim": "en marzo de 2022, van a votar a favor de adherirse al Plan Valenciano de Infraestructuras y Servicios Sociales 2021-2025, el anomenado Plan Conviviente",
-        "context": "El portavoz del PSOE responde al portavoz de VOX recordando que en marzo de 2022 se votó a favor de adherirse al Plan Valenciano de Infraestructuras y Servicios Sociales 2021-2025 (Plan Conviviente), que contemplaba residencias y centros de día.",
-        "topic": "social",
-        "entities": {
-          "referencedEntity": "plan valenciano de infraestructuras y servicios sociales 2021-2025 (plan conviviente)"
-        },
-        "confidence": 0.7,
-        "reasoning": "Afirmación verificable contra actas del pleno de marzo 2022 del Ayuntamiento de Riba-roja de Túria; el sentido de voto y la adhesión al plan autonómico deberían constar en el acta oficial. 'Van a votar' puede ser error de transcripción Whisper por forma pretérita.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-143-cit-6bab7b",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -2638,60 +2065,6 @@
       },
       "verification": {
         "claimId": "ma87e0-144-cit-1b33d8",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "ma87e0-150-cit-22562d",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 150,
-        "type": "cita_convenio",
-        "speakerGroup": null,
-        "verbatim": "está subvencionada, está dentro del convenio de Creu Rocha",
-        "context": "El concejal aclara, refiriéndose a Rivadona (entidad citada en una esmena del PP), que no hace falta presupuestarlo como gasto porque 'está subvencionada, está dentro del convenio de Creu Rocha', es decir, ya queda cubierta por un convenio con Cruz Roja.",
-        "topic": "social",
-        "entities": {
-          "referencedEntity": "convenio creu roja (cruz roja)"
-        },
-        "confidence": 0.52,
-        "reasoning": "Verificable contra BDNS y tenders.json buscando Cruz Roja como entidad colaboradora. 'Creu Rocha' es probable error Whisper de 'Creu Roja'; 'Rivadona' también puede estar distorsionada. Confianza moderada-baja por ruido ASR en nombres propios clave.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-150-cit-22562d",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "ma87e0-151-cit-80b018",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 151,
-        "type": "cita_convenio",
-        "speakerGroup": null,
-        "verbatim": "está dentro del convenio de Creu Rocha",
-        "context": "El orador explica que la partida objeto de la esmena está subvencionada y encuadrada en el convenio de Creu Rocha (transcripción Whisper de 'Creu Roja'), justificando por qué no sería coherente eliminarla.",
-        "topic": "social",
-        "entities": {
-          "referencedEntity": "convenio creu roja (cruz roja)"
-        },
-        "confidence": 0.62,
-        "reasoning": "Afirma la existencia de un convenio municipal con Cruz Roja que cubre la partida presupuestaria discutida; verificable contra BDNS (convocatorias/concesiones) y el registro de convenios del Ayuntamiento de Riba-roja.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-151-cit-80b018",
         "verdict": "sin-datos",
         "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
@@ -2879,33 +2252,6 @@
       },
       "verification": {
         "claimId": "ma87e0-156-afi-1c9024",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "ma87e0-156-afi-f9d3c0",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 156,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "realmente lo que le queda neto a los ámbitos de las escuelas públicas como a la concertada es lo mismo",
-        "context": "El interviniente argumenta que, una vez descontada la subvención del 50% de la matinera, el coste neto final para las familias o para los ámbitos de escuelas públicas y concertadas resulta equivalente.",
-        "topic": "educacion",
-        "entities": {
-          "referencedEntity": "coste neto ámbitos escuelas públicas vs. concertada"
-        },
-        "confidence": 0.6,
-        "reasoning": "Afirmación de equivalencia de coste neto entre centros públicos y concertados; contrastable calculando el importe bruto menos la subvención del 50% declarada, a partir de los datos de convocatorias BDNS o tarifas publicadas por el Ayuntamiento.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-156-afi-f9d3c0",
         "verdict": "sin-datos",
         "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
@@ -4128,38 +3474,6 @@
     },
     {
       "claim": {
-        "id": "ma87e0-180-afi-439e61",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 180,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "las inversiones de 9 millones y medio de paquedal",
-        "context": "El orador indica que la oposición votó en contra de 'las inversiones de 9 millones y medio de paquedal', inmediatamente después de mencionar el voto contra la compra de ese espacio.",
-        "topic": "fiscal",
-        "entities": {
-          "amountEuros": 9500000,
-          "referencedEntity": "inversiones paquedal (posible distorsión whisper)"
-        },
-        "confidence": 0.55,
-        "reasoning": "Cifra de 9,5 M€ atribuida a un proyecto de inversión cuyo nombre ('paquedal') parece distorsionado por Whisper. Verificable contra tenders.json (importe adjudicado) y budget.json (capítulo VI inversiones reales).",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-180-afi-439e61",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders, tenders-ted y bdns que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns"
-        ]
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
         "id": "ma87e0-182-afi-978907",
         "plenoId": "ma87e0",
         "plenoDate": "2026-03-16",
@@ -4428,61 +3742,6 @@
     },
     {
       "claim": {
-        "id": "ma87e0-187-afi-49cb5d",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 187,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "Hemos dividido todo. Son cifras prácticamente récord.",
-        "context": "En la defensa del presupuesto 2026, el portavoz afirma que las cifras presupuestarias son prácticamente récord y que los recursos se han distribuido de forma equitativa, justo antes de reconocer las presiones externas que afectan al municipio.",
-        "topic": "fiscal",
-        "entities": {
-          "date": "2026-01-01",
-          "referencedEntity": "presupuesto municipal 2026"
-        },
-        "confidence": 0.62,
-        "reasoning": "Afirmación de que el presupuesto 2026 alcanza cifras históricamente elevadas ('récord'). Verificable comparando el total consolidado del presupuesto 2026 contra los ejercicios anteriores disponibles en budget.json (CONPREL MinHac), que cubre series históricas.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-187-afi-49cb5d",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "ma87e0-191-afi-8d5538",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 191,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "efectivamente tienen razón los grupos, y nosotros lo sabemos, que es el PMP, el periodo medio pago, lo que hay.",
-        "context": "El orador, en tono defensivo como miembro del gobierno municipal, admite que los grupos de la oposición tienen razón al señalar problemas con el periodo medio de pago (PMP), antes de mencionar el superávit y remanente como contrapunto.",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "periodo medio de pago (pmp) municipal"
-        },
-        "confidence": 0.62,
-        "reasoning": "El orador reconoce explícitamente que el PMP es un dato problemático señalado por los grupos. El PMP es un indicador oficial publicado trimestralmente por el Ministerio de Hacienda (art. 13 Ley Orgánica 2/2012); contrastable contra el portal MINHAC/morosidad.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-191-afi-8d5538",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
         "id": "ma87e0-191-afi-5b2f5e",
         "plenoId": "ma87e0",
         "plenoDate": "2026-03-16",
@@ -4505,35 +3764,6 @@
         "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "ma87e0-191-pro-1017a2",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 191,
-        "type": "promesa",
-        "speakerGroup": null,
-        "verbatim": "Echaremos y volveremos a traer el pago como hemos hecho siempre.",
-        "context": "El orador promete continuar afrontando los pagos municipales, invocando el historial de cumplimiento previo, en el contexto del debate sobre el PMP y la solvencia económica del ayuntamiento.",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "pago de obligaciones municipales / pmp"
-        },
-        "confidence": 0.52,
-        "reasoning": "Compromiso de futuro sobre la normalización de los pagos (vinculado implícitamente al PMP). Verificable a posteriori consultando la evolución del PMP en los trimestres siguientes a la fecha del pleno.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-191-pro-1017a2",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": [
-          "promises"
-        ]
       },
       "visibility": "toggle"
     },
@@ -4721,97 +3951,6 @@
         "source": "curator-downgrade",
         "downgradedBy": "automatica",
         "reasonSignedBy": "Sergei Lutchenko"
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "ma87e0-195-cit-436a7e",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 195,
-        "type": "cita_obra",
-        "speakerGroup": null,
-        "verbatim": "no tiene el pabellón de Escoto",
-        "context": "En el mismo listado de infraestructuras pendientes atribuidas a la Generalitat, el orador cita el pabellón de Escoto como obra de competencia autonómica no ejecutada.",
-        "topic": "social",
-        "entities": {
-          "referencedEntity": "pabellón de escoto"
-        },
-        "confidence": 0.76,
-        "reasoning": "Obra específica identificable por nombre propio; verificable contra tenders municipales/autonómicos, plenos-agendas.json y prensa local que hayan citado el pabellón de Escoto.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-195-cit-436a7e",
-        "verdict": "sin-datos",
-        "summary": "Los registros cotejados son contratos del Ayuntamiento para el pabellón cubierto del CEIP Mas d'Escoto: la fase I de las obras (2019, 83.265,61 €) y la redacción del proyecto (2021, 30.555,55 €). No dicen nada de la Generalitat ni de a quién corresponde la obra, que es lo que se afirma.",
-        "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "confidence": 0.2,
-        "source": "verdict-engine",
-        "reasonSignedBy": "Sergei Lutchenko"
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "ma87e0-198-afi-7cd43f",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 198,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "eso bajaría por dos o tres millones de euros el capítulo 1, y estarías en la mitad del 30%, 35, que es lo que se aconseja.",
-        "context": "El orador explica que el Capítulo I (personal) es elevado porque el ayuntamiento asume competencias impropias voluntariamente; si se eliminaran, el capítulo bajaría 2-3 M€ y quedaría dentro del umbral recomendado del 30-35% del presupuesto total.",
-        "topic": "fiscal",
-        "entities": {
-          "amountEuros": 2500000,
-          "referencedEntity": "capítulo i — gastos de personal"
-        },
-        "confidence": 0.72,
-        "reasoning": "La reducción hipotética de 2-3 M€ en Capítulo I es verificable calculando el importe actual del capítulo contra budget.json y comprobando si los servicios de competencias impropias declarados justifican ese diferencial. El umbral 30-35% es un parámetro técnico de control financiero local (Ministerio de Hacienda / MINHAC CONPREL).",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-198-afi-7cd43f",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders, tenders-ted y bdns que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns"
-        ]
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "ma87e0-198-afi-8701d9",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 198,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "tenemos competencias impropias que se están haciendo así, se están haciendo con mucho gusto",
-        "context": "El orador justifica el alto peso del Capítulo I señalando que el ayuntamiento presta servicios más allá de sus competencias legalmente obligadas (competencias impropias según la Ley 27/2013 de Racionalización y Sostenibilidad), asumidos voluntariamente.",
-        "topic": "social",
-        "entities": {
-          "referencedEntity": "competencias impropias — servicios municipales voluntarios"
-        },
-        "confidence": 0.65,
-        "reasoning": "La afirmación de que el municipio ejerce competencias impropias es verificable contrastando los servicios prestados con el catálogo obligatorio de la Ley 7/1985 LBRL y la Ley 27/2013; también puede cruzarse con los programas presupuestarios declarados en budget.json.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-198-afi-8701d9",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
       },
       "visibility": "toggle"
     }
