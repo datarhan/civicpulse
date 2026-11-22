@@ -325,11 +325,58 @@ log "veda electoral: ${VEDA:-no}"
 # re-extraen la noche siguiente. Sube cuando el conjunto de oro se vuelva a
 # puntuar tras cada cambio (paso 2.3 del plan).
 REATRIBUCION_MAX="${REATRIBUCION_MAX:-2}"
+case "$REATRIBUCION_MAX" in
+  ''|*[!0-9]*)
+    log "warn: REATRIBUCION_MAX=$REATRIBUCION_MAX no es un número — se usa 0 (ninguna sesión publicada se re-atribuye)"
+    REATRIBUCION_MAX=0 ;;
+esac
 REATRIBUIDAS=0
 # 1 si la sesión ya tiene declaraciones publicadas. Ante la duda, 1: cuenta
 # contra el tope.
 publicada() {
   node -e 'try{const d=require("./public/data/pleno-claims-verified.json");process.stdout.write((d.items||[]).some(i=>i&&i.claim&&i.claim.plenoId===process.argv[1])?"1":"0")}catch(e){process.stdout.write("1")}' "$1" 2>/dev/null || echo 1
+}
+
+# Las sesiones con mapa cuya re-extracción quedó EN ESPERA (por el tope, sin
+# backend de texto o porque falló). Un mapa completo saca la sesión de
+# `speaker-map:backlog`, así que sin esta lista nadie la volvería a re-extraer:
+# se quedaba con `speakerGroup: null` y un mapa válido en disco. Ignorada por git
+# (.cache/), en el árbol del curador, que es donde corre esta tubería.
+PENDIENTES=".cache/reatribucion-pendiente.txt"
+HECHAS_EN_LA_PASADA=" "
+anota_pendiente() {
+  mkdir -p .cache
+  grep -qxF -- "$1" "$PENDIENTES" 2>/dev/null || echo "$1" >> "$PENDIENTES"
+}
+quita_pendiente() {
+  [ -f "$PENDIENTES" ] || return 0
+  grep -vxF -- "$1" "$PENDIENTES" > "$PENDIENTES.tmp" || true
+  mv "$PENDIENTES.tmp" "$PENDIENTES"
+}
+# Re-extrae una sesión con su mapa, o la deja EN ESPERA (y apuntada). Nunca sale
+# !=0: bajo `set -e` una espera no puede tumbar la noche.
+reextrae_con_mapa() {
+  local mid="$1"
+  HECHAS_EN_LA_PASADA="${HECHAS_EN_LA_PASADA}${mid} "
+  if [ "$TEXT_BACKEND" != ok ]; then
+    # The map is on disk and that is the expensive half. The claims pick
+    # it up on a later healthy run; until then they carry no bloc,
+    # which is honest rather than wrong.
+    log "· $mid mapeado, re-extracción EN ESPERA (sin backend de texto) — el mapa queda guardado"
+    anota_pendiente "$mid"
+  elif [ "$(publicada "$mid")" = 1 ] && [ "$REATRIBUIDAS" -ge "$REATRIBUCION_MAX" ]; then
+    log "· $mid mapeado, re-extracción EN ESPERA (tope: $REATRIBUCION_MAX sesión(es) publicada(s) re-atribuida(s) por pasada) — el mapa queda guardado y se re-extrae en otra pasada"
+    anota_pendiente "$mid"
+  elif env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY npm run extract:pleno-claims -- "$mid"; then
+    REEXTRACTED=$((REEXTRACTED+1)); log "✓ $mid claims re-extracted with map attribution"
+    if [ "$(publicada "$mid")" = 1 ]; then REATRIBUIDAS=$((REATRIBUIDAS+1)); fi
+    quita_pendiente "$mid"
+    # El sello NO va aquí. Ver el bloque `EXTRACTIONS -gt 0` más abajo.
+  else
+    log "warn: re-extract failed for $mid — map kept, claims still unattributed"
+    anota_pendiente "$mid"
+  fi
+  return 0
 }
 
 if [ -n "$VEDA" ]; then
@@ -372,20 +419,7 @@ elif [ "$SPEAKER_MAP_CALL_BUDGET" -gt 0 ] && [ -n "${GEMINI_API_KEY:-}" ]; then
         fi
         # Re-extract so the claims actually carry the attribution the map
         # just established. Same $0 policy as every other model call here.
-        if [ "$TEXT_BACKEND" != ok ]; then
-          # The map is on disk and that is the expensive half. The claims pick
-          # it up on the next healthy night; until then they carry no bloc,
-          # which is honest rather than wrong.
-          log "· $mid mapeado, re-extracción EN ESPERA (sin backend de texto) — el mapa queda guardado"
-        elif [ "$(publicada "$mid")" = 1 ] && [ "$REATRIBUIDAS" -ge "$REATRIBUCION_MAX" ]; then
-          log "· $mid mapeado, re-extracción EN ESPERA (tope: $REATRIBUCION_MAX sesión(es) publicada(s) re-atribuida(s) por pasada) — el mapa queda guardado"
-        elif env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY npm run extract:pleno-claims -- "$mid"; then
-          REEXTRACTED=$((REEXTRACTED+1)); log "✓ $mid claims re-extracted with map attribution"
-          if [ "$(publicada "$mid")" = 1 ]; then REATRIBUIDAS=$((REATRIBUIDAS+1)); fi
-          # El sello NO va aquí. Ver el bloque `EXTRACTIONS -gt 0` más abajo.
-        else
-          log "warn: re-extract failed for $mid — map kept, claims still unattributed"
-        fi
+        reextrae_con_mapa "$mid"
       else
         # Quota, or a session whose chunks would not transcribe. Either way the
         # map is absent rather than wrong, and absent means no attribution.
@@ -399,6 +433,21 @@ elif [ "$SPEAKER_MAP_CALL_BUDGET" -gt 0 ] && [ -n "${GEMINI_API_KEY:-}" ]; then
   fi
 else
   log "speaker-map step skipped ($([ -z "${GEMINI_API_KEY:-}" ] && echo "no GEMINI_API_KEY" || echo "call budget 0")) — claims will carry speakerGroup:null"
+fi
+
+# ---- re-extracciones pendientes de otras pasadas ----------------------
+# Las que quedaron EN ESPERA con su mapa ya hecho (ver `reextrae_con_mapa`). Con
+# el mismo tope y no en veda; las que esta pasada ya trató no se repiten.
+if [ -z "$VEDA" ] && [ -s "$PENDIENTES" ]; then
+  log "re-extracciones pendientes de otras pasadas: $(grep -c . "$PENDIENTES" || true)"
+  for mid in $(cat "$PENDIENTES"); do
+    case "$HECHAS_EN_LA_PASADA" in *" $mid "*) continue ;; esac
+    if [ ! -f "pleno-speaker-map/$mid.json" ]; then
+      log "· $mid apuntada como pendiente pero sin mapa en disco — se quita de la lista"
+      quita_pendiente "$mid"; continue
+    fi
+    reextrae_con_mapa "$mid"
+  done
 fi
 
 # ---- re-verify only if new claims landed (overlay-safe) ---------------

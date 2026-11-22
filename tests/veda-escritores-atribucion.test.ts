@@ -11,15 +11,22 @@
  * Y al revés: un exento que ya no existe o ya no escribe también la rompe, para
  * que la lista no se quede vieja.
  */
-import { mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { afterAll, describe, expect, it } from 'vitest'
 import { vedaActiva } from '../scripts/lib/veda'
 
-const NOMBRA = /speakerGroup|speakerSlug|pleno-speaker-map/
-const ESCRIBE = /\b(writeFileSync|renameSync|appendFileSync|execFileSync|spawnSync)\(/
+// Lo que decide a quién se atribuye una cita: el campo, el mapa de voces y las
+// asignaciones de voice-id (alimentan `speakerSlug`).
+const NOMBRA = /speakerGroup|speakerSlug|pleno-speaker-map|pleno-speakers\b/
+const ESCRIBE =
+  /\b(writeFileSync|writeFile|renameSync|rename|appendFileSync|appendFile|execFileSync|spawnSync|execSync)\(/
 const MIRA_LA_VEDA = /\bvedaActiva\(|\bisFrozen\(/
+
+/** El código sin comentarios: un `isFrozen(` dentro de uno no es una puerta. */
+const sinComentarios = (src: string) =>
+  src.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|[^:'"`])\/\/.*$/gm, '$1')
 
 /** Escriben atribución o el mapa del que sale: tienen que mirar la veda. */
 const CON_VEDA = [
@@ -38,8 +45,6 @@ const EXENTOS: Record<string, string> = {
   'scripts/promote-claim.ts': 'CLI de curador: una persona promueve declaraciones por id',
   'scripts/reanchor-claim.ts': 'CLI de curador: corrige el literal, no el grupo',
   'scripts/repoint-finding-claims.ts': 'CLI de curador: re-engancha ids; el grupo no cambia',
-  'scripts/retract-claim-attribution.ts':
-    'CLI de curador: sólo RETIRA atribuciones, por id; nunca pone un grupo',
   'scripts/retract-guessed-attributions.ts':
     'migración a mano que sólo retira (pone null); nunca pone un grupo',
   'scripts/retire-otro-sentinel.ts': 'migración a mano: el centinela «Otro» pasa a null',
@@ -47,9 +52,19 @@ const EXENTOS: Record<string, string> = {
     'recompone lo publicado desde base y capas; copia grupos, no decide ninguno',
   'scripts/refresh-curate-queue.ts': 'escribe la cola del curador, no lo publicado',
   'scripts/voice-id-ab.ts': 'medida: escribe un informe en scripts/logs/',
-  'scripts/fetch-pleno-actas.ts': 'escribe transcripciones de actas sin etiquetas de grupo',
-  'scripts/check-secrets.ts':
-    'busca claves en lo que se va a comitear, mapas incluidos; no escribe atribución',
+  'scripts/correct-pleno-finding.ts':
+    'CLI de curador: una persona corrige un hallazgo por id, con motivo y firma',
+  'scripts/override-speaker-assignment.ts':
+    'CLI de curador: una persona fija a mano la asignación de una voz (pleno-speakers/)',
+}
+
+/**
+ * Publican atribución sin nombrar el campo, así que la detección no los ve. Cada
+ * uno, con por qué no necesita mirar la veda por su cuenta.
+ */
+const PUBLICAN_SIN_NOMBRAR: Record<string, string> = {
+  'scripts/verify-pleno-claims.ts':
+    'publica lo que la extracción dejó; en veda la extracción no pone grupos ni quita los que hay',
 }
 
 function scriptsQueNombranYEscriben(): string[] {
@@ -58,7 +73,7 @@ function scriptsQueNombranYEscriben(): string[] {
     for (const f of readdirSync(dir)) {
       if (!f.endsWith('.ts')) continue
       const ruta = `${dir}/${f}`
-      const src = readFileSync(ruta, 'utf8')
+      const src = sinComentarios(readFileSync(ruta, 'utf8'))
       if (NOMBRA.test(src) && ESCRIBE.test(src)) out.push(ruta)
     }
   }
@@ -78,8 +93,18 @@ describe('la veda electoral en cada escritor de atribución', () => {
     expect(sinClasificar).toEqual([])
   })
 
-  it.each(CON_VEDA)('%s mira la veda', (f) => {
-    expect(readFileSync(f, 'utf8')).toMatch(MIRA_LA_VEDA)
+  it.each(CON_VEDA)('%s mira la veda (en código, no en un comentario)', (f) => {
+    expect(sinComentarios(readFileSync(f, 'utf8'))).toMatch(MIRA_LA_VEDA)
+  })
+
+  it('quitar comentarios no se come el código (control de sinComentarios)', () => {
+    expect(sinComentarios("const u = 'https://x' // nota\n/* isFrozen( */ f()")).toBe(
+      "const u = 'https://x' \n f()",
+    )
+  })
+
+  it('los que publican sin nombrar el campo siguen existiendo', () => {
+    for (const f of Object.keys(PUBLICAN_SIN_NOMBRAR)) expect(existsSync(f), f).toBe(true)
   })
 
   it('ningún exento ha quedado viejo', () => {
@@ -89,7 +114,9 @@ describe('la veda electoral en cada escritor de atribución', () => {
 
   it('nadie lleva su propia copia de isFrozen', () => {
     const copias = detectados.filter((f) =>
-      /function\s+isFrozen\s*\(/.test(readFileSync(f, 'utf8')),
+      /function\s+isFrozen\s*\(|frozenUntil\s*[<>]=?|[<>]=?\s*\w*\.?frozenUntil\b/.test(
+        sinComentarios(readFileSync(f, 'utf8')),
+      ),
     )
     expect(copias).toEqual([])
   })

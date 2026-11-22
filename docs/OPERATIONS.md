@@ -447,9 +447,16 @@ reports where it is. Two gates sit in front of it (decision 4.4, 2026-11-22):
   speaker map checks the freeze itself too — `tests/veda-escritores-atribucion.test.ts`
   reds on one that does not.
 - **At most `REATRIBUCION_MAX` (2) already-published sessions are re-extracted
-  with attribution per run.** The rest keep their new map and are re-extracted
-  on a later night (`re-extracción EN ESPERA (tope…)` in the log). Sessions with
-  nothing published yet are not capped.
+  with attribution per run.** The rest keep their new map and go into
+  `.cache/reatribucion-pendiente.txt` (gitignored), which every later run works
+  through under the same cap — a complete map takes a session out of
+  `speaker-map:backlog`, so without the list nothing would ever re-extract it.
+  The same list catches a re-extraction held for lack of a text backend or one
+  that failed. Sessions with nothing published yet are not capped. Under the
+  freeze, `extract-pleno-claims` also refuses to re-extract a session that
+  already carries groups (re-extracting would strip them). A freeze longer than
+  eight days leaves `check:runs` reporting the speaker-map pass overdue: that is
+  the freeze, not a dead step.
 
 Three things follow from the shape, and each one has cost a night or more:
 

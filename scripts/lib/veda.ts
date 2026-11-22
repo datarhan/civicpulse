@@ -17,7 +17,7 @@
  *
  * Falla CERRADO: si `promises.json` no se puede leer, no se sabe si hay veda, y
  * «no lo sé» no es «no hay» (regla 3 de DATA_INTEGRITY). Lanza, y el script se
- * para sin escribir nada.
+ * para sin escribir nada. Un `frozenUntil` que no es una fecha cuenta como veda.
  *
  * Una prueba (`tests/veda-escritores-atribucion.test.ts`) falla si un script
  * escribe `speakerGroup` sin pasar por aquí o por `isFrozen`, salvo que figure
@@ -41,5 +41,8 @@ export function vedaActiva(ruta: string = resolve(PROMESAS), ahora = new Date())
     )
   }
   const frozenUntil = crudo?.frozenUntil ?? null
+  // Una fecha que no se entiende tampoco es «no hay veda»: `isFrozen` compara con
+  // NaN y diría que no. Se trata como veda, con la fecha tal cual.
+  if (frozenUntil && Number.isNaN(new Date(frozenUntil).getTime())) return String(frozenUntil)
   return isFrozen({ frozenUntil }, ahora) ? frozenUntil : null
 }

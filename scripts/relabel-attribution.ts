@@ -40,7 +40,7 @@ import {
   type AtribucionesFirmadas,
 } from '../src/scraper/atribucion-firmada'
 import { rechazoDeFirma } from '../src/scraper/firma-de-persona'
-import { isFrozen } from '../src/scraper/promises'
+import { vedaActiva } from './lib/veda'
 import { formatTimecode } from '../src/scraper/quote-reanchor'
 import { cotejarCompose, type VerifiedItem } from '../src/scraper/verified-merge'
 import {
@@ -98,19 +98,13 @@ function salir(codigo: number, mensaje: string): never {
 }
 
 /**
- * Hasta cuándo dura la suspensión electoral, o `null` si no la hay. Como en
- * `promote-report`: un promises.json que falta o no se deja leer es «no
- * congelado», nunca un fallo.
+ * Hasta cuándo dura la suspensión electoral, o `null` si no la hay. Desde el
+ * 22-11-2026 falla CERRADO (scripts/lib/veda.ts): un promises.json que falta o
+ * no se deja leer ya no es «no congelado» —lanza, y no se firma nada—, porque
+ * firmar un grupo en veda no se deshace con el mismo coste que esperar.
  */
 function congeladoHasta(): string | null {
-  if (!existsSync(PROMISES)) return null
-  try {
-    const raw = JSON.parse(readFileSync(PROMISES, 'utf8')) as { frozenUntil?: string | null }
-    const frozenUntil = raw.frozenUntil ?? null
-    return isFrozen({ frozenUntil }) ? frozenUntil : null
-  } catch {
-    return null
-  }
+  return vedaActiva(PROMISES)
 }
 
 const grupoDe = (it: VerifiedItem | undefined) => it?.claim.speakerGroup ?? 'sin grupo'

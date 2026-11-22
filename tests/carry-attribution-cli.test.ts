@@ -91,7 +91,10 @@ interface Corrida {
   sugerenciasDespues: string
 }
 
-function correr(args: string[], { conOfficials = true } = {}): Corrida {
+function correr(
+  args: string[],
+  { conOfficials = true, frozenUntil = null as string | null } = {},
+): Corrida {
   const caja = mkdtempSync(join(tmpdir(), 'carry-attribution-'))
   cajas.push(caja)
   const data = join(caja, 'public/data')
@@ -103,6 +106,8 @@ function correr(args: string[], { conOfficials = true } = {}): Corrida {
     items: PUBLICADAS.map((claim) => ({ claim, verification: { verdict: 'sin-datos' } })),
   })
   escribir('pleno-claims-suggestions.json', { items: SUGERIDAS })
+  // La veda se lee de aquí (scripts/lib/veda.ts); sin el fichero, --write se niega.
+  escribir('promises.json', { frozenUntil, items: [] })
   if (conOfficials)
     copyFileSync(resolve('public/data/officials.json'), join(data, 'officials.json'))
   copyFileSync(
@@ -190,5 +195,24 @@ describe('carry:attribution con el mapa y la transcripción de 11025xk', () => {
     expect(escrito.status, `${escrito.stdout}${escrito.stderr}`).toBe(0)
     expect(grupoDe(escrito, SOSTENIDA.id)).toBe(GRUPO)
     for (const d of PUBLICADAS.slice(1)) expect(grupoDe(escrito, d.id), d.id).toBeNull()
+  })
+})
+
+describe('carry:attribution en veda electoral', () => {
+  let ensayo: Corrida
+  let escrito: Corrida
+  beforeAll(() => {
+    ensayo = correr([], { frozenUntil: '2999-01-01' })
+    escrito = correr(['--write'], { frozenUntil: '2999-01-01' })
+  })
+
+  it('el ensayo sigue contando lo que haría (control: hay algo que arrastrar)', () => {
+    expect(ensayo.stdout).toMatch(/arrastradas: 1\b/)
+  })
+
+  it('--write no escribe nada y dice por qué', () => {
+    expect(escrito.status, `${escrito.stdout}${escrito.stderr}`).toBe(0)
+    expect(escrito.stdout).toMatch(/veda electoral hasta 2999-01-01/)
+    expect(escrito.sugerenciasDespues).toBe(escrito.sugerenciasAntes)
   })
 })

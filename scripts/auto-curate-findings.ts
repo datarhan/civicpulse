@@ -66,7 +66,7 @@ import {
   type BundleCandidate,
 } from '../src/scraper/auto-curate'
 import { oneSeatBlocsOf, type OfficialsDoc } from '../src/scraper/corporation-seats'
-import { isFrozen } from '../src/scraper/promises'
+import { vedaActiva } from './lib/veda'
 import { generateTitleAndSummary } from '../src/llm/auto-curate-llm'
 import { resetBudget, loadConfigFromEnv } from '../src/llm/client'
 import {
@@ -250,11 +250,13 @@ async function main() {
     process.exit(1)
   }
 
-  // El `isFrozen` compartido (promises.ts), no una copia: hasta el 22-11-2026
-  // éste comparaba cadenas de fecha y /promesas, instantes.
-  if (promises && isFrozen({ frozenUntil: promises.frozenUntil ?? null })) {
+  // La regla compartida (scripts/lib/veda.ts sobre el `isFrozen` de
+  // promises.ts), no una copia: hasta el 22-11-2026 éste comparaba cadenas de
+  // fecha, y una fecha mal escrita se leía distinto aquí que en /promesas.
+  const veda = vedaActiva(PROMISES)
+  if (veda) {
     process.stderr.write(
-      `[auto-curate] LOREG electoral freeze active until ${promises?.frozenUntil} — exiting without publishing\n`,
+      `[auto-curate] LOREG electoral freeze active until ${veda} — exiting without publishing\n`,
     )
     process.exit(0)
   }

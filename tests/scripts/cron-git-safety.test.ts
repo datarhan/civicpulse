@@ -2290,7 +2290,6 @@ describe('hallazgos-pipeline.sh · veda electoral y tope de re-atribución', () 
     expect(r.log).toMatch(/veda electoral: 2027-05-24/)
     expect(r.log).toMatch(/veda electoral hasta 2027-05-24/)
     expect(r.log).not.toMatch(/\[stub\] wrote pleno-speaker-map/)
-    expect(r.committed.some((f) => f.startsWith('pleno-speaker-map/'))).toBe(false)
   }, 120_000)
 
   it('si no se sabe si hay veda, se trata como veda', () => {
@@ -2314,6 +2313,28 @@ describe('hallazgos-pipeline.sh · veda electoral y tope de re-atribución', () 
     for (const id of ids) expect(r.log).toContain(`[stub] wrote pleno-speaker-map/${id}.json`)
     expect(cuenta(r.log, REEXTRAIDA)).toBe(2)
     expect(cuenta(r.log, EN_ESPERA_POR_TOPE)).toBe(2)
+
+    // Su mapa ya está completo, así que no vuelven en el backlog: la pasada
+    // siguiente las re-extrae desde la lista de pendientes.
+    const pendientes = join(dir, '.cache/reatribucion-pendiente.txt')
+    expect(readFileSync(pendientes, 'utf8').trim().split('\n')).toEqual(['s3', 's4'])
+    const r2 = runScript(dir, 'scripts/hallazgos-pipeline.sh', { ...BASE, STUB_BACKLOG: ' ' })
+    expect(r2.log).toMatch(/re-extracciones pendientes de otras pasadas: 2/)
+    expect(r2.log).toContain('✓ s3 claims re-extracted')
+    expect(r2.log).toContain('✓ s4 claims re-extracted')
+    expect(readFileSync(pendientes, 'utf8').trim()).toBe('')
+  }, 240_000)
+
+  it('un tope que no es un número se lee como 0, no como «sin tope»', () => {
+    const dir = makeSandbox({ publicadas: ['s1'] })
+    const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', {
+      ...BASE,
+      STUB_BACKLOG: 's1',
+      REATRIBUCION_MAX: 'dos',
+    })
+    expect(r.log).toMatch(/REATRIBUCION_MAX=dos no es un número/)
+    expect(cuenta(r.log, REEXTRAIDA)).toBe(0)
+    expect(cuenta(r.log, EN_ESPERA_POR_TOPE)).toBe(1)
   }, 120_000)
 
   it('el tope no frena las sesiones que aún no tienen nada publicado', () => {

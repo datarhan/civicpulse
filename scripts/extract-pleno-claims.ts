@@ -178,9 +178,10 @@ async function runOne(
     return []
   }
   const agendaItems = loadAgendaFor(plenoId)
-  // En veda electoral (LOREG) no se atribuye nada: ni grupo ni persona. Las
-  // declaraciones se extraen igual, con `speakerGroup: null`, que es lo honesto
-  // —«no lo decimos»—, y la atribución vuelve en la primera pasada tras la veda.
+  // En veda electoral (LOREG) no se atribuye nada: ni grupo ni persona. Una
+  // sesión sin grupos todavía se extrae igual, con `speakerGroup: null`, que es lo
+  // honesto —«no lo decimos»—; su mapa se hace tras la veda. Las que ya llevan
+  // grupos no llegan aquí: el bucle de abajo las conserva.
   // Lanza si no puede leer promises.json: sin saber si hay veda no se extrae.
   const veda = vedaActiva()
   if (veda) {
@@ -497,8 +498,29 @@ async function main() {
   process.on('SIGINT', () => onSignal('SIGINT'))
   process.on('SIGTERM', () => onSignal('SIGTERM'))
 
+  // En veda, re-extraer una sesión que ya lleva grupos los quitaría (sale todo
+  // con `speakerGroup: null`), y quitar una atribución publicada también es
+  // mover lo que el sitio dice de un candidato. Esas sesiones se conservan tal
+  // cual; las que no llevan ninguno se extraen como siempre.
+  const vedaDeLaPasada = vedaActiva()
   let completed = 0
   for (const id of ids) {
+    const atribuidas = (previousByPleno.get(id) ?? []).filter(
+      (c) => c.speakerGroup || c.speakerSlug,
+    ).length
+    if (vedaDeLaPasada && atribuidas > 0) {
+      process.stderr.write(
+        `[extract·claims] ${id} CONSERVADA — veda electoral hasta ${vedaDeLaPasada} y ${atribuidas} ` +
+          'declaración(es) con grupo: re-extraerla en veda se lo quitaría. Tras la veda, otra vez.\n',
+      )
+      accumulated.push(...(previousByPleno.get(id) ?? []))
+      // Saltada con su motivo, no intentada: «no la toqué por la veda» no es «la
+      // intenté y no salió nada» (regla 2 de DATA_INTEGRITY).
+      run.skip('loreg-freeze — atribución conservada')
+      completed += 1
+      writeSnapshot()
+      continue
+    }
     try {
       const fresh = await runOne(id, plenos, currentSeats, minConfidence, concurrency)
 
