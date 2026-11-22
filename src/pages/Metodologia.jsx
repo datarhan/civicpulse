@@ -694,16 +694,20 @@ function ContratoEditorial() {
           </p>
           <p style={{ marginBottom: 0 }}>
             La suspensión electoral (LOREG art. 50) prevalece sobre todo lo anterior: con{' '}
-            <code>frozenUntil</code> activo no se publica ni se retracta nada de forma automática.
-            Tampoco se atribuye a ningún grupo municipal una cita de un pleno: no se reconstruye el
-            mapa de voces, las declaraciones nuevas salen sin grupo y ninguna atribución ya
-            publicada cambia; retirarla exige una persona. Fuera de la veda, cada pasada de la tarea
-            de plenos (lunes y jueves) vuelve a atribuir como mucho dos sesiones ya publicadas; las
-            demás conservan su mapa de voces y esperan a una pasada siguiente, para que un mapa
-            defectuoso no cambie decenas de sesiones antes de que alguien lo vea. Las mediciones
-            vigentes son públicas en el repositorio (<code>.automation-measurements.json</code>) y
-            caducan a los 90 días, porque una precisión medida contra un modelo que ya no se usa es
-            un dato histórico, no una garantía.
+            <code>frozenUntil</code> activo no se publica ni se retracta nada de forma automática,
+            con una excepción: la puerta editorial no se apaga. Se aplica cada vez que se regeneran
+            los ficheros servidos, también en veda, y sólo puede retener: si una sesión se
+            re-transcribe en campaña, sus declaraciones pueden dejar de enseñarse sin firma.
+            Apagarla volvería a enseñar lo que ya retenía. Tampoco se atribuye a ningún grupo
+            municipal una cita de un pleno: no se reconstruye el mapa de voces, las declaraciones
+            nuevas salen sin grupo y ninguna atribución ya publicada cambia; retirarla exige una
+            persona. Fuera de la veda, cada pasada de la tarea de plenos (lunes y jueves) vuelve a
+            atribuir como mucho dos sesiones ya publicadas; las demás conservan su mapa de voces y
+            esperan a una pasada siguiente, para que un mapa defectuoso no cambie decenas de
+            sesiones antes de que alguien lo vea. Las mediciones vigentes son públicas en el
+            repositorio (<code>.automation-measurements.json</code>) y caducan a los 90 días, porque
+            una precisión medida contra un modelo que ya no se usa es un dato histórico, no una
+            garantía.
           </p>
         </div>
       </Card>
@@ -2271,7 +2275,20 @@ function ContratoEditorial() {
           transcripción recoja el literal porque lo oyó mal —el motor que se sustituyó llegó a
           escribir un año donde se dijo un importe—. Ése lo decide quien escucha la sesión: una
           persona retira la declaración con su nombre y un motivo escrito, y se retiene como si no
-          constara. En{' '}
+          constara.{' '}
+          {/* 22-11-2026: trece sesiones se re-transcribieron el 1 y 2 de agosto sin volver a
+              extraer sus declaraciones, y el motor sustituido traducía al castellano lo dicho en
+              valenciano (src/scraper/literal-no-servible.ts; el informe, en editorial/). */}
+          Y hay dos casos en que constar no basta, que sí se ven en los textos. Uno, que el literal
+          sólo conste en una transcripción que sustituimos, esté en castellano, y la que publicamos
+          recoja ese mismo momento de la sesión en valenciano con otras palabras: el motor que
+          sustituimos traducía, a veces con las cifras cambiadas, y una traducción no es una cita.
+          Otro, que el literal tenga la forma del texto que un motor inventa sobre un silencio —un
+          título, o una frase repetida en bucle—. Las dos se retienen sin que nadie las firme,
+          porque retener sólo quita, y dejan de retenerse si la sesión se vuelve a extraer. Cuando
+          la regla no puede decir en qué lengua está un pasaje —en este pleno se cambia de lengua a
+          mitad de frase—, no retiene: la declaración se sigue publicando, y cuántas no pudo juzgar,
+          y por qué, se cuenta en <code>/data/pleno-claims/index.json</code>. En{' '}
           <a href="/plenos" style={{ color: 'var(--civic)' }}>
             el registro de declaraciones del pleno
           </a>{' '}
@@ -2300,7 +2317,11 @@ function ContratoEditorial() {
           marca al lado—, como si cada ficha fuera una excepción concedida por una persona, cuando
           la mayoría las había promovido un proceso automático. Desde el 27 de agosto la ficha
           pregunta a la misma puerta por la afirmación que sostiene cada cita, y el mismo literal
-          sigue una sola política en las dos páginas.
+          sigue una sola política en las dos páginas, con una excepción: la ficha todavía no
+          pregunta por la procedencia —si el literal consta, o si es una traducción o texto
+          inventado—. Ahí la cita lleva una marca cuando no consta en la transcripción vigente; la
+          marca no dice que sea una traducción, y un texto inventado que la vigente también recoge
+          no lleva ninguna. Que eso baste en una ficha firmada lo decide una persona.
         </p>
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
           <strong>Decide la puerta, no quien promueve.</strong> Es un cálculo sobre lo que consta de

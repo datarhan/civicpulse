@@ -52,6 +52,8 @@ import {
   masLargasPrimero,
 } from '../setup/castellano'
 import { pintaYLee } from '../setup/pinta-y-lee'
+import { cifraCitada } from '../../src/scraper/cifra-en-literal'
+import { eurosBreves } from '../../src/lib/formatters'
 
 const lee = (f) => JSON.parse(readFileSync(`public/data/${f}`, 'utf8'))
 
@@ -347,6 +349,13 @@ const DATO_DE_LAS_DECLARACIONES = (mapa) => [
         ),
     )
     .filter((s) => typeof s === 'string' && s !== ''),
+  // La cifra de la cabecera de cada tarjeta es dato: salía por casualidad en
+  // el resumen de otra declaración, y al retenerse ésa (literal traducido,
+  // 22-11-2026) «5,4 M€» pasó a leerse como cadena sin traducir.
+  ...mapa[RUTA_FRAGMENTO].items
+    .map((it) => (it.claim ? cifraCitada(it.claim) : null))
+    .filter((c) => c != null)
+    .map((c) => eurosBreves(c)),
   ...mapa[RUTA_FRAGMENTO].items
     .map((it) => it.claim?.entities?.countUnit)
     .filter((u) => typeof u === 'string' && u !== ''),

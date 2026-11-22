@@ -23,6 +23,7 @@
 import type { PlenoClaim, ClaimType, ClaimTopic } from './pleno-claim'
 import type { MotivoDeRetirada } from './declaracion-retirada'
 import type { MotivoDeRetencion } from './claim-public-gate'
+import type { MotivoLiteralNoServible, RazonNoJuzgable } from './literal-no-servible'
 import {
   CASILLA_DE_DESENLACE,
   desenlaceDeCotejo,
@@ -221,7 +222,29 @@ export interface PlenoClaimsChunkManifest {
      * manifiesto anterior al 30-09-2026, que es lo mismo que ninguna.
      */
     retiradas: Partial<Record<MotivoDeRetirada, number>>
+    /**
+     * Las retenidas porque su literal consta pero no es lo que se dijo
+     * (`literal-no-servible.ts`), por motivo, y lo que esa regla no pudo
+     * juzgar, por su razón: «no juzgable» no es «está bien», y se publica para
+     * que no lo parezca. Contadas TAMBIÉN dentro de `retenidas`, y fuera de
+     * `retenidasSinProcedencia` y de `retiradas`. Ausente en un manifiesto
+     * anterior al 22-11-2026, que es lo mismo que ninguna.
+     */
+    literalNoServible?: ResumenLiteralNoServible
   }
+}
+
+export interface ResumenLiteralNoServible {
+  porMotivo: Record<MotivoLiteralNoServible, number>
+  /**
+   * Cuántas pasaron por la regla: las que la puerta serviría por lo demás, con
+   * transcripción vigente y procedencia. La mayoría salen enseguida porque su literal consta en la
+   * vigente; las que la regla no pudo decidir están en `sinJuzgar`.
+   */
+  evaluadas: number
+  /** Las que no se evaluaron porque su sesión no tiene transcripción vigente. */
+  sinVigente: number
+  sinJuzgar: Record<RazonNoJuzgable, number>
 }
 
 /** Una celda de la tabla de cobertura: su total y sus tres desenlaces. */
@@ -340,6 +363,7 @@ export function buildManifest(
    * si no se pudo leer: entonces no se aparta ninguna acta por publicada.
    */
   sesionesConActa: ReadonlySet<string> | null = null,
+  literalNoServible: ResumenLiteralNoServible | null = null,
 ): {
   manifest: PlenoClaimsChunkManifest
   chunks: Map<string, PlenoClaimsChunk>
@@ -447,6 +471,7 @@ export function buildManifest(
         },
         retenidas,
         ...(retenidasPorMotivo ? { retenidasPorMotivo } : {}),
+        ...(literalNoServible ? { literalNoServible } : {}),
         retenidasSinProcedencia,
         retiradas,
         sinDatosPorque,

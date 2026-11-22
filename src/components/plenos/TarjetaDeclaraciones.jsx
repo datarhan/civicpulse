@@ -4,6 +4,7 @@ import { rellena } from '../../lib/formatters'
 import { conHuecos } from '../../lib/huecos'
 import { useT } from '../../i18n'
 import { MOTIVOS_DE_RETIRADA } from '../../scraper/declaracion-retirada'
+import { MOTIVOS_LITERAL_NO_SERVIBLE } from '../../scraper/literal-no-servible'
 
 const n = (v) => v.toLocaleString('es-ES')
 
@@ -62,6 +63,18 @@ export function TarjetaDeclaraciones({ embudo }) {
     // Y las que retiró una persona tras escuchar la sesión: su literal consta en
     // una transcripción, la que lo oyó mal, así que la fila de arriba no las ve.
     // Una fila por motivo del enum, y sólo si hay alguna, como la de arriba.
+    // Las que constan en una transcripción que sustituimos pero no son lo que se
+    // dijo: la tradujo el motor viejo, o se la inventó. Una fila por motivo, y
+    // sólo si hay alguna (src/scraper/literal-no-servible.ts).
+    ...MOTIVOS_LITERAL_NO_SERVIBLE.filter((m) => (embudo.literalNoServible?.[m] ?? 0) > 0).map(
+      (m) => ({
+        id: m,
+        rotulo: t(`plenos.indice.decl.${m}`),
+        valor: n(embudo.literalNoServible[m]),
+        tono: 'var(--warn-ink)',
+        nota: t(`plenos.indice.decl.${m}.nota`),
+      }),
+    ),
     ...MOTIVOS_DE_RETIRADA.filter((m) => (embudo.retiradas?.[m] ?? 0) > 0).map((m) => ({
       id: `retirada-${m}`,
       rotulo: t(`plenos.indice.decl.retirada.${m}`),

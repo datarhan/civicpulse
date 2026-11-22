@@ -26,10 +26,23 @@ import {
   groupItemsByPleno,
   type VerifiedSnapshot,
 } from '../src/scraper/pleno-claims-chunks'
-import { gateItemsForPublic, repartirRetenidas } from '../src/scraper/claim-public-gate'
+import {
+  gateItemsForPublic,
+  motivoDeRetencion,
+  repartirRetenidas,
+} from '../src/scraper/claim-public-gate'
 import { classifyClaimProvenancePreparado } from '../src/scraper/claim-provenance'
 import { motivoDeRetirada, type MotivoDeRetirada } from '../src/scraper/declaracion-retirada'
 import { prepararHeno, type HenoPreparado } from '../src/scraper/quote-match'
+import {
+  indexarTranscripcion,
+  motivoDeLiteral,
+  MOTIVOS_LITERAL_NO_SERVIBLE,
+  RAZONES_NO_JUZGABLE,
+  type MotivoLiteralNoServible,
+  type RazonNoJuzgable,
+  type TranscripcionIndexada,
+} from '../src/scraper/literal-no-servible'
 import { loadSupersededTexts, TRANSCRIPTS_DIR } from './lib/transcript-corpus'
 import { sesionesConActaEnDisco } from './lib/sesiones-con-acta'
 
@@ -119,6 +132,87 @@ export function idsSinProcedencia(
 }
 
 /**
+ * Techo de retención por literal no servible, sobre lo evaluado (lo que la
+ * puerta serviría, con transcripción vigente y procedencia).
+ *
+ * Esta regla no se infla porque falte un fichero —sin vigente no se juzga, sin
+ * sustituida la cita cae en `sinProcedencia`—, pero sí si se estropea el
+ * detector de lengua o si un día se re-transcriben todas las sesiones a la vez
+ * sin re-extraer. El 22-11-2026 la regla marcaba un 13 % de lo evaluado, todo en
+ * las trece sesiones re-transcritas el 1 y 2 de agosto sin volver a extraer. Un
+ * cuarto del corpus es otra cosa, y se para a mirarla antes de retirarla.
+ */
+export const TECHO_LITERAL_NO_SERVIBLE = 0.25
+
+export function excesoDeLiteralNoServible(retenidas: number, evaluadas: number): string | null {
+  if (evaluadas <= 0) return null
+  const cuota = retenidas / evaluadas
+  if (cuota <= TECHO_LITERAL_NO_SERVIBLE) return null
+  return (
+    `[chunk-claims] ${retenidas} de ${evaluadas} declaraciones evaluadas ` +
+    `(${(cuota * 100).toFixed(1)} %) tienen un literal traducido o alucinado — por encima del ` +
+    `techo del ${(TECHO_LITERAL_NO_SERVIBLE * 100).toFixed(0)} %. Comprueba src/scraper/literal-no-servible.ts ` +
+    `y qué sesiones se re-transcribieron ANTES de retirar tanto.`
+  )
+}
+
+/**
+ * Los ids cuyo literal consta en alguna transcripción pero no es lo que se
+ * dijo: lo tradujo un motor que sustituimos, o es texto que se inventó
+ * (src/scraper/literal-no-servible.ts). Sólo retiene; lo que no se pudo juzgar
+ * se cuenta aparte, por su razón, y se publica: «no juzgable» no es «está bien».
+ *
+ * Una que tampoco consta en ninguna transcripción se queda en `sinProcedencia`
+ * y no entra aquí: cada retenida cuenta una sola vez, y el techo de arriba
+ * sigue midiendo sólo ficheros que faltan.
+ */
+export function literalesNoServibles(
+  items: readonly { claim?: { id?: string; plenoId?: string; verbatim?: string } }[],
+  sinProcedencia: ReadonlySet<string>,
+  leerVigente: (plenoId: string) => string | null,
+  leerSustituidas: (plenoId: string) => string[],
+): {
+  porId: Map<string, MotivoLiteralNoServible>
+  evaluadas: number
+  sinVigente: number
+  noJuzgables: Record<RazonNoJuzgable, number>
+} {
+  const vigentes = new Map<string, TranscripcionIndexada | null>()
+  const sustituidas = new Map<string, TranscripcionIndexada[]>()
+  const porId = new Map<string, MotivoLiteralNoServible>()
+  const noJuzgables = Object.fromEntries(RAZONES_NO_JUZGABLE.map((r) => [r, 0])) as Record<
+    RazonNoJuzgable,
+    number
+  >
+  let evaluadas = 0
+  let sinVigente = 0
+  for (const it of items) {
+    const c = it.claim
+    if (!c?.id || !c.plenoId || !c.verbatim || sinProcedencia.has(c.id)) continue
+    if (!vigentes.has(c.plenoId)) {
+      const t = leerVigente(c.plenoId)
+      vigentes.set(c.plenoId, t === null ? null : indexarTranscripcion(t))
+      sustituidas.set(c.plenoId, leerSustituidas(c.plenoId).map(indexarTranscripcion))
+    }
+    const vigente = vigentes.get(c.plenoId) ?? null
+    // Sin transcripción vigente no hay «lo que servimos al lado»: no se juzga.
+    if (vigente === null) {
+      sinVigente += 1
+      continue
+    }
+    evaluadas += 1
+    const r = motivoDeLiteral({
+      verbatim: c.verbatim,
+      vigente,
+      sustituidas: sustituidas.get(c.plenoId) ?? [],
+    })
+    if (r.motivo !== null) porId.set(c.id, r.motivo)
+    else if ('noJuzgable' in r) noJuzgables[r.noJuzgable] += 1
+  }
+  return { porId, evaluadas, sinVigente, noJuzgables }
+}
+
+/**
  * Las que retiró una persona tras escuchar la sesión, por motivo.
  *
  * Las mismas que la puerta oculta por `motivoDeRetirada`, contadas con esa
@@ -195,6 +289,45 @@ export function rewriteChunksFromMonolith(opts: { dryRun?: boolean } = {}): {
         `en ninguna transcripción que tengamos. No se publican.`,
     )
   }
+  // Sólo lo que la puerta serviría: una acusación ya retenida por otro motivo
+  // no se cuenta ni como retenida aquí ni como «no juzgable».
+  const servibles = crudos.filter(
+    (it) =>
+      motivoDeRetencion(it, { sinProcedencia: sinProcedencia.has(it?.claim?.id ?? '') }) === null,
+  )
+  const literales = literalesNoServibles(
+    servibles,
+    sinProcedencia,
+    (id) => {
+      const p = resolve(TRANSCRIPTS_DIR, `${id}.txt`)
+      return existsSync(p) ? readFileSync(p, 'utf8') : null
+    },
+    (id) => loadSupersededTexts(id),
+  )
+  const literalNoServible = literales.porId
+  const excesoLiteral = excesoDeLiteralNoServible(literalNoServible.size, literales.evaluadas)
+  if (excesoLiteral !== null) throw new Error(excesoLiteral)
+  if (literalNoServible.size > 0) {
+    const nj = Object.entries(literales.noJuzgables)
+      .map(([r, n]) => `${n} ${r}`)
+      .join(', ')
+    console.warn(
+      `[chunk-claims] ${literalNoServible.size} de ${literales.evaluadas} declaración(es) ` +
+        `retenida(s): su literal consta, pero traducido de lo que la vigente recoge o inventado. ` +
+        `No juzgables: ${nj}.`,
+    )
+    const porSesion = new Map<string, number>()
+    for (const it of crudos) {
+      const c = it.claim
+      if (c?.id && literalNoServible.has(c.id))
+        porSesion.set(c.plenoId, (porSesion.get(c.plenoId) ?? 0) + 1)
+    }
+    console.warn(
+      `[chunk-claims]   por sesión: ${[...porSesion].map(([p, n]) => `${p} ${n}`).join(' · ')}`,
+    )
+  }
+  // Una retirada cuyo literal tampoco es servible se cuenta como retirada: la
+  // puerta mira el literal sólo en lo que serviría.
   const retiradas = contarRetiradas(crudos, sinProcedencia)
   const nRetiradas = Object.values(retiradas).reduce((s, n) => s + (n ?? 0), 0)
   if (nRetiradas > 0) {
@@ -203,13 +336,14 @@ export function rewriteChunksFromMonolith(opts: { dryRun?: boolean } = {}): {
         `la sesión: su literal no es lo que se dijo. No se publican.`,
     )
   }
-  const items = gateItemsForPublic(crudos, { sinProcedencia })
+  const items = gateItemsForPublic(crudos, { sinProcedencia, literalNoServible })
   // Lo que la puerta se lleva, contado por tipo y por motivo antes de perderlo
   // de vista. Un tipo retenido entero desaparecería de la tabla de cobertura y
   // el lector concluiría que no lo extraemos: la ausencia hay que publicarla,
   // no omitirla. Y el motivo lo da la misma función que decide ocultar.
   const { porTipo: retenidas, porMotivo: retenidasPorMotivo } = repartirRetenidas(crudos, {
     sinProcedencia,
+    literalNoServible,
   })
   // Las dos cuentas de lo retenido y la de lo servido tienen que cuadrar: si la
   // puerta y el reparto discreparan, la página publicaría motivos de otras filas.
@@ -230,6 +364,16 @@ export function rewriteChunksFromMonolith(opts: { dryRun?: boolean } = {}): {
     retiradas,
     retenidasPorMotivo,
     sesionesConActaEnDisco(),
+    {
+      // Lo que la puerta retiene POR este motivo, no lo que la regla marcó: una
+      // acusación ya retenida por otro motivo se cuenta allí.
+      porMotivo: Object.fromEntries(
+        MOTIVOS_LITERAL_NO_SERVIBLE.map((m) => [m, retenidasPorMotivo[m]]),
+      ) as Record<MotivoLiteralNoServible, number>,
+      evaluadas: literales.evaluadas,
+      sinVigente: literales.sinVigente,
+      sinJuzgar: literales.noJuzgables,
+    },
   )
 
   // Track the chunks we're about to write so we can prune stale ones.

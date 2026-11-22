@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-19T18:42:30.094Z",
+  "generatedAt": "2026-11-22T19:49:09.023Z",
   "version": "1",
   "plenoId": "1du4rf5",
   "plenoDate": "2025-11-03",
@@ -1995,34 +1995,6 @@
     },
     {
       "claim": {
-        "id": "1du4rf5-050-afi-5d83d3",
-        "plenoId": "1du4rf5",
-        "plenoDate": "2025-11-03",
-        "segmentIndex": 50,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "Diez abstenciones. Grupo Socialista, Partido Popular, Vox, Podemos-Carnidad y Compromiso.",
-        "context": "Queda aprobado el pronunciamiento de los votos a favor. Diez abstenciones. Grupo Socialista, Partido Popular, Vox, Podemos-Carnidad y Compromiso. Pasemos al punto de orden del día, que es la aprobación de la constitución de Estado",
-        "topic": "other",
-        "entities": {
-          "count": 10,
-          "countUnit": "abstenciones"
-        },
-        "confidence": 1,
-        "reasoning": "Verifiable against the official voting records of the pleno, specifically the record of abstentions for the mentioned groups.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1du4rf5-050-afi-5d83d3",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
         "id": "1du4rf5-050-afi-30564b",
         "plenoId": "1du4rf5",
         "plenoDate": "2025-11-03",
@@ -2483,39 +2455,6 @@
         "checkedAgainst": [
           "promises"
         ]
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1du4rf5-068-afi-c508ad",
-        "plenoId": "1du4rf5",
-        "plenoDate": "2025-11-03",
-        "segmentIndex": 68,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "los de 4.640 serán tres, cuatro bancos los que hay.",
-        "context": "El error es que hay varios bancos. Pues a mí los de 4.640 serán tres, cuatro bancos los que hay. Y está por una factura.",
-        "topic": "fiscal",
-        "entities": {
-          "amountEuros": 4640,
-          "countUnit": "bancos"
-        },
-        "confidence": 0.9,
-        "reasoning": "Se menciona una cifra específica (4.640) que parece referirse a un importe monetario o una cantidad concreta relacionada con bancos y una factura, lo que la hace verificable a través de registros financieros o contables del ayuntamiento.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1du4rf5-068-afi-c508ad",
-        "verdict": "sin-datos",
-        "summary": "La afirmación habla de \"los de 4.640\" que serán \"tres, cuatro bancos\" y de una factura: se refiere, según el contexto, a un importe de 4.640 € asociado a bancos (posiblemente bancos de un parque o mobiliario urbano o entidades bancarias) y a una factura concreta.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "derivedBy": [
-          "verdict-engine"
-        ],
-        "confidence": 0.2,
-        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -3829,125 +3768,6 @@
     },
     {
       "claim": {
-        "id": "1du4rf5-089-cit-5a5d4c",
-        "plenoId": "1du4rf5",
-        "plenoDate": "2025-11-03",
-        "segmentIndex": 89,
-        "type": "cita_obra",
-        "speakerGroup": null,
-        "verbatim": "la Corporación Municipal quiere mostrar todo el soporte y proximidad a las personas malaltas de la Aysina",
-        "context": "tan solo en el punto 2 de la propuesta de acuerdo, en el que dice que la Corporación Municipal quiere mostrar todo el soporte y proximidad a las personas malaltas de la Aysina como a sus familias, profesionales, sanitarios y cuidadores que cada día afrontan una malaltía,",
-        "topic": "salud",
-        "entities": {
-          "referencedEntity": "punto 2 de la propuesta de acuerdo"
-        },
-        "confidence": 0.7,
-        "reasoning": "This statement quotes point 2 of a 'propuesta de acuerdo' from the Municipal Corporation. Its existence and content, including the specific wording, can be verified by consulting the official document.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1du4rf5-089-cit-5a5d4c",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted"
-        ]
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1du4rf5-090-cit-6083f0",
-        "plenoId": "1du4rf5",
-        "plenoDate": "2025-11-03",
-        "segmentIndex": 90,
-        "type": "cita_obra",
-        "speakerGroup": null,
-        "verbatim": "por los últimos acontecimientos que han relatado, que es la aprobación del Real Decreto.",
-        "context": "Por lo demás, la verdad es que no creíamos que tendría sentido esta moción, y ya digo, por los últimos acontecimientos que han relatado, que es la aprobación del Real Decreto.",
-        "topic": "salud",
-        "entities": {
-          "referencedEntity": "real decreto"
-        },
-        "confidence": 1,
-        "reasoning": "La existencia y aprobación de un Real Decreto puede ser verificada contra el Boletín Oficial del Estado (BOE) o registros legislativos.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1du4rf5-090-cit-6083f0",
-        "verdict": "sin-datos",
-        "summary": "La afirmación menciona la \"aprobación del Real Decreto\" en un contexto relacionado con la salud, pero ninguno de los candidatos presentados hace referencia a un Real Decreto específico ni a acontecimientos relacionados con la salud.",
-        "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "confidence": 0.2,
-        "source": "verdict-engine"
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1du4rf5-090-pro-4f3e03",
-        "plenoId": "1du4rf5",
-        "plenoDate": "2025-11-03",
-        "segmentIndex": 90,
-        "type": "promesa",
-        "speakerGroup": null,
-        "verbatim": "nosotros, evidentemente, en la Aysina, sí que la traemos en sentido y votaremos a favor.",
-        "context": "creemos que si la moción se presenta en todas las semanas que se han dicho, nosotros, evidentemente, en la Aysina, sí que la traemos en sentido y votaremos a favor. Gracias.",
-        "topic": "salud",
-        "entities": {},
-        "confidence": 1,
-        "reasoning": "Se trata de una promesa de voto futuro en el pleno municipal, verificable contra las actas y registros de votación oficiales de la sesión.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1du4rf5-090-pro-4f3e03",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": [
-          "promises"
-        ]
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1du4rf5-091-cit-8f1071",
-        "plenoId": "1du4rf5",
-        "plenoDate": "2025-11-03",
-        "segmentIndex": 91,
-        "type": "cita_obra",
-        "speakerGroup": null,
-        "verbatim": "la aprobación del Real Decreto.",
-        "context": "por los últimos acontecimientos que han relatado, que es la aprobación del Real Decreto.",
-        "topic": "other",
-        "entities": {
-          "referencedEntity": "real decreto"
-        },
-        "confidence": 0.9,
-        "reasoning": "Se refiere a una acción legislativa específica (aprobación de un Real Decreto) que puede ser verificada en el Boletín Oficial del Estado (BOE).",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1du4rf5-091-cit-8f1071",
-        "verdict": "sin-datos",
-        "summary": "La afirmación menciona la \"aprobación del Real Decreto\", pero ninguno de los candidatos presenta información que se relacione directamente con un Real Decreto específico.",
-        "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "confidence": 0.2,
-        "source": "verdict-engine"
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
         "id": "1du4rf5-091-afi-5a6716",
         "plenoId": "1du4rf5",
         "plenoDate": "2025-11-03",
@@ -4257,90 +4077,6 @@
     },
     {
       "claim": {
-        "id": "1du4rf5-100-afi-2efe36",
-        "plenoId": "1du4rf5",
-        "plenoDate": "2025-11-03",
-        "segmentIndex": 100,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "unas prácticas políticas que son novedosas, que no se han hecho nunca",
-        "context": "pero también es verdad que ya desde el Gobierno estatal, en este sentido, unas prácticas políticas que son novedosas, que no se han hecho nunca, es decir, por primera vez el Estado asegura directamente el costo del 50% de esta prestación y lo descubre, es una cosa novedosa y es una cosa",
-        "topic": "social",
-        "entities": {
-          "count": 0,
-          "countUnit": "veces",
-          "referencedEntity": "prácticas políticas de financiación estatal del 50% de prestaciones de dependencia"
-        },
-        "confidence": 0.9,
-        "reasoning": "Esta afirmación sobre la novedad de ciertas prácticas políticas de financiación estatal del 50% de prestaciones de dependencia puede verificarse investigando los precedentes de este tipo de ayudas.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1du4rf5-100-afi-2efe36",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1du4rf5-101-afi-3a8c53",
-        "plenoId": "1du4rf5",
-        "plenoDate": "2025-11-03",
-        "segmentIndex": 101,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "por primera vez el Estado asegura directamente el costo del 50% de esta prestación",
-        "context": "políticas que son novedosas, que no se han hecho nunca, es decir, por primera vez el Estado asegura directamente el costo del 50% de esta prestación y lo descubre, es una cosa novedosa y es una cosa nueva que ha posado el Gobierno estatal",
-        "topic": "social",
-        "entities": {
-          "count": 50,
-          "countUnit": "%"
-        },
-        "confidence": 1,
-        "reasoning": "This is a quantifiable statement about the state's financial contribution to a social service, which can be verified by reviewing national legislation or budget allocations related to social benefits.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1du4rf5-101-afi-3a8c53",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1du4rf5-102-afi-b544b7",
-        "plenoId": "1du4rf5",
-        "plenoDate": "2025-11-03",
-        "segmentIndex": 102,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "donar soporte a las prácticas políticas que está haciendo, que es una cosa que más había hecho en la historia de España.",
-        "context": "Es verdad que podría haber llegado mucho más pronto y eso es verdad y, por tanto, también de instar al Gobierno de España, pero también donar soporte a las prácticas políticas que está haciendo, que es una cosa que más había hecho en la historia de España. Gracias.",
-        "topic": "other",
-        "entities": {
-          "referencedEntity": "gobierno de españa"
-        },
-        "confidence": 0.7,
-        "reasoning": "This statement claims the Spanish government is undertaking political practices on an unprecedented scale historically, implying a quantifiable superlative. Verification would require historical data on the scope and impact of government policies.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1du4rf5-102-afi-b544b7",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
         "id": "1du4rf5-102-cit-cb9802",
         "plenoId": "1du4rf5",
         "plenoDate": "2025-11-03",
@@ -4520,31 +4256,6 @@
     },
     {
       "claim": {
-        "id": "1du4rf5-107-afi-ff5e3d",
-        "plenoId": "1du4rf5",
-        "plenoDate": "2025-11-03",
-        "segmentIndex": 107,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "Se aprueba con unanimidad.",
-        "context": "Volvemos a tiempos antiguos. ¿Voy a favor de la moción? Se aprueba con unanimidad. Hacemos el 100 puntos del día.",
-        "topic": "other",
-        "entities": {},
-        "confidence": 0.9,
-        "reasoning": "El resultado de la votación de una moción, especialmente si es por unanimidad, es un hecho verificable en las actas oficiales del pleno o las grabaciones de la sesión.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1du4rf5-107-afi-ff5e3d",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
         "id": "1du4rf5-107-cit-785bfd",
         "plenoId": "1du4rf5",
         "plenoDate": "2025-11-03",
@@ -4594,36 +4305,6 @@
       },
       "verification": {
         "claimId": "1du4rf5-108-cit-d6c687",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted"
-        ]
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1du4rf5-108-cit-cbb71d",
-        "plenoId": "1du4rf5",
-        "plenoDate": "2025-11-03",
-        "segmentIndex": 108,
-        "type": "cita_obra",
-        "speakerGroup": null,
-        "verbatim": "la intervención este matí del señor Carlos Mazón",
-        "context": "Ahora, bueno, la intervención este matí del señor Carlos Mazón, que ya no sé si es presidente o expresidente.",
-        "topic": "transparencia",
-        "entities": {
-          "referencedEntity": "intervención de carlos mazón"
-        },
-        "confidence": 1,
-        "reasoning": "This refers to a public appearance or speech given by Carlos Mazón on the morning of the plenary session. Verification would involve checking news reports, official records, or social media for any public interventions by Carlos Mazón (identified as former President of the Generalitat) around the time of the plenary session date (2025-11-03).",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1du4rf5-108-cit-cbb71d",
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
@@ -4687,33 +4368,6 @@
       },
       "verification": {
         "claimId": "1du4rf5-109-afi-6809c0",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1du4rf5-113-cit-f67023",
-        "plenoId": "1du4rf5",
-        "plenoDate": "2025-11-03",
-        "segmentIndex": 113,
-        "type": "cita_convenio",
-        "speakerGroup": null,
-        "verbatim": "volvimos a fechar un otro fondo de acuerdo",
-        "context": "También volvimos a fechar un otro fondo de acuerdo que sería el de reclamar a la mayor brevedad posible que se convoquen elecciones autonómicas para que el pueblo valenciano decida quién tiene que gobernar y no siga una decisión de un despacho de Madrid.",
-        "topic": "other",
-        "entities": {
-          "referencedEntity": "otro fondo de acuerdo"
-        },
-        "confidence": 0.8,
-        "reasoning": "Se afirma que se llegó a un 'fondo de acuerdo' previo. Esto es verificable buscando actas o registros de acuerdos municipales que mencionen una decisión de reclamar elecciones autonómicas.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1du4rf5-113-cit-f67023",
         "verdict": "sin-datos",
         "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
@@ -4949,33 +4603,6 @@
     },
     {
       "claim": {
-        "id": "1du4rf5-129-afi-51c96e",
-        "plenoId": "1du4rf5",
-        "plenoDate": "2025-11-03",
-        "segmentIndex": 129,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "la moción se presenta antes de esa gran manifestación",
-        "context": "Esos acontecimientos han surgido y, de hecho, la moción se presenta antes de esa gran manifestación, como todos los que han habido mes tras mes, el día 28 o el día 29, depende de cuándo caía. Algunos",
-        "topic": "other",
-        "entities": {
-          "referencedEntity": "gran manifestación"
-        },
-        "confidence": 0.9,
-        "reasoning": "El momento de la presentación de la moción puede ser contrastado con la fecha de la 'gran manifestación' mencionada, utilizando registros públicos de eventos.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1du4rf5-129-afi-51c96e",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
         "id": "1du4rf5-129-afi-0f6a41",
         "plenoId": "1du4rf5",
         "plenoDate": "2025-11-03",
@@ -5087,36 +4714,6 @@
         "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1du4rf5-136-cit-147620",
-        "plenoId": "1du4rf5",
-        "plenoDate": "2025-11-03",
-        "segmentIndex": 136,
-        "type": "cita_obra",
-        "speakerGroup": null,
-        "verbatim": "Manifestaciones han habido.",
-        "context": "Manifestaciones han habido. Ustedes en el carrer saben apropiarse de ellos, por supuesto.",
-        "topic": "social",
-        "entities": {
-          "referencedEntity": "manifestaciones"
-        },
-        "confidence": 1,
-        "reasoning": "Verifiable by checking public records or news reports of demonstrations or protests.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1du4rf5-136-cit-147620",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted"
-        ]
       },
       "visibility": "toggle"
     },
@@ -5242,37 +4839,6 @@
     },
     {
       "claim": {
-        "id": "1du4rf5-153-cit-1bdf60",
-        "plenoId": "1du4rf5",
-        "plenoDate": "2025-11-03",
-        "segmentIndex": 153,
-        "type": "cita_obra",
-        "speakerGroup": null,
-        "verbatim": "La reconstrucción, ya lo saben todos los alcaldes, de derechas y de izquierdas, está durante el gobierno de España",
-        "context": "El 74% ni se ha ejecutado. Esa es la realidad que hay. La reconstrucción, ya lo saben todos los alcaldes, de derechas y de izquierdas, está durante el gobierno de España, en sus dificultades, porque tenemos una ley de",
-        "topic": "other",
-        "entities": {
-          "referencedEntity": "reconstrucción post-dana"
-        },
-        "confidence": 0.8,
-        "reasoning": "Se puede verificar el papel central del Gobierno de España en la reconstrucción tras la DANA.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1du4rf5-153-cit-1bdf60",
-        "verdict": "sin-datos",
-        "summary": "La afirmación menciona la reconstrucción en el contexto del gobierno de España y sugiere que hay dificultades en su ejecución.",
-        "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "confidence": 0.2,
-        "source": "verdict-engine"
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
         "id": "1du4rf5-154-afi-bda4b2",
         "plenoId": "1du4rf5",
         "plenoDate": "2025-11-03",
@@ -5358,33 +4924,6 @@
           "tenders-ted",
           "bdns"
         ]
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1du4rf5-156-afi-f9f05d",
-        "plenoId": "1du4rf5",
-        "plenoDate": "2025-11-03",
-        "segmentIndex": 156,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "la reconstrucción tardará dos o tres años para poder tenerlo al menos como estaba.",
-        "context": "Por último, acabaré diciendo que aún queda mucho, porque la reconstrucción tardará dos o tres años para poder tenerlo al menos como estaba. Y Río Barroso es un pueblo muy afectado.",
-        "topic": "other",
-        "entities": {
-          "referencedEntity": "reconstrucción"
-        },
-        "confidence": 0.8,
-        "reasoning": "This claim provides an estimated timeframe for a significant public project (reconstruction after DANA). Its accuracy can be verified by official project schedules, progress reports, and actual completion timelines.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1du4rf5-156-afi-f9f05d",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -5530,176 +5069,6 @@
     },
     {
       "claim": {
-        "id": "1du4rf5-170-cit-dc9938",
-        "plenoId": "1du4rf5",
-        "plenoDate": "2025-11-03",
-        "segmentIndex": 170,
-        "type": "cita_obra",
-        "speakerGroup": null,
-        "verbatim": "Desde Esquerra Unida Podemos y desde Compromiso presentamos esta moción que espera dar soporte a la ILP. No es la meua cultura.",
-        "context": "Gracias. Desde Esquerra Unida Podemos y desde Compromiso presentamos esta moción que espera dar soporte a la ILP. No es la meua cultura.",
-        "topic": "other",
-        "entities": {
-          "referencedEntity": "moción conjunta de grupos municipales esquerra unida y compromiso para dar soporte a la ilp no es la meua cultura"
-        },
-        "confidence": 1,
-        "reasoning": "La afirmación indica que dos grupos municipales específicos han presentado una moción para apoyar una iniciativa legislativa popular (ILP). Esto puede verificarse en las actas del pleno o en los registros de mociones presentadas por los grupos.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1du4rf5-170-cit-dc9938",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted"
-        ]
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1du4rf5-170-afi-35863e",
-        "plenoId": "1du4rf5",
-        "plenoDate": "2025-11-03",
-        "segmentIndex": 170,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "Es una iniciativa legislativa popular que ha conseguido más de 715.000 signaturas de personas de todo el Estado",
-        "context": "Es una iniciativa legislativa popular que ha conseguido más de 715.000 signaturas de personas de todo el Estado que reclaman una cosa que es muy sencilla, que es que la violencia no siga patrimonio cultural.",
-        "topic": "other",
-        "entities": {
-          "count": 715000,
-          "countUnit": "signaturas",
-          "referencedEntity": "iniciativa legislativa popular (ilp) 'no es la meua cultura'"
-        },
-        "confidence": 1,
-        "reasoning": "Se cita un número específico de firmas (715.000) obtenidas para una Iniciativa Legislativa Popular. Este dato es verificable consultando las fuentes oficiales o los informes de la ILP.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1du4rf5-170-afi-35863e",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1du4rf5-173-afi-1528ad",
-        "plenoId": "1du4rf5",
-        "plenoDate": "2025-11-03",
-        "segmentIndex": 173,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "el público de la tauromaquia ha caído en picar",
-        "context": "rechazan el uso de animales en espectáculos violentos. Además, el público de la tauromaquia ha caído en picar mientras se mantienen por subvenciones públicas que las sostienen artificialmente.",
-        "topic": "cultura",
-        "entities": {
-          "referencedEntity": "público de la tauromaquia"
-        },
-        "confidence": 0.8,
-        "reasoning": "The claim of a decline in bullfighting audiences ('ha caído en picar') can be verified with attendance figures and statistical data over time, even if a specific number isn't provided.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1du4rf5-173-afi-1528ad",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1du4rf5-174-afi-8ff5e4",
-        "plenoId": "1du4rf5",
-        "plenoDate": "2025-11-03",
-        "segmentIndex": 174,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "para que una ILP se porte al Congreso ha de tener medio millón de firmas",
-        "context": "Es esencial saber que para que una ILP se porte al Congreso ha de tener medio millón de firmas y esta IL",
-        "topic": "other",
-        "entities": {
-          "count": 500000,
-          "countUnit": "firmas"
-        },
-        "confidence": 1,
-        "reasoning": "Verifiable by checking the Spanish organic law that regulates Popular Legislative Initiatives (ILP) and the required number of signatures for their consideration in Congress.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1du4rf5-174-afi-8ff5e4",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1du4rf5-175-afi-413d2a",
-        "plenoId": "1du4rf5",
-        "plenoDate": "2025-11-03",
-        "segmentIndex": 175,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "y esta ILP ha tenido muchas más asignaturas.",
-        "context": "ha de tener medio millón de firmas [6835.0 → 6838.0] y esta ILP ha tenido muchas más asignaturas. [6839.0 → 6841.0] Y creo sinceramente que en estas materias",
-        "topic": "other",
-        "entities": {
-          "countUnit": "firmas"
-        },
-        "confidence": 0.7,
-        "reasoning": "This claims the ILP received more than 500,000 signatures. Verification would involve checking the official signature count for the ILP. 'asignaturas' is a likely Whisper transcription error for 'firmas'.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1du4rf5-175-afi-413d2a",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1du4rf5-175-pro-53d603",
-        "plenoId": "1du4rf5",
-        "plenoDate": "2025-11-03",
-        "segmentIndex": 175,
-        "type": "promesa",
-        "speakerGroup": null,
-        "verbatim": "espero que portemos estos puntos de acuerdo para que Rivarrocha pueda dar apoyo a esta ILP",
-        "context": "con el bienestar animal [6857.0 → 6860.0] y espero que portemos estos puntos de acuerdo [6860.0 → 6863.0] para que Rivarrocha pueda dar apoyo a esta ILP [6863.0 → 6866.0] y sobre to",
-        "topic": "social",
-        "entities": {
-          "referencedEntity": "esta ilp"
-        },
-        "confidence": 0.9,
-        "reasoning": "This is a statement of intent to bring forward and approve points of agreement to support the ILP. Verification would involve checking municipal meeting minutes or resolutions for a vote on this matter.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1du4rf5-175-pro-53d603",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": [
-          "promises"
-        ]
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
         "id": "1du4rf5-181-afi-66b9e4",
         "plenoId": "1du4rf5",
         "plenoDate": "2025-11-03",
@@ -5780,69 +5149,6 @@
         "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1du4rf5-188-pro-f1ca3d",
-        "plenoId": "1du4rf5",
-        "plenoDate": "2025-11-03",
-        "segmentIndex": 188,
-        "type": "promesa",
-        "speakerGroup": null,
-        "verbatim": "Nosotros votaremos en contra de la moción",
-        "context": "Ahora, una de todas formas. Nosotros votaremos en contra de la moción como el Partido Socialista porque defendemos cada uno que le agrade lo que haga y mientras siga legal lo haga.",
-        "topic": "other",
-        "entities": {
-          "referencedEntity": "la moción"
-        },
-        "confidence": 1,
-        "reasoning": "This is a direct statement of intent regarding a vote on an unspecified motion. This can be verified by checking the official record of the vote on the relevant motion in the plenary session.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1du4rf5-188-pro-f1ca3d",
-        "verdict": "sin-datos",
-        "summary": "El «Contradicho» anterior no se sostenía: la frase anuncia una intención de voto, se comparaba con el resultado de una votación recogido en prensa y no consta qué grupo hablaba.",
-        "evidence": [],
-        "checkedAgainst": [
-          "curator-downgrade"
-        ],
-        "source": "curator-downgrade",
-        "downgradedBy": "automatica",
-        "reasonSignedBy": "Sergei Lutchenko"
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1du4rf5-197-cit-a77022",
-        "plenoId": "1du4rf5",
-        "plenoDate": "2025-11-03",
-        "segmentIndex": 197,
-        "type": "cita_obra",
-        "speakerGroup": null,
-        "verbatim": "Vuelve a retornar a las comunidades autónomas y a los ayuntamientos la capacidad de decidir si quieren o no reconocer la tauromaquia como parte de su patrimonio.",
-        "context": "no pretende prohibir, sino democratizar. Vuelve a retornar a las comunidades autónomas y a los ayuntamientos la capacidad de decidir si quieren o no reconocer la tauromaquia como parte de su patrimonio. La ley 18-2013 aprobada durante el gobierno del Partido Popular",
-        "topic": "cultura",
-        "entities": {
-          "referencedEntity": "nueva cultura"
-        },
-        "confidence": 0.9,
-        "reasoning": "This statement describes a specific intended outcome or effect of the 'nueva cultura' initiative (likely the ILP 'No es és la meua cultura' mentioned in the agenda). Its provisions can be verified by reviewing the text of the ILP.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1du4rf5-197-cit-a77022",
-        "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la capacidad de las comunidades autónomas y ayuntamientos para decidir sobre el reconocimiento de la tauromaquia como patrimonio, en el contexto de la ley 18-2013.",
-        "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "confidence": 0.2,
-        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -5996,34 +5302,6 @@
     },
     {
       "claim": {
-        "id": "1du4rf5-227-afi-442f1e",
-        "plenoId": "1du4rf5",
-        "plenoDate": "2025-11-03",
-        "segmentIndex": 227,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "en el Estado Español son mucho más habitantes que de estos 700.000",
-        "context": "habrían repartido 37 millones de firmas porque en el Estado Español son mucho más habitantes que de estos 700.000 en todo el respeto a este Estado",
-        "topic": "other",
-        "entities": {
-          "countUnit": "habitantes",
-          "referencedEntity": "estado español"
-        },
-        "confidence": 1,
-        "reasoning": "This is a comparative claim about population size, verifiable with official demographic statistics for Spain.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1du4rf5-227-afi-442f1e",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
         "id": "1du4rf5-227-afi-a728a5",
         "plenoId": "1du4rf5",
         "plenoDate": "2025-11-03",
@@ -6044,33 +5322,6 @@
       },
       "verification": {
         "claimId": "1du4rf5-227-afi-a728a5",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1du4rf5-227-afi-bdc835",
-        "plenoId": "1du4rf5",
-        "plenoDate": "2025-11-03",
-        "segmentIndex": 227,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "en la Comunidad Valenciana durante el año 24",
-        "context": "un deseo sostenido de la tauromaquia no así en la Comunidad Valenciana porque así en la Comunidad Valenciana durante el año 24",
-        "topic": "cultura",
-        "entities": {
-          "referencedEntity": "comunidad valenciana"
-        },
-        "confidence": 1,
-        "reasoning": "This statement specifies a geographic region (Comunidad Valenciana) and a year (2024) in the context of the tauromaquia discussion, which would lead to verifiable data for that region and period.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1du4rf5-227-afi-bdc835",
         "verdict": "sin-datos",
         "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],

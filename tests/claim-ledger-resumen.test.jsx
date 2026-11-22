@@ -41,6 +41,18 @@ const servidas = readdirSync(TROZOS)
 
 const porId = new Map(servidas.map((it) => [it.claim.id, it]))
 
+/**
+ * El corpus entero, servido o no. La lista mira aquí y no sólo lo servido: una
+ * fila que la puerta retiene hoy —desde el 22-11-2026, por ejemplo, un literal
+ * traducido— puede volver a servirse mañana con el mismo resumen, y entonces la
+ * lista tiene que seguir tapándolo.
+ */
+const enElCorpus = new Map(
+  JSON.parse(
+    readFileSync(join(__dirname, '..', 'public/data/pleno-claims-verified.json'), 'utf8'),
+  ).items.map((it) => [it.claim.id, it]),
+)
+
 /** Lo que ningún resumen sobre una declaración dice: son partes de la tarea. */
 const MARCAS_DE_CHARLA =
   /superpowers|\bskills?\b|Task (completed|was)|\breasoned in Spanish\b|Provided the requested|texto de respuesta|respuesta de texto|cuerpo de la respuesta|respuesta al usuario|Se (solicitó|pidió) razona|no emitir veredicto|sin emitir (un )?veredicto|razonamiento (escéptico )?solicitado|Tarea de (fact-checking|verificación|razonamiento)/i
@@ -71,12 +83,15 @@ function pintar(it) {
 }
 
 describe('lo servido', () => {
-  it('cada entrada de la lista señala una fila servida que todavía dice lo retirado', () => {
+  it('cada entrada de la lista señala una fila del corpus que todavía dice lo retirado', () => {
     const entradas = Object.entries(RESUMENES_RETIRADOS)
     expect(entradas.length).toBeGreaterThan(0)
+    // Y alguna se sirve hoy: si ninguna, la prueba de abajo sobre lo servido
+    // dejaría de ver lo que la lista tapa.
+    expect(entradas.some(([id]) => porId.has(id))).toBe(true)
     for (const [id, inicio] of entradas) {
-      const it = porId.get(id)
-      expect(it, `${id} ya no se sirve: quítalo de la lista`).toBeDefined()
+      const it = enElCorpus.get(id)
+      expect(it, `${id} ya no está en el corpus: quítalo de la lista`).toBeDefined()
       expect(
         it.verification.summary.startsWith(inicio),
         `${id} ya no empieza por «${inicio}»: si se corrigió, quítalo de la lista`,

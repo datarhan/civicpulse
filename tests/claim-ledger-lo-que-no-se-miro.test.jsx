@@ -33,7 +33,6 @@ import { eurosBreves } from '../src/lib/formatters'
  */
 
 const TROZOS = join(__dirname, '..', 'public/data/pleno-claims')
-const trozo = (id) => JSON.parse(readFileSync(join(TROZOS, `${id}.json`), 'utf8'))
 const trozos = readdirSync(TROZOS)
   .filter((f) => f.endsWith('.json') && f !== 'index.json')
   .map((f) => JSON.parse(readFileSync(join(TROZOS, f), 'utf8')))
@@ -64,7 +63,13 @@ const deLaCita = (tarjetas, verbatim) => {
 }
 
 describe('/plenos/1sqj7is: «cuarenta y pico millones»', () => {
-  const item = trozo('1sqj7is').items.find((it) => it.claim.id === '1sqj7is-028-afi-4ee50f')
+  // Desde el 22-11-2026 la puerta ya no la sirve: su literal es la traducción
+  // del motor sustituido («un pressupost de quanta i pico milions» en la
+  // vigente; src/scraper/literal-no-servible.ts). La tarjeta se sigue probando
+  // con la fila del monolito, que es la que volvería al re-extraer la sesión.
+  const item = JSON.parse(
+    readFileSync(join(__dirname, '..', 'public/data/pleno-claims-verified.json'), 'utf8'),
+  ).items.find((it) => it.claim.id === '1sqj7is-028-afi-4ee50f')
 
   it('la premisa: se sirve sin-datos, cotejada con contratos, TED y BDNS, no con el presupuesto', () => {
     expect(item).toBeDefined()

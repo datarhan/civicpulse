@@ -1,68 +1,9 @@
 {
-  "generatedAt": "2026-11-19T18:42:30.094Z",
+  "generatedAt": "2026-11-22T19:49:09.023Z",
   "version": "1",
   "plenoId": "toa3rc",
   "plenoDate": "2025-12-26",
   "items": [
-    {
-      "claim": {
-        "id": "toa3rc-000-afi-9ccc91",
-        "plenoId": "toa3rc",
-        "plenoDate": "2025-12-26",
-        "segmentIndex": 0,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "se da la liquidación del 2024 y para financiar el remanente negativo hay que traer ese préstamo antes de que finalice el 2025",
-        "context": "es por imperativo legal, se da la liquidación del 2024 y para financiar el remanente negativo hay que traer ese préstamo antes de que finalice el 2025, tanto como hemos indicado en varias sesiones",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "liquidación del 2024"
-        },
-        "confidence": 1,
-        "reasoning": "Afirma la existencia de un remanente negativo en la liquidación de 2024 y la exigencia legal de formalizar el préstamo antes del cierre de 2025, contrastable en la contabilidad municipal.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "toa3rc-000-afi-9ccc91",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "toa3rc-001-afi-84d727",
-        "plenoId": "toa3rc",
-        "plenoDate": "2025-12-26",
-        "segmentIndex": 1,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "es un préstamo de 1.783.000 euros de legislatura,",
-        "context": "Y solo eso, es un préstamo de 1.783.000 euros de legislatura, en dos únicas cuotas de amortización, en el 5 de mayo del 2026 y el 5 de mayo del 2027.",
-        "topic": "fiscal",
-        "entities": {
-          "amountEuros": 1783000,
-          "referencedEntity": "préstamo"
-        },
-        "confidence": 1,
-        "reasoning": "Se menciona la cantidad específica de un préstamo de legislatura (1.783.000 euros) verificable en los expedientes de crédito municipales.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "toa3rc-001-afi-84d727",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders, tenders-ted y bdns que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns"
-        ]
-      },
-      "visibility": "toggle"
-    },
     {
       "claim": {
         "id": "toa3rc-001-afi-e0f3ba",
@@ -140,92 +81,6 @@
       },
       "verification": {
         "claimId": "toa3rc-003-afi-061f07",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "toa3rc-006-afi-2e9eda",
-        "plenoId": "toa3rc",
-        "plenoDate": "2025-12-26",
-        "segmentIndex": 6,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "hay dos mujeres de su equipo de gobierno de su grupo que trabajaban",
-        "context": "yo creo que es demagógico torticero y poco creíble la intención del Partido Popular diciendo que es un tema casi sexista porque hay dos mujeres de su equipo de gobierno de su grupo que trabajaban",
-        "topic": "other",
-        "entities": {
-          "count": 2,
-          "countUnit": "mujeres",
-          "referencedEntity": "partido popular"
-        },
-        "confidence": 0.9,
-        "reasoning": "Afirmación numérica sobre la cantidad de mujeres del grupo que estaban trabajando, verificable mediante registros de personal.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "toa3rc-006-afi-2e9eda",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "toa3rc-010-afi-158fa4",
-        "plenoId": "toa3rc",
-        "plenoDate": "2025-12-26",
-        "segmentIndex": 10,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "durante 10 años que uno de rechidor o de alcalde y 8 en la oposición",
-        "context": "si había visto cosas durante 10 años que uno de rechidor o de alcalde y 8 en la oposición esta ya es superar lo máximo que había escuchado saben que no tienen nada que ver",
-        "topic": "other",
-        "entities": {
-          "count": 10,
-          "countUnit": "años"
-        },
-        "confidence": 0.9,
-        "reasoning": "El orador afirma haber desempeñado el cargo de concejal o alcalde durante 10 años y haber estado en la oposición durante 8 años, lo cual es verificable en el registro de cargos electos.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "toa3rc-010-afi-158fa4",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "toa3rc-013-afi-ec23ab",
-        "plenoId": "toa3rc",
-        "plenoDate": "2025-12-26",
-        "segmentIndex": 13,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "tenemos 12 votos a favor, dos abstenciones y 7 en contra vale",
-        "context": "y después, es que ahora mismo podemos y como he dicho, por tanto tenemos 12 votos a favor, dos abstenciones y 7 en contra vale, y le damos la palabra al pleno que tenga un buen año",
-        "topic": "transparencia",
-        "entities": {
-          "count": 12,
-          "countUnit": "votos a favor",
-          "referencedEntity": "votación del pleno"
-        },
-        "confidence": 0.95,
-        "reasoning": "La afirmación cita un resultado de votación numérico específico que se puede contrastar con el acta oficial del pleno municipal.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "toa3rc-013-afi-ec23ab",
         "verdict": "sin-datos",
         "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-19T18:42:30.094Z",
+  "generatedAt": "2026-11-22T19:49:09.023Z",
   "version": "1",
   "plenoId": "1qi8axv",
   "plenoDate": "2025-12-23",
@@ -958,33 +958,6 @@
       },
       "verification": {
         "claimId": "1qi8axv-024-cit-38018f",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1qi8axv-024-afi-8479c2",
-        "plenoId": "1qi8axv",
-        "plenoDate": "2025-12-23",
-        "segmentIndex": 24,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "las únicas medidas que podemos tomar son estas, ¿no? Y la imposición de sanciones.",
-        "context": "Y la verdad es que no es posible. Entonces, las únicas medidas que podemos tomar son estas, ¿no? Y la imposición de sanciones. También creemos que si hubiera sido ese expediente, la sanc",
-        "topic": "other",
-        "entities": {
-          "referencedEntity": "imposición de sanciones"
-        },
-        "confidence": 0.52,
-        "reasoning": "Aunque no contiene cifra, se refiere a una medida concreta del expediente: la imposición de sanciones, que puede comprobarse en el acuerdo o en el expediente de penalidades.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1qi8axv-024-afi-8479c2",
         "verdict": "sin-datos",
         "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
@@ -2481,97 +2454,6 @@
         "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1qi8axv-073-afi-dd1b02",
-        "plenoId": "1qi8axv",
-        "plenoDate": "2025-12-23",
-        "segmentIndex": 73,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "el presupuesto andaba a ser este año.",
-        "context": "Yo desconecto el origen, pero sí que sé la consecuencia. Nosotros, por ejemplo, desde el Espai Político de Esquerra Unida Podem, la información que teníamos era que el presupuesto andaba a ser este año. De hecho, teníamos reuniones conv",
-        "topic": "fiscal",
-        "entities": {
-          "date": "2025-01-01",
-          "referencedEntity": "presupuesto de este año"
-        },
-        "confidence": 0.72,
-        "reasoning": "Afirma un hecho temporal sobre el presupuesto; se puede verificar con la documentación presupuestaria y el ejercicio al que pertenece.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1qi8axv-073-afi-dd1b02",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1qi8axv-074-afi-11666f",
-        "plenoId": "1qi8axv",
-        "plenoDate": "2025-12-23",
-        "segmentIndex": 74,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "los presupuestos van a ser en el ejercicio 2025",
-        "context": "la información que nosotros tenemos a nivel de oposición es que los presupuestos van a ser en el ejercicio 2025. Es verdad que por conversas con José Ángel sí que ya hemos compartido que probablemente, seguro, va a ser, no va a ser para este año",
-        "topic": "fiscal",
-        "entities": {
-          "date": "2025-01-01",
-          "referencedEntity": "presupuestos ejercicio 2025"
-        },
-        "confidence": 0.86,
-        "reasoning": "Es una afirmación verificable sobre el ejercicio presupuestario en el que se prevé aprobar o tramitar los presupuestos; debería contrastarse con el expediente presupuestario y el calendario municipal.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1qi8axv-074-afi-11666f",
-        "verdict": "sin-datos",
-        "summary": "La afirmación es una declaración de la oposición sobre cuándo se aprobarán los presupuestos municipales (que serían \"en el ejercicio 2025\", no para el año en curso).",
-        "evidence": [],
-        "checkedAgainst": [],
-        "derivedBy": [
-          "verdict-engine"
-        ],
-        "confidence": 0.2,
-        "source": "verdict-engine"
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1qi8axv-074-cit-5ea911",
-        "plenoId": "1qi8axv",
-        "plenoDate": "2025-12-23",
-        "segmentIndex": 74,
-        "type": "cita_obra",
-        "speakerGroup": null,
-        "verbatim": "teníamos reuniones convocadas en la alcaldía y en la regiduría de Higienda que van a ser canceladas",
-        "context": "teníamos reuniones convocadas en la alcaldía y en la regiduría de Higienda que van a ser canceladas y que no tenemos datos para la nueva reunión.",
-        "topic": "transparencia",
-        "entities": {
-          "referencedEntity": "reuniones convocadas en alcaldía y regiduría de higienda"
-        },
-        "confidence": 0.74,
-        "reasoning": "Afirma la existencia de reuniones convocadas y su cancelación; es comprobable en agendas, convocatorias o comunicaciones internas del ayuntamiento.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1qi8axv-074-cit-5ea911",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted"
-        ]
       },
       "visibility": "toggle"
     },
