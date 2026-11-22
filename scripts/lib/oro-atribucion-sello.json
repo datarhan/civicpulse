@@ -1,0 +1,11 @@
+{
+  "paso": "1.1",
+  "explicacion": "Huella del conjunto de oro de la atribución sorteado. Las frases y las etiquetas no se publican; esto fija el sorteo antes de escuchar.",
+  "sorteadoEl": "2026-11-22",
+  "semilla": 20261122,
+  "commit": "64983f42851f0c77fddc94058e81075d4601cc05",
+  "lineas": 300,
+  "sesiones": 23,
+  "huellaPoblacion": "ee8372f54336",
+  "huellaLista": "3bd019cceb7f43c5"
+}
