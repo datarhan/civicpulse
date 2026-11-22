@@ -6,8 +6,8 @@ import { useDepartmentStats } from '../hooks/useDepartmentStats'
 import { usePromises, isPromiseFrozen, PARTY_TONE, STATUS_TONE } from '../hooks/usePromises'
 import { estadoLlano } from '../lib/estado-llano'
 import { usePlenoAgendas } from '../hooks/usePlenoAgendas'
-import { usePlenoVotes, OUTCOME_LABEL, OUTCOME_TONE } from '../hooks/usePlenoVotes'
-import { useQuejas, STATE_LABEL, STATE_TONE } from '../hooks/useQuejas'
+import { usePlenoVotes, OUTCOME_TONE } from '../hooks/usePlenoVotes'
+import { useQuejas, STATE_TONE } from '../hooks/useQuejas'
 import { canonicalizeDepartment } from '../scraper/departments'
 import { latestCorrection } from '../scraper/pleno-votes'
 import { diaDeLaSede } from '../scraper/queja-router'
@@ -77,9 +77,11 @@ function VotesSection({ slug, frozen }) {
                 {v.expediente ? ` · exp. ${v.expediente}` : ''}
               </div>
             </div>
-            <Pill tone={OUTCOME_TONE[v.outcome] || 'neutral'} size="xs">
-              {OUTCOME_LABEL[v.outcome] || v.outcome}
-            </Pill>
+            {estadoLlano(t, 'desenlace', v.outcome) && (
+              <Pill tone={OUTCOME_TONE[v.outcome] || 'neutral'} size="xs">
+                {estadoLlano(t, 'desenlace', v.outcome)}
+              </Pill>
+            )}
           </div>
           {v.votesRetracted ? (
             <VoteBreakdownRetracted retraction={v.votesRetracted} />
@@ -312,9 +314,11 @@ function QuejasSection({ slug, motivo }) {
                 {diaDeLaSede(q.requested_datetime)}
               </div>
             </div>
-            <Pill tone={STATE_TONE[q.status ?? q.state] || 'neutral'} size="xs">
-              {STATE_LABEL[q.status ?? q.state] || (q.status ?? q.state)}
-            </Pill>
+            {estadoLlano(t, 'queja', q.status ?? q.state) && (
+              <Pill tone={STATE_TONE[q.status ?? q.state] || 'neutral'} size="xs">
+                {estadoLlano(t, 'queja', q.status ?? q.state)}
+              </Pill>
+            )}
           </Link>
         ))}
       </div>
