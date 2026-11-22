@@ -16,6 +16,7 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { afterAll, describe, expect, it } from 'vitest'
 import { vedaActiva } from '../scripts/lib/veda'
+import { atribucionesQueCambianEnVeda } from '../scripts/verified-rebuild'
 
 // Lo que decide a quién se atribuye una cita: el campo, el mapa de voces y las
 // asignaciones de voice-id (alimentan `speakerSlug`).
@@ -38,6 +39,7 @@ const CON_VEDA = [
   'scripts/relabel-attribution.ts',
   'scripts/auto-curate-findings.ts',
   'scripts/identify-pleno-speakers.ts',
+  'scripts/verified-rebuild.ts',
 ]
 
 /** Nombran la atribución y escriben algo, pero no la deciden. Cada uno, con el porqué. */
@@ -48,8 +50,6 @@ const EXENTOS: Record<string, string> = {
   'scripts/retract-guessed-attributions.ts':
     'migración a mano que sólo retira (pone null); nunca pone un grupo',
   'scripts/retire-otro-sentinel.ts': 'migración a mano: el centinela «Otro» pasa a null',
-  'scripts/verified-rebuild.ts':
-    'recompone lo publicado desde base y capas; copia grupos, no decide ninguno',
   'scripts/refresh-curate-queue.ts': 'escribe la cola del curador, no lo publicado',
   'scripts/voice-id-ab.ts': 'medida: escribe un informe en scripts/logs/',
   'scripts/correct-pleno-finding.ts':
@@ -64,7 +64,7 @@ const EXENTOS: Record<string, string> = {
  */
 const PUBLICAN_SIN_NOMBRAR: Record<string, string> = {
   'scripts/verify-pleno-claims.ts':
-    'publica lo que la extracción dejó; en veda la extracción no pone grupos ni quita los que hay',
+    'publica a través de verified-rebuild, que en veda se niega a poner o cambiar un grupo',
 }
 
 function scriptsQueNombranYEscriben(): string[] {
@@ -148,8 +148,29 @@ describe('vedaActiva', () => {
     expect(vedaActiva(con('{"frozenUntil":null}'), ahora)).toBeNull()
     expect(vedaActiva(con('{}'), ahora)).toBeNull()
   })
+  it('una fecha que no se entiende cuenta como veda', () => {
+    expect(vedaActiva(con('{"frozenUntil":"24/05/2027"}'), ahora)).toBe('24/05/2027')
+    expect(vedaActiva(con('{"frozenUntil":20270524}'), ahora)).toBe('20270524')
+  })
   it('lanza si no puede leer el fichero: «no lo sé» no es «no hay veda»', () => {
     expect(() => vedaActiva(join(dir, 'no-existe.json'), ahora)).toThrow(/veda/)
     expect(() => vedaActiva(con('{roto'), ahora)).toThrow(/veda/)
+  })
+})
+
+describe('atribucionesQueCambianEnVeda (la guarda del rebuild)', () => {
+  const it_ = (id: string, speakerGroup: string | null) => ({ claim: { id, speakerGroup } })
+  it('señala un grupo nuevo, uno cambiado y una declaración nueva con grupo', () => {
+    const publicado = [it_('a', null), it_('b', 'PP'), it_('c', 'PSOE')]
+    const nuevos = [it_('a', 'PP'), it_('b', 'VOX'), it_('c', 'PSOE'), it_('d', 'PP')]
+    expect(atribucionesQueCambianEnVeda(publicado, nuevos)).toEqual([
+      { id: 'a', de: null, a: 'PP' },
+      { id: 'b', de: 'PP', a: 'VOX' },
+      { id: 'd', de: null, a: 'PP' },
+    ])
+  })
+  it('deja pasar lo que no cambia y lo que se retira (→ null)', () => {
+    const publicado = [it_('a', 'PP'), it_('b', 'PSOE')]
+    expect(atribucionesQueCambianEnVeda(publicado, [it_('a', 'PP'), it_('b', null)])).toEqual([])
   })
 })

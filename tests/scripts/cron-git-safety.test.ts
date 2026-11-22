@@ -290,6 +290,11 @@ if [ "$name" = "speaker-map:backlog" ]; then
   for _m in \${STUB_BACKLOG:-sandboxpleno}; do echo "$_m"; done
   exit 0
 fi
+# STUB_PRESERVA: sesiones cuya re-extracción sale 0 pero una guarda del extractor
+# conservó las declaraciones de antes (lo que imprime el de verdad).
+if [ "$name" = "extract:pleno-claims" ]; then
+  case " \${STUB_PRESERVA:-} " in *" \${2:-} "*) echo "[extract·claims] \${2} PRESERVED — stub"; exit 0 ;; esac
+fi
 if [ "$name" = "veda:activa" ]; then
   echo "[stub] ran $name" >&2
   case " \${STUB_FAIL:-} " in *" $name "*) echo "[stub] $name FAILING" >&2; exit 1 ;; esac
@@ -2324,6 +2329,21 @@ describe('hallazgos-pipeline.sh · veda electoral y tope de re-atribución', () 
     expect(r2.log).toContain('✓ s4 claims re-extracted')
     expect(readFileSync(pendientes, 'utf8').trim()).toBe('')
   }, 240_000)
+
+  it('una re-extracción que una guarda deja sin efecto no gasta tope ni sale de la lista', () => {
+    const dir = makeSandbox({ publicadas: ['s1', 's2'] })
+    const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', {
+      ...BASE,
+      STUB_BACKLOG: 's1 s2',
+      STUB_PRESERVA: 's1',
+      REATRIBUCION_MAX: '1',
+    })
+    expect(r.log).toMatch(/s1 PRESERVED — stub/)
+    expect(r.log).toMatch(/s1: re-extracción SIN EFECTO/)
+    expect(r.log).toContain('✓ s2 claims re-extracted')
+    expect(cuenta(r.log, EN_ESPERA_POR_TOPE)).toBe(0)
+    expect(readFileSync(join(dir, '.cache/reatribucion-pendiente.txt'), 'utf8').trim()).toBe('s1')
+  }, 120_000)
 
   it('un tope que no es un número se lee como 0, no como «sin tope»', () => {
     const dir = makeSandbox({ publicadas: ['s1'] })

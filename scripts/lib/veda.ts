@@ -43,6 +43,10 @@ export function vedaActiva(ruta: string = resolve(PROMESAS), ahora = new Date())
   const frozenUntil = crudo?.frozenUntil ?? null
   // Una fecha que no se entiende tampoco es «no hay veda»: `isFrozen` compara con
   // NaN y diría que no. Se trata como veda, con la fecha tal cual.
-  if (frozenUntil && Number.isNaN(new Date(frozenUntil).getTime())) return String(frozenUntil)
+  if (
+    frozenUntil != null &&
+    (typeof frozenUntil !== 'string' || Number.isNaN(new Date(frozenUntil).getTime()))
+  )
+    return String(frozenUntil)
   return isFrozen({ frozenUntil }, ahora) ? frozenUntil : null
 }

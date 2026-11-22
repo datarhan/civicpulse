@@ -367,14 +367,29 @@ reextrae_con_mapa() {
   elif [ "$(publicada "$mid")" = 1 ] && [ "$REATRIBUIDAS" -ge "$REATRIBUCION_MAX" ]; then
     log "· $mid mapeado, re-extracción EN ESPERA (tope: $REATRIBUCION_MAX sesión(es) publicada(s) re-atribuida(s) por pasada) — el mapa queda guardado y se re-extrae en otra pasada"
     anota_pendiente "$mid"
-  elif env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY npm run extract:pleno-claims -- "$mid"; then
-    REEXTRACTED=$((REEXTRACTED+1)); log "✓ $mid claims re-extracted with map attribution"
-    if [ "$(publicada "$mid")" = 1 ]; then REATRIBUIDAS=$((REATRIBUIDAS+1)); fi
-    quita_pendiente "$mid"
-    # El sello NO va aquí. Ver el bloque `EXTRACTIONS -gt 0` más abajo.
   else
-    log "warn: re-extract failed for $mid — map kept, claims still unattributed"
-    anota_pendiente "$mid"
+    local salida
+    salida="$(mktemp "${TMPDIR:-/tmp}/reextrae.XXXXXX")"
+    if env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY npm run extract:pleno-claims -- "$mid" > "$salida" 2>&1; then
+      cat "$salida"
+      # Sale 0 también cuando una guarda del extractor conservó las declaraciones
+      # viejas, sin grupo (vacío, citas huérfanas, veda). Eso no es re-atribuir:
+      # ni gasta tope ni la saca de la lista.
+      if grep -qE "\] $mid (PRESERVED|SKIPPED|CONSERVADA)" "$salida"; then
+        log "· $mid: re-extracción SIN EFECTO (una guarda conservó las declaraciones de antes) — sigue pendiente"
+        anota_pendiente "$mid"
+      else
+        REEXTRACTED=$((REEXTRACTED+1)); log "✓ $mid claims re-extracted with map attribution"
+        if [ "$(publicada "$mid")" = 1 ]; then REATRIBUIDAS=$((REATRIBUIDAS+1)); fi
+        quita_pendiente "$mid"
+        # El sello NO va aquí. Ver el bloque `EXTRACTIONS -gt 0` más abajo.
+      fi
+    else
+      cat "$salida"
+      log "warn: re-extract failed for $mid — map kept, claims still unattributed"
+      anota_pendiente "$mid"
+    fi
+    rm -f "$salida"
   fi
   return 0
 }
