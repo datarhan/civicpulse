@@ -212,6 +212,70 @@ describe('el contrato publicado lo dice', () => {
   })
 
   it('la lista de fuentes dice la licencia del INE', () => {
-    expect(aviso).toMatch(/INE \(CC BY 4\.0\)/)
+    // El código fuente puede partir la línea entre «INE» y su licencia.
+    expect(aviso).toMatch(/INE\s+\(CC BY 4\.0\)/)
+  })
+
+  // La revisión del plan del 22-11-2026 vio dos cosas en lo que dejó #573. La
+  // tarjeta de la licencia entró delante de «Cómo pedir una corrección», que es
+  // a la que llevan todos los enlaces de réplica del sitio y bajó de tercera a
+  // cuarta. Y la tarjeta remite a «las que se enumeran arriba», una lista que
+  // empezaba por «Todos los datos… de fuentes públicas o de datos abiertos»
+  // (la prensa y las quejas no lo son), citaba una «CC-BY 4.0 datos.gob.es» de
+  // la que no sale ningún fichero y una ley de transparencia como si fuera una
+  // licencia, y no nombraba la Ley 37/2007 de 28 ficheros del catálogo.
+  const tarjetas = [...aviso.matchAll(/<Card\b[^>]*>\s*<SectionHead[^>]*title="([^"]+)"/g)].map(
+    (m) => m[1],
+  )
+  const desdeFuentes = aviso.indexOf('title="De dónde salen los datos"')
+  const fuentes = aviso.slice(desdeFuentes, aviso.indexOf('<Card', desdeFuentes))
+
+  it('mide algo: lee las tarjetas y la de las fuentes', () => {
+    expect(tarjetas.length).toBeGreaterThan(5)
+    expect(fuentes.length).toBeGreaterThan(200)
+  })
+
+  it('«Cómo pedir una corrección» sigue siendo la tercera tarjeta, antes de la licencia', () => {
+    expect(tarjetas[2]).toBe('Cómo pedir una corrección')
+    expect(tarjetas.indexOf('Licencia de los datos')).toBeGreaterThan(2)
+  })
+
+  it('la lista de fuentes no dice «todos», ni una fuente de la que no sale nada', () => {
+    expect(fuentes).not.toMatch(/Todos los datos/)
+    expect(fuentes).not.toMatch(/datos\.gob\.es/)
+    expect(fuentes).not.toMatch(/Transparencia Act/)
+    expect(fuentes).toMatch(/prensa/)
+    expect(fuentes).toMatch(/quejas/)
+  })
+
+  it('nombra cada licencia de fuera que usa el catálogo, y lo estricta que es la web del Ayuntamiento', () => {
+    const usadas = new Set(Object.values(FICHAS).map((f) => f.licencia))
+    const nombre = {
+      'ley-37-2007': /Ley 37\/2007/,
+      'cc-by-4.0': /CC BY 4\.0/,
+      odbl: /ODbL/,
+      cc0: /CC0/,
+      'ue-2011-833': /Decisión 2011\/833\/UE/,
+    }
+    const fuera = [...usadas].filter((l) => l !== 'propia' && l !== 'prensa')
+    expect(fuera.length).toBeGreaterThan(3)
+    for (const l of fuera) {
+      expect(nombre[l], `licencia sin nombre en la prueba: ${l}`).toBeDefined()
+      expect(fuentes, l).toMatch(nombre[l])
+    }
+    expect(fuentes).toMatch(/uso privado y sin fin comercial/)
+  })
+
+  // Lo vio la lectura independiente del cambio: el catálogo no recoge todas las
+  // fuentes (Open-Meteo, el GTFS de FGV), el padrón sale del CSV del INE y no de
+  // su API JSON, y una queja no enlaza a ningún registro ni a ninguna noticia.
+  it('no llama «listado completo» al catálogo ni da el padrón por la API JSON del INE', () => {
+    expect(fuentes).not.toMatch(/listado completo/)
+    expect(fuentes).not.toMatch(/API JSON del INE/)
+    expect(fuentes).not.toMatch(/Cada dato individual enlaza/)
+  })
+
+  it('las fuentes con licencia abierta se citan con la atribución que exigen', () => {
+    expect(fuentes).toMatch(/licencia abierta[^.]*atribución/)
   })
 })

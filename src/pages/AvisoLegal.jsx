@@ -62,59 +62,45 @@ export default function AvisoLegal() {
         </p>
       </Card>
 
-      <Card style={{ marginTop: 14 }}>
+      {/* Las licencias que nombra esta tarjeta son las que usa el catálogo de
+          /datos (src/lib/catalogo-datos.js), y tests/catalogo-datos.test.js
+          comprueba que estén todas. Hasta el 22-11-2026 empezaba por «Todos los
+          datos… de fuentes públicas o de datos abiertos», y citaba una
+          «CC-BY 4.0 datos.gob.es» de la que no sale ningún fichero. */}
+      <Card id="fuentes" style={{ marginTop: 14 }}>
         <SectionHead eyebrow="Fuentes" title="De dónde salen los datos" />
         <p>
-          Todos los datos mostrados proceden de fuentes públicas del sector público español o de
-          proyectos de datos abiertos (Transparencia Act 19/2013, CC-BY 4.0 datos.gob.es, ODbL
-          OpenStreetMap, CC0 Wikidata, reutilización abierta PLACSP/BDNS/CONPREL, REST pública de
-          prensa, la API JSON del INE (CC BY 4.0) —índice de precios con el que se deflactan las
-          series de coste, y padrón municipal—, el Portal Estadístico de Criminalidad del Ministerio
-          del Interior (Ley 37/2007; «Origen de los datos: Portal Estadístico de Criminalidad»), el
-          Sistema de Información Nacional de Aguas de Consumo (SINAC) del Ministerio de Sanidad
-          —citado con la fecha de cada boletín, como pide su aviso legal— y su informe anual de
-          calidad del agua de consumo («puede reproducirse… siempre que se mencione la fuente»), la
-          Estadística de Bibliotecas Públicas del Ministerio de Cultura (condiciones generales del
-          RD 1495/2011; «Origen de los datos: Ministerio de Cultura»), y la capa 0503_Residuos y la
-          cartografía de incendios forestales del Institut Cartogràfic Valencià / Generalitat
-          Valenciana (CC BY 4.0) bajo sus condiciones de reutilización, con la atribución que
-          exigen). Cada dato individual enlaza a la fuente de la que sale: un registro o documento
-          oficial o, cuando sale de la prensa —en la página de promesas y en el laboratorio de
-          prensa—, la noticia que lo recoge. El listado completo de feeds está en{' '}
+          Los datos de este sitio salen de lo que publican el Ayuntamiento y otras administraciones,
+          de proyectos de datos abiertos, de la prensa y de las quejas que envían los vecinos. Cada
+          dato que viene de fuera enlaza a su fuente: un registro o documento oficial o, cuando sale
+          de la prensa —en la página de promesas y en el laboratorio de prensa—, la noticia que lo
+          recoge. Las quejas son de quien las envía. El catálogo de los ficheros, con la fuente y la
+          licencia de cada uno, está en{' '}
           <a href="/datos" style={{ color: 'var(--civic)' }}>
             /datos
           </a>
           .
         </p>
-      </Card>
-
-      {/* Decidido por el operador el 22-11-2026, con la tabla de /datos: hasta
-          entonces el código tenía licencia (AGPL-3.0) y los datos propios no.
-          La licencia de cada fichero vive en src/lib/catalogo-datos.js. */}
-      <Card style={{ marginTop: 14 }}>
-        <SectionHead eyebrow="Reutilización" title="Licencia de los datos" />
         <p>
-          Lo que produce CivicPulse —los hallazgos sobre lo dicho en los plenos, los veredictos de
-          las declaraciones, los estados de las promesas, las votaciones curadas, las correcciones y
-          decisiones curadas y los resultados de sus modelos— se publica con la licencia{' '}
-          <a
-            href="https://creativecommons.org/licenses/by/4.0/deed.es"
-            target="_blank"
-            rel="noreferrer"
-            style={{ color: 'var(--civic)' }}
-          >
-            Creative Commons Atribución 4.0 (CC BY 4.0)
-          </a>
-          : se puede reutilizar para cualquier fin, también comercial, citando a CivicPulse como
-          fuente. Los datos que vienen de otras fuentes conservan sus condiciones de reutilización,
-          las que se enumeran arriba, y la columna «Licencia» de{' '}
-          <a href="/datos" style={{ color: 'var(--civic)' }}>
-            /datos
-          </a>{' '}
-          la dice para cada fichero de su catálogo. Los titulares de medios y de webs
-          institucionales que recoge el laboratorio de prensa no son datos abiertos, y la cita de
-          cada promesa es de su fuente. El texto y la foto de cada queja son de quien la envía:
-          CivicPulse los publica, pero no los licencia.
+          Lo que publican las administraciones se reutiliza al amparo de la Ley 37/2007, sobre
+          reutilización de la información del sector público, en las condiciones que fija cada
+          fuente. La web del Ayuntamiento, por ejemplo, sólo permite descargar sus contenidos para
+          uso privado y sin fin comercial, salvo autorización expresa. Algunas fuentes piden una
+          atribución concreta, y se cita como la piden: el Portal Estadístico de Criminalidad del
+          Ministerio del Interior («Origen de los datos: Portal Estadístico de Criminalidad»); el
+          Sistema de Información Nacional de Aguas de Consumo (SINAC) del Ministerio de Sanidad, con
+          la fecha de cada boletín, y su informe anual de calidad del agua de consumo («puede
+          reproducirse… siempre que se mencione la fuente»); y la Estadística de Bibliotecas
+          Públicas del Ministerio de Cultura (condiciones generales del RD 1495/2011; «Origen de los
+          datos: Ministerio de Cultura»). Los anuncios de licitación del Diario Oficial de la Unión
+          Europea (TED) se reutilizan según la Decisión 2011/833/UE.
+        </p>
+        <p>
+          Entre las de licencia abierta, que se citan con la atribución que exige cada una: el INE
+          (CC BY 4.0), del que salen el padrón municipal y el índice de precios con el que se
+          deflactan las series de coste; las capas del Institut Cartogràfic Valencià / Generalitat
+          Valenciana de residuos, de incendios forestales y de resultados electorales (CC BY 4.0);
+          OpenStreetMap (ODbL) y Wikidata (CC0).
         </p>
       </Card>
 
@@ -182,6 +168,42 @@ export default function AvisoLegal() {
           opinión recibe el texto antes de que se publique, con al menos siete días para responder,
           y su respuesta se publica íntegra a su lado; si no responde, se dice. Cualquier réplica
           posterior se tramita por esta misma vía y se añade, también íntegra.
+        </p>
+      </Card>
+
+      {/* Decidido por el operador el 22-11-2026, con la tabla de /datos: hasta
+          entonces el código tenía licencia (AGPL-3.0) y los datos propios no.
+          La licencia de cada fichero vive en src/lib/catalogo-datos.js. Va
+          después de «Cómo pedir una corrección», que es a la que llevan los
+          enlaces de réplica de todo el sitio. */}
+      <Card style={{ marginTop: 14 }}>
+        <SectionHead eyebrow="Reutilización" title="Licencia de los datos" />
+        <p>
+          Lo que produce CivicPulse —los hallazgos sobre lo dicho en los plenos, los veredictos de
+          las declaraciones, los estados de las promesas, las votaciones curadas, las correcciones y
+          decisiones curadas y los resultados de sus modelos— se publica con la licencia{' '}
+          <a
+            href="https://creativecommons.org/licenses/by/4.0/deed.es"
+            target="_blank"
+            rel="noreferrer"
+            style={{ color: 'var(--civic)' }}
+          >
+            Creative Commons Atribución 4.0 (CC BY 4.0)
+          </a>
+          : se puede reutilizar para cualquier fin, también comercial, citando a CivicPulse como
+          fuente. Los datos que vienen de otras fuentes conservan sus condiciones de reutilización,
+          las que dice{' '}
+          <a href="#fuentes" style={{ color: 'var(--civic)' }}>
+            «De dónde salen los datos»
+          </a>
+          , y la columna «Licencia» de{' '}
+          <a href="/datos" style={{ color: 'var(--civic)' }}>
+            /datos
+          </a>{' '}
+          la dice para cada fichero de su catálogo. Los titulares de medios y de webs
+          institucionales que recoge el laboratorio de prensa no son datos abiertos, y la cita de
+          cada promesa es de su fuente. El texto y la foto de cada queja son de quien la envía:
+          CivicPulse los publica, pero no los licencia.
         </p>
       </Card>
 
