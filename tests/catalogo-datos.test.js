@@ -95,13 +95,105 @@ describe('qué licencia lleva cada uno', () => {
     expect(FICHAS['/data/press.json'].licencia).toBe('prensa')
   })
 
-  it('el texto de cada queja es de quien la escribe, y la fila lo dice', () => {
+  // La lectura independiente del 22-11-2026: una queja publicada lleva también
+  // la foto de quien la envía, y el canal nunca pidió licenciar ninguna de las dos.
+  it('el texto y la foto de cada queja son de quien la envía, y la fila lo dice', () => {
     const q = FICHAS['/data/quejas.json']
     expect(q.licencia).toBe('propia')
-    expect(CATALOGUE.es[q.nota]).toMatch(/texto de cada queja es de quien la escribe/)
-    expect(CATALOGUE.ca[q.nota]).toMatch(
-      /text de cada queixa és de qui l’escriu|text de cada queixa és de qui l'escriu/,
+    expect(CATALOGUE.es[q.nota]).toMatch(/texto y la foto de cada queja son de quien la envía/)
+    expect(CATALOGUE.ca[q.nota]).toMatch(/text i la foto de cada queixa són de qui l’envia/)
+  })
+})
+
+/*
+ * Lo que vio la lectura independiente del 22-11-2026, comprobado contra los
+ * ficheros y las fuentes antes de tocar nada.
+ */
+describe('lo que vio la lectura independiente', () => {
+  /** La licencia que el propio fichero declara, si declara alguna. */
+  const declarada = (ruta) => {
+    const j = JSON.parse(readFileSync(resolve(`public${ruta}`), 'utf8'))
+    return [
+      j.license,
+      j.licencia,
+      j.source?.license,
+      j.source?.licencia,
+      j.fuente?.license,
+      j.fuente?.licencia,
+    ]
+      .filter((x) => typeof x === 'string')
+      .join(' ')
+  }
+
+  it('un fichero que declara CC BY 4.0 lleva CC BY 4.0, y mide algo', () => {
+    const conCcBy = Object.keys(FICHAS).filter((r) => /CC[- ]?BY[- ]?4/.test(declarada(r)))
+    // elections, incendios, incendios-perimetros y reciclaje lo declaraban el 22-11.
+    expect(conCcBy.length).toBeGreaterThan(3)
+    for (const r of conCcBy) expect(FICHAS[r].licencia, `${r} · ${declarada(r)}`).toBe('cc-by-4.0')
+  })
+
+  it('lo que sale del INE lleva CC BY 4.0, la licencia general de su aviso legal', () => {
+    // ine.es/dyngs/AYU/index.htm?cid=125: «La licencia de uso general a aplicar a
+    // la información estadística de este sitio web … es la Creative Commons
+    // Reconocimiento 4.0 (CC BY 4.0)».
+    const delIne = [...FUENTES].filter(([, f]) => /\bINE\b/.test(f)).map(([r]) => r)
+    expect(delIne.length).toBeGreaterThan(1)
+    for (const r of delIne) expect(FICHAS[r].licencia, r).toBe('cc-by-4.0')
+  })
+
+  it('la cita de cada promesa es de su fuente, y la fila lo dice', () => {
+    const p = FICHAS['/data/promises.json']
+    expect(CATALOGUE.es[p.nota]).toMatch(/cita de cada promesa es de su fuente/)
+    expect(CATALOGUE.ca[p.nota]).toMatch(/cita de cada promesa és de la seua font/)
+  })
+
+  it('donde un fichero guarda una segunda lista de la misma cosa, la fila dice que va aparte', () => {
+    // contratos y licitaciones; convocatorias y concesiones; los dos registros del
+    // Síndic; y lo retirado, que se guarda al lado de lo publicado.
+    for (const r of [
+      '/data/tenders.json',
+      '/data/bdns.json',
+      '/data/sindic-expedientes.json',
+      '/data/officials.json',
+      '/data/pleno-findings.json',
+      '/data/pleno-votes.json',
+      '/data/promises.json',
+    ]) {
+      expect(CATALOGUE.es[FICHAS[r].fila], r).toMatch(/aparte/)
+      expect(CATALOGUE.ca[FICHAS[r].fila], r).toMatch(/a banda/)
+    }
+  })
+
+  it('la prensa: titulares de medios y de webs institucionales, y los derechos de quien los publica', () => {
+    const prensa = JSON.parse(readFileSync(resolve('public/data/press.json'), 'utf8')).items
+    // La premisa, medida: buena parte de los titulares no son de un medio.
+    const institucionales = prensa.filter((x) =>
+      /Ayuntamiento|GVA|Generalitat|Turisme/i.test(x.source ?? ''),
     )
+    expect(institucionales.length).toBeGreaterThan(10)
+    expect(CATALOGUE.es['datos.fila.press']).toMatch(/web institucional/)
+    expect(CATALOGUE.es['datos.leyenda.prensa']).toMatch(/de quien los publica/)
+    expect(CATALOGUE.es['datos.leyenda.prensa']).not.toMatch(/sólo se enlazan/)
+  })
+
+  it('el CTBG: resoluciones de ámbito estatal, no reclamaciones contra el Ayuntamiento', () => {
+    expect(CATALOGUE.es['datos.fila.ctbg']).toMatch(/estatal/)
+    expect(CATALOGUE.es['datos.fila.ctbg']).toMatch(/Consell de Transparència/)
+  })
+
+  it('la participación: publicaciones del portal, no sólo procesos', () => {
+    const kinds = JSON.parse(readFileSync(resolve('public/data/participa.json'), 'utf8')).items.map(
+      (x) => x.kind,
+    )
+    expect(new Set(kinds).size).toBeGreaterThan(1)
+    expect(CATALOGUE.es['datos.fila.participa']).toMatch(/publicación/)
+  })
+
+  it('la ley de reutilización: la leyenda dice que la web del Ayuntamiento es más estricta', () => {
+    // ribarroja.es/es/pagina/aviso-legal: «para su uso privado y sin ningún fin
+    // comercial … salvo autorización específica y expresa».
+    expect(CATALOGUE.es['datos.leyenda.ley37']).toMatch(/uso privado y sin fin comercial/)
+    expect(CATALOGUE.ca['datos.leyenda.ley37']).toMatch(/ús privat i sense finalitat comercial/)
   })
 })
 
@@ -111,6 +203,15 @@ describe('el contrato publicado lo dice', () => {
   it('/aviso-legal declara la licencia de los datos de CivicPulse y la de las quejas', () => {
     expect(aviso).toMatch(/Licencia de los datos/)
     expect(aviso).toMatch(/CC BY 4\.0/)
-    expect(aviso).toMatch(/texto de cada queja es de quien la escribe/)
+    expect(aviso).toMatch(/texto y la foto de cada queja son de quien la envía/)
+  })
+
+  it('no promete la licencia de todo fichero: la tabla dice la de los de su catálogo', () => {
+    expect(aviso).not.toMatch(/fichero a fichero/)
+    expect(aviso).toMatch(/cada fichero de su catálogo/)
+  })
+
+  it('la lista de fuentes dice la licencia del INE', () => {
+    expect(aviso).toMatch(/INE \(CC BY 4\.0\)/)
   })
 })
