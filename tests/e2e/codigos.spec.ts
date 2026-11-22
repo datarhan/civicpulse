@@ -40,12 +40,30 @@ const NOMBRAN_CODIGOS = new Set(['/metodologia', '/datos', '/lab-health'])
 
 // Un código que se escribe igual que su rótulo («parcial») no se puede delatar
 // en el texto, y no hace falta: el lector ya lee la palabra.
-const CODIGOS = Object.entries(VOCABULARIOS).flatMap(([tipo, valores]) =>
-  valores.filter((v) => {
-    const rotulo = CATALOGUE.es[`${ESTADO_LLANO[tipo as keyof typeof ESTADO_LLANO]}.${v}`]
-    return rotulo?.toLowerCase() !== v.toLowerCase()
-  }),
+const DELATABLES = Object.entries(VOCABULARIOS).flatMap(([tipo, valores]) =>
+  valores
+    .filter((v) => {
+      const rotulo = CATALOGUE.es[`${ESTADO_LLANO[tipo as keyof typeof ESTADO_LLANO]}.${v}`]
+      return rotulo?.toLowerCase() !== v.toLowerCase()
+    })
+    .map((v) => ({ tipo, v })),
 )
+
+/**
+ * Cuatro vocabularios tienen códigos de una palabra que son palabras de la
+ * prosa: «registrada» («información registrada ante el Ayuntamiento», en un
+ * reportaje), «notable» (una cita literal de un pleno), «critical» (el
+ * razonamiento en inglés de un hallazgo). Buscarlos en el texto daba tres rojos
+ * falsos el 22-11-2026. De esos cuatro, un código de una palabra se delata sólo
+ * cuando un elemento lo lleva ENTERO —una píldora con el código en vez del
+ * rótulo—; los compuestos («silencio_negativo») se buscan en el texto, como
+ * los de los vocabularios anteriores.
+ */
+const SOLO_ENTEROS = new Set(['desenlace', 'sentido', 'gravedad', 'queja'])
+const esEntero = ({ tipo, v }: { tipo: string; v: string }) =>
+  SOLO_ENTEROS.has(tipo) && !/[-_]/.test(v)
+const CODIGOS = DELATABLES.filter((c) => !esEntero(c)).map((c) => c.v)
+const CODIGOS_ENTEROS = DELATABLES.filter(esEntero).map((c) => c.v)
 
 const grafo = construirGrafoRutas(resolve('src'))
 const RUTAS = [
@@ -70,7 +88,15 @@ async function textoVisible(page: import('@playwright/test').Page, ruta: string)
       .querySelectorAll<HTMLElement>('[lang^="en"]')
       .forEach((n) => (n.style.display = 'none'))
   })
-  return page.evaluate(() => (document.querySelector('main') ?? document.body).innerText)
+  return page.evaluate(() => {
+    const raiz = document.querySelector('main') ?? document.body
+    // El texto de cada elemento sin hijos: donde una píldora pinta su rótulo.
+    const sueltos = [...raiz.querySelectorAll<HTMLElement>('*')]
+      .filter((n) => n.children.length === 0 && n.offsetParent !== null)
+      .map((n) => (n.textContent ?? '').trim())
+      .filter(Boolean)
+    return { texto: raiz.innerText, sueltos }
+  })
 }
 
 /**
@@ -87,10 +113,12 @@ test('mide algo: hay códigos que vigilar, rutas que leer, y la página los rotu
 }) => {
   expect(CODIGOS).toContain('sin-datos')
   expect(CODIGOS).toContain('biography')
+  expect(CODIGOS).toContain('silencio_negativo')
+  expect(CODIGOS_ENTEROS).toContain('registrada')
   expect(RUTAS.length).toBeGreaterThan(30)
   // /declaraciones pinta el recuento de «sin datos»: sin esto, una página que no
   // cargara pasaría la prueba de abajo sin haber enseñado nada.
-  const texto = await textoVisible(page, '/declaraciones')
+  const { texto } = await textoVisible(page, '/declaraciones')
   expect(texto.toLowerCase()).toContain(
     CATALOGUE.es['declaraciones.veredicto.sin-datos'].toLowerCase(),
   )
@@ -98,8 +126,11 @@ test('mide algo: hay códigos que vigilar, rutas que leer, y la página los rotu
 
 for (const ruta of RUTAS) {
   test(`${ruta}: ningún código de estado tal cual`, async ({ page }) => {
-    const texto = await textoVisible(page, ruta)
-    const vistos = CODIGOS.filter((c) => patron(c).test(texto))
+    const { texto, sueltos } = await textoVisible(page, ruta)
+    const vistos = [
+      ...CODIGOS.filter((c) => patron(c).test(texto)),
+      ...CODIGOS_ENTEROS.filter((c) => sueltos.includes(c)),
+    ]
     expect(vistos, `${ruta} pinta el código en vez del rótulo`).toEqual([])
   })
 }

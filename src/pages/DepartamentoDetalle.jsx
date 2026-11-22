@@ -77,9 +77,11 @@ function VotesSection({ slug, frozen }) {
                 {v.expediente ? ` · exp. ${v.expediente}` : ''}
               </div>
             </div>
-            <Pill tone={OUTCOME_TONE[v.outcome] || 'neutral'} size="xs">
-              {estadoLlano(t, 'desenlace', v.outcome)}
-            </Pill>
+            {estadoLlano(t, 'desenlace', v.outcome) && (
+              <Pill tone={OUTCOME_TONE[v.outcome] || 'neutral'} size="xs">
+                {estadoLlano(t, 'desenlace', v.outcome)}
+              </Pill>
+            )}
           </div>
           {v.votesRetracted ? (
             <VoteBreakdownRetracted retraction={v.votesRetracted} />
@@ -312,9 +314,11 @@ function QuejasSection({ slug, motivo }) {
                 {diaDeLaSede(q.requested_datetime)}
               </div>
             </div>
-            <Pill tone={STATE_TONE[q.status ?? q.state] || 'neutral'} size="xs">
-              {estadoLlano(t, 'queja', q.status ?? q.state)}
-            </Pill>
+            {estadoLlano(t, 'queja', q.status ?? q.state) && (
+              <Pill tone={STATE_TONE[q.status ?? q.state] || 'neutral'} size="xs">
+                {estadoLlano(t, 'queja', q.status ?? q.state)}
+              </Pill>
+            )}
           </Link>
         ))}
       </div>
