@@ -307,7 +307,34 @@ fi
 # unidad correcta ya no hay que reestimar el techo cada vez que cambia la tasa de
 # reintentos: una noche mala hace menos trozos, no más peticiones.
 SPEAKER_MAP_CALL_BUDGET="${SPEAKER_MAP_CALL_BUDGET:-16}"
-if [ "$SPEAKER_MAP_CALL_BUDGET" -gt 0 ] && [ -n "${GEMINI_API_KEY:-}" ]; then
+
+# ---- veda electoral y tope de re-atribución (decisión 4.4, 22-11-2026) ----
+# En veda (LOREG, `frozenUntil` en promises.json) no se mapean voces ni se
+# re-extrae con atribución: el mapa decide a qué grupo se atribuye cada cita de
+# un candidato. Los plenos nuevos se siguen extrayendo arriba, con
+# `speakerGroup: null` (extract-pleno-claims mira la veda por su cuenta).
+# Pregunta al `isFrozen` compartido por `veda:activa`; si no contesta, se trata
+# como veda: «no sé si hay veda» no es «no la hay».
+if VEDA=$(npm run --silent veda:activa); then :; else
+  VEDA="desconocida (veda:activa falló)"
+fi
+log "veda electoral: ${VEDA:-no}"
+# Como mucho tantas sesiones YA PUBLICADAS re-atribuidas por pasada, haya veda o
+# no: una versión mala del mapa podía volver a etiquetar 49 sesiones en una
+# noche antes de que nadie mirara. Las que pasan del tope conservan su mapa y se
+# re-extraen la noche siguiente. Sube cuando el conjunto de oro se vuelva a
+# puntuar tras cada cambio (paso 2.3 del plan).
+REATRIBUCION_MAX="${REATRIBUCION_MAX:-2}"
+REATRIBUIDAS=0
+# 1 si la sesión ya tiene declaraciones publicadas. Ante la duda, 1: cuenta
+# contra el tope.
+publicada() {
+  node -e 'try{const d=require("./public/data/pleno-claims-verified.json");process.stdout.write((d.items||[]).some(i=>i&&i.claim&&i.claim.plenoId===process.argv[1])?"1":"0")}catch(e){process.stdout.write("1")}' "$1" 2>/dev/null || echo 1
+}
+
+if [ -n "$VEDA" ]; then
+  log "speaker-map step skipped: veda electoral hasta $VEDA — ni mapas ni re-atribución; las declaraciones nuevas salen con speakerGroup:null"
+elif [ "$SPEAKER_MAP_CALL_BUDGET" -gt 0 ] && [ -n "${GEMINI_API_KEY:-}" ]; then
   MAP_TARGETS=$(npm run --silent speaker-map:backlog 2>/dev/null || true)
   if [ -n "$MAP_TARGETS" ]; then
     REMAINING="$SPEAKER_MAP_CALL_BUDGET"
@@ -350,8 +377,11 @@ if [ "$SPEAKER_MAP_CALL_BUDGET" -gt 0 ] && [ -n "${GEMINI_API_KEY:-}" ]; then
           # it up on the next healthy night; until then they carry no bloc,
           # which is honest rather than wrong.
           log "· $mid mapeado, re-extracción EN ESPERA (sin backend de texto) — el mapa queda guardado"
+        elif [ "$(publicada "$mid")" = 1 ] && [ "$REATRIBUIDAS" -ge "$REATRIBUCION_MAX" ]; then
+          log "· $mid mapeado, re-extracción EN ESPERA (tope: $REATRIBUCION_MAX sesión(es) publicada(s) re-atribuida(s) por pasada) — el mapa queda guardado"
         elif env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY npm run extract:pleno-claims -- "$mid"; then
           REEXTRACTED=$((REEXTRACTED+1)); log "✓ $mid claims re-extracted with map attribution"
+          if [ "$(publicada "$mid")" = 1 ]; then REATRIBUIDAS=$((REATRIBUIDAS+1)); fi
           # El sello NO va aquí. Ver el bloque `EXTRACTIONS -gt 0` más abajo.
         else
           log "warn: re-extract failed for $mid — map kept, claims still unattributed"

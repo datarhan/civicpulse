@@ -177,6 +177,9 @@ const STEP_OUTPUTS: Record<string, string> = {
   // step has nothing to do and the branch under test never runs; the stub
   // handles it specially below.
   'speaker-map:backlog': '',
+  // Otra CONSULTA: la tubería lee su stdout como la fecha de fin de la veda.
+  // El stub contesta STUB_VEDA (vacío por defecto: sin veda).
+  'veda:activa': '',
   'extract:speaker-map': '',
   'extract:pleno-claims': '',
   // El brazo de la transcripción lo llama tras extraer. Sin script en el
@@ -208,6 +211,8 @@ interface SandboxOpts {
   branch?: string
   /** Point origin at a path that does not exist, so pull/push must fail. */
   brokenRemote?: boolean
+  /** Sesiones que ya tienen declaraciones publicadas (el tope de re-atribución). */
+  publicadas?: string[]
 }
 
 function makeSandbox(opts: SandboxOpts = {}): string {
@@ -234,6 +239,14 @@ function makeSandbox(opts: SandboxOpts = {}): string {
     join(dir, 'public/data/plenos.json'),
     '{"items":[{"id":"p1","date":"2020-01-01"}]}\n',
   )
+  if (opts.publicadas) {
+    writeFileSync(
+      join(dir, 'public/data/pleno-claims-verified.json'),
+      JSON.stringify({
+        items: opts.publicadas.map((plenoId, i) => ({ claim: { id: `c${i}`, plenoId } })),
+      }) + '\n',
+    )
+  }
   // press-lab snapshots
   for (const f of [
     'factcheck.json',
@@ -273,7 +286,14 @@ name="$1"
 if [ "$name" = "speaker-map:backlog" ]; then
   echo "[stub] ran $name" >&2
   case " \${STUB_FAIL:-} " in *" $name "*) echo "[stub] $name FAILING" >&2; exit 1 ;; esac
-  echo "sandboxpleno"
+  # STUB_BACKLOG: varias sesiones separadas por espacios (el tope de re-atribución).
+  for _m in \${STUB_BACKLOG:-sandboxpleno}; do echo "$_m"; done
+  exit 0
+fi
+if [ "$name" = "veda:activa" ]; then
+  echo "[stub] ran $name" >&2
+  case " \${STUB_FAIL:-} " in *" $name "*) echo "[stub] $name FAILING" >&2; exit 1 ;; esac
+  if [ -n "\${STUB_VEDA:-}" ]; then echo "\${STUB_VEDA}"; fi
   exit 0
 fi
 # \`refresh -- --derived-paths\` es otra CONSULTA: cron-git.sh la lee para saber
@@ -2242,4 +2262,69 @@ describe('scrape-ci-blocked.sh · un push rechazado se recupera solo', () => {
     for (const l of pushes) expect(l).not.toMatch(/--force|\s-f\b|\+main/)
     expect(cuerpo).not.toContain('el próximo run reintenta')
   })
+})
+
+/**
+ * Decisión 4.4 del plan de plenos (22-11-2026). En veda electoral el brazo del
+ * mapa de voces no corre: el mapa decide a qué grupo se atribuye cada cita de un
+ * candidato. Y haya veda o no, como mucho REATRIBUCION_MAX (2) sesiones ya
+ * publicadas se re-extraen con atribución por pasada, para que una versión mala
+ * del mapa no vuelva a etiquetar decenas de sesiones en una noche.
+ */
+describe('hallazgos-pipeline.sh · veda electoral y tope de re-atribución', () => {
+  const BASE = { GEMINI_API_KEY: 'sandbox-key', SPEAKER_MAP_CALL_BUDGET: '8' }
+  const cuenta = (log: string, re: RegExp) => log.split('\n').filter((l) => re.test(l)).length
+  const REEXTRAIDA = /claims re-extracted with map attribution/
+  const EN_ESPERA_POR_TOPE = /re-extracción EN ESPERA \(tope/
+
+  it('sin veda el brazo del mapa corre (control: si no, lo de abajo no prueba nada)', () => {
+    const dir = makeSandbox()
+    const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', BASE)
+    expect(r.log).toMatch(/veda electoral: no/)
+    expect(r.log).toMatch(/\[stub\] wrote pleno-speaker-map\/sandboxpleno\.json/)
+  }, 120_000)
+
+  it('en veda no se mapea ni se re-atribuye nada', () => {
+    const dir = makeSandbox()
+    const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', { ...BASE, STUB_VEDA: '2027-05-24' })
+    expect(r.log).toMatch(/veda electoral: 2027-05-24/)
+    expect(r.log).toMatch(/veda electoral hasta 2027-05-24/)
+    expect(r.log).not.toMatch(/\[stub\] wrote pleno-speaker-map/)
+    expect(r.committed.some((f) => f.startsWith('pleno-speaker-map/'))).toBe(false)
+  }, 120_000)
+
+  it('si no se sabe si hay veda, se trata como veda', () => {
+    const dir = makeSandbox()
+    const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', { ...BASE, STUB_FAIL: 'veda:activa' })
+    // Sólo un `veda:activa` que sale !=0 da este texto: prueba que el fallo se inyectó.
+    expect(r.log, 'el fallo inyectado no se dio').toMatch(
+      /veda electoral: desconocida \(veda:activa falló\)/,
+    )
+    expect(r.log).toMatch(/veda electoral hasta desconocida/)
+    expect(r.log).not.toMatch(/\[stub\] wrote pleno-speaker-map/)
+  }, 120_000)
+
+  it('re-atribuye como mucho 2 sesiones publicadas por pasada; las demás conservan el mapa', () => {
+    const ids = ['s1', 's2', 's3', 's4']
+    const dir = makeSandbox({ publicadas: ids })
+    const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', {
+      ...BASE,
+      STUB_BACKLOG: ids.join(' '),
+    })
+    for (const id of ids) expect(r.log).toContain(`[stub] wrote pleno-speaker-map/${id}.json`)
+    expect(cuenta(r.log, REEXTRAIDA)).toBe(2)
+    expect(cuenta(r.log, EN_ESPERA_POR_TOPE)).toBe(2)
+  }, 120_000)
+
+  it('el tope no frena las sesiones que aún no tienen nada publicado', () => {
+    const dir = makeSandbox({ publicadas: ['s1'] })
+    const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', {
+      ...BASE,
+      STUB_BACKLOG: 's1 nueva1 nueva2',
+      REATRIBUCION_MAX: '0',
+    })
+    expect(cuenta(r.log, REEXTRAIDA)).toBe(2)
+    expect(cuenta(r.log, EN_ESPERA_POR_TOPE)).toBe(1)
+    expect(r.log).toMatch(/s1 mapeado, re-extracción EN ESPERA \(tope/)
+  }, 120_000)
 })

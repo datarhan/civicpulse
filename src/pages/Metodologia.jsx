@@ -695,7 +695,12 @@ function ContratoEditorial() {
           <p style={{ marginBottom: 0 }}>
             La suspensión electoral (LOREG art. 50) prevalece sobre todo lo anterior: con{' '}
             <code>frozenUntil</code> activo no se publica ni se retracta nada de forma automática.
-            Las mediciones vigentes son públicas en el repositorio (
+            Tampoco se atribuye a ningún grupo municipal una cita de un pleno: no se reconstruye el
+            mapa de voces, las declaraciones nuevas salen sin grupo y ninguna atribución ya
+            publicada se cambia ni se retira sin una persona. Fuera de la veda, cada pasada nocturna
+            vuelve a atribuir como mucho dos sesiones ya publicadas; las demás esperan a la noche
+            siguiente, para que un mapa de voces defectuoso no cambie decenas de sesiones antes de
+            que alguien lo vea. Las mediciones vigentes son públicas en el repositorio (
             <code>.automation-measurements.json</code>) y caducan a los 90 días, porque una
             precisión medida contra un modelo que ya no se usa es un dato histórico, no una
             garantía.

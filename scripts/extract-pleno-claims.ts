@@ -32,6 +32,7 @@ import {
 } from '../src/scraper/corporation-seats'
 import { resetBudget, loadConfigFromEnv, getRunStats } from '../src/llm/client'
 import { startRun, formatManifest } from '../src/scraper/run-manifest'
+import { vedaActiva } from './lib/veda'
 
 const OUT_PATH = resolve('public/data/pleno-claims-suggestions.json')
 // Both of these are read one file at a time, keyed by plenoId, so the
@@ -177,7 +178,18 @@ async function runOne(
     return []
   }
   const agendaItems = loadAgendaFor(plenoId)
-  const allowedSpeakers = loadAllowedSpeakersFor(plenoId)
+  // En veda electoral (LOREG) no se atribuye nada: ni grupo ni persona. Las
+  // declaraciones se extraen igual, con `speakerGroup: null`, que es lo honesto
+  // —«no lo decimos»—, y la atribución vuelve en la primera pasada tras la veda.
+  // Lanza si no puede leer promises.json: sin saber si hay veda no se extrae.
+  const veda = vedaActiva()
+  if (veda) {
+    process.stdout.write(
+      `[extract·claims]   ${plenoId} · veda electoral hasta ${veda}: sin mapa de voces ni voice-id, ` +
+        'toda declaración sale con speakerGroup:null\n',
+    )
+  }
+  const allowedSpeakers = veda ? [] : loadAllowedSpeakersFor(plenoId)
   if (allowedSpeakers.length > 0) {
     process.stdout.write(
       `[extract·claims] ${plenoId}: voice-id allowed speakers (high-tier): ${allowedSpeakers
@@ -191,7 +203,9 @@ async function runOne(
   // absence look like a session where nobody was identifiable.
   const mapPath = resolve('pleno-speaker-map', `${plenoId}.json`)
   let resolveBloc: ((verbatim: string) => string | null) | undefined
-  if (existsSync(mapPath)) {
+  if (veda) {
+    // Ver arriba: en veda, ni el mapa se lee.
+  } else if (existsSync(mapPath)) {
     const map = JSON.parse(readFileSync(mapPath, 'utf8')) as SpeakerMap
     const published = parseDiarizedTranscript(transcript)
     const alignment = alignSpeakerMap({ published, map })

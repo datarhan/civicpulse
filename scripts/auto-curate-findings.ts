@@ -66,6 +66,7 @@ import {
   type BundleCandidate,
 } from '../src/scraper/auto-curate'
 import { oneSeatBlocsOf, type OfficialsDoc } from '../src/scraper/corporation-seats'
+import { isFrozen } from '../src/scraper/promises'
 import { generateTitleAndSummary } from '../src/llm/auto-curate-llm'
 import { resetBudget, loadConfigFromEnv } from '../src/llm/client'
 import {
@@ -177,11 +178,6 @@ function loadJson<T>(path: string): T | null {
   return JSON.parse(readFileSync(path, 'utf8')) as T
 }
 
-function isFrozen(promises: PromisesSnap | null): boolean {
-  if (!promises?.frozenUntil) return false
-  return promises.frozenUntil > new Date().toISOString().slice(0, 10)
-}
-
 function plenoVideoUrl(
   videos: { items?: PlenoVideoEntry[] } | null,
   plenoDate: string,
@@ -254,7 +250,9 @@ async function main() {
     process.exit(1)
   }
 
-  if (isFrozen(promises)) {
+  // El `isFrozen` compartido (promises.ts), no una copia: hasta el 22-11-2026
+  // éste comparaba cadenas de fecha y /promesas, instantes.
+  if (promises && isFrozen({ frozenUntil: promises.frozenUntil ?? null })) {
     process.stderr.write(
       `[auto-curate] LOREG electoral freeze active until ${promises?.frozenUntil} — exiting without publishing\n`,
     )

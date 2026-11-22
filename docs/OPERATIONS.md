@@ -438,8 +438,20 @@ conflict.
 **multi-week backlog burn**: `extract:speaker-map` works through the sessions
 that have no `pleno-speaker-map/<id>.json`, ~18 chunks per run (Mon + Thu) against the
 Gemini free tier's 20 requests/day. `npm run speaker-map:backlog -- --why`
-reports where it is. Three things follow from the shape, and each one has cost a
-night or more:
+reports where it is. Two gates sit in front of it (decision 4.4, 2026-11-22):
+
+- **Under the LOREG freeze the whole step is skipped.** The run asks
+  `npm run --silent veda:activa` (the shared `isFrozen`, via
+  `scripts/lib/veda.ts`) and logs `veda electoral: <date|no>`; if the query
+  fails it is treated as a freeze. Every script that writes `speakerGroup` or a
+  speaker map checks the freeze itself too — `tests/veda-escritores-atribucion.test.ts`
+  reds on one that does not.
+- **At most `REATRIBUCION_MAX` (2) already-published sessions are re-extracted
+  with attribution per run.** The rest keep their new map and are re-extracted
+  on a later night (`re-extracción EN ESPERA (tope…)` in the log). Sessions with
+  nothing published yet are not capped.
+
+Three things follow from the shape, and each one has cost a night or more:
 
 - **A backend outage must not stop it.** This step runs on `GEMINI_API_KEY`,
   which is not the text backend the rest of the pipeline uses, and Gemini's

@@ -44,6 +44,7 @@ import {
 import { alignSpeakerMap, blocResolverFor } from '../src/scraper/speaker-map-align'
 import { parseDiarizedTranscript } from '../src/scraper/voice-id'
 import type { SpeakerMap } from '../src/scraper/speaker-map'
+import { vedaActiva } from './lib/veda'
 
 const FINDINGS = 'public/data/pleno-findings.json'
 const TRANSCRIPTS = 'public/data/pleno-transcripts'
@@ -215,6 +216,17 @@ function main() {
   if (!apply) {
     process.stdout.write(
       '[reconcile] report only. Pass --apply to retract the contradicted rows.\n',
+    )
+    return
+  }
+  // /metodologia promete que en veda no se retira nada automáticamente: una
+  // retirada también mueve lo que el sitio dice de un candidato. El informe sí
+  // se escribe (va a editorial/); --apply se queda en nada, con el motivo.
+  const veda = vedaActiva()
+  if (veda) {
+    process.stdout.write(
+      `[reconcile] --apply: veda electoral hasta ${veda} — no se retira nada; ` +
+        `${contradicted.length} contradicha(s) esperan al fin de la veda.\n`,
     )
     return
   }
