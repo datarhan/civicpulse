@@ -1,6 +1,8 @@
 import { test, expect } from '@playwright/test'
 import { readFileSync } from 'node:fs'
 import { collectErrors, appErrors } from './_console'
+import { FICHAS } from '../../src/lib/catalogo-datos'
+import { filasDe, leerCsv } from '../../src/lib/csv-datos'
 
 const leer = (f: string) => JSON.parse(readFileSync(`public/data/${f}`, 'utf8'))
 
@@ -100,5 +102,32 @@ test.describe('Datos (/datos)', () => {
 
     const texto = await page.locator('body').innerText()
     expect(texto.match(/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/g)).toBeNull()
+  })
+
+  // El CSV se genera en el build a partir del JSON SERVIDO (publication-denylist.js,
+  // `escribirCsvEnDist`): sólo aquí, sobre el artefacto, se puede comprobar que
+  // existe y que dice lo mismo. `vite preview` responde a una ruta que no existe
+  // con la página y un 200, así que se exige la marca UTF-8 del CSV.
+  test('cada CSV del catálogo trae una fila por elemento de la lista del JSON servido', async ({
+    request,
+  }) => {
+    const conCsv = Object.entries(FICHAS).filter(([, f]) => f.tabla)
+    expect(conCsv.length).toBeGreaterThan(30)
+    for (const [ruta, f] of conCsv) {
+      const json = await (await request.get(ruta)).json()
+      const filas = filasDe(json, f.tabla as string)
+      expect(Array.isArray(filas), ruta).toBe(true)
+      const r = await request.get(ruta.replace(/\.json$/, '.csv'))
+      expect(r.status(), ruta).toBe(200)
+      const csv = await r.text()
+      if (filas!.length === 0) {
+        expect(csv, ruta).toBe('')
+        continue
+      }
+      expect(csv.startsWith('\uFEFF'), `${ruta}: no es el CSV`).toBe(true)
+      const leidas = leerCsv(csv)
+      expect(leidas.length, ruta).toBe(filas!.length)
+      expect(Object.keys(leidas[0]), ruta).toContain(Object.keys(filas![0])[0])
+    }
   })
 })

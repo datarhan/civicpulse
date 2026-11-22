@@ -99,7 +99,18 @@ describe('el catálogo de /datos, como tabla', () => {
           `${ruta}: enlace al código`,
         ).not.toBeNull()
         expect(tr.querySelector(`a[href="${ruta}"]`), `${ruta}: descarga`).not.toBeNull()
+        // El CSV sólo donde el fichero tiene una lista que lo sostenga.
+        const csv = tr.querySelector(`a[href="${ruta.replace(/\.json$/, '.csv')}"]`)
+        if (f.tabla) expect(csv, `${ruta}: CSV`).not.toBeNull()
+        else expect(csv, `${ruta}: sin lista, sin CSV`).toBeNull()
       }
+    })
+
+    it(`${idioma}: bajo la tabla se dice cómo es el CSV`, () => {
+      const { container } = pinta(idioma)
+      const nota = container.querySelector('[data-nota-csv]')?.textContent ?? ''
+      expect(nota).toBe(CATALOGUE[idioma]['datos.csv.nota'])
+      expect(nota.length).toBeGreaterThan(40)
     })
   }
 
