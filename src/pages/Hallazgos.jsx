@@ -25,7 +25,7 @@ import { authorshipBreakdown } from '../scraper/finding-authorship'
 import { PARTY_TONE } from '../hooks/usePromises'
 import { usePlenoClaims } from '../hooks/usePlenoClaims'
 import { findingMatchesArea } from '../lib/finding-area'
-import { contarHallazgos, pasaFiltros } from '../lib/hallazgos-filtros'
+import { contarHallazgos, pasaFiltros, rotuloDeGrupo } from '../lib/hallazgos-filtros'
 import { DEPARTMENT_LABEL } from '../scraper/departments'
 import { rotuloDe, useLocale, useT } from '../i18n'
 import { partePorHueco, rellena } from '../lib/formatters'
@@ -832,7 +832,7 @@ export default function Hallazgos() {
                   <Chip
                     key={g}
                     active={speakerFilter === g}
-                    label={g}
+                    label={rotuloDeGrupo(t, g)}
                     count={n}
                     onClick={() => setSpeakerFilter(speakerFilter === g ? null : g)}
                   />

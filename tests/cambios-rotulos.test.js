@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
 import { CATALOGUE } from '../src/i18n'
+import { euros } from '../src/lib/formatters'
 import { subtituloDe, textoParaCompartir } from '../src/lib/cambios-rotulos'
 import { ESTADOS_DE_LA_QUEJA } from '../src/scraper/camino-de-la-queja'
 import { PLENO_KINDS } from '../src/scraper/plenos'
@@ -51,7 +52,7 @@ describe('en castellano, el mismo texto que armaba el hook', () => {
 
   it('contrato, con y sin importe', () => {
     expect(textoParaCompartir(es, contrato)).toBe(
-      'Contrato adjudicado · Mantenimiento de alumbrado · 14.984 € sin IVA',
+      `Contrato adjudicado · Mantenimiento de alumbrado · ${euros(14984.46)} sin IVA`,
     )
     expect(textoParaCompartir(es, { ...contrato, importe: null })).toBe(
       'Contrato adjudicado · Mantenimiento de alumbrado',
@@ -84,11 +85,16 @@ describe('en castellano, el mismo texto que armaba el hook', () => {
 
 describe('la sesión de un pleno concuerda y dice algo', () => {
   it('cada clase exportada tiene su rótulo en los dos idiomas', () => {
-    for (const t of [es, ca]) {
+    // «otro» no es una clase: es lo que `classify` dice cuando el título no la
+    // trae, y se rotula como una sesión sin ella. Las demás, con su clave.
+    expect(PLENO_KINDS).toContain('otro')
+    for (const idioma of ['es', 'ca']) {
       for (const tipo of PLENO_KINDS) {
-        const s = subtituloDe(t, { ...pleno, tipoSesion: tipo })
-        expect(s, tipo).toBeTruthy()
-        expect(s, tipo).not.toContain(tipo === 'otro' ? 'otro' : `Sesión ${tipo}`)
+        const clave = tipo === 'otro' ? 'cambios.sesion.municipal' : `cambios.sesion.${tipo}`
+        expect(CATALOGUE[idioma][clave], `${idioma} ${tipo}`).toBeTruthy()
+        expect(subtituloDe(tDe(idioma), { ...pleno, tipoSesion: tipo })).toBe(
+          CATALOGUE[idioma][clave],
+        )
       }
     }
   })
@@ -105,7 +111,7 @@ describe('en valencià, nada de la página sale en castellano', () => {
   it('las líneas de la página', () => {
     expect(textoParaCompartir(ca, queja)).toMatch(/^Queixa RR-2026-0042 · Neteja\n/)
     expect(textoParaCompartir(ca, contrato)).toBe(
-      'Contracte adjudicat · Mantenimiento de alumbrado · 14.984 € sense IVA',
+      `Contracte adjudicat · Mantenimiento de alumbrado · ${euros(14984.46)} sense IVA`,
     )
     expect(textoParaCompartir(ca, subvencion)).toBe('Subvenció · Ayudas al comercio local')
     expect(textoParaCompartir(ca, participa)).toBe('Enquesta · Encuesta de movilidad')

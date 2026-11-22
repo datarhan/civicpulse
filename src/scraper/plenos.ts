@@ -14,7 +14,9 @@
 
 import { fnv32 } from './hash'
 
-export type PlenoKind = 'ordinario' | 'extraordinario' | 'urgente' | 'otro'
+/** Las clases de sesión que `classify` devuelve. Exportadas para que una prueba no las recite. */
+export const PLENO_KINDS = ['ordinario', 'extraordinario', 'urgente', 'otro'] as const
+export type PlenoKind = (typeof PLENO_KINDS)[number]
 
 export interface PlenoItem {
   id: string
