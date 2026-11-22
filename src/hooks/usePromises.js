@@ -23,15 +23,8 @@ export function isPromiseFrozen(snap, now = new Date()) {
 // the neutral slate.
 export { PARTY_COLORS as PARTY_TONE } from '../lib/party-colors'
 
-export const STATUS_LABEL = {
-  documentada: 'Documentada',
-  'en-verificacion': 'En verificación',
-  'en-progreso': 'En progreso',
-  cumplida: 'Cumplida',
-  parcial: 'Parcial',
-  'no-ejecutada': 'No ejecutada',
-  inviable: 'Inviable',
-}
+// Los rótulos de los estados viven en el catálogo, en los dos idiomas:
+// `estadoLlano(t, 'promesa', status)` (src/lib/estado-llano.js).
 
 export const STATUS_TONE = {
   documentada: 'ghost',

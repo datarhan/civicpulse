@@ -7,6 +7,7 @@ import { ESTADO_LLANO } from '../../src/lib/estado-llano'
 import { CLAIM_VERDICTS, PASADAS } from '../../src/scraper/claim-verdicts'
 import { ALLOWED_ASSIGNMENT_KINDS } from '../../src/scraper/journalist'
 import { ESTADOS_ESPERADO } from '../../src/scraper/coste-esperado'
+import { ALLOWED_STATUSES } from '../../src/scraper/promises'
 
 /**
  * Ningún código de un vocabulario de EstadoLlano llega tal cual al texto que se
@@ -26,6 +27,7 @@ const VOCABULARIOS: Record<keyof typeof ESTADO_LLANO, readonly string[]> = {
   encargo: ALLOWED_ASSIGNMENT_KINDS,
   pasada: PASADAS,
   especificacionEsperada: ESTADOS_ESPERADO,
+  promesa: ALLOWED_STATUSES,
 }
 const NOMBRAN_CODIGOS = new Set(['/metodologia', '/datos', '/lab-health'])
 

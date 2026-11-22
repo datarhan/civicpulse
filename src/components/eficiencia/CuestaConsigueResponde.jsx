@@ -1,7 +1,8 @@
 import { Card, SectionHead } from '../Primitives'
 import { CompetenciaDelegada, fotoDeCompetencia } from './CompetenciaDelegada'
 import { useOfficials } from '../../hooks/useOfficials'
-import { usePromises, STATUS_LABEL } from '../../hooks/usePromises'
+import { usePromises } from '../../hooks/usePromises'
+import { estadoLlano } from '../../lib/estado-llano'
 import { useRevelado } from '../../hooks/useRevelado'
 import { direccion, filasCuestaConsigue } from '../../scraper/cuesta-consigue'
 import { rutaDeServicio } from '../../scraper/ruta-de-servicio'
@@ -349,7 +350,8 @@ function Responde({ asignacion, foto, fuente, frozen, promesas, desde, t }) {
               <a href="/promesas">{p.title}</a>
               <span className="cp-ccr-nota">
                 {' '}
-                · {p.party} · {STATUS_LABEL[p.status] ?? p.status}
+                · {p.party}
+                {estadoLlano(t, 'promesa', p.status) && ` · ${estadoLlano(t, 'promesa', p.status)}`}
               </span>
             </li>
           ))}

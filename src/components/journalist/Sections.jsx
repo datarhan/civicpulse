@@ -6,7 +6,9 @@ import { Link } from 'react-router-dom'
 import { Card, Deslizable, ExtLink, Pill, SectionHead } from '../Primitives'
 import { Sparkline } from '../Charts'
 import { CitationPills } from './Citations'
-import { usePromises, STATUS_LABEL, STATUS_TONE } from '../../hooks/usePromises'
+import { usePromises, STATUS_TONE } from '../../hooks/usePromises'
+import { estadoLlano } from '../../lib/estado-llano'
+import { useT } from '../../i18n'
 import { trozos } from '../../lib/texto-negrita.js'
 import { eurosExactos } from '../../lib/formatters'
 
@@ -792,6 +794,7 @@ export function PressSparklineBlock({ payload }) {
 // ─── Section: promise board ──────────────────────────────────────────────
 
 export function PromiseMiniBoard({ payload }) {
+  const t = useT()
   const ids = payload.promiseIds || []
   const promises = usePromises()
   if (ids.length === 0) return null
@@ -836,9 +839,11 @@ export function PromiseMiniBoard({ payload }) {
                         flexWrap: 'wrap',
                       }}
                     >
-                      <Pill tone={STATUS_TONE[p.status] || 'ghost'}>
-                        {STATUS_LABEL[p.status] || p.status}
-                      </Pill>
+                      {estadoLlano(t, 'promesa', p.status) && (
+                        <Pill tone={STATUS_TONE[p.status] || 'ghost'}>
+                          {estadoLlano(t, 'promesa', p.status)}
+                        </Pill>
+                      )}
                       <span
                         className="mono"
                         style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}

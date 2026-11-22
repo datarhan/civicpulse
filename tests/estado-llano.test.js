@@ -8,6 +8,7 @@ import { CLAIM_VERDICTS, PASADAS } from '../src/scraper/claim-verdicts'
 import { ALLOWED_ASSIGNMENT_KINDS } from '../src/scraper/journalist'
 import { ESTADOS_ESPERADO } from '../src/scraper/coste-esperado'
 import { TRINQUETE } from '../src/scraper/trinquete'
+import { ALLOWED_STATUSES } from '../src/scraper/promises'
 
 /**
  * EstadoLlano contra los enums EXPORTADOS (docs/DATA_INTEGRITY.md, regla 1:
@@ -24,13 +25,14 @@ const VOCABULARIOS = {
   encargo: ALLOWED_ASSIGNMENT_KINDS,
   pasada: PASADAS,
   especificacionEsperada: ESTADOS_ESPERADO,
+  promesa: ALLOWED_STATUSES,
 }
 
 const IDIOMAS = Object.keys(CATALOGUE)
 const tDe = (idioma) => (clave) => CATALOGUE[idioma][clave] ?? clave
 
 describe('EstadoLlano: cada código publicado tiene rótulo', () => {
-  it('mide algo: dos idiomas y cuatro vocabularios con valores', () => {
+  it('mide algo: dos idiomas y cinco vocabularios con valores', () => {
     expect(IDIOMAS).toEqual(['es', 'ca'])
     for (const valores of Object.values(VOCABULARIOS)) expect(valores.length).toBeGreaterThan(1)
   })
@@ -93,5 +95,84 @@ describe('EstadoLlano: techo sobre lo PUBLICADO, no sobre el enum', () => {
     for (const k of encargos) expect(estadoLlano(tDe('es'), 'encargo', k), k).toBeTruthy()
     for (const s of estados)
       expect(estadoLlano(tDe('es'), 'especificacionEsperada', s), s).toBeTruthy()
+  })
+})
+
+// Los estados de una promesa se pintaban con una tabla escrita a mano en
+// castellano (`STATUS_LABEL` de usePromises.js) en cinco sitios: /promesas, la
+// columna «Responde» de /eficiencia, la ficha de un cargo, la de un
+// departamento y las biografías. En valencià salían en castellano, y la
+// reserva `|| p.status` imprimía el código de un estado sin rótulo. Pasan al
+// catálogo con las MISMAS palabras: lo que dice un estado lo define
+// /metodologia#estados, y cambiarlo es otro trabajo (plan revisado, 4b.3).
+describe('EstadoLlano: los estados de una promesa', () => {
+  const ANTES = {
+    documentada: 'Documentada',
+    'en-verificacion': 'En verificación',
+    'en-progreso': 'En progreso',
+    cumplida: 'Cumplida',
+    parcial: 'Parcial',
+    'no-ejecutada': 'No ejecutada',
+    inviable: 'Inviable',
+  }
+
+  it('en castellano dicen exactamente lo que decían', () => {
+    expect(Object.keys(ANTES).sort()).toEqual([...ALLOWED_STATUSES].sort())
+    for (const s of ALLOWED_STATUSES) expect(estadoLlano(tDe('es'), 'promesa', s), s).toBe(ANTES[s])
+  })
+
+  // Las retiradas no llevan estado (sólo promiseId, partido, huella, motivo,
+  // editor y fecha), así que la prueba mira las publicadas, todas.
+  it('cada promesa publicada tiene rótulo en los dos idiomas', () => {
+    const p = JSON.parse(readFileSync(resolve('public/data/promises.json'), 'utf8'))
+    const estados = p.items.map((x) => x.status)
+    expect(estados.length).toBeGreaterThan(0)
+    expect(estados.every(Boolean)).toBe(true)
+    for (const idioma of IDIOMAS)
+      for (const s of estados)
+        expect(estadoLlano(tDe(idioma), 'promesa', s), `${idioma}:${s}`).toBeTruthy()
+  })
+
+  // Sin el hueco, `rellena` devuelve la frase sin el estado y nadie lo nota.
+  it('las frases que llevan el rótulo dentro tienen su hueco en los dos idiomas', () => {
+    for (const idioma of IDIOMAS)
+      for (const k of ['promesas.estado.recogida', 'promesas.estado.registrada'])
+        expect(CATALOGUE[idioma][k], `${idioma}:${k}`).toMatch(/«\{estado\}»/)
+  })
+
+  // /metodologia#estados nombra los estados por su código («en-progreso»): en
+  // valencià el rótulo tiene que dejarse reconocer junto a él, y «En curs» es
+  // además el rótulo de otro vocabulario (contrato.estado.in_progress).
+  it('en valencià, «en-progreso» se lee «En progrés», no el «En curs» de los contratos', () => {
+    expect(CATALOGUE.ca['estado.promesa.en-progreso']).toBe('En progrés')
+    expect(CATALOGUE.ca['estado.promesa.en-progreso']).not.toBe(
+      CATALOGUE.ca['contrato.estado.in_progress'],
+    )
+  })
+
+  it('la tarjeta de /promesas no deja en castellano lo que rodea al estado', () => {
+    const fuente = readFileSync(resolve('src/pages/Promesas.jsx'), 'utf8')
+    for (const literal of [
+      'Sin evidencia curada',
+      'enlace roto · sin copia archivada',
+      'copia archivada ↗',
+      'Fundamentación (',
+    ])
+      expect(fuente, literal).not.toContain(literal)
+  })
+
+  it('ninguna página ni componente vuelve a la tabla escrita a mano', () => {
+    const ficheros = [
+      'src/pages/Promesas.jsx',
+      'src/pages/CargoDetalle.jsx',
+      'src/pages/DepartamentoDetalle.jsx',
+      'src/components/journalist/Sections.jsx',
+      'src/components/eficiencia/CuestaConsigueResponde.jsx',
+      'src/hooks/usePromises.js',
+    ]
+    for (const f of ficheros) {
+      const fuente = readFileSync(resolve(f), 'utf8')
+      expect(fuente, f).not.toMatch(/\bSTATUS_LABEL\b/)
+    }
   })
 })
