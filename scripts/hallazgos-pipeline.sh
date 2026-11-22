@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 # CivicPulse — /hallazgos full-refresh pipeline (transcribe → extract →
-# verify → auto-curate → commit → push). Keeps public/data/pleno-findings.json
-# (rendered at /hallazgos) fresh end-to-end.
+# verify → commit → push). Keeps the claims behind /declaraciones and the
+# provenance of /hallazgos fresh end-to-end. It writes no new finding: since
+# 22-11-2026 a person writes and signs each one (see the note where the
+# auto-curate step used to be).
 #
 # Chain:
 #   scrape:pleno-videos          refresh the YouTube video index (cheap)
@@ -10,12 +12,10 @@
 #         transcribe             Whisper mlx · $0 · ~20 min/pleno · local
 #         extract:pleno-claims   claude-code · sonnet · $0 (Max plan)
 #   → verify:pleno-claims        overlay-safe deterministic re-verify
-#   → auto-curate                claude-code · sonnet · libel-safe gates
 #   → commit + push              deploy-vercel.yml redeploys on push-to-main
 #
 # Safe to run unattended:
-#   · No new pleno video → the transcribe/extract loop is a no-op; the
-#     cheap auto-curate still runs to promote any pending verified claims.
+#   · No new pleno video → the transcribe/extract loop is a no-op.
 #   · MAX_PLENOS (default 2) bounds each run's wall-clock; a backlog is
 #     cleared a couple plenos per run (the Mon + Thu agent chews through it).
 #   · verify:pleno-claims is OVERLAY-SAFE — it writes the gitignored base
@@ -23,7 +23,6 @@
 #     public/data/pleno-claims-overlay.json via rebuildVerified(), so it
 #     can NOT wipe the LLM/NLI/curator verdicts. NEVER call
 #     verify:pleno-claims:llm here — that legacy runner bypasses the overlay.
-#   · LOREG electoral freeze → auto-curate exits 0 without writing.
 #   · One pleno failing (yt-dlp hiccup, quota) is logged + skipped; the
 #     batch continues. The extract checkpoint preserves completed plenos.
 #
@@ -113,7 +112,7 @@ export AGY_MODEL="${AGY_MODEL:-gemini-3.8-flash-medium}"  # only read if LLM_BAC
 # to an unrelated outage.
 #
 # So: TEXT_BACKEND is the gate for the steps that genuinely need it —
-# extraction and auto-curation. The map's own back-reference adjudication also
+# extraction (and, until 22-11-2026, auto-curation). The map's own back-reference adjudication also
 # goes through it and degrades safely on its own (an unadjudicated row stays
 # `weak` and yields no attribution), and the post-map re-extraction already
 # knows how to say «map kept, claims still unattributed» and come back tomorrow.
@@ -230,7 +229,7 @@ if [ -n "$TARGETS" ]; then
     if [ "$ok" = 1 ]; then
       TRANSCRIBED=$((TRANSCRIBED+1))
       log "extracting claims from $id ($LLM_BACKEND/${CLAUDE_CODE_MODEL:-$AGY_MODEL} · \$0 backends only)…"
-      # Same $0 policy the auto-curate step below already enforces. The
+      # Same $0 policy the auto-curate step enforced until 22-11-2026. The
       # transcription step above legitimately needs OPENAI_API_KEY, so the key
       # is present in this shell — which meant the extractor's backend chain
       # could walk agy → claude-code → openai and bill silently whenever the
@@ -434,22 +433,19 @@ log "embed:verifier-corpus (incremental, openai-pinned)…"
 EMBED_BACKEND=openai npm run embed:verifier-corpus \
   || log "warn: embed:verifier-corpus non-zero — verifier shortlist falls back to lexical"
 
-# ---- promote (libel-safe gates; no-op under LOREG freeze) -------------
-# The CURATOR stage must never silently go metered (project policy: never
-# openai/anthropic for auto-curate). Strip the metered keys + disable the
-# gemini CLI for THIS call so the fallback chain is agy → claude-code ($0)
-# only (ollama is no longer auto-chained anywhere — user directive 2026-07-07).
-# If agy is throttled and no $0 backend answers, findings are deferred to the
-# next run — a skipped promotion beats a metered one. (Claim extraction above
-# keeps its openai fallback: that's the batch stage, where metered is allowed.)
-if [ "$TEXT_BACKEND" != ok ]; then
-  log "auto-curación EN ESPERA (sin backend de texto) — los hallazgos esperan a una pasada sana"
-else
-  log "auto-curating findings (max 5 · agy→claude-code only, metered fallback off)…"
-  env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY GEMINI_BIN=/nonexistent-disabled \
-    npm run auto-curate -- --max 5 \
-    || log "warn: auto-curate non-zero (agy throttled + no \$0 fallback) — findings deferred"
-fi
+# ---- sin auto-curación (retirada el 22-11-2026) ------------------------
+# Aquí corría `npm run auto-curate -- --max 5`. Se quitó por la decisión 4.1 del
+# plan de plenos (editorial/flujo-plenos-2026-11-20/plan.md):
+#   · Desde el 02-08-2026 no podía publicar: decideAutomation exige una
+#     precisión medida, y la de `publish-finding` (48 de 52, cota inferior de
+#     Wilson 0,818) no llega al 0,90 de lo informativo. Esa medida, además, ya
+#     pasó de los 90 días y nunca cubrió la fidelidad de la paráfrasis.
+#   · Sólo dejaba borradores en editorial/auto-curation-queue-pending-measurement.json,
+#     y esa cola estaba vacía desde el 18-08-2026.
+# Un hallazgo nuevo lo escribe y lo firma una persona. El borrador sigue a mano:
+#   npm run auto-curate -- --dry-run --max 5
+# Se vuelve a enchufar sólo si una muestra juzgada por personas de al menos 150
+# hallazgos, paráfrasis incluida, da 7 defectos o menos (143/150 → 0,907).
 
 # ---- provenance of every published verbatim ---------------------------
 # A newly promoted finding quotes the transcript that is current TODAY, and a
@@ -552,8 +548,8 @@ cron_git_commit_pathspec "$(cat <<EOF
 data: /hallazgos pipeline · ${TRANSCRIBED} pleno(s) transcribed · ${EXTRACTED} extracted · ${MAPPED} speaker map(s) · ${REEXTRACTED} re-extracted · ${NEW_FINDINGS} new finding(s)
 
 Automated by scripts/hallazgos-pipeline.sh (launchd, Mon + Thu).
-transcribe(${WHISPER_ENGINE}) → extract(${LLM_BACKEND}/${CLAUDE_CODE_MODEL:-$AGY_MODEL}) → verify(overlay-safe) → auto-curate.
-All findings tagged \`curatorName: "auto-curation-v1"\`.
+transcribe(${WHISPER_ENGINE}) → extract(${LLM_BACKEND}/${CLAUDE_CODE_MODEL:-$AGY_MODEL}) → verify(overlay-safe).
+No finding is written here: a person writes and signs each one.
 EOF
 )"
 

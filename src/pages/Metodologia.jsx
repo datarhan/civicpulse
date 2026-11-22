@@ -601,17 +601,22 @@ function ContratoEditorial() {
               porque una muestra pequeña no permite saber de qué lado del umbral está. La auditoría
               de agosto de 2026 revisó los 52 hallazgos publicados <em>entonces</em> y encontró 4
               defectos —un 92,3 % de acierto, por encima del 0,90—, pero con 52 casos ese 92,3 % es
-              compatible con un 81 % real, así que la publicación automática sigue cerrada hasta que
-              haya más casos revisados. Esa cifra está congelada a propósito: es lo que se midió en
-              esa fecha, no una afirmación sobre hoy, y sólo cambia cuando se registra una medición
-              nueva. Así se trata también publicar una queja ciudadana que la revisión automática no
-              retiene (la clase <code>queja.publicacion-automatica</code>, con el listón de lo
-              notable, porque una queja dice algo adverso de un servicio): mientras no esté medida,
-              cada queja la publica una persona. Y esa medida no basta: la misma queja, con y sin
-              una frase en la que quien la escribe dice quién es —su origen, su edad, su sexo, una
-              discapacidad, su religión, su barrio o su lengua—, tiene que recibir la misma decisión
-              (la clase <code>queja.invarianza-contrafactual</code>, con el mismo listón). Sin esa
-              segunda medida tampoco se publica sola.
+              compatible con un 81 % real, así que la publicación automática quedó cerrada. Esa
+              cifra está congelada a propósito: es lo que se midió en esa fecha, no una afirmación
+              sobre hoy. Hoy ya no vale ni como medida, porque tiene más de 90 días y nunca cubrió
+              si el resumen parafrasea bien la cita. Por eso el 22 de noviembre de 2026 se quitó de
+              la tarea nocturna el proceso que redactaba hallazgos, que desde agosto sólo dejaba
+              borradores, y un hallazgo nuevo lo escribe y lo firma una persona. Volvería a correr
+              sólo con una muestra nueva de al menos 150 hallazgos revisados por personas,
+              paráfrasis incluida, con 7 defectos o menos. Así se trata también publicar una queja
+              ciudadana que la revisión automática no retiene (la clase{' '}
+              <code>queja.publicacion-automatica</code>, con el listón de lo notable, porque una
+              queja dice algo adverso de un servicio): mientras no esté medida, cada queja la
+              publica una persona. Y esa medida no basta: la misma queja, con y sin una frase en la
+              que quien la escribe dice quién es —su origen, su edad, su sexo, una discapacidad, su
+              religión, su barrio o su lengua—, tiene que recibir la misma decisión (la clase{' '}
+              <code>queja.invarianza-contrafactual</code>, con el mismo listón). Sin esa segunda
+              medida tampoco se publica sola.
             </li>
             {/* Decía «Nombrar a una persona concreta» y «no nombra a ninguna persona concreta».
                 Corregido el 01-11-2026: las puertas saben de cargos, no de personas
@@ -626,19 +631,19 @@ function ContratoEditorial() {
               o dirigido al exterior — registrar una queja en sede. No porque una persona acierte
               más, sino porque la responsabilidad legal necesita una firma. Nombrar a un grupo
               municipal con un solo concejal es nombrar a ese concejal, así que cuenta igual: un
-              hallazgo redactado por el proceso automático cuya cita se atribuye a uno de esos
-              grupos, o cuyo texto lo nombra, no se publica solo aunque su categoría esté medida,
-              sino que pasa a un curador; y el modelo que redacta los resúmenes ni siquiera recibe
-              esas etiquetas. Ese proceso, la auto-curación de /promesas y la del laboratorio de
-              prensa comprueban fila a fila lo que van a publicar: si nombra a un cargo por su
-              apellido, por un oficio que sólo tiene una persona («el alcalde», «la concejala de
-              Cultura») o por uno de esos grupos, no sale solo y pasa a la cola de un curador. En
-              prensa, que no tiene orden para promover un lote, se queda sin publicar. Comprueban
-              los nombres de los cargos, no los de cualquier persona. En las quejas ciudadanas hay
-              una excepción: la foto de una queja publicada, que se anonimiza y se publica sin que
-              nadie la vea. Los hitos de cada queja —cuando alcanza los apoyos necesarios, cuando se
-              registra, cuando vence su plazo sin respuesta— no se anuncian en ningún canal público:
-              se avisan a quien modera.
+              hallazgo redactado por el proceso automático cuya cita se atribuía a uno de esos
+              grupos, o cuyo texto lo nombraba, no se publicaba solo aunque su categoría estuviera
+              medida, sino que pasaba a un curador; y el modelo que redactaba los resúmenes ni
+              siquiera recibía esas etiquetas. Ese proceso ya no corre. La auto-curación de
+              /promesas y la del laboratorio de prensa comprueban fila a fila lo que van a publicar:
+              si nombra a un cargo por su apellido, por un oficio que sólo tiene una persona («el
+              alcalde», «la concejala de Cultura») o por uno de esos grupos, no sale solo y pasa a
+              la cola de un curador. En prensa, que no tiene orden para promover un lote, se queda
+              sin publicar. Comprueban los nombres de los cargos, no los de cualquier persona. En
+              las quejas ciudadanas hay una excepción: la foto de una queja publicada, que se
+              anonimiza y se publica sin que nadie la vea. Los hitos de cada queja —cuando alcanza
+              los apoyos necesarios, cuando se registra, cuando vence su plazo sin respuesta— no se
+              anuncian en ningún canal público: se avisan a quien modera.
             </li>
           </ul>
           {/* 15-10-2026. docs/REVIEW_2026-09.md §25: auto-curate-press.ts y el
@@ -1923,8 +1928,8 @@ function ContratoEditorial() {
                 detrás, derivada, y «la mayoría» delante de «40 de 41» sólo
                 podía rebajarla. Cuando no hay dato, la frase dice la excepción
                 en vez de callarla. */}
-            <strong>Hallazgos editoriales.</strong> Los redacta un proceso automático bajo reglas
-            fijas, no una persona
+            <strong>Hallazgos editoriales.</strong> Hasta el 2 de agosto de 2026 los redactaba un
+            proceso automático bajo reglas fijas, no una persona
             {authorship ? (
               <>
                 : de los {authorship.total} publicados,{' '}
@@ -1940,26 +1945,27 @@ function ContratoEditorial() {
             ) : (
               <> salvo los que llevan la firma de una persona</>
             )}
-            . El pie de cada ficha dice quién la editó, y un nombre así significa que el título y el
-            resumen los escribió una máquina. Cuando un veredicto merece contexto se escribe un
-            hallazgo en <code>pleno-findings.json</code> con título, resumen (≥40 caracteres), citas
-            verbatim y los documentos con los que se ha cotejado. Esa lista es lo que se cotejó, no
-            lo que da la razón: el campo se llama <code>crossChecked</code> y recoge toda la
-            evidencia que el verificador encontró para las citas del hallazgo, así que la ficha la
-            publica bajo el rótulo neutro «documentos cotejados», y debajo lo dice: estar en la
-            lista no dice que confirmen las citas. Hasta el 5 de agosto de 2026 ese mismo campo se
-            llamaba <code>corroboration</code> con exactamente el mismo contenido:{' '}
-            <strong>ningún</strong> paso de este proceso comprueba que un documento respalde una
-            frase —los cruces son coincidencias de importe o de palabras en un título— y el nombre
-            afirmaba lo que la lista no había medido. Se renombró sin tocar una sola referencia,
-            pero hasta el 9 de agosto de 2026 la instrucción que recibía el redactor automático
-            seguía obligándole a citar al menos un registro «que corrobore», así que el resumen
-            afirmaba en prosa el vínculo que el campo ya había dejado de afirmar. Hoy el resumen no
-            puede decir que un expediente confirme, corrobore, respalde o desmienta una frase, y
-            cuando ninguno de los cotejados viene a cuento —que es el caso normal— lo dice y se
-            acaba ahí. El campo <code>contradiction</code> sólo admite documentos que el verificador
-            marcó como incompatibles con la cita. Los hallazgos se publican con derecho de réplica
-            literal para el grupo afectado.
+            . Desde el 22 de noviembre de 2026 ese proceso ya no corre, y un hallazgo nuevo lo
+            escribe y lo firma una persona. El pie de cada ficha dice quién la editó, y un nombre
+            así significa que el título y el resumen los escribió una máquina. Cuando un veredicto
+            merece contexto se escribe un hallazgo en <code>pleno-findings.json</code> con título,
+            resumen (≥40 caracteres), citas verbatim y los documentos con los que se ha cotejado.
+            Esa lista es lo que se cotejó, no lo que da la razón: el campo se llama{' '}
+            <code>crossChecked</code> y recoge toda la evidencia que el verificador encontró para
+            las citas del hallazgo, así que la ficha la publica bajo el rótulo neutro «documentos
+            cotejados», y debajo lo dice: estar en la lista no dice que confirmen las citas. Hasta
+            el 5 de agosto de 2026 ese mismo campo se llamaba <code>corroboration</code> con
+            exactamente el mismo contenido: <strong>ningún</strong> paso de este proceso comprueba
+            que un documento respalde una frase —los cruces son coincidencias de importe o de
+            palabras en un título— y el nombre afirmaba lo que la lista no había medido. Se renombró
+            sin tocar una sola referencia, pero hasta el 9 de agosto de 2026 la instrucción que
+            recibía el redactor automático seguía obligándole a citar al menos un registro «que
+            corrobore», así que el resumen afirmaba en prosa el vínculo que el campo ya había dejado
+            de afirmar. Hoy el resumen no puede decir que un expediente confirme, corrobore,
+            respalde o desmienta una frase, y cuando ninguno de los cotejados viene a cuento —que es
+            el caso normal— lo dice y se acaba ahí. El campo <code>contradiction</code> sólo admite
+            documentos que el verificador marcó como incompatibles con la cita. Los hallazgos se
+            publican con derecho de réplica literal para el grupo afectado.
           </li>
         </ol>
         <p style={{ margin: '12px 0 0', color: 'var(--ink70)' }}>
@@ -2294,7 +2300,7 @@ function ContratoEditorial() {
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
           <strong>Decide la puerta, no quien promueve.</strong> Es un cálculo sobre lo que consta de
           cada afirmación —de qué tipo es y qué dice el veredicto vigente del verificador—, y nadie
-          lo ajusta ficha a ficha: ni el proceso automático que redacta la mayoría de los hallazgos,
+          lo ajusta ficha a ficha: ni el proceso automático que redactó la mayoría de los hallazgos,
           ni una persona al firmar uno. Lo que una persona sí puede hacer es corregir una de esas
           dos cosas, con un motivo escrito que queda registrado: rebajar un veredicto o, si no es
           una acusación, subirlo con su nombre y el registro que lo sostiene (

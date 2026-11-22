@@ -159,7 +159,11 @@ const STEP_OUTPUTS: Record<string, string> = {
   'scrape:agua-pares': 'public/data/agua-pares.json',
   'scrape:pleno-videos-regmeet': 'public/data/pleno-videos-regmeet.json',
   'scrape:pleno-videos': 'public/data/pleno-videos.json',
+  // hallazgos-pipeline.sh ya no lo llama (22-11-2026); sigue aquí para que, si
+  // alguien lo vuelve a enchufar, el stub lo imprima y la prueba que lo prohíbe
+  // lo vea, en vez de un «Missing script» que la dejaría verde sin mirar.
   'auto-curate': 'public/data/pleno-findings.json',
+  'compute:finding-quote-provenance': 'public/data/finding-quote-provenance.json',
   // steps that produce nothing this suite needs to see
   'check:citations': '',
   // Sólo informa (scrape-ci-blocked.sh lo corre con `|| echo`); sin script en el
@@ -541,11 +545,10 @@ describe("cron pipelines · a stranger's staged work is not swept into the commi
   const cases: Array<{ script: string; ownFile: string; env?: Record<string, string> }> = [
     { script: 'scripts/scrape-ci-blocked.sh', ownFile: 'public/data/paro.json' },
     { script: 'scripts/auto-curate-promises-daily.sh', ownFile: 'public/data/promises.json' },
-    // Currently disabled (the plist is renamed .disabled) — but a disabled
-    // agent can be re-enabled, and this one writes pleno-findings.json, a
-    // curated file of claims about named elected officials.
-    { script: 'scripts/auto-curate-weekly.sh', ownFile: 'public/data/pleno-findings.json' },
-    { script: 'scripts/hallazgos-pipeline.sh', ownFile: 'public/data/pleno-findings.json' },
+    {
+      script: 'scripts/hallazgos-pipeline.sh',
+      ownFile: 'public/data/finding-quote-provenance.json',
+    },
     {
       script: 'scripts/press-lab-pipeline.sh',
       ownFile: 'public/data/press-claims-verified.json',
@@ -579,7 +582,6 @@ describe("cron pipelines · the nothing-changed guard ignores a stranger's stage
   const cases: Array<{ script: string; quiet: string; env?: Record<string, string> }> = [
     { script: 'scripts/scrape-ci-blocked.sh', quiet: 'no changes' },
     { script: 'scripts/auto-curate-promises-daily.sh', quiet: 'nothing to commit' },
-    { script: 'scripts/auto-curate-weekly.sh', quiet: 'no new findings' },
     { script: 'scripts/hallazgos-pipeline.sh', quiet: 'nothing changed' },
     {
       script: 'scripts/press-lab-pipeline.sh',
@@ -612,7 +614,6 @@ describe('cron pipelines · branch guard', () => {
   const cases = [
     'scripts/scrape-ci-blocked.sh',
     'scripts/auto-curate-promises-daily.sh',
-    'scripts/auto-curate-weekly.sh',
     'scripts/hallazgos-pipeline.sh',
     'scripts/press-lab-pipeline.sh',
   ]
@@ -670,20 +671,6 @@ describe('cron pipelines · branch guard', () => {
     expect(git(dir, 'rev-parse', '--abbrev-ref', 'HEAD').trim()).toBe('fix/some-feature')
   }, 60_000)
 
-  it('CRON_GIT_ALLOW_BRANCH=1 overrides for auto-curate-weekly too', () => {
-    // The override is the same escape hatch on the curated-findings cron: it
-    // proceeds, the curator step really runs, and the commit lands on the
-    // feature branch (which is exactly what the guard warns about).
-    const dir = makeSandbox({ branch: 'fix/some-feature' })
-    const r = runScript(dir, 'scripts/auto-curate-weekly.sh', { CRON_GIT_ALLOW_BRANCH: '1' })
-
-    expect(r.log).toContain('CRON_GIT_ALLOW_BRANCH está activo')
-    expect(r.log).not.toContain('OMITIDO')
-    expect(r.log).toContain('[stub] ran auto-curate')
-    expect(r.committed).toContain('public/data/pleno-findings.json')
-    expect(git(dir, 'rev-parse', '--abbrev-ref', 'HEAD').trim()).toBe('fix/some-feature')
-  }, 60_000)
-
   it('PRESS_LAB_NO_REMOTE still rehearses on a feature branch, and stays off the network', () => {
     // The rehearsal switch skips BOTH remote touchpoints, so there is nothing
     // for the branch guard to protect — it composes instead of vetoing.
@@ -714,8 +701,10 @@ describe('cron pipelines · the commit lands on the branch the guard approved, o
   const cases: Array<{ script: string; ownFile: string; env?: Record<string, string> }> = [
     { script: 'scripts/scrape-ci-blocked.sh', ownFile: 'public/data/paro.json' },
     { script: 'scripts/auto-curate-promises-daily.sh', ownFile: 'public/data/promises.json' },
-    { script: 'scripts/auto-curate-weekly.sh', ownFile: 'public/data/pleno-findings.json' },
-    { script: 'scripts/hallazgos-pipeline.sh', ownFile: 'public/data/pleno-findings.json' },
+    {
+      script: 'scripts/hallazgos-pipeline.sh',
+      ownFile: 'public/data/finding-quote-provenance.json',
+    },
     {
       script: 'scripts/press-lab-pipeline.sh',
       ownFile: 'public/data/press-claims-verified.json',
@@ -949,7 +938,7 @@ describe('hallazgos-pipeline.sh · the other crons’ files stay out', () => {
     const r = runScript(dir, 'scripts/hallazgos-pipeline.sh')
 
     expect(r.committed, 'the pipeline made no commit at all').not.toEqual([])
-    expect(r.committed).toContain('public/data/pleno-findings.json')
+    expect(r.committed).toContain('public/data/finding-quote-provenance.json')
     expect(r.committed).not.toContain('public/data/quejas.json')
     expect(r.committed).not.toContain('public/data/promises.json')
     // Excluded from the pathspec entirely — so this cron does not even stage
@@ -1054,7 +1043,7 @@ describe('hallazgos-pipeline.sh · un backend caído no se lleva por delante los
     const dir = makeSandbox()
     const r = runScript(dir, 'scripts/hallazgos-pipeline.sh')
     expect(r.log, 'la pasada sana se declaró degradada').not.toMatch(/degradad/i)
-    expect(r.log).toContain('[stub] ran auto-curate')
+    expect(r.log).toContain('[stub] ran compute:finding-quote-provenance')
   }, 120_000)
 })
 
@@ -1102,7 +1091,7 @@ describe('hallazgos-pipeline.sh · los mapas de hablantes entran en el commit', 
     expect(r.committed).toContain(MAPA)
     // La atribución del corpus sale de ese mapa; comitear uno sin el otro deja
     // el corpus apoyado en un fichero que no está en el repositorio.
-    expect(r.committed).toContain('public/data/pleno-findings.json')
+    expect(r.committed).toContain('public/data/finding-quote-provenance.json')
   }, 120_000)
 
   it('y abrir el pathspec no ha dejado entrar a las otras crons — control', () => {
@@ -1118,31 +1107,29 @@ describe('hallazgos-pipeline.sh · los mapas de hablantes entran en el commit', 
 })
 
 // ---------------------------------------------------------------------------
-describe('auto-curate-weekly.sh · the gate compares against HEAD, not the index', () => {
-  it('publishes a batch an interrupted run left staged', () => {
-    // Unlike the other four, this script's old gate was already pathspec-
-    // limited — but it compared the working tree against the INDEX. Interrupt
-    // a run between its `git add` and its `git commit` (or let anything else
-    // stage the file) and every later run sees worktree == index, prints "no
-    // new findings" and exits 0. A curated batch about named councillors,
-    // stuck one command short of publication and permanently invisible,
-    // because nothing will ever dirty the working tree again.
+/**
+ * 22-11-2026, decisión 4.1 del plan de plenos: un hallazgo nuevo lo escribe y
+ * lo firma una persona. La nocturna ya no corre el auto-curador, y el
+ * envoltorio semanal que lo publicaba sale a la primera línea. Si alguien lo
+ * vuelve a enchufar, estas dos lo ven.
+ */
+describe('el auto-curador de hallazgos ya no publica solo', () => {
+  it('auto-curate-weekly.sh sale con error sin correr nada ni comitear', () => {
     const dir = makeSandbox()
-    writeFileSync(
-      join(dir, 'public/data/pleno-findings.json'),
-      '{"items":[{"id":"f-interrumpido"}]}\n',
-    )
-    git(dir, 'add', '--', 'public/data/pleno-findings.json')
-
-    // STUB_NOOP: this run's curator writes nothing of its own, so the only
-    // thing there is to publish is what the interrupted run left staged.
-    const r = runScript(dir, 'scripts/auto-curate-weekly.sh', { STUB_NOOP: '1' })
-
-    expect(r.log, 'the curator step never ran').toContain('[stub] ran auto-curate')
-    expect(r.log).not.toContain('no new findings')
-    expect(r.committed).toContain('public/data/pleno-findings.json')
-    expect(git(dir, 'show', 'HEAD:public/data/pleno-findings.json')).toContain('f-interrumpido')
+    const r = runScript(dir, 'scripts/auto-curate-weekly.sh')
+    expect(r.log, r.log).toContain('retirado')
+    expect(r.log).not.toContain('[stub] ran auto-curate')
+    expect(r.committed).toEqual([])
   }, 60_000)
+
+  it('hallazgos-pipeline.sh no llama a auto-curate en una noche sana', () => {
+    const dir = makeSandbox()
+    const r = runScript(dir, 'scripts/hallazgos-pipeline.sh')
+    // Control: la noche llegó hasta después de donde estaba el paso.
+    expect(r.log).toContain('[stub] ran compute:finding-quote-provenance')
+    expect(r.log).not.toContain('[stub] ran auto-curate')
+    expect(r.committed).not.toContain('public/data/pleno-findings.json')
+  }, 120_000)
 })
 
 // ---------------------------------------------------------------------------
@@ -1458,7 +1445,9 @@ describe('hallazgos-pipeline.sh · una recomposición que aborta no tumba la noc
     // la pasada sale ≠0 —y salía 1 por la avería del resumen final, no por esto—.
     // Se ancla en la línea que el guion escribe él mismo al ver el fallo.
     expect(r.log, 'el fallo inyectado no se dio').toContain('FALLO: verify:pleno-claims')
-    expect(r.log, 'la pasada murió en la recomposición').toContain('[stub] ran auto-curate')
+    expect(r.log, 'la pasada murió en la recomposición').toContain(
+      '[stub] ran compute:finding-quote-provenance',
+    )
     expect(r.committed, 'el trabajo de la noche se quedó sin comitear').toContain(
       'pleno-speaker-map/sandboxpleno.json',
     )

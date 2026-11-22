@@ -347,7 +347,10 @@ export default function AvisoLegal() {
           </a>
           ).
         </p>
-        {/* Desde el 15-10-2026. El README y la entrada del blog decían que nada
+        {/* En pasado desde el 22-11-2026: scripts/hallazgos-pipeline.sh dejó de correr el
+            auto-curador (decisión 4.1 del plan de plenos), que no publicaba nada desde el
+            02-08-2026 porque su medida no llegaba al listón.
+            Desde el 15-10-2026. El README y la entrada del blog decían que nada
             automático llegaba al público; scripts/auto-curate-findings.ts publica
             hallazgos con título y resumen de un modelo (`auto-curation-v1`), y esta
             página, que es el contrato, no lo decía.
@@ -355,21 +358,24 @@ export default function AvisoLegal() {
             presente: medido el 01-11-2026, la puerta retiene 27 de las 115 citas de las fichas,
             en 16 fichas de esta vía. */}
         <p>
-          <strong>Hallazgos de pleno redactados por una máquina.</strong> Un proceso automático
-          puede publicar hallazgos de gravedad informativa cuyo título y resumen escribe un modelo
-          de lenguaje, sobre citas que el registro público de declaraciones muestra al
-          seleccionarlas. Una ficha no saca ninguna cita de la puerta editorial: si la puerta la
-          retiene, aunque sea después de publicarla o la ficha sea anterior a esta regla, la ficha
-          enseña en su lugar el hueco «Literal retenido». Estos hallazgos se publican rotulados como
-          «Redacción automática», y el pie de la ficha dice qué proceso la firmó. Esa vía sólo se
-          abre mientras la precisión medida de esa clase de hallazgo supere el listón publicado en{' '}
+          <strong>Hallazgos de pleno redactados por una máquina.</strong> Hasta el 2 de agosto de
+          2026, un proceso automático publicó hallazgos de gravedad informativa cuyo título y
+          resumen escribía un modelo de lenguaje, sobre citas que el registro público de
+          declaraciones muestra al seleccionarlas. Desde el 22 de noviembre de 2026 ese proceso ya
+          no corre, y un hallazgo nuevo lo escribe y lo firma una persona; lo que sigue vale para
+          las fichas que publicó. Una ficha no saca ninguna cita de la puerta editorial: si la
+          puerta la retiene, aunque sea después de publicarla o la ficha sea anterior a esta regla,
+          la ficha enseña en su lugar el hueco «Literal retenido». Estos hallazgos se publican
+          rotulados como «Redacción automática», y el pie de la ficha dice qué proceso la firmó.
+          Desde el 2 de agosto, esa vía sólo se abría si la precisión medida de esa clase de
+          hallazgo superaba el listón publicado en{' '}
           <a href="/metodologia#politica-automatizacion" style={{ color: 'var(--civic)' }}>
             /metodologia
           </a>
-          . El proceso no redacta hallazgos notables ni críticos, no atribuye nada a una persona con
-          nombre, no publica solo uno cuya cita se atribuya a un grupo municipal de un solo concejal
-          —que es nombrar a ese concejal—, ni uno cuyo texto o cuyas citas lo nombren o nombren a
-          otro cargo, y se detiene durante el periodo electoral.
+          , y no lo superaba. El proceso no redactaba hallazgos notables ni críticos, no atribuía
+          nada a una persona con nombre, no publicaba solo uno cuya cita se atribuyera a un grupo
+          municipal de un solo concejal —que es nombrar a ese concejal—, ni uno cuyo texto o cuyas
+          citas lo nombraran o nombraran a otro cargo, y se detenía durante el periodo electoral.
         </p>
         {/* /metodologia#politica-automatizacion lista estos procesos; hasta el 01-11-2026
             decía «Dos» y este documento no decía ninguno. Las dos últimas frases son de ese

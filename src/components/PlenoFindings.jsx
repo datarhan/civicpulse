@@ -1098,8 +1098,9 @@ export function PlenoFindingsSection() {
       >
         Un hallazgo toma una o más declaraciones extraídas automáticamente del pleno y las sitúa en
         su contexto documental (contratos, subvenciones, presupuesto, promesas). La mayoría los
-        redacta un proceso automático bajo reglas fijas; el pie de cada ficha dice quién la editó, y
-        un nombre como «auto-curation-v1» significa que el texto lo escribió una máquina. Cada
+        redactó, hasta agosto de 2026, un proceso automático bajo reglas fijas que ya no corre; un
+        hallazgo nuevo lo escribe y lo firma una persona. El pie de cada ficha dice quién la editó,
+        y un nombre como «auto-curation-v1» significa que el texto lo escribió una máquina. Cada
         hallazgo cita literales verbatim, lista los documentos con los que se ha cotejado —lo
         corroboren o no— y permite réplica literal de los grupos afectados.
       </p>
