@@ -200,8 +200,10 @@ extrae_sesion() {
   local sid="$1" salida
   salida="$(mktemp "${TMPDIR:-/tmp}/extrae.XXXXXX")"
   EXTRAE_RC=0
-  env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY npm run extract:pleno-claims -- "$sid" > "$salida" 2>&1 || EXTRAE_RC=$?
-  cat "$salida"
+  # `tee`, no un fichero que se imprime al final: una extracción son ~465
+  # llamadas, y el registro tiene que verla avanzar. Con pipefail, el código es
+  # el del extractor.
+  env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY npm run extract:pleno-claims -- "$sid" 2>&1 | tee "$salida" || EXTRAE_RC=$?
   EXTRAE_PARCIAL=0
   if grep -qE "^\[extract·claims\] $sid: .*NO ANSWER" "$salida"; then EXTRAE_PARCIAL=1; fi
   rm -f "$salida"
@@ -401,23 +403,31 @@ else
       log "recuperando la extracción de $rid…"
       extrae_sesion "$rid"
       N_DECL=$(declaraciones_de "$rid")
-      if [ "$EXTRAE_RC" -eq 0 ] && [ "$N_DECL" != "?" ] && [ "$N_DECL" -gt 0 ]; then
+      TIENE=0
+      if [ "$EXTRAE_RC" -eq 0 ] && [ "$N_DECL" != "?" ] && [ "$N_DECL" -gt 0 ]; then TIENE=1; fi
+      if [ "$TIENE" = 1 ]; then
         EXTRACTED=$((EXTRACTED+1)); RECUPERADAS=$((RECUPERADAS+1))
-        fallos_quita "$rid"
         log "✓ $rid recuperada: $N_DECL declaración(es)$([ "$EXTRAE_PARCIAL" = 1 ] && echo ' — aún a medias')"
         sugiere_votos "$rid"
+      fi
+      if [ "$TIENE" = 1 ] && [ "$EXTRAE_PARCIAL" = 0 ]; then
+        fallos_quita "$rid"
       elif ! sondea_texto; then
-        log "· la recuperación de $rid falló con claude caído — no cuenta como intento de la sesión"
+        log "· la recuperación de $rid quedó incompleta con claude caído — no cuenta como intento de la sesión"
         break
       else
+        # Con claude vivo: sin declaraciones, o a medias otra vez. Las dos cuentan,
+        # porque una ventana que nunca contesta dejaría la sesión a medias en cada
+        # pasada y se quedaría con el único hueco de la recuperación.
         N_FALLOS=$(( $(fallos_de "$rid") + 1 ))
         if [ "$N_FALLOS" -ge "$FALLOS_MAX" ]; then
           fallos_quita "$rid"
+          lista_quita "$PARCIALES" "$rid"
           lista_pon "$EXTRAIDAS_VACIAS" "$rid"
-          log "⚠ $rid: $N_FALLOS recuperaciones sin declaraciones con claude vivo — apuntada en $EXTRAIDAS_VACIAS, no se reintenta sola (mírala a mano)"
+          log "⚠ $rid: $N_FALLOS recuperaciones sin completarse con claude vivo (declaraciones=$N_DECL) — apuntada en $EXTRAIDAS_VACIAS, no se reintenta sola (mírala a mano)"
         else
           fallos_pon "$rid" "$N_FALLOS"
-          log "warn: la recuperación de $rid no dio declaraciones (intento $N_FALLOS de $FALLOS_MAX con claude vivo; rc=$EXTRAE_RC, declaraciones=$N_DECL)"
+          log "warn: la recuperación de $rid no se completó (intento $N_FALLOS de $FALLOS_MAX con claude vivo; rc=$EXTRAE_RC, declaraciones=$N_DECL$([ "$EXTRAE_PARCIAL" = 1 ] && echo ', a medias'))"
         fi
       fi
     done <<< "$PENDIENTES_EXTRACCION"

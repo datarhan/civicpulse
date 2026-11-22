@@ -2444,10 +2444,10 @@ describe('hallazgos-pipeline.sh · recuperación de extracciones y re-sondeo', (
     const env = { STUB_PENDIENTES: 'vacia', FALLOS_MAX: '2' }
     const r1 = runScript(dir, 'scripts/hallazgos-pipeline.sh', env)
     expect(r1.log).toMatch(/recuperando la extracción de vacia/)
-    expect(r1.log).toMatch(/la recuperación de vacia no dio declaraciones \(intento 1 de 2/)
+    expect(r1.log).toMatch(/la recuperación de vacia no se completó \(intento 1 de 2/)
     expect(readFileSync(join(dir, '.cache/extraccion-fallos.txt'), 'utf8').trim()).toBe('vacia 1')
     const r2 = runScript(dir, 'scripts/hallazgos-pipeline.sh', env)
-    expect(r2.log).toMatch(/⚠ vacia: 2 recuperaciones sin declaraciones con claude vivo/)
+    expect(r2.log).toMatch(/⚠ vacia: 2 recuperaciones sin completarse con claude vivo/)
     expect(readFileSync(join(dir, '.cache/extraccion-sin-declaraciones.txt'), 'utf8').trim()).toBe(
       'vacia',
     )
@@ -2462,7 +2462,7 @@ describe('hallazgos-pipeline.sh · recuperación de extracciones y re-sondeo', (
       STUB_PENDIENTES: 'nueva',
     })
     expect(r.log).toMatch(/recuperando la extracción de nueva/)
-    expect(r.log).toMatch(/falló con claude caído — no cuenta como intento/)
+    expect(r.log).toMatch(/quedó incompleta con claude caído — no cuenta como intento/)
     expect(existsSync(join(dir, '.cache/extraccion-fallos.txt'))).toBe(false)
     expect(Number(readFileSync(join(dir, '.claude-llamadas'), 'utf8'))).toBe(3)
   }, 120_000)
@@ -2485,6 +2485,25 @@ describe('hallazgos-pipeline.sh · recuperación de extracciones y re-sondeo', (
     expect(r2.log).toContain('✓ nueva recuperada: 1 declaración(es)')
     expect(r2.log).not.toMatch(/aún a medias/)
     expect(readFileSync(parciales, 'utf8').trim()).toBe('')
+  }, 240_000)
+
+  it('una que se queda a medias en cada pasada también sale de la cola a los FALLOS_MAX', () => {
+    const dir = makeSandbox()
+    const env = {
+      STUB_PENDIENTES: 'terca',
+      STUB_DECLARA: 'terca',
+      STUB_PARCIAL: 'terca',
+      FALLOS_MAX: '2',
+    }
+    const r1 = runScript(dir, 'scripts/hallazgos-pipeline.sh', env)
+    expect(r1.log).toContain('✓ terca recuperada: 1 declaración(es) — aún a medias')
+    expect(r1.log).toMatch(/recuperación de terca no se completó \(intento 1 de 2.*a medias/)
+    const r2 = runScript(dir, 'scripts/hallazgos-pipeline.sh', env)
+    expect(r2.log).toMatch(/⚠ terca: 2 recuperaciones sin completarse/)
+    expect(readFileSync(join(dir, '.cache/extraccion-sin-declaraciones.txt'), 'utf8').trim()).toBe(
+      'terca',
+    )
+    expect(readFileSync(join(dir, '.cache/extraccion-parcial.txt'), 'utf8').trim()).toBe('')
   }, 240_000)
 
   it('RECUPERA_MAX=0 la apaga y lo dice', () => {

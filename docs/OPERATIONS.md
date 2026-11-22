@@ -453,7 +453,7 @@ and each recovered session also gets its vote suggestions.
 
 The extractor exits 1 when it gets nothing, whether claude died or the session
 really yields nothing, so after a failure the run probes claude again. If claude
-is down, the attempt does not count. If claude is up, it counts in
+is down, the attempt does not count. If claude is up — or the attempt left the session partial again, which a window that never answers would do every run — it counts in
 `.cache/extraccion-fallos.txt`, and after `FALLOS_MAX` (3) the session moves to
 `.cache/extraccion-sin-declaraciones.txt` and is no longer retried
 automatically, so it cannot block the rest of the queue; delete its line to
