@@ -9,6 +9,9 @@ import { ALLOWED_ASSIGNMENT_KINDS } from '../src/scraper/journalist'
 import { ESTADOS_ESPERADO } from '../src/scraper/coste-esperado'
 import { TRINQUETE } from '../src/scraper/trinquete'
 import { ALLOWED_STATUSES } from '../src/scraper/promises'
+import { ALLOWED_OUTCOMES, ALLOWED_DIRECTIONS } from '../src/scraper/pleno-votes'
+import { ALLOWED_FINDING_SEVERITIES } from '../src/scraper/pleno-finding'
+import { ESTADOS_DE_LA_QUEJA } from '../src/scraper/camino-de-la-queja'
 
 /**
  * EstadoLlano contra los enums EXPORTADOS (docs/DATA_INTEGRITY.md, regla 1:
@@ -26,13 +29,17 @@ const VOCABULARIOS = {
   pasada: PASADAS,
   especificacionEsperada: ESTADOS_ESPERADO,
   promesa: ALLOWED_STATUSES,
+  desenlace: ALLOWED_OUTCOMES,
+  sentido: ALLOWED_DIRECTIONS,
+  gravedad: ALLOWED_FINDING_SEVERITIES,
+  queja: ESTADOS_DE_LA_QUEJA,
 }
 
 const IDIOMAS = Object.keys(CATALOGUE)
 const tDe = (idioma) => (clave) => CATALOGUE[idioma][clave] ?? clave
 
 describe('EstadoLlano: cada código publicado tiene rótulo', () => {
-  it('mide algo: dos idiomas y cinco vocabularios con valores', () => {
+  it('mide algo: dos idiomas y nueve vocabularios con valores', () => {
     expect(IDIOMAS).toEqual(['es', 'ca'])
     for (const valores of Object.values(VOCABULARIOS)) expect(valores.length).toBeGreaterThan(1)
   })
@@ -174,5 +181,18 @@ describe('EstadoLlano: los estados de una promesa', () => {
       const fuente = readFileSync(resolve(f), 'utf8')
       expect(fuente, f).not.toMatch(/\bSTATUS_LABEL\b/)
     }
+  })
+})
+
+// Las tablas de los hooks (OUTCOME_LABEL de usePlenoVotes, STATE_LABEL de
+// useQuejas) leen el castellano del catálogo a propósito, para las páginas aún
+// sin traducir. La ficha de un departamento sí está traducida, y las usaba:
+// en valencià, el desenlace de una votación y el estado de una queja salían en
+// castellano. Ahora los lee en el idioma de la interfaz.
+describe('EstadoLlano: la ficha de un departamento no lee el castellano a mano', () => {
+  it('no importa OUTCOME_LABEL ni STATE_LABEL', () => {
+    const fuente = readFileSync(resolve('src/pages/DepartamentoDetalle.jsx'), 'utf8')
+    expect(fuente).not.toMatch(/\bOUTCOME_LABEL\b/)
+    expect(fuente).not.toMatch(/\bSTATE_LABEL\b/)
   })
 })

@@ -8,6 +8,9 @@ import { CLAIM_VERDICTS, PASADAS } from '../../src/scraper/claim-verdicts'
 import { ALLOWED_ASSIGNMENT_KINDS } from '../../src/scraper/journalist'
 import { ESTADOS_ESPERADO } from '../../src/scraper/coste-esperado'
 import { ALLOWED_STATUSES } from '../../src/scraper/promises'
+import { ALLOWED_OUTCOMES, ALLOWED_DIRECTIONS } from '../../src/scraper/pleno-votes'
+import { ALLOWED_FINDING_SEVERITIES } from '../../src/scraper/pleno-finding'
+import { ESTADOS_DE_LA_QUEJA } from '../../src/scraper/camino-de-la-queja'
 
 /**
  * Ningún código de un vocabulario de EstadoLlano llega tal cual al texto que se
@@ -28,6 +31,10 @@ const VOCABULARIOS: Record<keyof typeof ESTADO_LLANO, readonly string[]> = {
   pasada: PASADAS,
   especificacionEsperada: ESTADOS_ESPERADO,
   promesa: ALLOWED_STATUSES,
+  desenlace: ALLOWED_OUTCOMES,
+  sentido: ALLOWED_DIRECTIONS,
+  gravedad: ALLOWED_FINDING_SEVERITIES,
+  queja: ESTADOS_DE_LA_QUEJA,
 }
 const NOMBRAN_CODIGOS = new Set(['/metodologia', '/datos', '/lab-health'])
 
