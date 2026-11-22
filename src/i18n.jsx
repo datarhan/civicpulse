@@ -1332,10 +1332,21 @@ export const CATALOGUE = {
     'datos.tabla.actualizado': 'Actualizado',
     'datos.tabla.descarga': 'Descarga',
     'datos.tabla.codigo': 'Código',
-    'datos.licencia.propia': 'CC BY 4.0 · datos de CivicPulse',
-    'datos.licencia.ley37': 'Ley 37/2007 · reutilización de información pública',
-    'datos.licencia.ue': 'Decisión 2011/833/UE · reutilización de documentos de la UE',
-    'datos.licencia.prensa': 'Sin licencia abierta: titulares y enlaces de cada medio',
+    'datos.leyenda.titulo': 'Las licencias de la tabla',
+    'datos.leyenda.propia':
+      'CC BY 4.0 · CivicPulse: lo que produce CivicPulse. Se puede reutilizar para cualquier fin citándolo; lo detalla el aviso legal.',
+    'datos.leyenda.ley37':
+      'Ley 37/2007: la reutilización de la información del sector público, en las condiciones que fije cada fuente.',
+    'datos.leyenda.ue':
+      'Decisión 2011/833/UE: la reutilización de los documentos de la Comisión Europea, que rige los anuncios de TED.',
+    'datos.leyenda.prensa':
+      'Sin licencia abierta: titulares y enlaces de cada medio. Los derechos son del medio; aquí sólo se enlazan.',
+    'datos.leyenda.abiertas':
+      'CC BY 4.0, ODbL 1.0 y CC0 1.0: las licencias abiertas que publica la propia fuente.',
+    'datos.licencia.propia': 'CC BY 4.0 · CivicPulse',
+    'datos.licencia.ley37': 'Ley 37/2007',
+    'datos.licencia.ue': 'Decisión 2011/833/UE',
+    'datos.licencia.prensa': 'Sin licencia abierta',
     'datos.licencia.nota.quejas':
       'El texto de cada queja es de quien la escribe: no lo licenciamos.',
     'datos.fila.officials': 'Un cargo de la corporación',
@@ -4992,10 +5003,21 @@ export const CATALOGUE = {
     'datos.tabla.actualizado': 'Actualitzat',
     'datos.tabla.descarga': 'Descàrrega',
     'datos.tabla.codigo': 'Codi',
-    'datos.licencia.propia': 'CC BY 4.0 · dades de CivicPulse',
-    'datos.licencia.ley37': 'Llei 37/2007 · reutilització d’informació pública',
-    'datos.licencia.ue': 'Decisió 2011/833/UE · reutilització de documents de la UE',
-    'datos.licencia.prensa': 'Sense llicència oberta: titulars i enllaços de cada mitjà',
+    'datos.leyenda.titulo': 'Les llicències de la taula',
+    'datos.leyenda.propia':
+      'CC BY 4.0 · CivicPulse: el que produeix CivicPulse. Es pot reutilitzar per a qualsevol fi citant-lo; ho detalla l’avís legal.',
+    'datos.leyenda.ley37':
+      'Llei 37/2007: la reutilització de la informació del sector públic, en les condicions que fixe cada font.',
+    'datos.leyenda.ue':
+      'Decisió 2011/833/UE: la reutilització dels documents de la Comissió Europea, que regix els anuncis de TED.',
+    'datos.leyenda.prensa':
+      'Sense llicència oberta: titulars i enllaços de cada mitjà. Els drets són del mitjà; ací només s’enllacen.',
+    'datos.leyenda.abiertas':
+      'CC BY 4.0, ODbL 1.0 i CC0 1.0: les llicències obertes que publica la mateixa font.',
+    'datos.licencia.propia': 'CC BY 4.0 · CivicPulse',
+    'datos.licencia.ley37': 'Llei 37/2007',
+    'datos.licencia.ue': 'Decisió 2011/833/UE',
+    'datos.licencia.prensa': 'Sense llicència oberta',
     'datos.licencia.nota.quejas': 'El text de cada queixa és de qui l’escriu: no el llicenciem.',
     'datos.fila.officials': 'Un càrrec de la corporació',
     'datos.fila.budget': 'El pressupost d’un exercici: totals i capítols',

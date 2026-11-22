@@ -579,10 +579,16 @@ function DatasetsCatalog() {
                   )}
                   {f?.nota && <span className="cp-catalogo-nota">{t(f.nota)}</span>}
                 </td>
-                <td className="mono" data-rotulo={rotulos['datos.tabla.actualizado']}>
+                <td
+                  className="mono cp-catalogo-corta"
+                  data-rotulo={rotulos['datos.tabla.actualizado']}
+                >
                   {d.updated}
                 </td>
-                <td className="mono" data-rotulo={rotulos['datos.tabla.descarga']}>
+                <td
+                  className="mono cp-catalogo-corta"
+                  data-rotulo={rotulos['datos.tabla.descarga']}
+                >
                   <a href={d.path} target="_blank" rel="noreferrer">
                     JSON
                   </a>
@@ -601,6 +607,22 @@ function DatasetsCatalog() {
           })}
         </tbody>
       </table>
+      {/* La etiqueta de cada licencia es corta para que la columna se lea; lo
+          que significa cada una se dice una vez, aquí. */}
+      <div className="cp-catalogo-leyenda" data-leyenda-licencias="">
+        <p className="cp-catalogo-leyenda-titulo">{t('datos.leyenda.titulo')}</p>
+        <ul>
+          {[
+            'datos.leyenda.propia',
+            'datos.leyenda.ley37',
+            'datos.leyenda.ue',
+            'datos.leyenda.prensa',
+            'datos.leyenda.abiertas',
+          ].map((k) => (
+            <li key={k}>{t(k)}</li>
+          ))}
+        </ul>
+      </div>
     </div>
   )
 }

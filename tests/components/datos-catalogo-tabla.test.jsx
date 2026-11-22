@@ -108,4 +108,20 @@ describe('el catálogo de /datos, como tabla', () => {
     const tr = container.querySelector('tr[data-ficha-catalogo="/data/quejas.json"]')
     expect(tr.textContent).toContain(CATALOGUE.es[FICHAS['/data/quejas.json'].nota])
   })
+
+  // La etiqueta de cada licencia es corta; lo que significa se dice una vez,
+  // debajo. Cada licencia que la tabla usa tiene que estar explicada allí.
+  for (const idioma of ['es', 'ca']) {
+    it(`${idioma}: la leyenda explica cada licencia que la tabla usa`, () => {
+      const { container } = pinta(idioma)
+      const leyenda = container.querySelector('[data-leyenda-licencias]')?.textContent ?? ''
+      const usadas = new Set(Object.values(FICHAS).map((f) => f.licencia))
+      expect(usadas.size).toBeGreaterThan(4)
+      for (const clave of usadas) {
+        const l = LICENCIAS[clave]
+        const etiqueta = l.clave ? CATALOGUE[idioma][l.clave] : l.nombre
+        expect(leyenda, clave).toContain(etiqueta)
+      }
+    })
+  }
 })

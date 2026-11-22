@@ -933,7 +933,12 @@ body.cp-kiosk .cp-live-container {
   vertical-align: top;
   padding: 8px 10px;
   border-bottom: 1px solid var(--border2);
-  overflow-wrap: anywhere;
+  /* Sólo se parte una palabra que no cabe entera: «anywhere» partía las
+     cabeceras y los nombres de fichero por la mitad. */
+  overflow-wrap: break-word;
+}
+.cp-catalogo .cp-catalogo-corta {
+  white-space: nowrap;
 }
 .cp-catalogo thead th {
   font-size: var(--fs-micro);
@@ -957,6 +962,21 @@ body.cp-kiosk .cp-live-container {
   margin-top: 4px;
   font-size: var(--fs-micro);
   color: var(--ink50);
+}
+.cp-catalogo-leyenda {
+  margin-top: 12px;
+  font-size: var(--fs-micro);
+  color: var(--ink70);
+  max-width: 70ch;
+}
+.cp-catalogo-leyenda-titulo {
+  margin: 0 0 4px;
+  font-weight: 600;
+}
+.cp-catalogo-leyenda ul {
+  margin: 0;
+  padding-left: 18px;
+  line-height: 1.5;
 }
 @container catalogo (max-width: 959px) {
   .cp-catalogo thead {
