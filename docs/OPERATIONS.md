@@ -558,28 +558,44 @@ reports where it is. Two gates sit in front of it (decision 4.4, 2026-11-22):
   fails it is treated as a freeze. Every script that writes `speakerGroup` or a
   speaker map checks the freeze itself too — `tests/veda-escritores-atribucion.test.ts`
   reds on one that does not.
-- **At most `REATRIBUCION_MAX` (2) already-published sessions are re-extracted
-  with attribution per run.** The rest keep their new map and go into
+- **At most `REATRIBUCION_MAX` (2) already-published sessions get groups per
+  run.** A newly mapped session is joined to its map by `atribuye_con_mapa`,
+  one of two ways:
+  - **Already published** → `npm run reunir:atribucion -- --write --max 1
+--pleno <id>`: the extractor's join applied to the statements already
+    extracted (no model call, no new ids, no text backend needed), never over
+    an existing or signed group or one a finding withdrew, and holding back
+    one-seat groups. Until 2026-11-23 these were re-extracted, and the
+    extractor's orphan guard refuses that for any session a finding cites
+    (`<id> SKIPPED — n cited claim(s) would be orphaned`), so the session sat
+    on the pending list forever and published no group.
+  - **Nothing published yet** → re-extracted (`extract:pleno-claims`), not
+    capped. A re-extraction an extractor guard leaves without effect
+    (`PRESERVED`/`SKIPPED`/`CONSERVADA`) stays on the list.
+
+  The rest keep their new map and go into
   `.cache/reatribucion-pendiente.txt` (gitignored), which every later run works
   through under the same cap — a complete map takes a session out of
-  `speaker-map:backlog`, so without the list nothing would ever re-extract it.
-  The same list catches a re-extraction held for lack of a text backend or one
-  that failed. Sessions with nothing published yet are not capped. Under the
-  freeze, `extract-pleno-claims` also refuses to re-extract a session that
-  already carries groups (re-extracting would strip them). And `verified-rebuild` refuses, under the
-  freeze, a recomposition that would add or change a group, so a
-  re-attribution whose verify failed just before the freeze waits for its end.
-  A re-extraction that an extractor guard leaves without effect
-  (`PRESERVED`/`SKIPPED`/`CONSERVADA`) stays on the list and spends no cap. That is
-  most published sessions: a finding that cites a session's statements makes the
-  orphan guard refuse its re-extraction, so the list never empties by itself.
-  `npm run reunir:atribucion` is the way through: it applies the same join to
-  the statements already extracted (no model call, no new ids), never over a
-  signed group or one a finding withdrew, and holds back one-seat groups; then
-  `npm run verify:pleno-claims`. It is dry-run by default and keeps the same cap
-  (`--max` raises it, for a run someone reviews). A freeze longer than
-  eight days leaves `check:runs` reporting the speaker-map pass overdue: that is
-  the freeze, not a dead step.
+  `speaker-map:backlog`, so without the list nothing would ever join it. The
+  same list catches a re-extraction held for lack of a text backend, and a join
+  or re-extraction that failed. The run logs every join outcome separately,
+  zeros included: `re-unión de sesiones publicadas: N unida(s) · N sin nada que
+unir · N no intentada(s) · N fallida(s) · N en espera por el tope`. Only
+  `unida` spends cap; `unida` and `sin nada que unir` (the map vouches for
+  nothing publishable that is missing) leave the list; `no intentada` (no
+  readable transcript, no extracted statements, freeze) and `fallida` stay. A
+  join counts as an extraction for the verify gate, so the same run rebuilds
+  what is published with `verify:pleno-claims` and stamps
+  `pleno-claims-suggestions.json`; if that verify fails, the log names the
+  sessions whose groups are in the suggestions but not yet published.
+  `reunir:atribucion` without `--write` is a dry run, and `--max` raises the
+  cap for a run someone reviews. Under the freeze, `extract-pleno-claims` also
+  refuses to re-extract a session that already carries groups (re-extracting
+  would strip them), `reunir:atribucion --write` refuses outright, and
+  `verified-rebuild` refuses a recomposition that would add or change a group,
+  so a re-attribution whose verify failed just before the freeze waits for its
+  end. A freeze longer than eight days leaves `check:runs` reporting the
+  speaker-map pass overdue: that is the freeze, not a dead step.
 
 Three things follow from the shape, and each one has cost a night or more:
 

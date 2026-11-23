@@ -547,7 +547,7 @@ log "veda electoral: ${VEDA:-no}"
 # Como mucho tantas sesiones YA PUBLICADAS re-atribuidas por pasada, haya veda o
 # no: una versión mala del mapa podía volver a etiquetar 49 sesiones en una
 # noche antes de que nadie mirara. Las que pasan del tope conservan su mapa y se
-# re-extraen la noche siguiente. Sube cuando el conjunto de oro se vuelva a
+# unen en una pasada siguiente (`atribuye_con_mapa`). Sube cuando el conjunto de oro se vuelva a
 # puntuar tras cada cambio (paso 2.3 del plan).
 REATRIBUCION_MAX="${REATRIBUCION_MAX:-2}"
 case "$REATRIBUCION_MAX" in
@@ -556,6 +556,9 @@ case "$REATRIBUCION_MAX" in
     REATRIBUCION_MAX=0 ;;
 esac
 REATRIBUIDAS=0
+# Desenlaces de la re-unión de sesiones publicadas, cada uno aparte (regla 2).
+REUNIDAS=0; REUNION_NADA=0; REUNION_NO_INTENTADA=0; REUNION_FALLIDA=0; REUNION_EN_ESPERA=0
+REUNIDAS_IDS=""
 # 1 si la sesión ya tiene declaraciones publicadas. Ante la duda, 1: cuenta
 # contra el tope.
 publicada() {
@@ -578,19 +581,34 @@ quita_pendiente() {
   grep -vxF -- "$1" "$PENDIENTES" > "$PENDIENTES.tmp" || true
   mv "$PENDIENTES.tmp" "$PENDIENTES"
 }
-# Re-extrae una sesión con su mapa, o la deja EN ESPERA (y apuntada). Nunca sale
-# !=0: bajo `set -e` una espera no puede tumbar la noche.
-reextrae_con_mapa() {
+# Une una sesión recién mapeada con su mapa, o la deja EN ESPERA (y apuntada).
+# Nunca sale !=0: bajo `set -e` una espera no puede tumbar la noche.
+#
+# Dos caminos, según haya algo publicado (23-11-2026):
+#   · YA PUBLICADA → `reunir:atribucion`: la misma unión sobre las declaraciones
+#     ya extraídas, sin modelo y sin ids nuevos. Hasta hoy se re-extraía, y la
+#     guarda de huérfanas del extractor lo niega a toda sesión que cita un
+#     hallazgo (`<id> SKIPPED — n cited claim(s) would be orphaned`): la sesión
+#     quedaba en la lista para siempre y no publicaba ningún grupo. El 23-11, 12
+#     de las 16 sesiones mapeadas estaban así (#590 las unió a mano).
+#   · SIN NADA PUBLICADO → se re-extrae, como antes: no hay ids que dejar huérfanos.
+#     Necesita el backend de texto; la re-unión no.
+atribuye_con_mapa() {
   local mid="$1"
   HECHAS_EN_LA_PASADA="${HECHAS_EN_LA_PASADA}${mid} "
-  if [ "$TEXT_BACKEND" != ok ]; then
+  if [ "$(publicada "$mid")" = 1 ]; then
+    if [ "$REATRIBUIDAS" -ge "$REATRIBUCION_MAX" ]; then
+      REUNION_EN_ESPERA=$((REUNION_EN_ESPERA+1))
+      log "· $mid mapeado, re-unión EN ESPERA (tope: $REATRIBUCION_MAX sesión(es) publicada(s) re-atribuida(s) por pasada) — el mapa queda guardado y se une en otra pasada"
+      anota_pendiente "$mid"
+    else
+      reune_con_mapa "$mid"
+    fi
+  elif [ "$TEXT_BACKEND" != ok ]; then
     # The map is on disk and that is the expensive half. The claims pick
     # it up on a later healthy run; until then they carry no bloc,
     # which is honest rather than wrong.
     log "· $mid mapeado, re-extracción EN ESPERA (sin backend de texto) — el mapa queda guardado"
-    anota_pendiente "$mid"
-  elif [ "$(publicada "$mid")" = 1 ] && [ "$REATRIBUIDAS" -ge "$REATRIBUCION_MAX" ]; then
-    log "· $mid mapeado, re-extracción EN ESPERA (tope: $REATRIBUCION_MAX sesión(es) publicada(s) re-atribuida(s) por pasada) — el mapa queda guardado y se re-extrae en otra pasada"
     anota_pendiente "$mid"
   else
     local salida
@@ -599,13 +617,12 @@ reextrae_con_mapa() {
       cat "$salida"
       # Sale 0 también cuando una guarda del extractor conservó las declaraciones
       # viejas, sin grupo (vacío, citas huérfanas, veda). Eso no es re-atribuir:
-      # ni gasta tope ni la saca de la lista.
+      # no la saca de la lista.
       if grep -qE "\] $mid (PRESERVED|SKIPPED|CONSERVADA)" "$salida"; then
         log "· $mid: re-extracción SIN EFECTO (una guarda conservó las declaraciones de antes) — sigue pendiente"
         anota_pendiente "$mid"
       else
         REEXTRACTED=$((REEXTRACTED+1)); log "✓ $mid claims re-extracted with map attribution"
-        if [ "$(publicada "$mid")" = 1 ]; then REATRIBUIDAS=$((REATRIBUIDAS+1)); fi
         quita_pendiente "$mid"
         # El sello NO va aquí. Ver el bloque `EXTRACTIONS -gt 0` más abajo.
       fi
@@ -616,6 +633,53 @@ reextrae_con_mapa() {
     fi
     rm -f "$salida"
   fi
+  return 0
+}
+# La re-unión de una sesión publicada. `reunir:atribucion` sale 0 en casi todo
+# (nada que unir, veda, sin transcripción), así que el desenlace se lee de lo que
+# imprime, y cada uno se cuenta aparte (DATA_INTEGRITY, regla 2): un «0 unidas»
+# no dice si se miró y no había nada o si no se pudo mirar.
+#   · unida            escribió grupos: gasta tope, sale de la lista.
+#   · nada que unir    se cotejó y el mapa no da nada que escribir (ya unidas, o
+#                      sólo grupos de un escaño, que se retienen): sale de la
+#                      lista — volver a mirarla mañana daría lo mismo. Si su
+#                      mapa cambia, vuelve por el backlog.
+#   · no intentada     sin transcripción legible, sin declaraciones extraídas o
+#                      en veda: no se ha mirado, sigue en la lista.
+#   · fallida          salió !=0 (sin composición, sin /hallazgos, cambio
+#                      inesperado): no escribió nada, sigue en la lista.
+# `--max 1`: el tope lo lleva esta tubería (REATRIBUIDAS), sesión a sesión.
+reune_con_mapa() {
+  local mid="$1" salida
+  salida="$(mktemp "${TMPDIR:-/tmp}/reune.XXXXXX")"
+  if npm run --silent reunir:atribucion -- --write --max 1 --pleno "$mid" > "$salida" 2>&1; then
+    cat "$salida"
+    if grep -qE '^\[reunir-atribucion\] escrito .*: [0-9]+ grupo\(s\)' "$salida"; then
+      REUNIDAS=$((REUNIDAS+1)); REATRIBUIDAS=$((REATRIBUIDAS+1))
+      REUNIDAS_IDS="${REUNIDAS_IDS}${mid} "
+      log "✓ $mid re-unida con su mapa ($(grep -oE '[0-9]+ grupo\(s\)' "$salida" | tail -1)) — sin re-extraer"
+      quita_pendiente "$mid"
+    elif grep -qE 'sin poder cotejarlo|sin declaraciones extraídas|sin mapa de voces en disco|NO se aplica|POSPUESTAS' "$salida"; then
+      REUNION_NO_INTENTADA=$((REUNION_NO_INTENTADA+1))
+      log "· $mid: re-unión NO INTENTADA (lo dice reunir:atribucion, arriba) — sigue pendiente"
+      anota_pendiente "$mid"
+    elif grep -qE '^\[reunir-atribucion\] nada que escribir' "$salida"; then
+      REUNION_NADA=$((REUNION_NADA+1))
+      log "· $mid: re-unión sin nada que unir (el mapa no acredita ningún grupo publicable que falte) — sale de la lista"
+      quita_pendiente "$mid"
+    else
+      # Una salida que no se reconoce no es «nada que unir»: se queda.
+      REUNION_FALLIDA=$((REUNION_FALLIDA+1))
+      log "warn: $mid: reunir:atribucion salió 0 sin un desenlace reconocible — sigue pendiente"
+      anota_pendiente "$mid"
+    fi
+  else
+    cat "$salida"
+    REUNION_FALLIDA=$((REUNION_FALLIDA+1))
+    log "warn: reunir:atribucion falló para $mid — no ha escrito nada, sigue pendiente"
+    anota_pendiente "$mid"
+  fi
+  rm -f "$salida"
   return 0
 }
 
@@ -659,7 +723,7 @@ elif [ "$SPEAKER_MAP_CALL_BUDGET" -gt 0 ] && [ -n "${GEMINI_API_KEY:-}" ]; then
         fi
         # Re-extract so the claims actually carry the attribution the map
         # just established. Same $0 policy as every other model call here.
-        reextrae_con_mapa "$mid"
+        atribuye_con_mapa "$mid"
       else
         # Quota, or a session whose chunks would not transcribe. Either way the
         # map is absent rather than wrong, and absent means no attribution.
@@ -675,29 +739,34 @@ else
   log "speaker-map step skipped ($([ -z "${GEMINI_API_KEY:-}" ] && echo "no GEMINI_API_KEY" || echo "call budget 0")) — claims will carry speakerGroup:null"
 fi
 
-# ---- re-extracciones pendientes de otras pasadas ----------------------
-# Las que quedaron EN ESPERA con su mapa ya hecho (ver `reextrae_con_mapa`). Con
+# ---- re-atribuciones pendientes de otras pasadas ----------------------
+# Las que quedaron EN ESPERA con su mapa ya hecho (ver `atribuye_con_mapa`). Con
 # el mismo tope y no en veda; las que esta pasada ya trató no se repiten.
 if [ -z "$VEDA" ] && [ -s "$PENDIENTES" ]; then
-  log "re-extracciones pendientes de otras pasadas: $(grep -c . "$PENDIENTES" || true)"
+  log "re-atribuciones pendientes de otras pasadas: $(grep -c . "$PENDIENTES" || true)"
   for mid in $(cat "$PENDIENTES"); do
     case "$HECHAS_EN_LA_PASADA" in *" $mid "*) continue ;; esac
     if [ ! -f "pleno-speaker-map/$mid.json" ]; then
       log "· $mid apuntada como pendiente pero sin mapa en disco — se quita de la lista"
       quita_pendiente "$mid"; continue
     fi
-    reextrae_con_mapa "$mid"
+    atribuye_con_mapa "$mid"
   done
 fi
+# Siempre, también a cero: una noche sin re-uniones tiene que poder distinguirse
+# de una que las intentó y no pudo.
+log "re-unión de sesiones publicadas: ${REUNIDAS} unida(s) · ${REUNION_NADA} sin nada que unir · ${REUNION_NO_INTENTADA} no intentada(s) · ${REUNION_FALLIDA} fallida(s) · ${REUNION_EN_ESPERA} en espera por el tope"
 
 # ---- re-verify only if new claims landed (overlay-safe) ---------------
 VERIFY_FALLO=""
-# La puerta cuenta EXTRACCIONES, de las dos ramas, porque es lo que mueve los
-# claims. Una transcripción cuya extracción falló no ha cambiado nada que
-# verificar ni nada que sellar.
-EXTRACTIONS=$((EXTRACTED + REEXTRACTED))
+# La puerta cuenta lo que mueve los claims: las EXTRACCIONES, de las dos ramas,
+# y las RE-UNIONES, que escriben `speakerGroup` en pleno-claims-suggestions.json
+# sin extraer. Una transcripción cuya extracción falló no ha cambiado nada que
+# verificar ni nada que sellar; una re-unión sí, y sin este verify su grupo se
+# quedaba en las sugerencias sin llegar a lo publicado.
+EXTRACTIONS=$((EXTRACTED + REEXTRACTED + REUNIDAS))
 if [ "$EXTRACTIONS" -gt 0 ]; then
-  log "re-verifying claims ($EXTRACTED extracted · $REEXTRACTED re-extracted) — overlay-safe…"
+  log "re-verifying claims ($EXTRACTED extracted · $REEXTRACTED re-extracted · $REUNIDAS re-joined) — overlay-safe…"
   # Un verify que falla NO tumba la noche. Sale con error cuando su
   # recomposición aborta, y sus guardas abortan ANTES de tocar lo publicado
   # (salvo los trozos, que lo dice él mismo). Hasta el 04-10-2026 salía 0 en
@@ -709,6 +778,11 @@ if [ "$EXTRACTIONS" -gt 0 ]; then
     VERIFY_FALLO=1
     log "FALLO: verify:pleno-claims — lo publicado NO se recompuso (el motivo, arriba)." \
       "Lo extraído se comitea igual; recomponer lo decide una persona"
+    # Una re-unión ya salió de la lista, y mañana `reunir:atribucion` no verá
+    # nada que unir: su grupo está en las sugerencias y no en lo publicado. Se
+    # nombra aquí para que quien recomponga sepa qué espera.
+    [ -n "$REUNIDAS_IDS" ] &&
+      log "   re-unidas esta pasada y NO publicadas: ${REUNIDAS_IDS% } — las publica el próximo verify:pleno-claims que salga bien"
   fi
   # EL SELLO, y aquí porque `EXTRACTIONS` cuenta las extracciones que
   # terminaron bien vengan de donde vengan.
@@ -931,7 +1005,7 @@ fi
 
 NEW_FINDINGS=$(git diff HEAD -- public/data/pleno-findings.json | grep -cE '^\+ +"id": "f-' || true)
 cron_git_commit_pathspec "$(cat <<EOF
-data: /hallazgos pipeline · ${TRANSCRIBED} pleno(s) transcribed · ${EXTRACTED} extracted · ${MAPPED} speaker map(s) · ${REEXTRACTED} re-extracted · ${NEW_FINDINGS} new finding(s)
+data: /hallazgos pipeline · ${TRANSCRIBED} pleno(s) transcribed · ${EXTRACTED} extracted · ${MAPPED} speaker map(s) · ${REEXTRACTED} re-extracted · ${REUNIDAS} re-joined · ${NEW_FINDINGS} new finding(s)
 
 Automated by scripts/hallazgos-pipeline.sh (launchd, Mon + Thu).
 transcribe(${WHISPER_ENGINE}) → extract(${LLM_BACKEND}/${CLAUDE_CODE_MODEL:-$AGY_MODEL}) → verify(overlay-safe).
@@ -1005,7 +1079,7 @@ esac
 [ "$TEXT_BACKEND" != ok ] &&
   RUN_VERDICT="${RUN_VERDICT} · DEGRADADA: sin backend de texto (extracción y auto-curación en espera) — claude: ${TEXT_BACKEND_MOTIVO}" && RUN_SUCIA=1
 
-log "done · ${TRANSCRIBED} transcribed · ${EXTRACTED} extracted (${RECUPERADAS} recuperada(s)) · ${MAPPED} speaker map(s) · ${REEXTRACTED} re-extracted · ${NEW_FINDINGS} new finding(s) pushed${RUN_VERDICT} · ${MANIFIESTO}"
+log "done · ${TRANSCRIBED} transcribed · ${EXTRACTED} extracted (${RECUPERADAS} recuperada(s)) · ${MAPPED} speaker map(s) · ${REEXTRACTED} re-extracted · ${REUNIDAS} re-joined · ${NEW_FINDINGS} new finding(s) pushed${RUN_VERDICT} · ${MANIFIESTO}"
 log "   ${REND_LINEA}"
 case "$REND_VEREDICTO" in DEGRADADO*|SIN\ AVANCE*) ;; *) log "   veredicto: ${REND_VEREDICTO}" ;; esac
 copia_manifiesto
