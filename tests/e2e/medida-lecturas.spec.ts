@@ -70,17 +70,19 @@ test.describe('la medida de las dos lecturas', () => {
       }
     })
 
-    const filas: Array<Medida & { ruta: string; palabrasEsencial: number | null }> = []
+    const filas: Array<Medida & { final: string; palabrasEsencial: number | null }> = []
     for (const ruta of RUTAS) {
       const m = await mide(page, ruta)
       const palabrasEsencial = m.experta ? (await mide(esencial, ruta)).palabras : null
-      filas.push({ ruta, ...m, palabrasEsencial })
+      // `final`: dónde acabó la página. Una ruta que redirige (sin su flag de
+      // lanzamiento, /eficiencia va a la portada) mediría otra página.
+      filas.push({ ...m, ruta, final: m.ruta, palabrasEsencial })
     }
     await esencial.close()
 
     const lineas = [
-      `Medida de las dos lecturas · ${ANCHO} × ${ALTO} · ${new Date().toISOString().slice(0, 10)}`,
-      'ruta | capa (pant.) | 1.ª resp. | jerga sin enlace | siglas sin enlace | cifras ✓/✗/sin-pareja/sin-marcar | palabras | con «lo esencial»',
+      `Medida de las dos lecturas · ${ANCHO} × ${ALTO} · ${new Date().toISOString().slice(0, 10)} · ${info.project.use.baseURL ?? ''}`,
+      'ruta | capa (pant.) | 1.ª resp. | jerga sin enlace (en la capa) | siglas sin enlace (en la capa) | cifras ✓/✗/sin-pareja/sin-valor/sin-marcar | palabras | con «lo esencial»',
     ]
     for (const f of filas) {
       const techo = TECHOS[f.ruta] ?? {}
@@ -100,13 +102,14 @@ test.describe('la medida de las dos lecturas', () => {
           ? '—'
           : `${f.siglasSinEnlace.length} ${marca(f.siglasSinEnlace.length === 0)}${f.siglasSinEnlace.length ? ` (${f.siglasSinEnlace.join(', ')})` : ''}`
       const cifras = f.cifras.length
-        ? `${cuenta('coincide')}/${cuenta('no-coincide')}/${cuenta('sin-pareja')}/${cuenta('sin-marcar')}`
+        ? `${cuenta('coincide')}/${cuenta('no-coincide')}/${cuenta('sin-pareja')}/${cuenta('sin-valor')}/${cuenta('sin-marcar')}`
         : '—'
       const esen =
         f.palabrasEsencial == null
           ? '—'
           : `${f.palabrasEsencial}${techo.palabrasEsencial != null ? ` ${marca(f.palabrasEsencial <= techo.palabrasEsencial)}` : ''}`
-      lineas.push([f.ruta, capa, resp, jerga, siglas, cifras, f.palabras, esen].join(' | '))
+      const nombre = f.final === f.ruta ? f.ruta : `${f.ruta} → ${f.final} (redirige)`
+      lineas.push([nombre, capa, resp, jerga, siglas, cifras, f.palabras, esen].join(' | '))
     }
     const tabla = lineas.join('\n')
     console.log(`\n${tabla}\n`)

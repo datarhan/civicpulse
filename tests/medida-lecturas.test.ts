@@ -46,6 +46,13 @@ describe('jerga y siglas sin su enlace al glosario', () => {
     expect(mide().jergaSinEnlace.sort()).toEqual(['PMP', 'UTE'])
   })
 
+  it('un término partido entre nodos o con espacio duro también cuenta', () => {
+    document.body.innerHTML = `
+      <main><p data-lectura-vecinal="">Las obligaciones <strong>reconocidas</strong> y la
+        deuda&nbsp;viva.</p></main>`
+    expect(mide().jergaSinEnlace.sort()).toEqual(['deuda viva', 'obligaciones reconocidas'])
+  })
+
   it('cuenta siglas sin enlace, y no las de un <abbr title> ni las del botón', () => {
     document.body.innerHTML = `
       <main><p data-lectura-vecinal="">El IVA, el
@@ -87,6 +94,20 @@ describe('la cifra de cada tarjeta contra su detalle', () => {
   it('sin pareja cuando el ancla no tiene esa cifra', () => {
     document.body.innerHTML = pagina('<div data-cifra="definitivo" data-cifra-valor="100"></div>')
     expect(mide().cifras[0].estado).toBe('sin-pareja')
+  })
+
+  it('sin valor en un lado no es «coincide»: un atributo ausente no vale 0', () => {
+    // Lo vio la lectura independiente: `Number(null)` es 0, y dos valores
+    // ausentes «coincidían» sin haber comparado nada.
+    document.body.innerHTML = pagina('<div data-cifra="ejecutado"></div>')
+    expect(mide().cifras[0].estado).toBe('sin-valor')
+    document.body.innerHTML = pagina('<div data-cifra="ejecutado"></div>', 'data-cifra="ejecutado"')
+    expect(mide().cifras[0].estado).toBe('sin-valor')
+    document.body.innerHTML = pagina(
+      '<div data-cifra="ejecutado" data-cifra-valor="0"></div>',
+      'data-cifra="ejecutado" data-cifra-valor=""',
+    )
+    expect(mide().cifras[0].estado).toBe('sin-valor')
   })
 
   it('una pareja fuera del ancla no cuenta', () => {

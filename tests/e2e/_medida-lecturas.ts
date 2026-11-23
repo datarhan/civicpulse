@@ -17,17 +17,25 @@
  * - `pantallasAntes`: dónde empieza la primera capa vecinal, en pantallas.
  * - `primeraRespuesta`: dónde ACABA la primera frase de respuesta, en
  *   pantallas; ≤ 1 es que cabe en la primera. La respuesta es la primera
- *   `.cp-en-breve-frase` (la pregunta y la entradilla del bloque no responden)
- *   o, en una capa sin tarjetas, su primer párrafo.
+ *   `.cp-en-breve-frase` con texto (la pregunta y la entradilla del bloque no
+ *   responden; una tarjeta sin frase pinta el párrafo vacío) o, en una capa sin
+ *   tarjetas, su primer párrafo. La frase acaba en el primer «.», «?» o «!»
+ *   seguido de espacio, así que una abreviatura («art. 30») la acorta: el
+ *   sesgo va hacia el ✓, y la tabla se lee sabiéndolo.
  * - `jergaSinEnlace` y `siglasSinEnlace`: términos de `JARGON` y siglas que la
  *   capa vecinal imprime fuera de su botón del glosario (`.cp-termino`) o de un
  *   `<abbr title>`. Un literal de la fuente (`data-literal`, el título de un
  *   punto del orden del día) no cuenta: no es prosa nuestra y no se le pone
- *   enlace dentro.
+ *   enlace dentro. Sólo la capa: la cabecera de la página, aunque vaya antes,
+ *   no se mide, y un ✓ aquí no dice nada de ella.
  * - `cifras`: cada cifra de tarjeta contra el detalle al que enlaza, por
  *   atributo (`data-cifra`, `data-cifra-valor`; ver `TarjetaEnBreve`):
  *   `coincide`, `no-coincide`, `sin-pareja` (marcada, pero su ancla no tiene
- *   esa cifra o no está en la página) o `sin-marcar`.
+ *   esa cifra o no está en la página), `sin-valor` (un lado no trae
+ *   `data-cifra-valor`, o no es un número: `Number(null)` es 0, y dos ausencias
+ *   «coincidirían» sin haber comparado nada) o `sin-marcar`.
+ * - `ruta`: la ruta en la que acabó la página. Sin el flag de lanzamiento,
+ *   /eficiencia redirige a la portada, y lo medido sería la portada.
  * - `palabras`: las de la página que se ven, con el pliegue que haya puesto.
  * - `experta`: si la página tiene secciones plegables (`SeccionExperta`); sólo
  *   entonces tiene sentido contar las palabras con «lo esencial».
@@ -74,7 +82,7 @@ export const JARGON: readonly string[] = [
   'competencia delegada',
 ]
 
-export type EstadoCifra = 'coincide' | 'no-coincide' | 'sin-pareja' | 'sin-marcar'
+export type EstadoCifra = 'coincide' | 'no-coincide' | 'sin-pareja' | 'sin-valor' | 'sin-marcar'
 
 export interface CifraMedida {
   tarjeta: string
@@ -83,6 +91,7 @@ export interface CifraMedida {
 }
 
 export interface Medida {
+  ruta: string
   capas: number
   pantallasAntes: number | null
   primeraRespuesta: number | null
@@ -109,7 +118,9 @@ export function medirLecturas({ jerga, alto }: { jerga: readonly string[]; alto:
   // Dónde acaba la primera frase de respuesta.
   let primeraRespuesta: number | null = null
   const respuesta = capas.length
-    ? capas[0].querySelector<HTMLElement>('.cp-en-breve-frase') ||
+    ? [...capas[0].querySelectorAll<HTMLElement>('.cp-en-breve-frase')].find((p) =>
+        (p.textContent ?? '').trim(),
+      ) ||
       (capas[0].matches('p') ? capas[0] : null) ||
       [...capas[0].querySelectorAll<HTMLElement>('p')].find((p) => p.innerText.trim())
     : null
@@ -142,8 +153,11 @@ export function medirLecturas({ jerga, alto }: { jerga: readonly string[]; alto:
       trozos.push(n.textContent ?? '')
     }
   }
-  const texto = trozos.join('\n')
-  const escapa = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  // Un espacio entre trozos, y los términos de varias palabras se buscan con
+  // `\s+`: «obligaciones <strong>reconocidas</strong>» son dos nodos, y un
+  // espacio duro (U+00A0) también es `\s`.
+  const texto = trozos.join(' ')
+  const escapa = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/ /g, '\\s+')
   const jergaSinEnlace = jerga.filter((termino) =>
     /^\p{Lu}+$/u.test(termino)
       ? new RegExp(`(?<![\\p{L}\\d])${escapa(termino)}(?![\\p{L}\\d])`, 'u').test(texto)
@@ -176,10 +190,22 @@ export function medirLecturas({ jerga, alto }: { jerga: readonly string[]; alto:
         cifras.push({ tarjeta: id, clave, estado: 'sin-pareja' })
         continue
       }
-      const a = Number(cifra.getAttribute('data-cifra-valor'))
-      const b = Number(pareja.getAttribute('data-cifra-valor'))
-      const iguales = Number.isFinite(a) && Number.isFinite(b) && Math.abs(a - b) < 0.005
-      cifras.push({ tarjeta: id, clave, estado: iguales ? 'coincide' : 'no-coincide' })
+      const valor = (el: Element) => {
+        const v = (el.getAttribute('data-cifra-valor') ?? '').trim()
+        const n = v === '' ? NaN : Number(v)
+        return Number.isFinite(n) ? n : null
+      }
+      const a = valor(cifra)
+      const b = valor(pareja)
+      if (a == null || b == null) {
+        cifras.push({ tarjeta: id, clave, estado: 'sin-valor' })
+        continue
+      }
+      cifras.push({
+        tarjeta: id,
+        clave,
+        estado: Math.abs(a - b) < 0.005 ? 'coincide' : 'no-coincide',
+      })
     }
   }
 
@@ -188,6 +214,7 @@ export function medirLecturas({ jerga, alto }: { jerga: readonly string[]; alto:
     .filter((w) => /[\p{L}\d]/u.test(w)).length
 
   return {
+    ruta: location.pathname,
     capas: capas.length,
     pantallasAntes,
     primeraRespuesta,

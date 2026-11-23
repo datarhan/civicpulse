@@ -37,6 +37,7 @@ export default function ListaDeCargos({ total, gobierno, oposicion }) {
       className="cp-card cp-en-breve"
       data-tarjeta=""
       data-lista-cargos=""
+      data-lectura-vecinal=""
       aria-labelledby="lista-cargos-titulo"
     >
       <div className="cp-en-breve-cabeza">
