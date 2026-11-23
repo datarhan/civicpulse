@@ -497,6 +497,26 @@ const ESCENARIOS = [
  */
 const DERIVADOS = [...BARRIOS, MES_DEL_CTBG]
 
+/**
+ * Los tramos del snippet de cada contrato (`kind: 'tender'`) que sirve la prensa. Se sirve
+ * como «título · comprador · adjudicatario · categoría · importe» y `snippetDeEvidencia` lo
+ * pinta con la categoría por su rótulo, así que la línea pintada ya no es la cadena servida
+ * y `datosPintados` no la reconoce: el título del contrato, dato en castellano, se leía como
+ * chrome sin traducir desde que la nocturna de prensa del 23-11-2026 (20ec2e45) llevó el
+ * primero al panel. Sólo los de contrato, como `trozosDeSnippets` en
+ * pleno-detalle-valencia.test.jsx: partir cualquier cadena con « · » eximiría también
+ * colas que son chrome, como «importe no publicado» de los snippets de la BDNS.
+ */
+const trozosDeContratos = (mapa) =>
+  [
+    ...(mapa['/data/press-claims-verified.json']?.items ?? []).flatMap(
+      (it) => it.verification?.evidence ?? [],
+    ),
+    ...(mapa['/data/press-findings.json']?.items ?? []).flatMap((f) => f.crossChecked ?? []),
+  ]
+    .filter((r) => r?.kind === 'tender')
+    .flatMap((r) => String(r.snippet ?? '').split(' · '))
+
 /** «12d», «+68d»: los días que quedan, cifra y unidad, que se escriben igual en las dos. */
 const cuentasDeDias = (piezas) => piezas.filter((p) => /^\+?\d+d$/.test(p))
 
@@ -517,7 +537,10 @@ describe('las tres páginas en valencià: nada se lee igual que en castellano', 
       expect.soft(es.pedidasSinServir, 'la página pide datos que la prueba no sirve').toEqual([])
 
       const datos = [
-        ...datosPintados(es.piezas, cadenasDe(escenario.fetch)),
+        ...datosPintados(
+          es.piezas,
+          new Set([...cadenasDe(escenario.fetch), ...trozosDeContratos(escenario.fetch)]),
+        ),
         ...DERIVADOS,
         ...cuentasDeDias(es.piezas),
       ]
