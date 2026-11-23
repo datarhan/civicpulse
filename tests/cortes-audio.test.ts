@@ -73,6 +73,23 @@ describe('elegirCortes', () => {
     expect(r.cortes).toEqual([TROZO_S])
   })
 
+  it('no deja sola la música del cierre: 1237hbp, 63 s sin una palabra', () => {
+    // 23-11-2026: re-transcribiendo 1237hbp (6040 s), el corte a ±60 s de 6000
+    // cayó en un silencio en 5977 y dejó 63 s de música final como trozo
+    // propio. La API devolvió 200 sin un segmento con texto, y la regla del
+    // trozo vacío (trozo-diarizado.ts) negó con razón la sesión entera: un
+    // trozo vacío no se distingue de una lectura fallida. Esa cola, unida al
+    // trozo anterior, es el final de una sesión que sí habla.
+    const sil = [1142.44, 2398.633, 3575.455, 4781.845, 5977.443].map((p) => ({
+      inicio: p - 0.5,
+      fin: p + 0.5,
+    }))
+    const { cortes } = elegirCortes(6040, sil)
+    const bordes = [0, ...cortes, 6040]
+    expect(bordes[bordes.length - 1] - bordes[bordes.length - 2]).toBeGreaterThanOrEqual(120)
+    expect(cortes).toEqual([1142.44, 2398.633, 3575.455, 4781.845])
+  })
+
   it('nunca deja un trozo mayor que el que admite una subida', () => {
     for (const dur of [1501, 2399, 2410, 2430, 7203, 15650]) {
       const { cortes } = elegirCortes(dur, [])
