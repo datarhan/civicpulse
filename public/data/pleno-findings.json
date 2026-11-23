@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-11-21T22:15:22.652Z",
+  "generatedAt": "2026-11-23T07:51:08.146Z",
   "legalNotice": "Este registro recoge hallazgos editoriales sobre las intervenciones de los plenos. Los redacta un proceso automático a partir de declaraciones extraídas de la transcripción, salvo los que llevan la firma de una persona, y cada ficha indica quién la editó: un nombre como «auto-curation-v1» significa que el título y el resumen los escribió una máquina, no una persona. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican íntegras y sin editar.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -1681,7 +1681,7 @@
       "plenoId": "k4olcs",
       "plenoDate": "2026-04-20",
       "title": "Pleno ordinario de Riba-roja de Túria 2026-04-20: Debate sobre educación",
-      "summary": "Una intervención sin atribuir afirma —según la transcripción anterior de la sesión, cuyo literal no consta en la revisada— que el pla Edificant —el programa autonómico de la Generalitat para infraestructuras educativas, cuya cifra corresponde al conjunto de la Comunitat y no al presupuesto de este ayuntamiento— ha movilizado hasta 1.700 millones de euros para la construcción y mejora de infraestructuras educativas, mientras que otra intervención expresa el compromiso de garantizar una enseñanza de calidad con libertad. El registro municipal incluye contratos relacionados con mejoras en centros educativos y servicios de formación.",
+      "summary": "Una intervención sin atribuir afirma que el Pla Edificant —el programa autonómico de la Generalitat para infraestructuras educativas, cuya cifra corresponde al conjunto de la Comunitat y no al presupuesto de este ayuntamiento— había movilizado hasta 1.700 millones de euros para la construcción y mejora de infraestructuras educativas, mientras que otra intervención expresa el compromiso de garantizar una enseñanza de calidad con libertad. El registro municipal incluye contratos relacionados con mejoras en centros educativos y servicios de formación.",
       "severity": "informational",
       "sourceClaimIds": [
         "k4olcs-063-cit-25e6ea",
@@ -1690,7 +1690,7 @@
       ],
       "quotes": [
         {
-          "text": "el plan edificante, que había movilizado hasta 1.700 millones de euros para la construcción y mejora de infraestructuras educativas",
+          "text": "el Pla Edificant, que havia mobilitzat fins a 1.700 milions d'euros per a la construcció i millora d'infraestructures educatives.",
           "speakerGroup": null,
           "sourceClaimId": "k4olcs-063-cit-25e6ea"
         },
@@ -1821,6 +1821,22 @@
           "reason": "La atribución a un grupo la puso el extractor por ventana, retirado el 10-08-2026, que asignaba el grupo que el texto mencionaba; el registro de declaraciones ya no la lleva y ninguna escucha la ha firmado. Se retira sin sustituirla; no se afirma que fuera errónea.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-11-21T22:04:34.252Z"
+        },
+        {
+          "field": "quote.0.text",
+          "original": "el plan edificante, que había movilizado hasta 1.700 millones de euros para la construcción y mejora de infraestructuras educativas",
+          "corrected": "el Pla Edificant, que havia mobilitzat fins a 1.700 milions d'euros per a la construcció i millora d'infraestructures educatives.",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-23T07:51:07.226Z"
+        },
+        {
+          "field": "summary",
+          "original": "Una intervención sin atribuir afirma —según la transcripción anterior de la sesión, cuyo literal no consta en la revisada— que el pla Edificant —el programa autonómico de la Generalitat para infraestructuras educativas, cuya cifra corresponde al conjunto de la Comunitat y no al presupuesto de este ayuntamiento— ha movilizado hasta 1.700 millones de euros para la construcción y mejora de infraestructuras educativas, mientras que otra intervención expresa el compromiso de garantizar una enseñanza de calidad con libertad. El registro municipal incluye contratos relacionados con mejoras en centros educativos y servicios de formación.",
+          "corrected": "Una intervención sin atribuir afirma que el Pla Edificant —el programa autonómico de la Generalitat para infraestructuras educativas, cuya cifra corresponde al conjunto de la Comunitat y no al presupuesto de este ayuntamiento— había movilizado hasta 1.700 millones de euros para la construcción y mejora de infraestructuras educativas, mientras que otra intervención expresa el compromiso de garantizar una enseñanza de calidad con libertad. El registro municipal incluye contratos relacionados con mejoras en centros educativos y servicios de formación.",
+          "reason": "La cita se ha reanclado a la transcripción vigente, donde consta en valencià; el resumen ya no puede decir que su literal sólo figura en la transcripción anterior. Se corrige además «ha movilizado» por «había movilizado», que es lo que se dijo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-23T07:51:07.538Z"
         }
       ]
     },
@@ -4574,7 +4590,7 @@
       "plenoId": "c8kr44",
       "plenoDate": "2025-09-08",
       "title": "Debate sobre la limpieza y el mantenimiento en los colegios de Riba-roja de Túria en el pleno del 2025-09-08",
-      "summary": "Según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, una intervención señala que el personal docente tuvo que limpiar las aulas debido a la falta de adecuación de las mismas. En otra intervención se destacan las actuaciones de mejora en centros de la localidad como el Camp de Túria —también según la transcripción anterior—, mientras que otra afirma que el mantenimiento se solventó en pocos días.",
+      "summary": "Según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, una intervención señala que el personal docente tuvo que limpiar las aulas debido a la falta de adecuación de las mismas. En otra intervención se destacan las actuaciones de mejora en centros de la localidad como el Camp de Túria, mientras que otra afirma que el mantenimiento se solventó en pocos días.",
       "severity": "informational",
       "sourceClaimIds": [
         "c8kr44-231-acu-70a34f",
@@ -4589,7 +4605,7 @@
           "sourceClaimId": "c8kr44-231-acu-70a34f"
         },
         {
-          "text": "todas las actuaciones que se han tenido, tanto en los colegios de esta localidad, en algunos de ellos, como el Camp de Turía, que ha sido, vamos, pensé que ha sido pegarle la volta al calcetín.",
+          "text": "Totes les actuacions que s'han tingut en l'escola EIXED d'esta localitat en algun deis com el camp de Turia que ha sigut, pensi que ha sigut pegar-li la volta al cassette.",
           "speakerGroup": null,
           "sourceClaimId": "c8kr44-119-cit-e9c4b9"
         },
@@ -4719,6 +4735,22 @@
           "reason": "El sumario atribuía a un grupo lo que dijo una intervención, según la etiqueta que puso el extractor por ventana, retirado el 10-08-2026, y que se ha retirado de sus citas; se reescribe sin atribuirlo. No se afirma que la atribución fuera errónea.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-11-21T22:12:31.852Z"
+        },
+        {
+          "field": "quote.1.text",
+          "original": "todas las actuaciones que se han tenido, tanto en los colegios de esta localidad, en algunos de ellos, como el Camp de Turía, que ha sido, vamos, pensé que ha sido pegarle la volta al calcetín.",
+          "corrected": "Totes les actuacions que s'han tingut en l'escola EIXED d'esta localitat en algun deis com el camp de Turia que ha sigut, pensi que ha sigut pegar-li la volta al cassette.",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-23T07:51:07.841Z"
+        },
+        {
+          "field": "summary",
+          "original": "Según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, una intervención señala que el personal docente tuvo que limpiar las aulas debido a la falta de adecuación de las mismas. En otra intervención se destacan las actuaciones de mejora en centros de la localidad como el Camp de Túria —también según la transcripción anterior—, mientras que otra afirma que el mantenimiento se solventó en pocos días.",
+          "corrected": "Según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, una intervención señala que el personal docente tuvo que limpiar las aulas debido a la falta de adecuación de las mismas. En otra intervención se destacan las actuaciones de mejora en centros de la localidad como el Camp de Túria, mientras que otra afirma que el mantenimiento se solventó en pocos días.",
+          "reason": "La segunda cita se ha reanclado a la transcripción vigente, donde consta en valencià; el resumen ya no puede decir que también ella figura sólo en la transcripción anterior. La primera sigue sin reanclar y conserva su aviso.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-11-23T07:51:08.146Z"
         }
       ]
     }
