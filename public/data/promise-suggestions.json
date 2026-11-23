@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-22T13:11:59.138Z",
+  "generatedAt": "2026-11-23T15:25:43.737Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -42,7 +42,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-22T13:11:59.049Z"
+      "generatedAt": "2026-11-23T15:25:43.646Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -61,7 +61,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-22T13:11:59.049Z"
+      "generatedAt": "2026-11-23T15:25:43.646Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -80,7 +80,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-22T13:11:59.049Z"
+      "generatedAt": "2026-11-23T15:25:43.646Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -88,7 +88,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-22T13:11:59.049Z"
+      "generatedAt": "2026-11-23T15:25:43.646Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -96,7 +96,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-22T13:11:59.049Z"
+      "generatedAt": "2026-11-23T15:25:43.646Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -115,7 +115,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-22T13:11:59.049Z"
+      "generatedAt": "2026-11-23T15:25:43.646Z"
     },
     {
       "promiseId": "ac-psoe-1ryndd8",
@@ -136,7 +136,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-22T13:11:59.049Z"
+      "generatedAt": "2026-11-23T15:25:43.646Z"
     },
     {
       "promiseId": "ac-psoe-43brfs",
@@ -201,7 +201,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-22T13:11:59.049Z"
+      "generatedAt": "2026-11-23T15:25:43.646Z"
     },
     {
       "promiseId": "ac-psoe-17y448o",
@@ -259,7 +259,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-22T13:11:59.049Z"
+      "generatedAt": "2026-11-23T15:25:43.646Z"
     },
     {
       "promiseId": "ac-psoe-1bkbwjs",
@@ -291,7 +291,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-22T13:11:59.049Z"
+      "generatedAt": "2026-11-23T15:25:43.646Z"
     },
     {
       "promiseId": "ac-psoe-1xeq50",
@@ -360,7 +360,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-22T13:11:59.049Z"
+      "generatedAt": "2026-11-23T15:25:43.646Z"
     },
     {
       "promiseId": "ac-psoe-1kui43c",
@@ -382,7 +382,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-22T13:11:59.049Z"
+      "generatedAt": "2026-11-23T15:25:43.646Z"
     },
     {
       "promiseId": "ac-psoe-1t88ans",
@@ -442,7 +442,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-22T13:11:59.049Z"
+      "generatedAt": "2026-11-23T15:25:43.646Z"
     },
     {
       "promiseId": "ac-psoe-168xzn8",
@@ -485,7 +485,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-22T13:11:59.049Z"
+      "generatedAt": "2026-11-23T15:25:43.646Z"
     }
   ],
   "llmEvidence": [],

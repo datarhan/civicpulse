@@ -1,23 +1,74 @@
 {
-  "generatedAt": "2026-11-23T09:33:37.457Z",
+  "generatedAt": "2026-11-23T15:25:56.637Z",
   "windowDays": 30,
   "articles": [
     {
-      "articleId": "1capq4k",
-      "articleFingerprint": "bia8i0",
-      "outlet": "Valencia Plaza",
-      "outletHost": "valenciaplaza.com",
-      "url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxOc1hacEFOX0NtOVNjNDduYUJHWThYbzBtYWhHenJoMEw0d2ZtbS1YRTQ4M0x3OGNVcDF1bUpzYWUtQ1JYNGE1VW1iSjN0QUNjTmgxOXlpQVotcllnd1pTV01scGtrWk1XWF9UbGlJWFRvVFVvMTBmN2VfMDhZRUdIMWNBS3ZzVFpoWUFGYmM4NFlrQzRGekFLVW0wel9XVWxfRjFPWlVBcUY2VE44cml5MEJVRUdCV3R2R0VieHJlRmV3NFJCTVY1OW5LNjVIUkVDNTJmb0ZvbWI3U1FtY1FOZUFQQWRGaEpFV2NfRWN5a1ZvYVo5TWd3bTdBNUNtUQ?oc=5",
-      "date": "2026-11-20T05:03:28.000Z",
+      "articleId": "rubsig",
+      "articleFingerprint": "1v2m3ps",
+      "outlet": "Levante-EMV",
+      "outletHost": "levante-emv.com",
+      "url": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxNVW1BLW94Q2tOUWpDQTlJa21YMlFERXhvX0lTYTRHREgySzlLUllZTVlzUXZoS1J2MGtBaE1jeHZBRzFYOERuSmo0SGUxMzZ6SXVIbVF6bGZ3TlpBdlBWUnBvakU1X2xhYkxFSDluMUxybTFabU53dzZtZnl4RXd6UnUxY3ZwQUJQRXR2R3Bab0dremF3VmNvOE91bUpfbGQ2Y05DeGJVNWZ6LTd2THZ0VEx0YnFfeWFFWkZ6c2hxZ0d0b19ZRHlFTFE1Rm5tcEk1SXRiQ19qWnVyemNWUDdkTGtaTTIyN1ZZbjZEaHNLVWlFVWfSAfgBQVVfeXFMTTRqRVZRNUVwc1dmR0E5VW9qaTRjR2Z2Sm1SQ2FYRUpFMWd6OTRGNFRxdVphcGwwcGRDUHRKcHJUM1ZybzNPTGNSdDM1QkhKVmlKWXVtYWZuU2pJejRtZllDbURldnBubDdWbjNiX1l0NEVfY2J1VHYzb1JIek55SVRWS01tbXFOckZHczJkQVZiSm1WM2ZTRGxQcElWWkhBaXpoMzVGT09mUHRYeFBHTEhkVE1yVVNIdUR4ckxLRzJySXlpVENWRHpndnUyek93Nnl5LVRlSDdnUkRnXzU1bENDX0NuX1p1LVBIaEVVa1R3R3hPVmVfbUc?oc=5",
+      "date": "2026-11-23T11:08:08.000Z",
       "indicators": {
         "localCoverage": false,
         "datedArticle": true,
         "municipalSourceMatch": null,
         "corroboratedAcrossOutlets": null,
-        "factualClaimsPresent": true,
+        "factualClaimsPresent": null,
         "opinionFraction": 0
       },
-      "score": 3
+      "score": 1
+    },
+    {
+      "articleId": "1y0t4r4",
+      "articleFingerprint": "r18xie",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/galer%C3%ADa-fotogr%C3%A1fica-dia-de-la-policia-2026",
+      "date": "2026-11-23T10:26:47.000Z",
+      "indicators": {
+        "localCoverage": false,
+        "datedArticle": true,
+        "municipalSourceMatch": null,
+        "corroboratedAcrossOutlets": null,
+        "factualClaimsPresent": null,
+        "opinionFraction": 0
+      },
+      "score": 1
+    },
+    {
+      "articleId": "nsa4e5",
+      "articleFingerprint": "1pf8gsw",
+      "outlet": "Periòdic del Camp de Túria",
+      "outletHost": "infoturia.com",
+      "url": "https://www.infoturia.com/riba-roja-de-turia/87406-el-dia-de-la-policia-de-riba-roja-atorga-27-medalles-39-distintius-i-24-felicitacions.html",
+      "date": "2026-11-23T10:10:35.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": null,
+        "corroboratedAcrossOutlets": null,
+        "factualClaimsPresent": null,
+        "opinionFraction": 0
+      },
+      "score": 2
+    },
+    {
+      "articleId": "1mhei8",
+      "articleFingerprint": "1avnm14",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/riba-roja-celebra-los-%C3%A9xitos-y-la-trayectoria-de-la-polic%C3%ADa-local-y-homenajea-a-la-sociedad-civil-y-a-los-cuerpos-y-fuerzas-de-seguridad-del-estado",
+      "date": "2026-11-23T10:07:06.000Z",
+      "indicators": {
+        "localCoverage": false,
+        "datedArticle": true,
+        "municipalSourceMatch": null,
+        "corroboratedAcrossOutlets": null,
+        "factualClaimsPresent": null,
+        "opinionFraction": 0
+      },
+      "score": 1
     },
     {
       "articleId": "w85btc",
@@ -105,52 +156,18 @@
       "score": 1
     },
     {
-      "articleId": "1j0h5rc",
-      "articleFingerprint": "q2oipz",
-      "outlet": "Noticias Ciudadanas",
-      "outletHost": "noticiasciudadanas.com",
-      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPdjJ3ZE83TU9xRlNEWG5zYWJrM1hKR0RYbm5LYkoxZFJuZzZaNlE2U3NleDhSRi1qanc0WUdCS1BxR0xmdGxVLVdadkh4NXNFUjdjTVpkZUVVdDBnekswc3R6MS10UTY3b0RKZVU3ZHNsY2lFMWs3MjY2RHE1d3FTaTloZ1VaTHFqV05Hejd6Um56dw?oc=5",
-      "date": "2026-11-18T04:46:16.000Z",
+      "articleId": "ms579f",
+      "articleFingerprint": "3lbugw",
+      "outlet": "ESdiario",
+      "outletHost": "esdiario.com",
+      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQRWIxbFFzZE50a0lmMlZwWmhheV9HaTgzN1NaWVBhUFhrWG0tY0FxdFo3dVowYVhDaGNCZUltZlZ2STVFNjFFRVhmYUxvNVAzYW9selBxYm05elB3Ujl0d29kMkpWLVhuZmxnRDNUZG9sV3NzOUFic2JFOEVxamZYd1pJZ09ROEhtM21WWWVjVE4wRE8zdi1WclRRMGh1dXhTTlVteVlDMWcwSEZrcExKSzJhem1yV1c3NU9QMVF0bjFEUHfSAcgBQVVfeXFMTm9hb3ppQlZIYmx5NVJHRi15R21iVWdobXFaZTZQYXFHakdQRUdkTTItZzM0MGRGQy1FTC03bnJiLVN5ZzhDOWk5R1BPS3l6aDgwdk5SLXNvVzU0YVBTdE1nbk5FZkVWLWRKU2ZBUDN4UGVFNXktcFJRYUxCZmExV05CNnQ3YjQ4aUxtazVDUUppcXIzNk9fVTd5Tk5FNjNFT2pkVWRyUExNTTZFcWROdXRKSGFFV1lGa1FKUmlCa0hBMmN3MVgtaDI?oc=5",
+      "date": "2026-11-17T19:43:03.000Z",
       "indicators": {
         "localCoverage": false,
         "datedArticle": true,
         "municipalSourceMatch": null,
         "corroboratedAcrossOutlets": null,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 1
-    },
-    {
-      "articleId": "8m0mzw",
-      "articleFingerprint": "38pdig",
-      "outlet": "Valencia Noticias",
-      "outletHost": "valencianoticias.com",
-      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQNHZNZ3QySl94aXFvcXFCX09XWWZEdUgwNk83akdDM0V4VklsOUlrejNZVkppRi1qUG1GSFBGM1JzcHRQWDI5WEVXQmlRQlhpWFlaeDhUMzVIcUlXUVBHTWNZRlR3MWg0S1ROamFERFBFR1l3ZDBVbG5EZnl4aFBpVG16Q1VlVlQ2NDNhdkV4TnBCelVHNXpyTg?oc=5",
-      "date": "2026-11-18T04:40:40.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": null,
-        "factualClaimsPresent": true,
-        "opinionFraction": 0
-      },
-      "score": 3
-    },
-    {
-      "articleId": "1kpsc1b",
-      "articleFingerprint": "vyxa8w",
-      "outlet": "elperiodic.com",
-      "outletHost": "elperiodic.com",
-      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNTUZiNHRnSUxQODk1WEM5U29KNXhlcXlKRDVVV1lfY3N6RVNic3NnM3N0UENfRFF0QUVNaXNiUXN3UGc2c2o2Y3ZBRVkyWW9fVVdweWE4dW5aclI5c29seGNmTnphQWVRZC1RNklRazNLYU9ZaHlfZ1hhR3F3cHgxbkw3eTRteTZVRE94d21fWUVUbGFMTnQzRkE0ZU9aMzFoc3NfZU1YX3pGLXpRNXJmT2RTMnowdFlWSFB3RXo2OWVMZXFIUlpz?oc=5",
-      "date": "2026-11-17T15:05:39.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": null,
-        "factualClaimsPresent": false,
+        "factualClaimsPresent": null,
         "opinionFraction": 0
       },
       "score": 1
@@ -173,23 +190,6 @@
       "score": 4
     },
     {
-      "articleId": "6rvhyi",
-      "articleFingerprint": "sfovww",
-      "outlet": "ComarcalCV",
-      "outletHost": "comarcalcv.com",
-      "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQZGVYTzZ2QWhiWDU3eDRzQVhJUWNpRTAtMGJ3bVFWYUhVOW9DNkVvdW5tWjR3NTlXalFjaHVRLUZGbHBZTjUyQTh4UTI3amp2NjBkNFVoLTFPQ29ENkpnSDlVNlVPaG1qc3I2OEl1XzZHVkQzQUZMUG0xaGgtWjM0ZU9Rc1RJMFFyWE4tV3JzUU9xSmI5M3liTElFYndPSzhGUXRsLXJVNzRkUW9NRkE2MUtnV2ZjM2ZRRnpsdU1KOVdsV1VOREd1cVMyUXdnUm5ZVzVhMXN4Zmt1dXBPYUhKTkxQWmpCZVljUE03b0l4QjdZVHNiLVdHM1I4YzR0bFI4YnBrVzB0bw?oc=5",
-      "date": "2026-11-17T14:06:10.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": null,
-        "factualClaimsPresent": true,
-        "opinionFraction": 0
-      },
-      "score": 3
-    },
-    {
       "articleId": "uacj7g",
       "articleFingerprint": "1328pwc",
       "outlet": "Ayuntamiento de Riba-roja de Túria",
@@ -205,23 +205,6 @@
         "opinionFraction": 0
       },
       "score": 3
-    },
-    {
-      "articleId": "1b8xp5w",
-      "articleFingerprint": "16ixve",
-      "outlet": "Comunica GVA",
-      "outletHost": "comunica.gva.es",
-      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBUd2xQNXFvWlNfNkhvY0tZbXg3dFNLNHdjQkFxdVhCdjlFMGhUOVc4NktHa2dtVmZsUndUZUwya2FYdnMwWEMtWjA0cWFSRjlPRjVsT0FHaVRod0ROejhER2YycjZ3YXVFUktBcEhvaw?oc=5",
-      "date": "2026-11-17T12:12:21.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": null,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 1
     },
     {
       "articleId": "5iht08",
@@ -547,23 +530,6 @@
       "score": 1
     },
     {
-      "articleId": "16un5mo",
-      "articleFingerprint": "1nzzuny",
-      "outlet": "Periòdic del Camp de Túria",
-      "outletHost": "infoturia.com",
-      "url": "https://www.infoturia.com/riba-roja-de-turia/86932-encuentra-talento-connecta-el-talent-jove-amb-el-motor-empresarial-de-riba-roja.html",
-      "date": "2026-10-27T09:16:31.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": null,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
-    },
-    {
       "articleId": "1je9lnf",
       "articleFingerprint": "1vtkblg",
       "outlet": "Universitat de València",
@@ -585,7 +551,7 @@
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 17,
+      "articleCount": 19,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 2,
@@ -594,7 +560,7 @@
         "promesa-repetida": 0
       },
       "checkedClaims": 9,
-      "meanTrustScore": 1.94,
+      "meanTrustScore": 1.84,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -615,24 +581,8 @@
       "contradictedRatio": null
     },
     {
-      "outlet": "Valencia Plaza",
-      "outletHost": "valenciaplaza.com",
-      "articleCount": 1,
-      "verdictCounts": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 2,
-        "promesa-repetida": 0
-      },
-      "checkedClaims": 0,
-      "meanTrustScore": 3,
-      "verifiedRatio": null,
-      "contradictedRatio": null
-    },
-    {
-      "outlet": "Noticias Ciudadanas",
-      "outletHost": "noticiasciudadanas.com",
+      "outlet": "Levante-EMV",
+      "outletHost": "levante-emv.com",
       "articleCount": 1,
       "verdictCounts": {
         "verificado": 0,
@@ -647,56 +597,8 @@
       "contradictedRatio": null
     },
     {
-      "outlet": "Valencia Noticias",
-      "outletHost": "valencianoticias.com",
-      "articleCount": 1,
-      "verdictCounts": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 1,
-        "promesa-repetida": 0
-      },
-      "checkedClaims": 1,
-      "meanTrustScore": 3,
-      "verifiedRatio": 0,
-      "contradictedRatio": null
-    },
-    {
-      "outlet": "elperiodic.com",
-      "outletHost": "elperiodic.com",
-      "articleCount": 1,
-      "verdictCounts": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      },
-      "checkedClaims": 0,
-      "meanTrustScore": 1,
-      "verifiedRatio": null,
-      "contradictedRatio": null
-    },
-    {
-      "outlet": "ComarcalCV",
-      "outletHost": "comarcalcv.com",
-      "articleCount": 1,
-      "verdictCounts": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 1,
-        "promesa-repetida": 0
-      },
-      "checkedClaims": 1,
-      "meanTrustScore": 3,
-      "verifiedRatio": 0,
-      "contradictedRatio": null
-    },
-    {
-      "outlet": "Comunica GVA",
-      "outletHost": "comunica.gva.es",
+      "outlet": "ESdiario",
+      "outletHost": "esdiario.com",
       "articleCount": 1,
       "verdictCounts": {
         "verificado": 0,
@@ -728,9 +630,9 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "7dc433e4adcb",
+    "plenos-agendas.json": "2043160658e4",
     "press-claims-verified.json": "10e308fc2880",
-    "press.json": "dcc58760dc1a",
+    "press.json": "f397a51aa510",
     "promises.json": "78479b1377ce"
   }
 }
