@@ -4,6 +4,7 @@ import { useCambios, KIND_LABEL_ES, KIND_TONE } from '../hooks/useCambios'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 import { rotuloDe, useT } from '../i18n'
 import { euros, rellena } from '../lib/formatters'
+import { subtituloDe, textoParaCompartir } from '../lib/cambios-rotulos'
 import { useState } from 'react'
 import { FraseDeLaSemana } from '../components/Cambios/FraseDeLaSemana'
 import DivisorLecturas from '../components/DivisorLecturas'
@@ -195,18 +196,18 @@ function KindCard({ kind, items, filas, formatDate }) {
               {piezas.length > 1 ? (
                 <EnSitios piezas={piezas} />
               ) : (
-                (it.subtitle || kind === 'licitacion') && (
+                (subtituloDe(t, it) || kind === 'licitacion') && (
                   <div
                     className="mono"
                     style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}
                   >
-                    {kind === 'licitacion' ? lineaDeContrato(t, it) : it.subtitle}
+                    {kind === 'licitacion' ? lineaDeContrato(t, it) : subtituloDe(t, it)}
                   </div>
                 )
               )}
             </div>
             <ShareWA
-              text={it.shareText}
+              text={textoParaCompartir(t, it)}
               url={it.external ? it.url : `https://civicpulse.es${it.url}`}
             />
           </div>

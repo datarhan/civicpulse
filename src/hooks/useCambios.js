@@ -1,14 +1,14 @@
 // @ts-check
 import { useMemo } from 'react'
-import { useQuejas, CATEGORY_LABEL, STATE_LABEL } from './useQuejas'
+import { useQuejas } from './useQuejas'
 import { useGeo } from './useGeo'
-import { euros, nombreDeBarrio } from '../lib/formatters'
+import { nombreDeBarrio } from '../lib/formatters'
 import { etiquetaDeContrato } from '../scraper/etiqueta-de-contrato'
 import { usePlenos } from './usePlenos'
 import { usePress } from './usePress'
 import { useTenders, formatDate } from './useTenders'
 import { useBdns } from './useBdns'
-import { useParticipa, KIND_LABEL } from './useParticipa'
+import { useParticipa } from './useParticipa'
 import { isCommittedContract, importeAdjudicado } from '../lib/contract-status.js'
 import { diaDeLaSede } from '../scraper/queja-router'
 import { sinAnunciosClasificados } from '../scraper/press-clasificado'
@@ -25,7 +25,12 @@ import { agruparPorNoticia } from '../scraper/prensa-por-noticia'
  * stale-snapshot risk.
  *
  * Events shape:
- *   { kind, date, title, subtitle, url, canonicalPath, shareText }
+ *   { kind, date, title, url, …los campos de su clase }
+ *
+ * La prensa trae `subtitle` y `shareText`, que son datos (el medio y el
+ * titular). Las demás clases traen los CÓDIGOS (categoría, estado, clase de
+ * sesión o de participación) y no sus rótulos: la página arma el subtítulo y
+ * el texto para compartir en el idioma de la interfaz (`lib/cambios-rotulos.js`).
  *
  * Returns:
  *   { loading, changes, byKind, prensaPorNoticia, fuentes, totalCount, windowDays }
@@ -116,15 +121,14 @@ export function useCambios(days = DEFAULT_WINDOW_DAYS) {
         kind: 'queja',
         date: dia,
         title: (q.description || '').split('\n')[0].slice(0, 120),
-        subtitle: [
-          CATEGORY_LABEL[q.service_code] || q.service_code,
-          q.address_string ? nombreDeBarrio(q.address_string, geo?.neighborhoods) : null,
-          STATE_LABEL[q.status] || q.status,
-        ]
-          .filter(Boolean)
-          .join(' · '),
+        // Los códigos, no sus rótulos: la página los rotula en el idioma de la
+        // interfaz (`lib/cambios-rotulos.js`).
+        id: q.service_request_id,
+        categoria: q.service_code ?? null,
+        barrio: q.address_string ? nombreDeBarrio(q.address_string, geo?.neighborhoods) : null,
+        estado: q.status ?? null,
+        descripcion: q.description ?? '',
         url: `/quejas/${q.service_request_id.toLowerCase()}`,
-        shareText: `Queja ${q.service_request_id} · ${CATEGORY_LABEL[q.service_code] || q.service_code}\n${(q.description || '').slice(0, 160)}`,
       })
     }
 
@@ -135,10 +139,9 @@ export function useCambios(days = DEFAULT_WINDOW_DAYS) {
         kind: 'pleno',
         date: p.date,
         title: p.title,
-        subtitle: p.kind ? `Sesión ${p.kind}` : 'Sesión municipal',
+        tipoSesion: p.kind ?? null,
         url: p.link,
         external: true,
-        shareText: `${p.title} — ${p.date}`,
       })
     }
 
@@ -170,9 +173,6 @@ export function useCambios(days = DEFAULT_WINDOW_DAYS) {
         adjudicataria: c.assignee ?? null,
         url: c.permalink,
         external: true,
-        shareText: `Contrato adjudicado · ${etiqueta || c.title}${
-          importe != null ? ` · ${euros(importe)} sin IVA` : ''
-        }`,
       })
     }
 
@@ -183,12 +183,11 @@ export function useCambios(days = DEFAULT_WINDOW_DAYS) {
         kind: 'subvencion',
         date: b.date.slice(0, 10),
         title: b.description,
-        subtitle: b.organ,
+        organo: b.organ ?? null,
         // Quién convoca (`bdns.ts`): sólo las propias son un acto del Ayuntamiento.
         direction: b.direction,
         url: b.sourceUrl,
         external: true,
-        shareText: `Subvención · ${b.description}`,
       })
     }
 
@@ -199,10 +198,9 @@ export function useCambios(days = DEFAULT_WINDOW_DAYS) {
         kind: 'participa',
         date: pi.date.slice(0, 10),
         title: pi.title,
-        subtitle: KIND_LABEL[pi.kind] || pi.kind,
+        tipo: pi.kind ?? null,
         url: pi.link,
         external: true,
-        shareText: `${KIND_LABEL[pi.kind] || 'Participación'} · ${pi.title}`,
       })
     }
 

@@ -1,6 +1,13 @@
 import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
-import { contarHallazgos, pasaFiltros, gruposDe, SIN_ATRIBUIR } from '../src/lib/hallazgos-filtros'
+import {
+  contarHallazgos,
+  pasaFiltros,
+  gruposDe,
+  rotuloDeGrupo,
+  SIN_ATRIBUIR,
+} from '../src/lib/hallazgos-filtros'
+import { CATALOGUE } from '../src/i18n'
 
 /**
  * LA invariante: cada chip dice cuántas FILAS deja pasar su propio filtro.
@@ -121,5 +128,46 @@ describe('la invariante sobre los hallazgos publicados', () => {
     for (const [k, n] of Object.entries(bySpeaker)) {
       expect(items.filter((f) => pasaFiltros(f, { grupo: k })).length).toBe(n)
     }
+  })
+})
+
+/**
+ * El chip de las citas sin grupo se rotulaba con el sentinela, «—», y el lector
+ * no tenía con qué leerlo. Ahora dice lo que la ficha imprime junto a cada una
+ * de esas citas, con la misma clave (`findings.citas.sinAtribuir`): el chip y la
+ * cita no pueden decir dos cosas.
+ *
+ * Abarca también las etiquetas que el operador retiró con firma: la cita queda
+ * sin grupo, y la ficha la imprime igual. Una etiqueta vacía («») es lo que
+ * escribe `correct-pleno-finding --new ""`; la ficha la lee como sin grupo, y el
+ * chip tiene que contarla igual, no como un grupo llamado «».
+ */
+describe('el chip sin grupo dice lo que dice la ficha', () => {
+  const tDe = (idioma) => (clave) => CATALOGUE[idioma][clave] ?? clave
+
+  it('en los dos idiomas, con la palabra de la cita', () => {
+    for (const idioma of Object.keys(CATALOGUE)) {
+      const t = tDe(idioma)
+      expect(rotuloDeGrupo(t, SIN_ATRIBUIR)).toBe(CATALOGUE[idioma]['findings.citas.sinAtribuir'])
+      expect(rotuloDeGrupo(t, SIN_ATRIBUIR)).not.toBe(SIN_ATRIBUIR)
+    }
+  })
+
+  it('un grupo se rotula con su nombre', () => {
+    expect(rotuloDeGrupo(tDe('es'), 'PSOE')).toBe('PSOE')
+  })
+
+  it('una etiqueta vacía cuenta como sin grupo', () => {
+    expect([...gruposDe(finding({ quotes: [q('')] }))]).toEqual([SIN_ATRIBUIR])
+  })
+
+  it('mide algo: en los publicados, el chip sin grupo existe y cuenta sus filas', () => {
+    const items = JSON.parse(readFileSync('public/data/pleno-findings.json', 'utf8')).items ?? []
+    const { bySpeaker } = contarHallazgos(items)
+    expect(bySpeaker[SIN_ATRIBUIR]).toBeGreaterThan(0)
+    expect(items.filter((f) => pasaFiltros(f, { grupo: SIN_ATRIBUIR })).length).toBe(
+      bySpeaker[SIN_ATRIBUIR],
+    )
+    expect(Object.keys(bySpeaker)).not.toContain('')
   })
 })

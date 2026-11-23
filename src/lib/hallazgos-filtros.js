@@ -30,7 +30,26 @@ export const SIN_ATRIBUIR = '—'
  * Un hallazgo con cuatro citas del PSOE es UN hallazgo del PSOE, no cuatro.
  */
 export function gruposDe(finding) {
-  return new Set((finding?.quotes ?? []).map((q) => q.speakerGroup ?? SIN_ATRIBUIR))
+  // `||` y no `??`: la ficha lee una etiqueta vacía —la que deja
+  // `correct-pleno-finding --new ""`— como sin grupo, y el chip tiene que
+  // contarla igual, no como un grupo llamado «».
+  return new Set((finding?.quotes ?? []).map((q) => q.speakerGroup || SIN_ATRIBUIR))
+}
+
+/**
+ * El rótulo del chip de un grupo. El sentinela no se imprime: el chip dice lo
+ * que la ficha imprime junto a una cita impresa sin grupo, con la misma clave
+ * (`findings.citas.sinAtribuir`). Una cita retenida sin grupo lo dice con otra
+ * frase, «La ficha no atribuye la cita N a ningún grupo» (`CitaRetenida`), que
+ * significa lo mismo. Cubre también las etiquetas que el operador retiró con
+ * firma (`grupos-retenidos.ts`): la cita queda sin grupo, y la ficha la imprime
+ * igual; su bitácora dice «sin identificar», que es el valor de la corrección.
+ *
+ * @param {(clave: string) => string} t
+ * @param {string} grupo
+ */
+export function rotuloDeGrupo(t, grupo) {
+  return grupo === SIN_ATRIBUIR ? t('findings.citas.sinAtribuir') : grupo
 }
 
 /**

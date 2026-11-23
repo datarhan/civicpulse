@@ -882,7 +882,7 @@ export default function CargoDetalle() {
                   color: 'var(--civic)',
                 }}
               >
-                Alcalde
+                {t(official.honorific === 'Sra.' ? 'cargos.card.alcaldesa' : 'cargos.card.alcalde')}
               </span>
             )}
           </div>
