@@ -84,3 +84,36 @@ describe('datosPintados: lo que no tapa', () => {
     expect(datosPintados(['Contrato…', LARGO], new Set([LARGO]))).toEqual([LARGO])
   })
 })
+
+/*
+ * 23-11-2026. El snippet de un contrato se sirve como «título · comprador · adjudicatario ·
+ * categoría · importe», y `snippetDeEvidencia` lo pinta con la categoría por su rótulo
+ * («real_estate» → «Inmobiliario» / «Immobiliari»): la línea pintada ya no es la cadena
+ * servida, y `datosPintados` no la reconocía. Una nocturna de prensa (20ec2e45) llevó a
+ * /laboratorio/prensa el primer contrato de esa forma, y la guarda bilingüe leyó su título
+ * —dato, en castellano— como chrome sin traducir.
+ */
+const SNIPPET =
+  'Enajenación de la parcela M7-2.2 de la IIª fase del parque Logístico, por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación y con condición especial de ejecución · Ayuntamiento de Riba-roja de Túria · Chema Ballester, S.L. · real_estate · 658.248 €'
+const [TITULO_SNIPPET] = SNIPPET.split(' · ')
+const PINTADO = SNIPPET.replace(' · real_estate · ', ' · Immobiliari · ')
+
+describe('datosPintados: los tramos de un snippet compuesto', () => {
+  it('reconoce el título del contrato cuando la categoría se pinta por su rótulo', () => {
+    const datos = datosPintados([PINTADO], new Set([SNIPPET]))
+    expect(datos).toContain(TITULO_SNIPPET)
+    const { castellanoEn } = detectores([PINTADO], new Set([SNIPPET]))
+    expect(castellanoEn(PINTADO)).toEqual([])
+  })
+
+  it('un tramo corto sólo cuenta como pieza entera, como cualquier cadena corta', () => {
+    // «real_estate» es un token y «658.248 €» no llega a los doce caracteres: ninguno tapa nada.
+    expect(datosPintados(['Inmobiliario real_estate'], new Set([SNIPPET]))).toEqual([])
+  })
+
+  it('una palabra castellana pegada al tramo sigue saliendo', () => {
+    const pegado = `${TITULO_SNIPPET} · estado: adjudicado`
+    const { castellanoEn } = detectores([pegado], new Set([SNIPPET]))
+    expect(castellanoEn(pegado)).toContain('estado')
+  })
+})
