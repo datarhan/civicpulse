@@ -1,5 +1,6 @@
 import { useLocale } from '../../i18n'
 import { fmtDateLong, rellena } from '../../lib/formatters'
+import { FichaTecnica } from '../FichaTecnica'
 
 /**
  * La fecha de la copia, la fuente y el formato del canal, al pie de /quejas.
@@ -9,7 +10,8 @@ import { fmtDateLong, rellena } from '../../lib/formatters'
  * quien reutiliza los datos, en medio de lo que lee un vecino (auditoría de las
  * dos lecturas, §18). Aquí siguen, plegadas, con el fichero entero al lado. El
  * nombre de la fuente y el formato son los del fichero, tal cual; el que falta
- * no se pinta, en vez de dejar «Fuente: » con nada detrás.
+ * no se pinta, en vez de dejar «Fuente: » con nada detrás. El pliegue es el de
+ * `FichaTecnica`, que /eficiencia/:id comparte.
  */
 export function DatosTecnicos({ data }) {
   const { t, locale } = useLocale()
@@ -21,13 +23,11 @@ export function DatosTecnicos({ data }) {
     data.source?.spec && rellena(t('quejas.datosTecnicos.formato'), { formato: data.source.spec }),
   ].filter(Boolean)
   return (
-    <details
+    <FichaTecnica
       data-datos-tecnicos=""
+      rotulo={t('quejas.datosTecnicos.rotulo')}
       style={{ marginTop: 28, fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}
     >
-      <summary style={{ cursor: 'pointer', fontWeight: 600, color: 'var(--ink70)' }}>
-        {t('quejas.datosTecnicos.rotulo')}
-      </summary>
       <p style={{ margin: '6px 0 0', lineHeight: 1.5 }}>
         {partes.map((p) => `${p} · `).join('')}
         {t('quejas.datosTecnicos.fichero')}{' '}
@@ -35,6 +35,6 @@ export function DatosTecnicos({ data }) {
           quejas.json
         </a>
       </p>
-    </details>
+    </FichaTecnica>
   )
 }
