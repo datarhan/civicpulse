@@ -12,6 +12,7 @@
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
+    "medir:lecturas": "MEDIR_LECTURAS=1 playwright test medida-lecturas --reporter=list",
     "lint": "eslint src scripts tests bot/src bot/tests",
     "lint:fix": "eslint --fix src scripts tests bot/src bot/tests",
     "format": "prettier -w src scripts tests bot/src bot/tests",
