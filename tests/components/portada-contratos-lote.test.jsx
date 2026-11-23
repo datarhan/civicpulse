@@ -24,6 +24,7 @@ import { MemoryRouter } from 'react-router-dom'
 
 import { LiveContracts } from '../../src/variants/direction-d/blocks/FeedBlocks'
 import { installFetchMock } from '../setup/mockFetch'
+import { etiquetaDeContrato } from '../../src/scraper/etiqueta-de-contrato'
 import { CATALOGUE, DEFAULT_LOCALE } from '../../src/i18n'
 
 const FICHA = 'https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=AAA'
@@ -120,7 +121,8 @@ describe('portada · una fila que es un lote dice que el enlace abre el expedien
     // `batchNumber: 1` está puesto a propósito —la fuente lo trae a 1 en
     // cientos de contratos de lote único— para fijar que la marca la decide el
     // enlace compartido, no el campo.
-    await screen.findByText(/Contrato de prueba del banco de pruebas/)
+    // La fila se titula con su etiqueta llana, sin «Contrato de» delante.
+    await screen.findByText(etiquetaDeContrato(fila().title).etiqueta)
     expect(screen.queryByText(/expediente entero/)).toBeNull()
   })
 })

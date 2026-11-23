@@ -30,6 +30,7 @@ import { REPORTAJE_SLUGS } from '../../src/reportajes'
 import { CONCESSION_CONTRACT_TYPES } from '../../src/lib/contract-status'
 import { canonicalizeDepartment, DEPARTMENT_LABEL } from '../../src/scraper/departments'
 import { euros, eurosBreves } from '../../src/lib/formatters'
+import { etiquetaDeContrato } from '../../src/scraper/etiqueta-de-contrato'
 import { EditorialColumn } from '../../src/variants/direction-d/EditorialColumn'
 import { KpiStrip } from '../../src/variants/direction-d/KpiStrip'
 import { Header } from '../../src/variants/direction-d/Topbar'
@@ -244,6 +245,18 @@ function columnaEnSusRamasRaras() {
   return mapa
 }
 
+/**
+ * Las últimas adjudicaciones se titulan con la etiqueta llana del contrato
+ * (`etiquetaDeContrato`): un trozo del título oficial, que se queda en su
+ * idioma. Ya no es la cadena del fichero, así que se deriva con la misma función
+ * que la recorta, y entra con las cadenas servidas: pasa por la misma regla de
+ * `datosPintados`, y una etiqueta corta («Suministro») sólo cuenta como dato
+ * cuando es una pieza entera, no dentro de cualquier rótulo.
+ */
+const ETIQUETAS_DE_CONTRATO = publicado('/data/tenders.json')
+  .top.recentAwarded.map((c) => etiquetaDeContrato(c.title).etiqueta)
+  .filter(Boolean)
+
 // ─── Escenarios ────────────────────────────────────────────────────────────────
 
 const COLUMNA_DE_HOY = sirve(RUTAS_COLUMNA)
@@ -305,7 +318,10 @@ describe('la portada en valencià: fuera del mapa, nada se lee igual que en cast
       expect.soft(es.pedidasSinServir, 'la portada pide datos que la prueba no sirve').toEqual([])
 
       const datos = [
-        ...datosPintados(es.piezas, cadenasDe(escenario.fetch ?? {})),
+        ...datosPintados(
+          es.piezas,
+          new Set([...cadenasDe(escenario.fetch ?? {}), ...ETIQUETAS_DE_CONTRATO]),
+        ),
         ...(escenario.datos ?? []),
       ]
       const noSeTraduce = masLargasPrimero([...datos, ...SIGLAS])

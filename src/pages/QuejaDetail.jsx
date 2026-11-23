@@ -9,14 +9,7 @@ import {
 } from '../hooks/useQuejaContractRelations'
 import { useOfficials, partyColor } from '../hooks/useOfficials'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
-import {
-  euros,
-  fmtDateHuman,
-  fmtDateLong,
-  nombreDeBarrio,
-  rellena,
-  truncateAtWord,
-} from '../lib/formatters'
+import { euros, fmtDateHuman, fmtDateLong, nombreDeBarrio, rellena } from '../lib/formatters'
 import { conHuecos } from '../lib/huecos'
 import { rotuloDe, useLocale } from '../i18n'
 import { CLAVE_RELACION } from '../scraper/relation-labels'
@@ -28,6 +21,7 @@ import {
   ZONA_DE_LA_SEDE,
 } from '../scraper/queja-router'
 import { DEPARTMENT_LABEL } from '../scraper/departments'
+import { etiquetaDeContrato } from '../scraper/etiqueta-de-contrato'
 import { caminoDeLaQueja } from '../scraper/camino-de-la-queja'
 
 const SINDIC_PORTAL = 'https://www.elsindic.com/es/presenta-una-queja'
@@ -195,6 +189,31 @@ function PasoItem({ paso, label, tone = 'neutral', detail, idioma, t }) {
   )
 }
 
+/** La etiqueta de un contrato y, si la etiqueta dice menos, su título oficial. */
+function TituloDeContrato({ titulo, t }) {
+  const { etiqueta, recortada } = etiquetaDeContrato(titulo)
+  return (
+    <>
+      <div style={{ fontSize: 'var(--fs-aux)', fontWeight: 600, lineHeight: 1.4, marginBottom: 2 }}>
+        {etiqueta || titulo}
+      </div>
+      {recortada && (
+        <div
+          data-titulo-oficial=""
+          style={{
+            fontSize: 'var(--fs-micro)',
+            color: 'var(--ink50)',
+            lineHeight: 1.45,
+            marginBottom: 4,
+          }}
+        >
+          {rellena(t('cambios.contrato.tituloOficial'), { titulo })}
+        </div>
+      )}
+    </>
+  )
+}
+
 function CorrelationsCard({ quejaId }) {
   const { locale, t } = useLocale()
   const { data } = useQuejaContractRelations()
@@ -274,19 +293,12 @@ function CorrelationsCard({ quejaId }) {
                 tarjeta sólo decía la clase de relación y «Ver contrato», y tres
                 tarjetas de la misma queja eran indistinguibles. Un enlace de un
                 fichero anterior, sin estos campos, se pinta como antes. */}
-            {l.tenderTitle && (
-              <div
-                title={l.tenderTitle}
-                style={{
-                  fontSize: 'var(--fs-aux)',
-                  fontWeight: 600,
-                  lineHeight: 1.4,
-                  marginBottom: 2,
-                }}
-              >
-                {truncateAtWord(l.tenderTitle, 140)}
-              </div>
-            )}
+            {/* Se titula con su etiqueta llana (`etiquetaDeContrato`), como en
+                /cambios: sin la fórmula de delante ni el procedimiento de
+                detrás. Si dice menos que el título oficial, éste va debajo,
+                entero. Antes se cortaba a 140 caracteres y el entero quedaba en
+                un `title`, que sólo ve quien pasa el ratón. */}
+            {l.tenderTitle && <TituloDeContrato titulo={l.tenderTitle} t={t} />}
             {(l.tenderAwardDate || 'tenderAmount' in l) && (
               <div
                 className="mono"

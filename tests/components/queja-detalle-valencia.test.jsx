@@ -30,6 +30,7 @@ import { resolve } from 'node:path'
 import { CATALOGUE, LocaleProvider } from '../../src/i18n'
 import QuejaDetail from '../../src/pages/QuejaDetail'
 import { RELATION_LABELS, scoreRelation } from '../../src/scraper/queja-contract-relations'
+import { etiquetaDeContrato } from '../../src/scraper/etiqueta-de-contrato'
 import {
   cadenasDe,
   datosPintados,
@@ -222,6 +223,18 @@ function sirve({
 
 /** El barrio, por su nombre de geo.json: dato aunque sea corto y vaya dentro de una pieza. */
 const DERIVADOS = [BARRIO_OSM.name]
+
+/**
+ * El contrato relacionado se titula con su etiqueta llana (`etiquetaDeContrato`):
+ * un trozo del título oficial, que se queda en su idioma. Ya no es la cadena del
+ * fichero, así que se deriva de lo servido con la misma función que la recorta,
+ * y entra con las cadenas servidas: pasa por la regla de `datosPintados`, y una
+ * etiqueta corta sólo cuenta como dato cuando es una pieza entera.
+ */
+const etiquetasDe = (fetch) =>
+  (fetch?.['/data/queja-contract-relations.json']?.links ?? [])
+    .map((l) => etiquetaDeContrato(l.tenderTitle ?? '').etiqueta)
+    .filter(Boolean)
 
 // ─── Escenarios ────────────────────────────────────────────────────────────────
 
@@ -423,7 +436,13 @@ describe('la ficha de una queja en valencià: nada se lee igual que en castellan
       expect(es.piezas.length, 'el escenario no pintó nada que leer').toBeGreaterThan(0)
       expect.soft(es.pedidasSinServir, 'la ficha pide datos que la prueba no sirve').toEqual([])
 
-      const datos = [...datosPintados(es.piezas, cadenasDe(escenario.fetch)), ...DERIVADOS]
+      const datos = [
+        ...datosPintados(
+          es.piezas,
+          new Set([...cadenasDe(escenario.fetch), ...etiquetasDe(escenario.fetch)]),
+        ),
+        ...DERIVADOS,
+      ]
       const noSeTraduce = masLargasPrimero([...datos, ...SIGLAS])
       const { sinTraducir, castellanoEn } = detectorDeCastellano(noSeTraduce)
 

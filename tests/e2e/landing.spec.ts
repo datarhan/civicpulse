@@ -4,6 +4,7 @@ import { collectErrors, appErrors } from './_console'
 import { afirmaPulsables, cargaYEncuadra, sondea } from './_estaciones'
 import { afirma, entraPorElPin, mide } from './_pines-y-barrios'
 import { contractTermYears, isConcession } from '../../src/lib/contract-status'
+import { etiquetaDeContrato } from '../../src/scraper/etiqueta-de-contrato'
 
 test.describe('Landing (/)', () => {
   test('renders editorial column + KPI strip with real data', async ({ page }) => {
@@ -132,7 +133,9 @@ test.describe('Landing (/)', () => {
     // bloque las pinta. Sin esto, «cero salvedades» lo satisfaría una portada
     // en blanco, que es justo la forma de la que este repo ya ha pagado dos.
     expect(recientes.length, 'el snapshot no trae últimas adjudicaciones').toBeGreaterThan(0)
-    const primeraFila = String(recientes[0].title ?? '').slice(0, 40)
+    // La fila se titula con su etiqueta llana: el ancla sale de ella, no del
+    // título crudo, que sólo se imprime entero debajo cuando la etiqueta dice menos.
+    const primeraFila = etiquetaDeContrato(recientes[0].title).etiqueta.slice(0, 40)
     // Un título vacío convertiría el ancla en `getByText('')`, que casa con
     // todo: el hueco volvería por la puerta de al lado.
     expect(primeraFila.length, 'la primera adjudicación no trae título').toBeGreaterThan(10)
