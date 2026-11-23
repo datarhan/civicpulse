@@ -67,6 +67,7 @@ import {
   rewriteTranscript,
   rutaIdentificada,
   conservarOverrides,
+  huellaDiarizacion,
   DEFAULT_MATCH_OPTS,
   type SpeakerAssignment,
   type IdentifyResult,
@@ -373,14 +374,19 @@ async function main(): Promise<void> {
 
   mkdirSync(PLENO_SPEAKERS_DIR, { recursive: true })
   const outPath = resolve(PLENO_SPEAKERS_DIR, `${opts.plenoId}.json`)
-  const previas = existsSync(outPath)
-    ? (JSON.parse(readFileSync(outPath, 'utf8')) as IdentifyResult).assignments
+  const previo = existsSync(outPath)
+    ? (JSON.parse(readFileSync(outPath, 'utf8')) as IdentifyResult)
     : null
-  const { asignaciones: conservadas, huerfanas } = conservarOverrides(previas, assignments)
+  const huella = huellaDiarizacion(segments)
+  const { asignaciones: conservadas, huerfanas } = conservarOverrides(previo, assignments, huella)
   if (huerfanas.length) {
     process.stderr.write(
       `[identify] ${huerfanas.length} corrección(es) del curador sin voz en esta pasada: ` +
-        `${huerfanas.join(', ')}.\n` +
+        `${huerfanas.join(', ')}` +
+        (previo?.huellaDiarizacion !== huella
+          ? ' (la transcripción cambió desde que se hicieron: sus etiquetas ya no son las mismas voces)'
+          : '') +
+        '.\n' +
         `[identify]   no se escribe nada: revísalas con override-speaker-assignment o ` +
         `quítalas a mano antes de repetir.\n`,
     )
@@ -390,6 +396,7 @@ async function main(): Promise<void> {
   const result: IdentifyResult = {
     generatedAt: new Date().toISOString(),
     plenoId: opts.plenoId,
+    huellaDiarizacion: huella,
     totalSpeakers: conservadas.length,
     highConfidenceCount: conservadas.filter((a) => a.match?.tier === 'high').length,
     mediumConfidenceCount: conservadas.filter((a) => a.match?.tier === 'medium').length,
