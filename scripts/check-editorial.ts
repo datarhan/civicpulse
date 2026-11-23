@@ -35,6 +35,8 @@ import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
 const LINEA_BASE = resolve('tests/fixtures/editorial-rastreado-linea-base.txt')
+/** Directorios que no pueden tener NADA rastreado, ni con línea base. */
+const DIRECTORIOS_SIN_LINEA_BASE = ['pleno-speakers/']
 const soloEstampado = process.argv.includes('--staged')
 
 function git(args: string[]): string[] {
@@ -70,6 +72,25 @@ const candidatos = soloEstampado
 
 const bajoEditorial = candidatos.filter((f) => f.startsWith('editorial/'))
 const nuevos = bajoEditorial.filter((f) => !base.has(f))
+
+// `pleno-speakers/` no tiene línea base: nunca ha estado rastreado y nunca
+// debe estarlo. Cada fichero lleva, por cada voz de la sala, el nombre del
+// concejal que la identificación por voz le acredita y sus cosenos —también
+// de quien no es cargo electo—. Hasta el 2026-11-23 no estaba ni en el
+// .gitignore; sólo la ruta acotada del cron lo dejaba fuera.
+const sinLineaBase = candidatos.filter((f) =>
+  DIRECTORIOS_SIN_LINEA_BASE.some((d) => f.startsWith(d)),
+)
+if (sinLineaBase.length) {
+  console.error(
+    `\n[check:editorial] ${sinLineaBase.length} fichero(s) de identificación por voz entrando en git:\n` +
+      sinLineaBase.map((f) => `  · ${f}`).join('\n') +
+      '\n\nAsignan un nombre a cada voz de un pleno. Nada de eso se publica, y este\n' +
+      'repositorio es PÚBLICO. Para sacarlo del índice sin perder el fichero:\n' +
+      `  git rm --cached ${sinLineaBase[0]}\n`,
+  )
+  process.exit(1)
+}
 
 if (nuevos.length) {
   console.error(
