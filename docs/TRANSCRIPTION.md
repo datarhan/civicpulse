@@ -357,7 +357,18 @@ steps 3–4 and smoke-tests the pipeline:
 ## 4 · Voice ID (`WHISPER_IDENTIFY=1`, off)
 
 Matches each diarized `SPEAKER_NN` cluster to an enrolled councillor voiceprint.
-Requires `WHISPER_DIARIZE=1` and ≥1 enrolled voice in `.voiceprints/`.
+Requires `WHISPER_DIARIZE=1` and ≥1 enrolled voice in `.voiceprints/`, and the
+session audio at `tmp/transcribe/<plenoId>/audio.mp3`. `transcribe-pleno.sh`
+works in a `mktemp` directory deleted on exit, so that file is not there after a
+normal run: identification needs the audio fetched again.
+
+**A cluster is a speaker inside one 20-minute chunk, not a person across the
+session.** The OpenAI engine labels `SPEAKER_NN` as `chunkIdx*20 + order`
+(`transcribe-pleno.sh`), because each chunk is diarized on its own. A councillor
+is many clusters, and any per-person share has to sum them. `WHISPER_DIARIZE=1`
+then runs pyannote over lines that already carry OpenAI labels.
+
+In an election freeze (`frozenUntil`) the matcher does not run.
 
 It slices the longest contiguous segments of each cluster, embeds them with the
 same speechbrain ECAPA-TDNN model used at enrollment (192-dim, L2-normalised so
@@ -365,15 +376,28 @@ cosine is a dot product), cosine-ranks against the enrolled set, and writes
 `pleno-speakers/<plenoId>.json`. Benchmark: same-speaker self-similarity ~0.85,
 cross-speaker noise floor ~0.10.
 
-| Tier   | Rule                                        | Effect on the transcript                 |
+| Tier   | Rule                                        | In the named copy (`--apply`)            |
 | ------ | ------------------------------------------- | ---------------------------------------- |
-| High   | cosine ≥ 0.6 **and** margin over 2nd ≥ 0.15 | rewritten to `(<councillor name>)`       |
+| High   | cosine ≥ 0.6 **and** margin over 2nd ≥ 0.15 | `(<councillor name>)`                    |
 | Medium | below margin                                | `(SPEAKER_NN ≈ <name>?)`, curator review |
 | Low    | below threshold                             | stays `(SPEAKER_NN)`                     |
 
+The thresholds were never fitted to this chamber: in-room clips of two
+different councillors have scored 0.61 (`propose-voice-references.ts`), and the
+0.85 / 0.10 benchmark above was not measured here.
+
+**The published transcript never carries names.** `--apply` writes the named
+copy to `pleno-speakers/<plenoId>.identified.txt`, gitignored and outside
+`public/`. Until 2026-11-23 it rewrote `public/data/pleno-transcripts/<id>.txt`
+in place, which `/plenos/:id` serves raw, and `transcribe-pleno.sh` passed it.
+Nothing published ever carried a name from it. A re-run keeps the curator's
+overrides only if the diarization is unchanged (`huellaDiarizacion`): after a
+re-transcription the same label is a different voice, so the script stops
+rather than carry them. The per-speaker WAVs are deleted after each run.
+
 ```bash
 # Standalone (no env gate; runs against an existing diarized transcript)
-npm run identify-pleno-speakers -- <plenoId> [--apply]
+npm run identify-pleno-speakers -- <plenoId> [--apply]   # --apply: named copy in pleno-speakers/
 
 # Enrollment — admin only; curator dashboard at /curator
 npm run enroll-voice -- --slug <officials-slug> --url <public-audio-url>
@@ -387,13 +411,14 @@ npm run override-speaker-assignment -- --pleno-id <id> --speaker SPEAKER_NN \
 npm run override-speaker-assignment -- --pleno-id <id> --speaker SPEAKER_NN --clear
 npm run override-speaker-assignment -- --pleno-id <id> --speaker SPEAKER_NN --remove-override
 
-# Did voice-id actually improve attribution? Two passes over one transcript.
-npm run voice-id-ab -- <plenoId>     # cost: 2× a normal extract
+# Did voice-id actually improve attribution? Two passes over the named copy.
+npm run voice-id-ab -- <plenoId>     # cost: 2× a normal extract; needs --apply first
 ```
 
 `.voiceprints/` is local-only and gitignored. Back it up encrypted — the `.f32`
-vectors are the genuinely irreplaceable part; audio caches can be re-fetched
-from `sourceUrl` in `index.json`:
+vectors are the genuinely irreplaceable part. Audio caches could be re-fetched
+from `sourceUrl` in `index.json`, but the three current entries have
+`sourceUrl: null`, so their source reel is recorded only in the audio filename:
 
 ```bash
 bash scripts/backup-voiceprints.sh [output-dir]   # tar + openssl AES-256-CBC
@@ -404,24 +429,32 @@ bash scripts/restore-voiceprints.sh <blob.tar.gz.enc>
 every `pleno-speakers/<plenoId>.json` with the auto-match tier, top-3 candidates
 and cosine scores, and a dropdown to override. Overrides land in a sibling
 `curatorOverride` field. Effective assignment for downstream consumers:
-curatorOverride wins → else high-tier match → else nothing. **Medium and low
-tier auto-matches never feed the LLM** unless a curator promotes them.
+curatorOverride wins → else high-tier match → else nothing. **None of it feeds
+the published extraction** (since 2026-11-23): `extract-pleno-claims` reads no
+assignment and refuses a transcript carrying names. Only `voice-id-ab`, a
+measurement that writes to `scripts/logs/`, reads the named copy.
 `GET /api/curator/pleno-speakers/<id>/audio/<SPEAKER_NN>` streams an 8-second
 mp3 from the midpoint of the cluster's longest segment so the curator can listen
 before deciding.
 
 > **Editorial guard — voice-id is signal, not a libel green light.** The LLM
-> extractor's `speakerGroup` enum stays bloc-level (PSOE / PP / VOX / Compromís)
-> regardless of voiceprint match. A curator promotes individual attribution per
-> finding via `promote-claim --individual-speaker auto|<slug>|none`, after
-> spot-checking the assignment against the audio. `/hallazgos` renders the
-> `individualSpeaker` chip beside the bloc tag — that is the boundary crossing
-> where a named person becomes publicly visible.
+> extractor's `speakerGroup` stays one of `SPEAKER_GROUPS` or `null`, joined
+> from the speaker map, never from a voiceprint. A `speakerSlug` with no bloc,
+> or of a one-seat bloc, is dropped (`pleno-claim-llm.ts`). A curator names a
+> speaker per finding with `promote-claim --individual-speaker <slug>
+--escuchado <desde>-<hasta>`: the default is `none`, `auto` is refused, the
+> listened stretch is stored with the finding, the freeze refuses it, and a
+> one-seat bloc needs `--nivel-c` (`src/scraper/nombrar-orador.ts`).
+> `/hallazgos` renders the `individualSpeaker` chip beside the bloc tag — that
+> is the boundary crossing where a named person becomes publicly visible.
 
-**Known bias:** enrolling voiceprints from pleno audio makes the diarization
-dump 90%+ of a session onto the enrolled speakers — the chair's own lines get
-credited to another councillor. Partial in-room enrollment is worse than none,
-and the API gives no confidence score to threshold on.
+**Known bias:** enrolling voiceprints from pleno audio and transcribing with
+`gpt-4o-transcribe-diarize` + `known_speaker_references` (the path
+`propose-voice-refs` uses) dumped 90%+ of a session onto the enrolled speakers on
+2026-08-01 — the chair's own lines got credited to another councillor. Partial
+in-room enrollment is worse than none, and **that API** gives no confidence score
+to threshold on. The local speechbrain matcher above does expose cosine, but it
+has never been evaluated against a full in-room set.
 
 ## 5 · Proper-noun second pass (opt-in)
 

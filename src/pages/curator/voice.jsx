@@ -593,8 +593,12 @@ function VoiceIDAssignmentsSection() {
         style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', lineHeight: 1.5, marginTop: 4 }}
       >
         Per-pleno cluster→councillor map produced by <code>npm run identify-pleno-speakers</code>.
-        High-tier matches feed the LLM extractor as <code>speakerSlug</code>; medium and low stay
-        editorial signal only. Override low-confidence rows here before re-running the extractor.
+        Editorial signal only: since 2026-11-23 the published extraction does not read these
+        assignments, and a finding names a speaker only through{' '}
+        <code>
+          promote-claim --individual-speaker &lt;slug&gt; --escuchado &lt;desde&gt;-&lt;hasta&gt;
+        </code>
+        . Overrides here survive a re-run of the matcher on the same transcript.
       </div>
       {list.error && (
         <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--crit-ink)', marginTop: 8 }}>
@@ -607,8 +611,9 @@ function VoiceIDAssignmentsSection() {
           <code>
             WHISPER_DIARIZE=1 WHISPER_IDENTIFY=1 bash scripts/transcribe-pleno.sh &lt;id&gt;
           </code>
-          , or <code>npm run identify-pleno-speakers -- &lt;id&gt; --apply</code> against an
-          already-diarized transcript.
+          , or <code>npm run identify-pleno-speakers -- &lt;id&gt;</code> against an
+          already-diarized transcript (<code>--apply</code> also writes a named copy to{' '}
+          <code>pleno-speakers/</code>, never to the published transcript).
         </div>
       )}
       {plenos.length > 0 && (

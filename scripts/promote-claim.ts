@@ -8,6 +8,7 @@
  *       [--severity informational|notable|critical] \
  *       [--curator "<name>"] \
  *       [--related-promise <id> ...] \
+ *       [--individual-speaker <slug> --escuchado <desde>-<hasta> [--nivel-c]] \
  *       [--edit]    # write /tmp/finding-*.json for review, don't persist
  *
  * The script:
@@ -41,6 +42,13 @@ import {
   type PlenoFindingsSnapshot,
 } from '../src/scraper/pleno-finding'
 import { SPEAKER_GROUPS, type SpeakerGroup } from '../src/scraper/pleno-votes'
+import { decidirOradorIndividual } from '../src/scraper/nombrar-orador'
+import {
+  seatsFromOfficials,
+  singleSeatBlocs,
+  type OfficialsDoc,
+} from '../src/scraper/corporation-seats'
+import { vedaActiva } from './lib/veda'
 import type { PlenoClaim } from '../src/scraper/pleno-claim'
 import {
   evidenceStance,
@@ -63,6 +71,7 @@ function usage(): never {
       '      [--severity informational|notable|critical] \\\n' +
       '      [--curator "<name>"] [--related-promise <id>] \\\n' +
       '      [--extra-corroboration \'[{"kind":"press|document|transcript","ref":"<url>","snippet":"<≤240 chars>"}, …]\'] \\\n' +
+      '      [--individual-speaker <slug> --escuchado <desde>-<hasta> [--nivel-c]] \\\n' +
       '      [--edit] [--force]\n',
   )
   process.exit(2)
@@ -191,18 +200,19 @@ function parseArgs(argv: string[]): {
   edit: boolean
   force: boolean
   /**
-   * 'auto' (default): if every cited claim shares the same speakerSlug,
-   *   stamp the finding with individualSpeaker. If they don't agree,
-   *   leave it null (bloc-level only). NEVER fabricate.
-   * 'none': explicitly suppress individual attribution even when the
-   *   underlying claims agree. Useful when the curator wants the
-   *   finding bloc-level for editorial reasons.
-   * '<slug>': force the finding to attribute to this slug. Slug must
-   *   exist in officials.json AND match every quote's speakerGroup
-   *   party. Used when claims came from the LLM with speakerSlug=null
-   *   but the curator confirmed individual identity from the audio.
+   * 'none' (default): the finding stays bloc-level.
+   * '<slug>': name this councillor. Needs `--escuchado <desde>-<hasta>` (the
+   *   stretch of pleno audio the curator listened to, in seconds), is refused
+   *   under the LOREG freeze, and for a one-seat bloc needs `--nivel-c`. Slug
+   *   must exist in officials.json AND match every quote's speakerGroup.
+   * 'auto' is rejected: until 2026-11-23 it was the default and stamped the
+   *   name whenever the cited claims shared a speakerSlug the extractor had
+   *   taken from voice ID, with no curator decision. See
+   *   src/scraper/nombrar-orador.ts.
    */
-  individualSpeaker: 'auto' | 'none' | string
+  individualSpeaker: 'none' | string
+  escuchado: string | null
+  nivelC: boolean
 } {
   const opts = {
     claimIds: [] as string[],
@@ -214,7 +224,9 @@ function parseArgs(argv: string[]): {
     extraCorroboration: [] as FindingRef[],
     edit: false,
     force: false,
-    individualSpeaker: 'auto' as 'auto' | 'none' | string,
+    individualSpeaker: 'none' as 'none' | string,
+    escuchado: null as string | null,
+    nivelC: false,
   }
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i]
@@ -228,6 +240,8 @@ function parseArgs(argv: string[]): {
     } else if (a === '--edit') opts.edit = true
     else if (a === '--force') opts.force = true
     else if (a === '--individual-speaker') opts.individualSpeaker = argv[++i]
+    else if (a === '--escuchado') opts.escuchado = argv[++i]
+    else if (a === '--nivel-c') opts.nivelC = true
     else if (a.startsWith('--')) {
       process.stderr.write(`[promote-claim] unknown flag ${a}\n`)
       process.exit(2)
@@ -322,37 +336,42 @@ function main() {
   const id = `f-${plenoDate}-${shortAnchor}`
 
   // ─── Individual attribution gate (libel-material) ──────────────────────
-  // The schema admits an optional individualSpeaker field. We populate it
-  // only when (a) the curator explicitly opted in via --individual-speaker
-  // <slug> OR (b) all cited claims agree on the same speakerSlug AND the
-  // curator hasn't passed --individual-speaker none. Either way we
-  // resolve the slug against officials.json + cross-check party with
-  // every quote's speakerGroup; mismatches abort the run.
+  // Only an explicit slug names a person, after the curator has listened to a
+  // stretch of the audio (`decidirOradorIndividual`). The slug is resolved
+  // against officials.json and cross-checked with every quote's speakerGroup;
+  // a mismatch aborts the run.
   let individualSpeaker: PlenoFinding['individualSpeaker'] = null
   if (opts.individualSpeaker !== 'none') {
-    let candidateSlug: string | null = null
-    if (opts.individualSpeaker === 'auto') {
-      const slugs = new Set(rows.map((r) => r.claim.speakerSlug ?? '').filter(Boolean))
-      if (slugs.size === 1) candidateSlug = [...slugs][0] || null
-    } else {
-      candidateSlug = opts.individualSpeaker
+    const officialsPath = resolve('public/data/officials.json')
+    if (!existsSync(officialsPath)) {
+      process.stderr.write('[promote-claim] officials.json missing\n')
+      process.exit(1)
     }
-    if (candidateSlug) {
-      const officialsPath = resolve('public/data/officials.json')
-      if (!existsSync(officialsPath)) {
-        process.stderr.write('[promote-claim] officials.json missing\n')
-        process.exit(1)
-      }
-      const officialsRaw = JSON.parse(readFileSync(officialsPath, 'utf8')) as {
-        officials?: Array<{ slug: string; name: string; party: string }>
-      }
-      const o = (officialsRaw.officials ?? []).find((x) => x.slug === candidateSlug)
-      if (!o) {
-        process.stderr.write(
-          `[promote-claim] individual-speaker slug "${candidateSlug}" not in officials.json\n`,
-        )
-        process.exit(1)
-      }
+    const officialsRaw = JSON.parse(readFileSync(officialsPath, 'utf8')) as OfficialsDoc & {
+      officials?: Array<{ slug: string; name: string; party: string }>
+    }
+    const candidateSlug = opts.individualSpeaker
+    const o = (officialsRaw.officials ?? []).find((x) => x.slug === candidateSlug)
+    if (!o && candidateSlug !== 'auto') {
+      process.stderr.write(
+        `[promote-claim] individual-speaker slug "${candidateSlug}" not in officials.json\n`,
+      )
+      process.exit(1)
+    }
+    const decision = decidirOradorIndividual({
+      pedido: candidateSlug,
+      escuchado: opts.escuchado,
+      // Lanza si no puede leer promises.json: sin saber si hay veda no se nombra.
+      veda: vedaActiva(),
+      partido: o?.party ?? '',
+      gruposDeUnEscano: singleSeatBlocs(seatsFromOfficials(officialsRaw)),
+      nivelC: opts.nivelC,
+    })
+    if ('error' in decision) {
+      process.stderr.write(`[promote-claim] ${decision.error}\n`)
+      process.exit(2)
+    }
+    if (decision.nombrar && o) {
       // Cross-check party with every quote's speakerGroup. A mismatch is
       // editorial abort — the curator should resolve the inconsistency
       // before promotion, not paper over it.
@@ -360,7 +379,7 @@ function main() {
         if (r.claim.speakerGroup && r.claim.speakerGroup !== o.party) {
           process.stderr.write(
             `[promote-claim] party mismatch on claim ${r.claim.id}: speakerGroup=${r.claim.speakerGroup}, official.party=${o.party}\n` +
-              `[promote-claim]   abort — re-extract or pass --individual-speaker none if intentional\n`,
+              `[promote-claim]   abort — re-extract or drop --individual-speaker if intentional\n`,
           )
           process.exit(1)
         }
@@ -379,9 +398,11 @@ function main() {
         slug: o.slug,
         name: o.name,
         party: o.party as SpeakerGroup,
+        escuchado: decision.escuchado,
       }
       process.stderr.write(
-        `[promote-claim] individualSpeaker → ${o.name} (${o.party}) [${opts.individualSpeaker === 'auto' ? 'auto-detected from claims' : 'explicit'}]\n`,
+        `[promote-claim] individualSpeaker → ${o.name} (${o.party}) · escuchado ` +
+          `${decision.escuchado.desde}–${decision.escuchado.hasta} s\n`,
       )
     }
   }

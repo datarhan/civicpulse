@@ -26,6 +26,10 @@ eval/scorecards/
 tmp/
 mlx_models/
 editorial/
+# Asignaciones de la identificación por voz (`identify-pleno-speakers`): cada
+# fichero lleva nombre, slug y coseno de cada voz de la sala, personal y público
+# incluidos. Nada de eso es publicable y el repositorio es público.
+pleno-speakers/
 scripts/logs/
 
 # Visual brainstorming companion (local mockups)

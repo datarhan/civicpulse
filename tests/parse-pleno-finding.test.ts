@@ -168,6 +168,7 @@ describe('individualSpeaker — voice-id attribution boundary', () => {
       slug: 'robert-raga-gadea',
       name: 'Robert Raga Gadea',
       party: 'PSOE',
+      escuchado: { desde: 120, hasta: 150 },
     }
     const snap = validateFindingsSnapshot(JSON.stringify(ok))
     expect(snap.items[0].individualSpeaker?.slug).toBe('robert-raga-gadea')
@@ -179,6 +180,7 @@ describe('individualSpeaker — voice-id attribution boundary', () => {
       slug: 'Robert Raga',
       name: 'Robert Raga Gadea',
       party: 'PSOE',
+      escuchado: { desde: 120, hasta: 150 },
     }
     expect(() => validateFindingsSnapshot(JSON.stringify(bad))).toThrow(/kebab-case/)
   })
@@ -189,6 +191,7 @@ describe('individualSpeaker — voice-id attribution boundary', () => {
       slug: 'foo-bar',
       name: 'Foo Bar',
       party: 'PODEMOS',
+      escuchado: { desde: 120, hasta: 150 },
     }
     expect(() => validateFindingsSnapshot(JSON.stringify(bad))).toThrow(/party must be one of/)
   })
@@ -199,6 +202,7 @@ describe('individualSpeaker — voice-id attribution boundary', () => {
       slug: 'foo-bar',
       name: 'F',
       party: 'PSOE',
+      escuchado: { desde: 120, hasta: 150 },
     }
     expect(() => validateFindingsSnapshot(JSON.stringify(bad))).toThrow(/name/)
   })

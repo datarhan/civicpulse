@@ -589,8 +589,9 @@ export default function AvisoLegal() {
           </li>
           <li>
             <strong>Se borra a petición</strong>, por el mismo canal de rectificación, sin que ello
-            afecte al resto del registro. No hay plazo de conservación pactado: si el cargo lo pide,
-            se elimina.
+            afecte al resto del registro. Con la huella se borran las asignaciones y la copia con
+            nombres que la herramienta guarda en este equipo. No hay plazo de conservación pactado:
+            si el cargo lo pide, se elimina.
           </li>
         </ul>
         <p>
@@ -607,6 +608,12 @@ export default function AvisoLegal() {
           el nombre del cargo— a la API de diarización. Lo detectó la misma comprobación, en su
           segunda pasada, el 3 de agosto de 2026. El texto de arriba describe lo que ocurre de
           verdad, y desde esa fecha los recortes viajan con una etiqueta opaca en lugar del nombre.
+        </p>
+        <p>
+          Y la tercera condición tampoco era exacta: decía que la transcripción publica hablantes
+          anónimos, pero hasta el 23 de noviembre de 2026 la herramienta, ejecutada a mano, habría
+          escrito en ella los nombres que reconociera. Desde esa fecha los guarda en este equipo. En
+          las transcripciones publicadas y en su historial no consta ninguno.
         </p>
       </Card>
 
