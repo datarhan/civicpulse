@@ -26,191 +26,28 @@ import {
   groupItemsByPleno,
   type VerifiedSnapshot,
 } from '../src/scraper/pleno-claims-chunks'
-import {
-  gateItemsForPublic,
-  motivoDeRetencion,
-  repartirRetenidas,
-} from '../src/scraper/claim-public-gate'
-import { classifyClaimProvenancePreparado } from '../src/scraper/claim-provenance'
+import { gateItemsForPublic, repartirRetenidas } from '../src/scraper/claim-public-gate'
 import { motivoDeRetirada, type MotivoDeRetirada } from '../src/scraper/declaracion-retirada'
-import { prepararHeno, type HenoPreparado } from '../src/scraper/quote-match'
 import {
-  indexarTranscripcion,
-  motivoDeLiteral,
   MOTIVOS_LITERAL_NO_SERVIBLE,
-  RAZONES_NO_JUZGABLE,
   type MotivoLiteralNoServible,
-  type RazonNoJuzgable,
-  type TranscripcionIndexada,
 } from '../src/scraper/literal-no-servible'
-import { loadSupersededTexts, TRANSCRIPTS_DIR } from './lib/transcript-corpus'
+import { procedenciaDelCorpus } from './lib/procedencia-del-corpus'
 import { sesionesConActaEnDisco } from './lib/sesiones-con-acta'
+
+// Viven en el decisor compartido; se re-exportan para las pruebas de siempre.
+export {
+  excesoDeLiteralNoServible,
+  excesoDeRetirada,
+  idsSinProcedencia,
+  literalesNoServibles,
+  TECHO_LITERAL_NO_SERVIBLE,
+  TECHO_SIN_PROCEDENCIA,
+} from './lib/procedencia-del-corpus'
 
 const MONOLITH = resolve('public/data/pleno-claims-verified.json')
 const CHUNKS_DIR = resolve('public/data/pleno-claims')
 const MANIFEST = resolve(CHUNKS_DIR, 'index.json')
-
-/**
- * Techo de retirada por falta de procedencia, como fracción del corpus.
- *
- * La regla de la puerta es correcta y su modo de fallo es catastrófico: si un
- * fichero de transcripción no está —un checkout a medias, un `superseded/`
- * podado, el sparse-checkout ajeno que ya se llevó `docs/` entero una vez—
- * TODAS las citas de esa sesión pasan a «sin rastro» y el sitio se publicaría
- * sin ellas, en silencio y con la comprobación en verde, porque la comprobación
- * lee lo publicado.
- *
- * Así que se para. 1.582 de las 4.664 declaraciones publicadas viven hoy sólo
- * en una sustituida: perder esa carpeta retiraría un tercio del corpus. El techo
- * está donde separa «unas cuantas frases que el extractor parafraseó» de
- * «faltan ficheros»: hoy son 6 de 6.919, un 0,09 %.
- *
- * Es la regla 1 de DATA_INTEGRITY —toda aserción de enum con su techo de
- * respaldo— aplicada a una puerta que RETIRA en vez de coercer.
- */
-export const TECHO_SIN_PROCEDENCIA = 0.02
-
-/**
- * El motivo por el que NO se debe escribir, o `null` si se puede.
- *
- * Función aparte para que la guarda se pueda probar sin montar un corpus en
- * disco: una guarda que sólo existe dentro de un `if` en mitad de una escritura
- * es una guarda que nadie ejercita, y este repositorio ya ha tenido dos que
- * estaban verdes por no ejecutarse nunca.
- */
-export function excesoDeRetirada(sinProcedencia: number, total: number): string | null {
-  // Un corpus vacío no se juzga por porcentaje: 0/0 no es «todo bien», pero
-  // tampoco es esta guarda quien lo dice — de eso ya se ocupa el monolito
-  // ausente de más arriba.
-  if (total <= 0) return null
-  const cuota = sinProcedencia / total
-  if (cuota <= TECHO_SIN_PROCEDENCIA) return null
-  return (
-    `[chunk-claims] ${sinProcedencia} de ${total} declaraciones ` +
-    `(${(cuota * 100).toFixed(1)} %) no constan en ninguna transcripción — por encima del ` +
-    `techo del ${(TECHO_SIN_PROCEDENCIA * 100).toFixed(0)} %. Eso no es prosa parafraseada, ` +
-    `son transcripciones que faltan: comprueba public/data/pleno-transcripts/ y su carpeta ` +
-    `superseded/ (npm run check:sparse) ANTES de publicar un corpus recortado.`
-  )
-}
-
-/**
- * Los ids cuyo literal no consta en ninguna transcripción que tengamos.
- *
- * Mismo emparejador y mismos textos que `check:claim-provenance`, a propósito:
- * dos decisores sobre la misma pregunta es como empiezan a discrepar la puerta
- * y el parte. `sin-transcripcion` NO entra — eso es «no lo hemos mirado».
- */
-export function idsSinProcedencia(
-  items: readonly { claim?: { id?: string; plenoId?: string; verbatim?: string } }[],
-  leerVigente: (plenoId: string) => string | null,
-  leerSustituidas: (plenoId: string) => string[],
-): Set<string> {
-  // Los textos se normalizan UNA vez por sesión, no una por declaración:
-  // normalizar es el 100 % del coste del emparejador (6,11 ms por
-  // transcripción de 274 KB frente a 0,04 ms de búsqueda, medido), así que
-  // hacerlo dentro del bucle costaba 42 s de los 46 que tardaba esta pasada.
-  const vigentes = new Map<string, HenoPreparado | null>()
-  const sustituidas = new Map<string, HenoPreparado[]>()
-  const out = new Set<string>()
-  for (const it of items) {
-    const c = it.claim
-    if (!c?.id || !c.plenoId || !c.verbatim) continue
-    if (!vigentes.has(c.plenoId)) {
-      const t = leerVigente(c.plenoId)
-      vigentes.set(c.plenoId, t === null ? null : prepararHeno(t))
-      sustituidas.set(c.plenoId, leerSustituidas(c.plenoId).map(prepararHeno))
-    }
-    const p = classifyClaimProvenancePreparado({
-      verbatim: c.verbatim,
-      current: vigentes.get(c.plenoId) ?? null,
-      superseded: sustituidas.get(c.plenoId) ?? [],
-    })
-    if (p === 'sin-rastro') out.add(c.id)
-  }
-  return out
-}
-
-/**
- * Techo de retención por literal no servible, sobre lo evaluado (lo que la
- * puerta serviría, con transcripción vigente y procedencia).
- *
- * Esta regla no se infla porque falte un fichero —sin vigente no se juzga, sin
- * sustituida la cita cae en `sinProcedencia`—, pero sí si se estropea el
- * detector de lengua o si un día se re-transcriben todas las sesiones a la vez
- * sin re-extraer. El 22-11-2026 la regla marcaba un 13 % de lo evaluado, todo en
- * las trece sesiones re-transcritas el 1 y 2 de agosto sin volver a extraer. Un
- * cuarto del corpus es otra cosa, y se para a mirarla antes de retirarla.
- */
-export const TECHO_LITERAL_NO_SERVIBLE = 0.25
-
-export function excesoDeLiteralNoServible(retenidas: number, evaluadas: number): string | null {
-  if (evaluadas <= 0) return null
-  const cuota = retenidas / evaluadas
-  if (cuota <= TECHO_LITERAL_NO_SERVIBLE) return null
-  return (
-    `[chunk-claims] ${retenidas} de ${evaluadas} declaraciones evaluadas ` +
-    `(${(cuota * 100).toFixed(1)} %) tienen un literal traducido o alucinado — por encima del ` +
-    `techo del ${(TECHO_LITERAL_NO_SERVIBLE * 100).toFixed(0)} %. Comprueba src/scraper/literal-no-servible.ts ` +
-    `y qué sesiones se re-transcribieron ANTES de retirar tanto.`
-  )
-}
-
-/**
- * Los ids cuyo literal consta en alguna transcripción pero no es lo que se
- * dijo: lo tradujo un motor que sustituimos, o es texto que se inventó
- * (src/scraper/literal-no-servible.ts). Sólo retiene; lo que no se pudo juzgar
- * se cuenta aparte, por su razón, y se publica: «no juzgable» no es «está bien».
- *
- * Una que tampoco consta en ninguna transcripción se queda en `sinProcedencia`
- * y no entra aquí: cada retenida cuenta una sola vez, y el techo de arriba
- * sigue midiendo sólo ficheros que faltan.
- */
-export function literalesNoServibles(
-  items: readonly { claim?: { id?: string; plenoId?: string; verbatim?: string } }[],
-  sinProcedencia: ReadonlySet<string>,
-  leerVigente: (plenoId: string) => string | null,
-  leerSustituidas: (plenoId: string) => string[],
-): {
-  porId: Map<string, MotivoLiteralNoServible>
-  evaluadas: number
-  sinVigente: number
-  noJuzgables: Record<RazonNoJuzgable, number>
-} {
-  const vigentes = new Map<string, TranscripcionIndexada | null>()
-  const sustituidas = new Map<string, TranscripcionIndexada[]>()
-  const porId = new Map<string, MotivoLiteralNoServible>()
-  const noJuzgables = Object.fromEntries(RAZONES_NO_JUZGABLE.map((r) => [r, 0])) as Record<
-    RazonNoJuzgable,
-    number
-  >
-  let evaluadas = 0
-  let sinVigente = 0
-  for (const it of items) {
-    const c = it.claim
-    if (!c?.id || !c.plenoId || !c.verbatim || sinProcedencia.has(c.id)) continue
-    if (!vigentes.has(c.plenoId)) {
-      const t = leerVigente(c.plenoId)
-      vigentes.set(c.plenoId, t === null ? null : indexarTranscripcion(t))
-      sustituidas.set(c.plenoId, leerSustituidas(c.plenoId).map(indexarTranscripcion))
-    }
-    const vigente = vigentes.get(c.plenoId) ?? null
-    // Sin transcripción vigente no hay «lo que servimos al lado»: no se juzga.
-    if (vigente === null) {
-      sinVigente += 1
-      continue
-    }
-    evaluadas += 1
-    const r = motivoDeLiteral({
-      verbatim: c.verbatim,
-      vigente,
-      sustituidas: sustituidas.get(c.plenoId) ?? [],
-    })
-    if (r.motivo !== null) porId.set(c.id, r.motivo)
-    else if ('noJuzgable' in r) noJuzgables[r.noJuzgable] += 1
-  }
-  return { porId, evaluadas, sinVigente, noJuzgables }
-}
 
 /**
  * Las que retiró una persona tras escuchar la sesión, por motivo.
@@ -271,42 +108,16 @@ export function rewriteChunksFromMonolith(opts: { dryRun?: boolean } = {}): {
   // and stamp each survivor with its visibility BEFORE chunking, so the
   // deployed chunks never contain ungated accusation verbatim.
   const crudos = monolith.items ?? []
-  const sinProcedencia = idsSinProcedencia(
-    crudos,
-    (id) => {
-      const p = resolve(TRANSCRIPTS_DIR, `${id}.txt`)
-      return existsSync(p) ? readFileSync(p, 'utf8') : null
-    },
-    (id) => loadSupersededTexts(id),
-  )
-  // El techo antes de escribir nada: una retirada masiva es siempre un fichero
-  // que falta, nunca un corpus que de pronto se inventó.
-  const exceso = excesoDeRetirada(sinProcedencia.size, crudos.length)
-  if (exceso !== null) throw new Error(exceso)
+  // Las dos preguntas de procedencia —¿consta el literal?, ¿es lo que se
+  // dijo?— con sus techos, en el decisor que comparten todos los que preguntan
+  // a la puerta (scripts/lib/procedencia-del-corpus.ts).
+  const { sinProcedencia, literalNoServible, literales } = procedenciaDelCorpus(crudos)
   if (sinProcedencia.size > 0) {
     console.warn(
       `[chunk-claims] ${sinProcedencia.size} declaración(es) retenida(s): su literal no consta ` +
         `en ninguna transcripción que tengamos. No se publican.`,
     )
   }
-  // Sólo lo que la puerta serviría: una acusación ya retenida por otro motivo
-  // no se cuenta ni como retenida aquí ni como «no juzgable».
-  const servibles = crudos.filter(
-    (it) =>
-      motivoDeRetencion(it, { sinProcedencia: sinProcedencia.has(it?.claim?.id ?? '') }) === null,
-  )
-  const literales = literalesNoServibles(
-    servibles,
-    sinProcedencia,
-    (id) => {
-      const p = resolve(TRANSCRIPTS_DIR, `${id}.txt`)
-      return existsSync(p) ? readFileSync(p, 'utf8') : null
-    },
-    (id) => loadSupersededTexts(id),
-  )
-  const literalNoServible = literales.porId
-  const excesoLiteral = excesoDeLiteralNoServible(literalNoServible.size, literales.evaluadas)
-  if (excesoLiteral !== null) throw new Error(excesoLiteral)
   if (literalNoServible.size > 0) {
     const nj = Object.entries(literales.noJuzgables)
       .map(([r, n]) => `${n} ${r}`)

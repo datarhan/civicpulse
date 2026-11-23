@@ -36,6 +36,7 @@ import {
   type FindingsSnapshot,
   type VerifiedSnapshot,
 } from '../src/scraper/auto-curate'
+import { procedenciaDelCorpus } from './lib/procedencia-del-corpus'
 import { oneSeatBlocsOf, type OfficialsDoc } from '../src/scraper/corporation-seats'
 
 const VERIFIED = resolve('public/data/pleno-claims-verified.json')
@@ -136,6 +137,11 @@ async function main() {
   const { eligible, quarantine } = selectBundles(verified, new Set<string>(), {
     minScore: 0,
     max: Infinity,
+    // La misma puerta que /declaraciones: sin esto, un literal que allí se
+    // retiene (traducido, inventado o sin rastro) volvería como cita de ficha.
+    procedencia: procedenciaDelCorpus(verified.items ?? [], undefined, {
+      incluirContradichas: true,
+    }),
   })
   const all = [...eligible, ...quarantine]
   const bundle = all.find((b) => b.plenoId === opts.plenoId && b.topic === opts.topic)

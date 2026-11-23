@@ -84,7 +84,7 @@ describe('selectBundles · gates', () => {
         mkItem({ id: 'p1-003-cit-a3', speakerGroup: null }, 'verificado'), // dropped
       ],
     }
-    const r = selectBundles(verified, new Set(), { minScore: 0 })
+    const r = selectBundles(verified, new Set(), { minScore: 0, procedencia: {} })
     expect(r.eligible).toHaveLength(1)
     expect(r.eligible[0].items).toHaveLength(2)
     expect(r.eligible[0].blocs.sort()).toEqual(['PP', 'PSOE'])
@@ -101,7 +101,7 @@ describe('selectBundles · gates', () => {
         mkItem({ id: 'p1-003-acu-a3', speakerGroup: 'VOX' }, 'contradicho'),
       ],
     }
-    const r = selectBundles(verified, new Set(), { minScore: 0 })
+    const r = selectBundles(verified, new Set(), { minScore: 0, procedencia: {} })
     expect(r.eligible).toHaveLength(0)
     expect(r.quarantine).toHaveLength(1)
     expect(r.quarantine[0].items).toHaveLength(3) // contradicho stays in the bundle for the queue file
@@ -115,7 +115,7 @@ describe('selectBundles · gates', () => {
       ],
     }
     const cited = new Set(['p1-001-cit-a1'])
-    const r = selectBundles(verified, cited, { minScore: 0 })
+    const r = selectBundles(verified, cited, { minScore: 0, procedencia: {} })
     // Only one claim survives; bundle has 1 bloc and no contradicho.
     // Dialectic gate (≥2 blocs OR ≥3 verificado same bloc) fails → dropped.
     expect(r.eligible).toHaveLength(0)
@@ -136,7 +136,7 @@ describe('selectBundles · gates', () => {
         mkItem({ id: 'p1-003-cit-a3', speakerGroup: 'VOX', confidence: 0.8 }, 'verificado'),
       ],
     }
-    const r = selectBundles(verified, new Set(), { minScore: 0 })
+    const r = selectBundles(verified, new Set(), { minScore: 0, procedencia: {} })
     expect(r.eligible).toHaveLength(0) // single bloc with only 1 verificado claim
   })
 
@@ -155,9 +155,9 @@ describe('selectBundles · gates', () => {
       )
     }
     const verified: VerifiedSnapshot = { items }
-    const lo = selectBundles(verified, new Set(), { minScore: 0 })
+    const lo = selectBundles(verified, new Set(), { minScore: 0, procedencia: {} })
     expect(lo.eligible).toHaveLength(1)
-    const hi = selectBundles(verified, new Set(), { minScore: 100 })
+    const hi = selectBundles(verified, new Set(), { minScore: 100, procedencia: {} })
     expect(hi.eligible).toHaveLength(0)
   })
 
@@ -168,7 +168,7 @@ describe('selectBundles · gates', () => {
         mkItem({ id: `p1-00${i}-cit-x${i}`, speakerGroup: 'PSOE', confidence: 0.85 }, 'verificado'),
       )
     }
-    const r = selectBundles({ items }, new Set(), { minScore: 0 })
+    const r = selectBundles({ items }, new Set(), { minScore: 0, procedencia: {} })
     expect(r.eligible).toHaveLength(1)
     expect(r.eligible[0].blocs).toEqual(['PSOE'])
   })
@@ -190,7 +190,7 @@ describe('selectBundles · gates', () => {
         )
       }
     }
-    const r = selectBundles({ items }, new Set(), { minScore: 0, max: 3 })
+    const r = selectBundles({ items }, new Set(), { minScore: 0, max: 3, procedencia: {} })
     expect(r.eligible).toHaveLength(3)
   })
 })
@@ -234,7 +234,7 @@ describe('selectBundles · public claim-ledger gate', () => {
         ],
       },
       new Set(),
-      { minScore: 0 },
+      { minScore: 0, procedencia: {} },
     )
     expect(r.eligible).toHaveLength(1)
     expect(r.eligible[0].items.map((i) => i.claim.id)).toEqual(['p1-001-acu-a1', 'p1-002-acu-a2'])
@@ -254,7 +254,7 @@ describe('selectBundles · public claim-ledger gate', () => {
         ],
       },
       new Set(),
-      { minScore: 0 },
+      { minScore: 0, procedencia: {} },
     )
     expect(r.eligible[0].items.map((i) => i.claim.id)).not.toContain('p1-003-acu-a3')
   })
@@ -284,7 +284,7 @@ describe('selectBundles · public claim-ledger gate', () => {
         ],
       },
       new Set(),
-      { minScore: 0 },
+      { minScore: 0, procedencia: {} },
     )
     expect(r.eligible).toHaveLength(0)
     expect(r.quarantine).toHaveLength(1)
@@ -310,9 +310,67 @@ describe('selectBundles · public claim-ledger gate', () => {
         ],
       },
       new Set(),
-      { minScore: 0 },
+      { minScore: 0, procedencia: {} },
     )
     expect(r.eligible).toHaveLength(0)
+  })
+})
+
+/**
+ * /declaraciones retiene desde el 22-11-2026 (#580) los literales que sólo
+ * constan como traducción de un motor sustituido, los inventados y los que no
+ * constan en ninguna transcripción. Este camino republica el literal de cada
+ * declaración que agrupa, así que tiene que preguntar lo mismo, y con los
+ * mismos datos: la puerta sin ellos contesta «se sirve».
+ */
+describe('selectBundles · procedencia del literal', () => {
+  const tres = () => [
+    mkItem({ id: 'p1-001-cit-a1', speakerGroup: 'PSOE' }),
+    mkItem({ id: 'p1-002-cit-a2', speakerGroup: 'PP' }),
+    mkItem({ id: 'p1-003-cit-a3', speakerGroup: 'VOX' }),
+  ]
+  const ids = (r: ReturnType<typeof selectBundles>) =>
+    [...r.eligible, ...r.quarantine].flatMap((b) => b.items.map((i) => i.claim.id))
+
+  it('sin respuestas de procedencia agrupa las tres — la premisa de las demás', () => {
+    expect(
+      ids(selectBundles({ items: tres() }, new Set(), { minScore: 0, procedencia: {} })),
+    ).toEqual(['p1-001-cit-a1', 'p1-002-cit-a2', 'p1-003-cit-a3'])
+  })
+
+  it.each(['literal-traducido', 'literal-alucinado'] as const)('deja fuera un %s', (motivo) => {
+    const r = selectBundles({ items: tres() }, new Set(), {
+      minScore: 0,
+      procedencia: { literalNoServible: new Map([['p1-002-cit-a2', motivo]]) },
+    })
+    expect(ids(r)).toEqual(['p1-001-cit-a1', 'p1-003-cit-a3'])
+  })
+
+  it('deja fuera uno sin procedencia', () => {
+    const r = selectBundles({ items: tres() }, new Set(), {
+      minScore: 0,
+      procedencia: { sinProcedencia: new Set(['p1-003-cit-a3']) },
+    })
+    expect(ids(r)).toEqual(['p1-001-cit-a1', 'p1-002-cit-a2'])
+  })
+
+  it('tampoco lo lleva a la cuarentena aunque sea contradicho', () => {
+    // La excepción de contradicho existe para que la cuarentena vea la
+    // acusación; un literal que nadie dijo no es una acusación que ver.
+    const items = [
+      ...tres().slice(0, 2),
+      mkItem({ id: 'p1-003-cit-a3', speakerGroup: 'VOX' }, 'contradicho'),
+    ]
+    const sin = selectBundles({ items }, new Set(), { minScore: 0, procedencia: {} })
+    expect(sin.quarantine).toHaveLength(1)
+    const con = selectBundles({ items }, new Set(), {
+      minScore: 0,
+      procedencia: {
+        literalNoServible: new Map([['p1-003-cit-a3', 'literal-traducido' as const]]),
+      },
+    })
+    expect(con.quarantine).toHaveLength(0)
+    expect(ids(con)).toEqual(['p1-001-cit-a1', 'p1-002-cit-a2'])
   })
 })
 

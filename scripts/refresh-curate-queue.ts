@@ -23,6 +23,7 @@ import {
   type VerifiedItem,
   type BundleCandidate,
 } from '../src/scraper/auto-curate'
+import { procedenciaDelCorpus } from './lib/procedencia-del-corpus'
 import {
   archiveKeySet,
   validateArchiveSnapshot,
@@ -120,6 +121,11 @@ function main() {
   const { eligible, quarantine } = selectBundles(verified, cited, {
     minScore: 6.0,
     max: Infinity,
+    // La misma puerta que /declaraciones: sin esto, un literal que allí se
+    // retiene (traducido, inventado o sin rastro) volvería como cita de ficha.
+    procedencia: procedenciaDelCorpus(verified.items ?? [], undefined, {
+      incluirContradichas: true,
+    }),
   })
 
   // Split each list into live + archived. Dashboard shows live by

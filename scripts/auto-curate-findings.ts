@@ -65,6 +65,7 @@ import {
   type FindingsSnapshot,
   type BundleCandidate,
 } from '../src/scraper/auto-curate'
+import { procedenciaDelCorpus } from './lib/procedencia-del-corpus'
 import { oneSeatBlocsOf, type OfficialsDoc } from '../src/scraper/corporation-seats'
 import { vedaActiva } from './lib/veda'
 import { generateTitleAndSummary } from '../src/llm/auto-curate-llm'
@@ -313,6 +314,11 @@ async function main() {
   const { eligible, quarantine } = selectBundles(verified, cited, {
     minScore: opts.minScore,
     max: opts.max,
+    // La misma puerta que /declaraciones: sin esto, un literal que allí se
+    // retiene (traducido, inventado o sin rastro) volvería como cita de ficha.
+    procedencia: procedenciaDelCorpus(verified.items ?? [], undefined, {
+      incluirContradichas: true,
+    }),
   })
 
   process.stdout.write(
