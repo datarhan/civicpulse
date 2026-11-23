@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { decidirOradorIndividual, leerEscuchado } from '../src/scraper/nombrar-orador'
+import { validateFindingsSnapshot } from '../src/scraper/pleno-finding'
 
 /**
  * Cuándo `promote-claim` pone el nombre de un concejal en un hallazgo.
@@ -77,5 +78,25 @@ describe('promote-claim', () => {
     expect(codigo).toMatch(/individualSpeaker:\s*'none'/)
     expect(codigo).not.toMatch(/individualSpeaker:\s*'auto'/)
     expect(codigo).toMatch(/decidirOradorIndividual\(/)
+  })
+})
+
+describe('pleno-findings · un nombre sin tramo escuchado no valida', () => {
+  const snap = JSON.parse(readFileSync('public/data/pleno-findings.json', 'utf8'))
+  const base = snap.items[0]
+
+  it('hay un hallazgo de grupo sobre el que probar (si no, no se mira nada)', () => {
+    expect(base).toBeTruthy()
+    expect(() => validateFindingsSnapshot(JSON.stringify({ ...snap, items: [base] }))).not.toThrow()
+  })
+
+  it('individualSpeaker sin escuchado se rechaza; con él, valida', () => {
+    const persona = { slug: 'robert-raga-gadea', name: 'Robert Raga Gadea', party: 'PSOE' }
+    const sin = { ...base, individualSpeaker: persona }
+    expect(() => validateFindingsSnapshot(JSON.stringify({ ...snap, items: [sin] }))).toThrow(
+      /escuchado/,
+    )
+    const con = { ...base, individualSpeaker: { ...persona, escuchado: { desde: 10, hasta: 40 } } }
+    expect(() => validateFindingsSnapshot(JSON.stringify({ ...snap, items: [con] }))).not.toThrow()
   })
 })

@@ -1997,7 +1997,8 @@ export const CATALOGUE = {
     'findings.detalle.cabecera': '{fecha} · pleno {pleno} · editado por {editor}',
     'findings.detalle.enlace': 'ficha {ficha}',
     'findings.detalle.enlace.title': 'Enlace permanente a este hallazgo',
-    'findings.detalle.individual.title': 'Atribución individual confirmada por curaduría editorial',
+    'findings.detalle.individual.title':
+      'El nombre lo puso un curador, que declaró el tramo de la grabación que escuchó',
     'findings.detalle.banda.dicho': 'Lo que se dijo',
     'findings.detalle.banda.cotejo': 'Contra qué se cotejó',
     'findings.detalle.banda.replica': 'Derecho de réplica',
@@ -5646,7 +5647,7 @@ export const CATALOGUE = {
     'findings.detalle.enlace': 'fitxa {ficha}',
     'findings.detalle.enlace.title': 'Enllaç permanent a esta troballa',
     'findings.detalle.individual.title':
-      'Atribució individual confirmada per la curadoria editorial',
+      'El nom el va posar un curador, que va declarar el tram de la gravació que va escoltar',
     'findings.detalle.banda.dicho': 'El que es va dir',
     'findings.detalle.banda.cotejo': 'Amb què es va acarar',
     'findings.detalle.banda.replica': 'Dret de rèplica',

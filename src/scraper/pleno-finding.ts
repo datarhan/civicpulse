@@ -141,11 +141,11 @@ export interface PlenoFinding {
     party: SpeakerGroup
     /**
      * Tramo del audio del pleno, en segundos, que el curador escuchó antes de
-     * nombrar al orador (`promote-claim --escuchado`). Obligatorio para nombrar
-     * desde el 2026-11-23; opcional en el esquema sólo para no reescribir
-     * filas anteriores, y ninguna publicada nombra a nadie.
+     * nombrar al orador (`promote-claim --escuchado`). Obligatorio desde el
+     * 2026-11-23; ninguna fila publicada nombraba a nadie, así que ninguna
+     * se queda fuera.
      */
-    escuchado?: { desde: number; hasta: number }
+    escuchado: { desde: number; hasta: number }
   } | null
   response?: {
     from: SpeakerGroup
@@ -706,18 +706,19 @@ function validateFinding(f: unknown, idx: number): PlenoFinding {
         (ALLOWED_BLOCS as readonly string[]).includes(individualSpeaker.party),
       `items[${idx}].individualSpeaker.party must be one of ${ALLOWED_BLOCS.join(',')}`,
     )
-    const e = individualSpeaker.escuchado
-    if (e !== undefined) {
-      must(
-        typeof e === 'object' &&
-          e !== null &&
-          Number.isFinite(e.desde) &&
-          Number.isFinite(e.hasta) &&
-          e.hasta > e.desde &&
-          e.desde >= 0,
-        `items[${idx}].individualSpeaker.escuchado must be { desde, hasta } seconds with hasta > desde`,
-      )
-    }
+    // Sin tramo escuchado no se nombra: lo que /metodologia promete.
+    const e = individualSpeaker.escuchado as { desde: unknown; hasta: unknown } | undefined
+    must(
+      typeof e === 'object' &&
+        e !== null &&
+        typeof e.desde === 'number' &&
+        typeof e.hasta === 'number' &&
+        Number.isFinite(e.desde) &&
+        Number.isFinite(e.hasta) &&
+        e.hasta > e.desde &&
+        e.desde >= 0,
+      `items[${idx}].individualSpeaker.escuchado must be { desde, hasta } seconds with hasta > desde`,
+    )
   }
   const response = (o.response ?? null) as PlenoFinding['response']
   if (response) {

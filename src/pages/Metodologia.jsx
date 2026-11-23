@@ -1341,19 +1341,27 @@ function ContratoEditorial() {
               declaraciones llevan la marca «firmado».
             </p>
             <p style={{ margin: '8px 0 0' }}>
-              El nombre de un concejal concreto no sale de ninguna pasada automática. La
-              identificación por voz, que compara las voces de una sesión con muestras públicas de
-              algunos cargos, está desactivada; cuando se ejecuta a mano, guarda su resultado en
-              este equipo y no en la web, y la transcripción publicada sigue con hablantes anónimos
-              («SPEAKER_01»). Las declaraciones se publican sin nombre de persona. Un hallazgo de{' '}
+              El nombre de quien habla no lo pone ninguna pasada automática. La identificación por
+              voz, que compara las voces de una sesión con muestras públicas de algunos cargos, está
+              desactivada; cuando se ejecuta a mano, guarda su resultado en este equipo y no en la
+              web, y la transcripción publicada sigue con hablantes anónimos («SPEAKER_01»). Las
+              declaraciones se publican sin nombre de persona. Un hallazgo de{' '}
               <code>/hallazgos</code> lleva el nombre de quien habla sólo si un curador lo pide
-              expresamente después de escuchar el tramo de la grabación, y ese tramo, en segundos,
-              se guarda con el hallazgo. En veda electoral no se pone ninguno. Hasta el 23 de
-              noviembre de 2026, esa herramienta ejecutada a mano habría escrito los nombres en la
-              transcripción publicada; ninguna transcripción, declaración ni hallazgo publicados han
-              llevado un nombre salido de ella. Conviene decir además algo que la etiqueta de grupo
-              oculta: <strong>VOX, EU-Podem y Compromís tienen un escaño cada uno</strong>, así que
-              en esos tres casos etiquetar el grupo señala necesariamente a esa persona.{' '}
+              expresamente y declara qué tramo de la grabación, en segundos, ha escuchado; ese tramo
+              se guarda con el hallazgo. En veda electoral no se pone ningún nombre.
+            </p>
+            <p style={{ margin: '8px 0 0' }}>
+              Hasta el 23 de noviembre de 2026 había tres caminos por los que un nombre podía llegar
+              sin esa petición: la herramienta, ejecutada a mano, lo habría escrito en la
+              transcripción publicada; la extracción habría pasado sus coincidencias a las
+              declaraciones; y al promover un hallazgo el nombre se ponía solo si sus citas lo
+              compartían. Este texto decía que hacía falta un curador, y no era exacto. En los datos
+              publicados y en su historial no consta ningún nombre llegado por ellos.
+            </p>
+            <p style={{ margin: '8px 0 0' }}>
+              Conviene decir además algo que la etiqueta de grupo oculta:{' '}
+              <strong>VOX, EU-Podem y Compromís tienen un escaño cada uno</strong>, así que en esos
+              tres casos etiquetar el grupo señala necesariamente a esa persona.{' '}
               <strong>Por eso esas tres etiquetas no se publican</strong>: aunque el mapa acredite
               quién hablaba, la declaración sale sin grupo, porque nombrar a una persona lo firma un
               curador por hallazgo, y la firma del registro de declaraciones nunca escribe uno de
