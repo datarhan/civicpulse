@@ -82,6 +82,21 @@ describe('FichaTecnica', () => {
     expect(d.open).toBe(true)
   })
 
+  it('dos avisos de imprimir seguidos no le cambian el estado al lector', () => {
+    const { container } = render(
+      <FichaTecnica rotulo="Datos técnicos">
+        <p>celda</p>
+      </FichaTecnica>,
+    )
+    const d = container.querySelector('details[data-ficha-tecnica]')
+    act(() => {
+      window.dispatchEvent(new Event('beforeprint'))
+      window.dispatchEvent(new Event('beforeprint'))
+      window.dispatchEvent(new Event('afterprint'))
+    })
+    expect(d.open).toBe(false)
+  })
+
   it('/quejas usa la misma pieza', () => {
     const { container } = render(
       <MemoryRouter>
@@ -98,44 +113,56 @@ describe('/eficiencia/:id — qué se pliega y qué no', () => {
     expect(CON_CIFRA[0].caveats?.length ?? 0).toBeGreaterThan(0)
   })
 
-  it('las celdas se pliegan; el enlace al documento de la cifra y la réplica, no', async () => {
-    const i = CON_CIFRA[0]
-    pintaFicha(i.id)
-    const rotulo = await screen.findByRole('heading', { level: 2, name: 'Fuente y réplica' })
-    const tarjeta = rotulo.closest('[data-tarjeta]')
-    const pliegue = tarjeta.querySelector('details[data-ficha-tecnica]')
-    expect(pliegue, 'la tarjeta de la fuente no tiene pliegue').not.toBeNull()
-    expect(pliegue.open).toBe(false)
-    // La hoja, la fila y la columna van dentro.
-    expect(pliegue.textContent).toMatch(/Coste:/)
-    // El documento del que sale la cifra que titula, a la vista.
-    const enlace = [...tarjeta.querySelectorAll(`a[href="${i.citas[0].url}"]`)].find(
-      (a) => !dentroDeUnPliegue(a),
-    )
-    expect(enlace, 'el enlace al documento quedó dentro del pliegue').toBeDefined()
-    // La réplica, a la vista.
-    const replica = tarjeta.querySelector('a[href="/aviso-legal"]')
-    expect(replica).not.toBeNull()
-    expect(dentroDeUnPliegue(replica)).toBe(false)
-  })
+  it.each(CON_CIFRA.map((i) => [i.id, i]))(
+    '%s: las celdas se pliegan; cada documento, su enlace y la réplica, no',
+    async (_id, i) => {
+      const { unmount } = pintaFicha(i.id)
+      const rotulo = await screen.findByRole('heading', { level: 2, name: 'Fuente y réplica' })
+      const tarjeta = rotulo.closest('[data-tarjeta]')
+      const pliegue = tarjeta.querySelector('details[data-ficha-tecnica]')
+      expect(pliegue, 'la tarjeta de la fuente no tiene pliegue').not.toBeNull()
+      expect(pliegue.open).toBe(false)
+      // La hoja, la fila y la columna van dentro.
+      expect(pliegue.textContent).toMatch(/Coste:/)
+      // Cada documento distinto —el de la cifra y los de la serie— se enlaza
+      // a la vista: una cita no se pliega.
+      const urls = new Set([i.citas[0].url, ...(i.procedencia ?? []).map((g) => g.url)])
+      expect(urls.size).toBeGreaterThan(0)
+      for (const url of urls) {
+        const enlace = [...tarjeta.querySelectorAll('a')].find(
+          (a) => a.getAttribute('href') === url && !dentroDeUnPliegue(a),
+        )
+        expect(enlace, `plegado o ausente: ${url}`).toBeDefined()
+      }
+      const replica = tarjeta.querySelector('a[href="/aviso-legal"]')
+      expect(replica).not.toBeNull()
+      expect(dentroDeUnPliegue(replica)).toBe(false)
+      unmount()
+    },
+  )
 
-  it('ninguna salvedad queda dentro de un pliegue, y la frase de cómo se lee tampoco', async () => {
-    const i = CON_CIFRA[0]
-    const { container } = pintaFicha(i.id)
-    await screen.findByRole('heading', { level: 2, name: /Salvedades/ })
-    const lectura = leerIndicador(i)
-    const salvedades = [...(lectura.avisos ?? []), ...(i.caveats ?? [])]
-    expect(salvedades.length).toBeGreaterThan(0)
-    const lis = [...container.querySelectorAll('li')]
-    for (const s of salvedades) {
-      const li = lis.find((l) => l.textContent.trim() === s)
-      expect(li, `no se pinta: ${s.slice(0, 50)}`).toBeDefined()
-      expect(dentroDeUnPliegue(li), `plegada: ${s.slice(0, 50)}`).toBe(false)
-    }
-    const como = [...container.querySelectorAll('p')].find((p) => p.textContent === lectura.como)
-    expect(como, 'la frase del escalón no se pinta').toBeDefined()
-    expect(dentroDeUnPliegue(como)).toBe(false)
-  })
+  it.each(CON_CIFRA.map((i) => [i.id, i]))(
+    '%s: cada salvedad está en su tarjeta, sin plegar, y la frase del escalón también',
+    async (_id, i) => {
+      const { container, unmount } = pintaFicha(i.id)
+      const rotulo = await screen.findByRole('heading', { level: 2, name: /Salvedades/ })
+      const tarjeta = rotulo.closest('[data-tarjeta]')
+      const lectura = leerIndicador(i)
+      const salvedades = [...(lectura.avisos ?? []), ...(i.caveats ?? [])]
+      expect(salvedades.length).toBeGreaterThan(0)
+      const lis = [...tarjeta.querySelectorAll('li')]
+      expect(lis).toHaveLength(salvedades.length)
+      for (const s of salvedades) {
+        const li = lis.find((l) => l.textContent.trim() === s)
+        expect(li, `no está en la tarjeta: ${s.slice(0, 50)}`).toBeDefined()
+        expect(dentroDeUnPliegue(li), `plegada: ${s.slice(0, 50)}`).toBe(false)
+      }
+      const como = [...container.querySelectorAll('p')].find((p) => p.textContent === lectura.como)
+      expect(como, 'la frase del escalón no se pinta').toBeDefined()
+      expect(dentroDeUnPliegue(como)).toBe(false)
+      unmount()
+    },
+  )
 
   /**
    * La tarjeta decía «Cada una está dicha arriba, junto a la cifra que

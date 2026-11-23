@@ -25,7 +25,9 @@ export function FichaTecnica({ rotulo, children, style, estiloRotulo, ...resto }
     let estabaAbierta = null
     const antes = () => {
       const d = ref.current
-      if (!d) return
+      // Dos `beforeprint` seguidos sin `afterprint`: el segundo vería el
+      // pliegue ya abierto por el primero y lo dejaría abierto después.
+      if (!d || estabaAbierta !== null) return
       estabaAbierta = d.open
       d.open = true
     }

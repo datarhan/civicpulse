@@ -88,15 +88,15 @@ function aniosEnTexto(anios) {
  * Un documento del ministerio y dónde están en él las dos mitades del cociente.
  *
  * `celdas={false}` pinta sólo el documento y su enlace: es lo que queda a la
- * vista en «Fuente y réplica». La hoja, la fila y la columna van plegadas en
- * la `FichaTecnica` de la misma tarjeta, con `enlace={false}` para no enlazar
- * dos veces el mismo documento.
+ * vista en «Fuente y réplica», uno por documento distinto. La hoja, la fila y
+ * la columna van plegadas en la `FichaTecnica` de la misma tarjeta, con
+ * `documento={false}`: el documento y su enlace ya están a la vista encima.
  */
-function CitaCelda({ cita, titulo, celdas = true, enlace = true }) {
+function CitaCelda({ cita, titulo, celdas = true, documento = true }) {
   return (
     <p style={estiloCita}>
       <span style={{ color: 'var(--ink70)' }}>{titulo}</span>
-      {cita.documento ? ` · ${cita.documento}` : ''}
+      {documento && cita.documento ? ` · ${cita.documento}` : ''}
       {celdas && cita.coste && (
         <>
           <br />
@@ -109,7 +109,7 @@ function CitaCelda({ cita, titulo, celdas = true, enlace = true }) {
           Unidad: <span className="mono">{cita.unidad}</span>
         </>
       )}
-      {enlace && (
+      {documento && (
         <>
           <br />
           <a
@@ -417,23 +417,35 @@ export default function ServicioDetalle() {
                   volcado bajo una cifra de 2024 que sale del informe por
                   comunidad: quien seguía el enlace encontraba otra cifra. Ahora
                   dice el documento y la hoja, fila y columna de cada mitad. */}
-              {/* A la vista, el documento de la cifra que titula y su enlace:
-                  la cita no se pliega. Plegadas, la hoja, la fila y la
-                  columna, y los documentos de las demás entregas: sirven para
-                  volver a comprobar la cifra, no para leerla. */}
+              {/* A la vista, cada documento distinto y su enlace: el de la
+                  cifra que titula y los de los demás años de la serie (el
+                  volcado nacional de 2021 es otro fichero, y «La década»
+                  dibuja ese año). Una cita no se pliega. Plegadas, la hoja,
+                  la fila y la columna: sirven para volver a comprobar la
+                  cifra, no para leerla. */}
               {cita && (
                 <CitaCelda cita={cita} titulo={`Coste efectivo ${cita.entrega}`} celdas={false} />
               )}
+              {otrasProcedencias
+                .filter((g) => g.url !== cita?.url)
+                .map((g) => (
+                  <CitaCelda
+                    key={g.entregas.join('-')}
+                    cita={g}
+                    titulo={aniosEnTexto(g.entregas.filter((a) => a !== cita?.entrega))}
+                    celdas={false}
+                  />
+                ))}
               {(cita?.coste || cita?.unidad || otrasProcedencias.length > 0) && (
                 <FichaTecnica
-                  rotulo="Dónde está cada cifra en los documentos"
+                  rotulo="Hoja, fila y columna de la cifra y de su serie"
                   style={{ marginTop: 9, fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}
                 >
                   {cita && (cita.coste || cita.unidad) && (
                     <CitaCelda
                       cita={cita}
                       titulo={`Coste efectivo ${cita.entrega}`}
-                      enlace={false}
+                      documento={false}
                     />
                   )}
                   {otrasProcedencias.map((g) => {
@@ -449,7 +461,12 @@ export default function ServicioDetalle() {
                         de cada año.
                       </p>
                     ) : (
-                      <CitaCelda key={g.entregas.join('-')} cita={g} titulo={aniosEnTexto(otras)} />
+                      <CitaCelda
+                        key={g.entregas.join('-')}
+                        cita={g}
+                        titulo={aniosEnTexto(otras)}
+                        documento={false}
+                      />
                     )
                   })}
                 </FichaTecnica>
