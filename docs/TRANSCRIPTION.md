@@ -272,9 +272,12 @@ quote whose lines carry two different blocs; it used to take the bloc of the
 line where the quote began.
 
 **Every engine's output must clear the degenerate-transcript sanity gate**
-(`src/scraper/transcript-sanity.ts`). Repetition-loop, dominant-line and
-no-content transcripts are quarantined rather than published, and the pleno
-stays in the backlog for retry. Sweep the published corpus any time with
+(`src/scraper/transcript-sanity.ts`). Repetition-loop, dominant-line,
+loop-run and no-content transcripts are quarantined rather than published, and
+the pleno stays in the backlog for retry. `loop-run` (2026-11-23) catches the
+loop that eats only the session's edges — the music before and after, heard as
+«La Lucha de los Malditos» window after window — which the whole-file shares
+miss; the extractor's `assessTranscript` refuses the same files. Sweep the published corpus any time with
 `npm run check:transcripts` (exit 1 on any failure).
 
 **And the second failure mode: the engine TRANSLATES instead of transcribing.**

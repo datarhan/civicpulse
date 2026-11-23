@@ -71,11 +71,18 @@ describe('rachaDeBucle', () => {
   const t = (xs: string[]) => xs.map((x, i) => `[${i * 30}.0 → ${(i + 1) * 30}.0] ${x}`).join('\n')
 
   it('cuenta las líneas idénticas seguidas', () => {
-    expect(rachaDeBucle(t(['a uno', 'b dos', 'b dos', 'b dos', 'c tres']))).toBe(3)
+    const a = 'Primera línea de la sesión'
+    const b = 'Segunda línea, que se repite'
+    expect(rachaDeBucle(t([a, b, b, b, a]))).toBe(3)
   })
 
   it('las líneas vacías no cortan la racha (1237hbp las intercala)', () => {
-    expect(rachaDeBucle(t(['La Lucha', '', 'La Lucha', '', '', 'La Lucha']))).toBe(3)
+    const l = 'La Lucha de los Malditos'
+    expect(rachaDeBucle(t([l, '', l, '', '', l]))).toBe(3)
+  })
+
+  it('las líneas cortas no cuentan: una votación nominal son muchos «Sí.» seguidos', () => {
+    expect(rachaDeBucle(t(Array.from({ length: 14 }, () => 'Sí.')))).toBe(0)
   })
 
   it('una línea que repite la frase entera cuenta como esa frase', () => {
@@ -89,7 +96,8 @@ describe('rachaDeBucle', () => {
   })
 
   it('las marcas de hablante no la esconden', () => {
-    expect(rachaDeBucle(t(['(SPEAKER_01) Sí.', '(SPEAKER_02) Sí.']))).toBe(2)
+    const l = 'Pasamos al siguiente punto del orden del día.'
+    expect(rachaDeBucle(t([`(SPEAKER_01) ${l}`, `(SPEAKER_02) ${l}`]))).toBe(2)
   })
 
   it('un fichero vacío no tiene racha', () => {
