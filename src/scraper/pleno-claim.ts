@@ -153,8 +153,10 @@ export interface PlenoClaim {
   atribucionFirmada?: { desde: number; hasta: number }
   /**
    * Optional individual attribution — only populated when the
-   * transcript line was rewritten with a high-tier voice-id named tag
-   * by `identify-pleno-speakers --apply` AND the slug resolves against
+   * transcript line carries a high-tier voice-id named tag (the copy
+   * `identify-pleno-speakers --apply` writes to `pleno-speakers/`, read only
+   * by `voice-id-ab` since 2026-11-23: the published extraction never sets
+   * this field) AND the slug resolves against
    * `public/data/officials.json` AND the official's party agrees with
    * `speakerGroup`. Validated in src/scraper/pleno-claim-llm.ts;
    * inconsistent values are stripped to null at write time.
