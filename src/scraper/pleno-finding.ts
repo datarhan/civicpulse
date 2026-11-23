@@ -139,6 +139,13 @@ export interface PlenoFinding {
     slug: string
     name: string
     party: SpeakerGroup
+    /**
+     * Tramo del audio del pleno, en segundos, que el curador escuchó antes de
+     * nombrar al orador (`promote-claim --escuchado`). Obligatorio para nombrar
+     * desde el 2026-11-23; opcional en el esquema sólo para no reescribir
+     * filas anteriores, y ninguna publicada nombra a nadie.
+     */
+    escuchado?: { desde: number; hasta: number }
   } | null
   response?: {
     from: SpeakerGroup
@@ -699,6 +706,18 @@ function validateFinding(f: unknown, idx: number): PlenoFinding {
         (ALLOWED_BLOCS as readonly string[]).includes(individualSpeaker.party),
       `items[${idx}].individualSpeaker.party must be one of ${ALLOWED_BLOCS.join(',')}`,
     )
+    const e = individualSpeaker.escuchado
+    if (e !== undefined) {
+      must(
+        typeof e === 'object' &&
+          e !== null &&
+          Number.isFinite(e.desde) &&
+          Number.isFinite(e.hasta) &&
+          e.hasta > e.desde &&
+          e.desde >= 0,
+        `items[${idx}].individualSpeaker.escuchado must be { desde, hasta } seconds with hasta > desde`,
+      )
+    }
   }
   const response = (o.response ?? null) as PlenoFinding['response']
   if (response) {
