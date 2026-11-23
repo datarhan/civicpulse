@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-11-19T18:38:27.735Z",
+  "generatedAt": "2026-11-23T09:53:32.998Z",
   "source": {
     "description": "Vote suggestions inferred automatically from YouTube-derived pleno transcripts. Every record carries requiresHumanApproval:true and MUST be reviewed by a curator before promotion to pleno-votes.json via `npm run pleno-vote`.",
     "contract": "Machine-written; never substitutes for the published human-verified record."
   },
   "stats": {
-    "total": 18,
+    "total": 20,
     "byEngine": {
       "regex": 9,
-      "llm": 9
+      "llm": 11
     },
     "byPleno": {
       "51k7yx": 5,
@@ -18,7 +18,8 @@
       "19gax3o": 2,
       "c8kr44": 1,
       "1sk3q3c": 6,
-      "1ci5p5s": 1
+      "1ci5p5s": 1,
+      "1uqimx0": 2
     }
   },
   "items": [
@@ -584,6 +585,68 @@
       "regmeetCheck": {
         "regmeetOutcome": "aprobada",
         "regmeetTitle": "15/2025/PGRU Moció conjunta dels Grups Municipals Compromís per Riba-roja i EU-Podem per reclamar que la llengua vehicular d’À Punt siga el valencià",
+        "status": "match"
+      }
+    },
+    {
+      "plenoId": "1uqimx0",
+      "plenoDate": "2025-05-12",
+      "itemNumber": 2,
+      "excerpt": "El Partido Popular. Vox. Esquerra Unida Podemos. A favor. Correcte, a favor. I compromís. A favor. Va, perfecte. Entre 13 a favor i 7 abstencions. Passem al següent punt de l'ordre del dia. És el punt 3, fomento econòmic, implantació de formació professional en transport i logística i infermeria.",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "EU-Podem",
+          "direction": "a_favor"
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor"
+        }
+      ],
+      "confidence": 0.65,
+      "requiresHumanApproval": true,
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "Expedient: 1724/2025/GEN, Carta de servicis 2025.",
+        "status": "match"
+      }
+    },
+    {
+      "plenoId": "1uqimx0",
+      "plenoDate": "2025-05-12",
+      "itemNumber": 6,
+      "excerpt": "Passem a la votació d'aquest punt. [...] Bueno, doncs si hi ha plena [u]nanimitat de tots els grups polítics, passaríem al [...] donar comptes.",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor"
+        },
+        {
+          "bloc": "PP",
+          "direction": "a_favor"
+        },
+        {
+          "bloc": "VOX",
+          "direction": "a_favor"
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor"
+        },
+        {
+          "bloc": "EU-Podem",
+          "direction": "a_favor"
+        }
+      ],
+      "confidence": 0.62,
+      "requiresHumanApproval": true,
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "11/2025/PGRU, Moció del Grup Municipal Socialista de Riba-roja per a l'habilitació de crèdits ICO sense interés per als municipis afectats per la Dana",
         "status": "match"
       }
     }

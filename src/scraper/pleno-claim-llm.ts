@@ -107,6 +107,14 @@ export interface ClaimExtractionResult {
      */
     blocsRetenidos: { unEscano: number; fueraDeLaComposicion: number }
     /**
+     * `speakerSlug` que el modelo emitió y cuántos se retiraron al validar
+     * (sin grupo, grupo que no casa, slug fuera de la lista). Sin esta cuenta
+     * una pasada que retira todos los nombres se lee igual que una en la que
+     * el modelo no emitió ninguno, y `voice-id-ab` informaba «0» en los dos
+     * casos (DATA_INTEGRITY, regla 2).
+     */
+    slugs: { emitidos: number; retirados: number }
+    /**
      * Pares count + countUnit que el modelo emitió y no se escriben, por
      * motivo (src/scraper/unidad-de-recuento.ts). Contados al emitirse, antes
      * del colapso: miden cuánto se equivoca el modelo, no cuánto sobrevive.
@@ -287,9 +295,17 @@ export async function extractClaimsConProcedencia(
     if (!rawSlug) return null
     const entry = speakersBySlug.get(rawSlug)
     if (!entry) return null
-    // If we have a bloc and it disagrees with the slug's party, drop the slug.
-    // We don't drop speakerGroup — it has its own libel-safe verification.
-    if (speakerGroup && entry.party !== speakerGroup) return null
+    // Sin grupo no hay contra qué comprobar el nombre, y se va. Hasta el
+    // 2026-11-23 se quedaba: una línea reescrita con un nombre por la
+    // identificación por voz deja de leerse como `(SPEAKER_NN)`, el mapa de
+    // voces no le da grupo, y el nombre pasaba sin ninguna comprobación.
+    if (!speakerGroup) return null
+    // Si el grupo contradice el partido del concejal, se va el nombre, no el
+    // grupo: el grupo tiene su propia verificación.
+    if (entry.party !== speakerGroup) return null
+    // Un concejal de un grupo de un escaño no llega aquí con grupo:
+    // `motivoDeRetencion` retiene ese grupo y la línea de arriba se lleva el
+    // nombre con él.
     return rawSlug
   }
 
@@ -304,6 +320,7 @@ export async function extractClaimsConProcedencia(
   const nombrarAUnaPersona = decideAutomation({ kind: 'name-individual', namesIndividual: true })
   type MotivoDeRetencion = keyof ClaimExtractionResult['stats']['blocsRetenidos']
   const retenidas = new Map<string, MotivoDeRetencion>()
+  const slugs = { emitidos: 0, retirados: 0 }
   function motivoDeRetencion(bloc: string | null): MotivoDeRetencion | null {
     if (bloc === null || nombrarAUnaPersona.allow) return null
     if (unEscano.has(bloc)) return 'unEscano'
@@ -371,6 +388,10 @@ export async function extractClaimsConProcedencia(
       // El concejal se va con su grupo: retener el grupo porque nombra a una
       // persona y dejar su `speakerSlug` sería nombrarla por la otra puerta.
       const validatedSlug = motivo ? null : validateSlug(raw.speakerSlug, speakerGroup)
+      if (raw.speakerSlug) {
+        slugs.emitidos += 1
+        if (!validatedSlug) slugs.retirados += 1
+      }
       // Después de la clave, no antes: el id sale de la respuesta cruda, así
       // que sanear la unidad no renombra nada que un veredicto ya cite.
       const recuento = sanearRecuento(raw.entities)
@@ -440,6 +461,7 @@ export async function extractClaimsConProcedencia(
       windowsAnswered,
       windowsUnanswered,
       blocsRetenidos,
+      slugs,
       unidadesDescartadas,
       contestadasPor,
     },

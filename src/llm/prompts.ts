@@ -134,10 +134,12 @@ export function buildPlenoClaimSystemPrompt(opts: {
   /**
    * Optional list of councillors whose voiceprint has been enrolled.
    * When supplied, the prompt teaches the model to recognise
-   * `(Full Name)` tags in the transcript (placed there by
-   * `scripts/identify-pleno-speakers.ts --apply`) and emit a
-   * `speakerSlug` in addition to `speakerGroup`. Without this list,
-   * the LLM emits `speakerSlug:null` always.
+   * `(Full Name)` tags in the transcript (the named copy
+   * `scripts/identify-pleno-speakers.ts --apply` writes to `pleno-speakers/`)
+   * and emit a `speakerSlug` in addition to `speakerGroup`. Without this
+   * list, the LLM emits `speakerSlug:null` always. Since 2026-11-23 only
+   * `voice-id-ab` (a measurement) passes it; the published extraction never
+   * does, and refuses a transcript carrying names.
    */
   allowedSpeakers?: AllowedSpeaker[]
 }): string {

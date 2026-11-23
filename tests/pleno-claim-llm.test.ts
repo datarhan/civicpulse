@@ -105,7 +105,12 @@ describe('extractClaimsWithLlm · speakerSlug validation', () => {
     expect(res.items[0].speakerGroup).toBe('PP')
   })
 
-  it('keeps speakerSlug when speakerGroup is null (no bloc to disagree with)', async () => {
+  // Hasta el 2026-11-23 esta prueba decía lo contrario: sin grupo, el slug se
+  // quedaba. Pero una línea que la identificación por voz reescribe con un
+  // nombre deja de leerse como `(SPEAKER_NN)`, el mapa de voces no le da
+  // grupo, y sin grupo no había ni comprobación de partido ni la de un escaño:
+  // el nombre de un concejal de VOX, EU-Podem o Compromís pasaba entero.
+  it('strips speakerSlug when speakerGroup is null (nothing to check it against)', async () => {
     const res = await extractClaimsWithLlm(
       SAMPLE_TRANSCRIPT,
       {
@@ -119,7 +124,47 @@ describe('extractClaimsWithLlm · speakerSlug validation', () => {
       callerOnce('robert-raga-gadea'),
     )
     expect(res.items).toHaveLength(1)
-    expect(res.items[0].speakerSlug).toBe('robert-raga-gadea')
+    expect(res.items[0].speakerSlug).toBeUndefined()
+    expect(res.items[0].speakerGroup).toBeNull()
+  })
+
+  it('cuenta los slugs emitidos y los retirados, para que «0» no se lea igual', async () => {
+    const res = await extractClaimsWithLlm(
+      SAMPLE_TRANSCRIPT,
+      {
+        plenoId: 'test',
+        plenoDate: '2026-04-29',
+        currentSeats: [{ bloc: 'PSOE', seats: 11 }],
+        allowedSpeakers: ENROLLED,
+        windowChars: 5000,
+        resolveBloc: () => null,
+      },
+      callerOnce('robert-raga-gadea'),
+    )
+    expect(res.stats.slugs).toEqual({ emitidos: 1, retirados: 1 })
+  })
+
+  it('strips the slug of a one-seat councillor even with no bloc on the line', async () => {
+    const res = await extractClaimsWithLlm(
+      SAMPLE_TRANSCRIPT,
+      {
+        plenoId: 'test',
+        plenoDate: '2026-04-29',
+        currentSeats: [
+          { bloc: 'PSOE', seats: 11 },
+          { bloc: 'VOX', seats: 1 },
+        ],
+        allowedSpeakers: [
+          ...ENROLLED,
+          { slug: 'jose-luis-fernandez-santamaria', name: 'José Luis Fernández', party: 'VOX' },
+        ],
+        windowChars: 5000,
+        resolveBloc: () => null,
+      },
+      callerOnce('jose-luis-fernandez-santamaria'),
+    )
+    expect(res.items).toHaveLength(1)
+    expect(res.items[0].speakerSlug).toBeUndefined()
     expect(res.items[0].speakerGroup).toBeNull()
   })
 
