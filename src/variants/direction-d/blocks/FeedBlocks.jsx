@@ -156,6 +156,7 @@ export function LiveContracts() {
       )}
       {recent.map((c, i) => {
         const importe = importeAdjudicado(c)
+        const { etiqueta, recortada } = etiquetaDeContrato(c.title)
         return (
           <div
             key={c.id}
@@ -198,12 +199,27 @@ export function LiveContracts() {
               <ExtLink href={c.permalink} style={{ color: 'inherit', textDecoration: 'none' }}>
                 {/* La etiqueta llana (`etiquetaDeContrato`): un trozo seguido del
                     título, sin la fórmula ni el procedimiento, y nunca cortado
-                    a mitad de palabra como el `slice(0, 100)` de antes. La
-                    portada da una línea por contrato; el título oficial entero
-                    está en la ficha a la que enlaza. */}
-                {etiquetaDeContrato(c.title).etiqueta || c.title}
+                    a mitad de palabra como el `slice(0, 100)` de antes. */}
+                {etiqueta || c.title}
               </ExtLink>
             </div>
+            {/* Si la etiqueta dice menos, el título oficial va debajo, entero,
+                como en /cambios y /quejas/:id. La etiqueta puede cortar dentro
+                del objeto («Suministro mediante compra | por procedimiento de
+                emergencia de una retroexcavadora…»): lo que se quita se ve. */}
+            {recortada && (
+              <div
+                data-titulo-oficial=""
+                style={{
+                  fontSize: 'var(--fs-micro)',
+                  color: PALETTE.ink60,
+                  lineHeight: 1.45,
+                  marginBottom: 4,
+                }}
+              >
+                {rellena(t('cambios.contrato.tituloOficial'), { titulo: c.title })}
+              </div>
+            )}
             <div
               style={{
                 display: 'flex',

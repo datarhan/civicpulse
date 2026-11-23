@@ -227,7 +227,9 @@ const DERIVADOS = [BARRIO_OSM.name]
 /**
  * El contrato relacionado se titula con su etiqueta llana (`etiquetaDeContrato`):
  * un trozo del título oficial, que se queda en su idioma. Ya no es la cadena del
- * fichero, así que se deriva de lo servido con la misma función que la recorta.
+ * fichero, así que se deriva de lo servido con la misma función que la recorta,
+ * y entra con las cadenas servidas: pasa por la regla de `datosPintados`, y una
+ * etiqueta corta sólo cuenta como dato cuando es una pieza entera.
  */
 const etiquetasDe = (fetch) =>
   (fetch?.['/data/queja-contract-relations.json']?.links ?? [])
@@ -435,9 +437,11 @@ describe('la ficha de una queja en valencià: nada se lee igual que en castellan
       expect.soft(es.pedidasSinServir, 'la ficha pide datos que la prueba no sirve').toEqual([])
 
       const datos = [
-        ...datosPintados(es.piezas, cadenasDe(escenario.fetch)),
+        ...datosPintados(
+          es.piezas,
+          new Set([...cadenasDe(escenario.fetch), ...etiquetasDe(escenario.fetch)]),
+        ),
         ...DERIVADOS,
-        ...etiquetasDe(escenario.fetch),
       ]
       const noSeTraduce = masLargasPrimero([...datos, ...SIGLAS])
       const { sinTraducir, castellanoEn } = detectorDeCastellano(noSeTraduce)

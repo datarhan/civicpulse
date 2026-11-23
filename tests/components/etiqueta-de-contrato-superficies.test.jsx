@@ -26,20 +26,15 @@ const TENDERS = JSON.parse(readFileSync('public/data/tenders.json', 'utf8'))
 const RELACIONES = JSON.parse(readFileSync('public/data/queja-contract-relations.json', 'utf8'))
 
 /**
- * Un enlace que la página pinta hoy —de nivel A, sin aprobación pendiente: los
- * de nivel B no se enseñan hasta que un curador los aprueba— cuyo título la
- * etiqueta acorta, el más largo.
+ * Un enlace publicado cuyo título la etiqueta acorta, el más largo, y otro que
+ * no acorta. Los de nivel B no se enseñan hasta que un curador los aprueba, así
+ * que un enlace de nivel B se sirve con su aprobación: el camino por el que
+ * llega a la página. Así la prueba no depende de qué enlaces sean hoy de
+ * nivel A (tres, y los tres se acortan).
  */
 const LARGO = [...RELACIONES.links]
-  .filter(
-    (l) => !l.requiresHumanApproval && l.tenderTitle && etiquetaDeContrato(l.tenderTitle).recortada,
-  )
+  .filter((l) => l.tenderTitle && etiquetaDeContrato(l.tenderTitle).recortada)
   .sort((a, b) => b.tenderTitle.length - a.tenderTitle.length)[0]
-/**
- * Y uno que la etiqueta no acorta. Los tres de nivel A se acortan todos, así
- * que es uno de nivel B, servido con su aprobación: el camino por el que un
- * enlace así llega a la página.
- */
 const CORTO = RELACIONES.links.find(
   (l) => l.tenderTitle && !etiquetaDeContrato(l.tenderTitle).recortada,
 )
@@ -114,26 +109,44 @@ describe('/quejas/:id · el contrato relacionado se titula con su etiqueta', () 
 })
 
 describe('portada · últimas adjudicaciones', () => {
-  const RECIENTES = TENDERS.top.recentAwarded.slice(0, 4)
+  /**
+   * Cuatro filas reales de tenders.json: dos que la etiqueta acorta y dos que
+   * no, servidas como las últimas adjudicaciones. Las de hoy rotan con cada
+   * nocturna; así la prueba mira los dos casos pase lo que pase con el dato.
+   */
+  const ACORTADAS = TENDERS.contracts.filter((c) => etiquetaDeContrato(c.title).recortada)
+  const ENTERAS = TENDERS.contracts.filter((c) => c.title && !etiquetaDeContrato(c.title).recortada)
+  const FILAS = [...ACORTADAS.slice(0, 2), ...ENTERAS.slice(0, 2)]
 
-  it('mide algo: alguna de las que se pintan hoy se acorta', () => {
-    expect(RECIENTES.some((c) => etiquetaDeContrato(c.title).recortada)).toBe(true)
+  it('mide algo: el fichero trae contratos de los dos casos', () => {
+    expect(ACORTADAS.length).toBeGreaterThan(1)
+    expect(ENTERAS.length).toBeGreaterThan(1)
   })
 
-  it('cada fila se titula con la etiqueta, sin cortar a mitad de palabra', async () => {
-    installFetchMock({ '/data/tenders.json': TENDERS })
-    render(
+  it('cada fila se titula con la etiqueta, y el título oficial va debajo si dice menos', async () => {
+    installFetchMock({
+      '/data/tenders.json': { ...TENDERS, top: { ...TENDERS.top, recentAwarded: FILAS } },
+    })
+    const { container } = render(
       <MemoryRouter>
         <LiveContracts />
       </MemoryRouter>,
     )
-    for (const c of RECIENTES) {
+    for (const c of FILAS) {
       const { etiqueta } = etiquetaDeContrato(c.title)
       const enlaces = await screen.findAllByText(etiqueta)
       expect(enlaces.length, `no se pinta: ${etiqueta}`).toBeGreaterThan(0)
     }
+    const oficiales = [...container.querySelectorAll('[data-titulo-oficial]')].map(
+      (o) => o.textContent,
+    )
+    expect(oficiales).toEqual(
+      ACORTADAS.slice(0, 2).map((c) =>
+        rellena(CATALOGUE.es['cambios.contrato.tituloOficial'], { titulo: c.title }),
+      ),
+    )
     // El corte a 100 caracteres de antes no puede volver.
-    for (const c of RECIENTES.filter((x) => x.title.length > 100)) {
+    for (const c of FILAS.filter((x) => x.title.length > 100)) {
       expect(screen.queryByText(c.title.slice(0, 100) + '…')).toBeNull()
     }
   })

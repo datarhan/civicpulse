@@ -248,8 +248,10 @@ function columnaEnSusRamasRaras() {
 /**
  * Las últimas adjudicaciones se titulan con la etiqueta llana del contrato
  * (`etiquetaDeContrato`): un trozo del título oficial, que se queda en su
- * idioma. Como los temas de reportaje, ya no es la cadena del fichero, así que se
- * deriva con la misma función que la recorta.
+ * idioma. Ya no es la cadena del fichero, así que se deriva con la misma función
+ * que la recorta, y entra con las cadenas servidas: pasa por la misma regla de
+ * `datosPintados`, y una etiqueta corta («Suministro») sólo cuenta como dato
+ * cuando es una pieza entera, no dentro de cualquier rótulo.
  */
 const ETIQUETAS_DE_CONTRATO = publicado('/data/tenders.json')
   .top.recentAwarded.map((c) => etiquetaDeContrato(c.title).etiqueta)
@@ -264,7 +266,7 @@ const ESCENARIOS = [
   {
     nombre: 'la columna editorial con lo que hoy está publicado',
     cubre: [EditorialColumn, ...LA_COLUMNA],
-    datos: [...TEMAS_DE_REPORTAJE, ...ETIQUETAS_DE_CONTRATO],
+    datos: TEMAS_DE_REPORTAJE,
     fetch: COLUMNA_DE_HOY,
     pinta: () => <EditorialColumn now={AHORA} />,
     // Con el dato de hoy casi todos los bloques pintan; la otra columna los exige todos.
@@ -274,7 +276,7 @@ const ESCENARIOS = [
   {
     nombre: 'la columna editorial en sus ramas raras: LOREG, concesiones, oficial y sin ejecución',
     cubre: [EditorialColumn, ...LA_COLUMNA],
-    datos: [...TEMAS_DE_REPORTAJE, ...ETIQUETAS_DE_CONTRATO],
+    datos: TEMAS_DE_REPORTAJE,
     fetch: COLUMNA_RARA,
     faltanAdrede: ['/data/budget-execution.json'],
     pinta: () => <EditorialColumn now={AHORA} />,
@@ -316,7 +318,10 @@ describe('la portada en valencià: fuera del mapa, nada se lee igual que en cast
       expect.soft(es.pedidasSinServir, 'la portada pide datos que la prueba no sirve').toEqual([])
 
       const datos = [
-        ...datosPintados(es.piezas, cadenasDe(escenario.fetch ?? {})),
+        ...datosPintados(
+          es.piezas,
+          new Set([...cadenasDe(escenario.fetch ?? {}), ...ETIQUETAS_DE_CONTRATO]),
+        ),
         ...(escenario.datos ?? []),
       ]
       const noSeTraduce = masLargasPrimero([...datos, ...SIGLAS])

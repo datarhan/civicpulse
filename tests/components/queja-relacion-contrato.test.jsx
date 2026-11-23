@@ -6,6 +6,7 @@ import QuejaDetail from '../../src/pages/QuejaDetail'
 import { CATALOGUE } from '../../src/i18n'
 import { scoreRelation } from '../../src/scraper/queja-contract-relations'
 import { installFetchMock } from '../setup/mockFetch'
+import { etiquetaDeContrato } from '../../src/scraper/etiqueta-de-contrato'
 
 /**
  * /quejas/:id · «Posibles actuaciones municipales relacionadas».
@@ -110,8 +111,8 @@ const tarjetaDe = (enlaceHref) => {
 describe('queja · contratos relacionados', () => {
   it('cada tarjeta dice qué contrato es, cuándo se adjudicó y por cuánto', async () => {
     monta([enlace(CONTRATO)])
-    // La etiqueta y, debajo, el título oficial entero: el texto sale dos veces.
-    expect(await screen.findAllByText(/Área de esparcimiento en zona verde/)).not.toHaveLength(0)
+    // La etiqueta y, debajo, el título oficial entero: se busca la etiqueta.
+    expect(await screen.findByText(etiquetaDeContrato(CONTRATO.title).etiqueta)).toBeInTheDocument()
     const t = within(tarjetaDe(CONTRATO.permalink))
     expect(t.getByText(/27 de mayo de 2026/)).toBeInTheDocument()
     expect(t.getByText(/89\.980 €/)).toBeInTheDocument()
@@ -120,7 +121,9 @@ describe('queja · contratos relacionados', () => {
 
   it('sin importe publicado lo dice, y no pinta 0 €', async () => {
     monta([enlace(SIN_IMPORTE)])
-    expect(await screen.findAllByText(/Centros Culturales/)).not.toHaveLength(0)
+    expect(
+      await screen.findByText(etiquetaDeContrato(SIN_IMPORTE.title).etiqueta),
+    ).toBeInTheDocument()
     const tarjeta = tarjetaDe(SIN_IMPORTE.permalink)
     expect(
       within(tarjeta).getByText(new RegExp(CATALOGUE.es['importe.noPublicado'])),
