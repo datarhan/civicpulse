@@ -25,14 +25,26 @@ import { installFetchMock } from '../setup/mockFetch'
 const TENDERS = JSON.parse(readFileSync('public/data/tenders.json', 'utf8'))
 const RELACIONES = JSON.parse(readFileSync('public/data/queja-contract-relations.json', 'utf8'))
 
-/** Un enlace publicado cuyo título la etiqueta acorta, el más largo. */
+/**
+ * Un enlace que la página pinta hoy —de nivel A, sin aprobación pendiente: los
+ * de nivel B no se enseñan hasta que un curador los aprueba— cuyo título la
+ * etiqueta acorta, el más largo.
+ */
 const LARGO = [...RELACIONES.links]
-  .filter((l) => l.tenderTitle && etiquetaDeContrato(l.tenderTitle).recortada)
+  .filter(
+    (l) => !l.requiresHumanApproval && l.tenderTitle && etiquetaDeContrato(l.tenderTitle).recortada,
+  )
   .sort((a, b) => b.tenderTitle.length - a.tenderTitle.length)[0]
-/** Y uno que la etiqueta no acorta. */
+/**
+ * Y uno que la etiqueta no acorta. Los tres de nivel A se acortan todos, así
+ * que es uno de nivel B, servido con su aprobación: el camino por el que un
+ * enlace así llega a la página.
+ */
 const CORTO = RELACIONES.links.find(
   (l) => l.tenderTitle && !etiquetaDeContrato(l.tenderTitle).recortada,
 )
+const aprobacionDe = (l) =>
+  l.requiresHumanApproval ? [{ quejaId: l.quejaId, tenderId: l.tenderId }] : []
 
 function montaQueja(link) {
   const id = link.quejaId
@@ -61,7 +73,7 @@ function montaQueja(link) {
     '/data/officials.json': { officials: [] },
     '/data/geo.json': { neighborhoods: [] },
     '/data/queja-contract-relations.json': { ...RELACIONES, links: [link] },
-    '/data/queja-contract-relations-approved.json': { approvals: [] },
+    '/data/queja-contract-relations-approved.json': { approvals: aprobacionDe(link) },
   })
   return render(
     <MemoryRouter initialEntries={[`/quejas/${id}`]}>

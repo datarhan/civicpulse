@@ -110,7 +110,8 @@ const tarjetaDe = (enlaceHref) => {
 describe('queja · contratos relacionados', () => {
   it('cada tarjeta dice qué contrato es, cuándo se adjudicó y por cuánto', async () => {
     monta([enlace(CONTRATO)])
-    expect(await screen.findByText(/Área de esparcimiento en zona verde/)).toBeInTheDocument()
+    // La etiqueta y, debajo, el título oficial entero: el texto sale dos veces.
+    expect(await screen.findAllByText(/Área de esparcimiento en zona verde/)).not.toHaveLength(0)
     const t = within(tarjetaDe(CONTRATO.permalink))
     expect(t.getByText(/27 de mayo de 2026/)).toBeInTheDocument()
     expect(t.getByText(/89\.980 €/)).toBeInTheDocument()
@@ -119,7 +120,7 @@ describe('queja · contratos relacionados', () => {
 
   it('sin importe publicado lo dice, y no pinta 0 €', async () => {
     monta([enlace(SIN_IMPORTE)])
-    expect(await screen.findByText(/Centros Culturales/)).toBeInTheDocument()
+    expect(await screen.findAllByText(/Centros Culturales/)).not.toHaveLength(0)
     const tarjeta = tarjetaDe(SIN_IMPORTE.permalink)
     expect(
       within(tarjeta).getByText(new RegExp(CATALOGUE.es['importe.noPublicado'])),

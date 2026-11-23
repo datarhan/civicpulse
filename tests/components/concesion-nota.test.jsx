@@ -18,6 +18,7 @@ import { MemoryRouter } from 'react-router-dom'
 import { LiveContracts } from '../../src/variants/direction-d/blocks/FeedBlocks'
 import { installFetchMock } from '../setup/mockFetch'
 import { CONCESSION_CONTRACT_TYPES, contractTermYears } from '../../src/lib/contract-status'
+import { etiquetaDeContrato } from '../../src/scraper/etiqueta-de-contrato'
 
 /** Del enum, no escrito a mano: un tipo nuevo de concesión entra solo. */
 const TIPO_CONCESION = CONCESSION_CONTRACT_TYPES[0]
@@ -78,7 +79,8 @@ describe('la salvedad de una concesión en «últimas adjudicaciones»', () => {
   it('un contrato que no es concesión no lleva salvedad (control)', async () => {
     monta([fila({ contractType: 'services' })])
     // La fila está pintada: lo que falta es la salvedad, no el bloque.
-    await screen.findByText(/Contrato de prueba del banco de pruebas/)
+    // La fila se titula con su etiqueta llana, sin «Contrato de» delante.
+    await screen.findByText(etiquetaDeContrato('Contrato de prueba del banco de pruebas').etiqueta)
     expect(screen.queryByText(/no un gasto anual/)).toBeNull()
   })
 })

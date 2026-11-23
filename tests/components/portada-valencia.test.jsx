@@ -30,6 +30,7 @@ import { REPORTAJE_SLUGS } from '../../src/reportajes'
 import { CONCESSION_CONTRACT_TYPES } from '../../src/lib/contract-status'
 import { canonicalizeDepartment, DEPARTMENT_LABEL } from '../../src/scraper/departments'
 import { euros, eurosBreves } from '../../src/lib/formatters'
+import { etiquetaDeContrato } from '../../src/scraper/etiqueta-de-contrato'
 import { EditorialColumn } from '../../src/variants/direction-d/EditorialColumn'
 import { KpiStrip } from '../../src/variants/direction-d/KpiStrip'
 import { Header } from '../../src/variants/direction-d/Topbar'
@@ -244,6 +245,16 @@ function columnaEnSusRamasRaras() {
   return mapa
 }
 
+/**
+ * Las últimas adjudicaciones se titulan con la etiqueta llana del contrato
+ * (`etiquetaDeContrato`): un trozo del título oficial, que se queda en su
+ * idioma. Como los temas de reportaje, ya no es la cadena del fichero, así que se
+ * deriva con la misma función que la recorta.
+ */
+const ETIQUETAS_DE_CONTRATO = publicado('/data/tenders.json')
+  .top.recentAwarded.map((c) => etiquetaDeContrato(c.title).etiqueta)
+  .filter(Boolean)
+
 // ─── Escenarios ────────────────────────────────────────────────────────────────
 
 const COLUMNA_DE_HOY = sirve(RUTAS_COLUMNA)
@@ -253,7 +264,7 @@ const ESCENARIOS = [
   {
     nombre: 'la columna editorial con lo que hoy está publicado',
     cubre: [EditorialColumn, ...LA_COLUMNA],
-    datos: TEMAS_DE_REPORTAJE,
+    datos: [...TEMAS_DE_REPORTAJE, ...ETIQUETAS_DE_CONTRATO],
     fetch: COLUMNA_DE_HOY,
     pinta: () => <EditorialColumn now={AHORA} />,
     // Con el dato de hoy casi todos los bloques pintan; la otra columna los exige todos.
@@ -263,7 +274,7 @@ const ESCENARIOS = [
   {
     nombre: 'la columna editorial en sus ramas raras: LOREG, concesiones, oficial y sin ejecución',
     cubre: [EditorialColumn, ...LA_COLUMNA],
-    datos: TEMAS_DE_REPORTAJE,
+    datos: [...TEMAS_DE_REPORTAJE, ...ETIQUETAS_DE_CONTRATO],
     fetch: COLUMNA_RARA,
     faltanAdrede: ['/data/budget-execution.json'],
     pinta: () => <EditorialColumn now={AHORA} />,
