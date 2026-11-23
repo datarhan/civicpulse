@@ -10,6 +10,7 @@ import {
   literalesNoServibles,
   TECHO_LITERAL_NO_SERVIBLE,
 } from '../scripts/chunk-pleno-claims'
+import { procedenciaDelCorpus } from '../scripts/lib/procedencia-del-corpus'
 
 const SUSTITUIDA =
   '[11610.0 → 11640.0] en la legislatura esta, que acaban de pagar ahora mil millones de euros al Centro de Buenestar, en la casa del abogado'
@@ -55,5 +56,48 @@ describe('excesoDeLiteralNoServible', () => {
     expect(
       excesoDeLiteralNoServible(Math.ceil(juzgadas * TECHO_LITERAL_NO_SERVIBLE) + 1, juzgadas),
     ).toMatch(/techo/)
+  })
+})
+
+describe('procedenciaDelCorpus', () => {
+  const conVeredicto = (id: string, verbatim: string, verdict: string) => ({
+    claim: { id, plenoId: 'a', verbatim, type: 'cita_obra' },
+    verification: { verdict },
+  })
+  const TRADUCIDA = 'que acaban de pagar ahora mil millones de euros al Centro de Buenestar'
+  const BUENA = "que acaben de pagar vora mig milió d'euros al centre Bonestar"
+  // Relleno que consta en la vigente: el techo del literal mide sobre lo
+  // evaluado, y con dos solas la traducida sería la mitad.
+  const relleno = Array.from({ length: 8 }, (_, i) => conVeredicto(`a-r${i}`, BUENA, 'sin-datos'))
+  const lectores = {
+    leerVigente: (p: string) => (p === 'a' ? VIGENTE : null),
+    leerSustituidas: (p: string) => (p === 'a' ? [SUSTITUIDA] : []),
+  }
+
+  it('retiene la traducida que se serviría', () => {
+    const r = procedenciaDelCorpus(
+      [conVeredicto('a-1', TRADUCIDA, 'sin-datos'), ...relleno],
+      lectores,
+    )
+    expect([...r.literalNoServible]).toEqual([['a-1', 'literal-traducido']])
+  })
+
+  it('una contradicha sólo entra en el mapa si se pide, y nunca en el recuento', () => {
+    const items = [conVeredicto('a-1', TRADUCIDA, 'contradicho'), ...relleno]
+    expect(procedenciaDelCorpus(items, lectores).literalNoServible.size).toBe(0)
+    const r = procedenciaDelCorpus(items, lectores, { incluirContradichas: true })
+    expect([...r.literalNoServible]).toEqual([['a-1', 'literal-traducido']])
+    expect(r.literales.porId.size).toBe(0)
+  })
+
+  it('lanza si no pudo leer ninguna transcripción vigente, en vez de devolver vacío', () => {
+    const ciego = { leerVigente: () => null, leerSustituidas: lectores.leerSustituidas }
+    expect(() =>
+      procedenciaDelCorpus([conVeredicto('a-1', TRADUCIDA, 'sin-datos')], ciego),
+    ).toThrow(/ninguna transcripción vigente/)
+  })
+
+  it('un corpus vacío no lanza', () => {
+    expect(procedenciaDelCorpus([], lectores).literalNoServible.size).toBe(0)
   })
 })

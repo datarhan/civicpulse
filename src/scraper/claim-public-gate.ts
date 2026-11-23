@@ -44,7 +44,8 @@ export interface OpcionesDeProcedenciaPorId {
   literalNoServible?: ReadonlyMap<string, MotivoLiteralNoServible>
 }
 
-function opcionesDe(id: unknown, opts: OpcionesDeProcedenciaPorId): OpcionesDeProcedencia {
+/** Las opciones de UNA declaración, sacadas de las de la lista por su id. */
+export function opcionesDe(id: unknown, opts: OpcionesDeProcedenciaPorId): OpcionesDeProcedencia {
   if (typeof id !== 'string') return {}
   return {
     sinProcedencia: opts.sinProcedencia?.has(id) ?? false,

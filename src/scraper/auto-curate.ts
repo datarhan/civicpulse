@@ -17,7 +17,11 @@
  */
 import type { PlenoClaim } from './pleno-claim'
 import { evidenceStance, toPublishedSnippet, type ClaimVerification } from './claim-verifier'
-import { classifyClaimVisibility } from './claim-public-gate'
+import {
+  classifyClaimVisibility,
+  opcionesDe,
+  type OpcionesDeProcedenciaPorId,
+} from './claim-public-gate'
 import { recordKnowableAt, type RecordDateGateReport, type RecordDateIndex } from './record-dates'
 import type { PlenoFinding, FindingQuote, FindingRef, FindingSeverity } from './pleno-finding'
 import { decideAutomation, type Decision, type Measurement } from './automation-policy'
@@ -53,6 +57,19 @@ export interface SelectionOpts {
   minScore?: number
   /** Max bundles returned in `eligible[]`. Default Infinity (caller caps). */
   max?: number
+  /**
+   * Lo que la puerta sabe de los textos: qué literales no constan en ninguna
+   * transcripción y cuáles constan pero no son lo que se dijo (traducidos por
+   * un motor que sustituimos, o inventados). Sale de `procedenciaDelCorpus`
+   * (scripts/lib/procedencia-del-corpus.ts), el mismo decisor que usa el
+   * troceador de /declaraciones.
+   *
+   * OBLIGATORIO, no opcional: sin él la puerta contesta «se sirve» a los 560
+   * literales que /declaraciones retiene desde el 22-11-2026, y este camino los
+   * convertiría en citas de una ficha nueva. Quien de verdad no tiene
+   * transcripciones que mirar lo dice pasando `{}`.
+   */
+  procedencia: OpcionesDeProcedenciaPorId
 }
 
 const VERDICT_WEIGHT: Record<string, number> = {
@@ -68,7 +85,10 @@ const BOILERPLATE = /^(Punto|Acta|Acta núm|Comienza el|En base a|Asunto)/i
  * bundle, and the survivors then have to clear the dialectic gate on
  * their own.
  */
-function isClaimEligibleForBundle(it: VerifiedItem): boolean {
+function isClaimEligibleForBundle(
+  it: VerifiedItem,
+  procedencia: OpcionesDeProcedenciaPorId,
+): boolean {
   if (!it.claim.speakerGroup) return false // party-attribution required
   if (it.claim.confidence < 0.65) return false
   if (it.claim.verbatim.length < 25) return false
@@ -93,8 +113,15 @@ function isClaimEligibleForBundle(it: VerifiedItem): boolean {
   // instead of filling it, and a libel guard with nothing left to catch reads
   // exactly like a libel guard that works. The two rules agree on the outcome;
   // the stricter one has to be the one that sees the claim.
+  //
+  // Un literal sin procedencia, o traducido o inventado, queda fuera ANTES de
+  // esa excepción: no es una cuestión del veredicto sino del texto. Lo que se
+  // citaría no es lo que nadie dijo, ni para publicarlo ni para ponerlo delante
+  // de quien revisa la cuarentena como si lo fuera.
+  const opts = opcionesDe(it.claim.id, procedencia)
+  if (opts.sinProcedencia || opts.literalNoServible) return false
   if (it.verification.verdict === 'contradicho') return true
-  if (classifyClaimVisibility(it) !== 'shown') return false
+  if (classifyClaimVisibility(it, opts) !== 'shown') return false
   return true
 }
 
@@ -111,7 +138,7 @@ function isClaimEligibleForBundle(it: VerifiedItem): boolean {
 export function selectBundles(
   verified: VerifiedSnapshot | null | undefined,
   previouslyCitedClaimIds: Set<string>,
-  opts: SelectionOpts = {},
+  opts: SelectionOpts,
 ): { eligible: BundleCandidate[]; quarantine: BundleCandidate[] } {
   const minScore = opts.minScore ?? 6.0
   const max = opts.max ?? Infinity
@@ -120,7 +147,7 @@ export function selectBundles(
   for (const it of verified?.items ?? []) {
     if (previouslyCitedClaimIds.has(it.claim.id)) continue
     if (!['verificado', 'parcial', 'contradicho'].includes(it.verification.verdict)) continue
-    if (!isClaimEligibleForBundle(it)) continue
+    if (!isClaimEligibleForBundle(it, opts.procedencia)) continue
     const key = it.claim.plenoId + '||' + it.claim.topic
     const arr = groups.get(key)
     if (arr) arr.push(it)
