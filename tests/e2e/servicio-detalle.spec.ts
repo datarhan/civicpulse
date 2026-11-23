@@ -4,6 +4,7 @@ import { readFileSync } from 'node:fs'
 import type { Indicador } from '../../src/scraper/indicadores'
 import { cruzaMediana } from '../../src/scraper/indicador-areas'
 import { rutaDeServicio } from '../../src/scraper/ruta-de-servicio'
+import { COMO_SE_LEE } from '../../src/scraper/indicador-lectura'
 import { collectErrors, appErrors } from './_console'
 
 /**
@@ -268,6 +269,33 @@ test.describe('Ficha de servicio (/eficiencia/:id)', () => {
         yCifra,
       )
     }
+  })
+
+  /**
+   * Con el pliegue de las celdas CERRADO, lo que sostiene la cifra sigue a la
+   * vista: la frase de cómo se lee (la del escalón, «es un precio…»), cada
+   * salvedad y la vía de réplica. Y al imprimir, el pliegue se abre: una ficha
+   * impresa sin sus celdas sería una cita sin dirección.
+   */
+  test('plegadas las celdas, la salvedad del escalón y la réplica siguen a la vista', async ({
+    page,
+  }) => {
+    const pliegue = page.locator('details[data-ficha-tecnica]')
+    await expect(pliegue).toHaveCount(1, { timeout: 8000 })
+    expect(await pliegue.evaluate((d: HTMLDetailsElement) => d.open)).toBe(false)
+    // Mide algo: lo plegado está de verdad escondido.
+    await expect(pliegue.getByText(/Coste:/).first()).toBeHidden()
+
+    await expect(page.getByText(COMO_SE_LEE[COMPARABLE.tier]).first()).toBeVisible()
+    for (const c of COMPARABLE.caveats ?? []) {
+      await expect(page.getByText(c, { exact: true }).first()).toBeVisible()
+    }
+    await expect(page.getByText(/Derecho de réplica abierto/)).toBeVisible()
+    await expect(page.getByRole('link', { name: 'cómo responder' })).toBeVisible()
+
+    await page.evaluate(() => window.dispatchEvent(new Event('beforeprint')))
+    expect(await pliegue.evaluate((d: HTMLDetailsElement) => d.open)).toBe(true)
+    await expect(pliegue.getByText(/Coste:/).first()).toBeVisible()
   })
 
   test('un servicio concedido publica su cociente y dice quién lo paga', async ({ page }) => {
