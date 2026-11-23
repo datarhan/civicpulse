@@ -148,7 +148,7 @@ export const UNDETERMINED_REASONS = [
   {
     id: 'transcripcion-actual-mas-corta',
     meaning:
-      'La transcripción vigente pesa menos que la que sustituyó, así que la ausencia puede ser un tramo no cubierto y no una reescritura.',
+      'La transcripción vigente tiene menos palabras que la que sustituyó, así que la ausencia puede ser un tramo no cubierto y no una reescritura.',
   },
   {
     id: 'sin-transcripcion-vigente',
@@ -163,15 +163,12 @@ export const UNDETERMINED_REASON_IDS: readonly UndeterminedReason[] = UNDETERMIN
   (r) => r.id,
 )
 
-/** The two texts of one session, plus their sizes. No disk access in here. */
+/** The two texts of one session. No disk access in here. */
 export interface SessionTexts {
   /** The transcript published today, or null when the file is absent. */
   current: string | null
   /** The transcript this session had before it was re-transcribed, if any. */
   superseded: string | null
-  /** Bytes on disk. Only the comparison matters, never the absolute figure. */
-  currentBytes: number
-  supersededBytes: number
 }
 
 /**
@@ -192,17 +189,37 @@ export type QuoteProvenanceOutcome =
     }
 
 /**
+ * Las palabras que dice una transcripción, sin su marcado.
+ *
+ * Hasta el 23-11-2026 se comparaban BYTES, y una transcripción diarizada lleva
+ * en cada intervención una marca de tiempo y una de hablante que no son nada
+ * que se dijera. Medido ese día: 1qi8axv y otxq2c pesaban más que la que
+ * sustituyeron y decían menos palabras; 1sqj7is y ma87e0, al revés. La página
+ * escribía «la vigente, que es más extensa» y «es más corta» sobre 262
+ * declaraciones donde, en palabras, era falso.
+ */
+const MARCA_DE_TIEMPO = /\[[\d.:]+\s*→\s*[\d.:]+\]/g
+const MARCA_DE_HABLANTE = /\(SPEAKER_\d+\)/g
+const PALABRA = /[\p{L}\p{N}]+/gu
+
+export function palabrasDeTranscripcion(texto: string): number {
+  const limpio = texto.replace(MARCA_DE_TIEMPO, ' ').replace(MARCA_DE_HABLANTE, ' ')
+  return limpio.match(PALABRA)?.length ?? 0
+}
+
+/**
  * Is this session's absence-of-a-quote interpretable?
  *
  * The size comparison is the whole discriminator and it is deliberately crude:
- * bytes, not words, not a diff. A finer measure would be a judgement about
+ * a count of words, not a diff. A finer measure would be a judgement about
  * transcript quality, and this module is not entitled to make one — it only has
- * to tell «the new pass says more» from «the new pass says less».
+ * to tell «the new pass says more» from «the new pass says less». Words, not
+ * bytes: see `palabrasDeTranscripcion`.
  */
 export function sessionIsComparable(s: SessionTexts): boolean {
   if (s.current === null) return false
   if (s.superseded === null) return true
-  return s.currentBytes >= s.supersededBytes
+  return palabrasDeTranscripcion(s.current) >= palabrasDeTranscripcion(s.superseded)
 }
 
 /**
@@ -313,8 +330,8 @@ export interface QuoteProvenanceEntry {
 export interface ProvenanceSessionRow {
   /** Is there a superseded file, i.e. was this session transcribed twice? */
   retranscrita: boolean
-  bytesVigente: number
-  bytesSustituida: number
+  palabrasVigente: number
+  palabrasSustituida: number
   /** false ⇒ an absent quote here is «cannot tell», never «only in the old one». */
   comparable: boolean
 }
@@ -469,12 +486,7 @@ export function buildQuoteProvenance(
   const quotes: Record<string, QuoteProvenanceEntry[]> = {}
   const unresolved: UnresolvedQuote[] = []
   const sessionRows: Record<string, ProvenanceSessionRow> = {}
-  const empty: SessionTexts = {
-    current: null,
-    superseded: null,
-    currentBytes: 0,
-    supersededBytes: 0,
-  }
+  const empty: SessionTexts = { current: null, superseded: null }
 
   let total = 0
   let enVigente = 0
@@ -492,8 +504,8 @@ export function buildQuoteProvenance(
       bytesLeidos += (s.current?.length ?? 0) + (s.superseded?.length ?? 0)
       sessionRows[f.plenoId] = {
         retranscrita: s.superseded !== null,
-        bytesVigente: s.currentBytes,
-        bytesSustituida: s.supersededBytes,
+        palabrasVigente: s.current === null ? 0 : palabrasDeTranscripcion(s.current),
+        palabrasSustituida: s.superseded === null ? 0 : palabrasDeTranscripcion(s.superseded),
         comparable: sessionIsComparable(s),
       }
     }

@@ -1808,6 +1808,12 @@ export const CATALOGUE = {
     'declaraciones.tema.educacion': 'Educación',
     'declaraciones.tema.other': 'Sin clasificar',
     'declaraciones.sinAtribuir': 'sin atribuir',
+    // Dónde consta el literal de una declaración (`MarcaDeProcedencia`). El chip
+    // es el de /hallazgos; la nota es propia: una declaración no se reancla.
+    'declaraciones.procedencia.sustituida.nota':
+      'Estas palabras salen de la transcripción anterior de la sesión, que se volvió a transcribir con un motor mejor; en la vigente, que no es más corta, no aparecen así. El motor anterior traducía a menudo al castellano lo dicho en valencià —y entonces las cifras pueden no coincidir con lo que se dijo— o lo redactaba a su manera. La marca habla del texto, no de quién habló, y el veredicto se calculó sobre estas mismas palabras.',
+    'declaraciones.procedencia.sinDeterminar.nota':
+      'No podemos situar estas palabras en la transcripción vigente de la sesión: o no la hay, o tiene menos palabras que la que sustituyó, y entonces su ausencia puede deberse al cambio de motor o a un tramo que la nueva pasada no cubre. No afirmamos ninguna de las dos cosas.',
     'declaraciones.evidencia.una': 'evidencia',
     'declaraciones.evidencia.varias': 'evidencias',
     // La fuente de cada fila de evidencia (EVIDENCE_KINDS).
@@ -2771,7 +2777,7 @@ export const CATALOGUE = {
     'metodologia.frase.trinquete-veredictos':
       'Cada etapa mueve un veredicto en un solo sentido, ninguna automática lo refuerza, y un veredicto que afirma algo nombra contra qué se comprobó, salvo la retractación de un curador.',
     'metodologia.frase.citas-transcripcion':
-      'Las citas de los hallazgos salen de una transcripción automática; si no constan en el mejor texto lo marcamos, si no constan en ninguno no se publican, y no las reescribimos por nuestra cuenta.',
+      'Las citas de los hallazgos y de las declaraciones salen de una transcripción automática; si no constan en el mejor texto lo marcamos, si no constan en ninguno no se publican, y no las reescribimos por nuestra cuenta.',
     'metodologia.frase.citas-contraste':
       'Una puerta editorial decide si una afirmación se enseña con sus datos, como no contrastada o se retiene, y lo que se retiene es la cita, no lo que se dijo.',
     'metodologia.frase.plazos-vencidos':
@@ -5494,6 +5500,10 @@ export const CATALOGUE = {
     'declaraciones.tema.educacion': 'Educació',
     'declaraciones.tema.other': 'Sense classificar',
     'declaraciones.sinAtribuir': 'sense atribuir',
+    'declaraciones.procedencia.sustituida.nota':
+      'Estes paraules ixen de la transcripció anterior de la sessió, que es va tornar a transcriure amb un motor millor; en la vigent, que no és més curta, no apareixen així. El motor anterior traduïa sovint al castellà el que es deia en valencià —i aleshores les xifres poden no coincidir amb el que es va dir— o ho redactava a la seua manera. La marca parla del text, no de qui va parlar, i el veredicte es va calcular sobre estes mateixes paraules.',
+    'declaraciones.procedencia.sinDeterminar.nota':
+      'No podem situar estes paraules en la transcripció vigent de la sessió: o no n’hi ha, o té menys paraules que la que va substituir, i aleshores la seua absència pot deure’s al canvi de motor o a un tram que la nova passada no cobreix. No afirmem cap de les dues coses.',
     'declaraciones.evidencia.una': 'evidència',
     'declaraciones.evidencia.varias': 'evidències',
     'ledger.evidencia.tender': 'Contracte',
@@ -6350,7 +6360,7 @@ export const CATALOGUE = {
     'metodologia.frase.trinquete-veredictos':
       "Cada etapa mou un veredicte en un sol sentit, cap d'automàtica no el reforça, i un veredicte que afirma alguna cosa nomena amb què es va comprovar, excepte la retractació d'un curador.",
     'metodologia.frase.citas-transcripcion':
-      "Les cites de les troballes ixen d'una transcripció automàtica; si no consten en el millor text ho marquem, si no consten en cap no es publiquen, i no les reescrivim pel nostre compte.",
+      "Les cites de les troballes i de les declaracions ixen d'una transcripció automàtica; si no consten en el millor text ho marquem, si no consten en cap no es publiquen, i no les reescrivim pel nostre compte.",
     'metodologia.frase.citas-contraste':
       'Una porta editorial decidix si una afirmació es mostra amb les seues dades, com a no contrastada o es reté, i el que es reté és la cita, no el que es va dir.',
     'metodologia.frase.plazos-vencidos':

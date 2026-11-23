@@ -12,7 +12,10 @@
  *             after listening to the session (see `classifyClaimVisibility`);
  *             any claim whose literal is a replaced engine's translation or
  *             ASR hallucination (`literal-no-servible.ts`)
- *   toggle  — non-accusation claims that are not data-grounded (sin-datos)
+ *   toggle  — non-accusation claims that are not data-grounded (sin-datos),
+ *             and data-grounded ones whose literal is not in the current
+ *             transcript (`procedenciaDelLiteral`): the verdict was computed
+ *             on those words
  *   shown   — data-grounded claims of any type (incl. data-backed accusations):
  *             a verdict in DATA_GROUNDED_VERDICTS that names a real corpus, or
  *             that a curator signed
@@ -25,6 +28,7 @@ import type { OverlaySource } from './verified-merge'
 import { corpusReales, desenlaceDeCotejo, type DesenlaceDeCotejo } from './claim-verdicts'
 import { motivoDeRetirada } from './declaracion-retirada'
 import type { MotivoLiteralNoServible } from './literal-no-servible'
+import type { QuoteProvenanceStatus } from './quote-provenance'
 
 /**
  * Lo que la puerta recibe de quien leyó los textos: si el literal no consta en
@@ -36,12 +40,20 @@ import type { MotivoLiteralNoServible } from './literal-no-servible'
 export interface OpcionesDeProcedencia {
   sinProcedencia?: boolean
   literalNoServible?: MotivoLiteralNoServible | null
+  /**
+   * Dónde consta el literal (`procedenciaDeDeclaracion`). Cualquier cosa que no
+   * sea `en-vigente` impide `shown`: una declaración cuyas palabras no están en
+   * la transcripción vigente no se destaca como fundada, aunque el verificador
+   * le diera un veredicto — lo calculó sobre esas mismas palabras.
+   */
+  procedenciaDelLiteral?: QuoteProvenanceStatus | null
 }
 
 /** Las mismas, para una lista: por id. */
 export interface OpcionesDeProcedenciaPorId {
   sinProcedencia?: ReadonlySet<string>
   literalNoServible?: ReadonlyMap<string, MotivoLiteralNoServible>
+  procedenciaDelLiteral?: ReadonlyMap<string, QuoteProvenanceStatus>
 }
 
 /** Las opciones de UNA declaración, sacadas de las de la lista por su id. */
@@ -50,6 +62,7 @@ export function opcionesDe(id: unknown, opts: OpcionesDeProcedenciaPorId): Opcio
   return {
     sinProcedencia: opts.sinProcedencia?.has(id) ?? false,
     literalNoServible: opts.literalNoServible?.get(id) ?? null,
+    procedenciaDelLiteral: opts.procedenciaDelLiteral?.get(id) ?? null,
   }
 }
 
@@ -252,7 +265,10 @@ export function classifyClaimVisibility(
   opts: OpcionesDeProcedencia = {},
 ): ClaimVisibility {
   if (motivoDeRetencion(item, opts) !== null) return 'hidden'
-  return estaFundada(item) ? 'shown' : 'toggle'
+  if (!estaFundada(item)) return 'toggle'
+  // Bajar, nunca subir: sin la respuesta (null) la regla de siempre decide.
+  const p = opts.procedenciaDelLiteral
+  return p != null && p !== 'en-vigente' ? 'toggle' : 'shown'
 }
 
 /**
@@ -406,6 +422,12 @@ function estaFundada(item: ClaimVisibilityInput): boolean {
 
 export interface GatedItem extends VerifiedClaimItem {
   visibility: ClaimVisibility
+  /**
+   * Dónde consta su literal, estampado por el troceador. Ausente sólo si quien
+   * llamó a la puerta no pasó `procedenciaDelLiteral` (las pruebas); el
+   * troceador la pasa siempre y comprueba que cada servida lleva la suya.
+   */
+  procedencia?: QuoteProvenanceStatus
 }
 
 /**
@@ -422,10 +444,24 @@ export function gateItemsForPublic(
   opts: OpcionesDeProcedenciaPorId = {},
 ): GatedItem[] {
   const out: GatedItem[] = []
+  const mapa = opts.procedenciaDelLiteral
   for (const it of items ?? []) {
     const visibility = classifyClaimVisibility(it, opcionesDe(it?.claim?.id, opts))
     if (visibility === 'hidden') continue
-    out.push({ ...it, visibility })
+    if (mapa === undefined) {
+      out.push({ ...it, visibility })
+      continue
+    }
+    // Con mapa, cada servida lleva su marca: una que falte no es «está en la
+    // vigente», es que nadie la miró, y eso no se publica como si lo fuera.
+    const procedencia = mapa.get(it?.claim?.id ?? '')
+    if (procedencia === undefined) {
+      throw new Error(
+        `[puerta] la declaración ${it?.claim?.id ?? '(sin id)'} se serviría sin saber dónde ` +
+          `consta su literal: falta en procedenciaDelLiteral.`,
+      )
+    }
+    out.push({ ...it, visibility, procedencia })
   }
   return out
 }

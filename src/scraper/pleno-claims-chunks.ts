@@ -24,6 +24,7 @@ import type { PlenoClaim, ClaimType, ClaimTopic } from './pleno-claim'
 import type { MotivoDeRetirada } from './declaracion-retirada'
 import type { MotivoDeRetencion } from './claim-public-gate'
 import type { MotivoLiteralNoServible, RazonNoJuzgable } from './literal-no-servible'
+import type { QuoteProvenanceStatus } from './quote-provenance'
 import {
   CASILLA_DE_DESENLACE,
   desenlaceDeCotejo,
@@ -56,6 +57,12 @@ export interface VerifiedClaimItem {
   }
   /** Public-ledger visibility, stamped by the build-time gate (claim-public-gate.ts). */
   visibility?: 'shown' | 'toggle' | 'hidden'
+  /**
+   * Dónde consta el literal, estampado por la misma puerta (`GatedItem`). Lo
+   * pintan /declaraciones y el registro de /plenos/:id con la marca de
+   * /hallazgos. Ausente en un trozo anterior al 23-11-2026: entonces no consta.
+   */
+  procedencia?: QuoteProvenanceStatus
 }
 
 export interface VerifiedSnapshot {
@@ -210,6 +217,13 @@ export interface PlenoClaimsChunkManifest {
      * cuántas hay. Un número que la puerta baja y el parte nombra.
      */
     retenidasSinProcedencia: number
+    /**
+     * Las servidas, por dónde consta su literal (`procedencia` de cada item).
+     * Suma `items` o no está: el troceador lo comprueba antes de escribir, y
+     * ausente quiere decir que algún item salió sin marca, no que todas estén
+     * en la vigente. /metodologia lee de aquí sus cifras.
+     */
+    procedenciaDelLiteral?: Partial<Record<QuoteProvenanceStatus, number>>
     /**
      * Las que retiró una persona tras escuchar la sesión, por motivo
      * (`declaracion-retirada.ts`): su literal consta en una transcripción, pero
@@ -389,6 +403,8 @@ export function buildManifest(
     (tabla[k] ??= { total: 0, sinCorpus: 0, comprobadoSinHallar: 0, noConsta: 0 })
   const pasadas: ResumenDePasadas = { porMarca: {}, filas: 0, noConsta: 0, noConstaSinMarca: 0 }
   let totalItems = 0
+  const porProcedencia: Partial<Record<QuoteProvenanceStatus, number>> = {}
+  let sinMarca = 0
   for (const [plenoId, items] of itemsByPleno) {
     const { chunk, descriptor } = buildChunkAndDescriptor(plenoId, items, generatedAt)
     plenosOut.push(descriptor)
@@ -398,6 +414,8 @@ export function buildManifest(
       totalsByVerdict[k] = (totalsByVerdict[k] ?? 0) + v
     }
     for (const it of items) {
+      if (it.procedencia) porProcedencia[it.procedencia] = (porProcedencia[it.procedencia] ?? 0) + 1
+      else sinMarca += 1
       const t = it.claim?.topic
       const v = it.verification?.verdict
       const listados = it.verification?.checkedAgainst ?? []
@@ -473,6 +491,7 @@ export function buildManifest(
         ...(retenidasPorMotivo ? { retenidasPorMotivo } : {}),
         ...(literalNoServible ? { literalNoServible } : {}),
         retenidasSinProcedencia,
+        ...(sinMarca === 0 && totalItems > 0 ? { procedenciaDelLiteral: porProcedencia } : {}),
         retiradas,
         sinDatosPorque,
       },

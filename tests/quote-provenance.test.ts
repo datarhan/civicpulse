@@ -24,6 +24,7 @@ import {
   provenanceSanityFailure,
   PROVENANCE_VERSION,
   QUOTE_PROVENANCE_STATUS_IDS,
+  palabrasDeTranscripcion,
   sessionIsComparable,
   UNDETERMINED_REASON_IDS,
   type QuoteProvenanceSnapshot,
@@ -137,8 +138,8 @@ describe('los tres estados son alcanzables, y cada uno sobre datos reales', () =
       const plenoId = FINDINGS.items.find((f) => f.id === id)!.plenoId
       if (rows.some((r) => r.status === 'sin-determinar')) {
         expect(DERIVED.sessions[plenoId].comparable).toBe(false)
-        expect(DERIVED.sessions[plenoId].bytesVigente).toBeLessThan(
-          DERIVED.sessions[plenoId].bytesSustituida,
+        expect(DERIVED.sessions[plenoId].palabrasVigente).toBeLessThan(
+          DERIVED.sessions[plenoId].palabrasSustituida,
         )
       }
     }
@@ -214,20 +215,13 @@ describe('classifyQuoteProvenance — el árbol de decisión, rama a rama', () =
   const session = (o: Partial<SessionTexts>): SessionTexts => ({
     current: null,
     superseded: null,
-    currentBytes: 0,
-    supersededBytes: 0,
     ...o,
   })
 
   it('está en el texto vigente → en-vigente, aunque el vigente sea más corto', () => {
     const r = classifyQuoteProvenance(
       QUOTE,
-      session({
-        current: withQuote,
-        currentBytes: 10,
-        superseded: withQuote,
-        supersededBytes: 999,
-      }),
+      session({ current: withQuote, superseded: `${withQuote} ${words(80, 'mas')}` }),
     )
     expect(r).toEqual({ kind: 'clasificada', status: 'en-vigente', reason: null })
   })
@@ -235,12 +229,7 @@ describe('classifyQuoteProvenance — el árbol de decisión, rama a rama', () =
   it('sólo en el sustituido y el vigente es mayor → solo-en-sustituida', () => {
     const r = classifyQuoteProvenance(
       QUOTE,
-      session({
-        current: words(40, 'otra'),
-        currentBytes: 900,
-        superseded: withQuote,
-        supersededBytes: 100,
-      }),
+      session({ current: words(40, 'otra'), superseded: withQuote }),
     )
     expect(r).toEqual({ kind: 'clasificada', status: 'solo-en-sustituida', reason: null })
   })
@@ -248,12 +237,7 @@ describe('classifyQuoteProvenance — el árbol de decisión, rama a rama', () =
   it('sólo en el sustituido y el vigente es MENOR → sin-determinar', () => {
     const r = classifyQuoteProvenance(
       QUOTE,
-      session({
-        current: words(40, 'otra'),
-        currentBytes: 100,
-        superseded: withQuote,
-        supersededBytes: 900,
-      }),
+      session({ current: words(4, 'otra'), superseded: withQuote }),
     )
     expect(r).toEqual({
       kind: 'clasificada',
@@ -265,7 +249,7 @@ describe('classifyQuoteProvenance — el árbol de decisión, rama a rama', () =
   it('sin transcripción vigente → sin-determinar, con su motivo propio', () => {
     // Cero en los datos de hoy, pero es un motivo distinto y se cuenta aparte:
     // así una causa nueva no se esconde dentro de un «sin determinar» que crece.
-    const r = classifyQuoteProvenance(QUOTE, session({ superseded: withQuote, supersededBytes: 1 }))
+    const r = classifyQuoteProvenance(QUOTE, session({ superseded: withQuote }))
     expect(r).toEqual({
       kind: 'clasificada',
       status: 'sin-determinar',
@@ -276,34 +260,34 @@ describe('classifyQuoteProvenance — el árbol de decisión, rama a rama', () =
   it('en ninguna de las dos → no es un estado: sale como no-localizada', () => {
     const r = classifyQuoteProvenance(
       'el alcalde reconoció que había cobrado una comisión de la empresa adjudicataria',
-      session({
-        current: words(40, 'otra'),
-        currentBytes: 900,
-        superseded: words(40, 'vieja'),
-        supersededBytes: 100,
-      }),
+      session({ current: words(40, 'otra'), superseded: words(40, 'vieja') }),
     )
     expect(r.kind).toBe('no-localizada')
   })
 
   it('una cita vacía no se etiqueta con nada', () => {
-    const r = classifyQuoteProvenance('   ', session({ current: withQuote, currentBytes: 1 }))
+    const r = classifyQuoteProvenance('   ', session({ current: withQuote }))
     expect(r.kind).toBe('no-localizada')
   })
 
-  it('sessionIsComparable: empatar en bytes cuenta como comparable, no como duda', () => {
-    expect(
-      sessionIsComparable(
-        session({ current: 'a', currentBytes: 5, superseded: 'b', supersededBytes: 5 }),
-      ),
-    ).toBe(true)
-    expect(
-      sessionIsComparable(
-        session({ current: 'a', currentBytes: 4, superseded: 'b', supersededBytes: 5 }),
-      ),
-    ).toBe(false)
-    expect(sessionIsComparable(session({ current: 'a', currentBytes: 4 }))).toBe(true)
-    expect(sessionIsComparable(session({ superseded: 'b', supersededBytes: 5 }))).toBe(false)
+  it('sessionIsComparable: empatar en palabras cuenta como comparable, no como duda', () => {
+    expect(sessionIsComparable(session({ current: 'a b', superseded: 'c d' }))).toBe(true)
+    expect(sessionIsComparable(session({ current: 'a', superseded: 'c d' }))).toBe(false)
+    expect(sessionIsComparable(session({ current: 'a' }))).toBe(true)
+    expect(sessionIsComparable(session({ superseded: 'b' }))).toBe(false)
+  })
+
+  // El caso que los bytes contaban al revés: una vigente diarizada pesa MÁS por
+  // sus marcas de tiempo y de hablante, y dice MENOS. Con bytes salía comparable.
+  it('sessionIsComparable cuenta palabras dichas, no las marcas de la diarización', () => {
+    const diarizada = [
+      '[918.9 → 919.3] (SPEAKER_00) Bon dia.',
+      '[919.9 → 926.7] (SPEAKER_01) Comencem el ple.',
+    ].join('\n')
+    const llana = 'Buenos días a todos, comenzamos el pleno de hoy'
+    expect(Buffer.byteLength(diarizada)).toBeGreaterThan(Buffer.byteLength(llana))
+    expect(palabrasDeTranscripcion(diarizada)).toBe(5)
+    expect(sessionIsComparable(session({ current: diarizada, superseded: llana }))).toBe(false)
   })
 })
 

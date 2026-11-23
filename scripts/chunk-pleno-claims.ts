@@ -111,7 +111,8 @@ export function rewriteChunksFromMonolith(opts: { dryRun?: boolean } = {}): {
   // Las dos preguntas de procedencia —¿consta el literal?, ¿es lo que se
   // dijo?— con sus techos, en el decisor que comparten todos los que preguntan
   // a la puerta (scripts/lib/procedencia-del-corpus.ts).
-  const { sinProcedencia, literalNoServible, literales } = procedenciaDelCorpus(crudos)
+  const { sinProcedencia, literalNoServible, procedenciaDelLiteral, literales } =
+    procedenciaDelCorpus(crudos)
   if (sinProcedencia.size > 0) {
     console.warn(
       `[chunk-claims] ${sinProcedencia.size} declaración(es) retenida(s): su literal no consta ` +
@@ -147,7 +148,11 @@ export function rewriteChunksFromMonolith(opts: { dryRun?: boolean } = {}): {
         `la sesión: su literal no es lo que se dijo. No se publican.`,
     )
   }
-  const items = gateItemsForPublic(crudos, { sinProcedencia, literalNoServible })
+  const items = gateItemsForPublic(crudos, {
+    sinProcedencia,
+    literalNoServible,
+    procedenciaDelLiteral,
+  })
   // Lo que la puerta se lleva, contado por tipo y por motivo antes de perderlo
   // de vista. Un tipo retenido entero desaparecería de la tabla de cobertura y
   // el lector concluiría que no lo extraemos: la ausencia hay que publicarla,
@@ -185,6 +190,23 @@ export function rewriteChunksFromMonolith(opts: { dryRun?: boolean } = {}): {
       sinVigente: literales.sinVigente,
       sinJuzgar: literales.noJuzgables,
     },
+  )
+
+  // Cada servida lleva su marca de procedencia, y las marcas suman lo servido:
+  // si no, la página contaría unas filas y pintaría otras.
+  const marcas = manifest.totals.procedenciaDelLiteral
+  const nMarcas = Object.values(marcas ?? {}).reduce((s, n) => s + (n ?? 0), 0)
+  if (manifest.totals.items > 0 && (!marcas || nMarcas !== manifest.totals.items)) {
+    throw new Error(
+      `[chunk-claims] ${nMarcas} marcas de procedencia para ${manifest.totals.items} ` +
+        `declaraciones servidas: no cuadran, no se escribe nada.`,
+    )
+  }
+  console.warn(
+    `[chunk-claims] procedencia del literal: ` +
+      Object.entries(marcas)
+        .map(([k, n]) => `${n} ${k}`)
+        .join(' · '),
   )
 
   // Track the chunks we're about to write so we can prune stale ones.

@@ -55,8 +55,6 @@ const SIN_MARCAS = `${DICHO_EN_EL_PLENO}\ny aquí acaba este texto suelto, sin u
 const sesion = (current: string | null, superseded: string | null = null): SessionTexts => ({
   current,
   superseded,
-  currentBytes: current?.length ?? 0,
-  supersededBytes: superseded?.length ?? 0,
 })
 const origen = (cita: string, s: SessionTexts) => origenDeCita(classifyQuoteProvenance(cita, s), s)
 

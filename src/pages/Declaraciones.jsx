@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Card, Pill, SectionHead, PartyTag } from '../components/Primitives'
 import DataAsOf from '../components/DataAsOf'
 import { MarcaDeFirma } from '../components/MarcaDeFirma'
+import { MarcaDeProcedencia } from '../components/MarcaDeProcedencia'
 import { usePlenoClaims, VERDICT_TONE } from '../hooks/usePlenoClaims'
 import { rotuloDeTipo } from '../lib/claim-type-label.js'
 import { usePlenos } from '../hooks/usePlenos'
@@ -171,6 +172,7 @@ function ClaimRow({ item, plenoTitle }) {
       <div style={{ fontSize: 'var(--fs-aux)', lineHeight: 1.5, marginBottom: 6 }}>
         «{c.verbatim}»
       </div>
+      <MarcaDeProcedencia procedencia={item.procedencia} />
       {ent.length > 0 && (
         <div
           className="mono"

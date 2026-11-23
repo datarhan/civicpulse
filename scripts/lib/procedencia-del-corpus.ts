@@ -21,7 +21,11 @@ import {
   type ClaimVisibilityInput,
   type OpcionesDeProcedenciaPorId,
 } from '../../src/scraper/claim-public-gate'
-import { classifyClaimProvenancePreparado } from '../../src/scraper/claim-provenance'
+import {
+  classifyClaimProvenancePreparado,
+  procedenciaDeDeclaracion,
+  type ProvenanceOutcome,
+} from '../../src/scraper/claim-provenance'
 import {
   indexarTranscripcion,
   motivoDeLiteral,
@@ -30,6 +34,7 @@ import {
   type RazonNoJuzgable,
   type TranscripcionIndexada,
 } from '../../src/scraper/literal-no-servible'
+import { sessionIsComparable, type QuoteProvenanceStatus } from '../../src/scraper/quote-provenance'
 import { prepararHeno, type HenoPreparado } from '../../src/scraper/quote-match'
 import { loadSupersededTexts, TRANSCRIPTS_DIR } from './transcript-corpus'
 
@@ -78,6 +83,56 @@ export function excesoDeRetirada(sinProcedencia: number, total: number): string 
 }
 
 /**
+ * Dónde consta el literal de cada declaración: el desenlace de la escalera de
+ * `classifyClaimProvenancePreparado` y si su sesión es comparable
+ * (`sessionIsComparable`, en palabras, contra la sustituida PRINCIPAL — la que
+ * lee /hallazgos para sus citas, así que una sesión lleva la misma marca en
+ * las dos páginas). Una sola pasada sirve a la puerta que retiene
+ * (`idsSinProcedencia`) y a la marca que se estampa (`procedenciaDelLiteral`):
+ * dos pasadas sobre la misma pregunta es como empiezan a discrepar.
+ *
+ * `leerSustituidas` devuelve la principal primero (`archivosDe`); si sólo
+ * quedaran versiones etiquetadas, la primera de ellas hace de principal.
+ */
+export function desenlacesDeProcedencia(
+  items: readonly { claim?: { id?: string; plenoId?: string; verbatim?: string } }[],
+  leerVigente: (plenoId: string) => string | null,
+  leerSustituidas: (plenoId: string) => string[],
+): Map<string, { desenlace: ProvenanceOutcome; comparable: boolean }> {
+  // Los textos se normalizan UNA vez por sesión, no una por declaración:
+  // normalizar es el 100 % del coste del emparejador (6,11 ms por
+  // transcripción de 274 KB frente a 0,04 ms de búsqueda, medido), así que
+  // hacerlo dentro del bucle costaba 42 s de los 46 que tardaba esta pasada.
+  const sesiones = new Map<
+    string,
+    { vigente: HenoPreparado | null; sustituidas: HenoPreparado[]; comparable: boolean }
+  >()
+  const out = new Map<string, { desenlace: ProvenanceOutcome; comparable: boolean }>()
+  for (const it of items) {
+    const c = it.claim
+    if (!c?.id || !c.plenoId || !c.verbatim) continue
+    let s = sesiones.get(c.plenoId)
+    if (s === undefined) {
+      const t = leerVigente(c.plenoId)
+      const sust = leerSustituidas(c.plenoId)
+      s = {
+        vigente: t === null ? null : prepararHeno(t),
+        sustituidas: sust.map(prepararHeno),
+        comparable: sessionIsComparable({ current: t, superseded: sust[0] ?? null }),
+      }
+      sesiones.set(c.plenoId, s)
+    }
+    const desenlace = classifyClaimProvenancePreparado({
+      verbatim: c.verbatim,
+      current: s.vigente,
+      superseded: s.sustituidas,
+    })
+    out.set(c.id, { desenlace, comparable: s.comparable })
+  }
+  return out
+}
+
+/**
  * Los ids cuyo literal no consta en ninguna transcripción que tengamos.
  *
  * Mismo emparejador y mismos textos que `check:claim-provenance`, a propósito:
@@ -89,28 +144,14 @@ export function idsSinProcedencia(
   leerVigente: (plenoId: string) => string | null,
   leerSustituidas: (plenoId: string) => string[],
 ): Set<string> {
-  // Los textos se normalizan UNA vez por sesión, no una por declaración:
-  // normalizar es el 100 % del coste del emparejador (6,11 ms por
-  // transcripción de 274 KB frente a 0,04 ms de búsqueda, medido), así que
-  // hacerlo dentro del bucle costaba 42 s de los 46 que tardaba esta pasada.
-  const vigentes = new Map<string, HenoPreparado | null>()
-  const sustituidas = new Map<string, HenoPreparado[]>()
+  return idsSinRastro(desenlacesDeProcedencia(items, leerVigente, leerSustituidas))
+}
+
+function idsSinRastro(
+  desenlaces: ReadonlyMap<string, { desenlace: ProvenanceOutcome }>,
+): Set<string> {
   const out = new Set<string>()
-  for (const it of items) {
-    const c = it.claim
-    if (!c?.id || !c.plenoId || !c.verbatim) continue
-    if (!vigentes.has(c.plenoId)) {
-      const t = leerVigente(c.plenoId)
-      vigentes.set(c.plenoId, t === null ? null : prepararHeno(t))
-      sustituidas.set(c.plenoId, leerSustituidas(c.plenoId).map(prepararHeno))
-    }
-    const p = classifyClaimProvenancePreparado({
-      verbatim: c.verbatim,
-      current: vigentes.get(c.plenoId) ?? null,
-      superseded: sustituidas.get(c.plenoId) ?? [],
-    })
-    if (p === 'sin-rastro') out.add(c.id)
-  }
+  for (const [id, d] of desenlaces) if (d.desenlace === 'sin-rastro') out.add(id)
   return out
 }
 
@@ -241,11 +282,12 @@ export function procedenciaDelCorpus(
   lectores = lectoresDeDisco(),
   { incluirContradichas = false }: { incluirContradichas?: boolean } = {},
 ): ProcedenciaDelCorpus {
-  const sinProcedencia = idsSinProcedencia(
+  const desenlaces = desenlacesDeProcedencia(
     items as never,
     lectores.leerVigente,
     lectores.leerSustituidas,
   )
+  const sinProcedencia = idsSinRastro(desenlaces)
   const exceso = excesoDeRetirada(sinProcedencia.size, items.length)
   if (exceso !== null) throw new Error(exceso)
   const servibles = items.filter(
@@ -278,5 +320,12 @@ export function procedenciaDelCorpus(
     )
     for (const [id, m] of extra.porId) literalNoServible.set(id, m)
   }
-  return { sinProcedencia, literalNoServible, literales }
+  // La marca de cada declaración cuyo literal consta en algún sitio. Las
+  // `sin-rastro` no llevan: la puerta las retiene.
+  const procedenciaDelLiteral = new Map<string, QuoteProvenanceStatus>()
+  for (const [id, d] of desenlaces) {
+    const p = procedenciaDeDeclaracion(d.desenlace, d.comparable)
+    if (p !== null) procedenciaDelLiteral.set(id, p)
+  }
+  return { sinProcedencia, literalNoServible, procedenciaDelLiteral, literales }
 }

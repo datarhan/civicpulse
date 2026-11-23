@@ -51,6 +51,7 @@
  * (`declaracion-retirada.ts`).
  */
 import { prepararHeno, quoteAppearsInPrepared, type HenoPreparado } from './quote-match'
+import type { QuoteProvenanceStatus } from './quote-provenance'
 import type { SpeakerMap } from './speaker-map'
 import { alignSpeakerMap, blocResolverFor } from './speaker-map-align'
 import { parseDiarizedTranscript } from './voice-id'
@@ -115,6 +116,72 @@ export function classifyClaimProvenancePreparado(input: {
   if (quoteAppearsInPrepared(verbatim, current)) return 'vigente'
   if (superseded.some((t) => quoteAppearsInPrepared(verbatim, t))) return 'solo-superseded'
   return 'sin-rastro'
+}
+
+/**
+ * La marca que lleva al lado una declaración SERVIDA, en el vocabulario que
+ * /hallazgos ya publica para sus citas (`QUOTE_PROVENANCE_STATUSES`): un lector
+ * que ve la misma marca en dos páginas tiene que poder leerla igual.
+ *
+ * `comparable` es `sessionIsComparable` de la sesión —la misma regla, en
+ * palabras, que decide la marca de las citas de los hallazgos—, así que una
+ * sesión no puede llevar una marca en /hallazgos y otra en /declaraciones.
+ *
+ * `sin-transcripcion` es `sin-determinar`, como en las citas: no hay contra qué
+ * cotejar. `sin-rastro` devuelve `null` porque la puerta la retiene y nunca se
+ * sirve: no hay marca que poner a lo que no se publica.
+ */
+export function procedenciaDeDeclaracion(
+  outcome: ProvenanceOutcome,
+  comparable: boolean,
+): QuoteProvenanceStatus | null {
+  switch (outcome) {
+    case 'vigente':
+      return 'en-vigente'
+    case 'solo-superseded':
+      return comparable ? 'solo-en-sustituida' : 'sin-determinar'
+    case 'sin-transcripcion':
+      return 'sin-determinar'
+    case 'sin-rastro':
+      return null
+  }
+}
+
+/**
+ * ¿La marca estampada en lo publicado sigue siendo la de hoy?
+ *
+ * La marca se estampa al trocear, y nada nocturno vuelve a trocear: una sesión
+ * re-transcrita sin re-extraer —así nacieron las 995 del 23-11-2026— deja
+ * marcas viejas sobre textos nuevos. `check:claim-provenance` recalcula cada
+ * una y cuenta aparte las tres cosas, para que «no la pude comparar» no se lea
+ * como «coincide»: las que coinciden, las que no, y las que no llevan marca.
+ */
+export interface DesfaseDeMarcas {
+  evaluadas: number
+  coinciden: number
+  desfasadas: { claimId: string; estampada: string; hoy: string }[]
+  sinMarca: number
+}
+
+export function desfaseDeMarcas(
+  filas: readonly { claimId: string; estampada: unknown; hoy: QuoteProvenanceStatus | null }[],
+): DesfaseDeMarcas {
+  const out: DesfaseDeMarcas = { evaluadas: 0, coinciden: 0, desfasadas: [], sinMarca: 0 }
+  for (const f of filas) {
+    out.evaluadas += 1
+    if (typeof f.estampada !== 'string') {
+      out.sinMarca += 1
+      continue
+    }
+    if (f.estampada === f.hoy) out.coinciden += 1
+    else
+      out.desfasadas.push({
+        claimId: f.claimId,
+        estampada: f.estampada,
+        hoy: f.hoy ?? 'sin-rastro',
+      })
+  }
+  return out
 }
 
 /**
