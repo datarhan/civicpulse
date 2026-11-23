@@ -295,11 +295,19 @@ export function PromiseCard({ p, suggestion, llmEvidence, frozen, officials }) {
           {fmt(p.madeAt)}
         </span>
       </div>
-      <div
-        style={{ fontSize: 'var(--fs-head)', fontWeight: 600, lineHeight: 1.3, marginBottom: 8 }}
+      {/* Un <h2> por tarjeta: la página no tenía ninguno, y un lector de
+          pantalla no podía saltar de promesa en promesa (auditoría de las dos
+          lecturas). Se ve igual: el `margin` es el de antes. */}
+      <h2
+        style={{
+          fontSize: 'var(--fs-head)',
+          fontWeight: 600,
+          lineHeight: 1.3,
+          margin: '0 0 8px',
+        }}
       >
         {p.title}
-      </div>
+      </h2>
       <blockquote
         style={{
           fontSize: 'var(--fs-body)',

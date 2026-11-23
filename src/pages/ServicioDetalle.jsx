@@ -1,5 +1,6 @@
 import { Link, useParams } from 'react-router-dom'
 import { Card } from '../components/Primitives'
+import { FichaTecnica } from '../components/FichaTecnica'
 import { EcuacionCoste } from '../components/eficiencia/EcuacionCoste'
 import { estiloFicha } from '../components/eficiencia/ficha.css.js'
 import { TicksPares } from '../components/eficiencia/TicksPares'
@@ -83,33 +84,44 @@ function aniosEnTexto(anios) {
     : `${partes.slice(0, -1).join(', ')} y ${partes[partes.length - 1]}`
 }
 
-/** Un documento del ministerio y dónde están en él las dos mitades del cociente. */
-function CitaCelda({ cita, titulo }) {
+/**
+ * Un documento del ministerio y dónde están en él las dos mitades del cociente.
+ *
+ * `celdas={false}` pinta sólo el documento y su enlace: es lo que queda a la
+ * vista en «Fuente y réplica». La hoja, la fila y la columna van plegadas en
+ * la `FichaTecnica` de la misma tarjeta, con `enlace={false}` para no enlazar
+ * dos veces el mismo documento.
+ */
+function CitaCelda({ cita, titulo, celdas = true, enlace = true }) {
   return (
     <p style={estiloCita}>
       <span style={{ color: 'var(--ink70)' }}>{titulo}</span>
       {cita.documento ? ` · ${cita.documento}` : ''}
-      {cita.coste && (
+      {celdas && cita.coste && (
         <>
           <br />
           Coste: <span className="mono">{cita.coste}</span>
         </>
       )}
-      {cita.unidad && (
+      {celdas && cita.unidad && (
         <>
           <br />
           Unidad: <span className="mono">{cita.unidad}</span>
         </>
       )}
-      <br />
-      <a
-        href={cita.url}
-        target="_blank"
-        rel="noreferrer noopener"
-        style={{ color: 'var(--civic)' }}
-      >
-        Ministerio de Hacienda ↗
-      </a>
+      {enlace && (
+        <>
+          <br />
+          <a
+            href={cita.url}
+            target="_blank"
+            rel="noreferrer noopener"
+            style={{ color: 'var(--civic)' }}
+          >
+            Ministerio de Hacienda ↗
+          </a>
+        </>
+      )}
     </p>
   )
 }
@@ -173,6 +185,9 @@ export default function ServicioDetalle() {
   const lectura = lecturaVisible(lecturaEntera, { banda: Boolean(i.pares), cifra: true })
   const salvedades = [...(lecturaEntera.avisos ?? []), ...(i.caveats ?? [])]
   const motivo = i.numerador.motivo ?? i.denominador.motivo
+  const otrasProcedencias = (i.procedencia ?? []).filter(
+    (g) => !(g.entregas.length === 1 && g.entregas[0] === cita?.entrega),
+  )
   const competencia = nombresOn ? indexarCompetencias(competencias).get(i.id) : null
   /**
    * El retrato del titular, resuelto aquí y no dentro de la tarjeta.
@@ -203,7 +218,12 @@ export default function ServicioDetalle() {
   // haría que la distancia entre la línea y la mediana dejara de significar.
   const serie = enTerminosReales((i.serie ?? []).filter((p) => p.estado === 'declarado'))
 
+  // Los rótulos de sección son <h2>: la ficha no tenía ninguno, y ni un lector
+  // de pantalla ni quien hojea podía saltar a «Fuente y réplica» (auditoría de
+  // las dos lecturas, §7). Se ven igual que antes: el `margin: 0` quita el del
+  // navegador.
   const rotulo = {
+    margin: 0,
     fontSize: 'var(--fs-micro)',
     fontWeight: 700,
     textTransform: 'uppercase',
@@ -301,12 +321,12 @@ export default function ServicioDetalle() {
             <TablaPares pares={i.pares} formatea={formatea} />
 
             <div style={{ marginTop: 20, paddingTop: 16, borderTop: '1px solid var(--border2)' }}>
-              <span className="mono" style={rotulo}>
+              <h2 className="mono" style={rotulo}>
                 La década ·{' '}
                 {serie.reales
                   ? `euros constantes de ${entrega}`
                   : 'euros corrientes: falta el índice de algún año'}
-              </span>
+              </h2>
               <SerieServicio puntos={serie.puntos} formatea={formatea} unidad={i.unidad} />
             </div>
           </div>
@@ -333,9 +353,9 @@ export default function ServicioDetalle() {
                 data-tarjeta=""
                 style={{ borderLeft: '3px solid var(--warn)' }}
               >
-                <div className="mono" style={{ ...rotulo, color: 'var(--warn-ink)' }}>
+                <h2 className="mono" style={{ ...rotulo, color: 'var(--warn-ink)' }}>
                   Sobre la declaración
-                </div>
+                </h2>
                 {i.avisoDeclaracion && (
                   <p
                     style={{
@@ -389,30 +409,51 @@ export default function ServicioDetalle() {
             )}
 
             <div className="cp-card" data-tarjeta="">
-              <div className="mono" style={rotulo}>
+              <h2 className="mono" style={rotulo}>
                 Fuente y réplica
-              </div>
+              </h2>
               {/* Imprimía «celda CE2:a1621:Econ14» —la dirección interna de la
                   cifra, con la forma del volcado de 2021— y enlazaba ese
                   volcado bajo una cifra de 2024 que sale del informe por
                   comunidad: quien seguía el enlace encontraba otra cifra. Ahora
                   dice el documento y la hoja, fila y columna de cada mitad. */}
-              {cita && <CitaCelda cita={cita} titulo={`Coste efectivo ${cita.entrega}`} />}
-              {(i.procedencia ?? [])
-                .filter((g) => !(g.entregas.length === 1 && g.entregas[0] === cita?.entrega))
-                .map((g) => {
-                  const otras = g.entregas.filter((a) => a !== cita?.entrega)
-                  const mismaQueLaCita =
-                    cita && g.url === cita.url && g.coste === cita.coste && g.unidad === cita.unidad
-                  return mismaQueLaCita ? (
-                    <p key={g.entregas.join('-')} style={estiloCita}>
-                      {aniosEnTexto(otras)}: el mismo documento y las mismas celdas, en la entrega
-                      de cada año.
-                    </p>
-                  ) : (
-                    <CitaCelda key={g.entregas.join('-')} cita={g} titulo={aniosEnTexto(otras)} />
-                  )
-                })}
+              {/* A la vista, el documento de la cifra que titula y su enlace:
+                  la cita no se pliega. Plegadas, la hoja, la fila y la
+                  columna, y los documentos de las demás entregas: sirven para
+                  volver a comprobar la cifra, no para leerla. */}
+              {cita && (
+                <CitaCelda cita={cita} titulo={`Coste efectivo ${cita.entrega}`} celdas={false} />
+              )}
+              {(cita?.coste || cita?.unidad || otrasProcedencias.length > 0) && (
+                <FichaTecnica
+                  rotulo="Dónde está cada cifra en los documentos"
+                  style={{ marginTop: 9, fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}
+                >
+                  {cita && (cita.coste || cita.unidad) && (
+                    <CitaCelda
+                      cita={cita}
+                      titulo={`Coste efectivo ${cita.entrega}`}
+                      enlace={false}
+                    />
+                  )}
+                  {otrasProcedencias.map((g) => {
+                    const otras = g.entregas.filter((a) => a !== cita?.entrega)
+                    const mismaQueLaCita =
+                      cita &&
+                      g.url === cita.url &&
+                      g.coste === cita.coste &&
+                      g.unidad === cita.unidad
+                    return mismaQueLaCita ? (
+                      <p key={g.entregas.join('-')} style={estiloCita}>
+                        {aniosEnTexto(otras)}: el mismo documento y las mismas celdas, en la entrega
+                        de cada año.
+                      </p>
+                    ) : (
+                      <CitaCelda key={g.entregas.join('-')} cita={g} titulo={aniosEnTexto(otras)} />
+                    )
+                  })}
+                </FichaTecnica>
+              )}
               <p
                 style={{
                   margin: '10px 0 0',
@@ -432,29 +473,23 @@ export default function ServicioDetalle() {
             </div>
 
             <div className="cp-card" data-tarjeta="">
-              <div className="mono" style={rotulo}>
+              <h2 className="mono" style={rotulo}>
                 Salvedades · {salvedades.length}
-              </div>
+              </h2>
               {salvedades.length > 0 ? (
                 <>
                   {/* El recuento sigue completo, y la lista también: una
                       salvedad que desaparece de la ficha es una salvedad que
-                      deja de constar. Lo que cambia es el ORDEN de lectura —
-                      cada una está dicha arriba, junto a la cifra que corrige,
-                      y esto es el registro, no su primera aparición. Era el
-                      hallazgo crítico de la revisión: la frase que impide leer
-                      un precio como un rendimiento no puede vivir sólo aquí. */}
-                  <p
-                    style={{
-                      margin: '9px 0 0',
-                      fontSize: 'var(--fs-micro)',
-                      color: 'var(--ink50)',
-                      lineHeight: 1.55,
-                    }}
-                  >
-                    Cada una está dicha arriba, junto a la cifra que corrige. Aquí quedan recogidas
-                    juntas.
-                  </p>
+                      deja de constar. Por eso esta lista NO se pliega.
+
+                      Decía «Cada una está dicha arriba, junto a la cifra que
+                      corrige. Aquí quedan recogidas juntas.» Lo están los
+                      avisos de la lectura (`Lectura` los pinta bajo la
+                      cifra); las salvedades propias del servicio
+                      (`i.caveats`) sólo se dicen aquí. Medido el 23-11-2026
+                      sobre el build: 42 de las 67 de las quince fichas. La
+                      frase de cómo se lee —«es un precio y no un
+                      rendimiento»— sí va arriba, junto al número. */}
                   <ul
                     style={{
                       margin: '9px 0 0',
@@ -500,9 +535,9 @@ export default function ServicioDetalle() {
                 lee, también en dos columnas. */}
             {competencia && (
               <div className="cp-card" data-tarjeta="">
-                <div className="mono" style={rotulo}>
+                <h2 className="mono" style={rotulo}>
                   Quién responde de esta área
-                </div>
+                </h2>
                 <CompetenciaDelegada
                   asignacion={competencia}
                   conFoto
