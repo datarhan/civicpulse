@@ -1,7 +1,7 @@
 {
   "_comment": "DERIVADO, no curado. Dos cosas por cada literal publicado en /hallazgos. (1) `quotes[id][i].status`: de qué transcripción procede — de la vigente, sólo de la que se sustituyó al re-transcribir la sesión, o de ninguna de las dos de forma concluyente. (2) `quotes[id][i].gate`: qué haría con la afirmación que sostiene esa cita la puerta editorial de src/scraper/claim-public-gate.ts, que gobierna /plenos y que /hallazgos no consultaba — `shown`, `toggle` o `hidden`, su propio vocabulario. Ninguna de las dos modifica una cita y ninguna es una corrección: el único escritor de public/data/pleno-findings.json sigue siendo `npm run correct-pleno-finding`. Se regenera con `npm run compute:finding-quote-provenance`.",
   "version": "finding-quote-provenance-v2",
-  "generatedAt": "2026-11-23T15:26:38.084Z",
+  "generatedAt": "2026-11-23T19:36:47.036Z",
   "source": {
     "findings": "public/data/pleno-findings.json",
     "findingsGeneratedAt": "2026-11-23T07:51:08.146Z",
@@ -28,7 +28,7 @@
   "undeterminedReasons": [
     {
       "id": "transcripcion-actual-mas-corta",
-      "meaning": "La transcripción vigente pesa menos que la que sustituyó, así que la ausencia puede ser un tramo no cubierto y no una reescritura."
+      "meaning": "La transcripción vigente tiene menos palabras que la que sustituyó, así que la ausencia puede ser un tramo no cubierto y no una reescritura."
     },
     {
       "id": "sin-transcripcion-vigente",
@@ -66,9 +66,9 @@
         "toggle": 85,
         "hidden": 27
       },
-      "baseDisponible": true,
-      "citasConVeredictoDeOverlay": 16,
-      "citasReclasificadasPorElOverlay": 19,
+      "baseDisponible": false,
+      "citasConVeredictoDeOverlay": 0,
+      "citasReclasificadasPorElOverlay": 0,
       "hallazgosSinCitaMostrable": 34,
       "hallazgosSoloConCitasOcultas": 0,
       "claimsEnCorpus": 8672,
@@ -79,82 +79,82 @@
     "findings": 37,
     "quotes": 115,
     "enVigente": 98,
-    "soloEnSustituida": 17,
-    "sinDeterminar": 0,
-    "sinDeterminarPorTranscripcionMasCorta": 0,
+    "soloEnSustituida": 13,
+    "sinDeterminar": 4,
+    "sinDeterminarPorTranscripcionMasCorta": 4,
     "sinDeterminarPorFaltaDeTranscripcion": 0,
     "findingsConCitaMarcada": 12,
     "sesionesConCitas": 11,
     "sesionesRetranscritas": 10,
-    "sesionesNoComparables": 1,
+    "sesionesNoComparables": 2,
     "sinClasificar": 0,
     "bytesLeidos": 3880319
   },
   "sessions": {
     "1237hbp": {
       "retranscrita": false,
-      "bytesVigente": 72576,
-      "bytesSustituida": 0,
+      "palabrasVigente": 12305,
+      "palabrasSustituida": 0,
       "comparable": true
     },
     "10yl550": {
       "retranscrita": true,
-      "bytesVigente": 320212,
-      "bytesSustituida": 218980,
+      "palabrasVigente": 38012,
+      "palabrasSustituida": 36414,
       "comparable": true
     },
     "k4olcs": {
       "retranscrita": true,
-      "bytesVigente": 151191,
-      "bytesSustituida": 110795,
+      "palabrasVigente": 18606,
+      "palabrasSustituida": 18209,
       "comparable": true
     },
     "ma87e0": {
       "retranscrita": true,
-      "bytesVigente": 176485,
-      "bytesSustituida": 123481,
+      "palabrasVigente": 21001,
+      "palabrasSustituida": 14980,
       "comparable": true
     },
     "1sqj7is": {
       "retranscrita": true,
-      "bytesVigente": 339261,
-      "bytesSustituida": 366317,
-      "comparable": false
+      "palabrasVigente": 40990,
+      "palabrasSustituida": 39049,
+      "comparable": true
     },
     "19gax3o": {
       "retranscrita": true,
-      "bytesVigente": 173694,
-      "bytesSustituida": 123719,
+      "palabrasVigente": 21178,
+      "palabrasSustituida": 21025,
       "comparable": true
     },
     "1qi8axv": {
       "retranscrita": true,
-      "bytesVigente": 118073,
-      "bytesSustituida": 78841,
-      "comparable": true
+      "palabrasVigente": 12937,
+      "palabrasSustituida": 13638,
+      "comparable": false
     },
     "qz6weg": {
       "retranscrita": true,
-      "bytesVigente": 289952,
-      "bytesSustituida": 182219,
+      "palabrasVigente": 34530,
+      "palabrasSustituida": 30578,
       "comparable": true
     },
     "1du4rf5": {
       "retranscrita": true,
-      "bytesVigente": 325914,
-      "bytesSustituida": 177059,
+      "palabrasVigente": 38384,
+      "palabrasSustituida": 21127,
       "comparable": true
     },
     "otxq2c": {
       "retranscrita": true,
-      "bytesVigente": 184410,
-      "bytesSustituida": 137246,
-      "comparable": true
+      "palabrasVigente": 22091,
+      "palabrasSustituida": 22911,
+      "comparable": false
     },
     "c8kr44": {
       "retranscrita": true,
-      "bytesVigente": 174976,
-      "bytesSustituida": 168596,
+      "palabrasVigente": 22058,
+      "palabrasSustituida": 20086,
       "comparable": true
     }
   },
@@ -507,11 +507,13 @@
         "gate": "toggle"
       },
       {
-        "status": "solo-en-sustituida",
+        "status": "sin-determinar",
+        "reason": "transcripcion-actual-mas-corta",
         "gate": "toggle"
       },
       {
-        "status": "solo-en-sustituida",
+        "status": "sin-determinar",
+        "reason": "transcripcion-actual-mas-corta",
         "gate": "toggle"
       }
     ],
@@ -641,7 +643,8 @@
     ],
     "f-2025-10-06-acu-b00839": [
       {
-        "status": "solo-en-sustituida",
+        "status": "sin-determinar",
+        "reason": "transcripcion-actual-mas-corta",
         "gate": "hidden"
       },
       {
@@ -653,7 +656,8 @@
         "gate": "toggle"
       },
       {
-        "status": "solo-en-sustituida",
+        "status": "sin-determinar",
+        "reason": "transcripcion-actual-mas-corta",
         "gate": "toggle"
       }
     ],
@@ -694,11 +698,5 @@
       }
     ]
   },
-  "unresolved": [],
-  "builtFrom": {
-    "pleno-findings.json": "18022b5a343f",
-    "pleno-claims-verified.json": "a33b2b137499",
-    "pleno-claims-overlay.json": "153b7779e6c2",
-    "pleno-transcripts/": "3b23445535ee"
-  }
+  "unresolved": []
 }

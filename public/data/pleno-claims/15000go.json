@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-23T10:07:19.839Z",
+  "generatedAt": "2026-11-23T19:36:46.632Z",
   "version": "1",
   "plenoId": "15000go",
   "plenoDate": "2023-05-24",
@@ -33,7 +33,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -64,7 +65,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -94,7 +96,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -125,7 +128,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -158,7 +162,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -188,7 +193,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -218,7 +224,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -249,7 +256,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -279,7 +287,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -310,7 +319,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -341,7 +351,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -372,7 +383,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -400,7 +412,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -431,7 +444,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -462,7 +476,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -493,7 +508,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -524,7 +540,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -552,7 +569,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -583,7 +601,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -613,7 +632,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -643,7 +663,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -673,7 +694,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -703,7 +725,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -734,7 +757,8 @@
           "promises"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -764,7 +788,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -794,7 +819,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -824,7 +850,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -854,7 +881,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -885,7 +913,8 @@
           "promises"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -914,7 +943,8 @@
           "promises"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -943,7 +973,8 @@
           "promises"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -970,7 +1001,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1001,7 +1033,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1029,7 +1062,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1059,7 +1093,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1088,7 +1123,8 @@
           "promises"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1115,7 +1151,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1142,7 +1179,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1172,7 +1210,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1202,7 +1241,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1232,7 +1272,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1261,7 +1302,8 @@
           "promises"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1291,7 +1333,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1318,7 +1361,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1348,7 +1392,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1376,7 +1421,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1404,7 +1450,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1435,7 +1482,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1466,7 +1514,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1494,7 +1543,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1522,7 +1572,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1550,7 +1601,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1577,7 +1629,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1604,7 +1657,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1634,7 +1688,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1661,7 +1716,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1691,7 +1747,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1723,7 +1780,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1753,7 +1811,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1785,7 +1844,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1819,7 +1879,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1851,7 +1912,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1881,7 +1943,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1912,7 +1975,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1944,7 +2008,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1976,7 +2041,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2008,7 +2074,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2039,7 +2106,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2073,7 +2141,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2103,7 +2172,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2135,7 +2205,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2167,7 +2238,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2199,7 +2271,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2231,7 +2304,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2259,7 +2333,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2291,7 +2366,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2323,7 +2399,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2355,7 +2432,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2387,7 +2465,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2420,7 +2499,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2453,7 +2533,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2484,7 +2565,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2515,7 +2597,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2543,7 +2626,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2575,7 +2659,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2607,7 +2692,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2635,7 +2721,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2667,7 +2754,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2699,7 +2787,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2727,7 +2816,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2755,7 +2845,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2783,7 +2874,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2816,7 +2908,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2848,7 +2941,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2880,7 +2974,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2907,7 +3002,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2939,7 +3035,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2971,7 +3068,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3003,7 +3101,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3035,7 +3134,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3067,7 +3167,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3099,7 +3200,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3131,7 +3233,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3163,7 +3266,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3195,7 +3299,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3227,7 +3332,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3259,7 +3365,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3291,7 +3398,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3323,7 +3431,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3354,7 +3463,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3384,7 +3494,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3415,7 +3526,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3446,7 +3558,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3476,7 +3589,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3509,7 +3623,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3540,7 +3655,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3571,7 +3687,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3599,7 +3716,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3630,7 +3748,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3661,7 +3780,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3692,7 +3812,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3723,7 +3844,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3754,7 +3876,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3785,7 +3908,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3813,7 +3937,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3841,7 +3966,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3869,7 +3995,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3896,7 +4023,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3924,7 +4052,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3955,7 +4084,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3985,7 +4115,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -4016,7 +4147,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -4046,7 +4178,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -4074,7 +4207,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -4102,7 +4236,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -4130,7 +4265,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -4159,7 +4295,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -4190,7 +4327,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -4221,7 +4359,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -4251,7 +4390,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -4282,7 +4422,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -4313,7 +4454,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -4340,7 +4482,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -4368,7 +4511,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -4399,7 +4543,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -4430,7 +4575,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -4461,7 +4607,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -4492,7 +4639,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -4522,7 +4670,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -4553,7 +4702,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -4583,7 +4733,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -4613,7 +4764,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -4643,7 +4795,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -4671,7 +4824,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -4699,7 +4853,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -4727,7 +4882,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -4759,7 +4915,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -4791,7 +4948,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -4821,7 +4979,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -4851,7 +5010,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -4881,7 +5041,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -4913,7 +5074,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -4943,7 +5105,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -4974,7 +5137,8 @@
         "source": "curator-downgrade",
         "downgradedBy": "persona"
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -5006,7 +5170,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -5034,7 +5199,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -5066,7 +5232,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -5096,7 +5263,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -5126,7 +5294,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -5157,7 +5326,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -5188,7 +5358,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -5215,7 +5386,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -5245,7 +5417,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -5277,7 +5450,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -5309,7 +5483,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -5339,7 +5514,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -5371,7 +5547,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -5403,7 +5580,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -5435,7 +5613,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -5463,7 +5642,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -5493,7 +5673,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -5525,7 +5706,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -5557,7 +5739,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -5587,7 +5770,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -5619,7 +5803,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -5651,7 +5836,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -5683,7 +5869,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -5715,7 +5902,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -5747,7 +5935,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -5779,7 +5968,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -5811,7 +6001,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -5840,7 +6031,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -5870,7 +6062,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -5900,7 +6093,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -5930,7 +6124,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -5960,7 +6155,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -5992,7 +6188,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -6022,7 +6219,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -6052,7 +6250,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -6082,7 +6281,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -6113,7 +6313,8 @@
           "promises"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -6143,7 +6344,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -6174,7 +6376,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -6204,7 +6407,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -6232,7 +6436,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -6263,7 +6468,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -6294,7 +6500,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -6326,7 +6533,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -6356,7 +6564,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -6386,7 +6595,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -6415,7 +6625,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -6445,7 +6656,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -6476,7 +6688,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -6506,7 +6719,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -6536,7 +6750,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -6563,7 +6778,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -6593,7 +6809,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -6623,7 +6840,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -6653,7 +6871,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -6684,7 +6903,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -6714,7 +6934,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -6741,7 +6962,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -6771,7 +6993,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -6801,7 +7024,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -6833,7 +7057,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -6864,7 +7089,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -6896,7 +7122,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -6928,7 +7155,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -6959,7 +7187,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -6989,7 +7218,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     }
   ]
 }

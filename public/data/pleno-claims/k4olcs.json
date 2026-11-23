@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-23T10:07:19.839Z",
+  "generatedAt": "2026-11-23T19:36:46.632Z",
   "version": "1",
   "plenoId": "k4olcs",
   "plenoDate": "2026-04-20",
@@ -34,7 +34,8 @@
         "confidence": 0.2,
         "source": "verdict-engine"
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -61,7 +62,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -88,7 +90,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -120,7 +123,8 @@
         "confidence": 0.2,
         "source": "verdict-engine"
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -147,7 +151,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -179,7 +184,8 @@
         "confidence": 0.2,
         "source": "verdict-engine"
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -206,7 +212,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -238,7 +245,8 @@
         "confidence": 0.2,
         "source": "verdict-engine"
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -270,7 +278,8 @@
         "confidence": 0.2,
         "source": "verdict-engine"
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -297,7 +306,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -329,7 +339,8 @@
         "confidence": 0.2,
         "source": "verdict-engine"
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -363,7 +374,8 @@
         "confidence": 0.2,
         "source": "verdict-engine"
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -393,7 +405,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -425,7 +438,8 @@
         "confidence": 0.2,
         "source": "verdict-engine"
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -456,7 +470,8 @@
         ],
         "source": "verdict-engine"
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -484,7 +499,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -512,7 +528,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -542,7 +559,8 @@
         ],
         "source": "verdict-engine"
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -570,7 +588,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -597,7 +616,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -624,7 +644,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -651,7 +672,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -678,7 +700,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -705,7 +728,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -733,7 +757,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -758,7 +783,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -790,7 +816,8 @@
         "confidence": 0.2,
         "source": "verdict-engine"
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -838,7 +865,8 @@
         "source": "curator-upgrade",
         "raisedBy": "Sergei Lutchenko"
       },
-      "visibility": "shown"
+      "visibility": "shown",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -880,7 +908,8 @@
         "source": "curator-upgrade",
         "raisedBy": "Sergei Lutchenko"
       },
-      "visibility": "shown"
+      "visibility": "shown",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -913,7 +942,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -945,7 +975,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -979,7 +1010,8 @@
         "confidence": 0.2,
         "source": "verdict-engine"
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -1027,7 +1059,8 @@
         "source": "curator-upgrade",
         "raisedBy": "Sergei Lutchenko"
       },
-      "visibility": "shown"
+      "visibility": "shown",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1066,7 +1099,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "shown"
+      "visibility": "shown",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1098,7 +1132,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1127,7 +1162,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -1159,7 +1195,8 @@
         "confidence": 0.2,
         "source": "verdict-engine"
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1188,7 +1225,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1219,7 +1257,8 @@
         "confidence": 0.2,
         "source": "verdict-engine"
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1252,7 +1291,8 @@
         "downgradedBy": "automatica",
         "reasonSignedBy": "Sergei Lutchenko"
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1280,7 +1320,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1312,7 +1353,8 @@
         "confidence": 0.2,
         "source": "verdict-engine"
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1342,7 +1384,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1374,7 +1417,8 @@
         "confidence": 0.2,
         "source": "verdict-engine"
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1404,7 +1448,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1431,7 +1476,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1463,7 +1509,8 @@
         "downgradedBy": "automatica",
         "reasonSignedBy": "Sergei Lutchenko"
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1493,7 +1540,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1526,7 +1574,8 @@
         "confidence": 0.2,
         "source": "verdict-engine"
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1556,7 +1605,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1587,7 +1637,8 @@
         "confidence": 0.2,
         "source": "verdict-engine"
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1616,7 +1667,8 @@
           "promises"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1646,7 +1698,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1676,7 +1729,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1704,7 +1758,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1736,7 +1791,8 @@
         "confidence": 0.2,
         "source": "verdict-engine"
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1765,7 +1821,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1799,7 +1856,8 @@
         "confidence": 0.2,
         "source": "verdict-engine"
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -1828,7 +1886,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -1858,7 +1917,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1889,7 +1949,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1920,7 +1981,8 @@
         "confidence": 0.2,
         "source": "verdict-engine"
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1947,7 +2009,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -1976,7 +2039,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2008,7 +2072,8 @@
         "confidence": 0.2,
         "source": "verdict-engine"
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2040,7 +2105,8 @@
         "confidence": 0.2,
         "source": "verdict-engine"
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2072,7 +2138,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -2101,7 +2168,8 @@
           "promises"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -2128,7 +2196,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2155,7 +2224,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2182,7 +2252,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2209,7 +2280,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2238,7 +2310,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2268,7 +2341,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2297,7 +2371,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2324,7 +2399,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2353,7 +2429,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2387,7 +2464,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2416,7 +2494,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2446,7 +2525,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2473,7 +2553,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2507,7 +2588,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2534,7 +2616,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2563,7 +2646,8 @@
           "promises"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2592,7 +2676,8 @@
           "promises"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2621,7 +2706,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -2650,7 +2736,8 @@
           "promises"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2679,7 +2766,8 @@
           "promises"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2708,7 +2796,8 @@
           "promises"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2737,7 +2826,8 @@
           "promises"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2764,7 +2854,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2791,7 +2882,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2824,7 +2916,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -2853,7 +2946,8 @@
           "promises"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2880,7 +2974,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2909,7 +3004,8 @@
           "promises"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2938,7 +3034,8 @@
           "promises"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2970,7 +3067,8 @@
         "downgradedBy": "automatica",
         "reasonSignedBy": "Sergei Lutchenko"
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -2999,7 +3097,8 @@
           "promises"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3028,7 +3127,8 @@
           "promises"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3055,7 +3155,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -3084,7 +3185,8 @@
           "promises"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3111,7 +3213,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -3140,7 +3243,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -3169,7 +3273,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -3198,7 +3303,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -3225,7 +3331,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -3254,7 +3361,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -3281,7 +3389,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -3310,7 +3419,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -3348,7 +3458,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -3377,7 +3488,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -3408,7 +3520,8 @@
         "confidence": 0.2,
         "source": "verdict-engine"
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -3436,7 +3549,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -3463,7 +3577,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -3491,7 +3606,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3521,7 +3637,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -3549,7 +3666,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3577,7 +3695,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3604,7 +3723,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3636,7 +3756,8 @@
         "confidence": 0.2,
         "source": "verdict-engine"
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3667,7 +3788,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3699,7 +3821,8 @@
         "confidence": 0.2,
         "source": "verdict-engine"
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3728,7 +3851,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3759,7 +3883,8 @@
         "confidence": 0.2,
         "source": "verdict-engine"
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3802,7 +3927,8 @@
         "source": "curator-upgrade",
         "raisedBy": "Sergei Lutchenko"
       },
-      "visibility": "shown"
+      "visibility": "shown",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3831,7 +3957,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -3863,7 +3990,8 @@
         "confidence": 0.2,
         "source": "verdict-engine"
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3895,7 +4023,8 @@
         "confidence": 0.2,
         "source": "verdict-engine"
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3922,7 +4051,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3949,7 +4079,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -3976,7 +4107,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -4005,7 +4137,8 @@
           "promises"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -4037,7 +4170,8 @@
         "confidence": 0.2,
         "source": "verdict-engine"
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -4071,7 +4205,8 @@
         "confidence": 0.2,
         "source": "verdict-engine"
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -4098,7 +4233,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -4128,7 +4264,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -4161,7 +4298,8 @@
         "confidence": 0.2,
         "source": "verdict-engine"
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -4188,7 +4326,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -4215,7 +4354,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -4245,7 +4385,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -4272,7 +4413,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -4299,7 +4441,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -4326,7 +4469,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -4353,7 +4497,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -4380,7 +4525,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -4407,7 +4553,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -4437,7 +4584,8 @@
         ],
         "source": "verdict-engine"
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -4464,7 +4612,8 @@
           "promises"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -4493,7 +4642,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -4520,7 +4670,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -4547,7 +4698,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -4579,7 +4731,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -4612,7 +4765,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -4645,7 +4799,8 @@
         "confidence": 0.2,
         "source": "verdict-engine"
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -4677,7 +4832,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -4709,7 +4865,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -4736,7 +4893,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -4768,7 +4926,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -4800,7 +4959,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -4832,7 +4992,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -4864,7 +5025,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -4896,7 +5058,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -4936,7 +5099,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -4976,7 +5140,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -5008,7 +5173,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -5040,7 +5206,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -5072,7 +5239,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -5100,7 +5268,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -5128,7 +5297,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -5160,7 +5330,8 @@
         "confidence": 0.2,
         "source": "verdict-engine"
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -5185,7 +5356,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -5218,7 +5390,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -5245,7 +5418,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -5278,7 +5452,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -5310,7 +5485,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -5339,7 +5515,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -5371,7 +5548,8 @@
         "confidence": 0.2,
         "source": "verdict-engine"
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -5403,7 +5581,8 @@
         "confidence": 0.2,
         "source": "verdict-engine"
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -5436,7 +5615,8 @@
         "downgradedBy": "automatica",
         "reasonSignedBy": "Sergei Lutchenko"
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -5467,7 +5647,8 @@
           "bdns"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -5495,7 +5676,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -5522,7 +5704,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -5551,7 +5734,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -5578,7 +5762,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -5605,7 +5790,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -5632,7 +5818,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -5659,7 +5846,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -5686,7 +5874,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -5711,7 +5900,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -5741,7 +5931,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -5770,7 +5961,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -5799,7 +5991,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -5827,7 +6020,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -5857,7 +6051,8 @@
         "downgradedBy": "automatica",
         "reasonSignedBy": "Sergei Lutchenko"
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -5887,7 +6082,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -5917,7 +6113,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -5944,7 +6141,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "en-vigente"
     },
     {
       "claim": {
@@ -5971,7 +6169,8 @@
           "promises"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -6000,7 +6199,8 @@
           "promises"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -6025,7 +6225,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -6052,7 +6253,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -6079,7 +6281,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -6113,7 +6316,8 @@
         "downgradedBy": "automatica",
         "reasonSignedBy": "Sergei Lutchenko"
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -6142,7 +6346,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -6172,7 +6377,8 @@
           "promises"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -6207,7 +6413,8 @@
         "confidence": 0.2,
         "source": "verdict-engine"
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -6237,7 +6444,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -6264,7 +6472,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -6293,7 +6502,8 @@
           "promises"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -6321,7 +6531,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -6349,7 +6560,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -6379,7 +6591,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -6409,7 +6622,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -6442,7 +6656,8 @@
         "confidence": 0.2,
         "source": "verdict-engine"
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -6470,7 +6685,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -6501,7 +6717,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -6530,7 +6747,8 @@
           "promises"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -6559,7 +6777,8 @@
           "promises"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -6588,7 +6807,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -6617,7 +6837,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -6648,7 +6869,8 @@
         "confidence": 0.2,
         "source": "verdict-engine"
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -6675,7 +6897,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -6706,7 +6929,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -6734,7 +6958,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -6765,7 +6990,8 @@
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -6793,7 +7019,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -6821,7 +7048,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -6852,7 +7080,8 @@
         "confidence": 0.2,
         "source": "verdict-engine"
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     }
   ]
 }

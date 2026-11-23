@@ -64,9 +64,18 @@ export function MarcaDeProcedencia({ procedencia, style = {} }) {
         ...style,
       }}
     >
-      <Pill tone={marca.tono} size="xs" title={t(marca.title)} style={{ marginRight: 6 }}>
-        {t(marca.chip)}
-      </Pill>
+      {/* El chip en su línea: a 375 px su texto parte en dos, y una píldora de
+          dos líneas con el radio de una se leía como un error de maquetación. */}
+      <div style={{ marginBottom: 3 }}>
+        <Pill
+          tone={marca.tono}
+          size="xs"
+          title={t(marca.title)}
+          style={{ lineHeight: 1.25, borderRadius: 6 }}
+        >
+          {t(marca.chip)}
+        </Pill>
+      </div>
       {t(marca.nota)}{' '}
       <a href="/metodologia#citas-transcripcion" style={{ color: 'var(--civic)' }}>
         {t('findings.citas.procedencia.enlace')}
