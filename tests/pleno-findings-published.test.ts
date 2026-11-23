@@ -481,7 +481,18 @@ const expectWithdrawn = (id: string): void => {
  * seguía contando dos grupos con citas de uno, y la guarda «una frase que cuenta grupos los lleva
  * en sus citas» lo paró. Pasa a «se formulan reproches», aprobado por el operador.
  */
-const TOTAL_CORRECTIONS = 319
+/*
+ * 319 → 323 (bloque «25e6ea y 70a34f, reancladas a la vigente», fd0417c6, 23-11-2026). Cuatro filas
+ * de `correct-pleno-finding` (editor `civicpulse-curator`), dos por ficha: `quote.<i>.text` y
+ * `summary`. La cita [0] de `f-2026-04-20-cit-25e6ea` y la [1] de `f-2025-09-08-acu-70a34f` —las
+ * ambiguas `a23` y `c24` del reanclaje del 2026-08-10— imprimían la traducción al castellano del motor
+ * sustituido; se reanclan al pasaje de la vigente, en valencià, y el sumario deja de decir que su
+ * literal sólo consta en la transcripción anterior. `a23` tenía la atribución contradicha: su grupo
+ * se retiró el 30-09, antes del reanclaje, que es el orden que exige «ninguna cita con la atribución
+ * en duda perdió su marca». Las dos pasan a `RESUELTAS_DESPUES`. Van detrás de las filas que ya tenían sus
+ * fichas, así que ningún lote cambia de ventana.
+ */
+const TOTAL_CORRECTIONS = 323
 
 /** El motivo de las cincuenta filas del 21-11-2026 (bloque «las conjeturas del extractor, retiradas»). */
 const MOTIVO_CONJETURAS =
@@ -4101,6 +4112,11 @@ const RESUELTAS_DESPUES = new Map<string, { field: string; correctedAt: string; 
   // Y otra (bloque «a0a379, reanclada a la vigente»): la misma intervención consta en la vigente, en
   // valencià, y la cita se reancló a ese pasaje. Su atribución no estaba contradicha.
   ['a20', { field: 'quote.3.text', correctedAt: '2026-10-11T17:11:01.592Z' }],
+  // Y dos más (bloque «25e6ea y 70a34f, reancladas a la vigente»): la misma intervención consta en
+  // la vigente, en valencià. La atribución de `a23` sí estaba contradicha, y se retiró el 30-09,
+  // antes del reanclaje; la de `c24` no.
+  ['a23', { field: 'quote.0.text', correctedAt: '2026-11-23T07:51:07.226Z' }],
+  ['c24', { field: 'quote.1.text', correctedAt: '2026-11-23T07:51:07.841Z' }],
 ])
 
 /**

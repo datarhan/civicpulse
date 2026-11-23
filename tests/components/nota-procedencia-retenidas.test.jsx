@@ -154,8 +154,15 @@ describe.each(SUPERFICIES)('$ruta', (sup) => {
       const { container, unmount } = await pintar(sup, f)
       // En toda la ficha, no sólo en la nota: ninguna cita impresa lleva ese
       // chip, así que dondequiera que salga habla de una cita que no se ve.
+      // Salvo en lo que se imprime tal cual (`data-literal`): el motivo firmado
+      // de una fila de la bitácora es historia fechada y puede citar el rótulo
+      // que una cita llevaba entonces. En 70a34f, la fila del 30-09 dice que
+      // otra cita «rotula» ese chip; la reancló fd0417c6 el 23-11 y la fila
+      // sigue diciendo, con su fecha, lo que era verdad cuando se firmó.
+      const pintado = container.cloneNode(true)
+      for (const lit of pintado.querySelectorAll('[data-literal]')) lit.remove()
       for (const chip of soloDeRetenidas) {
-        if (container.textContent.includes(chip)) fallos.push(`${f.id}: «${chip}»`)
+        if (pintado.textContent.includes(chip)) fallos.push(`${f.id}: «${chip}»`)
       }
       if (!hayImpresasMarcadas && container.querySelector(ENLACE_TRANSCRIPCION)) {
         fallos.push(`${f.id}: enlace a cómo se comprueba una cita`)
