@@ -158,7 +158,12 @@ export const datosPintados = (piezas, cadenas) => {
     .filter((p) => p.length >= 12 && p.endsWith('…'))
     .map((p) => p.slice(0, -1))
   const out = new Set()
-  for (const bruta of cadenas) {
+  // Una cadena compuesta con « · » —el snippet de un contrato: título · comprador ·
+  // adjudicatario · categoría · importe— se pinta a veces con un tramo sustituido por su
+  // rótulo (`snippetDeEvidencia`). Cada tramo es dato por sí mismo y pasa por las mismas
+  // reglas que una cadena: un token no cuenta, y uno corto sólo como pieza entera.
+  const tramos = [...cadenas].flatMap((c) => (c.includes(' · ') ? c.split(' · ') : []))
+  for (const bruta of [...cadenas, ...tramos]) {
     const s = bruta.trim()
     if (s.length < 2 || !/\p{L}/u.test(s) || esToken(s)) continue
     if (enteras.has(s)) out.add(s)
