@@ -1,58 +1,60 @@
 {
-  "generatedAt": "2026-11-16T09:28:33.155Z",
+  "generatedAt": "2026-11-23T09:28:05.459Z",
   "source": {
     "description": "Press claims extracted by the laboratory pipeline",
     "contract": "src/scraper/press-claim.ts"
   },
   "stats": {
-    "total": 191,
+    "total": 222,
     "byType": {
-      "promesa": 18,
-      "afirmacion_numerica": 86,
-      "cita_obra": 1,
+      "promesa": 23,
+      "afirmacion_numerica": 98,
+      "cita_obra": 6,
       "cita_convenio": 7,
       "acusacion_publica": 0,
-      "dato_municipal": 79
+      "dato_municipal": 88
     },
     "bySource": {
-      "Periòdic del Camp de Túria": 34,
-      "Levante-EMV": 10,
+      "Periòdic del Camp de Túria": 46,
+      "Levante-EMV": 11,
       "Actualidad Valencia": 2,
-      "Valencia Plaza": 7,
-      "Ayuntamiento de Riba-roja de Túria": 133,
+      "Valencia Plaza": 9,
+      "Ayuntamiento de Riba-roja de Túria": 147,
       "Las Provincias": 2,
       "El Periódico de Aquí": 1,
-      "elperiodic.com": 2
+      "elperiodic.com": 2,
+      "Valencia Noticias": 1,
+      "ComarcalCV": 1
     },
     "byTopic": {
-      "fiscal": 19,
+      "fiscal": 20,
       "vivienda": 7,
-      "movilidad": 15,
-      "medio-ambiente": 44,
-      "social": 10,
+      "movilidad": 24,
+      "medio-ambiente": 54,
+      "social": 12,
       "cultura": 10,
-      "seguridad": 3,
-      "empleo": 6,
-      "urbanismo": 21,
+      "seguridad": 4,
+      "empleo": 7,
+      "urbanismo": 27,
       "salud": 1,
       "transparencia": 6,
       "educacion": 12,
       "demografia": 3,
-      "other": 34
+      "other": 35
     },
     "byAttributedSource": {
-      "outlet": 89,
-      "municipal": 98,
-      "opposition": 0,
-      "unspecified": 4
+      "outlet": 103,
+      "municipal": 104,
+      "opposition": 2,
+      "unspecified": 13
     },
     "articlesProcessed": 25,
-    "articlesAvailable": 111,
+    "articlesAvailable": 113,
     "llmUnavailable": 0,
     "extraccionesSinRespuesta": 0,
-    "windowFrom": "2026-08-25T07:39:21.000Z",
-    "windowTo": "2026-11-13T10:55:48.000Z",
-    "articulosVistos": 132
+    "windowFrom": "2026-07-01T07:00:00.000Z",
+    "windowTo": "2026-11-20T05:03:28.000Z",
+    "articulosVistos": 157
   },
   "articulos": [
     {
@@ -66,6 +68,18 @@
       "fingerprint": "hxak26",
       "desenlace": "sin-afirmaciones",
       "procesadoEl": "2026-11-09T09:31:44.266Z"
+    },
+    {
+      "articleId": "11wi49k",
+      "fingerprint": "ek19uv",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-11-23T09:28:05.459Z"
+    },
+    {
+      "articleId": "123u2ry",
+      "fingerprint": "uw32gc",
+      "desenlace": "sin-afirmaciones",
+      "procesadoEl": "2026-11-23T09:28:05.459Z"
     },
     {
       "articleId": "12k3xjk",
@@ -90,6 +104,12 @@
       "fingerprint": "vio548",
       "desenlace": "descartado-en-triaje",
       "procesadoEl": "2026-11-02T09:21:51.958Z"
+    },
+    {
+      "articleId": "14rades",
+      "fingerprint": "168tgzt",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-11-23T09:28:05.459Z"
     },
     {
       "articleId": "153mirg",
@@ -140,6 +160,12 @@
       "procesadoEl": "2026-11-09T09:31:44.266Z"
     },
     {
+      "articleId": "17gleav",
+      "fingerprint": "1xd1f7z",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-11-23T09:28:05.459Z"
+    },
+    {
       "articleId": "17vyk5k",
       "fingerprint": "15q20to",
       "desenlace": "descartado-en-triaje",
@@ -182,6 +208,12 @@
       "procesadoEl": "2026-11-16T09:28:33.155Z"
     },
     {
+      "articleId": "1b8xp5w",
+      "fingerprint": "16ixve",
+      "desenlace": "sin-afirmaciones",
+      "procesadoEl": "2026-11-23T09:28:05.459Z"
+    },
+    {
       "articleId": "1bfp5g8",
       "fingerprint": "1cgbsla",
       "desenlace": "descartado-en-triaje",
@@ -212,6 +244,12 @@
       "procesadoEl": "2026-10-19T08:28:17.385Z"
     },
     {
+      "articleId": "1capq4k",
+      "fingerprint": "bia8i0",
+      "desenlace": "extraido",
+      "procesadoEl": "2026-11-23T09:28:05.459Z"
+    },
+    {
       "articleId": "1cibswi",
       "fingerprint": "1s17cvw",
       "desenlace": "extraido",
@@ -222,6 +260,18 @@
       "fingerprint": "1yzpxiw",
       "desenlace": "descartado-en-triaje",
       "procesadoEl": "2026-10-26T09:27:06.953Z"
+    },
+    {
+      "articleId": "1dvhivo",
+      "fingerprint": "rprxcc",
+      "desenlace": "extraido",
+      "procesadoEl": "2026-11-23T09:28:05.459Z"
+    },
+    {
+      "articleId": "1ezylig",
+      "fingerprint": "13vj4ds",
+      "desenlace": "extraido",
+      "procesadoEl": "2026-11-23T09:28:05.459Z"
     },
     {
       "articleId": "1gnmztq",
@@ -272,6 +322,12 @@
       "procesadoEl": "2026-10-19T08:28:17.385Z"
     },
     {
+      "articleId": "1j0h5rc",
+      "fingerprint": "q2oipz",
+      "desenlace": "sin-afirmaciones",
+      "procesadoEl": "2026-11-23T09:28:05.459Z"
+    },
+    {
       "articleId": "1je9lnf",
       "fingerprint": "1vtkblg",
       "desenlace": "descartado-en-triaje",
@@ -282,6 +338,12 @@
       "fingerprint": "1nw85ai",
       "desenlace": "sin-afirmaciones",
       "procesadoEl": "2026-10-19T08:28:17.385Z"
+    },
+    {
+      "articleId": "1kpsc1b",
+      "fingerprint": "vyxa8w",
+      "desenlace": "sin-afirmaciones",
+      "procesadoEl": "2026-11-23T09:28:05.459Z"
     },
     {
       "articleId": "1kpso1z",
@@ -336,6 +398,12 @@
       "fingerprint": "1kgolmo",
       "desenlace": "descartado-en-triaje",
       "procesadoEl": "2026-11-09T09:31:44.266Z"
+    },
+    {
+      "articleId": "1nq9i7v",
+      "fingerprint": "yy5ycg",
+      "desenlace": "sin-afirmaciones",
+      "procesadoEl": "2026-11-23T09:28:05.459Z"
     },
     {
       "articleId": "1ota6hb",
@@ -500,10 +568,22 @@
       "procesadoEl": "2026-11-02T09:21:51.958Z"
     },
     {
+      "articleId": "5iht08",
+      "fingerprint": "eqsunl",
+      "desenlace": "extraido",
+      "procesadoEl": "2026-11-23T09:28:05.459Z"
+    },
+    {
       "articleId": "5kqroo",
       "fingerprint": "oc3kcc",
       "desenlace": "extraido",
       "procesadoEl": "2026-11-16T09:28:33.155Z"
+    },
+    {
+      "articleId": "62t9nq",
+      "fingerprint": "1g57ty4",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-11-23T09:28:05.459Z"
     },
     {
       "articleId": "6mxh64",
@@ -512,10 +592,34 @@
       "procesadoEl": "2026-11-09T09:31:44.266Z"
     },
     {
+      "articleId": "6rvhyi",
+      "fingerprint": "sfovww",
+      "desenlace": "extraido",
+      "procesadoEl": "2026-11-23T09:28:05.459Z"
+    },
+    {
+      "articleId": "7242dc",
+      "fingerprint": "1ofwrd4",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-11-23T09:28:05.459Z"
+    },
+    {
       "articleId": "8hij1g",
       "fingerprint": "1208oo5",
       "desenlace": "extraido",
       "procesadoEl": "2026-11-09T09:31:44.266Z"
+    },
+    {
+      "articleId": "8m0mzw",
+      "fingerprint": "38pdig",
+      "desenlace": "extraido",
+      "procesadoEl": "2026-11-23T09:28:05.459Z"
+    },
+    {
+      "articleId": "9gy4nc",
+      "fingerprint": "d4ctsc",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-11-23T09:28:05.459Z"
     },
     {
       "articleId": "9k4v28",
@@ -552,6 +656,12 @@
       "fingerprint": "uylhex",
       "desenlace": "extraido",
       "procesadoEl": "2026-10-26T09:27:06.953Z"
+    },
+    {
+      "articleId": "bp13b8",
+      "fingerprint": "1ato0ec",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-11-23T09:28:05.459Z"
     },
     {
       "articleId": "ccsnc0",
@@ -662,10 +772,22 @@
       "procesadoEl": "2026-11-09T09:31:44.266Z"
     },
     {
+      "articleId": "l79tmg",
+      "fingerprint": "lxd9lo",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-11-23T09:28:05.459Z"
+    },
+    {
       "articleId": "lhseyk",
       "fingerprint": "x91xj4",
       "desenlace": "extraido",
       "procesadoEl": "2026-10-19T08:28:17.385Z"
+    },
+    {
+      "articleId": "lkm2pc",
+      "fingerprint": "1mwsfdl",
+      "desenlace": "extraido",
+      "procesadoEl": "2026-11-23T09:28:05.459Z"
     },
     {
       "articleId": "loiujc",
@@ -722,6 +844,12 @@
       "procesadoEl": "2026-10-26T09:27:06.953Z"
     },
     {
+      "articleId": "p35zg8",
+      "fingerprint": "1fdkei8",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-11-23T09:28:05.459Z"
+    },
+    {
       "articleId": "p6dnms",
       "fingerprint": "1mni4uk",
       "desenlace": "descartado-en-triaje",
@@ -746,6 +874,12 @@
       "procesadoEl": "2026-10-19T08:28:17.385Z"
     },
     {
+      "articleId": "q1qd62",
+      "fingerprint": "1pmnzl4",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-11-23T09:28:05.459Z"
+    },
+    {
       "articleId": "q2h7m8",
       "fingerprint": "1cdzisj",
       "desenlace": "descartado-en-triaje",
@@ -764,6 +898,12 @@
       "procesadoEl": "2026-11-02T09:21:51.958Z"
     },
     {
+      "articleId": "qt6rcw",
+      "fingerprint": "1b5ktzg",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-11-23T09:28:05.459Z"
+    },
+    {
       "articleId": "qvuwag",
       "fingerprint": "1yzxzcj",
       "desenlace": "extraido",
@@ -780,6 +920,12 @@
       "fingerprint": "1md5faw",
       "desenlace": "descartado-en-triaje",
       "procesadoEl": "2026-11-02T09:21:51.958Z"
+    },
+    {
+      "articleId": "uacj7g",
+      "fingerprint": "1328pwc",
+      "desenlace": "extraido",
+      "procesadoEl": "2026-11-23T09:28:05.459Z"
     },
     {
       "articleId": "uemsec",
@@ -804,6 +950,12 @@
       "fingerprint": "3zj37c",
       "desenlace": "sin-afirmaciones",
       "procesadoEl": "2026-10-19T08:28:17.385Z"
+    },
+    {
+      "articleId": "w85btc",
+      "fingerprint": "10ybkig",
+      "desenlace": "extraido",
+      "procesadoEl": "2026-11-23T09:28:05.459Z"
     },
     {
       "articleId": "w8xvcs",
@@ -5340,6 +5492,709 @@
       },
       "confidence": 0.65,
       "reasoning": "Lista de instituciones colaboradoras, afirmación institucional verificable pero sin cifras asociadas.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "1capq4k-0-num",
+      "articleId": "1capq4k",
+      "articleFingerprint": "bia8i0",
+      "articleSource": "Valencia Plaza",
+      "articleSourceHost": "valenciaplaza.com",
+      "articleUrl": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxOc1hacEFOX0NtOVNjNDduYUJHWThYbzBtYWhHenJoMEw0d2ZtbS1YRTQ4M0x3OGNVcDF1bUpzYWUtQ1JYNGE1VW1iSjN0QUNjTmgxOXlpQVotcllnd1pTV01scGtrWk1XWF9UbGlJWFRvVFVvMTBmN2VfMDhZRUdIMWNBS3ZzVFpoWUFGYmM4NFlrQzRGekFLVW0wel9XVWxfRjFPWlVBcUY2VE44cml5MEJVRUdCV3R2R0VieHJlRmV3NFJCTVY1OW5LNjVIUkVDNTJmb0ZvbWI3U1FtY1FOZUFQQWRGaEpFV2NfRWN5a1ZvYVo5TWd3bTdBNUNtUQ?oc=5",
+      "articleDate": "2026-11-20T05:03:28.000Z",
+      "segmentIndex": 0,
+      "segmentKind": "title",
+      "type": "afirmacion_numerica",
+      "attributedSource": "outlet",
+      "verbatim": "el aparcamiento de 400 camiones del Parque Logístico de Riba-roja",
+      "context": "Nadie quiere el aparcamiento de 400 camiones del Parque Logístico de Riba-roja: la licitación queda desierta",
+      "topic": "movilidad",
+      "entities": {
+        "count": 400,
+        "countUnit": "camiones",
+        "referencedEntity": "Parque Logístico de Riba-roja"
+      },
+      "confidence": 0.65,
+      "reasoning": "El titular afirma una cifra concreta de capacidad (400 camiones) para una infraestructura, dato verificable contra el pliego de licitación.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "1capq4k-1-dat",
+      "articleId": "1capq4k",
+      "articleFingerprint": "bia8i0",
+      "articleSource": "Valencia Plaza",
+      "articleSourceHost": "valenciaplaza.com",
+      "articleUrl": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxOc1hacEFOX0NtOVNjNDduYUJHWThYbzBtYWhHenJoMEw0d2ZtbS1YRTQ4M0x3OGNVcDF1bUpzYWUtQ1JYNGE1VW1iSjN0QUNjTmgxOXlpQVotcllnd1pTV01scGtrWk1XWF9UbGlJWFRvVFVvMTBmN2VfMDhZRUdIMWNBS3ZzVFpoWUFGYmM4NFlrQzRGekFLVW0wel9XVWxfRjFPWlVBcUY2VE44cml5MEJVRUdCV3R2R0VieHJlRmV3NFJCTVY1OW5LNjVIUkVDNTJmb0ZvbWI3U1FtY1FOZUFQQWRGaEpFV2NfRWN5a1ZvYVo5TWd3bTdBNUNtUQ?oc=5",
+      "articleDate": "2026-11-20T05:03:28.000Z",
+      "segmentIndex": 1,
+      "segmentKind": "title",
+      "type": "dato_municipal",
+      "attributedSource": "outlet",
+      "verbatim": "la licitación queda desierta",
+      "context": "Nadie quiere el aparcamiento de 400 camiones del Parque Logístico de Riba-roja: la licitación queda desierta",
+      "topic": "urbanismo",
+      "entities": {
+        "referencedEntity": "licitación del aparcamiento del Parque Logístico de Riba-roja"
+      },
+      "confidence": 0.6,
+      "reasoning": "Afirma el resultado de un procedimiento administrativo público (licitación sin adjudicatarios), hecho contrastable en el perfil del contratante.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "w85btc-0-num",
+      "articleId": "w85btc",
+      "articleFingerprint": "10ybkig",
+      "articleSource": "Periòdic del Camp de Túria",
+      "articleSourceHost": "infoturia.com",
+      "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/87377-riba-roja-estrena-320-contenidors-amb-mes-capacitat-i-accessibles.html",
+      "articleDate": "2026-11-19T13:48:41.000Z",
+      "segmentIndex": 0,
+      "segmentKind": "title",
+      "type": "afirmacion_numerica",
+      "attributedSource": "outlet",
+      "verbatim": "Riba-roja estrena 320 contenidors amb més capacitat i accessibles",
+      "context": "Riba-roja estrena 320 contenidors amb més capacitat i accessibles",
+      "topic": "medio-ambiente",
+      "entities": {
+        "count": 320,
+        "countUnit": "contenidors",
+        "referencedEntity": "Riba-roja de Túria"
+      },
+      "confidence": 0.55,
+      "reasoning": "El titular afirma una cifra concreta de contenedores instalados, un dato verificable, aunque no se dispone del cuerpo del artículo para contrastar detalles adicionales.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "1dvhivo-0-num",
+      "articleId": "1dvhivo",
+      "articleFingerprint": "rprxcc",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-estrena-contenedores-en-todo-el-municipio%3A-320-unidades-con-m%C3%A1s-capacidad%2C-m%C3%A1s-accesibles-y-fabricadas-en-el-pol%C3%ADgono",
+      "articleDate": "2026-11-19T12:51:22.000Z",
+      "segmentIndex": 0,
+      "segmentKind": "title",
+      "type": "afirmacion_numerica",
+      "attributedSource": "municipal",
+      "verbatim": "320 unidades con más capacidad, más accesibles y fabricadas en el polígono",
+      "context": "Riba-roja estrena contenedores en todo el municipio: 320 unidades con más capacidad, más accesibles y fabricadas en el polígono",
+      "topic": "medio-ambiente",
+      "entities": {
+        "count": 320,
+        "countUnit": "contenedores"
+      },
+      "confidence": 0.6,
+      "reasoning": "Cifra concreta de contenedores instalados en el municipio, verificable con el expediente de contratación municipal.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "1dvhivo-1-dat",
+      "articleId": "1dvhivo",
+      "articleFingerprint": "rprxcc",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-estrena-contenedores-en-todo-el-municipio%3A-320-unidades-con-m%C3%A1s-capacidad%2C-m%C3%A1s-accesibles-y-fabricadas-en-el-pol%C3%ADgono",
+      "articleDate": "2026-11-19T12:51:22.000Z",
+      "segmentIndex": 1,
+      "segmentKind": "title",
+      "type": "dato_municipal",
+      "attributedSource": "municipal",
+      "verbatim": "fabricadas en el polígono",
+      "context": "Riba-roja estrena contenedores en todo el municipio: 320 unidades con más capacidad, más accesibles y fabricadas en el polígono",
+      "topic": "other",
+      "entities": {},
+      "confidence": 0.45,
+      "reasoning": "Afirma el origen de fabricación de los contenedores, un dato verificable pero poco específico sobre qué polígono o fabricante.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "8m0mzw-0-num",
+      "articleId": "8m0mzw",
+      "articleFingerprint": "38pdig",
+      "articleSource": "Valencia Noticias",
+      "articleSourceHost": "valencianoticias.com",
+      "articleUrl": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQNHZNZ3QySl94aXFvcXFCX09XWWZEdUgwNk83akdDM0V4VklsOUlrejNZVkppRi1qUG1GSFBGM1JzcHRQWDI5WEVXQmlRQlhpWFlaeDhUMzVIcUlXUVBHTWNZRlR3MWg0S1ROamFERFBFR1l3ZDBVbG5EZnl4aFBpVG16Q1VlVlQ2NDNhdkV4TnBCelVHNXpyTg?oc=5",
+      "articleDate": "2026-11-18T04:40:40.000Z",
+      "segmentIndex": 0,
+      "segmentKind": "title",
+      "type": "afirmacion_numerica",
+      "attributedSource": "outlet",
+      "verbatim": "Riba-roja renueva el acceso al Parque Logístico por 7,7 millones",
+      "context": "Titular del artículo de Valencia Noticias (18/11/2026): 'Riba-roja renueva el acceso al Parque Logístico por 7,7 millones'. No se proporcionó cuerpo de artículo adicional para contextualizar esta cifra.",
+      "topic": "movilidad",
+      "entities": {
+        "amountEuros": 7700000,
+        "referencedEntity": "Parque Logístico de Riba-roja de Túria"
+      },
+      "confidence": 0.5,
+      "reasoning": "El titular enuncia una cifra concreta (7,7 millones de euros) para una obra de renovación de acceso, dato verificable contra presupuestos o contratos municipales, aunque sin cuerpo del artículo que lo confirme.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "lkm2pc-0-num",
+      "articleId": "lkm2pc",
+      "articleFingerprint": "1mwsfdl",
+      "articleSource": "Periòdic del Camp de Túria",
+      "articleSourceHost": "infoturia.com",
+      "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/87331-avancen-les-obres-demergencia-en-el-vial-dacces-al-parc-logistic-de-valencia.html",
+      "articleDate": "2026-11-17T14:14:54.000Z",
+      "segmentIndex": 0,
+      "segmentKind": "body",
+      "type": "afirmacion_numerica",
+      "attributedSource": "unspecified",
+      "verbatim": "El projecte global de la Generalitat compta amb un pressupost estimat de 7,7 milions d'euros i un termini d'execució de 12 mesos.",
+      "context": "Sobre l'actuació del vial CV-373 d'accés al Parc Logístic de València, l'article indica que el projecte global de la Generalitat compta amb un pressupost estimat de 7,7 milions d'euros i un termini d'execució de 12 mesos.",
+      "topic": "movilidad",
+      "entities": {
+        "amountEuros": 7700000,
+        "count": 12,
+        "countUnit": "mesos",
+        "referencedEntity": "projecte d'obres del vial CV-373 (accés al PLV)"
+      },
+      "confidence": 0.8,
+      "reasoning": "Cifra de presupuesto y plazo de ejecución son datos verificables contra el proyecto oficial de la Generalitat.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "lkm2pc-1-dat",
+      "articleId": "lkm2pc",
+      "articleFingerprint": "1mwsfdl",
+      "articleSource": "Periòdic del Camp de Túria",
+      "articleSourceHost": "infoturia.com",
+      "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/87331-avancen-les-obres-demergencia-en-el-vial-dacces-al-parc-logistic-de-valencia.html",
+      "articleDate": "2026-11-17T14:14:54.000Z",
+      "segmentIndex": 1,
+      "segmentKind": "body",
+      "type": "dato_municipal",
+      "attributedSource": "unspecified",
+      "verbatim": "els dies 28 i 29 de desembre de 2025, que van provocar una nova inundació del vial i van deixar la infraestructura inhabilitada per a la circulació",
+      "context": "L'actuació respon a la deterioració que presenta la carretera, agreujat per la dana i per posteriors episodis de precipitacions, especialment els registrats els dies 28 i 29 de desembre de 2025, que van provocar una nova inundació del vial.",
+      "topic": "medio-ambiente",
+      "entities": {
+        "date": "2025-12-28/2025-12-29",
+        "referencedEntity": "vial CV-373 (accés al Parc Logístic de València)"
+      },
+      "confidence": 0.75,
+      "reasoning": "Fecha y efecto concretos (inundación e inhabilitación de la vía) son contrastables con registros meteorológicos y de tráfico.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "lkm2pc-2-num",
+      "articleId": "lkm2pc",
+      "articleFingerprint": "1mwsfdl",
+      "articleSource": "Periòdic del Camp de Túria",
+      "articleSourceHost": "infoturia.com",
+      "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/87331-avancen-les-obres-demergencia-en-el-vial-dacces-al-parc-logistic-de-valencia.html",
+      "articleDate": "2026-11-17T14:14:54.000Z",
+      "segmentIndex": 2,
+      "segmentKind": "body",
+      "type": "afirmacion_numerica",
+      "attributedSource": "unspecified",
+      "verbatim": "La infraestructura suporta un trànsit de vehicles pesats d'entre 800 i 2.000 vehicles diaris.",
+      "context": "El viari CV-373, afegeixen des de la Generalitat, constitueix l'accés principal al Parc Logístic de València i connecta directament amb les autovies A-3 i A-7. La infraestructura suporta un trànsit de vehicles pesats d'entre 800 i 2.000 vehicles diaris.",
+      "topic": "movilidad",
+      "entities": {
+        "countUnit": "vehicles pesats diaris (rang 800-2.000)",
+        "referencedEntity": "CV-373"
+      },
+      "confidence": 0.7,
+      "reasoning": "Cifra de tráfico diario es un dato verificable mediante aforos de tráfico de la vía.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "lkm2pc-3-num",
+      "articleId": "lkm2pc",
+      "articleFingerprint": "1mwsfdl",
+      "articleSource": "Periòdic del Camp de Túria",
+      "articleSourceHost": "infoturia.com",
+      "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/87331-avancen-les-obres-demergencia-en-el-vial-dacces-al-parc-logistic-de-valencia.html",
+      "articleDate": "2026-11-17T14:14:54.000Z",
+      "segmentIndex": 3,
+      "segmentKind": "body",
+      "type": "afirmacion_numerica",
+      "attributedSource": "unspecified",
+      "verbatim": "amb una llum aproximada de 30 metres i una altura lliure d'entre 3 i 4 metres",
+      "context": "Una de les principals actuacions previstes és la construcció d'una estructura tipus pont, amb una llum aproximada de 30 metres i una altura lliure d'entre 3 i 4 metres, que permetrà incrementar la capacitat de desguàs del vial.",
+      "topic": "urbanismo",
+      "entities": {
+        "count": 30,
+        "countUnit": "metres (llum del pont)",
+        "referencedEntity": "estructura tipus pont sobre el barranc del Pozalet"
+      },
+      "confidence": 0.7,
+      "reasoning": "Medidas específicas de la futura estructura son contrastables con el proyecto técnico de la obra.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "lkm2pc-4-dat",
+      "articleId": "lkm2pc",
+      "articleFingerprint": "1mwsfdl",
+      "articleSource": "Periòdic del Camp de Túria",
+      "articleSourceHost": "infoturia.com",
+      "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/87331-avancen-les-obres-demergencia-en-el-vial-dacces-al-parc-logistic-de-valencia.html",
+      "articleDate": "2026-11-17T14:14:54.000Z",
+      "segmentIndex": 4,
+      "segmentKind": "body",
+      "type": "dato_municipal",
+      "attributedSource": "unspecified",
+      "verbatim": "Les inspeccions realitzades van detectar danys en el ferm, desgast de la senyalització horitzontal i vertical, deterioració de les barreres de seguretat i problemes en el sistema d'enllumenat públic.",
+      "context": "L'article recull que les inspeccions realitzades van detectar danys en el ferm, desgast de la senyalització horitzontal i vertical, deterioració de les barreres de seguretat i problemes en el sistema d'enllumenat públic del vial CV-373.",
+      "topic": "movilidad",
+      "entities": {
+        "referencedEntity": "CV-373"
+      },
+      "confidence": 0.65,
+      "reasoning": "Resultados de inspección técnica son verificables contra el informe oficial de inspecciones de la vía.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "lkm2pc-5-dat",
+      "articleId": "lkm2pc",
+      "articleFingerprint": "1mwsfdl",
+      "articleSource": "Periòdic del Camp de Túria",
+      "articleSourceHost": "infoturia.com",
+      "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/87331-avancen-les-obres-demergencia-en-el-vial-dacces-al-parc-logistic-de-valencia.html",
+      "articleDate": "2026-11-17T14:14:54.000Z",
+      "segmentIndex": 5,
+      "segmentKind": "body",
+      "type": "dato_municipal",
+      "attributedSource": "unspecified",
+      "verbatim": "constitueix l'accés principal al Parc Logístic de València i connecta directament amb les autovies A-3 i A-7",
+      "context": "El viari CV-373, afegeixen des de la Generalitat, constitueix l'accés principal al Parc Logístic de València i connecta directament amb les autovies A-3 i A-7.",
+      "topic": "movilidad",
+      "entities": {
+        "referencedEntity": "CV-373"
+      },
+      "confidence": 0.75,
+      "reasoning": "La conexión viaria descrita es un dato físico comprobable sobre el trazado de la carretera.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "lkm2pc-6-pro",
+      "articleId": "lkm2pc",
+      "articleFingerprint": "1mwsfdl",
+      "articleSource": "Periòdic del Camp de Túria",
+      "articleSourceHost": "infoturia.com",
+      "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/87331-avancen-les-obres-demergencia-en-el-vial-dacces-al-parc-logistic-de-valencia.html",
+      "articleDate": "2026-11-17T14:14:54.000Z",
+      "segmentIndex": 6,
+      "segmentKind": "body",
+      "type": "promesa",
+      "attributedSource": "municipal",
+      "verbatim": "I ara per fi donarem una solució definitiva",
+      "context": "Raga, ha mostrat la seva satisfacció per l'execució de les obres: \"Estic molt content, sobretot pels empresaris, que han sofert permanentment els problemes en aquesta zona. I ara per fi donarem una solució definitiva\".",
+      "topic": "movilidad",
+      "entities": {
+        "referencedEntity": "vial d'accés al Parc Logístic de València"
+      },
+      "confidence": 0.5,
+      "reasoning": "Es una promesa pública de solución definitiva al problema vial, contrastable con el resultado final de las obras.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "lkm2pc-7-obr",
+      "articleId": "lkm2pc",
+      "articleFingerprint": "1mwsfdl",
+      "articleSource": "Periòdic del Camp de Túria",
+      "articleSourceHost": "infoturia.com",
+      "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/87331-avancen-les-obres-demergencia-en-el-vial-dacces-al-parc-logistic-de-valencia.html",
+      "articleDate": "2026-11-17T14:14:54.000Z",
+      "segmentIndex": 7,
+      "segmentKind": "body",
+      "type": "cita_obra",
+      "attributedSource": "unspecified",
+      "verbatim": "la Generalitat executarà la permeabilització d'aquest vial canviat de nom com a CV-373 i la Confederació Hidrogràfica del Xúquer (CHJ), la canalització de les aigües",
+      "context": "En aquest sentit, ha assenyalat, la Generalitat executarà la permeabilització d'aquest vial canviat de nom com a CV-373 i la Confederació Hidrogràfica del Xúquer (CHJ), la canalització de les aigües.",
+      "topic": "medio-ambiente",
+      "entities": {
+        "referencedEntity": "CV-373 / Confederació Hidrogràfica del Xúquer"
+      },
+      "confidence": 0.6,
+      "reasoning": "Describe un reparto concreto de competencias entre Generalitat y CHJ, contrastable con los proyectos oficiales de cada organismo.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "lkm2pc-8-obr",
+      "articleId": "lkm2pc",
+      "articleFingerprint": "1mwsfdl",
+      "articleSource": "Periòdic del Camp de Túria",
+      "articleSourceHost": "infoturia.com",
+      "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/87331-avancen-les-obres-demergencia-en-el-vial-dacces-al-parc-logistic-de-valencia.html",
+      "articleDate": "2026-11-17T14:14:54.000Z",
+      "segmentIndex": 8,
+      "segmentKind": "body",
+      "type": "cita_obra",
+      "attributedSource": "unspecified",
+      "verbatim": "se substituiran les actuals defenses rígides de la mitjana, formades per barreres de formigó tipus Nova Jersey, per sistemes de contenció metàl·lics que permeten el pas de l'aigua",
+      "context": "A més, se substituiran les actuals defenses rígides de la mitjana, formades per barreres de formigó tipus Nova Jersey, per sistemes de contenció metàl·lics que permeten el pas de l'aigua.",
+      "topic": "seguridad",
+      "entities": {
+        "referencedEntity": "mitjana del vial CV-373"
+      },
+      "confidence": 0.6,
+      "reasoning": "Es una actuación técnica concreta (sustitución de barreras) verificable al finalizar la obra.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "6rvhyi-0-num",
+      "articleId": "6rvhyi",
+      "articleFingerprint": "sfovww",
+      "articleSource": "ComarcalCV",
+      "articleSourceHost": "comarcalcv.com",
+      "articleUrl": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQZGVYTzZ2QWhiWDU3eDRzQVhJUWNpRTAtMGJ3bVFWYUhVOW9DNkVvdW5tWjR3NTlXalFjaHVRLUZGbHBZTjUyQTh4UTI3amp2NjBkNFVoLTFPQ29ENkpnSDlVNlVPaG1qc3I2OEl1XzZHVkQzQUZMUG0xaGgtWjM0ZU9Rc1RJMFFyWE4tV3JzUU9xSmI5M3liTElFYndPSzhGUXRsLXJVNzRkUW9NRkE2MUtnV2ZjM2ZRRnpsdU1KOVdsV1VOREd1cVMyUXdnUm5ZVzVhMXN4Zmt1dXBPYUhKTkxQWmpCZVljUE03b0l4QjdZVHNiLVdHM1I4YzR0bFI4YnBrVzB0bw?oc=5",
+      "articleDate": "2026-11-17T14:06:10.000Z",
+      "segmentIndex": 0,
+      "segmentKind": "title",
+      "type": "afirmacion_numerica",
+      "attributedSource": "outlet",
+      "verbatim": "una inversión contra inundaciones de 7,7 millones de la Generalitat en el Parque Logístico",
+      "context": "Riba-roja se blinda contra futuras DANA con una inversión contra inundaciones de 7,7 millones de la Generalitat en el Parque Logístico",
+      "topic": "medio-ambiente",
+      "entities": {
+        "amountEuros": 7700000,
+        "referencedEntity": "Generalitat"
+      },
+      "confidence": 0.55,
+      "reasoning": "El titular cifra en 7,7 millones de euros una inversión concreta de la Generalitat, dato verificable contra presupuestos o convenios publicados.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "uacj7g-0-pro",
+      "articleId": "uacj7g",
+      "articleFingerprint": "1328pwc",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/el-parque-log%C3%ADstico-valencia%2C-plv-tendr%C3%A1-una-canalizaci%C3%B3n-natural-del-agua-de-lluvia-para-evitar-inundaciones-y-garantizar-el-acceso-de-veh%C3%ADculos",
+      "articleDate": "2026-11-17T12:15:55.000Z",
+      "segmentIndex": 0,
+      "segmentKind": "body",
+      "type": "promesa",
+      "attributedSource": "outlet",
+      "verbatim": "tendrá una canalización natural del agua de lluvia para evitar inundaciones y garantizar el acceso de vehículos",
+      "context": "El Parque Logístico Valencia, PLV tendrá una canalización natural del agua de lluvia para evitar inundaciones y garantizar el acceso de vehículos (titular del artículo)",
+      "topic": "medio-ambiente",
+      "entities": {
+        "referencedEntity": "Parque Logístico Valencia (PLV)"
+      },
+      "confidence": 0.6,
+      "reasoning": "Es un compromiso de resultado futuro (canalización que evita inundaciones) verificable cuando concluyan las obras.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "uacj7g-1-dat",
+      "articleId": "uacj7g",
+      "articleFingerprint": "1328pwc",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/el-parque-log%C3%ADstico-valencia%2C-plv-tendr%C3%A1-una-canalizaci%C3%B3n-natural-del-agua-de-lluvia-para-evitar-inundaciones-y-garantizar-el-acceso-de-veh%C3%ADculos",
+      "articleDate": "2026-11-17T12:15:55.000Z",
+      "segmentIndex": 1,
+      "segmentKind": "body",
+      "type": "dato_municipal",
+      "attributedSource": "outlet",
+      "verbatim": "La CV-373 constituye el acceso principal al PLV y conecta directamente con las autovías A-3 y A-7.",
+      "context": "• La CV-373 constituye el acceso principal al PLV y conecta directamente con las autovías A-3 y A-7.• La infraestructura soporta un tráfico de vehículos pesados de entre 800 y 2.000 vehículos diarios.",
+      "topic": "movilidad",
+      "entities": {
+        "referencedEntity": "CV-373"
+      },
+      "confidence": 0.9,
+      "reasoning": "Dato objetivo sobre conectividad viaria, contrastable con la cartografía oficial de carreteras.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "uacj7g-2-num",
+      "articleId": "uacj7g",
+      "articleFingerprint": "1328pwc",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/el-parque-log%C3%ADstico-valencia%2C-plv-tendr%C3%A1-una-canalizaci%C3%B3n-natural-del-agua-de-lluvia-para-evitar-inundaciones-y-garantizar-el-acceso-de-veh%C3%ADculos",
+      "articleDate": "2026-11-17T12:15:55.000Z",
+      "segmentIndex": 2,
+      "segmentKind": "body",
+      "type": "afirmacion_numerica",
+      "attributedSource": "outlet",
+      "verbatim": "La infraestructura soporta un tráfico de vehículos pesados de entre 800 y 2.000 vehículos diarios.",
+      "context": "• La CV-373 constituye el acceso principal al PLV y conecta directamente con las autovías A-3 y A-7.• La infraestructura soporta un tráfico de vehículos pesados de entre 800 y 2.000 vehículos diarios.",
+      "topic": "movilidad",
+      "entities": {
+        "count": 2000,
+        "countUnit": "vehículos pesados diarios (rango 800-2.000)",
+        "referencedEntity": "CV-373"
+      },
+      "confidence": 0.85,
+      "reasoning": "Cifra concreta de aforo diario de vehículos pesados, contrastable con datos de tráfico de la vía.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "uacj7g-3-num",
+      "articleId": "uacj7g",
+      "articleFingerprint": "1328pwc",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/el-parque-log%C3%ADstico-valencia%2C-plv-tendr%C3%A1-una-canalizaci%C3%B3n-natural-del-agua-de-lluvia-para-evitar-inundaciones-y-garantizar-el-acceso-de-veh%C3%ADculos",
+      "articleDate": "2026-11-17T12:15:55.000Z",
+      "segmentIndex": 3,
+      "segmentKind": "body",
+      "type": "afirmacion_numerica",
+      "attributedSource": "outlet",
+      "verbatim": "El proyecto global de la Generalitat cuenta con un presupuesto estimado de 7,7 millones de euros y un plazo de ejecución de 12 meses.",
+      "context": "la Generalitat ejecutará permeabilización de este vial renombrado como CV-373 y la Confederación Hidrográfica del Júcar (CHJ) del Gobierno la canalización de las aguas. El proyecto global de la Generalitat cuenta con un presupuesto estimado de 7,7 millones de euros y un plazo de ejecución de 12 meses.",
+      "topic": "fiscal",
+      "entities": {
+        "amountEuros": 7700000,
+        "count": 12,
+        "countUnit": "meses",
+        "referencedEntity": "Generalitat Valenciana"
+      },
+      "confidence": 0.9,
+      "reasoning": "Cifra presupuestaria y plazo de ejecución explícitos, contrastables con el proyecto de ejecución publicado por la Generalitat.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "uacj7g-4-obr",
+      "articleId": "uacj7g",
+      "articleFingerprint": "1328pwc",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/el-parque-log%C3%ADstico-valencia%2C-plv-tendr%C3%A1-una-canalizaci%C3%B3n-natural-del-agua-de-lluvia-para-evitar-inundaciones-y-garantizar-el-acceso-de-veh%C3%ADculos",
+      "articleDate": "2026-11-17T12:15:55.000Z",
+      "segmentIndex": 4,
+      "segmentKind": "body",
+      "type": "cita_obra",
+      "attributedSource": "municipal",
+      "verbatim": "permitirán recuperar las condiciones de funcionalidad, además de mejorar su capacidad de drenaje ante episodios de lluvias intensas",
+      "context": "Raga ha asegurado que los trabajos “permitirán recuperar las condiciones de funcionalidad, además de mejorar su capacidad de drenaje ante episodios de lluvias intensas”.",
+      "topic": "medio-ambiente",
+      "entities": {
+        "referencedEntity": "vial CV-373"
+      },
+      "confidence": 0.6,
+      "reasoning": "Cita de portavoz municipal sobre el efecto esperado de la obra, contrastable al finalizar los trabajos.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "uacj7g-5-obr",
+      "articleId": "uacj7g",
+      "articleFingerprint": "1328pwc",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/el-parque-log%C3%ADstico-valencia%2C-plv-tendr%C3%A1-una-canalizaci%C3%B3n-natural-del-agua-de-lluvia-para-evitar-inundaciones-y-garantizar-el-acceso-de-veh%C3%ADculos",
+      "articleDate": "2026-11-17T12:15:55.000Z",
+      "segmentIndex": 5,
+      "segmentKind": "body",
+      "type": "cita_obra",
+      "attributedSource": "municipal",
+      "verbatim": "es una obra de emergencia muy importante para la logística de la Comunidad Valenciana, que conectará aguas abajo con el Barranc de la Saleta evitando inundaciones en El Oliveral y garantizando el acceso de vehículos en episodios de fuertes lluvias",
+      "context": "Además ha subrayado, “es una obra de emergencia muy importante para la logística de la Comunidad Valenciana, que conectará aguas abajo con el Barranc de la Saleta evitando inundaciones en El Oliveral y garantizando el acceso de vehículos en episodios de fuertes lluvias”.",
+      "topic": "medio-ambiente",
+      "entities": {
+        "referencedEntity": "Barranc de la Saleta"
+      },
+      "confidence": 0.65,
+      "reasoning": "Cita que describe un efecto hidráulico concreto (conexión con el Barranc de la Saleta) verificable con el proyecto técnico, aunque la cita es extensa.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "uacj7g-6-obr",
+      "articleId": "uacj7g",
+      "articleFingerprint": "1328pwc",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/el-parque-log%C3%ADstico-valencia%2C-plv-tendr%C3%A1-una-canalizaci%C3%B3n-natural-del-agua-de-lluvia-para-evitar-inundaciones-y-garantizar-el-acceso-de-veh%C3%ADculos",
+      "articleDate": "2026-11-17T12:15:55.000Z",
+      "segmentIndex": 6,
+      "segmentKind": "body",
+      "type": "cita_obra",
+      "attributedSource": "unspecified",
+      "verbatim": "tiene problemas, cada vez que llueve intensamente que fueron evidenciados con la dana de 2024",
+      "context": "Martínez Mus ha recordado que este polígono “tiene problemas, cada vez que llueve intensamente que fueron evidenciados con la dana de 2024”, lo que obligaba a tomar soluciones efectivas para mejorar la seguridad de las empresas.",
+      "topic": "medio-ambiente",
+      "entities": {
+        "date": "2024",
+        "referencedEntity": "Parque Logístico Valencia (PLV)"
+      },
+      "confidence": 0.55,
+      "reasoning": "Afirmación sobre antecedentes de inundaciones vinculados a la dana de 2024, contrastable con registros oficiales de esa dana; el cargo citado es de la Generalitat, no del Ayuntamiento ni de la oposición.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "uacj7g-7-dat",
+      "articleId": "uacj7g",
+      "articleFingerprint": "1328pwc",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/el-parque-log%C3%ADstico-valencia%2C-plv-tendr%C3%A1-una-canalizaci%C3%B3n-natural-del-agua-de-lluvia-para-evitar-inundaciones-y-garantizar-el-acceso-de-veh%C3%ADculos",
+      "articleDate": "2026-11-17T12:15:55.000Z",
+      "segmentIndex": 7,
+      "segmentKind": "body",
+      "type": "dato_municipal",
+      "attributedSource": "outlet",
+      "verbatim": "La actuación responde al deterioro que presenta la carretera, agravado por la dana del 29 de octubre de 2024 y por posteriores episodios de precipitaciones, especialmente los registrados los días 28 y 29 de diciembre de 2025, que provocaron una nueva inundación del vial y dejaron la infraestructura inhabilitada para la circulación.",
+      "context": "Martínez Mus ha recordado que este polígono tiene problemas... La actuación responde al deterioro que presenta la carretera, agravado por la dana del 29 de octubre de 2024 y por posteriores episodios de precipitaciones, especialmente los registrados los días 28 y 29 de diciembre de 2025.",
+      "topic": "medio-ambiente",
+      "entities": {
+        "date": "2024-10-29",
+        "referencedEntity": "CV-373"
+      },
+      "confidence": 0.65,
+      "reasoning": "Secuencia de fechas e incidentes meteorológicos verificable con registros de la AEMET y partes de incidencias viarias; cita larga, confianza limitada por posible paráfrasis.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "uacj7g-8-dat",
+      "articleId": "uacj7g",
+      "articleFingerprint": "1328pwc",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/el-parque-log%C3%ADstico-valencia%2C-plv-tendr%C3%A1-una-canalizaci%C3%B3n-natural-del-agua-de-lluvia-para-evitar-inundaciones-y-garantizar-el-acceso-de-veh%C3%ADculos",
+      "articleDate": "2026-11-17T12:15:55.000Z",
+      "segmentIndex": 8,
+      "segmentKind": "body",
+      "type": "dato_municipal",
+      "attributedSource": "outlet",
+      "verbatim": "Las inspecciones realizadas detectaron daños en el firme, desgaste de la señalización horizontal y vertical, deterioro de las barreras de seguridad y problemas en el sistema de alumbrado público.",
+      "context": "...dejaron la infraestructura inhabilitada para la circulación. Las inspecciones realizadas detectaron daños en el firme, desgaste de la señalización horizontal y vertical, deterioro de las barreras de seguridad y problemas en el sistema de alumbrado público.",
+      "topic": "urbanismo",
+      "entities": {
+        "referencedEntity": "CV-373"
+      },
+      "confidence": 0.75,
+      "reasoning": "Resultados de una inspección técnica concreta, contrastables con el informe de inspección correspondiente.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "uacj7g-9-num",
+      "articleId": "uacj7g",
+      "articleFingerprint": "1328pwc",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/el-parque-log%C3%ADstico-valencia%2C-plv-tendr%C3%A1-una-canalizaci%C3%B3n-natural-del-agua-de-lluvia-para-evitar-inundaciones-y-garantizar-el-acceso-de-veh%C3%ADculos",
+      "articleDate": "2026-11-17T12:15:55.000Z",
+      "segmentIndex": 9,
+      "segmentKind": "body",
+      "type": "afirmacion_numerica",
+      "attributedSource": "outlet",
+      "verbatim": "la construcción de una estructura tipo puente, con una luz aproximada de 30 metros y una altura libre de entre 3 y 4 metros",
+      "context": "Una de las principales actuaciones previstas es la construcción de una estructura tipo puente, con una luz aproximada de 30 metros y una altura libre de entre 3 y 4 metros, que permitirá incrementar la capacidad de desagüe del vial frente a avenidas extraordinarias.",
+      "topic": "urbanismo",
+      "entities": {
+        "count": 30,
+        "countUnit": "metros (luz del puente)",
+        "referencedEntity": "barranco del Pozalet"
+      },
+      "confidence": 0.85,
+      "reasoning": "Dimensiones técnicas concretas del puente proyectado, contrastables con el proyecto de ejecución.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "uacj7g-10-dat",
+      "articleId": "uacj7g",
+      "articleFingerprint": "1328pwc",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/el-parque-log%C3%ADstico-valencia%2C-plv-tendr%C3%A1-una-canalizaci%C3%B3n-natural-del-agua-de-lluvia-para-evitar-inundaciones-y-garantizar-el-acceso-de-veh%C3%ADculos",
+      "articleDate": "2026-11-17T12:15:55.000Z",
+      "segmentIndex": 10,
+      "segmentKind": "body",
+      "type": "dato_municipal",
+      "attributedSource": "outlet",
+      "verbatim": "se sustituirán las actuales defensas rígidas de la mediana, formadas por barreras de hormigón tipo New Jersey, por sistemas de contención metálicos que permiten el paso del agua.",
+      "context": "Además, se sustituirán las actuales defensas rígidas de la mediana, formadas por barreras de hormigón tipo New Jersey, por sistemas de contención metálicos que permiten el paso del agua.",
+      "topic": "urbanismo",
+      "entities": {
+        "referencedEntity": "barreras tipo New Jersey"
+      },
+      "confidence": 0.75,
+      "reasoning": "Acción técnica concreta de sustitución de elementos de seguridad vial, verificable al concluir la obra.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "uacj7g-11-pro",
+      "articleId": "uacj7g",
+      "articleFingerprint": "1328pwc",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/el-parque-log%C3%ADstico-valencia%2C-plv-tendr%C3%A1-una-canalizaci%C3%B3n-natural-del-agua-de-lluvia-para-evitar-inundaciones-y-garantizar-el-acceso-de-veh%C3%ADculos",
+      "articleDate": "2026-11-17T12:15:55.000Z",
+      "segmentIndex": 11,
+      "segmentKind": "body",
+      "type": "promesa",
+      "attributedSource": "municipal",
+      "verbatim": "estoy muy contento, sobre todo por los empresarios, que han sufrido permanentemente los problemas en esta zona. Y ahora por fin vamos a dar una solución definitiva",
+      "context": "Por su parte el alcalde de Riba-roja, Robert Raga, ha mostrado su satisfacción por la ejecución de las obras “estoy muy contento, sobre todo por los empresarios, que han sufrido permanentemente los problemas en esta zona. Y ahora por fin vamos a dar una solución definitiva”.",
+      "topic": "empleo",
+      "entities": {
+        "referencedEntity": "empresarios del PLV"
+      },
+      "confidence": 0.4,
+      "reasoning": "Promesa vaga de 'solución definitiva' a los problemas de los empresarios, contrastable solo de forma cualitativa en el futuro.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "5iht08-0-pro",
+      "articleId": "5iht08",
+      "articleFingerprint": "eqsunl",
+      "articleSource": "Periòdic del Camp de Túria",
+      "articleSourceHost": "infoturia.com",
+      "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/87292-compromis-front-valencia-reivindica-a-riba-roja-ajudes-de-200-euros-mensuals-per-fill.html",
+      "articleDate": "2026-11-16T13:01:38.000Z",
+      "segmentIndex": 0,
+      "segmentKind": "body",
+      "type": "promesa",
+      "attributedSource": "opposition",
+      "verbatim": "proposem una prestació universal de 200 euros al mes per cada fill o filla",
+      "context": "Àgueda Micó, ha destacat que «criar un fill o una filla no pot convertir-se en un privilegi. Per això proposem una prestació universal de 200 euros al mes per cada fill o filla. Volem que les famílies tinguen més recursos i que ningú haja de renunciar a tindre un projecte de vida per motius econòmics».",
+      "topic": "social",
+      "entities": {
+        "amountEuros": 200,
+        "referencedEntity": "fill o filla"
+      },
+      "confidence": 0.75,
+      "reasoning": "Es una propuesta electoral concreta y cuantificable (200€ mensuales por hijo/a) que puede verificarse si llega a implementarse.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "5iht08-1-pro",
+      "articleId": "5iht08",
+      "articleFingerprint": "eqsunl",
+      "articleSource": "Periòdic del Camp de Túria",
+      "articleSourceHost": "infoturia.com",
+      "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/87292-compromis-front-valencia-reivindica-a-riba-roja-ajudes-de-200-euros-mensuals-per-fill.html",
+      "articleDate": "2026-11-16T13:01:38.000Z",
+      "segmentIndex": 1,
+      "segmentKind": "body",
+      "type": "promesa",
+      "attributedSource": "opposition",
+      "verbatim": "recuperar el dret civil valencià per a poder regular permisos de cures vinculats a unions civils entre amistats",
+      "context": "Ibáñez ha reivindicat la proposta de recuperar el dret civil valencià per a poder regular permisos de cures vinculats a unions civils entre amistats.",
+      "topic": "social",
+      "entities": {},
+      "confidence": 0.55,
+      "reasoning": "Es una propuesta legislativa concreta (regular permisos de cuidado vía derecho civil valenciano) cuyo cumplimiento futuro puede contrastarse.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "1ezylig-0-num",
+      "articleId": "1ezylig",
+      "articleFingerprint": "13vj4ds",
+      "articleSource": "Levante-EMV",
+      "articleSourceHost": "levante-emv.com",
+      "articleUrl": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQSjIzVFJONlJSTzg4ekpmU3dKM3AtenBUeWdqaDIyZ084VXpIRGhyQUg0cFBhWHdkbWRoYVBmcTd2MmstQkdzaGpSSlQ5ZldwTkFBOUFDX3V1bGRjcFdPWHpudEJObDlZLWNnYzR4MlhwcF81SllEMmpMRlkyWHhnaUVpNFY3eFR5T1o5dXJXY1p5RjFKVVlBUU55Nmo1Z3Jwa1gxVG1JOXVrdW0wLWRmaDY3WTlwdHNOd0ZaNkhmV1ZmQ0hGU05IYzBGV1JkMDFrS1NoYS0zbW12dTBn0gHiAUFVX3lxTE4yeHBabkwxVU9QN2NnUXlUVTZNel8tY0Q5UTBYdk9VbS1Wd0NhUUlDZkhqeFgyTVR3R1lhMDBHZ2hzc0ZnUklwZ25CY0JyQ1hlNVlqQmNiRE9WNlRBZFU5c2RpYk00dlBSNS1ueE55NDhGczJaa0J1UDFWMlJDd3I2TS14NGJJb0dScDhEM2I2Nzd1bWdpdTVSRkQySHhFQVp1NXZZMnlvYmpUUERld2NYMkxwNzNZMEhIeVY1QWZld0NWVXhlYW5sVVZES2dvMm9Qbk9FTlkwcy1ZVlJwOWlmR2c?oc=5",
+      "articleDate": "2026-08-25T07:00:00.000Z",
+      "segmentIndex": 0,
+      "segmentKind": "title",
+      "type": "afirmacion_numerica",
+      "attributedSource": "outlet",
+      "verbatim": "Riba-roja de Túria destina una partida de 100.000 euros para la rehabilitación de las fachadas",
+      "context": "Titular: Riba-roja de Túria destina una partida de 100.000 euros para la rehabilitación de las fachadas",
+      "topic": "urbanismo",
+      "entities": {
+        "amountEuros": 100000,
+        "referencedEntity": "Riba-roja de Túria"
+      },
+      "confidence": 0.5,
+      "reasoning": "Cifra concreta (100.000 euros) y partida presupuestaria verificable en presupuestos municipales, aunque solo se dispone del titular sin cuerpo del artículo.",
       "requiresHumanApproval": true
     }
   ]
