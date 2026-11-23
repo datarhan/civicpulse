@@ -452,7 +452,7 @@ else
         log "· recuperación de $rid EN ESPERA (claude no contesta)"; break
       fi
       INTENTADAS=$((INTENTADAS+1))
-      log "recuperando la extracción de $rid…"
+      log "recuperando la extracción de ${rid}…"
       extrae_sesion "$rid"
       N_DECL=$(declaraciones_de "$rid")
       TIENE=0
