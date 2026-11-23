@@ -259,8 +259,10 @@ blind every 1200 s, 71 of 195 seams in 23 transcripts fell mid-sentence, and
 sentence went on in the next chunk. Now `trocear_audio` runs ffmpeg
 `silencedetect` over the session and `src/scraper/cortes-audio.ts` moves each
 cut to the middle of the longest silence within ±60 s of its mark, logging how
-many found none. A remainder under 30 s joins the chunk before it rather than
-going up alone. The offsets come from the real cut points. Overlapping chunks
+many found none. A remainder under 120 s joins the chunk before it rather than
+going up alone (30 s until 2026-11-23, when 63 s of `1237hbp`'s closing music,
+sent alone, came back as an empty 200 and the empty-chunk rule refused the
+whole session). The offsets come from the real cut points. Overlapping chunks
 was rejected: reconciling two transcriptions of the same audio rewrites text,
 which a verbatim quote cannot survive.
 

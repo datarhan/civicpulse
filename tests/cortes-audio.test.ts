@@ -4,6 +4,7 @@ import {
   elegirCortes,
   desplazamientos,
   TROZO_S,
+  COLA_MIN_S,
   UMBRAL_TROCEO_S,
 } from '../src/scraper/cortes-audio'
 
@@ -103,8 +104,13 @@ describe('elegirCortes', () => {
 
   it('el número de trozos sigue cubriendo todo el audio', () => {
     // La comprobación de descarga truncada compara trozos esperados y hechos.
+    // 15650 s: doce trozos de 1200 y una cola de 1250, que ya no deja sueltos
+    // los últimos 50 s (COLA_MIN_S).
     const { cortes } = elegirCortes(15650, [])
-    expect(cortes.length + 1).toBe(Math.ceil(15650 / TROZO_S))
+    expect(cortes.length + 1).toBe(13)
+    const bordes = [0, ...cortes, 15650]
+    for (let i = 1; i < bordes.length; i += 1)
+      expect(bordes[i] - bordes[i - 1]).toBeGreaterThanOrEqual(COLA_MIN_S)
   })
 })
 
