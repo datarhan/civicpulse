@@ -111,7 +111,9 @@ export const PlenoClaimSuggestionSchema = z.object({
   //
   // Optional individual attribution — only set when the transcript line
   // carries a high-tier voice-id named tag like `(Robert Raga Gadea)`,
-  // produced by `scripts/identify-pleno-speakers.ts --apply`. NEVER
+  // in the named copy `scripts/identify-pleno-speakers.ts --apply` writes to
+  // `pleno-speakers/` — read only by `voice-id-ab`, never by the published
+  // extraction (2026-11-23). NEVER
   // populated from prose alone (ASR error on proper nouns is too high to be
   // defamation-safe). Validated post-LLM in src/scraper/pleno-claim-llm.ts
   // against the enrolled voiceprint set and against the bloc the speaker map

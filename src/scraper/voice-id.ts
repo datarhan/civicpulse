@@ -6,6 +6,7 @@
  * spawning the speechbrain worker; this module is the deterministic
  * core that's easy to unit-test.
  */
+import { sha256Short } from './hash'
 
 export interface DiarizedSegment {
   /** Start time in seconds (Whisper's transcript timestamp). */
@@ -260,6 +261,13 @@ export function effectiveTier(
 export interface IdentifyResult {
   generatedAt: string
   plenoId: string
+  /**
+   * Huella de la diarización que se emparejó (`huellaDiarizacion`). Las
+   * etiquetas SPEAKER_NN sólo significan algo dentro de una transcripción:
+   * si se vuelve a transcribir, `SPEAKER_03` puede ser otra persona, así que
+   * una corrección del curador sólo se arrastra si la huella coincide.
+   */
+  huellaDiarizacion?: string
   totalSpeakers: number
   highConfidenceCount: number
   mediumConfidenceCount: number
@@ -303,4 +311,85 @@ export function rewriteTranscript(transcript: string, assignments: SpeakerAssign
     }
   }
   return lines.join('\n')
+}
+
+/**
+ * Dónde se escribe la transcripción con nombres: junto a las asignaciones, en
+ * `pleno-speakers/` (fuera de git y fuera de `public/`), nunca sobre la
+ * transcripción publicada. Hasta el 2026-11-23 `--apply` la reescribía en
+ * `public/data/pleno-transcripts/`, que /plenos/:id sirve tal cual: la huella
+ * vocal habría publicado nombres sin la firma de un curador.
+ */
+export function rutaIdentificada(raiz: string, plenoId: string): string {
+  if (!/^[A-Za-z0-9_-]+$/.test(plenoId)) {
+    throw new Error(`id de pleno no válido para una ruta: ${JSON.stringify(plenoId)}`)
+  }
+  return `${raiz.replace(/\/+$/, '')}/pleno-speakers/${plenoId}.identified.txt`
+}
+
+/**
+ * Huella de una diarización: tiempos y etiquetas de cada línea, no el texto
+ * (una corrección ortográfica no cambia quién habla).
+ */
+export function huellaDiarizacion(segments: DiarizedSegment[]): string {
+  return sha256Short(segments.map((s) => `${s.start}|${s.end}|${s.speaker}`).join('\n'))
+}
+
+/**
+ * Lleva a una pasada nueva las correcciones del curador de la anterior, voz a
+ * voz. Una corrección cuya voz ya no aparece se devuelve como huérfana: quien
+ * llama decide, y perderla en silencio es lo que pasaba antes (cada pasada
+ * escribía el fichero desde cero).
+ *
+ * La etiqueta sólo identifica una voz dentro de la MISMA diarización. Si la
+ * huella cambió (o la pasada previa no la guardó), ninguna corrección se
+ * arrastra: todas salen huérfanas, porque llevar «SPEAKER_03 es Fulano» a una
+ * transcripción nueva podría ponerle su nombre a otra persona.
+ */
+export function conservarOverrides(
+  previo: Pick<IdentifyResult, 'assignments' | 'huellaDiarizacion'> | null,
+  nuevas: SpeakerAssignment[],
+  huellaNueva: string,
+): { asignaciones: SpeakerAssignment[]; huerfanas: string[] } {
+  const porVoz = new Map<string, CuratorOverride>()
+  for (const a of previo?.assignments ?? []) {
+    if (a.curatorOverride !== undefined && a.curatorOverride !== null) {
+      porVoz.set(a.speaker, a.curatorOverride)
+    }
+  }
+  if (porVoz.size > 0 && previo?.huellaDiarizacion !== huellaNueva) {
+    return { asignaciones: nuevas, huerfanas: [...porVoz.keys()] }
+  }
+  const vistas = new Set<string>()
+  const asignaciones = nuevas.map((a) => {
+    const o = porVoz.get(a.speaker)
+    if (!o) return a
+    vistas.add(a.speaker)
+    return { ...a, curatorOverride: o }
+  })
+  const huerfanas = [...porVoz.keys()].filter((s) => !vistas.has(s))
+  return { asignaciones, huerfanas }
+}
+
+/**
+ * ¿Lleva esta transcripción nombres puestos por la identificación por voz?
+ * Una línea cuya etiqueta es `(Nombre)` o `(SPEAKER_NN ≈ Nombre?)`. Lo que
+ * se extrae de una transcripción se publica, así que quien la lee para
+ * publicar se niega si la encuentra.
+ */
+export function transcripcionConNombres(texto: string, nombres: string[]): boolean {
+  // Normalizado: el rótulo lleva el nombre congelado al registrar la huella
+  // o al corregir, que puede diferir del actual en espacios, mayúsculas o la
+  // forma Unicode de una tilde.
+  const norm = (t: string) => t.normalize('NFC').replace(/\s+/g, ' ').trim().toLowerCase()
+  const conocidos = new Set(nombres.map(norm))
+  const etiqueta = /^\[\d+\.?\d*\s*→\s*\d+\.?\d*\]\s*\(([^)]+)\)/
+  for (const linea of texto.split('\n')) {
+    const m = linea.match(etiqueta)
+    if (!m) continue
+    const t = m[1].trim()
+    if (/^SPEAKER_\d+\s*≈/.test(t)) return true
+    if (conocidos.has(norm(t))) return true
+  }
+  return false
 }

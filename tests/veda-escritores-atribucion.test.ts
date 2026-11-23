@@ -40,11 +40,13 @@ const CON_VEDA = [
   'scripts/auto-curate-findings.ts',
   'scripts/identify-pleno-speakers.ts',
   'scripts/verified-rebuild.ts',
+  // Desde el 2026-11-23 se niega a nombrar a un orador en veda; promover un
+  // hallazgo de grupo sigue siendo una decisión del curador.
+  'scripts/promote-claim.ts',
 ]
 
 /** Nombran la atribución y escriben algo, pero no la deciden. Cada uno, con el porqué. */
 const EXENTOS: Record<string, string> = {
-  'scripts/promote-claim.ts': 'CLI de curador: una persona promueve declaraciones por id',
   'scripts/reanchor-claim.ts': 'CLI de curador: corrige el literal, no el grupo',
   'scripts/repoint-finding-claims.ts': 'CLI de curador: re-engancha ids; el grupo no cambia',
   'scripts/retract-guessed-attributions.ts':
@@ -56,6 +58,8 @@ const EXENTOS: Record<string, string> = {
     'medida: cuenta los grupos y sólo escribe su comparación en .cache/rendimiento-plenos.json',
   'scripts/correct-pleno-finding.ts':
     'CLI de curador: una persona corrige un hallazgo por id, con motivo y firma',
+  'scripts/check-editorial.ts':
+    'puerta de commit: nombra pleno-speakers/ para impedir que entre en git; lee git, no escribe',
   'scripts/override-speaker-assignment.ts':
     'CLI de curador: una persona fija a mano la asignación de una voz (pleno-speakers/)',
 }
