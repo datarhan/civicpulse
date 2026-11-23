@@ -1,12 +1,13 @@
 /**
  * Una variable de shell pegada a un carácter no ASCII tiene que ir entre llaves.
  *
- * El 23-11-2026 una pasada a mano de `hallazgos-pipeline.sh` murió en
+ * El 23-11-2026 dos pasadas a mano de `hallazgos-pipeline.sh` murieron en
  * `log "recuperando la extracción de $rid…"` con «rid\xe2: unbound variable»:
- * con la locale C, bash lee los bytes de «…» como letras del nombre, y `set -u`
- * aborta. Desde launchd, con locale UTF-8, pasaba. La pasada a mano era la que
- * tenía que recuperar la extracción de 51k7yx, y no llegó a intentarlo.
- * `${rid}…` se lee igual en las dos locales.
+ * el bash 3.2 de macOS, con una locale UTF-8 (la de un terminal), lee los bytes
+ * de «…» como letras del nombre, y `set -u` aborta. Desde launchd, sin locale
+ * (C), pasaba. Las pasadas a mano eran las que tenían que recuperar la
+ * extracción de 51k7yx, y no llegaron a intentarlo. `${rid}…` se lee igual en
+ * las dos locales.
  */
 import { describe, expect, it } from 'vitest'
 import { readdirSync, readFileSync, statSync } from 'node:fs'
