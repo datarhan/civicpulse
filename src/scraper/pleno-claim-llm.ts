@@ -287,9 +287,17 @@ export async function extractClaimsConProcedencia(
     if (!rawSlug) return null
     const entry = speakersBySlug.get(rawSlug)
     if (!entry) return null
-    // If we have a bloc and it disagrees with the slug's party, drop the slug.
-    // We don't drop speakerGroup — it has its own libel-safe verification.
-    if (speakerGroup && entry.party !== speakerGroup) return null
+    // Sin grupo no hay contra qué comprobar el nombre, y se va. Hasta el
+    // 2026-11-23 se quedaba: una línea reescrita con un nombre por la
+    // identificación por voz deja de leerse como `(SPEAKER_NN)`, el mapa de
+    // voces no le da grupo, y el nombre pasaba sin ninguna comprobación.
+    if (!speakerGroup) return null
+    // Si el grupo contradice el partido del concejal, se va el nombre, no el
+    // grupo: el grupo tiene su propia verificación.
+    if (entry.party !== speakerGroup) return null
+    // Un concejal de un grupo de un escaño: nombrarlo es nivel C, como su
+    // grupo (ver `motivoDeRetencion`), aunque la línea llegue sin grupo.
+    if (unEscano.has(entry.party) && !nombrarAUnaPersona.allow) return null
     return rawSlug
   }
 

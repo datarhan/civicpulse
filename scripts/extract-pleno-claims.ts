@@ -23,7 +23,7 @@ import type {
 import { ALLOWED_CLAIM_TYPES, ALLOWED_CLAIM_TOPICS } from '../src/scraper/pleno-claim'
 import { assessTranscript } from '../src/scraper/transcript-quality'
 import { alignSpeakerMap, blocResolverFor } from '../src/scraper/speaker-map-align'
-import { parseDiarizedTranscript } from '../src/scraper/voice-id'
+import { parseDiarizedTranscript, transcripcionConNombres } from '../src/scraper/voice-id'
 import type { SpeakerMap } from '../src/scraper/speaker-map'
 import {
   seatsFromOfficials,
@@ -45,7 +45,6 @@ const TRANSCRIPT_DIR = resolve('public/data/pleno-transcripts')
 const PLENOS_PATH = resolve('public/data/plenos.json')
 const OFFICIALS_PATH = resolve('public/data/officials.json')
 const AGENDAS_PATH = resolve('public/data/plenos-agendas.json')
-const PLENO_SPEAKERS_DIR = resolve('pleno-speakers')
 
 interface PlenoMeta {
   id: string
@@ -65,60 +64,6 @@ function loadCurrentSeats(): BlocSeats[] {
     throw new Error('officials.json not found — run scrape:officials first')
   }
   return seatsFromOfficials(JSON.parse(readFileSync(OFFICIALS_PATH, 'utf8')) as Officials)
-}
-
-/**
- * Build the allowed-speaker list for a pleno: the intersection of
- *   · councillors enrolled in `.voiceprints/`
- *   · councillors whom `pleno-speakers/<plenoId>.json` matched in this
- *     particular pleno at high tier
- *   · councillors present in `officials.json` (party lookup)
- *
- * Returns []  when:
- *   - the pleno has no voice-id JSON yet (matcher never ran)
- *   - the JSON has no high-tier matches
- *   - officials.json doesn't carry the slug (stale enrollment)
- *
- * In all those cases the LLM emits speakerSlug:null on every claim and
- * the existing bloc-level attribution remains the only signal.
- */
-function loadAllowedSpeakersFor(
-  plenoId: string,
-): Array<{ slug: string; name: string; party: string }> {
-  const speakersPath = resolve(PLENO_SPEAKERS_DIR, `${plenoId}.json`)
-  if (!existsSync(speakersPath)) return []
-  let assignments: Array<{
-    match?: { tier: string; slug: string } | null
-    curatorOverride?: { slug: string | null } | null
-  }> = []
-  try {
-    const doc = JSON.parse(readFileSync(speakersPath, 'utf8'))
-    assignments = doc?.assignments ?? []
-  } catch {
-    return []
-  }
-  // Curator override wins. Otherwise only high-tier auto-matches qualify.
-  // Medium/low auto-matches are deliberately excluded — they're intended
-  // for review on the dashboard, not as LLM input.
-  const allowedSlugs = new Set<string>()
-  for (const a of assignments) {
-    if (a.curatorOverride !== undefined && a.curatorOverride !== null) {
-      if (a.curatorOverride.slug) allowedSlugs.add(a.curatorOverride.slug)
-      // null slug = explicitly unassigned → not added
-      continue
-    }
-    if (a.match?.tier === 'high' && a.match?.slug) allowedSlugs.add(a.match.slug)
-  }
-  if (allowedSlugs.size === 0) return []
-
-  const officials = JSON.parse(readFileSync(OFFICIALS_PATH, 'utf8')) as Officials
-  const out: Array<{ slug: string; name: string; party: string }> = []
-  for (const o of officials.officials ?? []) {
-    if (allowedSlugs.has(o.slug)) {
-      out.push({ slug: o.slug, name: o.name, party: o.party })
-    }
-  }
-  return out
 }
 
 function loadAgendaFor(plenoId: string) {
@@ -169,6 +114,22 @@ async function runOne(
   // Content-sanity gate: never extract claims from an empty, truncated, or
   // non-transcript file (a failed download / interrupted Whisper run) — junk
   // claims would flow toward curated findings. Skip loudly instead.
+  // Lo que se extrae de aquí se publica, así que no se lee ninguna asignación
+  // de la identificación por voz (`pleno-speakers/`) ni una transcripción que
+  // lleve nombres puestos por ella. Hasta el 2026-11-23 este script pasaba
+  // las asignaciones de nivel alto al modelo, que escribía `speakerSlug` en
+  // filas servidas, sin firma de curador. Nombrar a una persona lo hace un
+  // curador, por hallazgo, con `promote-claim`.
+  const nombres = (
+    (JSON.parse(readFileSync(OFFICIALS_PATH, 'utf8')) as Officials).officials ?? []
+  ).map((o) => o.name)
+  if (transcripcionConNombres(transcript, nombres)) {
+    process.stderr.write(
+      `[extract·claims] ${plenoId}: la transcripción lleva nombres de la identificación por voz; ` +
+        'no se extrae de ella. La publicada debe llevar hablantes anónimos (SPEAKER_NN).\n',
+    )
+    return []
+  }
   const quality = assessTranscript(transcript)
   if (!quality.ok) {
     process.stderr.write(
@@ -188,14 +149,6 @@ async function runOne(
     process.stdout.write(
       `[extract·claims]   ${plenoId} · veda electoral hasta ${veda}: sin mapa de voces ni voice-id, ` +
         'toda declaración sale con speakerGroup:null\n',
-    )
-  }
-  const allowedSpeakers = veda ? [] : loadAllowedSpeakersFor(plenoId)
-  if (allowedSpeakers.length > 0) {
-    process.stdout.write(
-      `[extract·claims] ${plenoId}: voice-id allowed speakers (high-tier): ${allowedSpeakers
-        .map((s) => `${s.slug}(${s.party})`)
-        .join(', ')}\n`,
     )
   }
   // Attribution comes from the speaker map, joined per claim after extraction.
@@ -229,7 +182,6 @@ async function runOne(
     plenoDate: pleno.date,
     currentSeats,
     agendaItems,
-    allowedSpeakers,
     minConfidence,
     concurrency,
     resolveBloc,

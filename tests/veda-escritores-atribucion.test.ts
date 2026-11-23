@@ -56,6 +56,8 @@ const EXENTOS: Record<string, string> = {
     'medida: cuenta los grupos y sólo escribe su comparación en .cache/rendimiento-plenos.json',
   'scripts/correct-pleno-finding.ts':
     'CLI de curador: una persona corrige un hallazgo por id, con motivo y firma',
+  'scripts/check-editorial.ts':
+    'puerta de commit: nombra pleno-speakers/ para impedir que entre en git; lee git, no escribe',
   'scripts/override-speaker-assignment.ts':
     'CLI de curador: una persona fija a mano la asignación de una voz (pleno-speakers/)',
 }
