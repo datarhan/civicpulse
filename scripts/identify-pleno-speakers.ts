@@ -295,6 +295,15 @@ print(json.dumps({
 
 async function main(): Promise<void> {
   const opts = parseArgs(process.argv.slice(2))
+  // En veda electoral (LOREG) no se identifica ninguna voz: sería poner nombre
+  // de candidato a cada intervención, aunque no se publique. Hasta el
+  // 2026-11-23 sólo se saltaba --apply y las asignaciones se escribían igual.
+  // Lanza si no puede leer promises.json: sin saber si hay veda no se empieza.
+  const veda = vedaActiva()
+  if (veda) {
+    process.stderr.write(`[identify] veda electoral hasta ${veda}: no se identifica ninguna voz\n`)
+    return
+  }
   const enrolled = loadVoiceprints()
   process.stderr.write(`[identify] ${enrolled.length} enrolled voiceprint(s)\n`)
   for (const e of enrolled) {
@@ -411,15 +420,7 @@ async function main(): Promise<void> {
       `(${result.highConfidenceCount} high, ${result.mediumConfidenceCount} medium, ${result.unmatchedCount} unmatched)\n`,
   )
 
-  // En veda electoral --apply no reescribe la transcripción con nombres: sería
-  // atribuir frases a candidatos con nombre propio. Las asignaciones de arriba
-  // sí se guardan (pleno-speakers/, no se publica).
-  const veda = opts.apply ? vedaActiva() : null
-  if (veda) {
-    process.stderr.write(
-      `[identify] --apply: veda electoral hasta ${veda} — la transcripción NO se toca\n`,
-    )
-  } else if (opts.apply) {
+  if (opts.apply) {
     const rewritten = rewriteTranscript(transcript, conservadas)
     if (rewritten === transcript) {
       process.stderr.write(`[identify] --apply: no high/medium-tier matches; nothing written\n`)
