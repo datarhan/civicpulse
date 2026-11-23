@@ -119,9 +119,26 @@ export const NEVER_ATTEMPTED_WARN = 0.5
 /** Above this share of failed calls, the backend is degraded. */
 export const FAILURE_RATE_WARN = 0.25
 
+/**
+ * Skip reasons that mean «the model answered, and a guard of ours kept the
+ * PUBLISHED state instead of the new output» — not «our quality gate rejected
+ * it». The distinction is what the reader of `check:runs` acts on: a rejected
+ * output points at a threshold; a preserved one points at a citation that the
+ * new extraction would have broken, and the output itself may be fine.
+ *
+ * `extract-pleno-claims`' orphan guard is the one member. On 2026-11-23 it
+ * kept `1237hbp` after 225 calls and the manifest said `attempted 0 ·
+ * skipped {}`, which reads exactly like a pass that did nothing.
+ */
+export const SKIP_ORPHAN_GUARD = 'orphan-guard'
+export const PRESERVATION_SKIPS: ReadonlySet<string> = new Set([SKIP_ORPHAN_GUARD])
+
 export function assessManifest(m: RunManifest): ManifestFinding[] {
   const out: ManifestFinding[] = []
   const skippedTotal = Object.values(m.skipped).reduce((a, b) => a + b, 0)
+  const preservedTotal = Object.entries(m.skipped)
+    .filter(([motivo]) => PRESERVATION_SKIPS.has(motivo))
+    .reduce((a, [, n]) => a + n, 0)
 
   // Un tercer desenlace que `no-work` no sabía nombrar: la pasada llegó al
   // modelo, el modelo contestó TODAS las veces, y fue nuestra propia puerta de
@@ -145,7 +162,28 @@ export function assessManifest(m: RunManifest): ManifestFinding[] {
   const todoSaltadoConMotivo =
     m.attempted > 0 && m.judged === 0 && skippedTotal === m.attempted && m.llm.ok > 0
 
-  if (todoSaltadoConMotivo) {
+  // Una guarda de conservación no es la puerta de calidad: se nombra aparte,
+  // como aviso, también en una pasada mixta donde otras sesiones sí salieron.
+  // Callarla dejaba la negativa invisible; pintarla de error la volvería un
+  // rojo sobre una decisión correcta. Sólo con el backend contestando — un
+  // backend mudo sigue cayendo en `no-work` más abajo.
+  if (preservedTotal > 0 && m.llm.ok > 0) {
+    const motivos = Object.entries(m.skipped)
+      .filter(([motivo]) => PRESERVATION_SKIPS.has(motivo))
+      .map(([motivo, n]) => `${motivo}=${n}`)
+      .join(', ')
+    out.push({
+      level: 'warn',
+      code: 'preserved-by-guard',
+      message:
+        `${m.script} extracted ${preservedTotal} session(s) and DISCARDED the result ` +
+        `(${motivos}): overwriting would have broken citations in published findings, so ` +
+        `the previous output was kept. ${m.llm.ok} of ${m.llm.calls} model call(s) answered. ` +
+        `Nothing is broken; the published record is unchanged and the new extraction was not used.`,
+    })
+  }
+
+  if (todoSaltadoConMotivo && preservedTotal < skippedTotal) {
     const motivos = Object.entries(m.skipped)
       .map(([motivo, n]) => `${motivo}=${n}`)
       .join(', ')
