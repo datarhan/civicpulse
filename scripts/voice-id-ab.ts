@@ -24,8 +24,8 @@
  * with a 2-hour pleno transcript expect ~$0.10 — $0.30 per A/B run.
  *
  * Prerequisites (the script checks):
- *   1. transcript at public/data/pleno-transcripts/<plenoId>.txt
- *      — diarized AND identified (`(Full Name)` tags present)
+ *   1. named transcript at pleno-speakers/<plenoId>.identified.txt
+ *      (written by `identify-pleno-speakers --apply`; never under public/)
  *   2. ≥1 enrolled voiceprint in .voiceprints/index.json
  *   3. pleno-speakers/<plenoId>.json exists with assignments
  *   4. LLM_BACKEND set in env (or Anthropic/OpenAI key present)
@@ -35,8 +35,9 @@ import { resolve, dirname } from 'node:path'
 import { extractClaimsWithLlm } from '../src/scraper/pleno-claim-llm'
 import type { PlenoClaim } from '../src/scraper/pleno-claim'
 import { resetBudget, loadConfigFromEnv } from '../src/llm/client'
+import { rutaIdentificada } from '../src/scraper/voice-id'
 
-const TRANSCRIPT_DIR = resolve('public/data/pleno-transcripts')
+const REPO_ROOT = resolve('.')
 const PLENOS_PATH = resolve('public/data/plenos.json')
 const OFFICIALS_PATH = resolve('public/data/officials.json')
 const PLENO_SPEAKERS_DIR = resolve('pleno-speakers')
@@ -196,8 +197,8 @@ ${
 
 ## Caveats
 
-- The two passes use the **same transcript** (already \`--apply\`-rewritten with \`(Full Name)\` tags). Voice-id can't be cleanly removed mid-stream, so Pass A's lower bloc rate reflects the LLM's response to the prompt difference (allowed-speaker block omitted) — not a re-run on plain \`(SPEAKER_NN)\` Whisper output.
-- For a fully isolated A/B, also re-run on the diarize-only transcript with the matcher's \`--apply\` reverted. That's a separate run.
+- The two passes use the **same transcript** (the named copy \`identify-pleno-speakers --apply\` writes to \`pleno-speakers/\`, with \`(Full Name)\` tags). Voice-id can't be cleanly removed mid-stream, so Pass A's lower bloc rate reflects the LLM's response to the prompt difference (allowed-speaker block omitted) — not a re-run on plain \`(SPEAKER_NN)\` Whisper output.
+- For a fully isolated A/B, also re-run on the published transcript, which keeps anonymous \`(SPEAKER_NN)\` speakers. That's a separate run.
 - Cost: ~2× normal extraction tokens per pleno.
 `
 }
@@ -205,9 +206,16 @@ ${
 async function main(): Promise<void> {
   const opts = parseArgs(process.argv.slice(2))
   // Prerequisite checks
-  const transcriptPath = resolve(TRANSCRIPT_DIR, `${opts.plenoId}.txt`)
+  // La copia con nombres vive en pleno-speakers/, no en public/: la
+  // transcripción publicada no lleva nombres desde el 2026-11-23. Sin ella,
+  // la pasada B correría con cero nombres y el informe saldría limpio sin
+  // haber medido nada.
+  const transcriptPath = rutaIdentificada(REPO_ROOT, opts.plenoId)
   if (!existsSync(transcriptPath)) {
-    process.stderr.write(`[voice-id-ab] transcript missing: ${transcriptPath}\n`)
+    process.stderr.write(
+      `[voice-id-ab] no named transcript at ${transcriptPath}\n` +
+        `[voice-id-ab]   run: npm run identify-pleno-speakers -- ${opts.plenoId} --apply\n`,
+    )
     process.exit(1)
   }
   const transcript = readFileSync(transcriptPath, 'utf8')
