@@ -120,9 +120,11 @@ async function runOne(
   // las asignaciones de nivel alto al modelo, que escribía `speakerSlug` en
   // filas servidas, sin firma de curador. Nombrar a una persona lo hace un
   // curador, por hallazgo, con `promote-claim`.
-  const nombres = (
-    (JSON.parse(readFileSync(OFFICIALS_PATH, 'utf8')) as Officials).officials ?? []
-  ).map((o) => o.name)
+  // También quien ya no ocupa escaño: su nombre pudo quedar en un rótulo.
+  const doc = JSON.parse(readFileSync(OFFICIALS_PATH, 'utf8')) as Officials & {
+    formerOfficials?: Array<{ name: string }>
+  }
+  const nombres = [...(doc.officials ?? []), ...(doc.formerOfficials ?? [])].map((o) => o.name)
   if (transcripcionConNombres(transcript, nombres)) {
     process.stderr.write(
       `[extract·claims] ${plenoId}: la transcripción lleva nombres de la identificación por voz; ` +

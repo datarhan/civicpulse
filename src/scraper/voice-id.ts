@@ -378,14 +378,18 @@ export function conservarOverrides(
  * publicar se niega si la encuentra.
  */
 export function transcripcionConNombres(texto: string, nombres: string[]): boolean {
-  const conocidos = new Set(nombres.map((n) => n.trim()))
+  // Normalizado: el rótulo lleva el nombre congelado al registrar la huella
+  // o al corregir, que puede diferir del actual en espacios, mayúsculas o la
+  // forma Unicode de una tilde.
+  const norm = (t: string) => t.normalize('NFC').replace(/\s+/g, ' ').trim().toLowerCase()
+  const conocidos = new Set(nombres.map(norm))
   const etiqueta = /^\[\d+\.?\d*\s*→\s*\d+\.?\d*\]\s*\(([^)]+)\)/
   for (const linea of texto.split('\n')) {
     const m = linea.match(etiqueta)
     if (!m) continue
     const t = m[1].trim()
     if (/^SPEAKER_\d+\s*≈/.test(t)) return true
-    if (conocidos.has(t)) return true
+    if (conocidos.has(norm(t))) return true
   }
   return false
 }

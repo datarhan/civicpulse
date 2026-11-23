@@ -127,17 +127,36 @@ describe('identify-pleno-speakers · lo que escribe', () => {
   const codigo = src.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|[^:'"`])\/\/.*$/gm, '$1')
 
   it('no escribe nunca sobre la transcripción publicada', () => {
-    // Las escrituras del script, por su primer argumento.
-    const destinos = [...codigo.matchAll(/\b(?:writeFileSync|renameSync)\(\s*([^,]+),/g)].map((m) =>
-      m[1].trim(),
-    )
+    // Cada destino real: el primer argumento de writeFileSync y el SEGUNDO de
+    // renameSync (el primero es el origen). Cada uno tiene que derivar, por su
+    // definición, de pleno-speakers/: el nombre de la variable no basta.
+    const destinos = [
+      ...[...codigo.matchAll(/\bwriteFileSync\(\s*([A-Za-z_$][\w$]*)\s*,/g)].map((m) => m[1]),
+      ...[...codigo.matchAll(/\brenameSync\(\s*[^,]+,\s*([A-Za-z_$][\w$]*)\s*\)/g)].map(
+        (m) => m[1],
+      ),
+    ]
     // Que miró algo: sin escrituras detectadas la prueba pasaría sin mirar.
-    expect(destinos.length).toBeGreaterThan(0)
-    for (const d of destinos) {
-      expect(d, `escribe en ${d}`).not.toMatch(/transcriptPath|public/)
+    expect(destinos.length).toBeGreaterThanOrEqual(4)
+    // Toda escritura usa una variable (un literal o una expresión no se ve aquí).
+    const llamadas = (codigo.match(/\b(?:writeFileSync|renameSync)\(/g) ?? []).length
+    expect(destinos.length).toBe(llamadas)
+
+    const definicion = (v: string): string => {
+      const m = codigo.match(new RegExp(`\\bconst\\s+${v}\\s*=\\s*([^\\n]+)`))
+      expect(m, `sin definición para ${v}`).toBeTruthy()
+      return m![1]
     }
-    // Y la transcripción se lee de public/ sólo por la función que la carga.
-    expect(codigo).not.toMatch(/renameSync\([^)]*transcriptPath/)
+    const raiz = (v: string, profundidad = 0): string => {
+      const d = definicion(v)
+      if (/PLENO_SPEAKERS_DIR|rutaIdentificada\(/.test(d)) return 'pleno-speakers'
+      const otra = d.match(/^`\$\{([A-Za-z_$][\w$]*)\}[^`]*`/)
+      if (otra && profundidad < 3) return raiz(otra[1], profundidad + 1)
+      return d
+    }
+    for (const d of destinos) expect(raiz(d), `escribe en ${d}`).toBe('pleno-speakers')
+    // Y la ruta de la transcripción publicada ni se recoge.
+    expect(codigo).not.toMatch(/\{[^}]*\bpath\b[^}]*\}\s*=\s*loadDiarizedTranscript/)
   })
 
   it('transcribe-pleno.sh no le pasa --apply', () => {
@@ -157,6 +176,12 @@ describe('transcripcionConNombres', () => {
     expect(
       transcripcionConNombres('[1.0 → 2.0] (SPEAKER_03 ≈ Teresa Pozuelo Martín?) Sí.', nombres),
     ).toBe(true)
+  })
+
+  it('reconoce el nombre aunque difiera en espacios, mayúsculas o la forma de la tilde', () => {
+    const descompuesto = 'Teresa Pozuelo Marti\u0301n'
+    expect(transcripcionConNombres(`[1.0 → 2.0] (${descompuesto}) Sí.`, nombres)).toBe(true)
+    expect(transcripcionConNombres('[1.0 → 2.0] (robert  raga gadea) Sí.', nombres)).toBe(true)
   })
 
   it('no confunde hablantes anónimos ni paréntesis del acta con nombres', () => {

@@ -853,7 +853,7 @@ if [ "${WHISPER_IDENTIFY:-0}" = "1" ]; then
     echo "[transcribe] WHISPER_IDENTIFY=1 — running voice-id matcher (post-diarization)…"
     cd "$REPO_ROOT"
     if npx tsx scripts/identify-pleno-speakers.ts "$PLENO_ID"; then
-      echo "[transcribe] voice-id assignments written"
+      echo "[transcribe] voice-id matcher finished (see its log: in a freeze it writes nothing)"
     else
       echo "[transcribe] voice-id matcher FAILED — keeping diarized transcript untouched" >&2
     fi

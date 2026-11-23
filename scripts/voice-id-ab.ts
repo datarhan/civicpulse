@@ -138,8 +138,9 @@ function renderReport(opts: {
   after: PassStats
   allowed: Array<{ slug: string; name: string; party: string }>
   backendLabel: string
+  slugsB: { emitidos: number; retirados: number }
 }): string {
-  const { plenoId, plenoDate, before, after, allowed, backendLabel } = opts
+  const { plenoId, plenoDate, before, after, allowed, backendLabel, slugsB } = opts
   const lift =
     after.total > 0 && before.total > 0
       ? after.withSpeakerGroup / after.total - before.withSpeakerGroup / before.total
@@ -166,13 +167,15 @@ ${
     .join('\n') || '- (none)'
 }
 
-## Pass B — \`allowedSpeakers=enrolled\` (current production)
+## Pass B — \`allowedSpeakers=enrolled\` (measurement only; the published extraction passes none)
 
 | Metric | Value |
 |---|---|
 | Claims emitted | ${after.total} |
 | With speakerGroup (bloc attribution) | ${after.withSpeakerGroup} (${pct(after.withSpeakerGroup, after.total)}) |
 | With speakerSlug (individual attribution) | ${after.withSpeakerSlug} (${pct(after.withSpeakerSlug, after.total)}) |
+| speakerSlug emitted by the model, before validation | ${slugsB.emitidos} |
+| …of which dropped (no bloc, bloc mismatch, not enrolled) | ${slugsB.retirados} |
 
 Per-bloc:
 ${
@@ -291,6 +294,7 @@ async function main(): Promise<void> {
     after: afterStats,
     allowed,
     backendLabel: config.backend,
+    slugsB: after.stats.slugs,
   })
 
   const ts = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19)
@@ -298,6 +302,14 @@ async function main(): Promise<void> {
   mkdirSync(dirname(outPath), { recursive: true })
   writeFileSync(outPath, md)
   process.stderr.write(`[voice-id-ab] wrote ${outPath}\n`)
+  // Una pasada B sin ningún nombre emitido no ha medido la identificación por
+  // voz: el informe saldría con «0» y parecería un resultado.
+  if (after.stats.slugs.emitidos === 0) {
+    process.stderr.write(
+      '[voice-id-ab] Pass B emitted no speakerSlug at all: nothing about voice ID was measured.\n',
+    )
+    process.exit(1)
+  }
   process.stdout.write(md)
 }
 

@@ -128,6 +128,22 @@ describe('extractClaimsWithLlm · speakerSlug validation', () => {
     expect(res.items[0].speakerGroup).toBeNull()
   })
 
+  it('cuenta los slugs emitidos y los retirados, para que «0» no se lea igual', async () => {
+    const res = await extractClaimsWithLlm(
+      SAMPLE_TRANSCRIPT,
+      {
+        plenoId: 'test',
+        plenoDate: '2026-04-29',
+        currentSeats: [{ bloc: 'PSOE', seats: 11 }],
+        allowedSpeakers: ENROLLED,
+        windowChars: 5000,
+        resolveBloc: () => null,
+      },
+      callerOnce('robert-raga-gadea'),
+    )
+    expect(res.stats.slugs).toEqual({ emitidos: 1, retirados: 1 })
+  })
+
   it('strips the slug of a one-seat councillor even with no bloc on the line', async () => {
     const res = await extractClaimsWithLlm(
       SAMPLE_TRANSCRIPT,

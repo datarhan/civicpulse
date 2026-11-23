@@ -319,6 +319,39 @@ async function main(): Promise<void> {
   }
   process.stderr.write(`[identify] ${clusters.length} speaker cluster(s) in ${opts.plenoId}\n`)
 
+  // Las correcciones del curador se comprueban ANTES de embeber nada: sólo
+  // dependen de las etiquetas, y descubrir una huérfana tras todo el trabajo
+  // lo tira entero.
+  const outPath = resolve(PLENO_SPEAKERS_DIR, `${opts.plenoId}.json`)
+  const previo = existsSync(outPath)
+    ? (JSON.parse(readFileSync(outPath, 'utf8')) as IdentifyResult)
+    : null
+  const huella = huellaDiarizacion(segments)
+  const { huerfanas } = conservarOverrides(
+    previo,
+    clusters.map((c) => ({
+      speaker: c.speaker,
+      durationSec: 0,
+      segmentCount: 0,
+      match: null,
+      topCandidates: [],
+    })),
+    huella,
+  )
+  if (huerfanas.length) {
+    process.stderr.write(
+      `[identify] ${huerfanas.length} corrección(es) del curador sin voz en esta pasada: ` +
+        `${huerfanas.join(', ')}` +
+        (previo?.huellaDiarizacion !== huella
+          ? ' (la transcripción cambió desde que se hicieron, o se hicieron antes de guardar su huella: sus etiquetas pueden no ser las mismas voces)'
+          : '') +
+        '.\n' +
+        `[identify]   no se escribe nada. Para cada una, vuelve a decidir o quítala:\n` +
+        `[identify]   npm run override-speaker-assignment -- --pleno-id ${opts.plenoId} --speaker <SPEAKER_NN> --remove-override\n`,
+    )
+    process.exit(1)
+  }
+
   const audioPath = findCachedAudio(opts.plenoId)
   process.stderr.write(`[identify] audio source: ${audioPath}\n`)
 
@@ -382,25 +415,7 @@ async function main(): Promise<void> {
   rmSync(tmpDir, { recursive: true, force: true })
 
   mkdirSync(PLENO_SPEAKERS_DIR, { recursive: true })
-  const outPath = resolve(PLENO_SPEAKERS_DIR, `${opts.plenoId}.json`)
-  const previo = existsSync(outPath)
-    ? (JSON.parse(readFileSync(outPath, 'utf8')) as IdentifyResult)
-    : null
-  const huella = huellaDiarizacion(segments)
-  const { asignaciones: conservadas, huerfanas } = conservarOverrides(previo, assignments, huella)
-  if (huerfanas.length) {
-    process.stderr.write(
-      `[identify] ${huerfanas.length} corrección(es) del curador sin voz en esta pasada: ` +
-        `${huerfanas.join(', ')}` +
-        (previo?.huellaDiarizacion !== huella
-          ? ' (la transcripción cambió desde que se hicieron: sus etiquetas ya no son las mismas voces)'
-          : '') +
-        '.\n' +
-        `[identify]   no se escribe nada: revísalas con override-speaker-assignment o ` +
-        `quítalas a mano antes de repetir.\n`,
-    )
-    process.exit(1)
-  }
+  const { asignaciones: conservadas } = conservarOverrides(previo, assignments, huella)
 
   const result: IdentifyResult = {
     generatedAt: new Date().toISOString(),
