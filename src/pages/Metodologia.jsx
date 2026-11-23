@@ -1341,12 +1341,17 @@ function ContratoEditorial() {
               declaraciones llevan la marca «firmado».
             </p>
             <p style={{ margin: '8px 0 0' }}>
-              La identificación individual (concejal concreto) sigue siendo una señal secundaria (
-              <code>speakerSlug</code>), y sólo cuando la identificación por voz —entrenada con
-              muestras públicas— ha asignado esa línea con alta confianza (cosine ≥ 0,6 y margen ≥
-              0,15 frente al segundo candidato). Ninguna superficie pública (
-              <code>/declaraciones</code>, <code>/hallazgos</code>) nombra al individuo hasta que un
-              curador lo promueve manualmente. Conviene decir además algo que la etiqueta de grupo
+              El nombre de un concejal concreto no sale de ninguna pasada automática. La
+              identificación por voz, que compara las voces de una sesión con muestras públicas de
+              algunos cargos, está desactivada; cuando se ejecuta a mano, guarda su resultado en
+              este equipo y no en la web, y la transcripción publicada sigue con hablantes anónimos
+              («SPEAKER_01»). Las declaraciones se publican sin nombre de persona. Un hallazgo de{' '}
+              <code>/hallazgos</code> lleva el nombre de quien habla sólo si un curador lo pide
+              expresamente después de escuchar el tramo de la grabación, y ese tramo, en segundos,
+              se guarda con el hallazgo. En veda electoral no se pone ninguno. Hasta el 23 de
+              noviembre de 2026, esa herramienta ejecutada a mano habría escrito los nombres en la
+              transcripción publicada; ninguna transcripción, declaración ni hallazgo publicados han
+              llevado un nombre salido de ella. Conviene decir además algo que la etiqueta de grupo
               oculta: <strong>VOX, EU-Podem y Compromís tienen un escaño cada uno</strong>, así que
               en esos tres casos etiquetar el grupo señala necesariamente a esa persona.{' '}
               <strong>Por eso esas tres etiquetas no se publican</strong>: aunque el mapa acredite
