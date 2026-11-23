@@ -1,6 +1,6 @@
 {
   "plenoId": "otxq2c",
-  "generatedAt": "2026-11-16T09:43:53.567Z",
+  "generatedAt": "2026-11-23T18:35:10.008Z",
   "model": "gemini-3.5-flash",
   "promptVersion": "speaker-map-v2",
   "chunkSeconds": 600,
@@ -6036,30 +6036,30 @@
     "failedChunks": [
       {
         "chunk": 10,
-        "why": "never attempted (call budget spent; resumes next run)"
+        "why": "quota exhausted, never attempted further"
       },
       {
         "chunk": 11,
-        "why": "never attempted (call budget spent; resumes next run)"
+        "why": "never attempted (quota exhausted earlier in the run)"
       },
       {
         "chunk": 12,
-        "why": "never attempted (call budget spent; resumes next run)"
+        "why": "never attempted (quota exhausted earlier in the run)"
       },
       {
         "chunk": 13,
-        "why": "never attempted (call budget spent; resumes next run)"
+        "why": "never attempted (quota exhausted earlier in the run)"
       },
       {
         "chunk": 14,
-        "why": "never attempted (call budget spent; resumes next run)"
+        "why": "never attempted (quota exhausted earlier in the run)"
       },
       {
         "chunk": 15,
-        "why": "never attempted (call budget spent; resumes next run)"
+        "why": "never attempted (quota exhausted earlier in the run)"
       }
     ],
-    "labelsSeen": 49,
+    "labelsSeen": 0,
     "rowsAccepted": 8,
     "rowsRejected": 24,
     "rejectedBy": {
@@ -6069,8 +6069,8 @@
       "evidence-outside-transcript": 5,
       "ambiguous": 1
     },
-    "attemptedThisRun": 10,
-    "apiCalls": 12,
+    "attemptedThisRun": 1,
+    "apiCalls": 1,
     "coverage": 0.693242146440116
   }
 }
