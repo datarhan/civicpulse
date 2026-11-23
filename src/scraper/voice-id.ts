@@ -304,3 +304,44 @@ export function rewriteTranscript(transcript: string, assignments: SpeakerAssign
   }
   return lines.join('\n')
 }
+
+/**
+ * Dónde se escribe la transcripción con nombres: junto a las asignaciones, en
+ * `pleno-speakers/` (fuera de git y fuera de `public/`), nunca sobre la
+ * transcripción publicada. Hasta el 2026-11-23 `--apply` la reescribía en
+ * `public/data/pleno-transcripts/`, que /plenos/:id sirve tal cual: la huella
+ * vocal habría publicado nombres sin la firma de un curador.
+ */
+export function rutaIdentificada(raiz: string, plenoId: string): string {
+  if (!/^[A-Za-z0-9_-]+$/.test(plenoId)) {
+    throw new Error(`id de pleno no válido para una ruta: ${JSON.stringify(plenoId)}`)
+  }
+  return `${raiz.replace(/\/+$/, '')}/pleno-speakers/${plenoId}.identified.txt`
+}
+
+/**
+ * Lleva a una pasada nueva las correcciones del curador de la anterior, voz a
+ * voz. Una corrección cuya voz ya no aparece se devuelve como huérfana: quien
+ * llama decide, y perderla en silencio es lo que pasaba antes (cada pasada
+ * escribía el fichero desde cero).
+ */
+export function conservarOverrides(
+  previas: SpeakerAssignment[] | null,
+  nuevas: SpeakerAssignment[],
+): { asignaciones: SpeakerAssignment[]; huerfanas: string[] } {
+  const porVoz = new Map<string, CuratorOverride>()
+  for (const a of previas ?? []) {
+    if (a.curatorOverride !== undefined && a.curatorOverride !== null) {
+      porVoz.set(a.speaker, a.curatorOverride)
+    }
+  }
+  const vistas = new Set<string>()
+  const asignaciones = nuevas.map((a) => {
+    const o = porVoz.get(a.speaker)
+    if (!o) return a
+    vistas.add(a.speaker)
+    return { ...a, curatorOverride: o }
+  })
+  const huerfanas = [...porVoz.keys()].filter((s) => !vistas.has(s))
+  return { asignaciones, huerfanas }
+}

@@ -28,10 +28,18 @@
  *      ≥ 0.15. Below that it stays SPEAKER_NN with a candidate hint.
  *   5. Write `pleno-speakers/<plenoId>.json` — the curator-readable
  *      mapping every downstream stage consults.
- *   6. With `--apply`: also rewrite the transcript replacing
- *      `(SPEAKER_NN)` markers with `(Robert Raga Gadea)` for high
- *      tier and `(SPEAKER_NN ≈ Robert Raga Gadea?)` for medium.
- *      Atomic rename, never overwrites without --apply.
+ *   6. With `--apply`: also write a NAMED copy of the transcript to
+ *      `pleno-speakers/<plenoId>.identified.txt`, replacing `(SPEAKER_NN)`
+ *      with `(Robert Raga Gadea)` for high tier and
+ *      `(SPEAKER_NN ≈ Robert Raga Gadea?)` for medium. The published
+ *      transcript under `public/` is never touched: until 2026-11-23
+ *      `--apply` rewrote it in place, and /plenos/:id serves it raw, so a
+ *      voiceprint match would have published a name with no curator.
+ *   7. Curator overrides from the previous run are carried over, speaker by
+ *      speaker. If one no longer matches any speaker, the script stops
+ *      without writing: losing it silently is what used to happen.
+ *   8. The per-speaker WAVs in `tmp/identify/<plenoId>/` are deleted: they
+ *      are voices of everyone in the room, staff and public included.
  *
  * Editorial guard: the libel boundary documented in
  * CLAUDE.md (`speakerGroup` enum-gated to blocs) still applies for
@@ -46,6 +54,7 @@ import {
   readFileSync,
   readdirSync,
   renameSync,
+  rmSync,
   writeFileSync,
 } from 'node:fs'
 import { dirname, resolve } from 'node:path'
@@ -56,6 +65,8 @@ import {
   rankCandidates,
   bestMatch,
   rewriteTranscript,
+  rutaIdentificada,
+  conservarOverrides,
   DEFAULT_MATCH_OPTS,
   type SpeakerAssignment,
   type IdentifyResult,
@@ -289,7 +300,7 @@ async function main(): Promise<void> {
     process.stderr.write(`[identify]   · ${e.slug.padEnd(28)} ${e.party ?? '?'} · ${e.name}\n`)
   }
 
-  const { text: transcript, path: transcriptPath } = loadDiarizedTranscript(opts.plenoId)
+  const { text: transcript } = loadDiarizedTranscript(opts.plenoId)
   const segments = parseDiarizedTranscript(transcript)
   const clusters = clustersFromSegments(segments)
   if (clusters.length === 0) {
@@ -356,17 +367,35 @@ async function main(): Promise<void> {
     })
   }
 
+  // Las voces recortadas son de todos los que hablan en la sala, personal y
+  // público incluidos: no se guardan más allá de la pasada.
+  rmSync(tmpDir, { recursive: true, force: true })
+
+  mkdirSync(PLENO_SPEAKERS_DIR, { recursive: true })
+  const outPath = resolve(PLENO_SPEAKERS_DIR, `${opts.plenoId}.json`)
+  const previas = existsSync(outPath)
+    ? (JSON.parse(readFileSync(outPath, 'utf8')) as IdentifyResult).assignments
+    : null
+  const { asignaciones: conservadas, huerfanas } = conservarOverrides(previas, assignments)
+  if (huerfanas.length) {
+    process.stderr.write(
+      `[identify] ${huerfanas.length} corrección(es) del curador sin voz en esta pasada: ` +
+        `${huerfanas.join(', ')}.\n` +
+        `[identify]   no se escribe nada: revísalas con override-speaker-assignment o ` +
+        `quítalas a mano antes de repetir.\n`,
+    )
+    process.exit(1)
+  }
+
   const result: IdentifyResult = {
     generatedAt: new Date().toISOString(),
     plenoId: opts.plenoId,
-    totalSpeakers: assignments.length,
-    highConfidenceCount: assignments.filter((a) => a.match?.tier === 'high').length,
-    mediumConfidenceCount: assignments.filter((a) => a.match?.tier === 'medium').length,
-    unmatchedCount: assignments.filter((a) => !a.match).length,
-    assignments,
+    totalSpeakers: conservadas.length,
+    highConfidenceCount: conservadas.filter((a) => a.match?.tier === 'high').length,
+    mediumConfidenceCount: conservadas.filter((a) => a.match?.tier === 'medium').length,
+    unmatchedCount: conservadas.filter((a) => !a.match).length,
+    assignments: conservadas,
   }
-  mkdirSync(PLENO_SPEAKERS_DIR, { recursive: true })
-  const outPath = resolve(PLENO_SPEAKERS_DIR, `${opts.plenoId}.json`)
   const tmp = `${outPath}.tmp`
   writeFileSync(tmp, JSON.stringify(result, null, 2) + '\n')
   renameSync(tmp, outPath)
@@ -384,20 +413,21 @@ async function main(): Promise<void> {
       `[identify] --apply: veda electoral hasta ${veda} — la transcripción NO se toca\n`,
     )
   } else if (opts.apply) {
-    const rewritten = rewriteTranscript(transcript, assignments)
+    const rewritten = rewriteTranscript(transcript, conservadas)
     if (rewritten === transcript) {
-      process.stderr.write(
-        `[identify] --apply: no high/medium-tier matches; transcript untouched\n`,
-      )
+      process.stderr.write(`[identify] --apply: no high/medium-tier matches; nothing written\n`)
     } else {
-      const tmpT = `${transcriptPath}.identified.tmp`
+      // La copia con nombres, fuera de public/: la transcripción publicada
+      // sigue con hablantes anónimos.
+      const identificada = rutaIdentificada(REPO_ROOT, opts.plenoId)
+      const tmpT = `${identificada}.tmp`
       writeFileSync(tmpT, rewritten)
-      renameSync(tmpT, transcriptPath)
-      process.stderr.write(`[identify] --apply: rewrote ${transcriptPath}\n`)
+      renameSync(tmpT, identificada)
+      process.stderr.write(`[identify] --apply: wrote ${identificada} (not published)\n`)
     }
   } else {
     process.stderr.write(
-      `[identify] dry run — pass --apply to rewrite the transcript with named tags.\n`,
+      `[identify] dry run — pass --apply to write a named copy to pleno-speakers/.\n`,
     )
   }
 
