@@ -1,0 +1,762 @@
+[11.4 → 13.4] (SPEAKER_00) Bueno, anem a donar el començament al ple.
+[15.0 → 16.7] (SPEAKER_00) El ple ordinari. Van estar tots ja vosaltres.
+[19.5 → 24.2] (SPEAKER_00) Hola, bones. Bones prada. Què vol dir? Anem a donar el començament al ple ordinari.
+[25.2 → 28.1] (SPEAKER_00) Un ple ordinari que...
+[29.6 → 31.6] (SPEAKER_00) Que comencem el primer punt de l'ordre del dia.
+[32.4 → 35.7] (SPEAKER_00) El primer punt de l'ordre del dia és aprovació de l'acta anterior, de data de abril.
+[36.4 → 36.5] (SPEAKER_00) Falta
+[36.5 → 37.4] (SPEAKER_01) Aquí falta Soraya.
+[37.4 → 39.0] (SPEAKER_00) y falta
+[39.0 → 39.1] (SPEAKER_02) No,
+[39.1 → 39.2] (SPEAKER_00) y falta
+[39.2 → 39.3] (SPEAKER_02) no.
+[39.3 → 39.9] (SPEAKER_00) Soraya.
+[39.9 → 40.7] (SPEAKER_02) No, ya, no viene.
+[41.0 → 41.2] (SPEAKER_01) Oh,
+[41.2 → 41.4] (SPEAKER_02) Soraya.
+[41.4 → 43.7] (SPEAKER_01) no. Ahora, ¿no falta nadie más?
+[44.1 → 46.6] (SPEAKER_00) A falta de Soraya serían 20, no? 20
+[46.6 → 47.0] (SPEAKER_01) No, bien.
+[47.0 → 47.1] (SPEAKER_00) vestidos.
+[47.1 → 48.5] (SPEAKER_01) Que a ver, ya deja de pensar.
+[49.2 → 49.3] (SPEAKER_00) Vale.
+[49.6 → 50.5] (SPEAKER_02) No, ya no voy a decir.
+[50.6 → 51.2] (SPEAKER_00) No pasa nada.
+[51.8 → 55.6] (SPEAKER_00) Bueno, pues comencemos el periodo ordinario en el bien vestido que estemos así.
+[56.3 → 61.7] (SPEAKER_00) El periodo de Soraya. El primer punto es la aprobación del acta anterior, de la tercera de abril, alguna cuestión al acta.
+[64.1 → 65.9] (SPEAKER_00) ¿Habrá en perder unanimidad?
+[68.0 → 74.6] (SPEAKER_00) La semana más resolutiva, el segundo punto es de transparencia y es la carta de servicio 2025 de la palabra al CER.
+[76.5 → 77.0] (SPEAKER_01) Hola.
+[77.4 → 79.8] (SPEAKER_01) Gracias, señor alcalde. Buenas tardes a todos y a todas.
+[80.1 → 89.5] (SPEAKER_01) Las cartas de servicio son documentos que recogen los compromisos de calidad de servicios que gestiona y presta el ayuntamiento en respuesta a las necesidades y expectativas de la ciudadanía.
+[90.1 → 94.3] (SPEAKER_01) Así, la Carta de Servicios del Ayuntamiento de Ribarroja de Turia tiene un objetivo principal,
+[94.4 → 101.8] (SPEAKER_01) que es garantizar la transparencia, la rendición de cuentas y la mejora continua de los servicios vinculados con su planificación estratégica local,
+[102.3 → 112.1] (SPEAKER_01) a través de compromisos que se formulan con la participación interna de departamentos municipales, así como con la participación a nivel externo de ciudadanía en general a través de la PP municipal,
+[112.4 → 115.7] (SPEAKER_01) de las quejas o sugerencias presentadas a través de la sede electrónica.
+[115.4 → 121.7] (SPEAKER_01) así como de los consejos sectoriales que validan y modelan con sus propuestas estos compromisos.
+[123.1 → 134.5] (SPEAKER_01) La Carta de Servicios Municipal en Riva Roja comenzó su andadura certificándose en 2020 y ha ido recertificándose anualmente por Aenor según la norma UNE 2302-2008.
+[135.0 → 151.4] (SPEAKER_01) Cada año se han ido incrementando tanto el número de compromisos e indicadores certificados, pasando de los iniciales 43 a 65 y 95 a 164 respectivamente, así como el número de departamentos involucrados de 18 a 64.
+[152.0 → 176.6] (SPEAKER_01) En la edición en la edición de 2022, por primera vez, se realiza el esfuerzo de una de un alineamiento de toda la carta de servicios con los diferentes ODSs por departamento. Posteriormente, se han ido validando estos compromisos sobre todo en las primeras jornadas de dinamización de los consejos sectoriales con responsabilidad social Agenda 2030 profundizando en esta alineación que se ha ido mejorando con cada auditoría.
+[177.4 → 181.0] (SPEAKER_01) Dentro de la auditoría realizada por AENOR para este año 2024,
+[181.6 → 196.2] (SPEAKER_01) han destacado varios puntos fuertes que debemos tener en cuenta, entre ellos la colaboración y predisposición de todo el personal entrevistado, que se ha mostrado implicado para la mejora continua y evolución de estos compromisos de calidad, incluyendo a Alcaldía y la Concejalía de Transparencia.
+[196.8 → 209.2] (SPEAKER_01) Todos los departamentos que participan de esta cartera de servicios han hecho lo posible para mantener sus compromisos y realizar la auditoría a pesar de las restricciones de movilidad y las prioridades de emergencias surgidas por la dana de octubre.
+[209.6 → 221.3] (SPEAKER_01) Se han esforzado por mantener el esquema de la cartera de servicios y seguir su cumplimiento a pesar de los daños y necesidades de recursos que ha puesto para el municipio las consecuencias derivadas de las inundaciones.
+[222.2 → 223.6] (SPEAKER_01) de las inundaciones.
+[225.0 → 231.1] (SPEAKER_01) Ha habido mejoras en la trazabilidad de datos, inclusión de nuevas herramientas de medición, y en la información complementaria aportada.
+[231.4 → 237.1] (SPEAKER_01) Se ha aprovechado para incorporar nuevos compromisos y áreas en el ámbito de esta cartera de servicios para 2025,
+[237.8 → 239.9] (SPEAKER_01) algunos de ellos con carácter temporal,
+[240.2 → 240.6] (SPEAKER_01) por ejemplo,
+[240.7 → 246.3] (SPEAKER_01) en materia de gestión de ayudas o acciones directas para la ciudadanía o las empresas afectadas por las inundaciones.
+[247.5 → 266.7] (SPEAKER_01) Cabe destacar el reconocimiento en este año 2024 por parte de la Red de Entidades Locales de Agenda 2030 para el desarrollo sostenible de la Federación Española de Municipios y Provincias de nuestra carta de servicios municipal como buena práctica en la implementación de los ODSs, un reconocimiento muy relevante.
+[267.2 → 268.6] (SPEAKER_01) En este año 2025,
+[268.9 → 275.2] (SPEAKER_01) el mantenimiento de la certificación de calidad añade tres compromisos relacionados con esta recuperación de efectos de nana.
+[275.7 → 282.4] (SPEAKER_01) Alcanzamos 69 compromisos, 163 indicadores e incorporamos dos nuevos departamentos a la carta,
+[282.4 → 285.9] (SPEAKER_01) el Centro de Formación de Personas Adultas y el Departamento de Promoción de la Salud.
+[286.4 → 291.3] (SPEAKER_01) Esto involucra a más de cuarenta y cinco personas empleadas públicas de veintiséis departamentos municipales.
+[292.6 → 294.8] (SPEAKER_01) six new commitments, fifteen new indicators,
+[294.9 → 305.8] (SPEAKER_01) la m se ha mejorado la redacción de otros seventeen compromisos y quince indicadores, incluyendo, for example, el análisis por género de los que son susceptibles a ello, y también el impacto estimado en algunos.
+[306.9 → 312.1] (SPEAKER_01) Esta certificación implica la comunicación al público, a toda la ciudadanía y a agentes sociales.
+[313.4 → 338.4] (SPEAKER_01) Una vez más dispondremos pondremos a disposición de de la sociedad una carta de servicios ambiciosa y dotaremos de los recursos para su cumplimiento. En virtud de lo expuesto se propone al Pleno la adopción del siguiente acuerdo: Primero, aprobar los 69 compromisos y 163 indicadores de seguimiento, que conforman la carta de servicios de Riva Roja y Tudia 2025. Publicar la adopción del presente acuerdo en el tablón de anuncios electrónico del Ayuntamiento.
+[338.2 → 350.7] (SPEAKER_01) y en el boletín oficial de la provincia y tercero publicar en un lugar visible de la web municipal y en el portal de transparencia eh el afecto a la publicidad. Activa. A efectos de publicidad activa.
+[354.0 → 357.6] (SPEAKER_00) Gracias. Recordad que tenéis tres minutos de intervención cada uno.
+[357.8 → 359.4] (SPEAKER_00) Aquí todos estemos, no os podéis fallar.
+[360.1 → 361.0] (SPEAKER_00) Para hablar de este punto.
+[366.4 → 366.9] (SPEAKER_00) Una cosa más.
+[367.9 → 375.5] (SPEAKER_01) Pues nada, recargarte luego que dar las gracias a todos los departamentos que participan porque sin su ayuda y sin...
+[402.6 → 412.6] (SPEAKER_00) Bueno, pues me lleguen ya mis paraules i ara en mi intervenció serà tècnica, estar aquí agraïstem el treball i poder aportar al nostre poble el que aporteu.
+[412.8 → 414.9] (SPEAKER_00) Passem a la votació si us pareix d'este punt.
+[436.3 → 437.1] (SPEAKER_00) El Partido Popular.
+[439.1 → 439.5] (SPEAKER_00) Vox.
+[440.2 → 441.2] (SPEAKER_00) Esquerra Unida Podemos.
+[443.2 → 443.6] (SPEAKER_03) A favor.
+[443.8 → 444.7] (SPEAKER_00) Correcte, a favor.
+[445.4 → 446.6] (SPEAKER_00) I compromís.
+[447.0 → 447.4] (SPEAKER_03) A favor.
+[447.4 → 452.0] (SPEAKER_00) Va, perfecte. Entre 13 a favor i 7 abstencions. Passem al següent punt de l'ordre del dia.
+[455.7 → 456.7] (SPEAKER_00) És el punt 3,
+[456.8 → 458.7] (SPEAKER_00) fomento econòmic, implantació de...
+[459.5 → 464.3] (SPEAKER_00) De formació professional en transport i logística i infermeria. Té la paraula el regidor.
+[466.2 → 467.0] (SPEAKER_00) Sí, buenas tardes.
+[467.3 → 467.7] (SPEAKER_00) Well,
+[467.8 → 482.3] (SPEAKER_00) there's the areas the the the education, the area of fomento economico and the alcalde and also in collaboration with the IES Plaza de Nadal, we have requested the directora general de formación profesional de la Generalitat the implantation de nuevos ciclos formativos.
+[482.7 → 490.1] (SPEAKER_00) Estos son el grado superior in transporte y logística, el grado medio in actividades comerciales y el grado medio in cuidados auxiliares de enfermería.
+[490.7 → 505.4] (SPEAKER_00) Esta propuesta también va respaldada por las asociaciones de Aso Creva, Riva 3 y EGM Parque Logístico, las asociaciones empresariales del sector industrial. Como todos sabéis, Arriba Roja es un municipio m sobre todo logístico.
+[506.0 → 531.0] (SPEAKER_00) Es muy importante su área industrial con más de seis millones de metros cuadrados y más del cincuenta por ciento de su de su tejido industrial es el transporte y la logística. Y por eso tiene mucha importancia el poder ampliar eh la formación y crear nueva oferta formativa para que bueno, para que cubrir las necesidades de nuestra nuestro tejido industrial. Como daros un ejemplo que durante el dos mil veinticuatro eh desde
+[531.0 → 538.0] (SPEAKER_00) Desde desde la ADL gestionamos dos cent 182 ofertas de empleo referentes al sector de transporte y logística.
+[538.7 → 563.6] (SPEAKER_00) Además llevamos también el la la una oportunidad laboral como es el cuidado de personas mayores. Es uve el sector de la enfermería también es muy importante con el crecimiento de de las residencias y de los centros de día y y con ejemplo también durante el dos mil veinticuatro desde el área de de la DL, desde Fomento Económico, eh pues también gestionamos cuarenta y una ofertas referidas a auxiliares de enfermería y geriatría.
+[564.3 → 568.4] (SPEAKER_04) Tuvimos una reunión con la directora general de formación profesional, doña Marta
+[568.4 → 569.4] (SPEAKER_04) Armentía Santos.
+[570.1 → 583.3] (SPEAKER_04) En esta reunión no se cerró nada, estuvimos desde la Alcaldía y las concejalías y también el IES Pla de Nadal, pero sin embargo no se cerró nada, pero sin embargo dejamos una puerta abierta.
+[583.5 → 589.9] (SPEAKER_04) En esta les le dijimos que en la presentación de un informe para que viera que las empresas están muy interesadas.
+[589.9 → 615.0] (SPEAKER_04) as uh in the sector of the logistics, and y que le presentaríamos un informe. Como prest como prueba un botón, le presentamos un informe in the case that thirty and two empresas han solicitado uh alumnos de la formación profesional dual, y con set uh seventy three of these thirty and two empresas, thirty uh seventy three of the report. It's very important. Yeah, I here wanna
+[615.0 → 615.0] (SPEAKER_05) Thanks
+[615.0 → 615.1] (SPEAKER_04) for that. to
+[615.1 → 615.1] (SPEAKER_05) watching.
+[615.1 → 616.8] (SPEAKER_04) resul that the work that I've done over
+[616.6 → 631.9] (SPEAKER_04) las áreas de tanto de educación, el IES El Quinto, la alcaldía. Y me vais a permitir que le agradezca mucho el trabajo al área de fomento económico porque se incidieron mucho en el trabajo buscando esas empresas para que pudieran, uh,
+[632.2 → 636.5] (SPEAKER_04) bueno, pues dar la cara y decir que necesidades tienen en el ámbito de la logística.
+[636.9 → 643.1] (SPEAKER_04) Por tanto, lo que traemos a pleno pues es el I el apoyo, el de todas las
+[642.8 → 644.0] (SPEAKER_04) of of all those uh here that
+[644.0 → 644.0] (SPEAKER_00) Ah.
+[644.0 → 645.2] (SPEAKER_04) are of the groups
+[645.2 → 645.3] (SPEAKER_00) Yes.
+[645.3 → 647.7] (SPEAKER_04) political uh here represented for
+[647.7 → 647.9] (SPEAKER_00) Okay.
+[647.9 → 656.5] (SPEAKER_04) they can then this this uh s you know this formation professional relating to logistic, commerce and uh and what is infirmary. Thanks.
+[657.4 → 658.0] (SPEAKER_00) Palabres.
+[659.5 → 662.1] (SPEAKER_00) Sí, Alberto. El equipo popular.
+[667.3 → 671.1] (SPEAKER_04) Nosaltres soles una pregunta. Se hauri sole salir es pla de Nadal,
+[672.2 → 677.9] (SPEAKER_04) a l'ESQUINT, a la totalitat dels CIES o perquè sole salir es Quint?
+[680.3 → 682.2] (SPEAKER_00) Més paraules de grups polítics?
+[683.3 → 684.4] (SPEAKER_00) José Manuel.
+[685.6 → 711.8] (SPEAKER_06) Nosaltres sí que volíem comentar que ens pareix una sol·licitud que és positiva per a per a um para l'Ajuntament i també considerem que està m molt bé justificada a l'hora de d'lo que són les famílies professionals que se plantegen així. I crec que també és superimportant l'allò que se diu en l'expedient, que és el suport de les empreses el t el teixit empresarial que termine en el nostre poble. Sobretot una per l'afectada laboral que ha comentat Conxa Angeli també per al tema del es pràctiques.
+[711.6 → 737.7] (SPEAKER_06) practiques que al final és una eixida professional i és una oportunitat que també va eixa eixa e taxa d'ocupació. Crec que també en l'expedient hi ha un na un dato molt important que és eixe setanta coma divuit per cent de persones desocupades que estan sense formació i per tant contribuirà a millorar eixa eixe dato i per tant promoure la formació crec que és important. I nosaltres animem a donar suport a esta proposta. Gràcies.
+[738.6 → 743.0] (SPEAKER_00) en las palabras y v box y después compromiso.
+[749.7 → 751.1] (SPEAKER_07) A ver, ya está. Gracias.
+[752.0 → 757.6] (SPEAKER_07) A ver, desde luego m two elements fundamentalist in the creation of wealth of a country
+[757.6 → 758.5] (SPEAKER_08) um
+[758.5 → 758.9] (SPEAKER_07) um
+[759.0 → 766.3] (SPEAKER_07) Todo lo que se refiere a logística y por supuesto en la cuestión de enfermería es que hacen falta en cualquier hospital, hoy en día hacen falta.
+[766.5 → 786.5] (SPEAKER_07) Antes de venir al pleno me he pasado por el camino Maciá el Conde y no puedo menos que enorgullecerme de las empresas que hay aquí como Lora Trans o como una nave que hay gigantesca que están haciendo ahora mismo. Así que la idea me parece fenomenal y es de reconocer. Gracias.
+[788.2 → 790.8] (SPEAKER_04) Gracias José. Además, paraboles compromis, razón.
+[794.5 → 820.4] (SPEAKER_06) Gracias señor alcalde. Buenas vespradas a todas y a todos. Eh desde el Grupo Municipal de Compromís anam a recolzar esta esta propuesta. Eh nosotros eh como hemos demostrado en toda la nuestra eh etapa eh siempre somos partidarios de la formación sobre todo para las personas que están en una situación de desempleo
+[823.0 → 838.1] (SPEAKER_06) lo únic és que tenim una un parell de preguntes. La primera seria eh per què sols estos tres graus si han valorat eh algun grau més?
+[838.9 → 851.8] (SPEAKER_06) perquè eh també n'hi ha demanda en altres en altres graus i eh saber que eh sol és un IES, el IES Pla de Nadal.
+[852.5 → 853.2] (SPEAKER_06) Gràcies.
+[855.2 → 857.3] (SPEAKER_00) Muy bien. ¿Mis palabras? José Ángel.
+[858.9 → 883.9] (SPEAKER_04) Sí, eh en tot cas, bueno sí, eh bueno lo de Pla de Nadal, perquè ells tenen multi inquietud, però nosaltres estem oberts a qualsevol idea de riba-roja, tant el pla de eh el Quint com Asunción, però nosaltres encantats d'anar amb ells amb companyia i demanar, pos eh formació pera pera riba-roja. Per a nosaltres considere que tot eh és importantíssima la formació pera
+[883.7 → 885.9] (SPEAKER_04) Para poder eh traure un
+[886.7 → 912.1] (SPEAKER_04) poden arribar a a que esa formació doni oportunitats de empleabilitat y per això nosaltres pues eh si qualsevol centre estiga també que vulga que els acompanyem a buscar nous graus de formació posahí estarem. En quant per què estos graus, bueno, són es que més estan en en creiximent en esta en esta área, eh s'havien estudiat unes altres possibilitats, but volien concretar en algo
+[911.8 → 923.9] (SPEAKER_04) algo que pa poder conseguir conseguir al menos estos grados de formación tanto de transporte logística como de enfermería. Todo lo que se puedan venir buen eh bienvenidas serán. Gracias.
+[925.0 → 927.1] (SPEAKER_00) Més paraules. Alberto.
+[927.8 → 928.2] (SPEAKER_00) Pepe.
+[930.4 → 938.5] (SPEAKER_06) Res, no mosada a nostra part es bueno, no sé si se veis. Tenim que liar plan en adelante, mancanza d'alumnes i aules lliures per a poder
+[939.1 → 963.0] (SPEAKER_00) E aixa xira este grau, perquè si estiguera complet no podría oferir-ho, suposo, no ho entenc, però de totes formes, entenent que la proposta és que a partir d'una sol·licitat del pla de Nadal a l'Ajuntament de Ribarrocha nosaltres anem a veure si podem aconseguir que ells oferixen aixos graus i el d'infermeria en el polígono.
+[964.3 → 975.2] (SPEAKER_06) No, no sé jo molt bé, qualsevol grau que un dia José Manuel o que un dia Rafa, qualsevol grau de formació és bo per a plegar al mercat laboral, pero el d'enfermeria en Riba Rocha, en el polígon industrial,
+[975.3 → 981.7] (SPEAKER_06) no sé si ara de repent uh no sé no no no li veig la cabuda i en el polígon industrial.
+[981.9 → 986.3] (SPEAKER_06) Que qualsevol grau de formació tindria cabuda en el polígon industrial, suposo,
+[986.4 → 988.4] (SPEAKER_06) per xicotet que siga la cabuda, pero
+[989.3 → 990.4] (SPEAKER_06) eh suposo que...
+[991.1 → 993.4] (SPEAKER_04) El IS habrá solicitado a Mel de enfermería.
+[995.8 → 999.0] (SPEAKER_00) En mis palabras, José Ángel.
+[1000.1 → 1020.2] (SPEAKER_04) I sí, per a finalitzar, bueno, nosaltres eh lo del pla de Nadal ho repetiré perquè ells estan en col·laboració nosaltres, igual que podria vindre uh el cin o podria vindre Asunció, que nosaltres encantats d'entrar en ells, acompanyar-los a a buscar eh nous formació professional per a Riba Rocha, per a per a la gent de Riba Rocha.
+[1021.6 → 1047.1] (SPEAKER_04) Logística, la teníamos en el área industrial, pero la enfermería no olvidemos que nosotros esperamos que siga en unas residencias así empacadart, que era la previsión que teníamos, se entre de día y residencia de tercera edad, al igual que en la resta de la comarca cada vegada en esta zona hay más residencias, pero de eso he dicho que había del año pasado 41 ofertas de auxiliar de enfermería y geriatría que se podrían cubrir todas estas ofertas.
+[1047.4 → 1071.7] (SPEAKER_04) e que en la formación profesional destinada así. No só se é sobre a industria. Na industria sabemos o que é que é logística e transport, pero tamén hai unha oferta, unha necesidade das empresas que gestionen eh centros de día e residencia. E si además les de pa les nostres si se pogueren endar en é andar en endavant, pois sería unha manera de cubrir eh el personal que que faría falta allí.
+[1072.2 → 1072.6] (SPEAKER_04) Gracias.
+[1074.9 → 1089.4] (SPEAKER_00) Después de las explicaciones del regidor digo una cuestión de que no haya que olvidar, perdonar datos y concretos a nuestros vecinos y vecinas, contar que tenemos 1.400 empresas desde 2015 hasta 2000 empresas más.
+[1089.9 → 1100.2] (SPEAKER_00) 20.000 trabajadores, tenemos una tasa de tour del 9,4 y recorren afiliats a la Seguretat Social en Ribarracha, que no són de Ribarracha i òbviament, però que treballen així,
+[1100.3 → 1101.5] (SPEAKER_00) de 22.000.
+[1101.8 → 1103.7] (SPEAKER_00) Per tant, des de l'any 16,
+[1103.7 → 1107.8] (SPEAKER_00) des de l'any 17, hem treballat, no sols per tindre aquesta línia, que hem tingut, bé,
+[1107.9 → 1108.7] (SPEAKER_00) sort no,
+[1108.8 → 1115.3] (SPEAKER_00) perquè hem treballat moltíssim, sinó que nosaltres tenim un compromís que estem exigint d un institut de formació professional.
+[1115.8 → 1124.3] (SPEAKER_00) que tenían un compromiso pero no usaban ch alumnos de toda la comarca y trabajaban dos líneas porque era ciertamente innovador, trabaja a la par de formación
+[1124.9 → 1131.0] (SPEAKER_00) Reglada y la parte laboral, que es la formación dual en las empresas.
+[1131.4 → 1132.2] (SPEAKER_00) Y ese centro,
+[1132.4 → 1133.3] (SPEAKER_00) ya no vamos a hacerlo,
+[1133.4 → 1138.1] (SPEAKER_00) o el patio o Felipe de la Lleneta Valenciana, es el que está al costado del cuartel de la Guardia Civil,
+[1138.1 → 1139.2] (SPEAKER_00) donde aparquen ahora camiones.
+[1140.0 → 1145.9] (SPEAKER_00) De momento no hemos podido conseguir todo el centro del Instituto Público de Formación Profesional,
+[1146.1 → 1150.1] (SPEAKER_00) pero sí que ha inconveniado a través de dicha iniciativa del plan de Nadal.
+[1150.4 → 1162.7] (SPEAKER_00) En educació i en foment econòmic també col·laborat l'Institut en altres graus, en administratius i altres qüestions, i també en el quint, en el d'agroalimentari o
+[1162.7 → 1162.7] (SPEAKER_01) Agricultura.
+[1162.7 → 1173.3] (SPEAKER_00) agrícola, no? I nosaltres també hi ha oberts a tot, però compteu que dels 1.400 empreses que tenim, el 57% de les empreses són logística i transport.
+[1173.9 → 1187.8] (SPEAKER_00) El 28 aproximadamént, estamos hablando de industrial, el ya sé que el 18 es el sector de servicios y el 6 o 7 el primario, y por tanto tenemos que anar trabajando sobre lo que realmente nos demandan los trabajadores, o sea, las empresas. Y en este caso
+[1188.4 → 1200.7] (SPEAKER_20) Vull ressaltar el que fomenta Economia, que és que 33-34 empreses han signat reivindicant perquè tenen ja 73 llocs de treball perquè la gent pugui incorporar-se si tenen la formació adequada.
+[1200.8 → 1212.9] (SPEAKER_20) Jo penso que és un èxit de les empreses del teixit associatiu també que la directora general ens farà cas perquè parlaré molt amb ella i a principi no ho veia fins que vam veure que les empreses han anat reforçant.
+[1212.9 → 1213.9] (SPEAKER_20) Ens demanava un llistat.
+[1213.7 → 1213.9] (SPEAKER_20) D'aquests,
+[1214.0 → 1218.8] (SPEAKER_20) de les empreses, li van passar el llistat de les empreses que ens donaven,
+[1218.9 → 1227.3] (SPEAKER_20) doncs li sentí també agrair la col·laboració en aquest cas de la Conselleria d'Educació de la Generalitat Valenciana i especialment la Direcció General.
+[1227.6 → 1231.3] (SPEAKER_20) Crec que és un bon projecte i crec que, bé,
+[1231.5 → 1236.5] (SPEAKER_20) les residències d'infermeria també un poc a Alberto per el tema que has comentat, i el tema,
+[1236.6 → 1240.0] (SPEAKER_20) jo penso que hi ha un tema molt important de futur nostra d'aquest poble.
+[1240.0 → 1241.6] (SPEAKER_20) que és el soci sanitari,
+[1241.7 → 1244.0] (SPEAKER_20) hem oït també que són centres de dia,
+[1244.7 → 1252.8] (SPEAKER_20) residències 24 hores i nosaltres tenim un compromís de dues residències que van al costat de la maltat, del complex esportiu de la maltat,
+[1253.3 → 1255.7] (SPEAKER_20) que hem de tenir 90 llocs de treball.
+[1256.3 → 1267.9] (SPEAKER_20) En realitat Josep Maria és on nosaltres podríem apostar per formar-los així en el poble i a partir d'ahir doncs i construint les residències en col·laboració amb la Generalitat Valenciana doncs oferint llocs de treball, que és el que és important,
+[1268.3 → 1270.8] (SPEAKER_20) en infermeria que és la part social i sanitària.
+[1271.4 → 1273.4] (SPEAKER_20) Així no? Què s'ha passat a vosaltres?
+[1284.1 → 1285.5] (SPEAKER_20) Has acabat el tema màgia.
+[1288.8 → 1289.8] (SPEAKER_21) Me parece para votar.
+[1290.4 → 1293.3] (SPEAKER_20) Anem a votar este punt de mà, mentre que els problemes tècnics se resolen.
+[1293.6 → 1293.8] (SPEAKER_21) No sé.
+[1293.8 → 1295.1] (SPEAKER_20) Bo? No? Este perecé?
+[1295.1 → 1295.5] (SPEAKER_21) No sé si
+[1295.5 → 1296.0] (SPEAKER_20) Vaig a favor?
+[1298.4 → 1298.7] (SPEAKER_20) Abstencions?
+[1298.7 → 1299.3] (SPEAKER_21) pero don Pablo.
+[1299.3 → 1299.6] (SPEAKER_20) Oh.
+[1300.4 → 1300.7] (SPEAKER_21) Oh.
+[1300.8 → 1303.3] (SPEAKER_20) Jo, per la teua intervenció, em dic, torno a dir, vaig a favor?
+[1304.4 → 1305.6] (SPEAKER_20) Vaig a favor?
+[1307.3 → 1307.4] (SPEAKER_20) Ascensions?
+[1307.4 → 1308.1] (SPEAKER_22) Well, I think so.
+[1308.9 → 1312.8] (SPEAKER_20) Vos queda aprovada però vaig a favor del grup, bueno, del socialista,
+[1313.4 → 1322.2] (SPEAKER_20) eh, box, es que ha arribat, eh, podem, compromís i l'ascensió del Partit Popular. Ascensions i vos pareixes sigui en punt d'hora del dia.
+[1324.8 → 1336.9] (SPEAKER_20) Este punto es sobre urbanisme, que es el cuarto punto, de acuerdo relativo a la aprobación definitiva del Comán Urbanístico de Construcción y Gestión de la Base de Laminación del sector Macías de San Rafael del Plan General.
+[1337.0 → 1338.9] (SPEAKER_20) ¿La palabra al arreglador de urbanisme, Teresa?
+[1339.8 → 1344.8] (SPEAKER_23) Sí, bueno, buenas tardes a todos. Sabéis que en marzo llevamos la aprobación provisional.
+[1345.3 → 1355.0] (SPEAKER_23) Por parte del departamento proponente, en este caso el de urbanismo, se ha emitido un informe de memoria justificativa con fecha tres de febrero del veinticinco para la aprobación inicial,
+[1355.5 → 1358.9] (SPEAKER_23) exposición al público y posterior formalización del convenio administrativo.
+[1359.5 → 1372.3] (SPEAKER_23) Celebrado por parte del Ayuntamiento de Riva Roja, el Ayuntamiento de Loriguilla y las Mercantiles Inversiones Doromín, Servicios, Estudios, Obras y Mantenimientos y Loyola Gestión Inmobiliaria, todo esto para la construcción y gestión
+[1372.0 → 1375.6] (SPEAKER_23) gestión de la balsa de laminación número tres del sector Masías San Rafael.
+[1376.4 → 1381.4] (SPEAKER_23) El objeto del convenio, como ya comentamos, es posibilitar la ejecución anticipada de la balsa de laminación.
+[1382.1 → 1407.3] (SPEAKER_23) Por resolución del presidente de la Confederación Hidrográfica del Júcar, de veinte de Septiembre de dos mil veinticuatro, se autorizó el vertido de aguas residuales a terreno procedentes de la escorrentía pluvial en episodios de lluvia de los sectores nueve, diez, once y doce en el término municipal de Lorigilla y en el sector industrial Masía de San Rafael, en el sector d en el municipio de Ribarroja. En la memoria justificativa se establece que las actuaciones de cooperación y fomento
+[1407.1 → 1422.1] (SPEAKER_23) y colaboración previstas en el convenio no generarán, esto lo quiero remarcar, porque creo que es importante dentro de la labor que se ha hecho desde el Ayuntamiento, no generarán costes ni darán lugar a contraprestaciones financieras con cargo a los presupuestos de gastos de nuestro Ayuntamiento.
+[1423.1 → 1429.7] (SPEAKER_23) El convenio además dispone acuerdos por parte de todos los los integrantes del mismo.
+[1430.0 → 1436.3] (SPEAKER_23) Por el departamento proponente, el de urbanismo en este caso, se ha tramitado el preceptivo expediente administrativo, estando este completo.
+[1436.9 → 1448.8] (SPEAKER_23) En cumplimiento con el acuerdo que aprobamos el 3 de marzo, se sometió en formación pública la propuesta del convenio en la web municipal, en el tablón de anuncios del ayuntamiento y en el BOP el día 24 de marzo del 25.
+[1449.4 → 1464.4] (SPEAKER_23) Con fecha 25 de abril, se ha emitido informe por parte del responsable del servicio de atención al ciudadano, en el que confirma que no consta que se haya presentado alegaciones, sugerencias u observaciones a la información pública de dicho convenio.
+[1465.8 → 1473.3] (SPEAKER_23) Vistos todos los informes obrantes en el expediente, y en base a todo lo anteriormente que hemos comentado, lo que proponemos al pleno es el siguiente acuerdo.
+[1473.8 → 1492.3] (SPEAKER_23) En primer lugar, aprobar definitivamente el convenio urbanístico de construcción y gestión de la balsa de laminación tres. En segundo lugar, requerir a los interesados al objeto de que en el plazo máximo de diez días naturales contados a partir de la notificación del acuerdo del pleno proceda a aportar toda la documentación requerida para la suscripción del presente.
+[1492.2 → 1507.2] (SPEAKER_23) presente convenio el cual se elevará a escritura pública en la notaría de Riva Roja. En tercer lugar, facultar a la Alcaldía Presidencia de este Ayuntamiento en ejercicio de su atribución como representante legal de la corporación para la suscripción del convenio mediante escritura pública.
+[1507.7 → 1518.7] (SPEAKER_23) En cuarto lugar, notificar el presente acuerdo al Ayuntamiento de Loriguilla y a las mercantiles implicadas. En el quinto, comunicar el convenio formalizado junto con el certificado de aprobación del convenio al Departamento de Secretaría.
+[1518.6 → 1527.3] (SPEAKER_23) guía para su inclusión en el registro de convenios y posterior remisión al departamento de transparencia, para su publicación y general conocimiento. Y en quinto lugar,
+[1527.3 → 1533.1] (SPEAKER_23) una vez suscrito el convenio, se procederá a su publicación en el BOC de eh dentro del mes siguiente de su firma. Nada más.
+[1534.9 → 1537.7] (SPEAKER_20) Gracias. Palabras al respecto.
+[1538.5 → 1539.5] (SPEAKER_20) Alguna cuestión más, Teresa.
+[1540.3 → 1554.2] (SPEAKER_23) Nada, resaltar que ese es un paso más dentro del sector. Es una colaboración de ambos ayuntamientos, como sabéis. Y bueno, hay que dar la importancia al tema de las balsas por el tema de lluvias, o sea que creo que vamos avanzando en esto, nada más.
+[1555.9 → 1557.7] (SPEAKER_20) I no hi ha res més, passa a mala votació.
+[1557.7 → 1558.7] (SPEAKER_20) Passa a mala votació,
+[1558.8 → 1559.5] (SPEAKER_20) este punt.
+[1561.5 → 1561.7] (SPEAKER_20) Sí.
+[1573.4 → 1575.5] (SPEAKER_20) Pues votamos vot.
+[1577.7 → 1578.8] (SPEAKER_20) Vale, ahora sí.
+[1579.1 → 1580.7] (SPEAKER_20) 13 votos a favor,
+[1580.9 → 1584.7] (SPEAKER_20) 7 abstenciones, Grupo Municipal Socialista y a Partido Popular,
+[1584.7 → 1584.9] (SPEAKER_24) Abstención.
+[1584.9 → 1586.2] (SPEAKER_20) Vox,
+[1586.2 → 1586.5] (SPEAKER_24) Abstención.
+[1586.5 → 1588.4] (SPEAKER_20) Esquerra Unida Compromís,
+[1590.6 → 1591.5] (SPEAKER_20) Esquerra Unida Podemos,
+[1591.6 → 1598.9] (SPEAKER_20) Compromís, al final lo rechazan, bueno.
+[1599.8 → 1599.8] (SPEAKER_25) Sí.
+[1599.8 → 1601.3] (SPEAKER_20) Todo desde buena fe, ¿eh?
+[1602.0 → 1602.8] (SPEAKER_20) Vale, venga.
+[1603.1 → 1606.8] (SPEAKER_20) Pues queda aprobado, pero echemos a favor y siete abstenciones.
+[1607.1 → 1608.5] (SPEAKER_20) Pasemos al cinco punto de orden del día,
+[1608.6 → 1609.7] (SPEAKER_20) que es el cinco,
+[1609.8 → 1617.3] (SPEAKER_20) que es derecho a juventud, cambio de nombre del carrer Carrera al Vol per carrer Padrins, que creo que hay algún representante por y por del público también,
+[1617.4 → 1618.5] (SPEAKER_20) algún representante.
+[1618.6 → 1620.9] (SPEAKER_20) Tiene la palabra, en este caso, David.
+[1623.7 → 1631.9] (SPEAKER_26) Buenas tardes a todos y a todas. Bueno, como trasladamos en las comisiones informativas hoy traemos una propuesta que va más allá del simple cambio de nombre de una calle.
+[1632.1 → 1640.7] (SPEAKER_26) Proponemos renombrar la la calle Albol como calle de de los Fadrins, en reconocimiento y agradecimiento a una de las asociaciones más emblemáticas de de Arribarrocha de Turia.
+[1641.1 → 1648.3] (SPEAKER_26) Desde hace décadas esta asociación por representar la ilusión, el trabajo colectivo y el espíritu festivo de toda una generación. Año tras año,
+[1648.3 → 1656.8] (SPEAKER_26) los Fadrins no sólo llenan de vida nuestras calles durante las fiestas, sino que también asumen con responsabilidad la organización de actos, la dinamización de actividades culturales y, sobre todo,
+[1657.2 → 1659.0] (SPEAKER_26) la transmisión de valores como el compañerismo,
+[1659.1 → 1661.8] (SPEAKER_26) el compromiso con el pueblo y el amor por nuestras tradiciones.
+[1662.4 → 1666.9] (SPEAKER_26) Los Fadrins son parte del ADN de nuestro municipio, han sido motor de participación juvenil.
+[1666.9 → 1677.8] (SPEAKER_26) el puente puente entre generaciones, símbolo de identidad local. Y esa historia, ese legado merece ser reconocido en el espacio público con un gesto que lo inmortalice. Disculpa.
+[1678.2 → 1688.0] (SPEAKER_26) Esta propuesta nace además con un valor añadido, porque principalmente ha sido impulsada por la comisión de padrins de de dos mil veinticinco, a quienes queremos agradecer de manera especial su su implicación y visión.
+[1688.1 → 1694.4] (SPEAKER_26) Han entendido que ser padrins no es sólo organizar unas fiestas, sino dejar huella, construir memorias y aportar al municipio desde lo colectivo.
+[1695.1 → 1703.0] (SPEAKER_26) Y qué mejor manera de de cerrar esta intervención que agradeciendo también su su presen su presencia hoy aquí en el Pleno, que están Andrés, eh Xavi y Joao.
+[1702.9 → 1703.9] (SPEAKER_26) Well, I think there are several,
+[1704.0 → 1712.6] (SPEAKER_26) no? Uh it is an orgulllo we see as the juventud se implica, participa y se interesa por la vida publ pública de su pueblo. Gracias por venir, gracias por propo por proponer,
+[1713.1 → 1721.6] (SPEAKER_26) y sobre todo gracias for ser parte de lo que hace de Riba Roja un pueblo vivo, dinámico y orgulloso de su gente. Así que paso previamente a a mencionar los puntos de acuerdo.
+[1722.3 → 1729.7] (SPEAKER_26) Primero sería renombrar la calle Albor que se encuentra dentro de las anotadas en el inventario de patrimonio municipal como vía calle Albor, como carrer dels Fadrins.
+[1729.6 → 1730.1] (SPEAKER_26) A dins.
+[1730.5 → 1736.7] (SPEAKER_26) Segons o metre la informació pública per plaç de vint dies avilers, eh anuncio del canvi de nombre.
+[1737.4 → 1743.4] (SPEAKER_26) I el tercer, anotaran en en el inventari del patrimoni municipal, en l'epígraf u no de immobles. Moltes gràcies.
+[1744.6 → 1747.2] (SPEAKER_20) Gràcies per obrir-los. Alberto.
+[1749.2 → 1749.7] (SPEAKER_20) Partit Popular.
+[1751.3 → 1753.5] (SPEAKER_26) Nosaltres no tenim res que dir,
+[1753.6 → 1759.8] (SPEAKER_26) els joguets, el divendres, jo jau ja en la seua exposició en l'acte que es feu allà en el castell, gràcies Andrés i Xavi també per estar així.
+[1761.7 → 1766.2] (SPEAKER_26) Tots sabem que els padrins són un referent, si no en la comunitat, en la província segura.
+[1766.2 → 1771.3] (SPEAKER_26) Allà per on vaig, es dius que eres de Ribarroja, i els padrins de Certes de Paca Baix saben qui són.
+[1772.6 → 1778.9] (SPEAKER_26) Els països durant tota la seva existència han sigut i són una associació, organització,
+[1779.0 → 1779.6] (SPEAKER_26) clavaria,
+[1779.8 → 1787.7] (SPEAKER_26) com vulguen dir-ho, que ha representat els joves si més cap en guany, en aquest any 2025, que estan deixant-se la pell, estan demostrant, com deia David també,
+[1787.9 → 1793.6] (SPEAKER_26) que no sols és un referent en organització de festes i d'esdeveniments, sinó que la seva implicació en la societat.
+[1794.0 → 1813.0] (SPEAKER_26) I en Ribarocha va més enllà. De fet, tots els actes religiosos, culturals, lúdics, socials, allí estan els padrins i volem que siguen tant un referent allà en tota la província com un referent per tota la joventut que ve rere més joves que ells i que algun dia organitzaran els padrins.
+[1814.5 → 1815.8] (SPEAKER_26) No podia ser d'altra forma,
+[1815.9 → 1817.7] (SPEAKER_26) el Partit Popular, el nostre grup,
+[1817.9 → 1819.4] (SPEAKER_26) estarà a favor del canvi de nom.
+[1820.2 → 1826.6] (SPEAKER_20) Com bé com bé saben ells a mateixa i tots i i res amb un padrins i visc a
+[1828.9 → 1830.6] (SPEAKER_20) Més paraules eh Vox Gonzalo Ruiz.
+[1831.4 → 1850.2] (SPEAKER_26) Bueno, pues muchas gracias, David, por tu explicación, y sobre todo gracias a los padres, y yo creo que esto, eh, pocas nociones tienen tanta unanimidad creo in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in uh, it is a it's a um a it's a point for having a responsibility
+[1850.2 → 1859.7] (SPEAKER_26) Porque no solamente el presente es el futuro que año tras año se va creando. Vosotros aportáis...
+[1861.5 → 1878.7] (SPEAKER_26) estabilidad a lo que es un sector de gente joven. Aportáis, por qué no decirlo, una parte de la economía del municipio con todo lo que hacéis y, sobre todo, aportáis compañerismo y solidaridad, algo fundamental hoy en día. Así que nada,
+[1878.8 → 1882.9] (SPEAKER_26) enhorabuena por esta propuesta y desde luego nuestro grupo la va a apoyar. Gracias.
+[1885.4 → 1888.7] (SPEAKER_20) Més paraules, una paraula més, Raffa Compromís.
+[1890.7 → 1915.2] (SPEAKER_20) Gracies. Bueno, desde el Grupo Municipal de Compromís anem a votar a favor desta proposta que conveàn dit i conve savem perquè ens va cridar el president dels Fadrins per a comentar-nos eixa proposta que havíem fet a l'equip de govern per a que se proposara el ple i que...
+[1915.8 → 1924.9] (SPEAKER_20) Per lo que pareís va a ser votada per unanimitat, nosaltres també l'anem a a recolzar. Tan sols demanar-los e uh
+[1925.3 → 1931.8] (SPEAKER_20) Que en guany, que pareix ser que és un any amb moltes novetats, amb moltes novetats, i a més
+[1932.5 → 1949.8] (SPEAKER_20) crec que molt xules, de fet el divendres ja va ser un acte molt emotiu i esperem que el proper dissabte siga encara molt més emotiu en aquesta congregació de totes les quintes possibles que hem fet.
+[1950.1 → 1954.9] (SPEAKER_27) la Festa de Sant Andreu i a la que jo m'hi inclouré i hi assistirem.
+[1956.2 → 1972.8] (SPEAKER_27) Però des de compromís volem que anar en un pas més endavant i així com estan fent un esforç molt gran per a per a deixar el pavelló ben alt i estan corrent moltíssim.
+[1973.8 → 1973.9] (SPEAKER_26) I.
+[1973.9 → 1989.9] (SPEAKER_27) En Sagradoria, desde Compromís en Sagradoria que els sanís també tingueren is a mateixa força pera promoure la igualtat dins de la festa. Però no sols eh
+[1991.0 → 1993.2] (SPEAKER_27) de boquilla, ¿vale?
+[1993.2 → 2000.5] (SPEAKER_27) Sino en feis reals y que les properes festes de Sadrins siga la igualtat real.
+[2000.7 → 2001.2] (SPEAKER_27) Gracias.
+[2002.5 → 2003.3] (SPEAKER_20) Más palabras.
+[2004.9 → 2006.9] (SPEAKER_20) Javier David, es tu turno.
+[2015.0 → 2024.3] (SPEAKER_26) Eh, a partir de 2025 se ha haciendo un excelente trabajo. Se ha integrado perfectamente en la actividad diaria de este municipio, y darle las gracias por dar la vida que que le dais. Así que nada más.
+[2025.4 → 2026.3] (SPEAKER_20) Alguna problema més?
+[2027.0 → 2028.2] (SPEAKER_20) Enhorabuena a todos.
+[2030.6 → 2032.3] (SPEAKER_20) No te preocupes.
+[2032.3 → 2037.1] (SPEAKER_26) Padrino soltero, luego esto va evolucionando y llega un día y os casáis, etc.
+[2037.3 → 2039.9] (SPEAKER_26) Así que aprovecharlo al máximo o no,
+[2040.0 → 2042.0] (SPEAKER_26) aprovecharlo todo lo que podáis.
+[2043.9 → 2044.8] (SPEAKER_20) ¿Alguna palabra más?
+[2045.5 → 2045.8] (SPEAKER_20) ¿No?
+[2046.3 → 2048.5] (SPEAKER_20) Bueno, pues vamos a votar y José.
+[2049.2 → 2050.4] (SPEAKER_20) Pel que jo aplaudeixo molt.
+[2052.7 → 2066.9] (SPEAKER_20) Bé, doncs anem a votar aquest punt que han proposat els que munisquen les paraules dels companys i que duem a la votació dels grups polítics. Bé, anem a començar a votar. Està això per votar ja?
+[2066.9 → 2067.9] (SPEAKER_23) Sí, sí, han votat ja.
+[2067.9 → 2069.4] (SPEAKER_20) Ah, ja hem votat? Doncs votava jo.
+[2069.5 → 2070.2] (SPEAKER_20) Votava jo.
+[2071.9 → 2072.4] (SPEAKER_23) Falta otra
+[2072.4 → 2072.5] (SPEAKER_20) ¿Falten?
+[2072.5 → 2073.2] (SPEAKER_23) cosa más.
+[2073.3 → 2073.5] (SPEAKER_28) Yeah.
+[2073.5 → 2073.9] (SPEAKER_20) Bueno, ya está.
+[2073.9 → 2074.2] (SPEAKER_23) Ya está.
+[2074.2 → 2077.1] (SPEAKER_20) Bueno, pues aprobada por unanimidad, gracias al Padre 25,
+[2077.7 → 2079.7] (SPEAKER_20) ya teniu el carnet per part del client.
+[2079.7 → 2080.4] (SPEAKER_20) Moltes gràcies.
+[2082.8 → 2094.2] (SPEAKER_20) I a partir d'ahir passarem al punt 6E que parlem de la moció del municipalsocialista de Barrocha per a l'habitació dels que hi ha xicos en interés per a municipis afectats per la gana.
+[2098.7 → 2099.1] (SPEAKER_26) Perdón.
+[2099.4 → 2108.3] (SPEAKER_29) Sí, he hagut una emoció, donades aquells municipis que és que, bueno, hem sigut afectats per la dana,
+[2108.4 → 2123.3] (SPEAKER_29) he, pos, estem comprobant tots que tenim una disminució de de ingresos corrents, he, i ademés he tant, encara que tanta la Generalitat com el Estat estan aportant recursos econòmics per per a la reconstrucció,
+[2123.4 → 2126.3] (SPEAKER_29) els ajuntaments afectats necessitem de més...
+[2126.2 → 2147.1] (SPEAKER_29) recursos per una part per atenuar o mitigar lo que correspon a la baixa de estos ingresos i també per aixos iixos gastos que se deriven de la propia adana iixes accions que realitzen els ajuntaments i que no estan inclosos en lo que és la partida de reconstrucció o en les possibles partides d'emergència.
+[2147.5 → 2148.0] (SPEAKER_29) Per tant,
+[2148.1 → 2164.6] (SPEAKER_29) el que es tracta és de sol·licitar a l'Estat que s'habilite un sistema de financiació per a les ajuntaments afectats i este sistema, la proposta nostra és que siga d'un pla d'amortització de 10 anys amb una carència de 3 anys i un tipus d'interès 0.
+[2165.6 → 2166.1] (SPEAKER_29) Gràcies.
+[2166.1 → 2167.3] (SPEAKER_20) Paraules al respecto.
+[2168.7 → 2168.9] (SPEAKER_29) Sí.
+[2169.1 → 2169.8] (SPEAKER_20) Alberto,
+[2169.9 → 2171.0] (SPEAKER_20) a partir de vos, volar.
+[2172.8 → 2183.4] (SPEAKER_26) eh vosaltres saben para tener concejal eh la votaremos a favor esta moción porque cual se vuelen ayuda que recibís que en es municipios afectáis per la gana, bienvenida siga.
+[2184.2 → 2193.6] (SPEAKER_26) Eh vosotros también volemos dir que que con siempre la falta de presupuestos genera incerteza y una reducción directa de ingresos pero de mucho menos.
+[2194.5 → 2207.3] (SPEAKER_26) n'hi ha que dir que este any les ajuntaments rebran mil doscents d'euros milions d'euros menys en concepte d'entregues a compter per la falta de l'actualització de la participació en els pressupostos de l'Estat.
+[2208.0 → 2216.9] (SPEAKER_20) La no liquidació d'aquests pressupostos fa que l'exercici 2023 se sumi i tingui una pèrdua acumulada de 6.300 milions d'euros.
+[2217.6 → 2220.5] (SPEAKER_20) Nosaltres volíem presentar una esmena que,
+[2220.6 → 2228.6] (SPEAKER_20) si no cap com esmena, ens agradaria que se tingués en compte, perquè passar nomenar-la tal qual perquè quedi de valorar.
+[2230.1 → 2232.3] (SPEAKER_20) A banda de demanar el crèdit xico,
+[2232.3 → 2233.3] (SPEAKER_20) que està molt bé a l'Estat.
+[2234.5 → 2240.2] (SPEAKER_20) Pensem que seria també factible i probable que s'hi duguera endavant el següent.
+[2240.8 → 2240.9] (SPEAKER_20) 1.
+[2241.2 → 2256.8] (SPEAKER_20) La modificació urgent de la normativa vigent permetent que els municipis puguen fer servir els seus remenys de tresoreria per finançar inversions sostenibles, que no és el cas de l'Ajuntament de Rivarrocha, però sense estar limitats per les regles fiscals existents.
+[2257.5 → 2258.0] (SPEAKER_20) Dos,
+[2258.1 → 2272.8] (SPEAKER_20) l'actualització immediata de les entregues a conta per a este any 2025 i el compliment dins del termini del pagament de la liquidació als municipis de la participació en els tributs de l'Estat corresponent a l'any 2023.
+[2273.7 → 2274.4] (SPEAKER_20) I tres,
+[2274.6 → 2281.8] (SPEAKER_20) la pròrroga en rang legal amb una disposició adicional sisena de la llei d'estabilitat pressupostària i sostenibilitat.
+[2282.5 → 2290.8] (SPEAKER_20) per assegurar la vigència indefinida d'esta mesura que permetria una planificació plurianual realista i més eficaç. Gràcies.
+[2292.7 → 2293.6] (SPEAKER_20) Més paraules,
+[2293.7 → 2295.4] (SPEAKER_20) Vox.
+[2297.5 → 2307.9] (SPEAKER_26) No que acogido al decreto 6.2004 se van a utilizar estos créditos. Y pues que ya está habilitado el real decreto para solicitarlos.
+[2309.1 → 2309.5] (SPEAKER_27) No.
+[2310.9 → 2311.8] (SPEAKER_26) O sea, al final hay
+[2313.9 → 2315.5] (SPEAKER_26) por parte
+[2316.9 → 2327.7] (SPEAKER_26) no, también habla de vamos yo leo textualmente uh eh y se autoriza formalización con otras administraciones de los convenios u otros instrumentos de colaboración and cooperación en su artículo dos.
+[2328.2 → 2335.7] (SPEAKER_26) Entonces no es una consulta por ver si está dentro de este real decreto o es además otro,
+[2335.7 → 2339.7] (SPEAKER_26) lo digo por no duplicarlo, pero bueno, esa es la consulta, gracias.
+[2340.9 → 2344.3] (SPEAKER_20) Més paraules, escrita,
+[2344.3 → 2344.5] (SPEAKER_20) podem.
+[2349.3 → 2350.3] (SPEAKER_40) Y no es nuestra propuesta.
+[2351.0 → 2359.3] (SPEAKER_40) No sé, con lo mismo sí que soy consciente de que no es suficiente y que hay gastos que no es pueden eh cubrir con las acciones y demás.
+[2360.2 → 2370.1] (SPEAKER_40) Pero sí que me agradaría com poner en valor en esta propuesta las implicaciones que también té en este caso el ayuntamiento de Riva Rocha en en lo que hace referencia a esta práctica. Porque
+[2370.8 → 2396.9] (SPEAKER_40) És important demanar això, perquè al final s is s se necessita. És important, but sí que m'agradaria que a l'hora de que s'aprovara i i que en un futur Ribaroja heu demanarà que sí que seguirà prudent i com molt rigorós de demanar lo essencial, perquè al final demanar un crèdit encara que siga sense interesos, al final és augmentar el deute. Perquè després de que tornar a les RCC simplement tindre en compte deixar part de ser prudent i molt rigorós.
+[2396.9 → 2401.3] (SPEAKER_40) y con exacto en lo que se vuelve en lo que se vuelve a mandar y lo que se vuelve a reinvertir. Gracias.
+[2402.5 → 2405.7] (SPEAKER_41) En mis paraboles, José Ángel.
+[2408.1 → 2411.6] (SPEAKER_42) En cuanto a Partido Popular,
+[2411.7 → 2418.4] (SPEAKER_42) efectivamente en este caso entendemos que es una propuesta o una moción muy dirigida.
+[2419.1 → 2444.1] (SPEAKER_42) Ara, un producte com és l'eligo, en quant a lo que esteu proposant vosaltres, mos pareix molt interessant i estaríem a gust que en una futura moció que dugueu vosaltres poder-la tratar i donar-li, pues, eixida a la mateixa, eh, perquè sempre estem a gust. Sí que tinc que dir una cosa, i m'aneu a permetre, sobre el tema de l'actualització de les entregues a conter, i és de veres que este signaren en un d'ell real decret, l'omnibus,
+[2444.2 → 2469.7] (SPEAKER_42) And this pues, el Partido Popular y y Vox y Chunx pues votare o en contra. Tot per algo de un palacete del PNV, que después a la postre sí que se aproba a favor y se queda eso pendiente. Antenem, y pero lo que estem, las noticias que estem rebent desde el Estatut ha de ser que van se van a posar en marcha pa que isca a so de de de actua se ha comentat el tema de mil milions de euros.
+[2469.6 → 2482.6] (SPEAKER_42) De esos a nosotros nos afecta más de dos millones aproximadamente, en dos coma tres millones de euros. Estaríamos al tema para que el gobierno haga una moción y presupuestos, estemos todos trabajando en la misma dirección.
+[2483.3 → 2495.7] (SPEAKER_42) En cuanto a los ICOs, José Luis, no es el mismo si... eh tipo de de ICOs, son otros ICOs habilitados que normalmente son ICOs para para temas que que podrían ser utilizados, como que no son para
+[2495.8 → 2497.9] (SPEAKER_42) a para temas de liquidez, etcétera.
+[2498.0 → 2501.4] (SPEAKER_42) Con lo cual llevan unas condiciones que no son las que nosotros ponemos aquí.
+[2502.0 → 2521.7] (SPEAKER_42) Entonces aquí what we solicitamos es igual que nosotros, como los municipios de L'Horta Sud, uh da igual el colour, is a type of uh product, yeah, that vaya encaminado a los uh municipios que han sido afectados por por la dana. Y en en cuanto a lo que diu eh José Manuel de Esquerra Unida,
+[2521.6 → 2525.9] (SPEAKER_42) tota la raó. Hi ha que ser prudents i hi ha que ser rigorosos en el que es demana.
+[2526.3 → 2536.8] (SPEAKER_42) No obstant, jo m'imagine que en esta sol·licitud que estem fent tots els ajuntaments afectats, si s'arriba a un enteniment en l'Estat, ells faran unes bases i unes condicions en les que tindrem que,
+[2536.8 → 2547.8] (SPEAKER_42) eh, pues, tindre ixes bases i en elles poder demanar això i sempre en l'equilibri pressupostari, en prudència i ser rigorosos en el gasto.
+[2547.5 → 2549.5] (SPEAKER_42) gasto del matemático. Gracias.
+[2550.2 → 2554.2] (SPEAKER_41) En les paraules no qüestionés el respecte.
+[2555.7 → 2557.0] (SPEAKER_41) Eh j eh José Luis Vox
+[2557.0 → 2581.3] (SPEAKER_43) También voy a tratar de ser lo más breve posible, but uh um uh you have commented uh the reason uh you have said that um Vox vote against the l omnibus. Omnibus not only they vote against for one thing on Palacete, it's that there was as well uh suspension of d exauctions eh as well as the Palacete um and a decree on the government
+[2581.4 → 2606.8] (SPEAKER_43) No, mezclaba churras con merinas y lo que se pidió es que si se podía votar cada uno de ellos. Y por qué lo hacía el Partido Socialista, pues lo que suele hacer casi siempre en el Gobierno, para utilizar las administraciones y su eh Gobierno como una absoluta dictadura donde yo aquí meto todo y a ver si sale. Hombre, yo creo que eh meter el Palacete con one theme park.
+[2607.3 → 2607.4] (SPEAKER_43) Well,
+[2607.1 → 2610.3] (SPEAKER_43) tan importante como este que traemos aquí.
+[2611.6 → 2619.3] (SPEAKER_43) Desahucios, etcétera, en fin, me parece que requiere que cada cosa lleve su tratamiento y por eso fue por lo que se votó en contra. Gracias.
+[2620.0 → 2621.4] (SPEAKER_41) ¿Me ha esperado esa respecta,
+[2621.4 → 2623.2] (SPEAKER_41) su intervención?
+[2625.5 → 2638.9] (SPEAKER_42) A ver, eh, es que no, para no entrar en un debate, José Luis. A ver, si fuera una dictadura pues estaría en marcha, no, porque las dictaduras son las que determinan y dicen esto se hace y punto y nadie opina. En este caso, pues, eh, el voto fue en contra,
+[2638.9 → 2642.4] (SPEAKER_42) nos guste o no, y fue así. A ninguno tampoco le he escuchado decir,
+[2642.7 → 2644.8] (SPEAKER_42) ojo, que el Palacete al final salió,
+[2645.1 → 2651.4] (SPEAKER_42) pero lo que son la participación en los ingresos del Estado no salió y ahora mismo el Gobierno pues está elaborando un decreto para que.
+[2651.3 → 2661.6] (SPEAKER_42) Okay, in order to be on time. I hope that both Vox, like the Popular Party, like you, or at least Vox and the Popular Party, uh uh vote for when this happens. Thank you.
+[2663.2 → 2684.8] (SPEAKER_41) Bueno, pues ya han tenido el debate suficiente, pero bueno, lo más importante de eso es que yo y que el contexto quede claro en un achuntamento que económicamente y hipersort no han tenido un impacto como el que porta Gata Rocha al Daya en las viviendas de las personas que se han quedado sin viviendas, sin negocios, sin comercio, pero sí que han tenido un impacto muy gran.
+[2685.5 → 2711.8] (SPEAKER_41) en una área industrial que financia prácticamente el treinta y pico por ciento del presupuesto y nosotros nos tenemos que ayudar al sáenz y área industrial que lo hemos alzado y hemos ayudado muchísimo pues en traer ya dinero y anticipar en empresas sino que además evidentemente las empresas dejen de pagar tanto el ICI o como nos construyen como
+[2712.2 → 2729.7] (SPEAKER_41) com el IAE i com l'IBI, perquè ara no tenen ingressos i han de tornar per llei el que ens han donat. Això significa que el quadre econòmic necessita de mesures extraordinàries. En aquest sentit, el producte que plantegem nosaltres i l'horta sud, tots els plens afectats és que l'ICO,
+[2730.2 → 2737.4] (SPEAKER_41) i després ho farem també a l'IBF perquè l'ICO és el finançament de l'Estat, però de la Generalitat Valenciana tenim l'Institut Valencià de Finances.
+[2737.6 → 2738.8] (SPEAKER_41) que també mos podia ajudar,
+[2738.9 → 2762.4] (SPEAKER_41) per tant si l'ícono ha entrat dirigirem també al Circuit de Finances perquè perquè considerem que si a les empreses que fa falta i a més tancar a presses ràpides des financien fins a 40 milions d'euros en tres anys de carència i també esperar tornar al salari d'interès seria també lògic que una empresa pública com la nostra
+[2762.4 → 2766.7] (SPEAKER_41) L'any i els ajuntaments tindrem el mateix tipus de finançament que té una empresa.
+[2767.0 → 2775.3] (SPEAKER_41) Això faria que algunes pòlisses que paguem interessos no les tinguem i que els gastos podrien funcionar d'una manera diferent i més tranquils.
+[2775.5 → 2778.3] (SPEAKER_41) No obstant, i això és línia de Timo Oberta,
+[2778.4 → 2783.8] (SPEAKER_41) estem treballant-la des de diferents ajuntaments i coses polítiques i esperem a veure si des de l'ICO.
+[2784.6 → 2787.2] (SPEAKER_41) des de l'estatus contemplat i podem arribar a això.
+[2787.3 → 2808.2] (SPEAKER_41) Per altra part també advertir el que ha dit José Ángel, el ple que ve podem tractar efectivament el que tu has dit perquè coincidim i ja part que hi ha que exigir espies i que li es remunenci, que he deien que remunenci però liquidacions, que tinguin tots disposades diners adequats per a pagar quant abans.
+[2809.1 → 2811.9] (SPEAKER_41) I tot i això, jo penso que s'ha fet cap a l'economia.
+[2812.1 → 2815.4] (SPEAKER_41) Així que estarem d'acord en una moció en els termes que pactem.
+[2816.0 → 2818.5] (SPEAKER_41) Passem a la votació d'aquest punt.
+[2828.5 → 2833.6] (SPEAKER_41) Bueno, doncs si hi ha plena animitat de tots els grups polítics, passaríem al 100.000 de... Agraïa donar comptes.
+[2834.2 → 2845.2] (SPEAKER_41) Es el par de información, impulso y control de los órganos de gobierno y pasaremos a punto 7 que es Tesorería, dar cuenta del plan de tesorería del Ayuntamiento, eh. Dar cuenta José Ángel.
+[2846.4 → 2860.9] (SPEAKER_42) Sí, solamente decir que dan en cuenta el plan de tesorería elaborado por la tesorería del Ayuntamiento, del que se informa en las comisiones informativas y que se entrega después el la fucia en la que está el cuadro de de tesorería de de del plan.
+[2861.5 → 2862.0] (SPEAKER_42) Gracias.
+[2862.0 → 2865.2] (SPEAKER_43) Una palabra al respecto del Galván.
+[2875.2 → 2876.0] (SPEAKER_43) Vale, gracias.
+[2876.1 → 2876.7] (SPEAKER_41) Gracias.
+[2876.9 → 2877.2] (SPEAKER_43) Gracias.
+[2878.8 → 2882.3] (SPEAKER_43) Respecto a la liquidación de... Bueno.
+[2882.8 → 2897.9] (SPEAKER_43) A la nació de comptes en llama l'atenció la conclusió que fa la tresorera en el que diu, en mayúscula i negreta, manifesta una clara insuficiència de fondos de fondos líquids respecte la tresoreria de l'Ajuntament.
+[2898.6 → 2920.3] (SPEAKER_43) Vale. También solicita soluciones de forma inmediata y estructural, debido al la al déficit de liquidez. Destaca que este primer trimestre del dos mil veinticinco, el periodo medio de pago, que es el tiempo que eh tarda el Ayuntamiento en pagar a los proveedores, va a aumentar. Entonces, lo que más nos preocupa
+[2921.2 → 2944.6] (SPEAKER_43) Son dos puntos que son con los que termina el informe. En uno dice que se tiene que llevar a cabo una contención del gasto de forma inmediata evitando el continuo reconocimiento extrajudicial, que es decir evitando facturas que no tengan partida presupuestaria, que son las que periódicamente el equipo de gobierno está.
+[2945.0 → 2954.8] (SPEAKER_43) Está presentando facturas extrajudiciales y también importante y preocupante solicita que se incremente la presión fiscal.
+[2955.0 → 2955.5] (SPEAKER_43) Es decir,
+[2955.5 → 2969.3] (SPEAKER_43) desde tesorería se está diciendo que para mantener o para poder cubrir todo el gasto que tiene el ayuntamiento se incrementen los impuestos a nuestros vecinos y es el punto que a nosotros más nos preocupa. En el anterior pleno se comentó
+[2970.1 → 2986.3] (SPEAKER_43) El aumento de patrimonio que había tenido el Ayuntamiento en estos últimos años, yo creo que a los vecinos de poco nos vale incrementar mucho el patrimonio, pero a la vez incrementar la carga fiscal. Creo que habría que buscar un equilibrio entre ingresos y gastos y está bien.
+[2986.8 → 2996.5] (SPEAKER_43) Incrementar el patrimonio yo creo que nadie no se pueda alegrar de que el Ayuntamiento cada vez tenga más patrimonio, tenga más elementos,
+[2996.7 → 3002.6] (SPEAKER_43) más infraestructuras, más servicios, pero claro, la carga fiscal y más después de esta última subida.
+[3003.5 → 3009.2] (SPEAKER_43) del impostor a basura es elevada como para seguir las recomendaciones de tesorería. Entendemos
+[3009.2 → 3009.4] (SPEAKER_41) Sí.
+[3009.4 → 3028.1] (SPEAKER_43) que el equipo de gobierno sigue las recomendaciones de aumentar la presión fiscal, también debería de seguir las recomendaciones evitando el continuo reconocimiento de facturas y haciendo un recorte de forma inmediata. Nos gustaría saber si al respecto estas dos condiciones que se recogen en el informe pues tiene
+[3028.7 → 3032.4] (SPEAKER_43) Tiene alguna medida en mente. Gracias.
+[3033.5 → 3035.9] (SPEAKER_41) alguna palabra más José Ángel
+[3037.6 → 3041.2] (SPEAKER_42) Sí, com diu la Partir d'un fet,
+[3041.4 → 3053.9] (SPEAKER_42) hem viscut pandèmies, hem viscut putxes d'electricitat, hem viscut putxes de l'IPC, hem viscut la desgraciada catàstrofe de la Dana.
+[3055.1 → 3055.7] (SPEAKER_42) Hasta pagos.
+[3056.5 → 3063.2] (SPEAKER_40) Jo em em viscut, pero això no vol dir que el Jose no se puguen corregir i pa'
+[3063.2 → 3083.0] (SPEAKER_40) això estem. Eh i dins de de lo que diu la interventora, es comenta una cosa, este plan eh se pot modificar en qualsevol moment i actualitzar. I dins d'eixes actualitzacions i en tant que la tresorera per les conversacions que tenim, la tresorera pues té que anar en molta prudència, igual que tots, i buscar el equilibri pressupostari.
+[3083.0 → 3093.5] (SPEAKER_42) Pero tiene que haber una serie de cuestiones que desde esos ingresos, que no están dentro del cuadro del plan de tesorería, tienen, por ejemplo,
+[3093.6 → 3107.9] (SPEAKER_42) ella ha hecho una indicación, hemos entrado 1.471.000 euros del Ministerio de Inclusión Social y es 14 millones y medio de lo que es también para la reconstrucción que tenemos que ingresar el día 10 o 11 de...
+[3107.7 → 3111.9] (SPEAKER_42) crec que el Dia Mundial de la Infància l'Estat, a més d'això,
+[3112.6 → 3114.2] (SPEAKER_42) no s'ha tingut en compte pla,
+[3114.3 → 3115.5] (SPEAKER_42) però és a Xina,
+[3115.6 → 3124.1] (SPEAKER_42) els 200.000 euros que hem ingressat a Generalitat, més els altres 95.000 euros que depenen d'ingressar, 150.000 euros que hem ingressat a Diputació,
+[3124.9 → 3127.5] (SPEAKER_42) 741.000 euros que aquesta setmana passada, dia 8,
+[3127.9 → 3132.3] (SPEAKER_42) hem aprovat el Ministeri de Juventud i Infància i Juventut.
+[3132.5 → 3143.6] (SPEAKER_42) és quatre-cents i santa mil euros del Ministeri de Polítiques Territorials, i el m eh cent vint-i-sis mil euros també del Ministeri de Transició Ecològica,
+[3143.9 → 3158.6] (SPEAKER_42) eh uh uh uh en fin, etcètera, etcètera. Una sèrie d'ingressos que eh no estan computats ahí en eixa quadre de tesoreria i que van a, a puès, van a revertir i van a vindre bé per a l'Ajuntament. Lo que sí que estan en els gastos són tots els gastos de les obligacions
+[3158.5 → 3160.5] (SPEAKER_42) que ya tenemos en cuanto a la DNA,
+[3161.0 → 3166.8] (SPEAKER_42) que es lo que afecta el desequilibrio y lo que provoca que en estos momentos estamos hablando en cara del presupuesto 2025.
+[3167.2 → 3186.0] (SPEAKER_42) Que como usted podrá ver o habrán visto en el en el esborranye también hay una chooser por per parte del Gobierno, eh. En una serie de gastos que no son significativos, pero que a a la suma ya es significativo, el el el import global. Además de eso, si usted ahora después, que parlaremos en la liquidación,
+[3185.8 → 3198.2] (SPEAKER_42) Según habrá visto en el cuadro de remanent, hi ha derechos reconocidos netos pendientes de cobro per valor de 100 milers de euros. Gran part és de línies pendentes de cobrar de la Generalitat.
+[3198.8 → 3205.1] (SPEAKER_42) También de unas otras Administraciones, pero gran parte la Generalitat. Todo eso se prevé que entren ahora en guay.
+[3205.4 → 3211.9] (SPEAKER_42) Además de todo eso, que no está replegado, también tenemos la parte que hemos de estar así debatiendo, que es la parte de la bora.
+[3212.0 → 3217.8] (SPEAKER_42) En estos momentos ya sabemos que de la bora tienen pendiente de ingresarnos 725.000 euros del 2022,
+[3218.2 → 3223.9] (SPEAKER_42) 756.000 euros del 2024 y queda pendiente lo que es el 2023,
+[3224.1 → 3224.5] (SPEAKER_42) que encara no
+[3224.5 → 3224.8] (SPEAKER_44) está replegado, que todavía no está replegado.
+[3224.2 → 3225.6] (SPEAKER_42) que encara no mos han dit la quantitat.
+[3226.0 → 3247.6] (SPEAKER_42) En lo qual se pot deduir que més de dos milions d'euros segur és lo que tenen que ingressar des de des de labora a esta xeolament. En el conjunt d'eixos d'ingressos que no estan incluits ahir, podrem equilibrar eixe quadre presupostari pressup de de tesoreria. No obstant això, pues continuem treballant des de l'àrea d'intervenció i l'àrea de tesoreria pa que vaig a tota a equilibri pressupostari. Gràcies.
+[3248.1 → 3249.7] (SPEAKER_41) Unhas palabras.
+[3250.7 → 3250.8] (SPEAKER_42) Mm-hmm.
+[3250.8 → 3251.5] (SPEAKER_43) The um
+[3252.4 → 3263.3] (SPEAKER_43) Agrair-li la la explicació, esperem que tots eixos ingressos que vostè ha dit e entren in s'eviten les tensions uh de liquid de in la en la liquidés de l'Ajuntament.
+[3264.0 → 3279.2] (SPEAKER_43) El que ve a ser és que e una ferramenta que vostès gasten molt és la la financiació d'entitats externes. Vull dir, ara mateixa tenim un préstec del 2021, un préstec del 2022, um també um el que s'ha fet d i també per a
+[3279.1 → 3298.0] (SPEAKER_43) Per a atendre els gastos de la gana, que està actualment llista constant al mes una mitja de trenta mil euros. Vull dir, cinc milions de pessetes en interessos. Estem parlant de tres anys trenta quatre mil euros a l'any. Ens preocuparia que este ajuntament tinguera que recórrer de nou a finançacions externes perquè al final són despeses que
+[3300.1 → 3305.0] (SPEAKER_43) que mire en la capacitat de prestar serveis i de l'Ajuntament.
+[3305.3 → 3324.5] (SPEAKER_43) Per tant, bueno, entenc que segons les previsions del regidor no n'hi haurà eixa tensió, que la tesorera diu que és possible que es patisca, però el que sí que ens agradaria és que es evitarà al màxim possible esta financiació externa. Perquè al final l'Ajuntament està pagant una quantitat molt elevada d'interessos.
+[3325.1 → 3330.0] (SPEAKER_43) que tal volta se pueda buscar fórmules para ahorrar gastos.
+[3330.5 → 3331.3] (SPEAKER_41) Mis palabras,
+[3331.4 → 3333.5] (SPEAKER_41) una última intervención.
+[3334.1 → 3336.0] (SPEAKER_42) Sí, a mi favor,
+[3336.4 → 3340.8] (SPEAKER_42) se os dirá a vosted ir porque seguir en los préstamos. Los préstamos se debe para comprar,
+[3340.9 → 3350.3] (SPEAKER_42) son operaciones de compra de inmobiliarios. Es la compra de nada más y nada menos que de para quedar o con la obra que hacemos en entrenaranjos.
+[3350.2 → 3361.8] (SPEAKER_42) Pues una obra necesaria y que en principio debería estar financiada por el canón de la Obvia. Obvia que esperemos que en junio o como muy tarde el año que viene pues ya tengamos la sentencia definitiva.
+[3362.8 → 3368.2] (SPEAKER_42) Se me olvidaba. Aixo son vora dos millons y migs d'euros també que deuen d'entrar en este ajuntament.
+[3369.0 → 3386.0] (SPEAKER_42) Entonces operacions de tesoreria no son operacions de compra de immobiliari que puxen a esos 87 millons de euros de patrimonio que m'he incrementat desde el 2015 fins ara. Desde que entravem així i que en la fecha actual 87 millons de euros.
+[3386.3 → 3388.3] (SPEAKER_42) Lo que sí a vegades pot ser un derroche.
+[3388.5 → 3391.4] (SPEAKER_42) És que se les oblida a vostès que nosaltres,
+[3391.5 → 3411.1] (SPEAKER_42) però això qualsevol govern quan t'entra t'ha de fer-se càrrec dels dos milions i mig de deute que n'hi havia de l'anterior govern del Partit Popular que se referien al pagament de factures i que nosaltres estant de l'oposició entenien que n'hi havia que pagar als proveïdors i diguem que sí, però això eu liquidarà aquest actual govern,
+[3411.4 → 3414.8] (SPEAKER_42) al igual que pagarem els 600.000 euros que se devia a Diputació.
+[3414.6 → 3424.1] (SPEAKER_42) a diputació, així és, mil euros, al igual que pagar en partotels, bàndels, monxes, uns vuit milions d'euros. Vostè sap casualment quant costa tot això?
+[3424.5 → 3426.1] (SPEAKER_42) Doncs deu milions i mig d'euros,
+[3426.4 → 3430.7] (SPEAKER_42) que este gobern durant estos anys s'ha fet càrrec, s'ha fet càrrec, com no pot ser d'una altra manera,
+[3430.8 → 3432.0] (SPEAKER_42) la responsabilitat del gobern.
+[3432.4 → 3440.9] (SPEAKER_42) Ho dic perquè tenim possibilitat, tenim músculs, n'hi ha que treballar bé i en bones perspectives i treballar per a la ciutadania de Ribarrocha. Gràcies.
+[3441.0 → 3466.1] (SPEAKER_41) Ara a mi m'ajustaré els temps, serà passar a estem en donar compte, donar compte per a que sàpiga la gent es se tracten en les comissions informatives es donar compte, podem parlar en tot, no són punts de l'ordre del dia a debat, és un donar compte, però bueno, també perquè seria raonable la intervenció s'acotar-les perquè en algun... ajudar a donar compte ni parlar de la posició, s'ha d'anar compte i ja està. Així sí.
+[3466.2 → 3467.5] (SPEAKER_41) Però també a costat ho estaria bé, val?
+[3467.8 → 3470.4] (SPEAKER_41) Ho dic perquè ja s'ha tratat en diverses comissions.
+[3470.7 → 3471.9] (SPEAKER_41) Passem al següent punt de l'ordre del dia,
+[3472.0 → 3472.8] (SPEAKER_41) que també és un altre conter,
+[3473.4 → 3476.2] (SPEAKER_41) que són dos punts d'intervenció, el 8 i el 9, anem a 8,
+[3476.7 → 3481.7] (SPEAKER_41) donar conter de la resolució SEGUITRES que aprova la liquidació de l'exercici, val?
+[3482.8 → 3483.3] (SPEAKER_41) 2024.
+[3484.4 → 3485.2] (SPEAKER_41) José Ángel.
+[3485.8 → 3487.9] (SPEAKER_40) Y se deben decir que se dona a compte,
+[3487.9 → 3510.9] (SPEAKER_40) que en un principio ni había pressupos del Punguit, que es la liquidación inicial de el presupuesto del 2024 y después como una reformulación del mateix i que es el segundo punto once i que en principio bueno, pues es el punto once y las cantidades que que les importa y es el informe que que va de que es la reformulación sobre el presupuesto del 2024.
+[3512.3 → 3513.7] (SPEAKER_41) Paraules d'este punt?
+[3514.8 → 3515.4] (SPEAKER_41) A més,
+[3515.4 → 3518.5] (SPEAKER_41) ha sigut un punt, que és el punt 8è, que, no,
+[3518.6 → 3528.5] (SPEAKER_41) no, perdó, la intenció era el conter del ple de la Corporació dels informes 131 i informes 132 d'interventora, o excepcions i omissions.
+[3529.1 → 3530.1] (SPEAKER_41) José Ángel...
+[3542.7 → 3543.5] (SPEAKER_60) No problem.
+[3544.0 → 3558.6] (SPEAKER_61) Da damos cuenta de los informes de reparos y omisiones por la intervención del Ayuntamiento durante el ejercicio dos mil veinticuatro. Se hace un análisis completo y comparativa sobre otros ejercicios, y estas comparativas se realizan por comparativa de informes, por distribución
+[3558.6 → 3558.8] (SPEAKER_62) Oh.
+[3558.8 → 3562.1] (SPEAKER_61) de gasto según áreas, distribución de gasto según política de gasto,
+[3562.1 → 3562.4] (SPEAKER_62) Oh.
+[3562.4 → 3562.5] (SPEAKER_61) y
+[3562.5 → 3562.6] (SPEAKER_62) Oh.
+[3562.6 → 3562.6] (SPEAKER_60) Mm.
+[3562.6 → 3565.5] (SPEAKER_61) también se da cuenta de las modificaciones de crédito.
+[3566.1 → 3566.2] (SPEAKER_60) Yeah.
+[3570.7 → 3574.7] (SPEAKER_63) Passem a 100 volts, per continuar dintre del programa.
+[3575.0 → 3581.0] (SPEAKER_63) Ara portem el predicromenòmetre perquè el dia ens activem la bateria de l'electricitat, algun test que ens hem d'enxufar.
+[3583.0 → 3588.7] (SPEAKER_64) Ja vols tindre petits volts també. Vale, per l'estem a punto, e deu. Ale, José Ángel.
+[3589.5 → 3595.5] (SPEAKER_61) Si damos cuenta al pleno de la información correspondiente al periodo de medio de pago de los cuatro trimestres de dos mil veinticuatro.
+[3596.6 → 3597.1] (SPEAKER_61) Thank you.
+[3597.4 → 3598.7] (SPEAKER_64) Para hablar de este punto, Salvador.
+[3598.9 → 3622.8] (SPEAKER_63) Gracias. Bé, tant en este punt com en els anteriors estem veient que els indicadors econòmics no són massa bons el tancament de l'any passat en negatiu, períodes mitjans de pagament que augmenten, interessos, tensió en la liquidesa, gastos excessius que no és sols el Partit Popular el que ho diu sinó els organos habilitats. En este cas, en este informe, tenim...
+[3623.2 → 3638.8] (SPEAKER_61) un quadrant en el que diu que els pagos realitzats dins del període legal de pagament és un 8% i un 91,93% pagos realitzats fora del període legal de pago. Això és que s'han pagat, és que no s'han pagat.
+[3639.5 → 3654.1] (SPEAKER_61) Que estem parlant, de vora de vint milions, doncs tenim quaranta-u no dins del període i cinquanta-huit fora del període. Vol dir que més de la meitat o la gran majoria, depèn si està apagat o si no, es paga fora del del mitjà de pagament.
+[3654.7 → 3657.8] (SPEAKER_61) Vull dir, vostès si veuen tota la evolució del 2024,
+[3658.7 → 3660.8] (SPEAKER_61) el període mitjà de pagament va baixant, però,
+[3660.9 → 3666.6] (SPEAKER_61) i així i tot, està molt llunt de lo legalment estipulat.
+[3667.3 → 3676.1] (SPEAKER_64) Mm, sempre mos diuen que estan treballant o eh jo entenc que n'hi ha andanes, entenc, però clar, in i si in the s períodes normals tampoc podem arribar a això.
+[3677.0 → 3681.7] (SPEAKER_64) És que al final es es interpretar es números, i no hi ha ningun número positiu.
+[3682.3 → 3688.6] (SPEAKER_64) Que sí, que augmente el patrimoni, en això estem d'acord i estem contents, perfecte, però més càrrega fiscal,
+[3689.0 → 3695.8] (SPEAKER_64) més endeutament, més eh f més periode per apagar eh es proveïdors.
+[3696.4 → 3703.4] (SPEAKER_63) Menos presupost. Evidentment el pressupost saben per la situació que és, però és que els números no són gens al seu favor.
+[3703.9 → 3706.8] (SPEAKER_63) Vostès me parlen dels deutes de fa 10 anys.
+[3707.2 → 3709.1] (SPEAKER_63) Doncs bueno, quan hi hagi un canvi de govern,
+[3709.3 → 3712.0] (SPEAKER_63) el nou govern tindrà que assumir el que vostès diuen a mitges.
+[3712.1 → 3717.5] (SPEAKER_63) Però quan se fiqueu en la política ja sabe que té que heredar el que ve de darrere.
+[3717.8 → 3721.7] (SPEAKER_63) Però clar, que a dia d'avui, me diga que fa 10 anys se devia,
+[3721.7 → 3722.2] (SPEAKER_63) ja,
+[3722.3 → 3723.4] (SPEAKER_63) doncs en 10 anys potser.
+[3723.2 → 3746.3] (SPEAKER_63) Podien haver-ho solucionat. Que ho han solucionat, vale, i i i ara seran els números com es solucionen. Hauran que solucionar-los vostès o ho dissem pera el que vinga després. No sé. Els números no són no són bons en este cas. Per tant els indicadors pleno, tal pleno vegem que que que els estan dient lo que tenen que fer i de moment no s no sellemen brotes verdes. Gràcies.
+[3747.1 → 3750.4] (SPEAKER_64) y me establecen intervenciones, pues en fin.
+[3750.9 → 3757.1] (SPEAKER_61) Sí, esta semana anem a pagar un trosset del camp de fútbol en cara.
+[3757.6 → 3783.1] (SPEAKER_61) si ha de no fa deu anys. Encara estem aquí, encara tenim resta de de la de la herència i és la responsabilitat nostra i anem a a continuar liquidant tot això. L'evolució del pa del PMP eix ja ho comentarem a finals del 2023. El primer trimestre seguirà de setanta-huit dies, el segon trimestre a alcancem la punta de cent quatre dies i a partir d'ahí ja baixarem a vuitanta-nou.
+[3783.2 → 3790.8] (SPEAKER_61) i el quart trimestre ha sigut un 10. No és suficient. El quart trimestre ja ve afectat per la pròpia dana.
+[3792.0 → 3798.2] (SPEAKER_61) Estem treballant per reduir-ho. Sabeu vist que així és el primer trimestre, com vostè ha dit,
+[3798.4 → 3801.7] (SPEAKER_61) puja 66 dies, efectivament.
+[3802.0 → 3804.3] (SPEAKER_61) Ahir tenim una afecció important de la dana.
+[3804.4 → 3808.7] (SPEAKER_61) Però tot això ja ho veníem informant-lo des del 2023.
+[3808.9 → 3812.2] (SPEAKER_61) tres. Y sobre todo desde finales de 2023,
+[3812.9 → 3821.7] (SPEAKER_61) las casualidades no existiesen, pero cambios en el gobierno de la Generalitat, demora en los ingresos que tienen que proceder de la propia Generalitat,
+[3821.9 → 3823.5] (SPEAKER_61) pero todo eso tiene unos causes.
+[3823.7 → 3830.0] (SPEAKER_61) O sea, cuando una situación no es porque el mundo cambia, porque esteme la misma política del 2022,
+[3830.2 → 3835.8] (SPEAKER_61) 23 e incluso 21 en la política de incrementar.
+[3835.6 → 3841.1] (SPEAKER_61) Entrar en serveis a la ciutadania i mantindre'ls, trobar relacionat el informe de tesoreria,
+[3841.2 → 3843.9] (SPEAKER_61) l'informe del període medio de pago i la liquidació.
+[3844.2 → 3850.2] (SPEAKER_61) I llavors hi ha un denominador comú i el denominador comú és desens d'ingressos.
+[3850.6 → 3863.2] (SPEAKER_61) Y ahora en día que habrá aún estos mismos motivos, no donar así discursos o hacer algún titular. Pues una de ellas, los motivos, es la demora en el retraso del pago de las obligaciones de la Generalitat en este ayuntamiento.
+[3864.4 → 3870.7] (SPEAKER_61) També és de veres un descens de les ingreses de l'ICIO i de les plusvalies, sobretot en la DANA.
+[3870.8 → 3883.5] (SPEAKER_61) Si vostè s'informarà un poquet més, vorà que n'hi ha en els drets reconeguts nets pendents d'ingressos més 1.700.000 euros de l'impost d'activitats econòmiques d'empreses. Vosaltres què aneu a fer?
+[3883.7 → 3888.2] (SPEAKER_61) Si prou tenen les empreses que tenen que salvar-se i alçar la persiana.
+[3888.6 → 3890.2] (SPEAKER_61) És una situació que es deu.
+[3890.3 → 3893.6] (SPEAKER_61) també. I n'hi ha una altra variable important,
+[3893.7 → 3895.4] (SPEAKER_61) que és el canó del subministrament de l'aula,
+[3895.5 → 3899.7] (SPEAKER_61) eh, que són vora dos milions i mig d'euros que falten per ingressar.
+[3900.7 → 3905.0] (SPEAKER_61) Tot això són qüestions que són de censos d'ingressos i que estan,
+[3905.1 → 3911.0] (SPEAKER_61) estem mitigant i treballant perquè així no ocorrisca, i mentrestant estem treballant i pagant i liquidant.
+[3912.3 → 3915.6] (SPEAKER_61) Vostès a remenar l'ombro, arrimar l'ombro o remar.
+[3915.5 → 3917.2] (SPEAKER_61) Mare a favor, o podrán criticar,
+[3917.2 → 3917.5] (SPEAKER_63) No, no, no.
+[3917.5 → 3926.8] (SPEAKER_61) pero la cuestión es que nosotros continuaremos haciendo políticas de cara a la ciudadanía y siempre en búsqueda del equilibrio presupuestario. Gracias.
+[3927.7 → 3929.3] (SPEAKER_64) Una problemilla sola o una cosa así.
+[3929.3 → 3930.5] (SPEAKER_61) Sí, gracias. Eh
+[3930.5 → 3941.4] (SPEAKER_63) El Partido Popular está dispuesta a tarrimar el hombre, pero los primeros que tienen que comenzar son ustedes. Usted me habla de diputación, pero las facturas extrajudicials, que son aquellas que los seus regidors gasten sin ser presupost,
+[3941.8 → 3953.8] (SPEAKER_63) ises no venen de diputación, ises son de ustedes, y cada pleno estemos pagando extrajudicials. Entonces, es muy fácil tirarle la culpa a un atra, pero gastar de ustedes. ¿Mos puchem els impostos de la basura? A tots.
+[3954.3 → 3964.8] (SPEAKER_64) Per o el servici tampoc està millorant, està empitjorant. Dugam dos anys de legislatura i no n'hi ha pleno de dilluns que no digam lo de la basura el domingo. I sé la resposta.
+[3965.0 → 3967.1] (SPEAKER_64) Hi ha un equipo de desborde, lo estamos mirando.
+[3967.2 → 3969.6] (SPEAKER_64) Si es que no hace falta ni dirli barraza, si es que ya lo saben.
+[3969.6 → 3970.5] (SPEAKER_64) Pero los impuestos,
+[3970.6 → 3971.0] (SPEAKER_64) pacamunt.
+[3971.3 → 3972.0] (SPEAKER_64) Contribución,
+[3972.0 → 3973.0] (SPEAKER_64) pacamunt.
+[3973.2 → 3974.3] (SPEAKER_64) IAE, pacamunt.
+[3974.6 → 3976.4] (SPEAKER_64) Impuesto de construcciones, pacamunt.
+[3976.7 → 3978.5] (SPEAKER_64) Hombre, pero la culpa es diputación.
+[3980.7 → 3982.7] (SPEAKER_61) Ei, el servici tampoc és que millore molt.
+[3983.5 → 3991.5] (SPEAKER_61) Vull dir, vostè volent tirar-li la culpa, perfecte, però les factures estan judicials de qui és la culpa. També serà del PP. Que vostès gasten de més, culpa del PP.
+[3992.6 → 3994.6] (SPEAKER_61) En fin, jo que sé. Vostès de manera arriba del nombre,
+[3995.0 → 4000.3] (SPEAKER_61) però creen que han de predicar en el exemple, seria lo mínim. Has començat a retallar vostès, gràcies.
+[4001.4 → 4003.3] (SPEAKER_64) Última intervención, si vols, minut.
+[4004.3 → 4016.2] (SPEAKER_61) Sí, sí, claro que sí, porque claro, así, si no escolten más la gente pues se dice, uy, este pueblo la presión fiscal es brutal, la presión fiscal de Riba Rocha es la menor del Camp de Túria.
+[4016.4 → 4024.5] (SPEAKER_61) Eso para comenzar. La tasa de basura, y ahora miro a José Luis y que me diga la presión fiscal que tienen Betera,
+[4024.5 → 4030.6] (SPEAKER_61) la tasa de basura es una tasa que ve condicionada a lo que diu Europa.
+[4030.5 → 4034.7] (SPEAKER_61) i tenim tots els municipis d'Espanya que posar-lo en marxa en el 2025.
+[4035.1 → 4040.6] (SPEAKER_61) Sí o si no, Ribarrocha com una illa que té que posar en marxa aquesta taxa.
+[4041.0 → 4043.9] (SPEAKER_61) I des de 1994 així no se pagava.
+[4044.3 → 4053.8] (SPEAKER_61) I ara mateix a Idalt estan atenent a tota la ciutadania de Ribarrocha dia a dia per intentar reduir al màxim aquests rebuig i que siguen el més just possible.
+[4054.2 → 4056.3] (SPEAKER_61) No sé vostè com haguera entregat el tema aquest.
+[4056.6 → 4057.5] (SPEAKER_61) Jo no he dit res de...
+[4057.2 → 4070.8] (SPEAKER_61) A través de la Diputació? No ho sé. Jo estic parlant de la Generalitat Valenciana, en la seua demora de les seues obligacions en este Ajuntament, que me consta que no soles en este Ajuntament, a més ajuntaments, en la seua demora.
+[4071.7 → 4077.3] (SPEAKER_61) No sols en el pago a les obligacions que té en les administracions, en unes altres administracions,
+[4077.4 → 4079.7] (SPEAKER_61) que no sé què vol fer, si ofegar-nos o què,
+[4080.1 → 4084.9] (SPEAKER_61) els ajuntaments, sinó que als proveïdors tarda més de 360 dies en pagar.
+[4085.7 → 4086.1] (SPEAKER_61) Eh?
+[4086.4 → 4095.0] (SPEAKER_61) És a dir, n'hi hauria que veure l'operació que casualment, que les casualitats no existixen, però des del canvi de govern que n'hi ha en la Generalitat, eh, tenim un altre patiment.
+[4095.3 → 4098.9] (SPEAKER_61) I és com, quan i per què, vamos a cobrar de la Generalitat.
+[4099.3 → 4103.6] (SPEAKER_61) I això ho incidiix, clar que sí, en el context del propi Ajuntament, clar que sí.
+[4103.7 → 4110.6] (SPEAKER_61) Però jo no he dit res ni de la basura, la basura la heu fet vostè, de fer vostè votar en... s'extingirà en les...
+[4110.5 → 4117.0] (SPEAKER_61) ...plenos cuantos. Anem a treure ya la licitació de fet, i es ya la licitació para millorar el servici, eh?
+[4117.3 → 4123.9] (SPEAKER_61) Y que el servici siga el de no dotze anys, sino el de ara y de d'así catorze anys. Gràcies.
+[4125.8 → 4129.1] (SPEAKER_64) Semàfor a punts és donar compte, són punts de donar compte,
+[4129.2 → 4138.9] (SPEAKER_64) el punt 11 d'intervenció donar compte de la situació 1428 que aprova la reformulació de la liquidació del pressupost 2024 de Lloces Angels.
+[4140.5 → 4165.4] (SPEAKER_61) I si vos comentat abans que en donar conter i donaven conter el punt 11, que estava la liquidació inicial, però donaven que fèiem una eh una revisió sobre el impost d'activitats econòmiques que s'havien eh eh contabilitzat en el 2025, a principis de 2025, quan realment s'havia de comptabilitzar eh el dia trenta de desembre del 2024.
+[4165.6 → 4169.6] (SPEAKER_61) Entonces se ha reformulado y a lo que dice, no me apuntes del del material.
+[4170.1 → 4170.3] (SPEAKER_61) Gracias.
+[4171.4 → 4172.5] (SPEAKER_64) Alguna qüestió d'este punt.
+[4175.3 → 4177.2] (SPEAKER_64) Heu de fer punts d'intervenció i
+[4178.6 → 4184.8] (SPEAKER_64) Jo hauria comentat un poc per la no sé He no haureu de paraula? No.
+[4186.6 → 4189.1] (SPEAKER_64) No, desatres des secretària.
+[4190.8 → 4192.0] (SPEAKER_65) ¿Por qué ha pensado también en cantar?
+[4192.1 → 4193.9] (SPEAKER_64) Acaba expu... y más yo
+[4193.9 → 4194.0] (SPEAKER_65) Intervención.
+[4194.0 → 4198.3] (SPEAKER_64) se lo que he dicho, acaba en expuente tesorería y de intervención. Y a lo que ve,
+[4198.6 → 4200.7] (SPEAKER_64) después es de modificación de esas áreas de gestión política.
+[4201.6 → 4202.0] (SPEAKER_64) Per tant,
+[4202.0 → 4206.9] (SPEAKER_64) volia remarcar-ho perquè és important el que estem parlant d'es comptes d'Ajuntament.
+[4207.1 → 4210.3] (SPEAKER_64) I jo crec que en el discurs del Partit Popular,
+[4210.3 → 4213.6] (SPEAKER_64) que jo l'entenc perquè està a l'oposició, descatastrofista, i nosaltres,
+[4213.7 → 4214.1] (SPEAKER_64) bé,
+[4214.2 → 4218.4] (SPEAKER_64) tenim un discurs moderat, sabem que tenim problemes, però que jo volia,
+[4218.4 → 4227.8] (SPEAKER_64) almenys citar dos o tres coses importants. Quan se parla de 80 milions, 80 llargs milions d'increment del patrimoni del 15 al 2000.
+[4228.0 → 4240.5] (SPEAKER_64) 25 significa que s'han pagat, lògicament, com el PP paga deutes del PSOE, però que a menys que metes el patrimoni i això significa que les paretotes mos ha costat 4 milions i mig.
+[4241.2 → 4251.9] (SPEAKER_64) I que han tingut que pagar-ho, liquidar-lo, que tots aquests barrancs han estat en dos milions i mig que han tingut obligadament que pagar i liquidar, que han tingut que pagar el camp de futbol que es feia en l'any 97-98,
+[4252.3 → 4259.3] (SPEAKER_64) tot això està ben xerrat, que avui acabem aquesta setmana que hem de pagar l'últim trosset, i això hi ha que pagar-ho, i tots aquests deutes que nosaltres els assumim.
+[4259.7 → 4263.2] (SPEAKER_64) Perquè quan uno entra a governar, asumís, relata i no critiquem.
+[4263.4 → 4264.2] (SPEAKER_64) Bueno, o sí,
+[4264.3 → 4269.6] (SPEAKER_64) perquè la política urbanística té defenses substancials o el barranc de recuperar la família del Soriano.
+[4269.8 → 4271.5] (SPEAKER_64) Més de mig milió, gairebé un milió d'euros,
+[4271.6 → 4272.5] (SPEAKER_64) un millor i pico d'euros.
+[4272.7 → 4278.0] (SPEAKER_64) I així no és capitalitzat el nostre xuntament, perquè aquí és que 10 milions d'euros.
+[4278.6 → 4281.3] (SPEAKER_64) de capital que tenien, possiblement per altres coses,
+[4281.5 → 4292.1] (SPEAKER_64) i per obligació que no havien complit altres governs, doncs significa que han descapitalitzat en part lo que ara poden tindre, com bé diu José Ángel, per a invertir altres coses.
+[4292.3 → 4293.0] (SPEAKER_64) Això és la primera part.
+[4293.4 → 4300.9] (SPEAKER_64) Però bueno, al final tenim més patrimoni de l'Ajuntament. Escolten, i dir pel primer govern que també és partícip del govern de l'Ateneu.
+[4301.3 → 4307.5] (SPEAKER_64) incrementar 80 y pico millones de euros y que la gente esté utilizando ya y se observe compréis amplias botellas
+[4308.3 → 4311.3] (SPEAKER_64) Que s'està utilitzant, però s'han gastat 4 milions, 1,5,
+[4311.6 → 4317.8] (SPEAKER_64) 1,5, però això s'ha pagat i s'ha hagut de... o la serrera que ens ha costat 1,5,
+[4318.1 → 4318.3] (SPEAKER_64) crec,
+[4318.4 → 4329.5] (SPEAKER_64) 1,5 i això s'ha gastat i bé que es gasta, i tot això són aportacions no de futur, sinó que la gent ja està gaudint, o la Casa dels Serres que té 2.000 metres de pati, sense construir,
+[4329.7 → 4333.7] (SPEAKER_64) i que si no l'haveran comprat, mostrarem demà una expropiació segurament rogada.
+[4333.8 → 4358.3] (SPEAKER_64) de tres o quatre mil euros segons sols de pati o les dos cases que hem comprat al costat de la plaça de la Torre conjuntament on està la Torre que també la compraren per acord del propietari que són tres vivendes una ja utilitzada i dos eren un museu etnològic i el museu faller i totes aquestes compres com vull amanar que comprem la casa que hem comprat a l'avinguda de la Pau que serà per a sis veïns nous,
+[4358.4 → 4359.9] (SPEAKER_64) set veïns o cinc o quatre o tres
+[4359.8 → 4359.9] (SPEAKER_64) tres,
+[4360.0 → 4368.8] (SPEAKER_64) discapacitat, y es una casa tutelada, pues es una inversión importantísima. Y a Xinar y faria una arrestrada de inversiones que ha fet més rica el nostre poble,
+[4369.3 → 4371.5] (SPEAKER_64) que mos ha descapitalitzat en part,
+[4371.6 → 4372.1] (SPEAKER_64) es veritat,
+[4372.2 → 4373.8] (SPEAKER_64) pero que nosaltres ho tenim claríssim.
+[4374.1 → 4376.3] (SPEAKER_64) Nosaltres, la tesoreria ha de poder dir lo que tinga que dir,
+[4376.4 → 4379.2] (SPEAKER_64) que per això està la tesoreria, i nosaltres farem lo que tinguen que fer.
+[4379.4 → 4380.5] (SPEAKER_64) Dos xifres només,
+[4380.6 → 4383.0] (SPEAKER_64) pa que no sigui el PP sol i la Generalitat.
+[4383.6 → 4386.2] (SPEAKER_64) 50.000 milions d'euros deu la Generalitat Valenciana.
+[4386.9 → 4387.9] (SPEAKER_64) 50.000.
+[4388.0 → 4395.4] (SPEAKER_64) I el pressupost que van aprovar avui té un dèficit ja d'inici de 3.000 milions d'euros.
+[4395.8 → 4397.3] (SPEAKER_64) Això per començar, per fer boca.
+[4397.7 → 4399.5] (SPEAKER_64) Però l'Estat, el nostre també,
+[4399.6 → 4400.4] (SPEAKER_64) perquè no quedessin quatre,
+[4400.7 → 4403.2] (SPEAKER_64) en el pressupost prorrogat, que ja és dos anys,
+[4403.4 → 4406.4] (SPEAKER_64) i estem en un 110% del PIB de deuda.
+[4407.6 → 4411.0] (SPEAKER_64) Entonces, ¿qué pasa? Que los médicos de la población somos la administración local.
+[4411.3 → 4412.8] (SPEAKER_64) Y nosotros, ¿por qué debemos,
+[4412.8 → 4415.0] (SPEAKER_64) con una capacidad de 1.400 empresas,
+[4415.3 → 4423.8] (SPEAKER_64) 20.000 vecinos y una capacidad de gestión tremenda de ingresos, tenemos que estar al gaos porque Montoro nos puso la estabilidad presupuestaria?
+[4424.0 → 4425.1] (SPEAKER_64) Que la interventora se ha ido,
+[4425.2 → 4426.2] (SPEAKER_64) pero ojalá se hubiera quedado.
+[4427.0 → 4434.9] (SPEAKER_64) Porque Montoro fue el que nos ahogó a todos los ayuntamientos, generando 30.000 millones de euros de nuestros bolsillos para que se financiara el Estado.
+[4435.1 → 4440.9] (SPEAKER_64) Eso lo hizo Montoro y todavía mi partido tampoco ha conseguido la empresa de IVA y esa es la verdad.
+[4441.5 → 4444.3] (SPEAKER_64) I i què passa? Que tenim que arreglar moltes aceres,
+[4444.4 → 4450.7] (SPEAKER_64) tenim que fer molt de pla renove perquè heu de fer-lo, i a nosaltres ens ofeguen, no s'ofeguen. No obstant, bé,
+[4450.7 → 4456.5] (SPEAKER_64) doncs que ens paguen quan toca, perquè els PIES amb tubers d'Isava són 2 milions cada any el que han perdut.
+[4456.8 → 4458.4] (SPEAKER_64) O sigui, ja s'han menjat 4 milions, aquesta,
+[4458.9 → 4459.6] (SPEAKER_64) al coll.
+[4459.9 → 4461.6] (SPEAKER_64) Detinen-los per poder financiar obres,
+[4461.7 → 4463.9] (SPEAKER_64) però a la ciutat no tenen-los, 1. 2,
+[4464.0 → 4468.5] (SPEAKER_64) els 5 milions de la Generalitat Valenciana, perquè hem de ser bons 2 milions i mig a un ajuntament de la...
+[4468.2 → 4475.5] (SPEAKER_64) Han de la gana, que sabien que tenen que pagar, i priorisen i que paguen els ajuntaments, que entre diners per a poder pagar el tema de les empreses.
+[4475.8 → 4479.0] (SPEAKER_64) Jo vull que ara que haurem vingut l'altre dia a la reunió dels empresaris,
+[4479.3 → 4482.1] (SPEAKER_64) com vols felicitar-los, jo no vull treure el pit més del que toca.
+[4482.7 → 4483.9] (SPEAKER_64) Però com deuen de tots,
+[4484.0 → 4487.3] (SPEAKER_64) felicitar-los a l'ajuntament de Rebracha com a exemple de treball a la gana.
+[4488.1 → 4489.6] (SPEAKER_64) Escolta, equivocar-se, s'equivocarem.
+[4490.7 → 4497.4] (SPEAKER_64) Però tots estan fent, i sé factos que es paguen estat judicials, és perquè s'ha fet un cervell, perquè s'ha dut el catering, perquè s'ha fet l'obra,
+[4497.6 → 4503.6] (SPEAKER_64) perquè s'ha fet la certificació i perquè no han tingut prou capacitat i liquides ràpida de gestió per a pagar,
+[4503.7 → 4504.9] (SPEAKER_64) però l'obra està feta,
+[4505.2 → 4509.6] (SPEAKER_64) no se l'han gastat en premsa ni en lios, m'enteneu a dir,
+[4509.7 → 4510.7] (SPEAKER_64) en soufflé,
+[4510.8 → 4512.8] (SPEAKER_64) que hauria sigut el més difícil, s'han gastat on toca.
+[4513.4 → 4518.2] (SPEAKER_64) Jo de veritat entenc que la majoria tenen aquests números,
+[4518.4 → 4525.9] (SPEAKER_64) clar que sí, però jo simplement des diria que criden a Peyporta, el PP de Peyporta o a Vox,
+[4526.0 → 4527.4] (SPEAKER_64) criden a Catarrocha,
+[4527.5 → 4528.8] (SPEAKER_64) criden a Picanha,
+[4528.9 → 4532.8] (SPEAKER_64) criden al Dalla i que es diguin en quina situació estan aquests ajuntaments.
+[4533.4 → 4535.0] (SPEAKER_64) Peyporta que si no podia pagar,
+[4535.1 → 4537.5] (SPEAKER_64) això no és curar-se, però és una realitat.
+[4538.2 → 4552.6] (SPEAKER_64) Que no se podían pagar líneas nóminas. Y nosotros, pues con mucha templanza, tenemos una presión fiscal moderada. Y pero el último acabar en el tema de la basura, que no es un impuesto, es una tasa y es una directiva europea.
+[4552.8 → 4554.4] (SPEAKER_64) Pero la tasa esa,
+[4554.5 → 4555.7] (SPEAKER_64) que ahora lo que han hecho,
+[4555.7 → 4559.0] (SPEAKER_64) lo que digo Europa es que se ajuste realmente al gasto.
+[4559.5 → 4566.9] (SPEAKER_64) Però la lliana ja està pagat des de fa 20 anys i Girià i Orguilla i Quart i nosaltres hem estat 21,
+[4567.1 → 4567.3] (SPEAKER_64) bé,
+[4567.4 → 4568.4] (SPEAKER_64) del 94 ara,
+[4568.5 → 4575.4] (SPEAKER_64) 21 anys sense pagar o 31 anys, perdó, sense ahorrament i la taxa. I això és la realitat.
+[4575.8 → 4577.2] (SPEAKER_64) La realitat té sentit també,
+[4577.3 → 4579.4] (SPEAKER_64) jo penso que les coses considen.
+[4579.6 → 4583.0] (SPEAKER_64) Ara mos obrim d'Europa, doncs ho farem i ho farem de la manera més justa.
+[4583.4 → 4586.1] (SPEAKER_64) De 80% a 101% per no fer del pàgromet just,
+[4586.3 → 4591.4] (SPEAKER_64) que compararem en tots els pobles que vulguem, perquè tinguin, si fan el que han de fer,
+[4591.5 → 4594.1] (SPEAKER_64) estrellacions del 50% de la taxa.
+[4594.6 → 4596.5] (SPEAKER_64) Si fan la formació, si fan el que tenen que fer.
+[4596.7 → 4597.8] (SPEAKER_64) I precisament cal fer cap.
+[4597.9 → 4601.3] (SPEAKER_64) Doncs jo entenc que l'oposició ha de fer les crítiques corresponents,
+[4601.5 → 4605.3] (SPEAKER_64) la fiscalització, però no compartís el macroescenari.
+[4605.5 → 4607.1] (SPEAKER_64) I el que més és donar,
+[4607.2 → 4608.2] (SPEAKER_64) no parar quan toca,
+[4608.4 → 4611.2] (SPEAKER_64) li pot dir el regidor Salva que no és vostè.
+[4611.3 → 4612.4] (SPEAKER_64) És el que estem així.
+[4613.1 → 4615.6] (SPEAKER_64) Perquè no s'haurà de pagar quan toca i el més possible.
+[4616.1 → 4620.6] (SPEAKER_64) Però tenen una realitat que han de tenir que, quan la tela ha de venir que paguen bé dit per any,
+[4621.0 → 4622.0] (SPEAKER_64) per 240 per any.
+[4622.4 → 4626.6] (SPEAKER_64) Jo no vull mirar-me Àfrica, vull mirar-me Europa i pagar millor.
+[4626.9 → 4634.4] (SPEAKER_64) Però bé, ho intentarem i a veure si passem esta crisi de la dana del 25 i anem al 26.
+[4634.8 → 4636.6] (SPEAKER_64) I per últim acabar un tema molt important.
+[4636.8 → 4637.3] (SPEAKER_64) Joan, Joan,
+[4637.4 → 4645.1] (SPEAKER_64) duguem ingressats ja en contrast de l'Estat ingressats fora 18 milions d'euros.
+[4645.5 → 4647.4] (SPEAKER_64) I de la Generalitat Valenciana, 12.000.
+[4648.3 → 4650.4] (SPEAKER_64) y esa la realidad de las realidades.
+[4650.8 → 4659.4] (SPEAKER_64) 12.000 y 18 millones prácticamente ya en contes entre el plan de empleo, el 14 y medio, el plan de la infancia que está aprobado aquí en breves ingresarán,
+[4659.5 → 4662.1] (SPEAKER_64) pues digo, nos costará mucho, pues sí,
+[4662.2 → 4673.6] (SPEAKER_64) pero yo sí que quería que en este estancamiento de la parte económica pues se han hecho un esfuerzo para que los proveedores cobren lo antes posible, si puede ser sin día, sin día, pero también tienen que entender que estemos...
+[4673.4 → 4678.1] (SPEAKER_64) Una situació molt especial, que tots aquests pobles no l'han patit. No l'ha patit Aliana, ni Gilda,
+[4678.2 → 4678.6] (SPEAKER_64) ni Vetera,
+[4679.4 → 4687.4] (SPEAKER_64) d'acord? I nosaltres l'hem patit malgratament. I ara anem a treure la vaca avant i anem així més forts que mai. I això poquet a poquet ho anirem mirant.
+[4688.1 → 4688.9] (SPEAKER_64) Ara anem al 100.1,
+[4688.9 → 4695.4] (SPEAKER_64) que és el dotes hectàrea, donar compte de la resolució d'alcaldia 13-14 relativa a la modificació dels anys de gestió.
+[4695.6 → 4698.2] (SPEAKER_64) Té la paraula el conseller.
+[4698.7 → 4698.8] (SPEAKER_63) Hi there.
+[4698.8 → 4698.8] (SPEAKER_66) No.
+[4698.8 → 4699.0] (SPEAKER_64) we're
+[4699.7 → 4701.5] (SPEAKER_64) This turns out a new modification, no?
+[4702.1 → 4704.6] (SPEAKER_80) Se, se guapa i brusa que talla tu.
+[4705.1 → 4710.2] (SPEAKER_81) Eh, eh, eh, lo que, lo que ese, no sé,
+[4710.2 → 4712.4] (SPEAKER_82) modificación, una delegación a favor del
+[4712.4 → 4721.4] (SPEAKER_81) regidor José Luis, José Luis Ramos con respondenta a que va a ser el regidor que duda la reconstrucción de que el motivo de la gana.
+[4721.7 → 4727.7] (SPEAKER_80) efectivament el que hem considerat, ho ha fet el municipi, no tots, però hem considerat que centralitzar tot
+[4727.7 → 4736.3] (SPEAKER_80) La reconstrucció té molts importants i delegar les competències de l'alcaldia en el regidor perquè estigui tot focalitzat.
+[4736.5 → 4741.6] (SPEAKER_80) Per tant, a partir d'aquí, tots els regidors que esteu en l'Ajuntament, qualsevol qüestió, informació,
+[4741.7 → 4744.7] (SPEAKER_80) dubte que tingueu, per ser un tema molt delicat i molt important,
+[4745.1 → 4753.6] (SPEAKER_80) a través de José Luis i Estagnis estem creant una àrea específica en la coordinació també d'Estagnis, de secretaria, en l'actualitat tots els empleats.
+[4753.7 → 4766.9] (SPEAKER_80) que tenemos responsabilidades técnicas pero os traemos desde este paquete de inversiones que es muy importante y de contratos adelante. También colabora Teresa desde el área de urbanismo y la responsabilidad máxima es de José.
+[4767.4 → 4769.2] (SPEAKER_80) ¿Alguna cuestión hasta aquí en este punto?
+[4769.3 → 4772.0] (SPEAKER_80) Donar conter, no? Pues pasemos a pres y preguntes.
+[4772.3 → 4772.7] (SPEAKER_83) No, no.
+[4772.7 → 4773.9] (SPEAKER_80) La resolución, perdoneu.
+[4774.5 → 4777.4] (SPEAKER_80) de resolucions, segur que hi ha resolucions vol fer algú.
+[4777.9 → 4782.4] (SPEAKER_80) Alcem a pregs i preguntes en prepaquets, pregs i preguntes de Partido Popular,
+[4786.6 → 4792.3] (SPEAKER_80) pregs i preguntes de Vox, pregs i preguntes de José Manuel i pregs i preguntes de... bé, no?
+[4793.1 → 4797.4] (SPEAKER_80) Es veu que és emission, però... bé, no, doncs alguna qüestió de públic, alguna qüestió de públic?
+[4798.3 → 4799.2] (SPEAKER_80) Doncs alcem el ple.
+[4802.5 → 4804.5] (SPEAKER_80) No te pierdas. No te pierdas.
