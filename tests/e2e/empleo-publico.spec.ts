@@ -18,7 +18,7 @@ test.describe('Empleo público (/empleo-publico)', () => {
 
   // La lectura vecinal: cómo se entra, con las palabras de los títulos
   // definidas, y los procesos bajo un título por tipo.
-  test('«¿Cómo se entra…?» define las cuatro palabras, y la lista va por tipos', async ({
+  test('«¿Cómo se entra…?» define las cinco palabras, y la lista va por tipos', async ({
     page,
   }) => {
     const { procesos } = JSON.parse(readFileSync('public/data/procesos-selectivos.json', 'utf8'))
@@ -33,6 +33,7 @@ test.describe('Empleo público (/empleo-publico)', () => {
       'Concurso',
       'Bolsa de trabajo',
       'Estabilización',
+      'Oferta de empleo público (OEP)',
     ])
     for (const dd of await como.locator('dd').all()) {
       expect((await dd.innerText()).length).toBeGreaterThan(40)
