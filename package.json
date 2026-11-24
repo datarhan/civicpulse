@@ -285,7 +285,8 @@
     "scrape:deuda-viva": "npx tsx scripts/scrape-deuda-viva.ts",
     "check:area-fit": "npx tsx scripts/check-area-fit.ts",
     "check:publicado": "npx tsx scripts/check-publicado.ts",
-    "build:prompt-log": "npx tsx scripts/build-prompt-log.ts"
+    "build:prompt-log": "npx tsx scripts/build-prompt-log.ts",
+    "revalidar:mapa": "npx tsx scripts/revalidar-mapa-hablantes.ts"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

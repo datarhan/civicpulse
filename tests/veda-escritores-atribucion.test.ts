@@ -43,6 +43,9 @@ const CON_VEDA = [
   // Desde el 2026-11-23 se niega a nombrar a un orador en veda; promover un
   // hallazgo de grupo sigue siendo una decisión del curador.
   'scripts/promote-claim.ts',
+  // Sólo retira filas del mapa, pero la veda congela TODO camino automático
+  // que mueva una atribución: en veda hace el ensayo y no escribe.
+  'scripts/revalidar-mapa-hablantes.ts',
 ]
 
 /** Nombran la atribución y escriben algo, pero no la deciden. Cada uno, con el porqué. */

@@ -16462,38 +16462,6 @@
       "weak": false
     },
     {
-      "label": "c07/SPEAKER_04",
-      "bloc": "VOX",
-      "slug": "jose-luis-fernandez-santamaria",
-      "heardAs": null,
-      "evidence": [
-        {
-          "spokenBy": "c07/SPEAKER_00",
-          "at": 4406.2,
-          "quote": "Vox?",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": true,
-      "weak": false
-    },
-    {
-      "label": "c07/SPEAKER_05",
-      "bloc": "Compromís",
-      "slug": "rafael-folgado-navarro",
-      "heardAs": null,
-      "evidence": [
-        {
-          "spokenBy": "c07/SPEAKER_00",
-          "at": 4408.5,
-          "quote": "Compromís?",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": true,
-      "weak": false
-    },
-    {
       "label": "c07/SPEAKER_06",
       "bloc": "PSOE",
       "slug": "maria-esther-gomez-laredo",
@@ -17155,6 +17123,16 @@
       "label": "c20/SPEAKER_04",
       "reason": "evidence-outside-transcript",
       "detail": "no segment contains 147.5s"
+    },
+    {
+      "label": "c07/SPEAKER_04",
+      "reason": "roll-call",
+      "detail": "turn-grant at 4406.2s «Vox?» is answered only by «A favor.» — a vote read back"
+    },
+    {
+      "label": "c07/SPEAKER_05",
+      "reason": "roll-call",
+      "detail": "turn-grant at 4408.5s «Compromís?» is answered only by «A favor.» — a vote read back"
     }
   ],
   "stats": {
@@ -17162,17 +17140,26 @@
     "chunksTranscribed": 24,
     "failedChunks": [],
     "labelsSeen": 6,
-    "rowsAccepted": 23,
-    "rowsRejected": 81,
+    "rowsAccepted": 21,
+    "rowsRejected": 83,
     "rejectedBy": {
       "evidence-speaker-mismatch": 34,
       "unresolvable": 24,
       "relation-contradicted": 16,
       "evidence-outside-transcript": 5,
-      "ambiguous": 2
+      "ambiguous": 2,
+      "roll-call": 2
     },
     "attemptedThisRun": 1,
     "apiCalls": 1,
     "coverage": 1
-  }
+  },
+  "revalidaciones": [
+    {
+      "fecha": "2026-11-24",
+      "regla": "respuesta-breve-y-prueba-perdida",
+      "retiradas": 2,
+      "noEvaluadas": 0
+    }
+  ]
 }

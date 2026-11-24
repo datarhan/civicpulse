@@ -4958,22 +4958,6 @@
       "weak": false
     },
     {
-      "label": "c12/SPEAKER_03",
-      "bloc": "EU-Podem",
-      "slug": "jose-manuel-gallardo-martinez",
-      "heardAs": null,
-      "evidence": [
-        {
-          "spokenBy": "c12/SPEAKER_00",
-          "at": 7256.1,
-          "quote": "Eh, Vox? Esquerra Unida Podem?",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": true,
-      "weak": false
-    },
-    {
       "label": "c12/SPEAKER_05",
       "bloc": "PSOE",
       "slug": "jose-angel-hernandez-carrizosa",
@@ -5110,6 +5094,11 @@
       "label": "c14/SPEAKER_02",
       "reason": "relation-contradicted",
       "detail": "turn-grant, but 132.5s is followed by SPEAKER_01"
+    },
+    {
+      "label": "c12/SPEAKER_03",
+      "reason": "roll-call",
+      "detail": "turn-grant at 7256.1s «Eh, Vox? Esquerra Unida Podem?» is answered only by «A favor.» — a vote read back"
     }
   ],
   "stats": {
@@ -5178,16 +5167,25 @@
       }
     ],
     "labelsSeen": 16,
-    "rowsAccepted": 8,
-    "rowsRejected": 24,
+    "rowsAccepted": 7,
+    "rowsRejected": 25,
     "rejectedBy": {
       "relation-contradicted": 7,
       "unresolvable": 13,
       "ambiguous": 3,
-      "evidence-speaker-mismatch": 1
+      "evidence-speaker-mismatch": 1,
+      "roll-call": 1
     },
     "attemptedThisRun": 5,
     "apiCalls": 7,
     "coverage": 0.5849136233188904
-  }
+  },
+  "revalidaciones": [
+    {
+      "fecha": "2026-11-24",
+      "regla": "respuesta-breve-y-prueba-perdida",
+      "retiradas": 1,
+      "noEvaluadas": 0
+    }
+  ]
 }
