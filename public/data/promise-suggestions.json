@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-23T15:25:43.737Z",
+  "generatedAt": "2026-11-24T15:24:26.857Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -42,7 +42,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-23T15:25:43.646Z"
+      "generatedAt": "2026-11-24T15:24:26.775Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -61,7 +61,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-23T15:25:43.646Z"
+      "generatedAt": "2026-11-24T15:24:26.775Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -80,7 +80,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-23T15:25:43.646Z"
+      "generatedAt": "2026-11-24T15:24:26.775Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -88,7 +88,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-23T15:25:43.646Z"
+      "generatedAt": "2026-11-24T15:24:26.775Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -96,7 +96,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-23T15:25:43.646Z"
+      "generatedAt": "2026-11-24T15:24:26.775Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -115,7 +115,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-23T15:25:43.646Z"
+      "generatedAt": "2026-11-24T15:24:26.775Z"
     },
     {
       "promiseId": "ac-psoe-1ryndd8",
@@ -136,7 +136,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-23T15:25:43.646Z"
+      "generatedAt": "2026-11-24T15:24:26.775Z"
     },
     {
       "promiseId": "ac-psoe-43brfs",
@@ -153,6 +153,17 @@
             "bono",
             "vuelve",
             "cole"
+          ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQMVNCcl9scmFTR09WeVQ5dllUMmFPOVZUbXpSZGRNZVRScmlBeHl4YTNudWxJOHo0cDhkTnQ4Ml90cDF1TFZndWVXNGRxNElHQ29Cd3NpdEdIYjlOcVIyX3FMaXdGRnIyV241UmF2R3diR0Z3bnVqelVjbk9OZTc3RFR1d2k2T2FQU3RZTDZ3OVpKZXR5SmpfVkJIN285UnA5MkViNjUtOExQZHMta2tQRlAyM1FwdVNSTUdFSHhENnVDZVRmNkhMaG1PaV9sWEx1V0FOSi11UzF1T1Fl0gHiAUFVX3lxTE14SkVwbjBYeWpBVmU2SFFwdEJlVnI1NmFWb0xkVEVjN0ZsZERhdVY5SWp6QWxHU2tnMnB1UEgwR0ZKNXQ0WWtqcTB3cWdwRmlGcXFyeEpILVdWbGwtdmhpXzA3ejlHTm9HT2kxTTBnb2w5STN5QXAyWDBESVpkTWF1NVpkTWh2bVA1WDM1OTJ1RXpRcHVmbkRrdUlDNE5tQ1BYdEpuVU41blZpNDE4MG9Pd2Z3dTk3N2VaRmFZR2ZLWVh5cmhIX282alF3Nml3SkZ2djM3bzJuTTlHMHFMZURlckE?oc=5",
+          "date": "2026-10-21",
+          "quote": "Riba-roja recupera la Ofrena al riu Túria once años después de su última edición: el covid y la dana aplazaron una tradición que vuelve el 8 de noviembre",
+          "kind": "press",
+          "publisher": "Levante-EMV",
+          "matchedKeywords": [
+            "vuelve",
+            "edicion"
           ]
         },
         {
@@ -178,22 +189,11 @@
           ]
         },
         {
-          "url": "https://www.ribarroja.es/es/noticia/lista-definitiva-personas-admitidas-programa-municipal-de-personas-mayores-curso-2026-2027",
-          "date": "2026-09-24",
-          "quote": "Lista definitiva personas admitidas Programa Municipal de Personas Mayores curso 2026-2027",
+          "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNYWV1M3FmdUZiYWpKNk1tR3Rva3pNcEZVdkZvRlRBa3h6OHVyLW9QM2VsdjM2c28yZTM2bkJQYXRjRGRZWVpjcTJaaC0wNDY4U0JYUWZPcDBCYW1wYm1halVYNHNEUHhVX1NoWlZ0dnVEamlGREZLU3hOVmFCU0YyNlJoWmVLY2lmVWJ1MFc1X1RFZkkwaXdNS21wOVNIcFlBci0wTTd1YnJKbkpubDhTNDRKblVtaGNYeTVBcnNROWpiMTVTQmVBQ2tjVEhWN290X0HSAdcBQVVfeXFMUE5vQjdSdXhta285NUVvUWswZWM2akM0MGJnWElzVUxGUnpSd1hrTlZhMFpoQnVpM2lCS09jNG9xQzFWRThGQkNnaHdmV2dVSDNmcHV1bWJrNXR3dnZkZ092ZmdPNlhYa0l4OE9Nb0hpX2xaVk1NY25rU05sYW9qVDVyOFpOZnJpWlZ1SGREOWpIbVRjX1hMelpGYmdiYzNsWkpNRDlrYjZpcDYtdUpVTjVYc09TN0JiTkhJOTZuQ251T3FWU2NsVEE4djJBVy1yS0RhV2hyNjg?oc=5",
+          "date": "2026-10-01",
+          "quote": "Riba-roja destina más de 100.000 euros al Cheque Bebé y ofrece hasta 500 euros por hijo a las familias",
           "kind": "press",
-          "publisher": "Ayuntamiento de Riba-roja de Túria",
-          "matchedKeywords": [
-            "2026",
-            "2027"
-          ]
-        },
-        {
-          "url": "https://www.ribarroja.es/es/noticia/riba-roja-destina-una-partida-de-7.000-euros-en-subvenciones-para-fomentar-la-pr%C3%A1ctica-del-deporte-y-mejorar-el-rendimiento-en-las-competiciones-oficiales",
-          "date": "2026-09-16",
-          "quote": "Riba-roja destina una partida de 7.000 euros en subvenciones para fomentar la práctica del deporte y mejorar el rendimiento en las competiciones oficiales",
-          "kind": "press",
-          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "publisher": "Levante-EMV",
           "matchedKeywords": [
             "euro",
             "destina"
@@ -201,7 +201,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-23T15:25:43.646Z"
+      "generatedAt": "2026-11-24T15:24:26.775Z"
     },
     {
       "promiseId": "ac-psoe-17y448o",
@@ -223,6 +223,21 @@
             "dinamizar",
             "comercio",
             "local"
+          ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNYWV1M3FmdUZiYWpKNk1tR3Rva3pNcEZVdkZvRlRBa3h6OHVyLW9QM2VsdjM2c28yZTM2bkJQYXRjRGRZWVpjcTJaaC0wNDY4U0JYUWZPcDBCYW1wYm1halVYNHNEUHhVX1NoWlZ0dnVEamlGREZLU3hOVmFCU0YyNlJoWmVLY2lmVWJ1MFc1X1RFZkkwaXdNS21wOVNIcFlBci0wTTd1YnJKbkpubDhTNDRKblVtaGNYeTVBcnNROWpiMTVTQmVBQ2tjVEhWN290X0HSAdcBQVVfeXFMUE5vQjdSdXhta285NUVvUWswZWM2akM0MGJnWElzVUxGUnpSd1hrTlZhMFpoQnVpM2lCS09jNG9xQzFWRThGQkNnaHdmV2dVSDNmcHV1bWJrNXR3dnZkZ092ZmdPNlhYa0l4OE9Nb0hpX2xaVk1NY25rU05sYW9qVDVyOFpOZnJpWlZ1SGREOWpIbVRjX1hMelpGYmdiYzNsWkpNRDlrYjZpcDYtdUpVTjVYc09TN0JiTkhJOTZuQ251T3FWU2NsVEE4djJBVy1yS0RhV2hyNjg?oc=5",
+          "date": "2026-10-01",
+          "quote": "Riba-roja destina más de 100.000 euros al Cheque Bebé y ofrece hasta 500 euros por hijo a las familias",
+          "kind": "press",
+          "publisher": "Levante-EMV",
+          "matchedKeywords": [
+            "cheque",
+            "bebe",
+            "hasta",
+            "euro",
+            "destina",
+            "familia"
           ]
         },
         {
@@ -259,13 +274,26 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-23T15:25:43.646Z"
+      "generatedAt": "2026-11-24T15:24:26.775Z"
     },
     {
       "promiseId": "ac-psoe-1bkbwjs",
       "proposedStatus": "documentada",
-      "confidence": 0.287,
+      "confidence": 0.4,
       "reasoning": [
+        {
+          "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxPX0djQmtPeDg3NnNvVFlPZGpUN21OWmJvYW44amw5djJ6d2lPcXJMSjkyZmRQalVmdXRuenFiWndPZ2tCYnd0d05BVDgwT2Vzbi0yZlUydDc2M3NSUHRqTnhBTVlFZkFzcDR1WnA1NWFRbFBtQWhRQnEwWEt4S2JQaXZsRUtueTFTQVh2YVNfNXFKZl9oRklTeGNQX0YzdDZJN1NIbG8zQkFSQWwydWNaM3R3Zjg1V1JDQkxfSFFPZXBtbHRfcURkZDRqQ0JRRnZ0eVNkZFIwQ1loY3p6YURQcXB3bDXSAeoBQVVfeXFMT0ZWS1ZjMVEyalc0bGtoazFvRklDdmM3VXdsckpsWVNTR21qZXJ1S1YyQzRZQjh2cUs0dW5vNlhGdVVTQTU0T3hxc0lfNTZEWkZfSkJJUFJBTURxQmt4YkVsclhVU2NjVXFacEE1blR4cHBzdlc3eTlLOEhXalB3VjZ2MWZRQUplX0JIenAtdFEzV3BoQ3ZESk5UU19IRVhIUmhzQ0tfUFpnT1p5SVJvSjk0cWVWS0NfS0kzNjdPYTEwUXB1YWxGakd4cUlUblVBcXg1MzRCSUQ2QXFvQkdyOVBPcU9scTZPUEln?oc=5",
+          "date": "2026-09-25",
+          "quote": "Riba-roja instalará sensores en sus contenedores para conocer en tiempo real el nivel de llenado",
+          "kind": "press",
+          "publisher": "Levante-EMV",
+          "matchedKeywords": [
+            "contenedor",
+            "tiempo",
+            "real",
+            "llenado"
+          ]
+        },
         {
           "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-impulsa-la-sensorizaci%C3%B3n-de-sus-contenedores-de-residuos-para-avanzar-hacia-una-gesti%C3%B3n-m%C3%A1s-sostenible-del-municipio",
           "date": "2026-09-25",
@@ -276,6 +304,29 @@
             "sensorizacion",
             "contenedor",
             "residuo"
+          ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxOVTRzMU1WeWtleS1VNXF0UzhxX05lZlB3bmo0NkxMek9McWRaRkN0N1AxN21NSUUyMXRRYllpa3UxXzRhdFgyRGttOHpfajA0YnZ6TmJmVnh0S2hLQnV0WFFWbXd2N2tkX0g2enlKVEwySDVMWlp2eWhvMm1pWDhLQ19Yb0E0aGR1RDRCLUxWTXFYRDF5djVJa1puUDJHc0oxV3Z0NE5aUV8wMHV6OG9yX2N1YXRwSDNOZUdlWDZIMmF4aC1CbXlmNFdXWDM1b2VnVWRFWnFTM1dXaTVnSkVnMQ?oc=5",
+          "date": "2026-09-25",
+          "quote": "Riba-roja de Túria impulsa la sensorización de los contenedores de residuos del municipio",
+          "kind": "press",
+          "publisher": "Valencia Plaza",
+          "matchedKeywords": [
+            "sensorizacion",
+            "contenedor",
+            "residuo"
+          ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMijwJBVV95cUxQdS1KWEd6U3RhYy1KMHdqM0k2SGdrLXp2ejFBWTNTLXdMSDhzMk96OE9tRnhQdTF5QlZQMDI5R1dTbjhnbUQtU1ZNX0k1bkJ1STBYc293ZG0yTkhyVUhfYklobU5EcnZZUVBvMHpjTHRCbzhXQUUxcm5BaTJjalludWsyMEFxd2ZmUWlLRkpKYmJ1UXBONy1hMkNOb04yV0pEQjBQa0Q5NEZnMkFsZUthcUw2eHFXRlR3dVkwWlV4MW93VUVscEl6TWI0SGZtOUp4cDRzbWVrUXN4Q2pMbkZsR0JLSEM0S2RxME9kX01YOTlUX3BPLV9Vc2duLXpTOGhhcGgwZHFsUnF3d2ZPNnNZ0gGjAkFVX3lxTFBobVBRTFgyUXlhWnhJcGMwRVhIMmpjVkxMODVpek9tNEhVeThWSTRBU21DYzVNUjUtazFOV3pzUTc0eDhpUFVWRG1uRVRPQXY1WGhxLUZQZzg5MTJOREFhNUd6a2MzSlZaZEY4MmMwRWt3ekxramUwYk5XaWhTbkdNWUpKSTdsX3R0UndaV0VVTURvdXZLS09sYlVZQTlNdEV2NXpra1Vib1doVC1xc0ZsaE9iVVJodXZSM3RUbzFxR1ZHZ1NfYzViMHlYbnJza0ljV2JXa2pVMmVlMmZoSTRPb2VnNlZoYVlUcWg5M19YS1M2Q3JiYkpRcGVZczdXc0RNbzlWeG5ua2Z3Y1ZUdC1GSGNqeUwxYy1OdlBPTVBmNk93Zw?oc=5",
+          "date": "2026-10-26",
+          "quote": "El proyecto europeo CircSyst impulsa la reutilización de agua industrial en Riba-roja con tecnología inteligente",
+          "kind": "press",
+          "publisher": "Cadena SER",
+          "matchedKeywords": [
+            "proyecto",
+            "europeo"
           ]
         },
         {
@@ -291,7 +342,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-23T15:25:43.646Z"
+      "generatedAt": "2026-11-24T15:24:26.775Z"
     },
     {
       "promiseId": "ac-psoe-1xeq50",
@@ -337,6 +388,17 @@
           ]
         },
         {
+          "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPcjJEMFZZWS1hZzd0Ymxqdi1semVpSTJUY0NFOUdGcnQ0R1hpV2NYamJKTTY4WGVDMFkwSGlzLUpoOHhzZnBfWWtKZ1VwRjlKT0Q2NzJwS1ZRbEtsSUpaaTRlLUEtZFJiSVNJU3hWa2MteHRYakdXTWxtNVdLVGpNX0RsdHZvUDU4Ykx0RTM1cmhFSW5wNU0teC1oOEJkVTVwNzVWdmUwZzRaV3JDU0R1TENxSDVQcHhoeFNMODlIdktyVFF2U0NYN3U1WV9EbTQzOXpfRVBGUlZjb20wSXhmZldmcHJFdw?oc=5",
+          "date": "2026-11-13",
+          "quote": "Riba-roja de Túria felicita al alumnado de la localidad con expedientes académicos de excelencia durante el curso 2025-2026",
+          "kind": "press",
+          "publisher": "elperiodic.com",
+          "matchedKeywords": [
+            "2025",
+            "localidad"
+          ]
+        },
+        {
           "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-aprueba-la-cuenta-general-del-a%C3%B1o-2025-que-certifica-un-super%C3%A1vit-de-4%E2%80%995-millones-de-euros-y-un-remanente-de-3%273-millones-en-el-presupuesto-econ%C3%B3mico",
           "date": "2026-10-13",
           "quote": "Riba-roja de Túria aprueba la cuenta general del año 2025 que certifica un superávit de 4’5 millones de euros y un remanente de 3'3 millones en el presupuesto económico",
@@ -346,21 +408,10 @@
             "euro",
             "2025"
           ]
-        },
-        {
-          "url": "https://www.ribarroja.es/es/noticia/riba-roja-destina-104.605-euros-al-cheque-beb%C3%A9-%2B25-para-apoyar-a-las-familias-y-dinamizar-el-comercio-local",
-          "date": "2026-10-01",
-          "quote": "Riba-roja destina 104.605 euros al Cheque Bebé +25 para apoyar a las familias y dinamizar el comercio local",
-          "kind": "press",
-          "publisher": "Ayuntamiento de Riba-roja de Túria",
-          "matchedKeywords": [
-            "euro",
-            "local"
-          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-23T15:25:43.646Z"
+      "generatedAt": "2026-11-24T15:24:26.775Z"
     },
     {
       "promiseId": "ac-psoe-1kui43c",
@@ -382,7 +433,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-23T15:25:43.646Z"
+      "generatedAt": "2026-11-24T15:24:26.775Z"
     },
     {
       "promiseId": "ac-psoe-1t88ans",
@@ -430,6 +481,17 @@
           ]
         },
         {
+          "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPcjJEMFZZWS1hZzd0Ymxqdi1semVpSTJUY0NFOUdGcnQ0R1hpV2NYamJKTTY4WGVDMFkwSGlzLUpoOHhzZnBfWWtKZ1VwRjlKT0Q2NzJwS1ZRbEtsSUpaaTRlLUEtZFJiSVNJU3hWa2MteHRYakdXTWxtNVdLVGpNX0RsdHZvUDU4Ykx0RTM1cmhFSW5wNU0teC1oOEJkVTVwNzVWdmUwZzRaV3JDU0R1TENxSDVQcHhoeFNMODlIdktyVFF2U0NYN3U1WV9EbTQzOXpfRVBGUlZjb20wSXhmZldmcHJFdw?oc=5",
+          "date": "2026-11-13",
+          "quote": "Riba-roja de Túria felicita al alumnado de la localidad con expedientes académicos de excelencia durante el curso 2025-2026",
+          "kind": "press",
+          "publisher": "elperiodic.com",
+          "matchedKeywords": [
+            "2025",
+            "2026"
+          ]
+        },
+        {
           "url": "https://www.infoturia.com/riba-roja-de-turia/87032-riba-roja-assigna-140-000-euros-als-clubs-i-per-a-financar-les-seues-activitats.html",
           "date": "2026-11-02",
           "quote": "Riba-roja assigna 140.000 euros als clubs i per a finançar les seues activitats",
@@ -442,13 +504,43 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-23T15:25:43.646Z"
+      "generatedAt": "2026-11-24T15:24:26.775Z"
     },
     {
       "promiseId": "ac-psoe-168xzn8",
       "proposedStatus": "documentada",
       "confidence": 0.4,
       "reasoning": [
+        {
+          "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNRkJzOEJZYVpFNXZhaUFHaVQ1MmZ1engyeWJwcmx4aFYyVjc3MS1tckQ4Sng1azJiWk8tbjB6VVh6QzlPdkJFR09qZ016V00zaVFmeWZSS2JEaGFsRy1zd0lRUGpoRWQxLVIyaG1jN0ZMN0p2c2JNZlBsNWlqZGkyQVpiTnUxUU9ma28tbktR?oc=5",
+          "date": "2026-11-09",
+          "quote": "Riba-roja levantará 40 viviendas públicas y priorizará a los vecinos que perdieron su casa en la dana",
+          "kind": "press",
+          "publisher": "Actualidad Valencia",
+          "matchedKeywords": [
+            "vivienda",
+            "publica",
+            "dana",
+            "vecino",
+            "perdieron",
+            "casa"
+          ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOY3JyRWF4YllvU0o0UWEyV05ILVAtMmJDa19DWHZYVmNHV1NNbE14RWJqTjBCM1pKWW04V3pLZHdHNjdRZ3R1VXpKbjAwaHZlS3dMOExDeFljWFIzN0dpYU9BdV9JOUZHWDBwS3NuZHRGNWEwdTk1elJmTXloYUJNM21RX3VFSWlrZ2ZhUVJ4V1NBbEx3WVdIcWNQVGFZVEFQUFg2N3JSbUN5NXVYWFZtN2dwMnNtMmFGN2xF?oc=5",
+          "date": "2026-11-09",
+          "quote": "VPP en Riba-roja: hasta 40 viviendas con prioridad para quienes perdieron su casa en la dana",
+          "kind": "press",
+          "publisher": "El Periódico de Aquí",
+          "matchedKeywords": [
+            "hasta",
+            "vivienda",
+            "prioridad",
+            "dana",
+            "perdieron",
+            "casa"
+          ]
+        },
         {
           "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-construir%C3%A1-un-m%C3%A1ximo-de-40-viviendas-de-protecci%C3%B3n-p%C3%BAblica-y-dar%C3%A1-prioridad-a-los-vecinos-y-las-vecinas-que-perdieron-sus-casas-por-la-dana-de-2024",
           "date": "2026-11-09",
@@ -472,6 +564,22 @@
           ]
         },
         {
+          "url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxPX1kzTngwTlZ4Q2FZVmV0NE9uWVNwR0kzVFNWYU1aaERVNEZVbnRyemFvX0ZSTk45N2k2LVRmWm5yV2lTTTNnaGZXWmFpdml3NjN4NUl4amZtWTA3RFA1OEJpNXlOQVRUR3pMVFdfOUxQRkk2V2lGbkxwY2NGSnpWZnJZRHFIU2JfQV80ak9MWVJzQmlmdUNrTjFxOXBBelZyTVp2SGhCTEVsVURHVFpGQUd1MEM1dHBaLUVoT19aQVdzd1RRMDdRYmVNQVlZZU1IdVlLUU1WQzJ4bUlmcnJfOXIyTGRiR2s?oc=5",
+          "date": "2026-11-09",
+          "quote": "Riba-roja construirá 40 VPP y dará prioridad a los vecinos que perdieron sus casas por la Dana",
+          "kind": "press",
+          "publisher": "Valencia Plaza",
+          "matchedKeywords": [
+            "prioridad",
+            "dana",
+            "construira",
+            "dara",
+            "vecino",
+            "perdieron",
+            "casa"
+          ]
+        },
+        {
           "url": "https://www.infoturia.com/riba-roja-de-turia/87154-riba-roja-construira-40-vpp-amb-prioritat-als-veins-que-van-perdre-la-casa-en-la-dana.html",
           "date": "2026-11-09",
           "quote": "Riba-roja construirà 40 VPP amb prioritat als veïns que van perdre la casa en la dana",
@@ -485,7 +593,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-23T15:25:43.646Z"
+      "generatedAt": "2026-11-24T15:24:26.775Z"
     }
   ],
   "llmEvidence": [],
