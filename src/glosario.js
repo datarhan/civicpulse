@@ -66,6 +66,23 @@ export const GLOSARIO = [
   'pliego',
   // La ley del plazo con que contesta el Ayuntamiento (/quejas).
   'lpacap',
+  // Segunda tanda: las siglas y palabras de la sede que las páginas imprimían
+  // sin decir qué son. RPT, PMS, ROF y PEF van dentro de títulos del orden del
+  // día, que son literales: la sesión las nombra aparte (`PALABRAS_DEL_PLENO`).
+  // La parte informativa la abre el rótulo de cada punto (`AgendaRow`); la OEP,
+  // «¿Cómo se entra?» de /empleo-publico; la dedicación y el ISPA, /cargos. El
+  // BOP y la memoria justificativa salen en encabezados que ya los dicen enteros
+  // o en el cuerpo de un reportaje, y se buscan con Cmd+K.
+  'ispa',
+  'rpt',
+  'bop',
+  'dedicacion',
+  'oep',
+  'pms',
+  'rof',
+  'pef',
+  'parteInformativa',
+  'memoriaJustificativa',
 ]
 
 const MARCA = /\[\[(\w+)\|([^\]]+)\]\]/g

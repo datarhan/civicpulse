@@ -1178,6 +1178,10 @@ export const CATALOGUE = {
     'plenos.palabra.reconocimientoExtrajudicial': 'reconocimiento extrajudicial',
     'plenos.palabra.sinDictaminar': 'sin dictaminar',
     'plenos.palabra.urgencia': 'de urgencia',
+    'plenos.palabra.rpt': 'RPT',
+    'plenos.palabra.pms': 'PMS',
+    'plenos.palabra.rof': 'ROF',
+    'plenos.palabra.pef': 'PEF',
     // El «Resumen» de /plenos/:id: la sesión en palabras llanas, encima de sus cifras.
     'plenoDetail.resumen.titulo': 'La sesión, en breve',
     'plenoDetail.resumen.intro':
@@ -3021,6 +3025,36 @@ export const CATALOGUE = {
     'glosario.lpacap.termino': 'Ley de Procedimiento Administrativo (LPACAP)',
     'glosario.lpacap.def':
       'La Ley 39/2015, que regula cómo tramita una administración lo que le piden. Si ninguna norma dice otro plazo, tiene tres meses para contestar a una solicitud desde que entra en su registro.',
+    'glosario.ispa.termino': 'ISPA',
+    'glosario.ispa.def':
+      'El sistema con el que la Administración del Estado (Información Salarial de Puestos de la Administración) recoge cada año las retribuciones del personal de comunidades autónomas y entidades locales y lo que percibieron los cargos electos locales. De cada cargo publica lo percibido en un año, en una sola cifra que suma sueldo, asistencias y otras cantidades fijas.',
+    'glosario.rpt.termino': 'Relación de puestos de trabajo (RPT)',
+    'glosario.rpt.def':
+      'El documento que enumera cada puesto de trabajo del Ayuntamiento con sus funciones, los requisitos para ocuparlo y sus retribuciones complementarias. Lo aprueba el pleno, y se modifica cuando se crea, se suprime o se cambia un puesto. No es la plantilla, que cuenta las plazas que caben en el presupuesto de cada año.',
+    'glosario.bop.termino': 'Boletín Oficial de la Provincia (BOP)',
+    'glosario.bop.def':
+      'El periódico oficial de la provincia de València, que edita la Diputación. Los ayuntamientos publican en él los anuncios que la ley les obliga a hacer públicos: ordenanzas, presupuestos, convocatorias de empleo, sueldos de los cargos, plazos de alegaciones.',
+    'glosario.dedicacion.termino': 'Dedicación exclusiva o parcial',
+    'glosario.dedicacion.def':
+      'El régimen por el que un concejal o el alcalde cobra un sueldo del Ayuntamiento por dedicarse al cargo, a tiempo completo (exclusiva) o a tiempo parcial, y queda dado de alta en la Seguridad Social. El pleno decide qué cargos la tienen y cuánto cobran. Quien no tiene ninguna de las dos no cobra un sueldo: sólo puede cobrar la cantidad que el pleno fije por cada sesión a la que asiste.',
+    'glosario.oep.termino': 'Oferta de empleo público (OEP)',
+    'glosario.oep.def':
+      'La lista de plazas vacantes que el Ayuntamiento aprueba cada año para cubrirlas con personal nuevo. Se publica en el boletín oficial y obliga a convocar esas plazas.',
+    'glosario.pms.termino': 'Patrimonio municipal del suelo (PMS)',
+    'glosario.pms.def':
+      'Los terrenos, y el dinero que se obtiene de venderlos o explotarlos, que el Ayuntamiento debe guardar aparte del resto de sus bienes. La ley sólo permite gastarlos en fines tasados, sobre todo vivienda protegida y otros usos de interés social que fije la normativa urbanística.',
+    'glosario.rof.termino': 'Reglamento de organización y funcionamiento (ROF)',
+    'glosario.rof.def':
+      'Las reglas de cómo funcionan el pleno, la Junta de Gobierno y los demás órganos del Ayuntamiento: cómo se convoca una sesión, cómo se debate, cómo se vota. Con estas siglas se conoce el reglamento estatal de 1986. Cada ayuntamiento puede aprobar además el suyo propio en pleno, por mayoría absoluta; el estatal se aplica en lo que no regulan ni ese ni la ley valenciana de régimen local.',
+    'glosario.pef.termino': 'Plan económico-financiero (PEF)',
+    'glosario.pef.def':
+      'El plan que la ley exige a una administración cuando sus cuentas no cumplen alguno de tres límites: el objetivo de estabilidad presupuestaria, el de deuda pública o la regla de gasto. Dice con qué medidas volverá a cumplirlos en el año en curso y el siguiente. Es una medida de corrección, no una sanción. En un ayuntamiento lo aprueba el pleno, que después conoce cada año el informe de Intervención sobre cómo se cumple.',
+    'glosario.parteInformativa.termino': 'Parte informativa',
+    'glosario.parteInformativa.def':
+      'La parte del orden del día en la que no se adoptan acuerdos: se da cuenta al pleno de decretos de Alcaldía, informes y datos que la ley obliga a comunicarle. Es una de las vías por las que el pleno controla al gobierno municipal. De lo que se da cuenta no se vota.',
+    'glosario.memoriaJustificativa.termino': 'Memoria justificativa',
+    'glosario.memoriaJustificativa.def':
+      'El documento con que el órgano de contratación explica, al abrir un contrato, por qué lo necesita, qué procedimiento elige y con qué criterios lo adjudicará. Forma parte del expediente y, salvo en los contratos menores, se publica en el perfil del contratante.',
     'glosario.estabilizacion.termino': 'Estabilización',
     'glosario.estabilizacion.def':
       'Procesos extraordinarios de la Ley 20/2021 para convertir en fijas plazas que llevaban años cubiertas por personal temporal. Están abiertos a cualquiera que cumpla los requisitos, pero puntúa mucho la experiencia en ese tipo de plaza. La ley obligaba a convocarlos antes de que acabara 2022 y a terminarlos antes de que acabara 2024.',
@@ -3414,7 +3448,7 @@ export const CATALOGUE = {
     'cargos.enBreve.saltar': 'Saltar a todos los datos ↓',
     'cargos.enBreve.sueldos.pregunta': '¿Cuánto cobran?',
     'cargos.enBreve.sueldos.cifra': '{n} de {total}',
-    'cargos.enBreve.sueldos.cifraNota': 'con sueldo fijado por el pleno',
+    'cargos.enBreve.sueldos.cifraNota': 'con [[dedicacion|sueldo fijado por el pleno]]',
     'cargos.enBreve.sueldos.frase':
       'Cobran entre {minimo} y {maximo} € brutos al año, según el puesto. Los otros {sin} cobran por cada sesión a la que asisten.',
     'cargos.enBreve.sueldos.nota': 'Importes de {anio}, fijados por el pleno el {fecha}.',
@@ -3463,7 +3497,7 @@ export const CATALOGUE = {
     // empresariales, ni el personal eventual, ni las asignaciones a grupos.
     // Llamarlo «coste de la corporación» era la palabra equivocada sobre la
     // cifra correcta, la misma clase de defecto que «crédito» por «gastado».
-    'cargos.ispa.total': 'retribuciones y asistencias de los {n} electos · ISPA {year}',
+    'cargos.ispa.total': 'retribuciones y asistencias de los {n} electos · [[ispa|ISPA]] {year}',
     'cargos.ispa.totalNota':
       'No incluye las cuotas empresariales a la Seguridad Social, el personal eventual ni la asignación a los grupos políticos.',
     // Sólo se pinta si la fila del alcalde trae `antiguedadEuros`, y las tres
@@ -4921,6 +4955,10 @@ export const CATALOGUE = {
     'plenos.palabra.reconocimientoExtrajudicial': 'reconeixement extrajudicial',
     'plenos.palabra.sinDictaminar': 'sense dictaminar',
     'plenos.palabra.urgencia': 'd’urgència',
+    'plenos.palabra.rpt': 'RPT',
+    'plenos.palabra.pms': 'PMS',
+    'plenos.palabra.rof': 'ROF',
+    'plenos.palabra.pef': 'PEF',
     'plenoDetail.resumen.titulo': 'La sessió, en breu',
     'plenoDetail.resumen.intro':
       'El que es va portar al ple i el que hem transcrit de les seues votacions, en paraules planes. Els títols oficials, amb el seu expedient, són a la pestanya «Ordre del dia».',
@@ -6607,6 +6645,36 @@ export const CATALOGUE = {
     'glosario.lpacap.termino': 'Llei de Procediment Administratiu (LPACAP)',
     'glosario.lpacap.def':
       'La Llei 39/2015, que regula com tramita una administració el que li demanen. Si cap norma no diu un altre termini, té tres mesos per a contestar a una sol·licitud des que entra en el seu registre.',
+    'glosario.ispa.termino': 'ISPA',
+    'glosario.ispa.def':
+      'El sistema amb què l’Administració de l’Estat (Información Salarial de Puestos de la Administración) arreplega cada any les retribucions del personal de comunitats autònomes i entitats locals i el que van percebre els càrrecs electes locals. De cada càrrec publica el que es va percebre en un any, en una sola xifra que suma sou, assistències i altres quantitats fixes.',
+    'glosario.rpt.termino': 'Relació de llocs de treball (RPT)',
+    'glosario.rpt.def':
+      'El document que enumera cada lloc de treball de l’Ajuntament amb les seues funcions, els requisits per a ocupar-lo i les seues retribucions complementàries. L’aprova el ple, i es modifica quan es crea, se suprimix o es canvia un lloc. No és la plantilla, que compta les places que caben en el pressupost de cada any.',
+    'glosario.bop.termino': 'Butlletí Oficial de la Província (BOP)',
+    'glosario.bop.def':
+      'El periòdic oficial de la província de València, que edita la Diputació. Els ajuntaments hi publiquen els anuncis que la llei els obliga a fer públics: ordenances, pressupostos, convocatòries d’ocupació, sous dels càrrecs, terminis d’al·legacions.',
+    'glosario.dedicacion.termino': 'Dedicació exclusiva o parcial',
+    'glosario.dedicacion.def':
+      'El règim pel qual un regidor o l’alcalde cobra un sou de l’Ajuntament per dedicar-se al càrrec, a temps complet (exclusiva) o a temps parcial, i queda donat d’alta en la Seguretat Social. El ple decidix quins càrrecs la tenen i quant cobren. Qui no té cap de les dues no cobra un sou: només pot cobrar la quantitat que el ple fixe per cada sessió a què assistix.',
+    'glosario.oep.termino': 'Oferta d’ocupació pública (OEP)',
+    'glosario.oep.def':
+      'La llista de places vacants que l’Ajuntament aprova cada any per a cobrir-les amb personal nou. Es publica en el butlletí oficial i obliga a convocar eixes places.',
+    'glosario.pms.termino': 'Patrimoni municipal del sòl (PMS)',
+    'glosario.pms.def':
+      'Els terrenys, i els diners que s’obtenen de vendre’ls o explotar-los, que l’Ajuntament ha de guardar a banda de la resta dels seus béns. La llei només permet gastar-los en finalitats taxades, sobretot habitatge protegit i altres usos d’interés social que fixe la normativa urbanística.',
+    'glosario.rof.termino': 'Reglament d’organització i funcionament (ROF)',
+    'glosario.rof.def':
+      'Les regles de com funcionen el ple, la Junta de Govern i la resta d’òrgans de l’Ajuntament: com es convoca una sessió, com es debat, com es vota. Amb estes sigles es coneix el reglament estatal de 1986. Cada ajuntament pot aprovar a més el seu propi en ple, per majoria absoluta; l’estatal s’aplica en allò que no regulen ni eixe ni la llei valenciana de règim local.',
+    'glosario.pef.termino': 'Pla economicofinancer (PEF)',
+    'glosario.pef.def':
+      'El pla que la llei exigix a una administració quan els seus comptes no complixen algun de tres límits: l’objectiu d’estabilitat pressupostària, el de deute públic o la regla de despesa. Diu amb quines mesures tornarà a complir-los en l’any en curs i en el següent. És una mesura de correcció, no una sanció. En un ajuntament l’aprova el ple, que després coneix cada any l’informe d’Intervenció sobre com es complix.',
+    'glosario.parteInformativa.termino': 'Part informativa',
+    'glosario.parteInformativa.def':
+      'La part de l’ordre del dia en què no s’adopten acords: es dona compte al ple de decrets d’Alcaldia, informes i dades que la llei obliga a comunicar-li. És una de les vies per les quals el ple controla el govern municipal. Allò de què es dona compte no es vota.',
+    'glosario.memoriaJustificativa.termino': 'Memòria justificativa',
+    'glosario.memoriaJustificativa.def':
+      'El document amb què l’òrgan de contractació explica, en obrir un contracte, per què el necessita, quin procediment tria i amb quins criteris l’adjudicarà. Forma part de l’expedient i, excepte en els contractes menors, es publica en el perfil de contractant.',
     'glosario.estabilizacion.termino': 'Estabilització',
     'glosario.estabilizacion.def':
       'Processos extraordinaris de la Llei 20/2021 per a convertir en fixes places que feia anys que ocupava personal temporal. Estan oberts a qualsevol que complisca els requisits, però puntua molt l’experiència en eixe tipus de plaça. La llei obligava a convocar-los abans que acabara el 2022 i a acabar-los abans que acabara el 2024.',
@@ -6965,7 +7033,7 @@ export const CATALOGUE = {
     'cargos.enBreve.saltar': 'Botar a totes les dades ↓',
     'cargos.enBreve.sueldos.pregunta': 'Quant cobren?',
     'cargos.enBreve.sueldos.cifra': '{n} de {total}',
-    'cargos.enBreve.sueldos.cifraNota': 'amb sou fixat pel ple',
+    'cargos.enBreve.sueldos.cifraNota': 'amb [[dedicacion|sou fixat pel ple]]',
     'cargos.enBreve.sueldos.frase':
       'Cobren entre {minimo} i {maximo} € bruts a l’any, segons el lloc. Els altres {sin} cobren per cada sessió a què assistixen.',
     'cargos.enBreve.sueldos.nota': 'Imports de {anio}, fixats pel ple el {fecha}.',
@@ -7004,7 +7072,7 @@ export const CATALOGUE = {
     'cargos.bajas.title': 'Ja no formen part de la corporació',
     'cargos.bajas.note':
       'Es conserven amb la data de cessament i l’acta que la recull. Res en present —retribució, àrees, queixes, encaix— es pinta sobre qui ja no ocupa l’escó.',
-    'cargos.ispa.total': 'retribucions i assistències dels {n} electes · ISPA {year}',
+    'cargos.ispa.total': 'retribucions i assistències dels {n} electes · [[ispa|ISPA]] {year}',
     'cargos.ispa.totalNota':
       'No inclou les quotes empresarials a la Seguretat Social, el personal eventual ni l’assignació als grups polítics.',
     'cargos.ispa.trienios':

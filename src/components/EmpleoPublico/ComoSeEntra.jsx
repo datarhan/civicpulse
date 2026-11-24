@@ -6,6 +6,8 @@ import { TERMINOS_DE_ACCESO } from '../../lib/empleo-publico'
  * «¿Cómo se entra a trabajar en el Ayuntamiento?» (auditoría de las dos
  * lecturas, §21). La lista de abajo titula sus procesos con «oposición»,
  * «concurso», «bolsa» o «estabilización», y la página no explicaba ninguna.
+ * La quinta, la oferta de empleo público, no es una vía de entrada: dice de
+ * dónde sale una plaza («OEP 2020» en un título).
  *
  * Las definiciones son las del glosario (`useGlosario`), no frases de esta
  * página: las mismas que da Cmd+K al buscar la palabra, para que las dos no

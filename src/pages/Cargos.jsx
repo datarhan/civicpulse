@@ -1,3 +1,4 @@
+import { useId, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Card, CorreoPartible, ExtLink, PartyTag, SectionHead } from '../components/Primitives'
 import DataAsOf from '../components/DataAsOf'
@@ -33,6 +34,7 @@ import EnBreveCargos from '../components/Cargos/EnBreveCargos'
 import ListaDeCargos from '../components/Cargos/ListaDeCargos'
 import Retrato from '../components/Cargos/Retrato'
 import DivisorLecturas from '../components/DivisorLecturas'
+import { DefinicionGlosario, FraseConTerminos } from '../components/Termino'
 import { IndiceExperta } from '../components/IndiceSecciones'
 import { SeccionExperta } from '../components/Lecturas'
 import { conAreasDelegadas, sinAreasDelegadas } from '../scraper/en-breve-cargos'
@@ -509,12 +511,17 @@ function AlcaldeSerie({ data }) {
  * A panel that prints its own all-clear is the `r?.findings ?? []` defect in
  * another costume.
  */
-function RetribucionesPanel() {
+export function RetribucionesPanel() {
   const t = useT()
   const { locale } = useLocale()
   const { data } = useIspa()
   const { data: dedic } = useDedicaciones()
   const { data: padron } = useOfficials()
+  // El término del glosario de la línea del total («ISPA»). Su definición se
+  // pinta debajo de la cabecera y no dentro: dentro de la columna flexible, al
+  // abrirse empujaba el total a otra línea.
+  const [termino, setTermino] = useState(null)
+  const idDefinicion = `${useId()}-def`
   const latest = ispaLatest(data)
   const split = retribucionesSplit(data)
   const fijado = fijadoTramos(dedic)
@@ -574,12 +581,26 @@ function RetribucionesPanel() {
               La palabra equivocada sobre la cifra correcta ya se corrigió una
               vez en esta misma página. */}
           <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}>
-            {t('cargos.ispa.total')
-              .replace('{n}', perceptoresIspa(split))
-              .replace('{year}', latest.year)}
+            <FraseConTerminos
+              frase={rellena(t('cargos.ispa.total'), {
+                n: perceptoresIspa(split),
+                year: latest.year,
+              })}
+              abierto={termino}
+              onAbrir={setTermino}
+              idPanel={idDefinicion}
+            />
           </div>
         </div>
       </div>
+      {termino && (
+        <DefinicionGlosario
+          clave={termino}
+          id={idDefinicion}
+          onCerrar={() => setTermino(null)}
+          className="cp-definicion-suelta"
+        />
+      )}
 
       {!split.cuadra && (
         <div

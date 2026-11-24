@@ -103,7 +103,19 @@ export function TarjetaEnBreve({
           >
             {cifra}
           </span>
-          {cifraNota && <span className="cp-en-breve-cifra-nota"> · {cifraNota}</span>}
+          {/* La nota de la cifra también abre términos: «con sueldo fijado por el
+              pleno» es la dedicación, y la palabra no sale en la tarjeta. */}
+          {cifraNota && (
+            <span className="cp-en-breve-cifra-nota">
+              {' · '}
+              <FraseConTerminos
+                frase={cifraNota}
+                abierto={abierto}
+                onAbrir={abreArriba}
+                idPanel={idPanel}
+              />
+            </span>
+          )}
         </div>
       )}
       {figura}

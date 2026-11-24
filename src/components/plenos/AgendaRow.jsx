@@ -1,4 +1,6 @@
+import { useId, useState } from 'react'
 import { Pill } from '../Primitives'
+import { DefinicionGlosario, FraseConTerminos } from '../Termino'
 import { SECTION_TONE } from '../../hooks/usePlenoAgendas'
 import { DEPARTMENT_LABEL } from '../../scraper/departments'
 import { rotuloDe, useLocale } from '../../i18n'
@@ -22,9 +24,24 @@ function deptChip(item, locale) {
   return item.department || null
 }
 
+/**
+ * El rótulo de la parte del punto abre su entrada del glosario: «Resolutiva» e
+ * «Informativa» son palabras de la sede que un vecino no sabe leer (auditoría
+ * de las dos lecturas). Sólo esas dos: «Ruegos y preguntas» y «Apertura» se
+ * entienden, y una parte que el lector no conoce no lleva definición inventada.
+ */
+const TERMINO_DE_LA_PARTE = {
+  resolutiva: 'parteResolutiva',
+  informativa: 'parteInformativa',
+}
+
 export function AgendaRow({ item }) {
   const { locale, t } = useLocale()
+  const [abierto, setAbierto] = useState(null)
+  const idPanel = `${useId()}-def`
   const area = deptChip(item, locale)
+  const rotulo = rotuloDe(t, `pleno.seccion.${item.section}`, item.section)
+  const termino = TERMINO_DE_LA_PARTE[item.section]
   return (
     <div
       style={{
@@ -61,10 +78,29 @@ export function AgendaRow({ item }) {
             </span>
           )}
           <Pill tone={SECTION_TONE[item.section] || 'ghost'} size="xs">
-            {rotuloDe(t, `pleno.seccion.${item.section}`, item.section)}
+            {termino ? (
+              <span className="cp-parte-del-punto">
+                <FraseConTerminos
+                  frase={`[[${termino}|${rotulo}]]`}
+                  abierto={abierto}
+                  onAbrir={setAbierto}
+                  idPanel={idPanel}
+                />
+              </span>
+            ) : (
+              rotulo
+            )}
           </Pill>
         </div>
         <div style={{ marginTop: 2, color: 'var(--ink)', lineHeight: 1.4 }}>{item.title}</div>
+        {abierto && (
+          <DefinicionGlosario
+            clave={abierto}
+            id={idPanel}
+            onCerrar={() => setAbierto(null)}
+            className="cp-definicion-suelta"
+          />
+        )}
       </div>
     </div>
   )

@@ -54,6 +54,10 @@ const PALABRA = {
   reconocimientoExtrajudicial: 'plenos.palabra.reconocimientoExtrajudicial',
   sinDictaminar: 'plenos.palabra.sinDictaminar',
   urgencia: 'plenos.palabra.urgencia',
+  rpt: 'plenos.palabra.rpt',
+  pms: 'plenos.palabra.pms',
+  rof: 'plenos.palabra.rof',
+  pef: 'plenos.palabra.pef',
 }
 
 /**

@@ -1706,6 +1706,18 @@ body.cp-kiosk .cp-live-container {
   border-radius: var(--r-input);
   background: var(--civic-soft);
 }
+/* Una definición del glosario fuera de una tarjeta de «En breve»: debajo de la
+   línea que la abre (el total de retribuciones de /cargos, un punto del orden
+   del día), separada de ella. Sin margen arriba quedaba pegada al texto. */
+.cp-definicion-suelta {
+  margin: 6px 0 10px;
+}
+/* Dentro de una píldora, el fondo del término abierto puede ser el de la
+   píldora («Resolutiva» es `civic`): el estado abierto se marca con un borde. */
+.cp-parte-del-punto .cp-termino[aria-expanded='true'] {
+  outline: 1.5px solid currentColor;
+  outline-offset: 2px;
+}
 .cp-en-breve-def-rotulo {
   font-size: var(--fs-micro);
   font-weight: 600;

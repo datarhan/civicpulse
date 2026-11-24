@@ -4,7 +4,7 @@
  * lista de títulos y una píldora por tipo, sin decir qué es una bolsa ni una
  * estabilización.
  *
- * Ahora abre con cuatro definiciones, que son entradas del glosario —las mismas
+ * Ahora abre con cinco definiciones, que son entradas del glosario —las mismas
  * que da Cmd+K—, y agrupa los procesos bajo un título por tipo. Lo que se
  * prueba aquí es lo que no se ve en una captura: que ningún proceso se pierde
  * ni se cuenta dos veces al agruparlos, y que el cajón de sastre no se come la
@@ -58,12 +58,14 @@ describe('/empleo-publico · los procesos, por tipo', () => {
 })
 
 describe('/empleo-publico · «¿Cómo se entra a trabajar en el Ayuntamiento?»', () => {
-  it('sus cuatro definiciones son entradas del glosario', () => {
+  it('sus cinco definiciones son entradas del glosario', () => {
     expect(TERMINOS_DE_ACCESO).toEqual([
       'oposicion',
       'concurso',
       'bolsaDeTrabajo',
       'estabilizacion',
+      // De dónde salen las plazas: un título dice «OEP 2020».
+      'oep',
     ])
     for (const clave of TERMINOS_DE_ACCESO) expect(GLOSARIO, clave).toContain(clave)
   })
