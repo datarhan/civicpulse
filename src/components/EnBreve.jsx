@@ -32,6 +32,8 @@ import { DefinicionGlosario, FraseConTerminos } from './Termino'
  *   id: string,
  *   pregunta: string,
  *   cifra?: string,
+ *   cifraClave?: string,
+ *   cifraValor?: number,
  *   cifraNota?: string,
  *   figura?: import('react').ReactNode,
  *   frases: string[],
@@ -49,11 +51,21 @@ import { DefinicionGlosario, FraseConTerminos } from './Termino'
  * de un orden del día— y abre su definición debajo de ella, no encima de la
  * lista. Sin `ancla`, la tarjeta no enlaza: no hay sección que lo demuestre
  * mejor que ella.
+ *
+ * `cifraClave` y `cifraValor` casan la cifra con su detalle: qué cifra es y
+ * cuánto vale sin formato, en `data-cifra` y `data-cifra-valor`. El detalle al
+ * que lleva `ancla` pone los mismos dos atributos en el elemento que la
+ * imprime, y `tests/e2e/lectura-vecinal.spec.ts` comprueba que coinciden. Se
+ * casan por atributo y no por texto porque aquí se imprime `eurosBreves` donde
+ * el detalle imprime `euros`. Sin clave no hay atributo: la medida la cuenta
+ * «sin marcar», no «coincide».
  */
 export function TarjetaEnBreve({
   id,
   pregunta,
   cifra,
+  cifraClave,
+  cifraValor,
   cifraNota,
   figura,
   frases,
@@ -84,7 +96,13 @@ export function TarjetaEnBreve({
       <h3 className="cp-en-breve-pregunta">{pregunta}</h3>
       {cifra && (
         <div>
-          <span className="mono cp-en-breve-cifra">{cifra}</span>
+          <span
+            className="mono cp-en-breve-cifra"
+            data-cifra={cifraClave}
+            data-cifra-valor={cifraClave && cifraValor != null ? String(cifraValor) : undefined}
+          >
+            {cifra}
+          </span>
           {cifraNota && <span className="cp-en-breve-cifra-nota"> · {cifraNota}</span>}
         </div>
       )}
@@ -152,6 +170,7 @@ export default function EnBreve({ titulo, intro, saltarA, saltarTexto, children,
       data-tarjeta=""
       aria-labelledby={idTitulo}
       data-en-breve-bloque=""
+      data-lectura-vecinal=""
     >
       <div className="cp-en-breve-cabeza">
         <div>

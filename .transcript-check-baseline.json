@@ -1,7 +1,7 @@
 {
   "_comment": "Las citas publicadas que no constan en NINGUNA transcripción de su sesión —ni la vigente ni la que sustituyó— y que ya se han mirado. `check:corpus` resta esta lista de la pasada del día para avisar sólo de lo NUEVO. Se versiona en git a propósito: gitignorada, CI arrancaría de cero cada noche, escribiría una línea base limpia y no podría fallar nunca. Aceptar el estado actual: `bash scripts/verify-transcript-corpus.sh --baseline`. ENCOGE SOLA (se retira lo que ha vuelto a ser rastreable) y NUNCA CRECE SOLA: admitir una deriva nueva sigue siendo un acto humano. Las citas que sí constan en la transcripción sustituida no viven aquí — son un estado publicado en public/data/finding-quote-provenance.json y una fila en `npm run triage:quote-reanchor`.",
   "version": "transcript-check-baseline-v2",
-  "definition": "finding-quote-provenance-v2:en-vigente+solo-en-sustituida+sin-determinar",
-  "acceptedAt": "2026-08-10T10:20:44.562Z",
+  "definition": "finding-quote-provenance-v2:en-vigente+solo-en-sustituida+sin-determinar+transcripcion-dudosa",
+  "acceptedAt": "2026-11-24T11:39:40.422Z",
   "drifted": []
 }

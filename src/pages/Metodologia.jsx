@@ -9,6 +9,7 @@ import {
 import { fmtDateLong } from '../lib/formatters'
 import { useT } from '../i18n'
 import { usePlenoFindings } from '../hooks/usePlenoFindings'
+import { usePlenoClaimsManifest } from '../hooks/usePlenoClaims'
 import { useFindingQuoteProvenance } from '../hooks/useFindingQuoteProvenance'
 import { useIndicadores } from '../hooks/useIndicadores'
 import { useOfficials } from '../hooks/useOfficials'
@@ -170,6 +171,24 @@ function useAtipicosDisclosure() {
 function useQuoteProvenanceDisclosure() {
   const { data } = useFindingQuoteProvenance()
   return data?.stats ?? null
+}
+
+/**
+ * Lo mismo para las declaraciones servidas, del manifiesto de los trozos
+ * (`totals.procedenciaDelLiteral`, que el troceador sólo escribe si suma lo
+ * servido). `null` si el manifiesto no la trae: entonces no se dice nada.
+ */
+function useClaimProvenanceDisclosure() {
+  const { data } = usePlenoClaimsManifest()
+  const p = data?.totals?.procedenciaDelLiteral
+  if (!p) return null
+  return {
+    total: data.totals.items,
+    enVigente: p['en-vigente'] ?? 0,
+    soloEnSustituida: p['solo-en-sustituida'] ?? 0,
+    sinDeterminar: p['sin-determinar'] ?? 0,
+    transcripcionDudosa: p['transcripcion-dudosa'] ?? 0,
+  }
 }
 
 /**
@@ -408,6 +427,7 @@ function ContratoEditorial() {
   const authorship = useAuthorshipDisclosure()
   const adjudication = useAdjudicationDisclosure()
   const quoteProvenance = useQuoteProvenanceDisclosure()
+  const claimProvenance = useClaimProvenanceDisclosure()
   const quoteContrast = useQuoteContrastDisclosure()
   const atipicos = useAtipicosDisclosure()
   return (
@@ -1324,7 +1344,15 @@ function ContratoEditorial() {
               frase concreta en que la presidencia lo nombró al dar la palabra —«Compromís, Rafa»—
               con el segundo exacto de la grabación en que se dijo. El nombre y el partido tienen
               que aparecer en esa frase: si el mapa no acredita quién hablaba, la cita se publica{' '}
-              <strong>sin grupo</strong>, y eso es una respuesta, no un fallo.
+              <strong>sin grupo</strong>, y eso es una respuesta, no un fallo. Leer el voto de cada
+              grupo tras una votación («¿Vox? —Abstenció») no es dar la palabra, ni lo es una
+              respuesta breve («Sí», «No, gràcies») tras la que esa voz no sigue hablando: quien
+              contesta así no se identifica, y a veces contesta la propia presidencia. Desde que se
+              añadió esta regla, en noviembre de 2026, ninguna de las dos acredita a nadie. Los
+              mapas guardados antes se revalidaron con ella el 24 de noviembre de 2026, sin volver a
+              escuchar el audio: las filas que se apoyaban en una votación o en una respuesta breve,
+              o cuya prueba ya no constaba en el mapa guardado, pasaron a rechazadas con su motivo.
+              Ninguna declaración publicada se apoyaba en ellas.
             </p>
             <p id="atribucion-firmada" style={{ margin: '8px 0 0', scrollMarginTop: 24 }}>
               <strong>Hay una segunda vía, y sólo esa</strong>: una persona firma con su nombre el
@@ -2164,41 +2192,66 @@ function ContratoEditorial() {
           Las citas entrecomilladas de{' '}
           <a href="/hallazgos" style={{ color: 'var(--civic)' }}>
             /hallazgos
+          </a>
+          ,{' '}
+          <a href="/declaraciones" style={{ color: 'var(--civic)' }}>
+            /declaraciones
           </a>{' '}
-          se toman de la transcripción automática de la sesión, no de un acta ni de un taquígrafo.{' '}
+          y el registro de declaraciones de cada pleno se toman de la transcripción automática de la
+          sesión, no de un acta ni de un taquígrafo.{' '}
           <strong>Varias sesiones se han transcrito una segunda vez</strong> con un motor mejor, y
           la transcripción antigua se conserva. Eso permite hacer una pregunta que antes no se podía
           hacer: ¿las palabras que publicamos siguen apareciendo en el mejor texto que tenemos de
           esa sesión?
         </p>
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          {/* Decía «la transcripción nueva es bastante más extensa […], así que la ausencia no
+              es falta de cobertura». Se medía en bytes, y las marcas de tiempo y de hablante de
+              una transcripción diarizada pesan sin ser nada que se dijera: contadas las
+              palabras, el 23-11-2026 la nueva sólo era claramente más extensa en dos sesiones. */}
           Para muchas, la respuesta es <strong>no</strong>. En la mayoría de esas sesiones la
-          transcripción nueva es bastante más extensa que la que sustituyó, así que la ausencia no
-          es falta de cobertura: es que el primer motor oía mal. Transcribía <em>Riba-roja</em> como
-          «Rivarroch» e inventaba palabras que no existen. El asunto se debatió —los temas aparecen
-          en las dos pasadas—, pero{' '}
+          transcripción nueva no tiene menos palabras que la que sustituyó —se cuentan las palabras
+          dichas, sin las marcas de tiempo y de hablante—, así que lo probable no es un tramo sin
+          cubrir sino que el primer motor oía mal: transcribía <em>Riba-roja</em> como «Rivarroch»,
+          inventaba palabras que no existen y, a menudo, traducía al castellano lo que se dijo en
+          valencià, a veces con las cifras cambiadas. Por eso{' '}
           <strong>
             la literalidad que hay entre comillas puede ser la del transcriptor y no la del concejal
           </strong>
           .
         </p>
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
-          Cada cita afectada lleva su marca al lado, y hay dos porque son dos cosas distintas:
+          Cada cita afectada lleva su marca al lado, y hay tres porque son tres cosas distintas:
         </p>
         <ul style={{ margin: '8px 0 0', paddingLeft: 20, color: 'var(--ink70)' }}>
           <li>
-            <strong>«no consta en la transcripción revisada»</strong> — la cita aparece palabra por
-            palabra en la transcripción anterior y no en la vigente, y la vigente <em>no</em> es más
-            corta. Lo que el lector debe concluir: el intercambio ocurrió, la atribución al grupo se
-            queda como está —la marca habla del texto, no de quién habló—, y el{' '}
-            <em>tenor exacto</em> de las palabras no está confirmado contra el mejor texto
-            disponible.
+            <strong>«no consta en la transcripción revisada»</strong> — la cita aparece en la
+            transcripción anterior y no en la vigente, y la vigente <em>no</em> tiene menos
+            palabras. «Aparece» quiere decir que algún tramo de ocho palabras seguidas de la cita —o
+            la cita entera, si es más corta— está en ese texto, con la puntuación y las mayúsculas
+            igualadas. Lo que el lector debe concluir: la atribución al grupo se queda como está —la
+            marca habla del texto, no de quién habló—, y el <em>tenor exacto</em> de las palabras no
+            está confirmado contra el mejor texto disponible.
           </li>
           <li>
             <strong>«no hemos podido comprobarlo»</strong> — en esa sesión la transcripción vigente
-            es <em>más corta</em> que la que sustituyó, así que la ausencia puede deberse al cambio
-            de motor o a un tramo que la nueva pasada no cubre. No afirmamos ninguna de las dos
-            cosas. Es un estado propio precisamente para no dejarlo caer en el anterior.
+            tiene <em>menos palabras</em> que la que sustituyó, o no hay transcripción vigente, así
+            que la ausencia puede deberse al cambio de motor o a un tramo que la nueva pasada no
+            cubre. No afirmamos ninguna de las dos cosas. Es un estado propio precisamente para no
+            dejarlo caer en el anterior.
+          </li>
+          {/* Desde el 24-11-2026. Ese día la marca la lleva 1r6yy0, que suspendía la comprobación
+              por pasajes en inglés y servía sus declaraciones sin marca; 1237hbp y 1xmr0do, que
+              traían «La Lucha de los Malditos», se habían vuelto a transcribir el 23-11. */}
+          <li>
+            <strong>«transcripción defectuosa»</strong> — la transcripción vigente de esa sesión no
+            supera la comprobación de calidad que pasa toda transcripción nueva antes de publicarse:
+            el texto muestra fallos del motor, como frases repetidas que nadie dijo o pasajes
+            traducidos a otra lengua. Contra ese texto no se puede cotejar nada, así que la cita no
+            se da por situada, aparezca o no en él. Siguen publicadas porque la comprobación sólo
+            detiene las transcripciones nuevas, no las que ya lo estaban; la página del pleno lo
+            advierte encima de la transcripción, y hace falta volver a transcribir la sesión y
+            extraer de nuevo sus declaraciones.
           </li>
         </ul>
         {quoteProvenance && (
@@ -2206,20 +2259,64 @@ function ContratoEditorial() {
             Hoy, de {quoteProvenance.quotes} literales publicados,{' '}
             <strong>{quoteProvenance.enVigente}</strong> aparecen en la transcripción vigente de su
             sesión, <strong>{quoteProvenance.soloEnSustituida}</strong> sólo en la que se sustituyó
-            y <strong>{quoteProvenance.sinDeterminar}</strong> no se pueden situar. La cifra se lee
-            del fichero derivado <code>finding-quote-provenance.json</code> en el momento de mostrar
-            esta página, no está escrita aquí: cambia cada vez que se vuelve a transcribir una
-            sesión.
+            y <strong>{quoteProvenance.sinDeterminar}</strong> no se pueden situar
+            {quoteProvenance.transcripcionDudosa > 0 && (
+              <>
+                ; otros <strong>{quoteProvenance.transcripcionDudosa}</strong> son de sesiones cuya
+                transcripción es defectuosa
+              </>
+            )}
+            . La cifra se lee del fichero derivado <code>finding-quote-provenance.json</code> en el
+            momento de mostrar esta página, no está escrita aquí: cambia cada vez que se vuelve a
+            transcribir una sesión.
           </p>
         )}
+        {/* Hasta el 23-11-2026 /declaraciones y el registro de cada pleno imprimían sin marca
+            las declaraciones en esta condición (995 ese día), mientras /hallazgos marcaba sus
+            citas. Desde entonces la puerta estampa el estado en cada una al trocear. */}
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>Las declaraciones llevan la misma marca.</strong> En{' '}
+          <a href="/declaraciones" style={{ color: 'var(--civic)' }}>
+            /declaraciones
+          </a>{' '}
+          y en el registro de cada pleno, el literal de cada declaración se sitúa con la misma regla
+          y lleva el mismo chip, con una nota propia: muchas de las marcadas son, probablemente,
+          traducciones del motor sustituido que la regla de retención no llegó a reconocer, y sus
+          cifras pueden no coincidir con lo que se dijo. La marca habla del texto, no de quién
+          habló. Y una declaración marcada <strong>no cuenta como comprobada</strong> aunque el
+          verificador le diera un veredicto, porque lo calculó sobre esas mismas palabras: la nota
+          lo dice al lado del veredicto, y la curación automática no la puede convertir en cita de
+          un hallazgo.
+          {claimProvenance && (
+            <>
+              {' '}
+              Hoy, de {claimProvenance.total} declaraciones publicadas,{' '}
+              <strong>{claimProvenance.enVigente}</strong> constan en la transcripción vigente de su
+              sesión, <strong>{claimProvenance.soloEnSustituida}</strong> sólo en la que se
+              sustituyó y <strong>{claimProvenance.sinDeterminar}</strong> no se pueden situar
+              {claimProvenance.transcripcionDudosa > 0 && (
+                <>
+                  ; otras <strong>{claimProvenance.transcripcionDudosa}</strong> son de sesiones
+                  cuya transcripción es defectuosa
+                </>
+              )}
+              . La cifra se lee de <code>/data/pleno-claims/index.json</code> al mostrar esta
+              página.
+            </>
+          )}{' '}
+          Una declaración no tiene cola de reanclaje: su marca desaparece cuando la sesión se vuelve
+          a extraer sobre la transcripción vigente, y si la marca es la de una transcripción
+          defectuosa, antes hay que volver a transcribir la sesión.
+        </p>
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
           <strong>No reescribimos ninguna cita por nuestra cuenta.</strong> El estado es un cálculo
           sobre dos ficheros —lo comprueba <code>npm run check:finding-quotes</code>, que se niega a
           pasar si la marca publicada deja de coincidir con las transcripciones—, pero elegir el
           pasaje equivalente en el texto nuevo es una decisión editorial sobre lo que dijo una
-          persona. Esas citas están en una cola de reanclaje para revisión humana, y el cambio, si
-          se hace, entra por la vía de corrección de siempre: queda en la bitácora pública de la
-          ficha, con el texto anterior tachado y el motivo. Una cita que no aparece en{' '}
+          persona. Esas citas están en una cola de reanclaje para revisión humana —salvo las de una
+          transcripción defectuosa, que sólo se arreglan volviendo a transcribir la sesión—, y el
+          cambio, si se hace, entra por la vía de corrección de siempre: queda en la bitácora
+          pública de la ficha, con el texto anterior tachado y el motivo. Una cita que no aparece en{' '}
           <strong>ninguna</strong> de las dos transcripciones es un problema distinto —posible
           invención, no desgaste— y no se publica con marca: se bloquea.
         </p>
@@ -2301,7 +2398,13 @@ function ContratoEditorial() {
           porque retener sólo quita, y dejan de retenerse si la sesión se vuelve a extraer. Cuando
           la regla no puede decir en qué lengua está un pasaje —en este pleno se cambia de lengua a
           mitad de frase—, no retiene: la declaración se sigue publicando, y cuántas no pudo juzgar,
-          y por qué, se cuenta en <code>/data/pleno-claims/index.json</code>. En{' '}
+          y por qué, se cuenta en <code>/data/pleno-claims/index.json</code>. Un literal que sólo
+          consta en la transcripción sustituida, fuera de esos dos casos, no se retiene: se publica
+          con{' '}
+          <a href="#citas-transcripcion" style={{ color: 'var(--civic)' }}>
+            una marca al lado
+          </a>{' '}
+          y nunca como comprobado. En{' '}
           <a href="/plenos" style={{ color: 'var(--civic)' }}>
             el registro de declaraciones del pleno
           </a>{' '}

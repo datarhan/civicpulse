@@ -49,6 +49,7 @@ function main() {
     driftedCount?: number
     supersededOnlyCount?: number
     undeterminedCount?: number
+    transcripcionDudosaCount?: number
     drifted?: DriftedQuote[]
     fueraDeAudio?: Array<DriftedQuote & { plenoId?: string; origen?: string }>
   }
@@ -61,7 +62,8 @@ function main() {
   // folding the two would publish a confidence the bytes do not support.
   console.log(
     `  traceable ${cur.ok ?? 0} · superseded-only ${cur.supersededOnlyCount ?? 0} · ` +
-      `cannot tell ${cur.undeterminedCount ?? 0} · NOT found ${cur.driftedCount ?? 0}`,
+      `cannot tell ${cur.undeterminedCount ?? 0} · defective transcript ${cur.transcripcionDudosaCount ?? 0} · ` +
+      `NOT found ${cur.driftedCount ?? 0}`,
   )
 
   // Antes de tocar la línea base y sin `return`: esta regla no pasa por el delta,

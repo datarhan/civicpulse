@@ -6538,54 +6538,6 @@
       ],
       "namesIndividual": false,
       "weak": false
-    },
-    {
-      "label": "c16/SPEAKER_03",
-      "bloc": "VOX",
-      "slug": "jose-luis-fernandez-santamaria",
-      "heardAs": null,
-      "evidence": [
-        {
-          "spokenBy": "c16/SPEAKER_00",
-          "at": 9629.1,
-          "quote": "Vox?",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": true,
-      "weak": false
-    },
-    {
-      "label": "c16/SPEAKER_04",
-      "bloc": "EU-Podem",
-      "slug": "jose-manuel-gallardo-martinez",
-      "heardAs": null,
-      "evidence": [
-        {
-          "spokenBy": "c16/SPEAKER_00",
-          "at": 9634.9,
-          "quote": "Esquerra Unida Podem?",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": true,
-      "weak": false
-    },
-    {
-      "label": "c16/SPEAKER_05",
-      "bloc": "Compromís",
-      "slug": "rafael-folgado-navarro",
-      "heardAs": "José",
-      "evidence": [
-        {
-          "spokenBy": "c16/SPEAKER_00",
-          "at": 9636.9,
-          "quote": "I Compromís?",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": true,
-      "weak": false
     }
   ],
   "rejected": [
@@ -6753,6 +6705,21 @@
       "label": "c16/SPEAKER_02",
       "reason": "unresolvable",
       "detail": "no name in the cited quote and the party is not single-seat"
+    },
+    {
+      "label": "c16/SPEAKER_03",
+      "reason": "roll-call",
+      "detail": "turn-grant at 9629.1s «Vox?» is answered only by «Abstención.» — a vote read back"
+    },
+    {
+      "label": "c16/SPEAKER_04",
+      "reason": "roll-call",
+      "detail": "turn-grant at 9634.9s «Esquerra Unida Podem?» is answered only by «A favor.» — a vote read back"
+    },
+    {
+      "label": "c16/SPEAKER_05",
+      "reason": "roll-call",
+      "detail": "turn-grant at 9636.9s «I Compromís?» is answered only by «A favor.» — a vote read back"
     }
   ],
   "stats": {
@@ -6791,16 +6758,25 @@
       }
     ],
     "labelsSeen": 0,
-    "rowsAccepted": 10,
-    "rowsRejected": 33,
+    "rowsAccepted": 7,
+    "rowsRejected": 36,
     "rejectedBy": {
       "unresolvable": 17,
       "relation-contradicted": 14,
       "evidence-speaker-mismatch": 1,
-      "ambiguous": 1
+      "ambiguous": 1,
+      "roll-call": 3
     },
     "attemptedThisRun": 1,
     "apiCalls": 3,
     "coverage": 0.8586554664118122
-  }
+  },
+  "revalidaciones": [
+    {
+      "fecha": "2026-11-24",
+      "regla": "respuesta-breve-y-prueba-perdida",
+      "retiradas": 3,
+      "noEvaluadas": 2
+    }
+  ]
 }

@@ -91,6 +91,7 @@
 import { transcriptKind } from '../lib/transcript-kind.js'
 import type { ClaimVisibility } from './claim-public-gate'
 import { quoteAppearsIn, quoteCoverage } from './quote-match'
+import { assessTranscriptSanity } from './transcript-sanity'
 import {
   buildQuoteContrast,
   contrastSanityFailure,
@@ -100,7 +101,7 @@ import {
 } from './quote-contrast'
 
 /**
- * The three publishable states. Exported as the single definition — nothing
+ * The four publishable states. Exported as the single definition — nothing
  * downstream restates this list, because six tests in this repo hand-copied a
  * shape and stayed green while production matched nothing
  * (`docs/DATA_INTEGRITY.md` rule 1). The reader-facing wording lives in the
@@ -127,6 +128,12 @@ export const QUOTE_PROVENANCE_STATUSES = [
       'La cita no aparece en la transcripción vigente y no se puede decir por qué: o no hay transcripción vigente, o la vigente es más corta que la que sustituyó.',
     marks: true,
   },
+  {
+    id: 'transcripcion-dudosa',
+    meaning:
+      'La transcripción vigente de la sesión no pasa la comprobación de calidad (src/scraper/transcript-sanity.ts): no hay un texto fiable contra el que cotejar la cita, esté o no en él. Se arregla volviendo a transcribir la sesión, no re-anclando la cita.',
+    marks: true,
+  },
 ] as const
 
 export type QuoteProvenanceStatus = (typeof QUOTE_PROVENANCE_STATUSES)[number]['id']
@@ -140,6 +147,46 @@ export const MARKED_STATUS_IDS: readonly QuoteProvenanceStatus[] = QUOTE_PROVENA
 ).map((s) => s.id)
 
 /**
+ * Los estados marcados que se arreglan RE-ANCLANDO la cita a la vigente. Todos
+ * menos `transcripcion-dudosa`: si la vigente es la que no es de fiar, buscarle
+ * la cita en ella no arregla nada —suele estar, palabra por palabra— y la cola
+ * de re-anclaje propondría como arreglo el mismo texto que se marca.
+ */
+export const REANCHORABLE_STATUS_IDS: readonly QuoteProvenanceStatus[] = MARKED_STATUS_IDS.filter(
+  (s) => s !== 'transcripcion-dudosa',
+)
+
+/**
+ * ¿Es de fiar la transcripción vigente de audio? `false` cuando no la hay: ese
+ * caso es `sin-transcripcion-vigente`, otro estado con otra razón.
+ *
+ * La pregunta la responde `assessTranscriptSanity`, la misma guarda que pone en
+ * cuarentena una transcripción nueva y que corre `check:transcripts`: una
+ * transcripción que hoy no pasaría esa guarda sigue publicada sólo porque se
+ * escribió antes de que la guarda supiera verla (1r6yy0, 24-11-2026, con pasajes
+ * en inglés; 1237hbp y 1xmr0do lo eran hasta su re-transcripción del 23-11).
+ * Un solo decisor, así que la
+ * página y el chequeo no pueden discrepar sobre qué sesión es dudosa.
+ *
+ * Se memoiza por texto: `classifyQuoteProvenance` la pregunta por cita, y la
+ * guarda recorre la transcripción entera.
+ */
+const DUDOSAS = new Map<string, boolean>()
+export function vigenteEsDudosa(current: string | null): boolean {
+  if (current === null) return false
+  let v = DUDOSAS.get(current)
+  if (v === undefined) {
+    // Sólo audio, como la advertencia de /plenos/:id: la guarda mide los
+    // modos de fallo de un motor de reconocimiento, y un acta corta suspendería
+    // `too-few-lines` sin que nadie hubiera repetido ni traducido nada.
+    v = transcriptKind(current) === 'audio' && !assessTranscriptSanity(current).ok
+    if (DUDOSAS.size > 256) DUDOSAS.clear()
+    DUDOSAS.set(current, v)
+  }
+  return v
+}
+
+/**
  * Why a quote is undetermined. Naming the reason is what keeps a new cause
  * from hiding inside a growing «cannot tell» count: the two are counted
  * separately in `stats`.
@@ -148,7 +195,7 @@ export const UNDETERMINED_REASONS = [
   {
     id: 'transcripcion-actual-mas-corta',
     meaning:
-      'La transcripción vigente pesa menos que la que sustituyó, así que la ausencia puede ser un tramo no cubierto y no una reescritura.',
+      'La transcripción vigente tiene menos palabras que la que sustituyó, así que la ausencia puede ser un tramo no cubierto y no una reescritura.',
   },
   {
     id: 'sin-transcripcion-vigente',
@@ -163,15 +210,12 @@ export const UNDETERMINED_REASON_IDS: readonly UndeterminedReason[] = UNDETERMIN
   (r) => r.id,
 )
 
-/** The two texts of one session, plus their sizes. No disk access in here. */
+/** The two texts of one session. No disk access in here. */
 export interface SessionTexts {
   /** The transcript published today, or null when the file is absent. */
   current: string | null
   /** The transcript this session had before it was re-transcribed, if any. */
   superseded: string | null
-  /** Bytes on disk. Only the comparison matters, never the absolute figure. */
-  currentBytes: number
-  supersededBytes: number
 }
 
 /**
@@ -184,6 +228,12 @@ export type QuoteProvenanceOutcome =
       kind: 'clasificada'
       status: QuoteProvenanceStatus
       reason: UndeterminedReason | null
+      /**
+       * En qué fichero apareció una cita `transcripcion-dudosa`, que puede ser
+       * cualquiera de los dos: lo necesita `origenDeCita`. Los demás estados ya
+       * lo dicen por sí mismos.
+       */
+      consta?: 'vigente' | 'sustituida'
     }
   | {
       kind: 'no-localizada'
@@ -192,17 +242,37 @@ export type QuoteProvenanceOutcome =
     }
 
 /**
+ * Las palabras que dice una transcripción, sin su marcado.
+ *
+ * Hasta el 23-11-2026 se comparaban BYTES, y una transcripción diarizada lleva
+ * en cada intervención una marca de tiempo y una de hablante que no son nada
+ * que se dijera. Medido ese día: 1qi8axv y otxq2c pesaban más que la que
+ * sustituyeron y decían menos palabras; 1sqj7is y ma87e0, al revés. La página
+ * escribía «la vigente, que es más extensa» y «es más corta» sobre 262
+ * declaraciones donde, en palabras, era falso.
+ */
+const MARCA_DE_TIEMPO = /\[[\d.:]+\s*→\s*[\d.:]+\]/g
+const MARCA_DE_HABLANTE = /\(SPEAKER_\d+\)/g
+const PALABRA = /[\p{L}\p{N}]+/gu
+
+export function palabrasDeTranscripcion(texto: string): number {
+  const limpio = texto.replace(MARCA_DE_TIEMPO, ' ').replace(MARCA_DE_HABLANTE, ' ')
+  return limpio.match(PALABRA)?.length ?? 0
+}
+
+/**
  * Is this session's absence-of-a-quote interpretable?
  *
  * The size comparison is the whole discriminator and it is deliberately crude:
- * bytes, not words, not a diff. A finer measure would be a judgement about
+ * a count of words, not a diff. A finer measure would be a judgement about
  * transcript quality, and this module is not entitled to make one — it only has
- * to tell «the new pass says more» from «the new pass says less».
+ * to tell «the new pass says more» from «the new pass says less». Words, not
+ * bytes: see `palabrasDeTranscripcion`.
  */
 export function sessionIsComparable(s: SessionTexts): boolean {
   if (s.current === null) return false
   if (s.superseded === null) return true
-  return s.currentBytes >= s.supersededBytes
+  return palabrasDeTranscripcion(s.current) >= palabrasDeTranscripcion(s.superseded)
 }
 
 /**
@@ -219,6 +289,26 @@ export function classifyQuoteProvenance(quote: string, s: SessionTexts): QuotePr
   }
   if (s.current === null) {
     return { kind: 'clasificada', status: 'sin-determinar', reason: 'sin-transcripcion-vigente' }
+  }
+  // Una vigente que no es de fiar no sirve de cotejo, ni para decir que la cita
+  // está ni para decir que el motor anterior la redactó a su manera: las dos
+  // afirmaciones se apoyan en ella. Lo que no consta en ninguna sigue siendo
+  // `no-localizada`; esa es otra pregunta.
+  if (vigenteEsDudosa(s.current)) {
+    if (quoteAppearsIn(text, s.current))
+      return {
+        kind: 'clasificada',
+        status: 'transcripcion-dudosa',
+        reason: null,
+        consta: 'vigente',
+      }
+    if (s.superseded !== null && quoteAppearsIn(text, s.superseded))
+      return {
+        kind: 'clasificada',
+        status: 'transcripcion-dudosa',
+        reason: null,
+        consta: 'sustituida',
+      }
   }
   if (quoteAppearsIn(text, s.current)) {
     return { kind: 'clasificada', status: 'en-vigente', reason: null }
@@ -258,6 +348,8 @@ export const ORIGEN_PUBLICABLE: OrigenDeCita = 'audio'
 export function origenDeCita(outcome: QuoteProvenanceOutcome, s: SessionTexts): OrigenDeCita {
   if (outcome.kind === 'no-localizada') return 'unknown'
   if (outcome.status === 'en-vigente') return transcriptKind(s.current)
+  if (outcome.status === 'transcripcion-dudosa')
+    return transcriptKind(outcome.consta === 'vigente' ? s.current : s.superseded)
   if (outcome.reason === 'sin-transcripcion-vigente') return 'unknown'
   return transcriptKind(s.superseded)
 }
@@ -313,10 +405,12 @@ export interface QuoteProvenanceEntry {
 export interface ProvenanceSessionRow {
   /** Is there a superseded file, i.e. was this session transcribed twice? */
   retranscrita: boolean
-  bytesVigente: number
-  bytesSustituida: number
+  palabrasVigente: number
+  palabrasSustituida: number
   /** false ⇒ an absent quote here is «cannot tell», never «only in the old one». */
   comparable: boolean
+  /** true ⇒ la vigente no pasa `assessTranscriptSanity`: toda cita localizada es `transcripcion-dudosa`. */
+  vigenteDudosa: boolean
 }
 
 /** A quote that fits none of the three states. Never published as a status. */
@@ -368,6 +462,8 @@ export interface QuoteProvenanceSnapshot {
     enVigente: number
     soloEnSustituida: number
     sinDeterminar: number
+    /** Citas de una sesión cuya vigente no pasa `assessTranscriptSanity`. */
+    transcripcionDudosa: number
     /** Split of `sinDeterminar` by cause, so a new cause cannot hide in it. */
     sinDeterminarPorTranscripcionMasCorta: number
     sinDeterminarPorFaltaDeTranscripcion: number
@@ -413,7 +509,11 @@ export function provenanceSanityFailure(stats: QuoteProvenanceSnapshot['stats'])
       ' citas coincide con su transcripción vigente — eso no es un corpus degradado, es un cotejador que no coteja'
     )
   const classified =
-    stats.enVigente + stats.soloEnSustituida + stats.sinDeterminar + stats.sinClasificar
+    stats.enVigente +
+    stats.soloEnSustituida +
+    stats.sinDeterminar +
+    stats.transcripcionDudosa +
+    stats.sinClasificar
   if (classified !== stats.quotes)
     return `se clasificaron ${classified} filas y el snapshot trae ${stats.quotes} citas: alguna se perdió por el camino`
   const reasons =
@@ -469,18 +569,14 @@ export function buildQuoteProvenance(
   const quotes: Record<string, QuoteProvenanceEntry[]> = {}
   const unresolved: UnresolvedQuote[] = []
   const sessionRows: Record<string, ProvenanceSessionRow> = {}
-  const empty: SessionTexts = {
-    current: null,
-    superseded: null,
-    currentBytes: 0,
-    supersededBytes: 0,
-  }
+  const empty: SessionTexts = { current: null, superseded: null }
 
   let total = 0
   let enVigente = 0
   let soloEnSustituida = 0
   let porMasCorta = 0
   let porFalta = 0
+  let dudosas = 0
   let bytesLeidos = 0
   const marked = new Set<string>()
   const seenSessions = new Set<string>()
@@ -492,9 +588,10 @@ export function buildQuoteProvenance(
       bytesLeidos += (s.current?.length ?? 0) + (s.superseded?.length ?? 0)
       sessionRows[f.plenoId] = {
         retranscrita: s.superseded !== null,
-        bytesVigente: s.currentBytes,
-        bytesSustituida: s.supersededBytes,
+        palabrasVigente: s.current === null ? 0 : palabrasDeTranscripcion(s.current),
+        palabrasSustituida: s.superseded === null ? 0 : palabrasDeTranscripcion(s.superseded),
         comparable: sessionIsComparable(s),
+        vigenteDudosa: vigenteEsDudosa(s.current),
       }
     }
     const rows: QuoteProvenanceEntry[] = []
@@ -519,6 +616,7 @@ export function buildQuoteProvenance(
       else {
         marked.add(f.id)
         if (outcome.status === 'solo-en-sustituida') soloEnSustituida += 1
+        else if (outcome.status === 'transcripcion-dudosa') dudosas += 1
         else if (outcome.reason === 'transcripcion-actual-mas-corta') porMasCorta += 1
         else porFalta += 1
       }
@@ -570,6 +668,7 @@ export function buildQuoteProvenance(
       sinDeterminar: porMasCorta + porFalta,
       sinDeterminarPorTranscripcionMasCorta: porMasCorta,
       sinDeterminarPorFaltaDeTranscripcion: porFalta,
+      transcripcionDudosa: dudosas,
       findingsConCitaMarcada: marked.size,
       sesionesConCitas: sessionList.length,
       sesionesRetranscritas: sessionList.filter((r) => r.retranscrita).length,

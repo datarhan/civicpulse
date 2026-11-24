@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Card, Pill, ExtLink } from './Primitives'
 import { MarcaDeFirma } from './MarcaDeFirma'
+import { MarcaDeProcedencia } from './MarcaDeProcedencia'
 import { tramoDeFirma } from '../lib/atribucion-firmada'
 import { rotuloDe, useT } from '../i18n'
 import { conHuecos } from '../lib/huecos'
@@ -198,6 +199,10 @@ function ClaimCard({ item }) {
           >
             «{claim.verbatim}»
           </blockquote>
+          <MarcaDeProcedencia
+            procedencia={item.procedencia}
+            style={{ maxWidth: '68ch', margin: '6px 0 0' }}
+          />
         </div>
         <Pill tone={VERDICT_TONE[verification.verdict] || 'neutral'} size="xs">
           {rotuloDe(t, `declaraciones.veredicto.${verification.verdict}`, verification.verdict)}

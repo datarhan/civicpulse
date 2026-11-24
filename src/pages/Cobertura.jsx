@@ -265,6 +265,7 @@ export default function Cobertura() {
         <section
           aria-labelledby="cobertura-en-breve"
           data-cobertura-frase=""
+          data-lectura-vecinal=""
           style={{ margin: '4px 0 10px' }}
         >
           <h2

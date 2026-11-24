@@ -111,6 +111,29 @@ export function globalLabel(chunk: number, label: string): string {
   return `c${String(chunk).padStart(2, '0')}/${label}`
 }
 
+/**
+ * What a resumed run carries forward from the map on disk: the segments and
+ * rows of the chunks already done, BOTH chosen by the chunk their label names.
+ *
+ * Segments used to be chosen by time (`floor(start / chunkSeconds)`) and rows by
+ * label. A model's timestamps can run past its own chunk — 411 stored segments
+ * labelled `cN/` were timed inside chunk N+1 — so when chunk N+1 was re-opened
+ * its time filter dropped chunk N's tail while chunk N's rows stayed. On 15uvjew
+ * that left three rows citing segments no longer in the map, found and retired
+ * on 2026-11-24 (`scripts/revalidar-mapa-hablantes.ts`). The label is the
+ * identity of a chunk's reading; time is only where the model said it was.
+ */
+export function conservarAlReanudar(
+  prior: Pick<SpeakerMap, 'segments' | 'rows'>,
+  doneChunks: ReadonlySet<number>,
+): { segments: RawSegment[]; rows: SpeakerMapRow[] } {
+  const chunkOf = (label: string) => Number(label.slice(1, label.indexOf('/')))
+  return {
+    segments: prior.segments.filter((s) => doneChunks.has(chunkOf(s.speaker))),
+    rows: prior.rows.filter((r) => doneChunks.has(chunkOf(r.label))),
+  }
+}
+
 export interface SpeakerMap {
   plenoId: string
   generatedAt: string
@@ -139,6 +162,13 @@ export interface SpeakerMap {
    * a count.
    */
   rejected: Array<{ label: string; reason: string; detail: string }>
+  /**
+   * Later passes that re-applied a validator rule to this stored map without
+   * calling any model (`scripts/revalidar-mapa-hablantes.ts`). Absent means
+   * none ran, never «checked and clean». `generatedAt` stays the date the
+   * segments were produced.
+   */
+  revalidaciones?: Array<{ fecha: string; regla: string; retiradas: number; noEvaluadas: number }>
   /**
    * What the run did, separately. A map with zero rows because the audio was
    * never fetched and a map with zero rows because nobody was ever named are

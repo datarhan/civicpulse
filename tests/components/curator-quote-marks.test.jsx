@@ -33,6 +33,7 @@ const PROVENANCE = JSON.parse(
 const TRANSCRIPT_MARK = {
   'solo-en-sustituida': 'no consta en la transcripción revisada',
   'sin-determinar': 'no hemos podido comprobarlo',
+  'transcripcion-dudosa': 'transcripción defectuosa',
 }
 const GATE_MARK = {
   toggle: 'sin contraste en los datos',

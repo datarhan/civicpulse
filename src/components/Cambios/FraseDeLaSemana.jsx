@@ -112,7 +112,12 @@ export function FraseDeLaSemana({ byKind, fuentes, dias, hoy = Date.now() }) {
   }
 
   return (
-    <section aria-labelledby="cambios-frase" data-cambios-frase="" style={{ marginBottom: 4 }}>
+    <section
+      aria-labelledby="cambios-frase"
+      data-cambios-frase=""
+      data-lectura-vecinal=""
+      style={{ marginBottom: 4 }}
+    >
       <h2
         id="cambios-frase"
         className="mono"
