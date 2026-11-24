@@ -2205,8 +2205,7 @@ function ContratoEditorial() {
           dichas, sin las marcas de tiempo y de hablante—, así que lo probable no es un tramo sin
           cubrir sino que el primer motor oía mal: transcribía <em>Riba-roja</em> como «Rivarroch»,
           inventaba palabras que no existen y, a menudo, traducía al castellano lo que se dijo en
-          valencià, a veces con las cifras cambiadas. El asunto se debatió —los temas aparecen en
-          las dos pasadas—, pero{' '}
+          valencià, a veces con las cifras cambiadas. Por eso{' '}
           <strong>
             la literalidad que hay entre comillas puede ser la del transcriptor y no la del concejal
           </strong>
@@ -2221,10 +2220,9 @@ function ContratoEditorial() {
             transcripción anterior y no en la vigente, y la vigente <em>no</em> tiene menos
             palabras. «Aparece» quiere decir que algún tramo de ocho palabras seguidas de la cita —o
             la cita entera, si es más corta— está en ese texto, con la puntuación y las mayúsculas
-            igualadas. Lo que el lector debe concluir: el intercambio ocurrió, la atribución al
-            grupo se queda como está —la marca habla del texto, no de quién habló—, y el{' '}
-            <em>tenor exacto</em> de las palabras no está confirmado contra el mejor texto
-            disponible.
+            igualadas. Lo que el lector debe concluir: la atribución al grupo se queda como está —la
+            marca habla del texto, no de quién habló—, y el <em>tenor exacto</em> de las palabras no
+            está confirmado contra el mejor texto disponible.
           </li>
           <li>
             <strong>«no hemos podido comprobarlo»</strong> — en esa sesión la transcripción vigente

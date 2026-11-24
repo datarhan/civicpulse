@@ -2420,9 +2420,9 @@ export const CATALOGUE = {
     'findings.citas.procedencia.sustituida.title':
       'La sesión se transcribió de nuevo con un motor mejor y estas palabras no aparecen en el texto nuevo.',
     'findings.citas.procedencia.sustituida.nota.una':
-      'Sesión re-transcrita con un motor mejor. {sujeto} consta literalmente en la transcripción anterior y no en la vigente, que es más extensa: el asunto se debatió, pero la literalidad entrecomillada es la del primer transcriptor y no está confirmada contra el mejor texto disponible. Reanclarla es trabajo de una persona; aquí no se reescribe sola.',
+      'Sesión re-transcrita con un motor mejor. {sujeto} consta en la transcripción anterior y no en la vigente, que no tiene menos palabras: la literalidad entrecomillada es la del primer transcriptor y no está confirmada contra el mejor texto disponible. Reanclarla es trabajo de una persona; aquí no se reescribe sola.',
     'findings.citas.procedencia.sustituida.nota.varias':
-      'Sesión re-transcrita con un motor mejor. {sujeto} constan literalmente en la transcripción anterior y no en la vigente, que es más extensa: el asunto se debatió, pero la literalidad entrecomillada es la del primer transcriptor y no está confirmada contra el mejor texto disponible. Reanclarla es trabajo de una persona; aquí no se reescribe sola.',
+      'Sesión re-transcrita con un motor mejor. {sujeto} constan en la transcripción anterior y no en la vigente, que no tiene menos palabras: la literalidad entrecomillada es la del primer transcriptor y no está confirmada contra el mejor texto disponible. Reanclarla es trabajo de una persona; aquí no se reescribe sola.',
     'findings.citas.procedencia.sinDeterminar.chip': 'no hemos podido comprobarlo',
     'findings.citas.procedencia.sinDeterminar.title':
       'No podemos decir si estas palabras cambiaron al re-transcribir o si el tramo no está cubierto.',
@@ -6023,9 +6023,9 @@ export const CATALOGUE = {
     'findings.citas.procedencia.sustituida.title':
       'La sessió es va transcriure de nou amb un motor millor i estes paraules no apareixen en el text nou.',
     'findings.citas.procedencia.sustituida.nota.una':
-      'Sessió retranscrita amb un motor millor. {sujeto} consta literalment en la transcripció anterior i no en la vigent, que és més extensa: l’assumpte es va debatre, però la literalitat entre cometes és la del primer transcriptor i no està confirmada contra el millor text disponible. Tornar-la a ancorar és feina d’una persona; ací no es reescriu sola.',
+      'Sessió retranscrita amb un motor millor. {sujeto} consta en la transcripció anterior i no en la vigent, que no té menys paraules: la literalitat entre cometes és la del primer transcriptor i no està confirmada contra el millor text disponible. Tornar-la a ancorar és feina d’una persona; ací no es reescriu sola.',
     'findings.citas.procedencia.sustituida.nota.varias':
-      'Sessió retranscrita amb un motor millor. {sujeto} consten literalment en la transcripció anterior i no en la vigent, que és més extensa: l’assumpte es va debatre, però la literalitat entre cometes és la del primer transcriptor i no està confirmada contra el millor text disponible. Tornar-la a ancorar és feina d’una persona; ací no es reescriu sola.',
+      'Sessió retranscrita amb un motor millor. {sujeto} consten en la transcripció anterior i no en la vigent, que no té menys paraules: la literalitat entre cometes és la del primer transcriptor i no està confirmada contra el millor text disponible. Tornar-la a ancorar és feina d’una persona; ací no es reescriu sola.',
     'findings.citas.procedencia.sinDeterminar.chip': 'no ho hem pogut comprovar',
     'findings.citas.procedencia.sinDeterminar.title':
       'No podem dir si estes paraules van canviar en tornar a transcriure o si el tram no està cobert.',
