@@ -93,10 +93,19 @@ describe('las entradas nuevas', () => {
     expect(CA['glosario.parteInformativa.def']).toMatch(/Allò de què es dona compte no es vota/)
   })
 
-  it('la oferta de empleo no pone «tres años» al lado de un año de oferta', () => {
-    // «OEP 2020» y «tres años» dejaban deducir un incumplimiento que no consta:
-    // el registro de procesos no trae su estado.
-    for (const cat of [ES, CA]) expect(cat['glosario.oep.def']).not.toMatch(/OEP \d{4}/)
+  it('la oferta de empleo no da un plazo: la lista de debajo trae «OEP 2020» sin estado', () => {
+    // «Tres años» encima de «OEP 2020» dejaba deducir un incumplimiento que el
+    // registro de procesos, sin fechas ni estado, no permite afirmar.
+    expect(ES['glosario.oep.def']).not.toMatch(/años|plazo/)
+    expect(CA['glosario.oep.def']).not.toMatch(/anys|termini/)
+  })
+
+  it('el ISPA no dice si su cifra lleva trienios: /cargos dice que la fuente no lo dice', () => {
+    // La misma página publica que el ISPA «no dice si la suya incluye
+    // antigüedad» (`cargos.ispa.trienios`); la definición no puede afirmarlo.
+    expect(ES['cargos.ispa.trienios']).toMatch(/no dice si la suya incluye antigüedad/)
+    expect(ES['glosario.ispa.def']).not.toMatch(/trienio|antigüedad/)
+    expect(CA['glosario.ispa.def']).not.toMatch(/trienni|antiguitat/)
   })
 })
 

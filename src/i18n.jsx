@@ -3027,7 +3027,7 @@ export const CATALOGUE = {
       'La Ley 39/2015, que regula cómo tramita una administración lo que le piden. Si ninguna norma dice otro plazo, tiene tres meses para contestar a una solicitud desde que entra en su registro.',
     'glosario.ispa.termino': 'ISPA',
     'glosario.ispa.def':
-      'El sistema con el que la Administración del Estado (Información Salarial de Puestos de la Administración) recoge cada año las retribuciones del personal de comunidades autónomas y entidades locales y lo que percibieron los cargos electos locales. De cada cargo publica lo percibido en un año, en una sola cifra que suma sueldo, asistencias y otras cantidades fijas; no incluye los trienios ni los gastos justificados.',
+      'El sistema con el que la Administración del Estado (Información Salarial de Puestos de la Administración) recoge cada año las retribuciones del personal de comunidades autónomas y entidades locales y lo que percibieron los cargos electos locales. De cada cargo publica lo percibido en un año, en una sola cifra que suma sueldo, asistencias y otras cantidades fijas.',
     'glosario.rpt.termino': 'Relación de puestos de trabajo (RPT)',
     'glosario.rpt.def':
       'El documento que enumera cada puesto de trabajo del Ayuntamiento con sus funciones, los requisitos para ocuparlo y sus retribuciones complementarias. Lo aprueba el pleno, y se modifica cuando se crea, se suprime o se cambia un puesto. No es la plantilla, que cuenta las plazas que caben en el presupuesto de cada año.',
@@ -3039,7 +3039,7 @@ export const CATALOGUE = {
       'El régimen por el que un concejal o el alcalde cobra un sueldo del Ayuntamiento por dedicarse al cargo, a tiempo completo (exclusiva) o a tiempo parcial, y queda dado de alta en la Seguridad Social. El pleno decide qué cargos la tienen y cuánto cobran. Quien no tiene ninguna de las dos no cobra un sueldo: sólo puede cobrar la cantidad que el pleno fije por cada sesión a la que asiste.',
     'glosario.oep.termino': 'Oferta de empleo público (OEP)',
     'glosario.oep.def':
-      'La lista de plazas vacantes que el Ayuntamiento aprueba cada año para cubrirlas con personal nuevo. Se publica en el boletín oficial y obliga a convocar esas plazas; la oferta debe quedar ejecutada en un plazo de tres años, que la ley no permite prorrogar.',
+      'La lista de plazas vacantes que el Ayuntamiento aprueba cada año para cubrirlas con personal nuevo. Se publica en el boletín oficial y obliga a convocar esas plazas.',
     'glosario.pms.termino': 'Patrimonio municipal del suelo (PMS)',
     'glosario.pms.def':
       'Los terrenos, y el dinero que se obtiene de venderlos o explotarlos, que el Ayuntamiento debe guardar aparte del resto de sus bienes. La ley sólo permite gastarlos en fines tasados, sobre todo vivienda protegida y otros usos de interés social que fije la normativa urbanística.',
@@ -6647,7 +6647,7 @@ export const CATALOGUE = {
       'La Llei 39/2015, que regula com tramita una administració el que li demanen. Si cap norma no diu un altre termini, té tres mesos per a contestar a una sol·licitud des que entra en el seu registre.',
     'glosario.ispa.termino': 'ISPA',
     'glosario.ispa.def':
-      'El sistema amb què l’Administració de l’Estat (Información Salarial de Puestos de la Administración) arreplega cada any les retribucions del personal de comunitats autònomes i entitats locals i el que van percebre els càrrecs electes locals. De cada càrrec publica el que es va percebre en un any, en una sola xifra que suma sou, assistències i altres quantitats fixes; no inclou els triennis ni les despeses justificades.',
+      'El sistema amb què l’Administració de l’Estat (Información Salarial de Puestos de la Administración) arreplega cada any les retribucions del personal de comunitats autònomes i entitats locals i el que van percebre els càrrecs electes locals. De cada càrrec publica el que es va percebre en un any, en una sola xifra que suma sou, assistències i altres quantitats fixes.',
     'glosario.rpt.termino': 'Relació de llocs de treball (RPT)',
     'glosario.rpt.def':
       'El document que enumera cada lloc de treball de l’Ajuntament amb les seues funcions, els requisits per a ocupar-lo i les seues retribucions complementàries. L’aprova el ple, i es modifica quan es crea, se suprimix o es canvia un lloc. No és la plantilla, que compta les places que caben en el pressupost de cada any.',
@@ -6659,7 +6659,7 @@ export const CATALOGUE = {
       'El règim pel qual un regidor o l’alcalde cobra un sou de l’Ajuntament per dedicar-se al càrrec, a temps complet (exclusiva) o a temps parcial, i queda donat d’alta en la Seguretat Social. El ple decidix quins càrrecs la tenen i quant cobren. Qui no té cap de les dues no cobra un sou: només pot cobrar la quantitat que el ple fixe per cada sessió a què assistix.',
     'glosario.oep.termino': 'Oferta d’ocupació pública (OEP)',
     'glosario.oep.def':
-      'La llista de places vacants que l’Ajuntament aprova cada any per a cobrir-les amb personal nou. Es publica en el butlletí oficial i obliga a convocar eixes places; l’oferta ha de quedar executada en un termini de tres anys, que la llei no permet prorrogar.',
+      'La llista de places vacants que l’Ajuntament aprova cada any per a cobrir-les amb personal nou. Es publica en el butlletí oficial i obliga a convocar eixes places.',
     'glosario.pms.termino': 'Patrimoni municipal del sòl (PMS)',
     'glosario.pms.def':
       'Els terrenys, i els diners que s’obtenen de vendre’ls o explotar-los, que l’Ajuntament ha de guardar a banda de la resta dels seus béns. La llei només permet gastar-los en finalitats taxades, sobretot habitatge protegit i altres usos d’interés social que fixe la normativa urbanística.',
