@@ -163,8 +163,9 @@ export const REANCHORABLE_STATUS_IDS: readonly QuoteProvenanceStatus[] = MARKED_
  * La pregunta la responde `assessTranscriptSanity`, la misma guarda que pone en
  * cuarentena una transcripción nueva y que corre `check:transcripts`: una
  * transcripción que hoy no pasaría esa guarda sigue publicada sólo porque se
- * escribió antes de que la guarda supiera verla (1237hbp y 1xmr0do, 24-11-2026,
- * «La Lucha de los Malditos» en 46 y 29 líneas). Un solo decisor, así que la
+ * escribió antes de que la guarda supiera verla (1r6yy0, 24-11-2026, con pasajes
+ * en inglés; 1237hbp y 1xmr0do lo eran hasta su re-transcripción del 23-11).
+ * Un solo decisor, así que la
  * página y el chequeo no pueden discrepar sobre qué sesión es dudosa.
  *
  * Se memoiza por texto: `classifyQuoteProvenance` la pregunta por cita, y la

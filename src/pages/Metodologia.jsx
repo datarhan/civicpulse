@@ -1344,7 +1344,15 @@ function ContratoEditorial() {
               frase concreta en que la presidencia lo nombró al dar la palabra —«Compromís, Rafa»—
               con el segundo exacto de la grabación en que se dijo. El nombre y el partido tienen
               que aparecer en esa frase: si el mapa no acredita quién hablaba, la cita se publica{' '}
-              <strong>sin grupo</strong>, y eso es una respuesta, no un fallo.
+              <strong>sin grupo</strong>, y eso es una respuesta, no un fallo. Leer el voto de cada
+              grupo tras una votación («¿Vox? —Abstenció») no es dar la palabra, ni lo es una
+              respuesta breve («Sí», «No, gràcies») tras la que esa voz no sigue hablando: quien
+              contesta así no se identifica, y a veces contesta la propia presidencia. Desde que se
+              añadió esta regla, en noviembre de 2026, ninguna de las dos acredita a nadie. Los
+              mapas guardados antes se revalidaron con ella el 24 de noviembre de 2026, sin volver a
+              escuchar el audio: las filas que se apoyaban en una votación o en una respuesta breve,
+              o cuya prueba ya no constaba en el mapa guardado, pasaron a rechazadas con su motivo.
+              Ninguna declaración publicada se apoyaba en ellas.
             </p>
             <p id="atribucion-firmada" style={{ margin: '8px 0 0', scrollMarginTop: 24 }}>
               <strong>Hay una segunda vía, y sólo esa</strong>: una persona firma con su nombre el
@@ -2232,9 +2240,9 @@ function ContratoEditorial() {
             cubre. No afirmamos ninguna de las dos cosas. Es un estado propio precisamente para no
             dejarlo caer en el anterior.
           </li>
-          {/* Desde el 24-11-2026: 1237hbp y 1xmr0do traían «La Lucha de los Malditos» en 46 y 29
-              líneas y pasaban la comprobación, que no conocía esa alucinación; 1r6yy0 ya la
-              suspendía por pasajes en inglés y sus declaraciones se servían sin marca. */}
+          {/* Desde el 24-11-2026. Ese día la marca la lleva 1r6yy0, que suspendía la comprobación
+              por pasajes en inglés y servía sus declaraciones sin marca; 1237hbp y 1xmr0do, que
+              traían «La Lucha de los Malditos», se habían vuelto a transcribir el 23-11. */}
           <li>
             <strong>«transcripción defectuosa»</strong> — la transcripción vigente de esa sesión no
             supera la comprobación de calidad que pasa toda transcripción nueva antes de publicarse:

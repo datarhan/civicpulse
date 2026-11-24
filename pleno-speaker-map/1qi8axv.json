@@ -6056,310 +6056,6 @@
   ],
   "rows": [
     {
-      "label": "c00/SPEAKER_05",
-      "bloc": "PSOE",
-      "slug": "eva-lara-catala",
-      "heardAs": "Eva Lara",
-      "evidence": [
-        {
-          "spokenBy": "c00/SPEAKER_04",
-          "at": 462.1,
-          "quote": "¿Eva Lara?",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": false,
-      "weak": false
-    },
-    {
-      "label": "c00/SPEAKER_08",
-      "bloc": "PSOE",
-      "slug": "jose-luis-ramos-march",
-      "heardAs": "José Luis Ramos",
-      "evidence": [
-        {
-          "spokenBy": "c00/SPEAKER_04",
-          "at": 456.1,
-          "quote": "¿José Luis Ramos?",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": false,
-      "weak": false
-    },
-    {
-      "label": "c00/SPEAKER_10",
-      "bloc": "PSOE",
-      "slug": "maria-esther-gomez-laredo",
-      "heardAs": "María Esther Gómez Laredo",
-      "evidence": [
-        {
-          "spokenBy": "c00/SPEAKER_04",
-          "at": 468.1,
-          "quote": "¿María Esther Gómez Laredo?",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": false,
-      "weak": false
-    },
-    {
-      "label": "c00/SPEAKER_11",
-      "bloc": "PSOE",
-      "slug": "jose-manuel-vila-oltra",
-      "heardAs": "José Manuel Vila Oltra",
-      "evidence": [
-        {
-          "spokenBy": "c00/SPEAKER_04",
-          "at": 471.1,
-          "quote": "¿José Manuel Vila Oltra?",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": false,
-      "weak": false
-    },
-    {
-      "label": "c00/SPEAKER_12",
-      "bloc": "PSOE",
-      "slug": "raquel-pamblanco-paredes",
-      "heardAs": "Raquel Pamblanco",
-      "evidence": [
-        {
-          "spokenBy": "c00/SPEAKER_04",
-          "at": 474.1,
-          "quote": "¿Raquel Pamblanco?",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": false,
-      "weak": false
-    },
-    {
-      "label": "c00/SPEAKER_13",
-      "bloc": "PSOE",
-      "slug": "alfredo-pla-gimenez",
-      "heardAs": "Alfredo Pla",
-      "evidence": [
-        {
-          "spokenBy": "c00/SPEAKER_04",
-          "at": 477.1,
-          "quote": "¿Alfredo Pla?",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": false,
-      "weak": false
-    },
-    {
-      "label": "c00/SPEAKER_15",
-      "bloc": "PP",
-      "slug": "salvador-evaristo-ferrer-cortina",
-      "heardAs": "Salvador Ferrer",
-      "evidence": [
-        {
-          "spokenBy": "c00/SPEAKER_04",
-          "at": 494.1,
-          "quote": "¿Salvador Ferrer?",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": false,
-      "weak": false
-    },
-    {
-      "label": "c00/SPEAKER_20",
-      "bloc": "VOX",
-      "slug": "jose-luis-fernandez-santamaria",
-      "heardAs": "José Luis Fernández",
-      "evidence": [
-        {
-          "spokenBy": "c00/SPEAKER_04",
-          "at": 516.1,
-          "quote": "¿José Luis Fernández?",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": true,
-      "weak": false
-    },
-    {
-      "label": "c00/SPEAKER_21",
-      "bloc": "EU-Podem",
-      "slug": "jose-manuel-gallardo-martinez",
-      "heardAs": "José Manuel Gallardo",
-      "evidence": [
-        {
-          "spokenBy": "c00/SPEAKER_04",
-          "at": 519.1,
-          "quote": "¿José Manuel Gallardo?",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": true,
-      "weak": false
-    },
-    {
-      "label": "c04/SPEAKER_06",
-      "bloc": "PSOE",
-      "slug": "eva-lara-catala",
-      "heardAs": "Eva Lara Catalá",
-      "evidence": [
-        {
-          "spokenBy": "c04/SPEAKER_01",
-          "at": 2685,
-          "quote": "Eva Lara Catalá",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": false,
-      "weak": false
-    },
-    {
-      "label": "c04/SPEAKER_07",
-      "bloc": "PSOE",
-      "slug": "rafael-gomez-sanchez",
-      "heardAs": "Rafael Gómez Sánchez",
-      "evidence": [
-        {
-          "spokenBy": "c04/SPEAKER_01",
-          "at": 2688,
-          "quote": "Rafael Gómez Sánchez",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": false,
-      "weak": false
-    },
-    {
-      "label": "c04/SPEAKER_08",
-      "bloc": "PSOE",
-      "slug": "maria-esther-gomez-laredo",
-      "heardAs": "María Esther Gómez Laredo",
-      "evidence": [
-        {
-          "spokenBy": "c04/SPEAKER_01",
-          "at": 2691,
-          "quote": "María Esther Gómez Laredo",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": false,
-      "weak": false
-    },
-    {
-      "label": "c04/SPEAKER_09",
-      "bloc": "PSOE",
-      "slug": "jose-manuel-vila-oltra",
-      "heardAs": "José Manuel Vila Oltra",
-      "evidence": [
-        {
-          "spokenBy": "c04/SPEAKER_01",
-          "at": 2694,
-          "quote": "José Manuel Vila Oltra",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": false,
-      "weak": false
-    },
-    {
-      "label": "c04/SPEAKER_10",
-      "bloc": "PSOE",
-      "slug": "raquel-pamblanco-paredes",
-      "heardAs": "Raquel Pamblanco Paredes",
-      "evidence": [
-        {
-          "spokenBy": "c04/SPEAKER_01",
-          "at": 2697,
-          "quote": "Raquel Pamblanco Paredes",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": false,
-      "weak": false
-    },
-    {
-      "label": "c04/SPEAKER_14",
-      "bloc": "PP",
-      "slug": "maria-jose-pradas-ramo",
-      "heardAs": "María José Prada Ramos",
-      "evidence": [
-        {
-          "spokenBy": "c04/SPEAKER_01",
-          "at": 2709,
-          "quote": "María José Prada Ramos",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": false,
-      "weak": false
-    },
-    {
-      "label": "c04/SPEAKER_15",
-      "bloc": "PP",
-      "slug": "salvador-evaristo-ferrer-cortina",
-      "heardAs": "Salvador Evaristo Ferrer Cortina",
-      "evidence": [
-        {
-          "spokenBy": "c04/SPEAKER_01",
-          "at": 2712,
-          "quote": "Salvador Evaristo Ferrer Cortina",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": false,
-      "weak": false
-    },
-    {
-      "label": "c04/SPEAKER_16",
-      "bloc": "PP",
-      "slug": "laura-guzman-bruno",
-      "heardAs": "Laura Guzmán Bruno",
-      "evidence": [
-        {
-          "spokenBy": "c04/SPEAKER_01",
-          "at": 2715,
-          "quote": "Laura Guzmán Bruno",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": false,
-      "weak": false
-    },
-    {
-      "label": "c04/SPEAKER_21",
-      "bloc": "EU-Podem",
-      "slug": "jose-manuel-gallardo-martinez",
-      "heardAs": "José Manuel Gallardo Martínez",
-      "evidence": [
-        {
-          "spokenBy": "c04/SPEAKER_01",
-          "at": 2730,
-          "quote": "José Manuel Gallardo Martínez",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": true,
-      "weak": false
-    },
-    {
-      "label": "c04/SPEAKER_22",
-      "bloc": "Compromís",
-      "slug": "rafael-folgado-navarro",
-      "heardAs": "Rafael Folgado Navarro",
-      "evidence": [
-        {
-          "spokenBy": "c04/SPEAKER_01",
-          "at": 2733,
-          "quote": "Rafael Folgado Navarro",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": true,
-      "weak": false
-    },
-    {
       "label": "c02/SPEAKER_03",
       "bloc": "PP",
       "slug": "juan-boix-martinez",
@@ -6417,390 +6113,6 @@
           "spokenBy": "c05/SPEAKER_02",
           "at": 3362,
           "quote": "José Ángel, cuando quieras",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": false,
-      "weak": false
-    },
-    {
-      "label": "c06/SPEAKER_12",
-      "bloc": "PSOE",
-      "slug": "david-barbancho-martinez",
-      "heardAs": "David Barbancho Martínez",
-      "evidence": [
-        {
-          "spokenBy": "c06/SPEAKER_03",
-          "at": 3908.7,
-          "quote": "David Barbancho Martínez",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": false,
-      "weak": false
-    },
-    {
-      "label": "c06/SPEAKER_13",
-      "bloc": "PP",
-      "slug": "maria-jose-pradas-ramo",
-      "heardAs": "María José Prada Ramo",
-      "evidence": [
-        {
-          "spokenBy": "c06/SPEAKER_03",
-          "at": 3913.4,
-          "quote": "María José Prada Ramo",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": false,
-      "weak": false
-    },
-    {
-      "label": "c06/SPEAKER_15",
-      "bloc": "PP",
-      "slug": "laura-guzman-bruno",
-      "heardAs": "Laura Guzmán Bruno",
-      "evidence": [
-        {
-          "spokenBy": "c06/SPEAKER_03",
-          "at": 3918.2,
-          "quote": "Laura Guzmán Bruno",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": false,
-      "weak": false
-    },
-    {
-      "label": "c06/SPEAKER_17",
-      "bloc": "PP",
-      "slug": "paula-navarro-sanfeliu",
-      "heardAs": "Paula Navarro Sanfeliu",
-      "evidence": [
-        {
-          "spokenBy": "c06/SPEAKER_03",
-          "at": 3922.8,
-          "quote": "Paula Navarro Sanfeliu",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": false,
-      "weak": false
-    },
-    {
-      "label": "c06/SPEAKER_18",
-      "bloc": "PP",
-      "slug": "pedro-tortajada-raga",
-      "heardAs": "Pedro Tortajada",
-      "evidence": [
-        {
-          "spokenBy": "c06/SPEAKER_03",
-          "at": 3925.2,
-          "quote": "Pedro Tortajada",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": false,
-      "weak": false
-    },
-    {
-      "label": "c06/SPEAKER_19",
-      "bloc": "EU-Podem",
-      "slug": "jose-manuel-gallardo-martinez",
-      "heardAs": "José Manuel Gallardo Martínez",
-      "evidence": [
-        {
-          "spokenBy": "c06/SPEAKER_03",
-          "at": 3930.1,
-          "quote": "José Manuel Gallardo Martínez",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": true,
-      "weak": false
-    },
-    {
-      "label": "c06/SPEAKER_20",
-      "bloc": "Compromís",
-      "slug": "rafael-folgado-navarro",
-      "heardAs": "Rafael Folgado Navarro",
-      "evidence": [
-        {
-          "spokenBy": "c06/SPEAKER_03",
-          "at": 3932.7,
-          "quote": "Rafael Folgado Navarro",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": true,
-      "weak": false
-    },
-    {
-      "label": "c07/SPEAKER_01",
-      "bloc": "Compromís",
-      "slug": "rafael-folgado-navarro",
-      "heardAs": "Rafael Folgado Navarro",
-      "evidence": [
-        {
-          "spokenBy": "c07/SPEAKER_02",
-          "at": 4692,
-          "quote": "Rafael Folgado Navarro.",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": true,
-      "weak": false
-    },
-    {
-      "label": "c07/SPEAKER_08",
-      "bloc": "PSOE",
-      "slug": "jose-luis-ramos-march",
-      "heardAs": "José Luis Ramos",
-      "evidence": [
-        {
-          "spokenBy": "c07/SPEAKER_02",
-          "at": 4646,
-          "quote": "José Luis Ramos.",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": false,
-      "weak": false
-    },
-    {
-      "label": "c07/SPEAKER_09",
-      "bloc": "PSOE",
-      "slug": "eva-lara-catala",
-      "heardAs": "Eva Lara",
-      "evidence": [
-        {
-          "spokenBy": "c07/SPEAKER_02",
-          "at": 4650,
-          "quote": "Eva Lara.",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": false,
-      "weak": false
-    },
-    {
-      "label": "c07/SPEAKER_10",
-      "bloc": "PSOE",
-      "slug": "rafael-gomez-sanchez",
-      "heardAs": "Rafa Gómez Sánchez",
-      "evidence": [
-        {
-          "spokenBy": "c07/SPEAKER_02",
-          "at": 4652,
-          "quote": "Rafa Gómez Sánchez.",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": false,
-      "weak": false
-    },
-    {
-      "label": "c07/SPEAKER_13",
-      "bloc": "PSOE",
-      "slug": "raquel-pamblanco-paredes",
-      "heardAs": "Raquel Pamblanco",
-      "evidence": [
-        {
-          "spokenBy": "c07/SPEAKER_02",
-          "at": 4658,
-          "quote": "Raquel Pamblanco.",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": false,
-      "weak": false
-    },
-    {
-      "label": "c07/SPEAKER_15",
-      "bloc": "PSOE",
-      "slug": "david-barbancho-martinez",
-      "heardAs": "David Barbancho",
-      "evidence": [
-        {
-          "spokenBy": "c07/SPEAKER_02",
-          "at": 4662.2,
-          "quote": "David Barbancho.",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": false,
-      "weak": false
-    },
-    {
-      "label": "c07/SPEAKER_16",
-      "bloc": "PP",
-      "slug": "maria-jose-pradas-ramo",
-      "heardAs": "María José Prada Ramos",
-      "evidence": [
-        {
-          "spokenBy": "c07/SPEAKER_02",
-          "at": 4667.2,
-          "quote": "María José Prada Ramos.",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": false,
-      "weak": false
-    },
-    {
-      "label": "c07/SPEAKER_18",
-      "bloc": "PP",
-      "slug": "juan-boix-martinez",
-      "heardAs": "Juan Boix Martínez",
-      "evidence": [
-        {
-          "spokenBy": "c07/SPEAKER_02",
-          "at": 4675.2,
-          "quote": "Juan Boix Martínez.",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": false,
-      "weak": false
-    },
-    {
-      "label": "c07/SPEAKER_20",
-      "bloc": "PP",
-      "slug": "pedro-tortajada-raga",
-      "heardAs": "Pedro Tortajada",
-      "evidence": [
-        {
-          "spokenBy": "c07/SPEAKER_02",
-          "at": 4681,
-          "quote": "Pedro Tortajada.",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": false,
-      "weak": false
-    },
-    {
-      "label": "c07/SPEAKER_21",
-      "bloc": "EU-Podem",
-      "slug": "jose-manuel-gallardo-martinez",
-      "heardAs": "José Manuel Gallardo Martínez",
-      "evidence": [
-        {
-          "spokenBy": "c07/SPEAKER_02",
-          "at": 4687.8,
-          "quote": "José Manuel Gallardo Martínez.",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": true,
-      "weak": false
-    },
-    {
-      "label": "c08/SPEAKER_08",
-      "bloc": "PP",
-      "slug": "maria-jose-pradas-ramo",
-      "heardAs": "María José Pradas",
-      "evidence": [
-        {
-          "spokenBy": "c08/SPEAKER_04",
-          "at": 5050,
-          "quote": "María José Pradas",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": false,
-      "weak": false
-    },
-    {
-      "label": "c08/SPEAKER_09",
-      "bloc": "PP",
-      "slug": "juan-boix-martinez",
-      "heardAs": "Juan Boix",
-      "evidence": [
-        {
-          "spokenBy": "c08/SPEAKER_04",
-          "at": 5060,
-          "quote": "Juan Boix",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": false,
-      "weak": false
-    },
-    {
-      "label": "c08/SPEAKER_10",
-      "bloc": "PP",
-      "slug": "paula-navarro-sanfeliu",
-      "heardAs": "Paula Navarro",
-      "evidence": [
-        {
-          "spokenBy": "c08/SPEAKER_04",
-          "at": 5063,
-          "quote": "Paula Navarro",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": false,
-      "weak": false
-    },
-    {
-      "label": "c08/SPEAKER_11",
-      "bloc": "PP",
-      "slug": "pedro-tortajada-raga",
-      "heardAs": "Pedro Tortajada",
-      "evidence": [
-        {
-          "spokenBy": "c08/SPEAKER_04",
-          "at": 5066,
-          "quote": "Pedro Tortajada",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": false,
-      "weak": false
-    },
-    {
-      "label": "c08/SPEAKER_12",
-      "bloc": "PSOE",
-      "slug": "maria-esther-gomez-laredo",
-      "heardAs": "María Esther Gómez Laredo",
-      "evidence": [
-        {
-          "spokenBy": "c08/SPEAKER_04",
-          "at": 5296,
-          "quote": "María Esther Gómez Laredo",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": false,
-      "weak": false
-    },
-    {
-      "label": "c08/SPEAKER_13",
-      "bloc": "PSOE",
-      "slug": "jose-manuel-vila-oltra",
-      "heardAs": "José Manuel Vila",
-      "evidence": [
-        {
-          "spokenBy": "c08/SPEAKER_04",
-          "at": 5300,
-          "quote": "José Manuel Vila",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": false,
-      "weak": false
-    },
-    {
-      "label": "c08/SPEAKER_14",
-      "bloc": "PSOE",
-      "slug": "david-barbancho-martinez",
-      "heardAs": "David Barbancho",
-      "evidence": [
-        {
-          "spokenBy": "c08/SPEAKER_04",
-          "at": 5309,
-          "quote": "David Barbancho",
           "relation": "turn-grant"
         }
       ],
@@ -7158,6 +6470,221 @@
       "label": "c08/SPEAKER_07",
       "reason": "unresolvable",
       "detail": "heard \"Raquel Pam Blanco\" matches nobody"
+    },
+    {
+      "label": "c00/SPEAKER_05",
+      "reason": "short-answer",
+      "detail": "turn-grant at 462.1s «¿Eva Lara?» is answered only by «Sí.»"
+    },
+    {
+      "label": "c00/SPEAKER_08",
+      "reason": "short-answer",
+      "detail": "turn-grant at 456.1s «¿José Luis Ramos?» is answered only by «Sí.»"
+    },
+    {
+      "label": "c00/SPEAKER_10",
+      "reason": "short-answer",
+      "detail": "turn-grant at 468.1s «¿María Esther Gómez Laredo?» is answered only by «Sí.»"
+    },
+    {
+      "label": "c00/SPEAKER_11",
+      "reason": "short-answer",
+      "detail": "turn-grant at 471.1s «¿José Manuel Vila Oltra?» is answered only by «Sí.»"
+    },
+    {
+      "label": "c00/SPEAKER_12",
+      "reason": "short-answer",
+      "detail": "turn-grant at 474.1s «¿Raquel Pamblanco?» is answered only by «Sí.»"
+    },
+    {
+      "label": "c00/SPEAKER_13",
+      "reason": "short-answer",
+      "detail": "turn-grant at 477.1s «¿Alfredo Pla?» is answered only by «Sí.»"
+    },
+    {
+      "label": "c00/SPEAKER_15",
+      "reason": "roll-call",
+      "detail": "turn-grant at 494.1s «¿Salvador Ferrer?» is answered only by «Contra.» — a vote read back"
+    },
+    {
+      "label": "c00/SPEAKER_20",
+      "reason": "roll-call",
+      "detail": "turn-grant at 516.1s «¿José Luis Fernández?» is answered only by «Abstención.» — a vote read back"
+    },
+    {
+      "label": "c00/SPEAKER_21",
+      "reason": "roll-call",
+      "detail": "turn-grant at 519.1s «¿José Manuel Gallardo?» is answered only by «Abstención.» — a vote read back"
+    },
+    {
+      "label": "c04/SPEAKER_06",
+      "reason": "short-answer",
+      "detail": "turn-grant at 2685s «Eva Lara Catalá» is answered only by «Sí.»"
+    },
+    {
+      "label": "c04/SPEAKER_07",
+      "reason": "short-answer",
+      "detail": "turn-grant at 2688s «Rafael Gómez Sánchez» is answered only by «Sí.»"
+    },
+    {
+      "label": "c04/SPEAKER_08",
+      "reason": "short-answer",
+      "detail": "turn-grant at 2691s «María Esther Gómez Laredo» is answered only by «Sí.»"
+    },
+    {
+      "label": "c04/SPEAKER_09",
+      "reason": "short-answer",
+      "detail": "turn-grant at 2694s «José Manuel Vila Oltra» is answered only by «Sí.»"
+    },
+    {
+      "label": "c04/SPEAKER_10",
+      "reason": "short-answer",
+      "detail": "turn-grant at 2697s «Raquel Pamblanco Paredes» is answered only by «Sí.»"
+    },
+    {
+      "label": "c04/SPEAKER_14",
+      "reason": "roll-call",
+      "detail": "turn-grant at 2709s «María José Prada Ramos» is answered only by «Abstención.» — a vote read back"
+    },
+    {
+      "label": "c04/SPEAKER_15",
+      "reason": "roll-call",
+      "detail": "turn-grant at 2712s «Salvador Evaristo Ferrer Cortina» is answered only by «Abstención.» — a vote read back"
+    },
+    {
+      "label": "c04/SPEAKER_16",
+      "reason": "roll-call",
+      "detail": "turn-grant at 2715s «Laura Guzmán Bruno» is answered only by «Abstención.» — a vote read back"
+    },
+    {
+      "label": "c04/SPEAKER_21",
+      "reason": "roll-call",
+      "detail": "turn-grant at 2730s «José Manuel Gallardo Martínez» is answered only by «A favor.» — a vote read back"
+    },
+    {
+      "label": "c04/SPEAKER_22",
+      "reason": "roll-call",
+      "detail": "turn-grant at 2733s «Rafael Folgado Navarro» is answered only by «A favor.» — a vote read back"
+    },
+    {
+      "label": "c06/SPEAKER_12",
+      "reason": "short-answer",
+      "detail": "turn-grant at 3908.7s «David Barbancho Martínez» is answered only by «Sí.»"
+    },
+    {
+      "label": "c06/SPEAKER_13",
+      "reason": "roll-call",
+      "detail": "turn-grant at 3913.4s «María José Prada Ramo» is answered only by «En contra.» — a vote read back"
+    },
+    {
+      "label": "c06/SPEAKER_15",
+      "reason": "roll-call",
+      "detail": "turn-grant at 3918.2s «Laura Guzmán Bruno» is answered only by «En contra.» — a vote read back"
+    },
+    {
+      "label": "c06/SPEAKER_17",
+      "reason": "roll-call",
+      "detail": "turn-grant at 3922.8s «Paula Navarro Sanfeliu» is answered only by «En contra.» — a vote read back"
+    },
+    {
+      "label": "c06/SPEAKER_18",
+      "reason": "roll-call",
+      "detail": "turn-grant at 3925.2s «Pedro Tortajada» is answered only by «En contra.» — a vote read back"
+    },
+    {
+      "label": "c06/SPEAKER_19",
+      "reason": "roll-call",
+      "detail": "turn-grant at 3930.1s «José Manuel Gallardo Martínez» is answered only by «Abstención.» — a vote read back"
+    },
+    {
+      "label": "c06/SPEAKER_20",
+      "reason": "roll-call",
+      "detail": "turn-grant at 3932.7s «Rafael Folgado Navarro» is answered only by «Abstención.» — a vote read back"
+    },
+    {
+      "label": "c07/SPEAKER_01",
+      "reason": "roll-call",
+      "detail": "turn-grant at 4692s «Rafael Folgado Navarro.» is answered only by «A favor.» — a vote read back"
+    },
+    {
+      "label": "c07/SPEAKER_08",
+      "reason": "short-answer",
+      "detail": "turn-grant at 4646s «José Luis Ramos.» is answered only by «Sí.»"
+    },
+    {
+      "label": "c07/SPEAKER_09",
+      "reason": "short-answer",
+      "detail": "turn-grant at 4650s «Eva Lara.» is answered only by «Sí.»"
+    },
+    {
+      "label": "c07/SPEAKER_10",
+      "reason": "short-answer",
+      "detail": "turn-grant at 4652s «Rafa Gómez Sánchez.» is answered only by «Sí.»"
+    },
+    {
+      "label": "c07/SPEAKER_13",
+      "reason": "short-answer",
+      "detail": "turn-grant at 4658s «Raquel Pamblanco.» is answered only by «Sí.»"
+    },
+    {
+      "label": "c07/SPEAKER_15",
+      "reason": "short-answer",
+      "detail": "turn-grant at 4662.2s «David Barbancho.» is answered only by «Sí.»"
+    },
+    {
+      "label": "c07/SPEAKER_16",
+      "reason": "short-answer",
+      "detail": "turn-grant at 4667.2s «María José Prada Ramos.» is answered only by «No.»"
+    },
+    {
+      "label": "c07/SPEAKER_18",
+      "reason": "roll-call",
+      "detail": "turn-grant at 4675.2s «Juan Boix Martínez.» is answered only by «En contra.» — a vote read back"
+    },
+    {
+      "label": "c07/SPEAKER_20",
+      "reason": "roll-call",
+      "detail": "turn-grant at 4681s «Pedro Tortajada.» is answered only by «En contra.» — a vote read back"
+    },
+    {
+      "label": "c07/SPEAKER_21",
+      "reason": "roll-call",
+      "detail": "turn-grant at 4687.8s «José Manuel Gallardo Martínez.» is answered only by «Abstención.» — a vote read back"
+    },
+    {
+      "label": "c08/SPEAKER_08",
+      "reason": "short-answer",
+      "detail": "turn-grant at 5050s «María José Pradas» is answered only by «Sí.»"
+    },
+    {
+      "label": "c08/SPEAKER_09",
+      "reason": "roll-call",
+      "detail": "turn-grant at 5060s «Juan Boix» is answered only by «A favor.» — a vote read back"
+    },
+    {
+      "label": "c08/SPEAKER_10",
+      "reason": "roll-call",
+      "detail": "turn-grant at 5063s «Paula Navarro» is answered only by «A favor.» — a vote read back"
+    },
+    {
+      "label": "c08/SPEAKER_11",
+      "reason": "roll-call",
+      "detail": "turn-grant at 5066s «Pedro Tortajada» is answered only by «A favor.» — a vote read back"
+    },
+    {
+      "label": "c08/SPEAKER_12",
+      "reason": "short-answer",
+      "detail": "turn-grant at 5296s «María Esther Gómez Laredo» is answered only by «Sí.»"
+    },
+    {
+      "label": "c08/SPEAKER_13",
+      "reason": "short-answer",
+      "detail": "turn-grant at 5300s «José Manuel Vila» is answered only by «Sí.»"
+    },
+    {
+      "label": "c08/SPEAKER_14",
+      "reason": "short-answer",
+      "detail": "turn-grant at 5309s «David Barbancho» is answered only by «Sí.»"
     }
   ],
   "stats": {
@@ -7165,16 +6692,26 @@
     "chunksTranscribed": 10,
     "failedChunks": [],
     "labelsSeen": 24,
-    "rowsAccepted": 47,
-    "rowsRejected": 70,
+    "rowsAccepted": 4,
+    "rowsRejected": 113,
     "rejectedBy": {
       "unresolvable": 37,
       "evidence-speaker-mismatch": 22,
       "relation-contradicted": 8,
-      "ambiguous": 3
+      "ambiguous": 3,
+      "short-answer": 22,
+      "roll-call": 21
     },
     "attemptedThisRun": 2,
     "apiCalls": 4,
     "coverage": 1
-  }
+  },
+  "revalidaciones": [
+    {
+      "fecha": "2026-11-24",
+      "regla": "respuesta-breve-y-prueba-perdida",
+      "retiradas": 43,
+      "noEvaluadas": 0
+    }
+  ]
 }

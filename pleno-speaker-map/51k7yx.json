@@ -3808,5 +3808,13 @@
     "attemptedThisRun": 2,
     "apiCalls": 6,
     "coverage": 0.5225208420025526
-  }
+  },
+  "revalidaciones": [
+    {
+      "fecha": "2026-11-24",
+      "regla": "respuesta-breve-y-prueba-perdida",
+      "retiradas": 0,
+      "noEvaluadas": 1
+    }
+  ]
 }

@@ -4536,38 +4536,6 @@
       "weak": false
     },
     {
-      "label": "c06/SPEAKER_04",
-      "bloc": "VOX",
-      "slug": "jose-luis-fernandez-santamaria",
-      "heardAs": null,
-      "evidence": [
-        {
-          "spokenBy": "c06/SPEAKER_00",
-          "at": 3992.5,
-          "quote": "Vox.",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": true,
-      "weak": false
-    },
-    {
-      "label": "c06/SPEAKER_06",
-      "bloc": "Compromís",
-      "slug": "rafael-folgado-navarro",
-      "heardAs": null,
-      "evidence": [
-        {
-          "spokenBy": "c06/SPEAKER_00",
-          "at": 3998.5,
-          "quote": "Compromís.",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": true,
-      "weak": false
-    },
-    {
       "label": "c02/SPEAKER_02",
       "bloc": "Compromís",
       "slug": "rafael-folgado-navarro",
@@ -4654,6 +4622,16 @@
       "label": "c02/SPEAKER_01",
       "reason": "unresolvable",
       "detail": "heard \"senyor alcalde\" matches nobody"
+    },
+    {
+      "label": "c06/SPEAKER_04",
+      "reason": "roll-call",
+      "detail": "turn-grant at 3992.5s «Vox.» is answered only by «Abstención.» — a vote read back"
+    },
+    {
+      "label": "c06/SPEAKER_06",
+      "reason": "roll-call",
+      "detail": "turn-grant at 3998.5s «Compromís.» is answered only by «A favor.» — a vote read back"
     }
   ],
   "stats": {
@@ -4661,15 +4639,24 @@
     "chunksTranscribed": 7,
     "failedChunks": [],
     "labelsSeen": 4,
-    "rowsAccepted": 7,
-    "rowsRejected": 14,
+    "rowsAccepted": 5,
+    "rowsRejected": 16,
     "rejectedBy": {
       "relation-contradicted": 2,
       "unresolvable": 11,
-      "evidence-outside-transcript": 1
+      "evidence-outside-transcript": 1,
+      "roll-call": 2
     },
     "attemptedThisRun": 1,
     "apiCalls": 1,
     "coverage": 0.9580557195468223
-  }
+  },
+  "revalidaciones": [
+    {
+      "fecha": "2026-11-24",
+      "regla": "respuesta-breve-y-prueba-perdida",
+      "retiradas": 2,
+      "noEvaluadas": 0
+    }
+  ]
 }

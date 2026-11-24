@@ -75,7 +75,7 @@ for (const path of paths) {
       r.uniqueRatio,
     )}) top=${r.topLineCount} (${pct(r.topLineShare)}) chars=${r.uniqueContentChars} en=${
       r.translatedLines
-    } (${pct(r.translatedShare)}, racha ${r.longestTranslatedRun})${
+    } (${pct(r.translatedShare)}, racha ${r.longestTranslatedRun}) bucle=${r.longestLoopRun}${
       r.reasons.length ? ` · ${r.reasons.join(',')}` : ''
     }`,
   )

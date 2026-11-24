@@ -14068,22 +14068,6 @@
       "weak": false
     },
     {
-      "label": "c23/SPEAKER_03",
-      "bloc": "VOX",
-      "slug": "jose-luis-fernandez-santamaria",
-      "heardAs": null,
-      "evidence": [
-        {
-          "spokenBy": "c23/SPEAKER_00",
-          "at": 14216.5,
-          "quote": "Vox?",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": true,
-      "weak": false
-    },
-    {
       "label": "c25/SPEAKER_02",
       "bloc": "PSOE",
       "slug": "teresa-pozuelo-martin",
@@ -14445,6 +14429,11 @@
       "label": "c25/SPEAKER_01",
       "reason": "unresolvable",
       "detail": "no name in the cited quote and the party is not single-seat"
+    },
+    {
+      "label": "c23/SPEAKER_03",
+      "reason": "short-answer",
+      "detail": "turn-grant at 14216.5s «Vox?» is answered only by «No, gràcies.»"
     }
   ],
   "stats": {
@@ -14483,16 +14472,25 @@
       }
     ],
     "labelsSeen": 0,
-    "rowsAccepted": 16,
-    "rowsRejected": 69,
+    "rowsAccepted": 15,
+    "rowsRejected": 70,
     "rejectedBy": {
       "relation-contradicted": 28,
       "unresolvable": 34,
       "ambiguous": 5,
-      "evidence-speaker-mismatch": 2
+      "evidence-speaker-mismatch": 2,
+      "short-answer": 1
     },
     "attemptedThisRun": 2,
     "apiCalls": 6,
     "coverage": 0.8849632265008376
-  }
+  },
+  "revalidaciones": [
+    {
+      "fecha": "2026-11-24",
+      "regla": "respuesta-breve-y-prueba-perdida",
+      "retiradas": 1,
+      "noEvaluadas": 0
+    }
+  ]
 }

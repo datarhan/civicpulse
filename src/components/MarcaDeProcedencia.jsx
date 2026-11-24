@@ -34,8 +34,8 @@ export const MARCA_DE_PROCEDENCIA = {
     title: 'findings.citas.procedencia.sinDeterminar.title',
     nota: 'declaraciones.procedencia.sinDeterminar.nota',
   },
-  // La vigente no pasa la guarda de calidad (`vigenteEsDudosa`): 1237hbp,
-  // 1xmr0do y 1r6yy0 el 24-11-2026. `warn`, como la sustituida: no es la
+  // La vigente no pasa la guarda de calidad (`vigenteEsDudosa`): 1r6yy0 el
+  // 24-11-2026 (pasajes en inglés). `warn`, como la sustituida: no es la
   // ausencia de una afirmación, es que el texto de al lado no es de fiar.
   'transcripcion-dudosa': {
     tono: 'warn',

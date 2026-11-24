@@ -12,6 +12,7 @@
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
+    "medir:lecturas": "MEDIR_LECTURAS=1 playwright test medida-lecturas --reporter=list",
     "lint": "eslint src scripts tests bot/src bot/tests",
     "lint:fix": "eslint --fix src scripts tests bot/src bot/tests",
     "format": "prettier -w src scripts tests bot/src bot/tests",
@@ -284,7 +285,8 @@
     "scrape:deuda-viva": "npx tsx scripts/scrape-deuda-viva.ts",
     "check:area-fit": "npx tsx scripts/check-area-fit.ts",
     "check:publicado": "npx tsx scripts/check-publicado.ts",
-    "build:prompt-log": "npx tsx scripts/build-prompt-log.ts"
+    "build:prompt-log": "npx tsx scripts/build-prompt-log.ts",
+    "revalidar:mapa": "npx tsx scripts/revalidar-mapa-hablantes.ts"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

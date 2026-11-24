@@ -14259,5 +14259,13 @@
     "attemptedThisRun": 4,
     "apiCalls": 4,
     "coverage": 1
-  }
+  },
+  "revalidaciones": [
+    {
+      "fecha": "2026-11-24",
+      "regla": "respuesta-breve-y-prueba-perdida",
+      "retiradas": 0,
+      "noEvaluadas": 0
+    }
+  ]
 }
