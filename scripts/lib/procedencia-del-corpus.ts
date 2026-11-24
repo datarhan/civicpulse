@@ -34,7 +34,11 @@ import {
   type RazonNoJuzgable,
   type TranscripcionIndexada,
 } from '../../src/scraper/literal-no-servible'
-import { sessionIsComparable, type QuoteProvenanceStatus } from '../../src/scraper/quote-provenance'
+import {
+  sessionIsComparable,
+  vigenteEsDudosa,
+  type QuoteProvenanceStatus,
+} from '../../src/scraper/quote-provenance'
 import { prepararHeno, type HenoPreparado } from '../../src/scraper/quote-match'
 import { loadSupersededTexts, TRANSCRIPTS_DIR } from './transcript-corpus'
 
@@ -98,16 +102,24 @@ export function desenlacesDeProcedencia(
   items: readonly { claim?: { id?: string; plenoId?: string; verbatim?: string } }[],
   leerVigente: (plenoId: string) => string | null,
   leerSustituidas: (plenoId: string) => string[],
-): Map<string, { desenlace: ProvenanceOutcome; comparable: boolean }> {
+): Map<string, { desenlace: ProvenanceOutcome; comparable: boolean; vigenteDudosa: boolean }> {
   // Los textos se normalizan UNA vez por sesión, no una por declaración:
   // normalizar es el 100 % del coste del emparejador (6,11 ms por
   // transcripción de 274 KB frente a 0,04 ms de búsqueda, medido), así que
   // hacerlo dentro del bucle costaba 42 s de los 46 que tardaba esta pasada.
   const sesiones = new Map<
     string,
-    { vigente: HenoPreparado | null; sustituidas: HenoPreparado[]; comparable: boolean }
+    {
+      vigente: HenoPreparado | null
+      sustituidas: HenoPreparado[]
+      comparable: boolean
+      vigenteDudosa: boolean
+    }
   >()
-  const out = new Map<string, { desenlace: ProvenanceOutcome; comparable: boolean }>()
+  const out = new Map<
+    string,
+    { desenlace: ProvenanceOutcome; comparable: boolean; vigenteDudosa: boolean }
+  >()
   for (const it of items) {
     const c = it.claim
     if (!c?.id || !c.plenoId || !c.verbatim) continue
@@ -119,6 +131,7 @@ export function desenlacesDeProcedencia(
         vigente: t === null ? null : prepararHeno(t),
         sustituidas: sust.map(prepararHeno),
         comparable: sessionIsComparable({ current: t, superseded: sust[0] ?? null }),
+        vigenteDudosa: vigenteEsDudosa(t),
       }
       sesiones.set(c.plenoId, s)
     }
@@ -127,7 +140,7 @@ export function desenlacesDeProcedencia(
       current: s.vigente,
       superseded: s.sustituidas,
     })
-    out.set(c.id, { desenlace, comparable: s.comparable })
+    out.set(c.id, { desenlace, comparable: s.comparable, vigenteDudosa: s.vigenteDudosa })
   }
   return out
 }
@@ -324,7 +337,7 @@ export function procedenciaDelCorpus(
   // `sin-rastro` no llevan: la puerta las retiene.
   const procedenciaDelLiteral = new Map<string, QuoteProvenanceStatus>()
   for (const [id, d] of desenlaces) {
-    const p = procedenciaDeDeclaracion(d.desenlace, d.comparable)
+    const p = procedenciaDeDeclaracion(d.desenlace, d.comparable, d.vigenteDudosa)
     if (p !== null) procedenciaDelLiteral.set(id, p)
   }
   return { sinProcedencia, literalNoServible, procedenciaDelLiteral, literales }

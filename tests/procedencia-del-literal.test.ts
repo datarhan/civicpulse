@@ -17,6 +17,7 @@ import {
   type ClaimVisibility,
 } from '../src/scraper/claim-public-gate'
 import { procedenciaDeDeclaracion, type ProvenanceOutcome } from '../src/scraper/claim-provenance'
+import { assessTranscriptSanity } from '../src/scraper/transcript-sanity'
 import {
   QUOTE_PROVENANCE_STATUS_IDS,
   type QuoteProvenanceStatus,
@@ -24,16 +25,22 @@ import {
 
 describe('procedenciaDeDeclaracion', () => {
   it('traduce cada desenlace al vocabulario de /hallazgos', () => {
-    const casos: [ProvenanceOutcome, boolean, QuoteProvenanceStatus | null][] = [
-      ['vigente', true, 'en-vigente'],
-      ['vigente', false, 'en-vigente'],
-      ['solo-superseded', true, 'solo-en-sustituida'],
-      ['solo-superseded', false, 'sin-determinar'],
-      ['sin-transcripcion', true, 'sin-determinar'],
-      ['sin-rastro', true, null],
+    const casos: [ProvenanceOutcome, boolean, boolean, QuoteProvenanceStatus | null][] = [
+      ['vigente', true, false, 'en-vigente'],
+      ['vigente', false, false, 'en-vigente'],
+      ['solo-superseded', true, false, 'solo-en-sustituida'],
+      ['solo-superseded', false, false, 'sin-determinar'],
+      ['sin-transcripcion', true, false, 'sin-determinar'],
+      ['sin-rastro', true, false, null],
+      // Vigente dudosa: lo que consta en algún sitio no se coteja contra ella.
+      ['vigente', true, true, 'transcripcion-dudosa'],
+      ['solo-superseded', true, true, 'transcripcion-dudosa'],
+      ['solo-superseded', false, true, 'transcripcion-dudosa'],
+      // Lo que no consta en ninguna se sigue reteniendo, dudosa o no.
+      ['sin-rastro', true, true, null],
     ]
-    for (const [d, comparable, esperado] of casos) {
-      expect(procedenciaDeDeclaracion(d, comparable)).toBe(esperado)
+    for (const [d, comparable, dudosa, esperado] of casos) {
+      expect(procedenciaDeDeclaracion(d, comparable, dudosa)).toBe(esperado)
     }
   })
 })
@@ -81,6 +88,39 @@ describe('procedenciaDelCorpus · procedenciaDelLiteral', () => {
     expect(r.sinProcedencia.has('larga-3')).toBe(true)
     expect(r.procedenciaDelLiteral.has('larga-3')).toBe(false)
   })
+
+  it('una sesión cuya vigente no pasa la guarda de calidad marca dudosas las que constan', () => {
+    // La forma real de 1237hbp: bloques de 30 s sin hablantes, con «La Lucha de
+    // los Malditos» repetida, y el literal ahí dentro, palabra por palabra.
+    const lineas = [
+      ...Array.from(
+        { length: 20 },
+        (_, i) => `[${i * 30}.0 → ${i * 30 + 30}.0] La Lucha de los Malditos`,
+      ),
+      ...Array.from(
+        { length: 40 },
+        (_, i) => `[${600 + i * 30}.0 → ${630 + i * 30}.0] ${relleno(12)} ${i}`,
+      ),
+      `[2000.0 → 2030.0] ${LITERAL}`,
+      `[2030.0 → 2060.0] ${OTRA}`,
+    ]
+    const dudosa = lineas.join('\n')
+    expect(assessTranscriptSanity(dudosa).ok).toBe(false)
+    const conDudosa = {
+      leerVigente: (p: string) => (p === 'dudosa' ? dudosa : lectores.leerVigente(p)),
+      leerSustituidas: (p: string) => (p === 'dudosa' ? [OTRA] : lectores.leerSustituidas(p)),
+    }
+    const items = [
+      item('dudosa-1', 'dudosa', LITERAL),
+      item('dudosa-2', 'dudosa', OTRA),
+      ...Array.from({ length: 60 }, (_, i) => item(`larga-r${i}`, 'larga', OTRA)),
+    ]
+    const r = procedenciaDelCorpus(items, conDudosa)
+    expect(r.procedenciaDelLiteral.get('dudosa-1')).toBe('transcripcion-dudosa')
+    expect(r.procedenciaDelLiteral.get('dudosa-2')).toBe('transcripcion-dudosa')
+    // El par de control: la otra sesión, con vigente sana, no cambia.
+    expect(r.procedenciaDelLiteral.get('larga-r0')).toBe('en-vigente')
+  })
 })
 
 describe('la puerta con la procedencia del literal', () => {
@@ -96,7 +136,7 @@ describe('la puerta con la procedencia del literal', () => {
     expect(
       classifyClaimVisibility(fundada('a-1'), { procedenciaDelLiteral: 'en-vigente' }),
     ).toBe<ClaimVisibility>('shown')
-    for (const p of ['solo-en-sustituida', 'sin-determinar'] as const) {
+    for (const p of ['solo-en-sustituida', 'sin-determinar', 'transcripcion-dudosa'] as const) {
       expect(classifyClaimVisibility(fundada('a-1'), { procedenciaDelLiteral: p })).toBe('toggle')
     }
   })

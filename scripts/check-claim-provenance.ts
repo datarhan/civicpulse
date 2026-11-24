@@ -30,7 +30,11 @@ import {
   type ProvenanceOutcome,
   type ProvenanceRow,
 } from '../src/scraper/claim-provenance'
-import { sessionIsComparable, type QuoteProvenanceStatus } from '../src/scraper/quote-provenance'
+import {
+  sessionIsComparable,
+  vigenteEsDudosa,
+  type QuoteProvenanceStatus,
+} from '../src/scraper/quote-provenance'
 import { loadSupersededTexts } from './lib/transcript-corpus'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
@@ -113,6 +117,7 @@ function main() {
     // La misma regla que estampa la marca (procedencia-del-corpus.ts): en
     // palabras, contra la sustituida principal.
     const comparable = sessionIsComparable({ current, superseded: superseded[0] ?? null })
+    const dudosa = vigenteEsDudosa(current)
 
     // El mapa de voces es opcional y su ausencia NO es un desacuerdo: sin él
     // no hay con qué cotejar la atribución, y decir «coincide» sería inventar
@@ -145,7 +150,7 @@ function main() {
       marcas.push({
         claimId: claim.id ?? '?',
         estampada: item.procedencia,
-        hoy: procedenciaDeDeclaracion(provenance, comparable),
+        hoy: procedenciaDeDeclaracion(provenance, comparable, dudosa),
       })
       details.push({
         plenoId,

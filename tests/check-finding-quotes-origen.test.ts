@@ -40,6 +40,14 @@ const AUDIO = [
   '[14.5 → 19.0] y eso lo vamos a llevar a la comisión informativa del mes que viene',
   '[19.0 → 23.2] porque hasta ahora no se ha presentado ningún informe de seguimiento',
   '[23.2 → 27.9] así que pedimos que conste la posición de nuestro grupo en esta sesión',
+  // Una sesión de verdad: con cinco líneas el fichero no pasaría la guarda de
+  // calidad (`too-few-lines`) y sus citas serían `transcripcion-dudosa`, que es
+  // otra pregunta que la de estas pruebas.
+  ...Array.from(
+    { length: 16 },
+    (_, i) =>
+      `[${(30 + i * 5).toFixed(1)} → ${(35 + i * 5).toFixed(1)}] intervención ${i + 1} sobre el punto ${i + 3} del orden del día, con su turno de réplica y la votación que corresponde`,
+  ),
 ].join('\n')
 
 const REDACTADO_POR_SECRETARIA =

@@ -34,6 +34,15 @@ export const MARCA_DE_PROCEDENCIA = {
     title: 'findings.citas.procedencia.sinDeterminar.title',
     nota: 'declaraciones.procedencia.sinDeterminar.nota',
   },
+  // La vigente no pasa la guarda de calidad (`vigenteEsDudosa`): 1237hbp,
+  // 1xmr0do y 1r6yy0 el 24-11-2026. `warn`, como la sustituida: no es la
+  // ausencia de una afirmación, es que el texto de al lado no es de fiar.
+  'transcripcion-dudosa': {
+    tono: 'warn',
+    chip: 'findings.citas.procedencia.dudosa.chip',
+    title: 'findings.citas.procedencia.dudosa.title',
+    nota: 'declaraciones.procedencia.dudosa.nota',
+  },
 }
 
 export function MarcaDeProcedencia({ procedencia, style = {} }) {
@@ -71,7 +80,7 @@ export function MarcaDeProcedencia({ procedencia, style = {} }) {
           tone={marca.tono}
           size="xs"
           title={t(marca.title)}
-          style={{ lineHeight: 1.25, borderRadius: 6 }}
+          style={{ lineHeight: 1.25, borderRadius: 'var(--r-input)' }}
         >
           {t(marca.chip)}
         </Pill>

@@ -24,6 +24,8 @@ import {
   provenanceSanityFailure,
   PROVENANCE_VERSION,
   QUOTE_PROVENANCE_STATUS_IDS,
+  REANCHORABLE_STATUS_IDS,
+  vigenteEsDudosa,
   palabrasDeTranscripcion,
   sessionIsComparable,
   UNDETERMINED_REASON_IDS,
@@ -146,8 +148,17 @@ describe('los tres estados son alcanzables, y cada uno sobre datos reales', () =
   })
 
   it('los tres suman exactamente las citas evaluadas', () => {
-    const { enVigente, soloEnSustituida, sinDeterminar, sinClasificar, quotes } = DERIVED.stats
-    expect(enVigente + soloEnSustituida + sinDeterminar + sinClasificar).toBe(quotes)
+    const {
+      enVigente,
+      soloEnSustituida,
+      sinDeterminar,
+      transcripcionDudosa,
+      sinClasificar,
+      quotes,
+    } = DERIVED.stats
+    expect(enVigente + soloEnSustituida + sinDeterminar + transcripcionDudosa + sinClasificar).toBe(
+      quotes,
+    )
   })
 
   it('«sin determinar» NO se pliega sobre «sólo en la sustituida»', () => {
@@ -183,7 +194,9 @@ describe('control positivo — la regla no puede ser «marcarlo todo»', () => {
     let checked = 0
     for (const { finding, index } of ALL_QUOTES) {
       const entry = DERIVED.quotes[finding.id][index]
-      if (!entry || !MARKED_STATUS_IDS.includes(entry.status)) continue
+      // `transcripcion-dudosa` suele estar en la vigente, palabra por palabra:
+      // lo que marca es que ese texto no es de fiar. Su control va aparte.
+      if (!entry || !REANCHORABLE_STATUS_IDS.includes(entry.status)) continue
       checked += 1
       const text = (finding.quotes![index].text ?? '').trim()
       const current = SESSIONS.get(finding.plenoId)!.current
@@ -194,6 +207,17 @@ describe('control positivo — la regla no puede ser «marcarlo todo»', () => {
     // que un número fijo aquí se rompería por haber hecho el trabajo. Lo que
     // no puede caer a cero sin avisar es que se haya comprobado algo.
     expect(checked).toBeGreaterThan(10)
+  })
+
+  it('una cita «transcripción defectuosa» es de una sesión cuya vigente no pasa la guarda', () => {
+    for (const { finding, index } of ALL_QUOTES) {
+      const entry = DERIVED.quotes[finding.id][index]
+      const dudosa = vigenteEsDudosa(SESSIONS.get(finding.plenoId)?.current ?? null)
+      // En los dos sentidos: ni una dudosa con la vigente sana, ni una cita de
+      // una vigente dudosa marcada con otro estado.
+      if (entry?.status === 'transcripcion-dudosa') expect(dudosa).toBe(true)
+      else if (entry && dudosa) expect.fail(`${finding.id}[${index}] es ${entry.status}`)
+    }
   })
 
   it('la muestra real trae los dos lados: hay marcadas y hay sin marcar', () => {

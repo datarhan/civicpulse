@@ -118,6 +118,19 @@ describe('transcript sanity — Whisper hallucination markers', () => {
     expect(report.reasons).not.toContain('hallucination-markers')
     expect(report.hallucinatedLines).toBe(1)
   })
+
+  it('flags «La Lucha de los Malditos», the commonest hallucination in this corpus', () => {
+    // Real: 1237hbp carries it in 46 of 199 lines and passed the gate until
+    // 24-11-2026; 1xmr0do in 29 of 115.
+    const lucha = Array.from(
+      { length: 46 },
+      (_, i) => `[${i * 30}.0 → ${i * 30 + 30}.0] La Lucha de los Malditos`,
+    ).join('\n')
+    const report = assessTranscriptSanity(`${speech(153)}\n${lucha}`)
+    expect(report.ok).toBe(false)
+    expect(report.reasons).toContain('hallucination-markers')
+    expect(report.hallucinatedLines).toBe(46)
+  })
 })
 
 /**

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-24T07:34:25.631Z",
+  "generatedAt": "2026-11-24T11:26:39.311Z",
   "version": "1",
   "plenoId": "1r6yy0",
   "plenoDate": "2023-01-23",
@@ -31,7 +31,7 @@
         "checkedAgainst": []
       },
       "visibility": "toggle",
-      "procedencia": "solo-en-sustituida"
+      "procedencia": "transcripcion-dudosa"
     },
     {
       "claim": {
@@ -64,7 +64,7 @@
         ]
       },
       "visibility": "toggle",
-      "procedencia": "solo-en-sustituida"
+      "procedencia": "transcripcion-dudosa"
     },
     {
       "claim": {
@@ -90,7 +90,7 @@
         "checkedAgainst": []
       },
       "visibility": "toggle",
-      "procedencia": "solo-en-sustituida"
+      "procedencia": "transcripcion-dudosa"
     },
     {
       "claim": {
@@ -122,7 +122,7 @@
         "source": "verdict-engine"
       },
       "visibility": "toggle",
-      "procedencia": "solo-en-sustituida"
+      "procedencia": "transcripcion-dudosa"
     },
     {
       "claim": {
@@ -153,7 +153,7 @@
         ]
       },
       "visibility": "toggle",
-      "procedencia": "solo-en-sustituida"
+      "procedencia": "transcripcion-dudosa"
     },
     {
       "claim": {
@@ -184,7 +184,7 @@
         ]
       },
       "visibility": "toggle",
-      "procedencia": "en-vigente"
+      "procedencia": "transcripcion-dudosa"
     },
     {
       "claim": {
@@ -212,7 +212,7 @@
         "checkedAgainst": []
       },
       "visibility": "toggle",
-      "procedencia": "solo-en-sustituida"
+      "procedencia": "transcripcion-dudosa"
     },
     {
       "claim": {
@@ -242,7 +242,7 @@
         "checkedAgainst": []
       },
       "visibility": "toggle",
-      "procedencia": "en-vigente"
+      "procedencia": "transcripcion-dudosa"
     },
     {
       "claim": {
@@ -270,7 +270,7 @@
         "checkedAgainst": []
       },
       "visibility": "toggle",
-      "procedencia": "solo-en-sustituida"
+      "procedencia": "transcripcion-dudosa"
     },
     {
       "claim": {
@@ -300,7 +300,7 @@
         "checkedAgainst": []
       },
       "visibility": "toggle",
-      "procedencia": "en-vigente"
+      "procedencia": "transcripcion-dudosa"
     },
     {
       "claim": {
@@ -333,7 +333,7 @@
         ]
       },
       "visibility": "toggle",
-      "procedencia": "en-vigente"
+      "procedencia": "transcripcion-dudosa"
     },
     {
       "claim": {
@@ -363,7 +363,7 @@
         "checkedAgainst": []
       },
       "visibility": "toggle",
-      "procedencia": "solo-en-sustituida"
+      "procedencia": "transcripcion-dudosa"
     },
     {
       "claim": {
@@ -398,7 +398,7 @@
         ]
       },
       "visibility": "toggle",
-      "procedencia": "en-vigente"
+      "procedencia": "transcripcion-dudosa"
     },
     {
       "claim": {
@@ -430,7 +430,7 @@
         "source": "verdict-engine"
       },
       "visibility": "toggle",
-      "procedencia": "en-vigente"
+      "procedencia": "transcripcion-dudosa"
     },
     {
       "claim": {
@@ -461,7 +461,7 @@
         ]
       },
       "visibility": "toggle",
-      "procedencia": "solo-en-sustituida"
+      "procedencia": "transcripcion-dudosa"
     },
     {
       "claim": {
@@ -493,7 +493,7 @@
         "source": "verdict-engine"
       },
       "visibility": "toggle",
-      "procedencia": "en-vigente"
+      "procedencia": "transcripcion-dudosa"
     },
     {
       "claim": {
@@ -521,7 +521,7 @@
         "checkedAgainst": []
       },
       "visibility": "toggle",
-      "procedencia": "en-vigente"
+      "procedencia": "transcripcion-dudosa"
     },
     {
       "claim": {
@@ -554,7 +554,7 @@
         ]
       },
       "visibility": "toggle",
-      "procedencia": "en-vigente"
+      "procedencia": "transcripcion-dudosa"
     },
     {
       "claim": {
@@ -587,7 +587,7 @@
         "source": "verdict-engine"
       },
       "visibility": "toggle",
-      "procedencia": "en-vigente"
+      "procedencia": "transcripcion-dudosa"
     },
     {
       "claim": {
@@ -616,7 +616,7 @@
         "checkedAgainst": []
       },
       "visibility": "toggle",
-      "procedencia": "solo-en-sustituida"
+      "procedencia": "transcripcion-dudosa"
     },
     {
       "claim": {
@@ -646,7 +646,7 @@
         ]
       },
       "visibility": "toggle",
-      "procedencia": "solo-en-sustituida"
+      "procedencia": "transcripcion-dudosa"
     }
   ]
 }

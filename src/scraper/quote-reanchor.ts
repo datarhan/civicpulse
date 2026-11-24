@@ -36,7 +36,7 @@
  */
 import { HUECOS } from './orden-preparada'
 import { normaliseForQuoteMatch, quoteAppearsIn } from './quote-match'
-import { MARKED_STATUS_IDS, type QuoteProvenanceEntry } from './quote-provenance'
+import { REANCHORABLE_STATUS_IDS, type QuoteProvenanceEntry } from './quote-provenance'
 
 /** La CLI que sí escribe. Nada de este módulo la invoca. */
 export const REANCHOR_CLI = 'npm run correct-pleno-finding'
@@ -477,9 +477,11 @@ export interface ReanchorFinding {
 /**
  * Construye la cola. Pura: `corpus` trae los índices ya calculados.
  *
- * Encola exactamente las citas que el snapshot de procedencia marca —los dos
- * estados vienen de `MARKED_STATUS_IDS`, no de una lista escrita aquí—, así que
- * la cola y la página no pueden discrepar sobre cuáles están afectadas.
+ * Encola exactamente las citas que el snapshot de procedencia marca y que se
+ * arreglan re-anclando —los estados vienen de `REANCHORABLE_STATUS_IDS`, no de
+ * una lista escrita aquí—, así que la cola y la página no pueden discrepar
+ * sobre cuáles están afectadas. `transcripcion-dudosa` no entra: se arregla
+ * volviendo a transcribir la sesión.
  */
 export function buildReanchorQueue(
   findings: ReanchorFinding[],
@@ -499,7 +501,7 @@ export function buildReanchorQueue(
     const texts = corpus.get(f.plenoId)
     ;(f.quotes ?? []).forEach((q, i) => {
       const entry = entries[i]
-      if (!entry || !MARKED_STATUS_IDS.includes(entry.status as never)) return
+      if (!entry || !REANCHORABLE_STATUS_IDS.includes(entry.status as never)) return
       marcadas += 1
       porEstado[entry.status] = (porEstado[entry.status] ?? 0) + 1
       const quote = (q.text ?? '').trim()

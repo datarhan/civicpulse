@@ -91,6 +91,9 @@ function main() {
   const drifted: Array<Record<string, string>> = []
   const supersededOnly: Array<Record<string, string>> = []
   const undetermined: Array<Record<string, string>> = []
+  // Su propio cubo: no es «no se puede situar» por una vigente más corta, es
+  // una vigente que no pasa la guarda de calidad (`vigenteEsDudosa`).
+  const dudosas: Array<Record<string, string>> = []
   const fueraDeAudio: Array<Record<string, string>> = []
   const porOrigen: Record<OrigenDeCita, number> = { audio: 0, acta: 0, unknown: 0 }
   let checked = 0
@@ -121,6 +124,8 @@ function main() {
         ok += 1
       } else if (outcome.status === 'solo-en-sustituida') {
         supersededOnly.push(row)
+      } else if (outcome.status === 'transcripcion-dudosa') {
+        dudosas.push(row)
       } else {
         // «Cannot tell» is not «only in the superseded one»: for these sessions
         // the current transcript is SHORTER than the one it replaced, so the
@@ -168,6 +173,7 @@ function main() {
           ok,
           supersededOnlyCount: supersededOnly.length,
           undeterminedCount: undetermined.length,
+          transcripcionDudosaCount: dudosas.length,
           driftedCount: drifted.length,
           noTranscript,
           origen: porOrigen,
@@ -177,6 +183,7 @@ function main() {
           sanity,
           supersededOnly,
           undetermined,
+          dudosas,
           drifted,
           fueraDeAudio,
         },
@@ -195,6 +202,7 @@ function main() {
       `  traceable to transcript : ${ok}\n` +
       `  only in the superseded  : ${supersededOnly.length}\n` +
       `  cannot tell             : ${undetermined.length}\n` +
+      `  defective transcript    : ${dudosas.length}\n` +
       `  NOT found anywhere      : ${drifted.length}\n` +
       `  transcript missing      : ${noTranscript}\n`,
   )
@@ -239,6 +247,13 @@ function main() {
       `${undetermined.length} quote(s) cannot be placed either way: their session's current\n` +
         `transcript is SHORTER than the one it replaced, so the absence may be coverage rather\n` +
         `than rewording. Not counted as superseded-only, and not counted as sound.\n`,
+    )
+  }
+  if (dudosas.length > 0) {
+    console.log(
+      `${dudosas.length} quote(s) come from a session whose current transcript fails\n` +
+        `\`check:transcripts\` (${[...new Set(dudosas.map((d) => d.plenoId))].join(', ')}). Re-anchoring\n` +
+        `cannot fix them: the session has to be re-transcribed. Marked on /hallazgos.\n`,
     )
   }
 

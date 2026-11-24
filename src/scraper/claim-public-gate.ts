@@ -185,6 +185,13 @@ export interface ClaimVisibilityInput {
     derivedBy?: unknown
     retirada?: unknown
   } | null
+  /**
+   * La marca que el troceador estampó en una declaración servida. Sólo la lee
+   * `classifyClaimVisibility` cuando no se le pasa la respuesta, para que
+   * quien vuelve a pasar la puerta sobre lo servido —el navegador, una
+   * prueba— diga lo mismo que el sello. Sólo puede bajar.
+   */
+  procedencia?: unknown
 }
 
 /**
@@ -266,8 +273,9 @@ export function classifyClaimVisibility(
 ): ClaimVisibility {
   if (motivoDeRetencion(item, opts) !== null) return 'hidden'
   if (!estaFundada(item)) return 'toggle'
-  // Bajar, nunca subir: sin la respuesta (null) la regla de siempre decide.
-  const p = opts.procedenciaDelLiteral
+  // Bajar, nunca subir: sin la respuesta (null) decide la marca estampada en la
+  // fila servida, y sin ninguna de las dos, la regla de siempre.
+  const p = opts.procedenciaDelLiteral ?? item.procedencia ?? null
   return p != null && p !== 'en-vigente' ? 'toggle' : 'shown'
 }
 

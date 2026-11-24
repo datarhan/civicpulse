@@ -187,6 +187,7 @@ function useClaimProvenanceDisclosure() {
     enVigente: p['en-vigente'] ?? 0,
     soloEnSustituida: p['solo-en-sustituida'] ?? 0,
     sinDeterminar: p['sin-determinar'] ?? 0,
+    transcripcionDudosa: p['transcripcion-dudosa'] ?? 0,
   }
 }
 
@@ -2212,7 +2213,7 @@ function ContratoEditorial() {
           .
         </p>
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
-          Cada cita afectada lleva su marca al lado, y hay dos porque son dos cosas distintas:
+          Cada cita afectada lleva su marca al lado, y hay tres porque son tres cosas distintas:
         </p>
         <ul style={{ margin: '8px 0 0', paddingLeft: 20, color: 'var(--ink70)' }}>
           <li>
@@ -2231,16 +2232,35 @@ function ContratoEditorial() {
             cubre. No afirmamos ninguna de las dos cosas. Es un estado propio precisamente para no
             dejarlo caer en el anterior.
           </li>
+          {/* Desde el 24-11-2026: 1237hbp y 1xmr0do traían «La Lucha de los Malditos» en 46 y 29
+              líneas y pasaban la comprobación, que no conocía esa alucinación; 1r6yy0 ya la
+              suspendía por pasajes en inglés y sus declaraciones se servían sin marca. */}
+          <li>
+            <strong>«transcripción defectuosa»</strong> — la transcripción vigente de esa sesión no
+            supera la comprobación de calidad que pasa toda transcripción nueva antes de publicarse:
+            el texto muestra fallos del motor, como frases repetidas que nadie dijo o pasajes
+            traducidos a otra lengua. Contra ese texto no se puede cotejar nada, así que la cita no
+            se da por situada, aparezca o no en él. Siguen publicadas porque la comprobación sólo
+            detiene las transcripciones nuevas, no las que ya lo estaban; la página del pleno lo
+            advierte encima de la transcripción, y hace falta volver a transcribir la sesión y
+            extraer de nuevo sus declaraciones.
+          </li>
         </ul>
         {quoteProvenance && (
           <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
             Hoy, de {quoteProvenance.quotes} literales publicados,{' '}
             <strong>{quoteProvenance.enVigente}</strong> aparecen en la transcripción vigente de su
             sesión, <strong>{quoteProvenance.soloEnSustituida}</strong> sólo en la que se sustituyó
-            y <strong>{quoteProvenance.sinDeterminar}</strong> no se pueden situar. La cifra se lee
-            del fichero derivado <code>finding-quote-provenance.json</code> en el momento de mostrar
-            esta página, no está escrita aquí: cambia cada vez que se vuelve a transcribir una
-            sesión.
+            y <strong>{quoteProvenance.sinDeterminar}</strong> no se pueden situar
+            {quoteProvenance.transcripcionDudosa > 0 && (
+              <>
+                ; otros <strong>{quoteProvenance.transcripcionDudosa}</strong> son de sesiones cuya
+                transcripción es defectuosa
+              </>
+            )}
+            . La cifra se lee del fichero derivado <code>finding-quote-provenance.json</code> en el
+            momento de mostrar esta página, no está escrita aquí: cambia cada vez que se vuelve a
+            transcribir una sesión.
           </p>
         )}
         {/* Hasta el 23-11-2026 /declaraciones y el registro de cada pleno imprimían sin marca
@@ -2265,21 +2285,30 @@ function ContratoEditorial() {
               Hoy, de {claimProvenance.total} declaraciones publicadas,{' '}
               <strong>{claimProvenance.enVigente}</strong> constan en la transcripción vigente de su
               sesión, <strong>{claimProvenance.soloEnSustituida}</strong> sólo en la que se
-              sustituyó y <strong>{claimProvenance.sinDeterminar}</strong> no se pueden situar. La
-              cifra se lee de <code>/data/pleno-claims/index.json</code> al mostrar esta página.
+              sustituyó y <strong>{claimProvenance.sinDeterminar}</strong> no se pueden situar
+              {claimProvenance.transcripcionDudosa > 0 && (
+                <>
+                  ; otras <strong>{claimProvenance.transcripcionDudosa}</strong> son de sesiones
+                  cuya transcripción es defectuosa
+                </>
+              )}
+              . La cifra se lee de <code>/data/pleno-claims/index.json</code> al mostrar esta
+              página.
             </>
           )}{' '}
           Una declaración no tiene cola de reanclaje: su marca desaparece cuando la sesión se vuelve
-          a extraer sobre la transcripción vigente.
+          a extraer sobre la transcripción vigente, y si la marca es la de una transcripción
+          defectuosa, antes hay que volver a transcribir la sesión.
         </p>
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
           <strong>No reescribimos ninguna cita por nuestra cuenta.</strong> El estado es un cálculo
           sobre dos ficheros —lo comprueba <code>npm run check:finding-quotes</code>, que se niega a
           pasar si la marca publicada deja de coincidir con las transcripciones—, pero elegir el
           pasaje equivalente en el texto nuevo es una decisión editorial sobre lo que dijo una
-          persona. Esas citas están en una cola de reanclaje para revisión humana, y el cambio, si
-          se hace, entra por la vía de corrección de siempre: queda en la bitácora pública de la
-          ficha, con el texto anterior tachado y el motivo. Una cita que no aparece en{' '}
+          persona. Esas citas están en una cola de reanclaje para revisión humana —salvo las de una
+          transcripción defectuosa, que sólo se arreglan volviendo a transcribir la sesión—, y el
+          cambio, si se hace, entra por la vía de corrección de siempre: queda en la bitácora
+          pública de la ficha, con el texto anterior tachado y el motivo. Una cita que no aparece en{' '}
           <strong>ninguna</strong> de las dos transcripciones es un problema distinto —posible
           invención, no desgaste— y no se publica con marca: se bloquea.
         </p>

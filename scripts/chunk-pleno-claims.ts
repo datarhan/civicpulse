@@ -202,9 +202,11 @@ export function rewriteChunksFromMonolith(opts: { dryRun?: boolean } = {}): {
         `declaraciones servidas: no cuadran, no se escribe nada.`,
     )
   }
+  // Sin nada servido no hay bloque de marcas (pleno-claims-chunks.ts): se dice
+  // «ninguna», no se lee un objeto que no existe.
   console.warn(
     `[chunk-claims] procedencia del literal: ` +
-      Object.entries(marcas)
+      Object.entries(marcas ?? {})
         .map(([k, n]) => `${n} ${k}`)
         .join(' · '),
   )

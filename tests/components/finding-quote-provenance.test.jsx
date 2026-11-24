@@ -25,7 +25,7 @@ import {
 } from '../../src/components/PlenoFindings'
 import { FindingDetailCard } from '../../src/pages/Hallazgos'
 import { invalidateSnapshots, peekSnapshot } from '../../src/lib/snapshot-store'
-import { MARKED_STATUS_IDS } from '../../src/scraper/quote-provenance'
+import { MARKED_STATUS_IDS, REANCHORABLE_STATUS_IDS } from '../../src/scraper/quote-provenance'
 
 const ROOT = join(__dirname, '..', '..')
 const FINDINGS = JSON.parse(readFileSync(join(ROOT, 'public/data/pleno-findings.json'), 'utf8'))
@@ -37,6 +37,7 @@ const PROVENANCE = JSON.parse(
 const MARK_TEXT = {
   'solo-en-sustituida': 'no consta en la transcripción revisada',
   'sin-determinar': 'no hemos podido comprobarlo',
+  'transcripcion-dudosa': 'transcripción defectuosa',
 }
 
 const realFetch = globalThis.fetch
@@ -80,15 +81,19 @@ afterAll(() => {
  * siguen sin marca, que es lo que distingue «marca la cita afectada» de
  * «marca todas las citas».
  */
+// Re-anclable: estas pruebas hablan de la cita que NO consta en el texto vigente.
+// `transcripcion-dudosa` suele constar en él; su marca es otra pregunta.
 const affected = FINDINGS.items.find((f) => {
   const rows = PROVENANCE.quotes[f.id] ?? []
-  return rows.length > 0 && MARKED_STATUS_IDS.includes(rows[0].status)
+  return rows.length > 0 && REANCHORABLE_STATUS_IDS.includes(rows[0].status)
 })
 
 /** El primer hallazgo cuyas tres primeras citas están TODAS en el texto vigente. */
 const sound = FINDINGS.items.find((f) => {
   const rows = (PROVENANCE.quotes[f.id] ?? []).slice(0, 3)
-  return rows.length > 0 && rows.every((r) => r.status === 'en-vigente')
+  // Y que la ficha enseñe: una cita retenida por la puerta (`hidden`) no imprime
+  // su literal, y el control «sí publica sus citas» no mediría nada.
+  return rows.length > 0 && rows.every((r) => r.status === 'en-vigente' && r.gate !== 'hidden')
 })
 
 /**

@@ -95,6 +95,13 @@ const HALLUCINATION_MARKERS: RegExp[] = [
   /amara\.org/i,
   /iglesia de jesucristo de los santos/i,
   /junta de extremadura/i,
+  // El título de una película, no algo que se dijera en el pleno. Es la
+  // alucinación más frecuente de este corpus y no estaba en la lista: 1237hbp
+  // la trae en 46 líneas y 1xmr0do en 29, y las dos pasaban la guarda (medido el
+  // 24-11-2026; ninguna otra vigente la contiene). `superseded/qz6weg.txt`, del
+  // mismo motor, repite «La Lucha por la Vida» en 76 bloques.
+  /la lucha de los malditos/i,
+  /la lucha por la vida/i,
 ]
 
 const TIMESTAMP_PREFIX = /^\[[^\]]*\]\s*/

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-24T07:34:25.631Z",
+  "generatedAt": "2026-11-24T11:26:39.311Z",
   "version": "1",
   "plenos": [
     {
@@ -87,7 +87,7 @@
         "movilidad": 10,
         "medio-ambiente": 5
       },
-      "bytes": 93077
+      "bytes": 93727
     },
     {
       "plenoId": "15uvjew",
@@ -171,7 +171,7 @@
         "fiscal": 9,
         "other": 9
       },
-      "bytes": 92202
+      "bytes": 92912
     },
     {
       "plenoId": "11025xk",
@@ -797,7 +797,7 @@
         "urbanismo": 2,
         "other": 1
       },
-      "bytes": 29027
+      "bytes": 29149
     }
   ],
   "totals": {
@@ -1053,8 +1053,9 @@
     },
     "retenidasSinProcedencia": 2,
     "procedenciaDelLiteral": {
-      "en-vigente": 4034,
-      "solo-en-sustituida": 809,
+      "en-vigente": 3888,
+      "transcripcion-dudosa": 157,
+      "solo-en-sustituida": 798,
       "sin-determinar": 186
     },
     "retiradas": {

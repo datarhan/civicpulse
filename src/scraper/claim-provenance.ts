@@ -130,11 +130,20 @@ export function classifyClaimProvenancePreparado(input: {
  * `sin-transcripcion` es `sin-determinar`, como en las citas: no hay contra qué
  * cotejar. `sin-rastro` devuelve `null` porque la puerta la retiene y nunca se
  * sirve: no hay marca que poner a lo que no se publica.
+ *
+ * `vigenteDudosa` es `vigenteEsDudosa` de la sesión, la misma pregunta que
+ * hacen las citas: si la vigente no pasa la guarda de calidad, una declaración
+ * que consta en ella o en la sustituida es `transcripcion-dudosa` —ninguna de
+ * las dos afirmaciones, «está en la vigente» o «el motor anterior la redactó a
+ * su manera», se sostiene sobre un texto que no es de fiar—.
  */
 export function procedenciaDeDeclaracion(
   outcome: ProvenanceOutcome,
   comparable: boolean,
+  vigenteDudosa: boolean,
 ): QuoteProvenanceStatus | null {
+  if (vigenteDudosa && (outcome === 'vigente' || outcome === 'solo-superseded'))
+    return 'transcripcion-dudosa'
   switch (outcome) {
     case 'vigente':
       return 'en-vigente'
