@@ -14268,22 +14268,6 @@
       "weak": false
     },
     {
-      "label": "c06/SPEAKER_02",
-      "bloc": "VOX",
-      "slug": "jose-luis-fernandez-santamaria",
-      "heardAs": null,
-      "evidence": [
-        {
-          "spokenBy": "c06/SPEAKER_01",
-          "at": 3713.9,
-          "quote": "El portavoz de Vox, ¿va a intervenir?",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": true,
-      "weak": false
-    },
-    {
       "label": "c08/SPEAKER_03",
       "bloc": "Compromís",
       "slug": "rafael-folgado-navarro",
@@ -14341,38 +14325,6 @@
           "spokenBy": "c13/SPEAKER_01",
           "at": 8571.1,
           "quote": "Compromís, Rafa.",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": true,
-      "weak": false
-    },
-    {
-      "label": "c11/SPEAKER_03",
-      "bloc": "VOX",
-      "slug": "jose-luis-fernandez-santamaria",
-      "heardAs": null,
-      "evidence": [
-        {
-          "spokenBy": "c11/SPEAKER_00",
-          "at": 7130.1,
-          "quote": "Vox?",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": true,
-      "weak": false
-    },
-    {
-      "label": "c11/SPEAKER_05",
-      "bloc": "Compromís",
-      "slug": "rafael-folgado-navarro",
-      "heardAs": null,
-      "evidence": [
-        {
-          "spokenBy": "c11/SPEAKER_00",
-          "at": 7135.1,
-          "quote": "Compromís?",
           "relation": "turn-grant"
         }
       ],
@@ -14549,38 +14501,6 @@
           "spokenBy": "c24/SPEAKER_00",
           "at": 14618,
           "quote": "Alguna paraula més d'este punt? Compromís.",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": true,
-      "weak": false
-    },
-    {
-      "label": "c22/SPEAKER_04",
-      "bloc": "VOX",
-      "slug": "jose-luis-fernandez-santamaria",
-      "heardAs": null,
-      "evidence": [
-        {
-          "spokenBy": "c22/SPEAKER_01",
-          "at": 13629,
-          "quote": "Vox?",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": true,
-      "weak": false
-    },
-    {
-      "label": "c22/SPEAKER_05",
-      "bloc": "Compromís",
-      "slug": "rafael-folgado-navarro",
-      "heardAs": "Rafa",
-      "evidence": [
-        {
-          "spokenBy": "c22/SPEAKER_01",
-          "at": 13633,
-          "quote": "I Rafa, Compromís?",
           "relation": "turn-grant"
         }
       ],
@@ -14908,6 +14828,31 @@
       "label": "c03/SPEAKER_03",
       "reason": "relation-contradicted",
       "detail": "reply, but 280.9s follows SPEAKER_02"
+    },
+    {
+      "label": "c06/SPEAKER_02",
+      "reason": "short-answer",
+      "detail": "turn-grant at 3713.9s «El portavoz de Vox, ¿va a intervenir?» is answered only by «No.»"
+    },
+    {
+      "label": "c11/SPEAKER_03",
+      "reason": "roll-call",
+      "detail": "turn-grant at 7130.1s «Vox?» is answered only by «En contra.» — a vote read back"
+    },
+    {
+      "label": "c11/SPEAKER_05",
+      "reason": "roll-call",
+      "detail": "turn-grant at 7135.1s «Compromís?» is answered only by «A favor.» — a vote read back"
+    },
+    {
+      "label": "c22/SPEAKER_04",
+      "reason": "roll-call",
+      "detail": "turn-grant at 13629s «Vox?» is answered only by «A favor.» — a vote read back"
+    },
+    {
+      "label": "c22/SPEAKER_05",
+      "reason": "roll-call",
+      "detail": "turn-grant at 13633s «I Rafa, Compromís?» is answered only by «En contra.» — a vote read back"
     }
   ],
   "stats": {
@@ -14976,16 +14921,26 @@
       }
     ],
     "labelsSeen": 4,
-    "rowsAccepted": 21,
-    "rowsRejected": 64,
+    "rowsAccepted": 16,
+    "rowsRejected": 69,
     "rejectedBy": {
       "unresolvable": 26,
       "relation-contradicted": 20,
       "evidence-speaker-mismatch": 13,
-      "ambiguous": 5
+      "ambiguous": 5,
+      "short-answer": 1,
+      "roll-call": 4
     },
     "attemptedThisRun": 2,
     "apiCalls": 4,
     "coverage": 0.7970093619348474
-  }
+  },
+  "revalidaciones": [
+    {
+      "fecha": "2026-11-24",
+      "regla": "respuesta-breve-y-prueba-perdida",
+      "retiradas": 5,
+      "noEvaluadas": 0
+    }
+  ]
 }

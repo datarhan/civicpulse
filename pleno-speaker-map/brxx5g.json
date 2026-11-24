@@ -10216,54 +10216,6 @@
       "weak": false
     },
     {
-      "label": "c03/SPEAKER_05",
-      "bloc": "VOX",
-      "slug": "jose-luis-fernandez-santamaria",
-      "heardAs": null,
-      "evidence": [
-        {
-          "spokenBy": "c03/SPEAKER_01",
-          "at": 2185,
-          "quote": "Vox?",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": true,
-      "weak": false
-    },
-    {
-      "label": "c03/SPEAKER_06",
-      "bloc": "EU-Podem",
-      "slug": "jose-manuel-gallardo-martinez",
-      "heardAs": null,
-      "evidence": [
-        {
-          "spokenBy": "c03/SPEAKER_01",
-          "at": 2187,
-          "quote": "Esquerra Unida Podem?",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": true,
-      "weak": false
-    },
-    {
-      "label": "c03/SPEAKER_07",
-      "bloc": "Compromís",
-      "slug": "rafael-folgado-navarro",
-      "heardAs": null,
-      "evidence": [
-        {
-          "spokenBy": "c03/SPEAKER_01",
-          "at": 2189,
-          "quote": "I Compromís?",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": true,
-      "weak": false
-    },
-    {
       "label": "c03/SPEAKER_08",
       "bloc": "PSOE",
       "slug": "jose-angel-hernandez-carrizosa",
@@ -10293,54 +10245,6 @@
         }
       ],
       "namesIndividual": false,
-      "weak": false
-    },
-    {
-      "label": "c05/SPEAKER_05",
-      "bloc": "VOX",
-      "slug": "jose-luis-fernandez-santamaria",
-      "heardAs": null,
-      "evidence": [
-        {
-          "spokenBy": "c05/SPEAKER_02",
-          "at": 3063.5,
-          "quote": "Vox?",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": true,
-      "weak": false
-    },
-    {
-      "label": "c05/SPEAKER_06",
-      "bloc": "EU-Podem",
-      "slug": "jose-manuel-gallardo-martinez",
-      "heardAs": null,
-      "evidence": [
-        {
-          "spokenBy": "c05/SPEAKER_02",
-          "at": 3066,
-          "quote": "Esquerra Unida Podem?",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": true,
-      "weak": false
-    },
-    {
-      "label": "c05/SPEAKER_07",
-      "bloc": "Compromís",
-      "slug": "rafael-folgado-navarro",
-      "heardAs": null,
-      "evidence": [
-        {
-          "spokenBy": "c05/SPEAKER_02",
-          "at": 3068,
-          "quote": "Compromís?",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": true,
       "weak": false
     },
     {
@@ -10385,38 +10289,6 @@
           "spokenBy": "c07/SPEAKER_01",
           "at": 4765,
           "quote": "Més paraules? Vox, José.",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": true,
-      "weak": false
-    },
-    {
-      "label": "c09/SPEAKER_04",
-      "bloc": "VOX",
-      "slug": "jose-luis-fernandez-santamaria",
-      "heardAs": null,
-      "evidence": [
-        {
-          "spokenBy": "c09/SPEAKER_01",
-          "at": 5731.5,
-          "quote": "¿Vox?",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": true,
-      "weak": false
-    },
-    {
-      "label": "c09/SPEAKER_06",
-      "bloc": "Compromís",
-      "slug": "rafael-folgado-navarro",
-      "heardAs": null,
-      "evidence": [
-        {
-          "spokenBy": "c09/SPEAKER_01",
-          "at": 5735.5,
-          "quote": "¿Compromís?",
           "relation": "turn-grant"
         }
       ],
@@ -10930,6 +10802,46 @@
       "label": "c12/SPEAKER_01",
       "reason": "unresolvable",
       "detail": "heard \"alcalde\" matches nobody"
+    },
+    {
+      "label": "c03/SPEAKER_05",
+      "reason": "roll-call",
+      "detail": "turn-grant at 2185s «Vox?» is answered only by «Abstenció.» — a vote read back"
+    },
+    {
+      "label": "c03/SPEAKER_06",
+      "reason": "roll-call",
+      "detail": "turn-grant at 2187s «Esquerra Unida Podem?» is answered only by «A favor.» — a vote read back"
+    },
+    {
+      "label": "c03/SPEAKER_07",
+      "reason": "roll-call",
+      "detail": "turn-grant at 2189s «I Compromís?» is answered only by «A favor.» — a vote read back"
+    },
+    {
+      "label": "c05/SPEAKER_05",
+      "reason": "roll-call",
+      "detail": "turn-grant at 3063.5s «Vox?» is answered only by «En contra.» — a vote read back"
+    },
+    {
+      "label": "c05/SPEAKER_06",
+      "reason": "roll-call",
+      "detail": "turn-grant at 3066s «Esquerra Unida Podem?» is answered only by «A favor.» — a vote read back"
+    },
+    {
+      "label": "c05/SPEAKER_07",
+      "reason": "roll-call",
+      "detail": "turn-grant at 3068s «Compromís?» is answered only by «A favor.» — a vote read back"
+    },
+    {
+      "label": "c09/SPEAKER_04",
+      "reason": "roll-call",
+      "detail": "turn-grant at 5731.5s «¿Vox?» is answered only by «En contra.» — a vote read back"
+    },
+    {
+      "label": "c09/SPEAKER_06",
+      "reason": "roll-call",
+      "detail": "turn-grant at 5735.5s «¿Compromís?» is answered only by «A favor.» — a vote read back"
     }
   ],
   "stats": {
@@ -10937,16 +10849,25 @@
     "chunksTranscribed": 20,
     "failedChunks": [],
     "labelsSeen": 8,
-    "rowsAccepted": 37,
-    "rowsRejected": 50,
+    "rowsAccepted": 29,
+    "rowsRejected": 58,
     "rejectedBy": {
       "unresolvable": 26,
       "relation-contradicted": 12,
       "ambiguous": 10,
       "evidence-outside-transcript": 1,
-      "evidence-speaker-mismatch": 1
+      "evidence-speaker-mismatch": 1,
+      "roll-call": 8
     },
     "attemptedThisRun": 1,
     "coverage": 1
-  }
+  },
+  "revalidaciones": [
+    {
+      "fecha": "2026-11-24",
+      "regla": "respuesta-breve-y-prueba-perdida",
+      "retiradas": 8,
+      "noEvaluadas": 0
+    }
+  ]
 }

@@ -1328,9 +1328,11 @@ function ContratoEditorial() {
               grupo tras una votación («¿Vox? —Abstenció») no es dar la palabra, ni lo es una
               respuesta breve («Sí», «No, gràcies») tras la que esa voz no sigue hablando: quien
               contesta así no se identifica, y a veces contesta la propia presidencia. Desde que se
-              añadió esta regla, en noviembre de 2026, ninguna de las dos acredita a nadie en los
-              fragmentos que se validan; los mapas guardados antes, y los fragmentos que un mapa a
-              medias arrastra de noches anteriores, todavía conservan filas que se apoyan en ellas.
+              añadió esta regla, en noviembre de 2026, ninguna de las dos acredita a nadie. Los
+              mapas guardados antes se revalidaron con ella el 24 de noviembre de 2026, sin volver a
+              escuchar el audio: las filas que se apoyaban en una votación o en una respuesta breve,
+              o cuya prueba ya no constaba en el mapa guardado, pasaron a rechazadas con su motivo.
+              Ninguna declaración publicada se apoyaba en ellas.
             </p>
             <p id="atribucion-firmada" style={{ margin: '8px 0 0', scrollMarginTop: 24 }}>
               <strong>Hay una segunda vía, y sólo esa</strong>: una persona firma con su nombre el

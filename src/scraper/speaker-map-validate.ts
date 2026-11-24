@@ -36,6 +36,12 @@ export type RejectReason =
   | 'roll-call'
   /** The identified voice answers in ≤ PALABRAS_RESPUESTA_BREVE words and stops. */
   | 'short-answer'
+  /**
+   * Only from `revalidarMapa`: the cited segment is no longer in a STORED map
+   * (a resume dropped it), so the row stands on nothing. A fresh run never
+   * emits it — there Gate 1 says `evidence-outside-transcript`.
+   */
+  | 'evidence-segment-missing'
 
 export interface RejectedCandidate {
   label: string
@@ -104,6 +110,54 @@ export const SEGMENTOS_PARA_SEGUIR = 4
 const esBreve = (text: string) =>
   !/\[inaudible\]/i.test(text) &&
   plano(text).split(' ').filter(Boolean).length <= PALABRAS_RESPUESTA_BREVE
+
+/**
+ * Gate 2b as a function, so `scripts/revalidar-mapa-hablantes.ts` applies the
+ * SAME rule to maps stored before it existed. `i` is the index of the evidence
+ * segment in `segments` (chunk-local, as the validator sees them); `label` the
+ * speaker being identified. Returns why the identification rests on a short
+ * answer, or null. See the Gate 2b comment in `validateSpeakerMap`.
+ */
+export function respuestaBreve(
+  segments: readonly RawSegment[],
+  i: number,
+  label: string,
+  ev: { relation: string; at: number; quote: string },
+): { reason: 'roll-call' | 'short-answer'; detail: string } | null {
+  const propia = ev.relation === 'turn-grant' ? i + 1 : ev.relation === 'reply' ? i - 1 : -1
+  const lineaPropia = propia >= 0 ? segments[propia] : undefined
+  // «The voice goes on» — and how far to look depends on the answer.
+  //   · After a VOTE, only if the same voice continues in the very next
+  //     segment (an explanation of vote: «A favor.» → «Nosaltres votarem…»).
+  //     Further out is the roll-call's own business: in 1qi8axv c07 the label
+  //     that answered «A favor.» for Compromís resumes two segments later with
+  //     «Gracias. Pasaríamos al punto seis…» — the chair, not the councillor.
+  //   · After any other short answer, if the voice says more within
+  //     SEGMENTOS_PARA_SEGUIR segments either side. A councillor's «Sí.» is
+  //     often cut off by the chair's own «Sí.» before the turn resumes
+  //     (k4olcs c09, 796 words), and a reply's own line may come right after
+  //     it (10yl550 c20, «Albert.» → 228 words).
+  // A merged label answering the NEXT vote («Abstenció.» again) is never
+  // going on: only a line longer than a short answer counts.
+  const paso = ev.relation === 'turn-grant' ? 1 : -1
+  const voto = lineaPropia ? esRespuestaDeVoto(lineaPropia.text) : false
+  const habla = (k: number) => {
+    const s2 = segments[propia + k]
+    return s2?.speaker === label && !esBreve(s2.text)
+  }
+  let sigue = false
+  if (voto) sigue = habla(paso)
+  else for (let k = 1; k <= SEGMENTOS_PARA_SEGUIR && !sigue; k++) sigue = habla(k) || habla(-k)
+  if (lineaPropia && lineaPropia.speaker === label && !sigue && esBreve(lineaPropia.text)) {
+    return {
+      reason: voto ? 'roll-call' : 'short-answer',
+      detail:
+        `${ev.relation} at ${ev.at}s «${ev.quote}» is answered only by «${lineaPropia.text}»` +
+        (voto ? ' — a vote read back' : ''),
+    }
+  }
+  return null
+}
 
 /**
  * The segment containing `at`, using a **half-open interval and no epsilon**.
@@ -236,37 +290,9 @@ export function validateSpeakerMap(opts: ValidateOptions): ValidationResult {
     // stored maps on 2026-11-24, every row this removed was a vote read back or
     // a label that says at most three words in its chunk.
     // Back-references are exempt: they are weak already and name at a distance.
-    const propia = ev.relation === 'turn-grant' ? i + 1 : ev.relation === 'reply' ? i - 1 : -1
-    const lineaPropia = propia >= 0 ? segments[propia] : undefined
-    // «The voice goes on» — and how far to look depends on the answer.
-    //   · After a VOTE, only if the same voice continues in the very next
-    //     segment (an explanation of vote: «A favor.» → «Nosaltres votarem…»).
-    //     Further out is the roll-call's own business: in 1qi8axv c07 the label
-    //     that answered «A favor.» for Compromís resumes two segments later with
-    //     «Gracias. Pasaríamos al punto seis…» — the chair, not the councillor.
-    //   · After any other short answer, if the voice says more within
-    //     SEGMENTOS_PARA_SEGUIR segments either side. A councillor's «Sí.» is
-    //     often cut off by the chair's own «Sí.» before the turn resumes
-    //     (k4olcs c09, 796 words), and a reply's own line may come right after
-    //     it (10yl550 c20, «Albert.» → 228 words).
-    // A merged label answering the NEXT vote («Abstenció.» again) is never
-    // going on: only a line longer than a short answer counts.
-    const paso = ev.relation === 'turn-grant' ? 1 : -1
-    const voto = lineaPropia ? esRespuestaDeVoto(lineaPropia.text) : false
-    const habla = (k: number) => {
-      const s2 = segments[propia + k]
-      return s2?.speaker === c.label && !esBreve(s2.text)
-    }
-    let sigue = false
-    if (voto) sigue = habla(paso)
-    else for (let k = 1; k <= SEGMENTOS_PARA_SEGUIR && !sigue; k++) sigue = habla(k) || habla(-k)
-    if (lineaPropia && lineaPropia.speaker === c.label && !sigue && esBreve(lineaPropia.text)) {
-      reject(
-        c.label,
-        voto ? 'roll-call' : 'short-answer',
-        `${ev.relation} at ${ev.at}s «${ev.quote}» is answered only by «${lineaPropia.text}»` +
-          (voto ? ' — a vote read back' : ''),
-      )
+    const breve = respuestaBreve(segments, i, c.label, ev)
+    if (breve) {
+      reject(c.label, breve.reason, breve.detail)
       continue
     }
 
