@@ -1,3 +1,4 @@
+import { useId, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Card, CorreoPartible, ExtLink, PartyTag, SectionHead } from '../components/Primitives'
 import DataAsOf from '../components/DataAsOf'
@@ -33,6 +34,7 @@ import EnBreveCargos from '../components/Cargos/EnBreveCargos'
 import ListaDeCargos from '../components/Cargos/ListaDeCargos'
 import Retrato from '../components/Cargos/Retrato'
 import DivisorLecturas from '../components/DivisorLecturas'
+import { DefinicionGlosario, FraseConTerminos } from '../components/Termino'
 import { IndiceExperta } from '../components/IndiceSecciones'
 import { SeccionExperta } from '../components/Lecturas'
 import { conAreasDelegadas, sinAreasDelegadas } from '../scraper/en-breve-cargos'
@@ -509,6 +511,26 @@ function AlcaldeSerie({ data }) {
  * A panel that prints its own all-clear is the `r?.findings ?? []` defect in
  * another costume.
  */
+/**
+ * La línea bajo el total de retribuciones, con «ISPA» como botón del glosario.
+ * Aparte del panel para que su estado no viva detrás de los `return null` del
+ * panel, y la definición cae debajo de la línea.
+ */
+function LineaDelTotal({ frase }) {
+  const [abierto, setAbierto] = useState(null)
+  const idPanel = `${useId()}-def`
+  return (
+    <>
+      <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}>
+        <FraseConTerminos frase={frase} abierto={abierto} onAbrir={setAbierto} idPanel={idPanel} />
+      </div>
+      {abierto && (
+        <DefinicionGlosario clave={abierto} id={idPanel} onCerrar={() => setAbierto(null)} />
+      )}
+    </>
+  )
+}
+
 function RetribucionesPanel() {
   const t = useT()
   const { locale } = useLocale()
@@ -573,11 +595,12 @@ function RetribucionesPanel() {
               empresariales, el personal eventual y la asignación a los grupos.
               La palabra equivocada sobre la cifra correcta ya se corrigió una
               vez en esta misma página. */}
-          <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}>
-            {t('cargos.ispa.total')
-              .replace('{n}', perceptoresIspa(split))
-              .replace('{year}', latest.year)}
-          </div>
+          <LineaDelTotal
+            frase={rellena(t('cargos.ispa.total'), {
+              n: perceptoresIspa(split),
+              year: latest.year,
+            })}
+          />
         </div>
       </div>
 

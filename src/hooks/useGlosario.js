@@ -232,6 +232,71 @@ export function useGlosario() {
         def: t('glosario.lpacap.def'),
         to: '/metodologia#camino-de-una-queja',
       },
+      // Segunda tanda. Una sigla lleva «Nombre oficial», que la desarrolla; el
+      // ISPA y la memoria justificativa se pintan ya con su nombre. Las del orden
+      // del día van, como las de la primera tanda, a «El último pleno».
+      {
+        clave: 'ispa',
+        termino: t('glosario.ispa.termino'),
+        def: t('glosario.ispa.def'),
+        to: '/cargos#retribuciones',
+        mismoNombre: true,
+      },
+      {
+        clave: 'rpt',
+        termino: t('glosario.rpt.termino'),
+        def: t('glosario.rpt.def'),
+        to: '/plenos#ultimo-pleno',
+      },
+      {
+        clave: 'bop',
+        termino: t('glosario.bop.termino'),
+        def: t('glosario.bop.def'),
+        to: '/quejas#quejas-bop',
+      },
+      {
+        clave: 'dedicacion',
+        termino: t('glosario.dedicacion.termino'),
+        def: t('glosario.dedicacion.def'),
+        to: '/cargos#retribuciones',
+      },
+      {
+        clave: 'oep',
+        termino: t('glosario.oep.termino'),
+        def: t('glosario.oep.def'),
+        to: '/empleo-publico#como-se-entra',
+      },
+      {
+        clave: 'pms',
+        termino: t('glosario.pms.termino'),
+        def: t('glosario.pms.def'),
+        to: '/plenos#ultimo-pleno',
+      },
+      {
+        clave: 'rof',
+        termino: t('glosario.rof.termino'),
+        def: t('glosario.rof.def'),
+        to: '/plenos#ultimo-pleno',
+      },
+      {
+        clave: 'pef',
+        termino: t('glosario.pef.termino'),
+        def: t('glosario.pef.def'),
+        to: '/plenos#ultimo-pleno',
+      },
+      {
+        clave: 'parteInformativa',
+        termino: t('glosario.parteInformativa.termino'),
+        def: t('glosario.parteInformativa.def'),
+        to: '/plenos#ultimo-pleno',
+      },
+      {
+        clave: 'memoriaJustificativa',
+        termino: t('glosario.memoriaJustificativa.termino'),
+        def: t('glosario.memoriaJustificativa.def'),
+        to: '/reportajes/conteo-visitantes',
+        mismoNombre: true,
+      },
     ],
     [t],
   )

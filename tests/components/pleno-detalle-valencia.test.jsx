@@ -44,6 +44,7 @@ import { QUOTE_PROVENANCE_STATUS_IDS } from '../../src/scraper/quote-provenance'
 import { CLAIM_VISIBILITIES } from '../../src/scraper/claim-public-gate'
 import { HUMAN_CURATORS } from '../../src/scraper/finding-authorship'
 import { etiquetaDelPunto } from '../../src/scraper/etiqueta-llana'
+import { vocabularioDelOrdenDelDia } from '../../src/scraper/en-breve-plenos'
 import {
   cadenasDe,
   datosPintados,
@@ -108,6 +109,14 @@ function cadaForma() {
     .flatMap((p) => p.agenda)
     .find((a) => etiquetaDelPunto(a.title).urgente)
   sesion.agenda.push({ ...urgente, number: sesion.agenda.length + 1, section: 'resolutiva' })
+  // Y un punto por cada sigla del glosario que va en los títulos (RPT, PMS, ROF,
+  // PEF): la sesión no las trae todas. Cada título es el de otra sesión publicada.
+  for (const sigla of ['rpt', 'pms', 'rof', 'pef']) {
+    const conSigla = mapa['/data/plenos-agendas.json'].plenos
+      .flatMap((p) => p.agenda)
+      .find((a) => vocabularioDelOrdenDelDia([a]).includes(sigla))
+    sesion.agenda.push({ ...conSigla, number: sesion.agenda.length + 1 })
+  }
   const desenlaces = Object.keys(OUTCOME_LABEL)
   const votos = mapa['/data/pleno-votes.json']
   const otras = votos.items.filter((v) => v.plenoId !== ID).slice(0, desenlaces.length)
@@ -370,6 +379,11 @@ const SIGLAS = [
   'Telegram',
   'Riba-roja de Túria',
   'auto-curation-v1',
+  // Las siglas del orden del día que el glosario explica: se escriben igual.
+  'RPT',
+  'PMS',
+  'ROF',
+  'PEF',
   ...REAL_BLOCS,
 ]
 

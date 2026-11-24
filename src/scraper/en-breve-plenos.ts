@@ -127,6 +127,11 @@ export const PALABRAS_DEL_PLENO = [
   'reconocimientoExtrajudicial',
   'sinDictaminar',
   'urgencia',
+  // Siglas de la sede (glosario, segunda tanda).
+  'rpt',
+  'pms',
+  'rof',
+  'pef',
 ] as const
 
 export type PalabraDelPleno = (typeof PALABRAS_DEL_PLENO)[number]
@@ -141,6 +146,12 @@ const EN_EL_TITULO: Record<Exclude<PalabraDelPleno, 'urgencia'>, RegExp> = {
   mocion: /(?<!\p{L})moci(?:ón|on|ó|ò|o)(?!\p{L})/iu,
   reconocimientoExtrajudicial: /(?<!\p{L})(?:reconocimiento|reconeixement)\s+extrajudicial/iu,
   sinDictaminar: /(?<!\p{L})(?:sin|sense)\s+dictaminar(?!\p{L})/iu,
+  // Las siglas, enteras y en mayúsculas: «PROFESORADO» no es «ROF», ni «PEFC»
+  // es «PEF».
+  rpt: /(?<![\p{L}\d])RPT(?![\p{L}\d])/u,
+  pms: /(?<![\p{L}\d])PMS(?![\p{L}\d])/u,
+  rof: /(?<![\p{L}\d])ROF(?![\p{L}\d])/u,
+  pef: /(?<![\p{L}\d])PEF(?![\p{L}\d])/u,
 }
 
 /**

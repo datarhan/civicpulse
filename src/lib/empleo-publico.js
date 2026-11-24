@@ -5,7 +5,15 @@ import { PROCESO_TIPOS } from '../scraper/procesos-selectivos'
  * títulos de los procesos. Son entradas del glosario (`src/glosario.js`), así
  * que la definición de la página y la de Cmd+K son la misma.
  */
-export const TERMINOS_DE_ACCESO = ['oposicion', 'concurso', 'bolsaDeTrabajo', 'estabilizacion']
+export const TERMINOS_DE_ACCESO = [
+  'oposicion',
+  'concurso',
+  'bolsaDeTrabajo',
+  'estabilizacion',
+  // No es una vía de acceso sino de dónde salen las plazas: un título dice
+  // «OEP 2020» y la página no lo explicaba.
+  'oep',
+]
 
 /**
  * Los procesos agrupados por tipo, en el orden de `PROCESO_TIPOS`; dentro de
