@@ -272,7 +272,12 @@ function FraseEmpleo({ items, t }) {
       )
   }
   return (
-    <section aria-labelledby="empleo-frase" data-empleo-frase="" style={{ margin: '4px 0 14px' }}>
+    <section
+      aria-labelledby="empleo-frase"
+      data-empleo-frase=""
+      data-lectura-vecinal=""
+      style={{ margin: '4px 0 14px' }}
+    >
       <h2
         id="empleo-frase"
         className="mono"

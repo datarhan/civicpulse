@@ -147,6 +147,13 @@ function montar(
         `[10.0 → 14.0] (SPEAKER_01) ${LITERAL} es una de las obras de este año.`,
         `[20.0 → 24.0] (SPEAKER_02) ${VECINO_LITERAL}.`,
         `[30.0 → 34.0] (SPEAKER_03) ${ACUSA_LITERAL}.`,
+        // Una sesión de verdad: con tres líneas la transcripción no pasaría la
+        // guarda de calidad y sus declaraciones serían `transcripcion-dudosa`.
+        ...Array.from(
+          { length: 16 },
+          (_, i) =>
+            `[${40 + i * 5}.0 → ${44 + i * 5}.0] (SPEAKER_0${i % 4}) intervención ${i + 1} sobre el punto ${i + 3} del orden del día, con su turno de réplica y la votación que corresponde.`,
+        ),
       ].join('\n') + '\n',
     'public/data/tenders.json': json(REGISTROS.tenders),
     'public/data/bdns.json': json(REGISTROS.bdns),

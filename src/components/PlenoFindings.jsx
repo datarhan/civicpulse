@@ -405,6 +405,23 @@ const PROVENANCE_MARK = {
     note: (citas, _curatorName, t) =>
       rellena(t('findings.citas.procedencia.sinDeterminar.nota'), { sujeto: citas.sujeto }),
   },
+  // La vigente no pasa la guarda de calidad (`vigenteEsDudosa`). No se arregla
+  // reanclando —la cita suele estar en ese texto, palabra por palabra—, sino
+  // volviendo a transcribir la sesión.
+  'transcripcion-dudosa': {
+    tone: 'warn',
+    chip: 'findings.citas.procedencia.dudosa.chip',
+    title: 'findings.citas.procedencia.dudosa.title',
+    note: (citas, _curatorName, t) =>
+      rellena(
+        t(
+          citas.plural
+            ? 'findings.citas.procedencia.dudosa.nota.varias'
+            : 'findings.citas.procedencia.dudosa.nota.una',
+        ),
+        { sujeto: mayuscula(citas.sujeto) },
+      ),
+  },
 }
 
 /**

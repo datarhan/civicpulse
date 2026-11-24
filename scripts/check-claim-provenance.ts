@@ -22,12 +22,19 @@ import { fileURLToPath } from 'node:url'
 import {
   classifyAttribution,
   classifyClaimProvenance,
+  desfaseDeMarcas,
+  procedenciaDeDeclaracion,
   resolverDeGrupo,
   tallyProvenance,
   type AttributionOutcome,
   type ProvenanceOutcome,
   type ProvenanceRow,
 } from '../src/scraper/claim-provenance'
+import {
+  sessionIsComparable,
+  vigenteEsDudosa,
+  type QuoteProvenanceStatus,
+} from '../src/scraper/quote-provenance'
 import { loadSupersededTexts } from './lib/transcript-corpus'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
@@ -88,6 +95,7 @@ function main() {
   const listWanted = arg('--list')
   const details: Detail[] = []
   const rows: ProvenanceRow[] = []
+  const marcas: { claimId: string; estampada: unknown; hoy: QuoteProvenanceStatus | null }[] = []
   let plenosSeen = 0
   let plenosWithoutTranscript = 0
   let plenosWithoutMap = 0
@@ -106,6 +114,10 @@ function main() {
     // re-transcripción había pisado.
     const superseded = loadSupersededTexts(plenoId, join(TRANSCRIPTS, 'superseded'))
     if (current === null) plenosWithoutTranscript += 1
+    // La misma regla que estampa la marca (procedencia-del-corpus.ts): en
+    // palabras, contra la sustituida principal.
+    const comparable = sessionIsComparable({ current, superseded: superseded[0] ?? null })
+    const dudosa = vigenteEsDudosa(current)
 
     // El mapa de voces es opcional y su ausencia NO es un desacuerdo: sin él
     // no hay con qué cotejar la atribución, y decir «coincide» sería inventar
@@ -135,6 +147,11 @@ function main() {
         firmada: claim.atribucionFirmada != null,
       })
       rows.push({ provenance, attribution })
+      marcas.push({
+        claimId: claim.id ?? '?',
+        estampada: item.procedencia,
+        hoy: procedenciaDeDeclaracion(provenance, comparable, dudosa),
+      })
       details.push({
         plenoId,
         claimId: claim.id ?? '?',
@@ -215,7 +232,29 @@ function main() {
     if (hits.length > 40) console.log(`    …y ${hits.length - 40} más`)
   }
 
+  // La marca que lleva cada declaración publicada, contra la de hoy.
+  const d = desfaseDeMarcas(marcas)
+  console.log('\n  marca de procedencia publicada (chunk-pleno-claims) frente a la de hoy')
+  console.log(`    ${String(d.coinciden).padStart(5)}  coinciden`)
+  console.log(
+    `    ${String(d.desfasadas.length).padStart(5)}  desfasadas        la sesión cambió desde que se troceó`,
+  )
+  console.log(
+    `    ${String(d.sinMarca).padStart(5)}  sin marca         el troceado es anterior a la marca`,
+  )
+  for (const x of d.desfasadas.slice(0, 10)) {
+    console.log(`           ${x.claimId}: publicada ${x.estampada}, hoy ${x.hoy}`)
+  }
+  const marcasMal = d.desfasadas.length + d.sinMarca
+
   console.log()
+  if (marcasMal > 0) {
+    console.error(
+      `[check:claim-provenance] ${marcasMal} de ${d.evaluadas} declaraciones publicadas llevan ` +
+        `una marca de procedencia que no es la de hoy, o ninguna. Vuelve a trocear: ` +
+        `npm run chunk-pleno-claims`,
+    )
+  }
   if (!t.ok) {
     console.error(`[check:claim-provenance] ${t.motivo}`)
     console.error(
@@ -227,6 +266,7 @@ function main() {
     )
     process.exit(1)
   }
+  if (marcasMal > 0) process.exit(1)
   console.log(`[check:claim-provenance] ${t.motivo}`)
 }
 

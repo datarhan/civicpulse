@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-11-22T13:12:16.190Z",
+  "generatedAt": "2026-11-24T15:24:41.327Z",
   "source": {
-    "tenders": "2026-11-22T12:50:35.925Z",
-    "geo": "2026-11-20T13:34:42.722Z"
+    "tenders": "2026-11-24T15:11:38.730Z",
+    "geo": "2026-11-24T15:17:21.208Z"
   },
   "universe": {
     "totalContracts": 707,
@@ -1694,27 +1694,6 @@
       }
     },
     {
-      "id": "462533",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 8530.85,
-      "amountKind": "final",
-      "date": "2019-06-05",
-      "contractType": "construction",
-      "categoryTitle": "other",
-      "point": [
-        39.5460249,
-        -0.5806981
-      ],
-      "place": {
-        "kind": "poi",
-        "name": "Polideportivo Municipal",
-        "matchedText": "Polideportivo Municipal",
-        "sourceId": "way-39586076"
-      }
-    },
-    {
       "id": "4579719",
       "zones": [
         "urbanitzacio-els-pous"
@@ -1761,6 +1740,31 @@
       }
     },
     {
+      "id": "7482558",
+      "zones": [
+        "urbanitzacio-els-pous"
+      ],
+      "matchedAlias": {
+        "urbanitzacio-els-pous": "els pous"
+      },
+      "dana": false,
+      "amount": 7062.52,
+      "amountKind": "final",
+      "date": "2025-02-20",
+      "contractType": "services",
+      "categoryTitle": "agriculture",
+      "point": [
+        39.5233167,
+        -0.5191743
+      ],
+      "place": {
+        "kind": "urbanizacion",
+        "name": "Urbanització Els Pous",
+        "matchedText": "Urbanització Els Pous",
+        "sourceId": "urbanitzacio-els-pous"
+      }
+    },
+    {
       "id": "9895895",
       "zones": [],
       "matchedAlias": {},
@@ -1804,6 +1808,27 @@
         "name": "el Pou d'Escoto",
         "matchedText": "el Pou d'Escoto",
         "sourceId": "el-pou-d-escoto"
+      }
+    },
+    {
+      "id": "462533",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 8530.85,
+      "amountKind": "final",
+      "date": "2019-06-05",
+      "contractType": "construction",
+      "categoryTitle": "other",
+      "point": [
+        39.5460249,
+        -0.5806981
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Polideportivo Municipal",
+        "matchedText": "Polideportivo Municipal",
+        "sourceId": "way-39586076"
       }
     },
     {
@@ -1962,28 +1987,24 @@
       }
     },
     {
-      "id": "7482558",
-      "zones": [
-        "urbanitzacio-els-pous"
-      ],
-      "matchedAlias": {
-        "urbanitzacio-els-pous": "els pous"
-      },
+      "id": "1562430",
+      "zones": [],
+      "matchedAlias": {},
       "dana": false,
-      "amount": 7062.52,
+      "amount": 24470.55,
       "amountKind": "final",
-      "date": "2025-02-20",
-      "contractType": "services",
-      "categoryTitle": "agriculture",
+      "date": "2021-12-13",
+      "contractType": "supplies",
+      "categoryTitle": "security",
       "point": [
-        39.5233167,
-        -0.5191743
+        39.47822,
+        -0.58302
       ],
       "place": {
         "kind": "urbanizacion",
-        "name": "Urbanització Els Pous",
-        "matchedText": "Urbanització Els Pous",
-        "sourceId": "urbanitzacio-els-pous"
+        "name": "Polígono Industrial Masía Baló",
+        "matchedText": "Polígono Industrial Masía Baló",
+        "sourceId": "poligon-industrial-masia-balo"
       }
     },
     {
@@ -2177,27 +2198,6 @@
         "name": "Carrer de Perpinyanet",
         "matchedText": "Carrer de Perpinyanet",
         "sourceId": "carrer-de-perpinyanet"
-      }
-    },
-    {
-      "id": "1562430",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 24470.55,
-      "amountKind": "final",
-      "date": "2021-12-13",
-      "contractType": "supplies",
-      "categoryTitle": "security",
-      "point": [
-        39.47822,
-        -0.58302
-      ],
-      "place": {
-        "kind": "urbanizacion",
-        "name": "Polígono Industrial Masía Baló",
-        "matchedText": "Polígono Industrial Masía Baló",
-        "sourceId": "poligon-industrial-masia-balo"
       }
     },
     {
@@ -3593,11 +3593,11 @@
     }
   ],
   "builtFrom": {
-    "civic-poi.json": "df3ae7018824",
+    "civic-poi.json": "f8a6f3434952",
     "gazetteer-supplement.json": "b3013a1e0efe",
-    "geo.json": "e5ebd66395c1",
+    "geo.json": "5296531d69ef",
     "place-overrides.json": "5878849f1684",
-    "streets.json": "f24a91b5ca5d",
-    "tenders.json": "47d1d25f57a4"
+    "streets.json": "92288d2e50e3",
+    "tenders.json": "be45949b09c8"
   }
 }

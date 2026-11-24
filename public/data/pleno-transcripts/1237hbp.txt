@@ -1,202 +1,1217 @@
-[0.0 → 30.0] La Iglesia de Jesucristo de los Santos de los Últimos Días
-[30.0 → 60.0] La Lucha de los Malditos
-[60.0 → 90.0] La Lucha por la Vida
-[90.0 → 120.0] La Lucha de los Malditos
-[120.0 → 150.0] La Lucha de los Malditos
-[150.0 → 180.0] La Lucha de los Malditos
-[180.0 → 210.0] 
-[210.0 → 240.0] La Lucha de los Malditos
-[240.0 → 270.0] La Lucha de los Malditos
-[270.0 → 300.0] 
-[300.0 → 330.0] La Lucha de los Malditos
-[330.0 → 360.0] 
-[360.0 → 390.0] La Lucha de los Malditos
-[390.0 → 420.0] La Lucha de los Malditos
-[420.0 → 450.0] La Lucha de los Malditos
-[450.0 → 480.0] La Lucha de los Malditos
-[480.0 → 510.0] La Lucha de los Malditos
-[510.0 → 540.0] La Lucha de los Malditos
-[540.0 → 570.0] La Lucha de los Malditos
-[570.0 → 600.0] La Lucha de los Malditos
-[600.0 → 630.0] La Lucha de los Malditos
-[630.0 → 660.0] La Lucha de los Malditos
-[660.0 → 690.0] La Lucha de los Malditos
-[690.0 → 720.0] La Lucha de los Malditos
-[720.0 → 750.0] La Lucha de los Malditos
-[750.0 → 780.0] La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos
-[780.0 → 810.0] La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos
-[810.0 → 840.0] La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos
-[840.0 → 870.0] La Lucha de los Malditos
-[870.0 → 900.0] La Lucha de los Malditos
-[900.0 → 930.0] La Lucha de los Malditos
-[930.0 → 960.0] La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos
-[960.0 → 990.0] La Lucha de los Malditos
-[990.0 → 1020.0] La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos
-[1020.0 → 1050.0] La Lucha de los Malditos
-[1050.0 → 1080.0] La Lucha de los Malditos
-[1080.0 → 1110.0] La Lucha de los Malditos
-[1110.0 → 1140.0] La Lucha de los Malditos
-[1140.0 → 1170.0] La comunicación directa con todos los vecinos. Tuvimos un pleno el 8 de septiembre en el que estuvimos la adjudicación de la empresa en la que estábamos muy contentos porque entendíamos que era una mejora frente a lo que teníamos. Un servicio de los siete días de la semana, aumentábamos la recogida de los vertederos incontrolados, mejoras en poda, mejoras en enseres. ¿Realmente creéis que nosotros pensábamos que esa empresa no iba a funcionar? Es que me parece surrealista.
-[1170.0 → 1200.0] La Lucha de los Malditos
-[1200.0 → 1230.0] La Lucha de los Malditos
-[1230.0 → 1260.0] La Lucha de los Malditos
-[1260.0 → 1290.0] La Lucha de los Malditos
-[1290.0 → 1320.0] La Lucha de los Malditos
-[1320.0 → 1350.0] Cuando tú resuelves un contrato tienes que tener todas las garantías, eso pasa en la Administración Pública, todas las garantías, las justificaciones, los informes técnicos, los informes jurídicos y el 9 de marzo tenéis a vuestra disposición, porque lo habéis tenido, un informe técnico y jurídico donde resolvemos con el anterior contrato, con Garbiardi. Resolvemos el día 9 y somos tan ineptos para vosotros que tres días después, el día 12 ya está otra empresa con contrato de emergencia funcionando que es FCC.
-[1350.0 → 1380.0] Por favor, preguntar en cualquier ayuntamiento lo que cuesta la resolución de un contrato. No tenéis comunicación ni información. Tenéis toda la vida y por haber como concejales que sois. Pero es que además, desde el área de comunicaciones se han hecho notas de prensa, retransmisiones del alcalde dando explicaciones, de mi compañero Rafa, el concejal del área, vídeos informativos, en todos los spyoverts, en todos, que se han hecho dos rondas en urbanizaciones y en el casco urbano, se ha explicado el tema de la basura.
-[1380.0 → 1410.0] La Lucha de los Malditos
-[1410.0 → 1440.0] La Lucha de los Malditos
-[1440.0 → 1470.0] El punto 1, 2, 3, 4 y 5 de los 8 que presentáis, la secretaria de este ayuntamiento os lo explica en dos hojas. Lo que pasa es que es el expediente. En dos hojas. El tema de las bonificaciones de la basura, ¿cómo lo vamos a hacer? Porque claro, como el alcalde ha dicho que vamos a hacer una bonificación porque entendemos que ha habido un mal servicio y que tampoco tiene que repercutir a nuestros vecinos, dos folios. Dos folios que son las líneas que desenfluorescente.
-[1470.0 → 1500.0] Hasta eso parece que os sabe mal. Vamos a ver si ha dicho que va a haber una reducción de basura y no lo ha consultado con la tesorera y ahí le pillamos y decimos que no va a cumplir. Venga, por favor. Entonces, perdonadme, pero creo que tenéis que cambiar esa postura y sobre todo el desaliento de ver que no habéis traído ninguna propuesta. Nos habéis reunido hoy aquí como podíamos habernos reunido en la Plaza del Pueblo. Porque propuestas, ninguno. No habéis presentado ninguna opción. O sea, como teníais dos opciones.
-[1500.0 → 1530.0] Una, como responsables políticos que sois, de la corporación municipal, hoy aprovecháis y decís, oye, mira, antes del problema nosotros creemos que no habéis puesto el enfoque o que la propuesta podría ser esta, esta o esta, y la hubiéramos votado. Estamos aquí hablando de la basura, porque no os habéis leído el expediente, no lo habéis querido mirar. O la que habéis hecho, la propuesta, vamos a montar un pleno, vamos a remover la basura para ver si conseguimos que huela más. Para ver si conseguimos que huela más. Esa es la solución que dais.
-[1530.0 → 1560.0] La Lucha de los Malditos
-[1560.0 → 1590.0] La Lucha de los Malditos
-[1590.0 → 1620.0] Para no traer ninguna propuesta en absoluto, salvo como he dicho antes, remover y remover la basura, porque eso vende mucho. Nada más. Muchas gracias. Señor alcalde, señoras y señores concejales, queridísimos vecinos. Después de la intervención de la portavoz del Grupo Socialista, creo que nos queda levantarnos, aplaudir
-[1620.0 → 1650.0] La falta de recogida de basuras es una culpa del Grupo Partido Popular, claro, ha quedado claro. La situación de la recogida de residuos, puede ir voluminosos en Río Roja de Turia, no admite más excusas, ni más desidia, ni más improvisación. Estamos a un servicio esencial, pero también estamos ante un problema real de gestión pública que afecta al bolsillo de los vecinos, a la limpieza de las calles y a la credibilidad de estados.
-[1650.0 → 1680.0] La Lucha de los Malditos
-[1680.0 → 1710.0] La Lucha de los Malditos
-[1710.0 → 1740.0] La Lucha de los Malditos
-[1740.0 → 1770.0] Para eso está uno en el Gobierno. Pedimos que el equipo de Gobierno detalle con absoluta precisión por qué se está prestando actualmente y de forma tan nefasta el servicio de recogida de basura, de podas y voluminosos. Los vecinos deben saber quién y cómo se recoge hoy la basura. Esto, de momento, prácticamente ni se sabe. Hay una necesidad inmediata. Cuando una Administración recurre de forma reiterada a la fórmula excepcional, como está pasado con la recogida de basuras,
-[1770.0 → 1800.0] Lo que transmite es improvisación, debilidad política y en el peor de los casos, desprecio a los ciudadanos. Hoy celebramos este pleno porque la situación de recogida de poderes voluminosos en Riva Roja es el resultado directo de una gestión política deficiente, desordenada y profundamente irresponsable. Y conviene decirlo con claridad, los vecinos no están sufriendo un problema técnico aislado, están sufriendo consecuencias de un gobierno que ha sido incapaz de anticiparse, de resolver a tiempo.
-[1800.0 → 1830.0] Y de dar respuestas serias a un servicio esencial. Desde el Grupo Municipal Vox no vamos a participar en el juego de las excusas. Cuando un Ayuntamiento no consigue garantizar algo tan básico como es la recogida de basuras, lo que falta no es un contrato, falta una dirección política real. Falla la previsión, falla la coordinación y falla, sobre todo, la responsabilidad. Este pleno extraordinario no debía existir si el equipo de gobierno hubiera gestionado con eficacia, con rigor y, por supuesto, con sentido común.
-[1830.0 → 1860.0] Pero como no lo han hecho, hoy están obligados a dar explicaciones políticas, no evasivas ni administrativas. La realidad es sencilla. Han convertido un servicio esencial en un problema permanente para los ciudadanos, con una imagen de improvisación que perjudica a vecinos y comercio. Y eso tiene a responsables en política. No se puede esconder la mala gestión detrás de trámites, de subcontratas, de cambio de empresas o de fórmulas excepcionales. Cuando un gobierno local funciona mal, el PIB está en peligro.
-[1860.0 → 1890.0] El primer deber democrático es asumirlo y el siguiente es dimitir. Además, no hablamos de un contexto cualquiera. En España, como he comentado antes, acumulan escándalos, casos de corrupción, una forma de gobernar marcada por la degeneración institucional, el amiguismo y la pérdida de credibilidad pública. Ese clima político nacional, desde luego, no les ayuda absolutamente a gobiernos como el del PSOE y con ayudas, por qué no decirlo, de satélites como Comprovencia,
-[1890.0 → 1920.0] La mayoría de los vecinos, los que han sido expulsados por la violencia, los que han sido expulsados por la violencia, los que han sido expulsados por la violencia, los que han sido expulsados por la violencia, los que han sido expulsados por la violencia, los que han sido expulsados por la violencia, los que han sido expulsados por la violencia, los que han sido expulsados por la violencia, los que han sido expulsados por la violencia, los que han sido expulsados por la violencia, los que han sido expulsados por la violencia, los que han sido expulsados por la violencia, los que han sido expulsados por la violencia, los que han sido expulsados por la violencia, los que han sido expulsados por la violencia,
-[1920.0 → 1950.0] Y no es un problema técnico, sino un problema de un componente y un fanatismo climático que arruina a las personas, a las familias, a los comercios y a nuestra nación. Exigimos que el equipo de gobierno asuma su responsabilidad política por este fracaso, porque lo es. Porque cuando un servicio básico se deteriora hasta este punto, cuando se encadenan problemas, contratos fallidos y soluciones provisionales, la conclusión es evidente. Han demostrado que no están capacitados para gestionar con solvencia una cuestión tan sensible y tan importante.
-[1950.0 → 1980.0] Y si no tienen la valentía de reconocerlo por iniciativa propia, deberán hacerlo hoy ante este pleno y ante los vecinos. La dignidad institucional no consiste en resistir a cualquier precio, como está haciendo el señor presidente del gobierno, Pedro Sánchez, sino en saber hacerse a un lado cuando se ha perdido la confianza y se ha deteriorado, de tal manera, un servicio público. Riva Roja necesita un gobierno que resuelva problemas, no que los cree ni los multiplique. Necesita seriedad, responsabilidad y respeto al gobierno. Necesita seriedad, responsabilidad y respeto al gobierno. Necesita seriedad, responsabilidad y respeto al gobierno. Necesita seriedad, responsabilidad y respeto al gobierno.
-[1980.0 → 2010.0] Y hoy, lamentablemente, el equipo de gobierno no está dando ninguna de esas tres cosas. Muchas gracias. Muchas gracias. Es que ahora no podemos. Buenos días, muchas gracias. Bueno, en primer lugar, como hemos hablado, de lo que estamos hablando, la recogida de residuos, la poda y los voluminosos son servicios esenciales y, de hecho, son servicios que probablemente siguen los servicios que más se ven.
-[2010.0 → 2040.0] Y cuando no está funcionando bien, pues más criticado es. De hecho, lo que estamos encontrando es que hay diferentes cajas de vecinos y eso es una realidad y por tanto, tenemos que hablarla, tenemos que abordarla y tenemos que darle el espacio. Es verdad que hay propuestas. Durante estos últimos meses, lo que hemos vivido es que el servicio de recogida de residuos no ha funcionado. Ha sido, es verdad, un problema en la empresa adjudicataria.
-[2040.0 → 2070.0] También es verdad que el Ayuntamiento va a dar respuesta a esta realidad. Actualmente tenemos un contrato de emergencia con la segunda empresa que quedará, FCC, pero también es verdad que el servicio no está funcionando de la manera correcta. También encontramos el tema del problema de los contenidos y encontramos que hay basura, que es una realidad que se ve y que todos sabemos. En este sentido, la nueva intervención se basa en intentar aclarar diferentes cuestiones y poder resolver,
-[2070.0 → 2100.0] No hay dudas y también que la ciudadanía tenga o al menos sirva este pleno para aclarar diferentes cuestiones. Porque al menos, ya que no es voto, sí que tenemos cuestiones que se pueden aclarar. En primer lugar, actualmente hay un contrato de emergencia con la segunda empresa que va a quedar en esta licitación. Y es un contrato de una duración de un año, pero creo que sí que es importante hablar de la nueva licitación. Porque, sinceramente, pienso que esta nueva licitación lo que hará es que la empresa siga responsable.
-[2100.0 → 2130.0] Y que se unirá a lo que se presenta, pero que tenga un servicio mucho más regular y con mucha más solvencia y que solucione el problema. Por tanto, creo que es importante, uno, que esa nueva licitación, una calentización de cuándo va a estar y que siga una realidad. Porque yo creo que lo importante sería que cuando acabe este contrato de emergencia, la nueva licitación esté preparada para que no se tenga que alargar este contrato de emergencia.
-[2130.0 → 2160.0] La situación de recogida de los poderes voluminosos en Riva Roja es una situación que no se puede evitar. Por lo tanto, el gobierno no está dispuesto a hacer nada. La situación de recogida de los poderes voluminosos en Riva Roja es una situación que no se puede evitar. La situación de recogida de los poderes voluminosos en Riva Roja es una situación que no se puede evitar. La situación de recogida de los poderes voluminosos en Riva Roja es una situación que no se puede evitar. La situación de recogida de los poderes voluminosos en Riva Roja es una situación que no se puede evitar. La situación de recogida de los poderes voluminosos en Riva Roja es una situación que no se puede evitar. La situación de recogida de los poderes voluminosos en Riva Roja es una situación que no se puede evitar.
-[2160.0 → 2190.0] en esa nueva licitación que se va a hacer, entendemos que se ha de reducir esa inversión que se va a hacer en estos contenidos que vamos a comprar nuevos, porque va a cambiar esa nueva licitación. Por tanto, aclaro estas dos cuestiones y cuándo se va a hacer la compra y la nueva licitación. Y por otra parte, el tema de la tasa de residuos. Lo que encontramos es que en el informe de tesorería,
-[2190.0 → 2220.0] de compensación o devolución de la tasa por las deficiencias del servicio y, incluso, señala que podría existir cobertura legal si se acredita. Pero también es verdad que indica el informe que, antes de que eso pueda ser una realidad, falta un informe técnico que determine exactamente qué servicios son los que nos han prestado y que todo esté muy bien tan claro para que se pueda hacer. Por tanto, creo que también es importante ser claros porque, claro, no hacer
-[2220.0 → 2250.0] para que todo esté cerrado y que no sea, se va a reducir o no, porque después todo tiene que tener un informe técnico y todo ha de estar bien avalado. Por tanto, creo que es importante, uno, hoy, aclarar estas tres cuestiones. Uno, cuándo se va a hacer la nueva licitación para tener un servicio como el que todos y todas queremos. Dos, de dónde van a ir los dineros para pagar los contenidos. Tres, si se va a reducir de esa nueva licitación la compra de contenidos.
-[2250.0 → 2280.0] calendario para hacer los informes técnicos para que siga una realidad que la tasa del 2025 y 2026 se pueda reducir. Gracias. Gracias, compromiso, Rafa. Gracias, señor alcalde. Buen día a todos y a todas. Uf, tela. Día y Vendred, 3 de julio.
-[2280.0 → 2310.0] A mí, pues, tengo sensaciones contraídas. Yo entiendo que demandar un pleno extraordinario para control y fiscalización al equipo de gobierno sería lo menos normal,
-[2310.0 → 2340.0] Pues la verdad, teniendo un ple el propio dilluns, un ple ordinario, pues se podría haber portado una moción para que se donaran las explicaciones pertinentes.
-[2340.0 → 2370.0] Yo creo que para que la gente sepa la situación que tenemos en la recogida de basura, creo que tenemos que saber de dónde venimos. Y venimos de un contrato que, antes de estar ya prácticamente obsoleto, necesitábamos mejorar y todos lo sabíamos.
-[2370.0 → 2400.0] Este contrato me gustaría decirle a todos los vecinos y vecinas que en este ayuntamiento tenemos una comisión de contratación. Una comisión de contratación donde están representados todos los partidos que componen este pleno.
-[2400.0 → 2430.0] Este nuevo contrato de basura ha pasado por esa comisión antes que por los plenos. Ha pasado por plenos, por comisiones de contratación, ha habido diferencias entre los miembros, pero en los plenos se vota y la mayoría decide.
-[2430.0 → 2460.0] Pero, en fin, mientras tengamos democracia, seguiremos haciendo las cosas como las estamos haciendo. Quiero comentar que este nuevo contrato tenía una particularidad, al menos para el Grupo Municipal de Compromiso, una particularidad muy positiva.
-[2460.0 → 2490.0] de la recogida de basura. Un contracto que en la Comisión de Contratación va a creer que era idóneo y que, a la vista de todo lo que ha ocurrido, ha servido para que el Ayuntamiento de Rivarrocha tenga herramientas para poder rescindir el contracto en la empresa licitadora que no estaba cumpliendo.
-[2490.0 → 2520.0] el informe técnico del responsable del contrato, Felipe García, que creo que ha sido determinante. Yo me gustaría explicar un poco a los vecinos y vecinas que, como ha dicho la portavoz del Partido Socialista,
-[2520.0 → 2550.0] tienen unas tres circunstancias. Yo, con todos y todas esa voz, tengo una empresa, soy autónomo, hoy debería estar trabajando. Ayer podría haber estado mirando el Partido de España, pero me tendré que leer los 165 fuyas del informe o del expediente que iba a esperar este pleno. Pero bueno, al menos escuchaba.
-[2550.0 → 2580.0] han estado en la misma situación. Como se celebraba en los golfes en la plaza. En fin, la administración pública funciona de diferentes formas. Yo, en mi negocio, si una cosa no me funciona, la cambio automáticamente. Si yo pido un servicio externo y no me cumplí, busco otro. Pero en la administración no pasa eso. La administración tiene unos tiempos y unas condiciones totalmente diferentes. La administración tiene unos tiempos y unas condiciones totalmente diferentes.
-[2580.0 → 2610.0] para rescindir el contrato, todos y todas sabemos, al menos los que estamos en esta corporación, todos los pasos que se han de seguir. Informes jurídicos, informes técnicos, y así y todo, así y todo, de veces se alargan en el tiempo. Y me puedo remitir al contrato de la agua, que llevamos años y años, y hasta ahora no hemos tenido una resolución.
-[2610.0 → 2640.0] han hecho una resolución. Porque las empresas, al final, pues, como quieren llevarse el gato al agua, impugnan los contratos, los denuncian y entran en un proceso que se dilata en el tiempo. No obstante eso, desde el Grupo Municipal de Compromiso reconocemos que el servicio de prestación de recogida de basura,
-[2640.0 → 2670.0] la verdad es que no está funcionando como en principio se creía que iba a funcionar, y más, dado el contrato que se había realizado. Es cierto que los primeros meses tendremos unas deficiencias muy importantes y eso va a llevar a la cancelación del contrato en la empresa.
-[2670.0 → 2700.0] han dicho que se ha hecho un contrato de emergencia en la segunda empresa que había quedado en la licitación para poder subsanar. Pero claro, el tema está en que esa empresa tiene que funcionar lo mejor posible. Es cierto que hay contenedores que están destrozados. Yo he visto que en el centro del pueblo, alrededor de donde vivo,
-[2700.0 → 2730.0] han dicho que están todos destrozados. Hablando con miembros del equipo de gobierno, me han dicho que van a hacer la compra de los contenedores en recursos propios. Supongo que ahora explicarán de qué forma lo van a hacer. Pero bueno, es lo que tenemos. Yo, como dije, puedo estar cabrechado en cómo funciona el servicio de...
-[2730.0 → 2760.0] han sido recogidos de basura, pero entiendo que como miembro de esta corporación y sabedor de todos los pasos que se han hecho en este proceso, pues he de decir que no es normal, pero tenemos lo que tenemos. Nos ha tocado partir una empresa que no ha funcionado y eso ha venido dando a que los demás,
-[2760.0 → 2790.0] tienen que acceder a un contrato de emergencia para poder solucionarlo, porque, entre otras cosas, no me imagino al alquiler del Gobierno recogiendo la basura todos estos días. En fin, al portavoz de Vox, he de decirle que su intervención, la verdad es que, a la vez de lamentable para mí, es una opinión propia,
-[2790.0 → 2820.0] han dicho que no han actuado correctamente. Pues bueno, es lo que ustedes están haciendo en todos los lugares donde están representados. Ha demandado la dimisión de la guía de gobierno, han demandado la dimisión de todos porque no han actuado correctamente. Yo, esto de no actuar correctamente, cuando en un plazo récord se ha podido concluir el contrato que había en la empresa que se quedó la licitación,
-[2820.0 → 2850.0] la verdad es que no sé hasta qué punto, ni hay opiniones diferenciales, hasta qué punto puede ser normal. Pero bueno, ustedes lo único que hacen en su discurso es mezclar la democracia en este país, achacar los problemas de las agrupaciones políticas en el país, en el país de la democracia, en el país de la democracia, en el país de la democracia,
-[2850.0 → 2880.0] han dicho que la falta de transparencia y que, al final, ese mensaje que está caliente en la gente es que la democracia no sirve para nada. Y es un mensaje muy peligroso. Y yo desde aquí me gustaría que se replantejara ese tipo de discursos que no hacen nada más que crear odio entre todos y todas. Después seguiré. Gracias.
-[2880.0 → 2910.0] Más palabras. Segunda intervención. Ya ajustemos los tiempos. Tengo la primera que cada uno hace lo que ha considerado. Gracias, señor alcalde. Me voy a ajustar más tiempo, pero la señora portaveo del PSOE ha hablado seis minutos más que yo. Y el señor Rafa Compromís cinco minutos más que yo. Hemos venido a este pleno a hablar de la basura. Y si, Teresa, si estás enojada o enfadada por tu salud, relájate. Porque yo traslado la voz del pueblo, la preocupación.
-[2910.0 → 2940.0] Gracias.
-[2940.0 → 2970.0] Y con la cronología de los altos te voy a decir. En el pleno del 23 de diciembre, que es cuando se inicia todo esto, bueno, antes con el comunicado del señor alcalde, afirmaba que se estaban teniendo problemas con la empresa Garbialdi. Siempre os habéis quejado de que el contrato antiguo, firmado por el antiguo gobierno del Partido Popular, que estaba 14 años, estaba caduco y había que mejorarlo, por supuesto. Y siempre hemos afirmado desde el Partido Popular que si 15 años después no vamos a firmar un contrato, un servicio que mejore el antiguo,
-[2970.0 → 3000.0] ¿Para qué? ¿Para qué firmarlo? Ha estado 14 años también por falta de planificación y falta de gestión del equipo de gobierno, porque el contrato del PP finalizaba en el año 2021, a todos los vecinos, en el año 2021. Y fue prorrogado por ustedes el 22, el 23, el 24, hasta diciembre del 25. Cuatro años de prórroga hecha por ustedes.
-[3000.0 → 3030.0] Única y exclusivamente por el equipo de gobierno del PSOE, que era el que gobierna con mayoría absoluta. Nosotros en este pleno estamos aquí para pedir información. Dar soluciones es tarea del equipo de gobierno. ¿Qué podemos proponer? Claro. Y ustedes nos pueden responder que estamos trabajando en ello, que esa idea ya la tenían. Claro, que es lo que hacen, lo que suelen hacer. Hemos propuesto en diferentes mociones. Unas las han votado en contra.
-[3030.0 → 3060.0] Otras han votado a favor y las que han votado a favor estamos igual que cuando se votó a favor, sin hacer nada. El alcalde en su discurso, en sus comparecencias, ya hablaba de que había que cambiar los contenedores en diciembre. En diciembre. Que ya estaban muy deteriorados. José Ángel afirmaba en ese mismo pleno que se iba a prorrogar el contrato del INE.
-[3060.0 → 3090.0] Gracias, señor presidente.
-[3090.0 → 3120.0] A las cuales nosotros siempre estuvimos a favor de las sanciones. Y votamos abstención porque habíamos votado en contra del contrato de la basura. Sí, en contra, porque nos parecía hiriente algunas cosas como que volviera a durar un contrato 14 años. Porque quién sabe en el 2040 cómo habrá evolucionado la sociedad para que estemos todavía con un contrato del año 2025. Vox ya existió.
-[3120.0 → 3150.0] ¿Qué es lo que se exigía responsabilidades en aquel pleno junto con nosotros? Luego se unió Esquerra Unida también pidiendo responsabilidades políticas. Lo que está claro es que ustedes, las responsabilidades políticas, dependen del tipo de administración. Si la administración es Chineita Valenciana gobernada por el Partido Popular, hay que pedir responsabilidades políticas. Se exigen. Si la responsabilidad es el gobierno de España gobernado por el PSOE, no es necesario pedir responsabilidades políticas. Y si la administración pública es el Ayuntamiento de España, no es necesario pedir responsabilidades políticas.
-[3150.0 → 3180.0] El movimiento de Riva Roja con pedir disculpas es suficiente. Porque, claro, si no, nosotros estamos en contra de un servicio esencial, básico. El señor alcalde ya afirmaba hace meses que el cambio iba a ser inminente. Hace meses, en el pleno de enero, que en dos, tres, cuatro meses, han pasado siete, se verían las soluciones. Y el presidente de la República, que es el presidente de la República,
-[3180.0 → 3210.0] El problema marcharía. La realización de un contrato de emergencia por la empresa FCC, que gracias, ¿significa esto que tiene que ser malo el contrato? ¿Qué es lo que está ocurriendo? ¿Tiene que ser deficiente ese servicio por el que el contrato sea de emergencia? Yo creo que no. En La Habana se hicieron muchos contratos de emergencia y no fueron hechos de forma ni pasable, ni deficiente, ni mala.
-[3210.0 → 3240.0] Fueron contratos hechos porque se entendía la necesidad y se llevaron a cabo con todo el buen hacer. Luego, posteriormente, José Ángel también afirmaba que los contratos de emergencia y subsanación eran indispensables y se debían realizar. Y todos estuvimos de acuerdo en que el 12 de marzo se realizara un contrato con la empresa FCC, un contrato de emergencia que suplantaba a la empresa Garbialdi.
-[3240.0 → 3270.0] Lo de la empresa Garbialdi, todos sabemos que ustedes dieron comunicados desde el ayuntamiento, el señor alcalde en redes sociales hizo comunicados, pero el problema de la empresa Garbialdi, todos los vecinos tienen que saber que acaba el 9 de marzo. A partir del 9 de marzo no se pueden refugiar en los problemas de la empresa Garbialdi, que han trabajado mucho todos los técnicos para hacer el finiquito del contrato, pero a partir del 9 de marzo la empresa Garbialdi no existe. El problema de la basura.
-[3270.0 → 3300.0] Y el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último, el último,
-[3300.0 → 3330.0] Y no es el Partido Popular el único que desconoce cómo está. Es que ha reunido y compromisó, compromisó no tanto porque es más, ha llegado a ustedes, pero es que ha reunido a Vox y nosotros no conocemos toda la información de primera mano. Ahora sí, ahora sí. Nosotros pensamos que hay formas de gestionar el contrato de la basura. Y si hay que realizar otro contrato de emergencia o suplantar o modificar el contrato actual de vigencia con FCC para que…
-[3330.0 → 3360.0] Y luego, posteriormente, José Ángel también afirmaba que los contratos de emergencia y subsanación eran indispensables y se debían realizar. Y luego, posteriormente, José Ángel también afirmaba que los contratos de emergencia y subsanación eran indispensables y se debían realizar. Señor alcalde, Teresa ha hablado seis minutos más que yo en la primera intervención. Señor alcalde, Teresa ha hablado seis minutos más que yo en la primera intervención. Señor alcalde, Teresa ha hablado seis minutos más que yo en la primera intervención. Señor alcalde, Teresa ha hablado seis minutos más que yo en la primera intervención. Señor alcalde, Teresa ha hablado seis minutos más que yo en la primera intervención. Señor alcalde, Teresa ha hablado seis minutos más que yo en la primera intervención.
-[3360.0 → 3390.0] Pero bueno, ha sido extraordinario. Y tiene unos tiempos atrasados. Y le ha dicho que como un tema importante, que usted utilice el tiempo que considere. Ha utilizado lo que usted ha vivido. Y después le ha dicho que como un tema importante, le daría tiempo a los demás. Y eso lo ha hecho. Estamos en la segunda intervención, que son dos minutos. Y estamos en cinco minutos. Es que usted, señor, ha dicho que no se puede hablar de las cuestiones por el pleno. Es que en los plenarios no se puede. Si hubiera sido un ordinario, sí. Ha convocado al Partido Popular, digáselo al Partido Popular. Ha dicho que no se puede hablar de las cuestiones por el pleno.
-[3390.0 → 3420.0] A mí no. Nosotros, ¿cómo es regulado el pleno? ¿El sector Evofort? Un tema de intervenciones. ¿Entonces para qué venimos los expulsadores? No lo sé, pero nosotros... ¿Pediendo de...? Un momento. Nosotros no hemos pedido el pleno. Si hubiera sido un pleno ordinario, que lo ha dicho Rafa de compromiso, cualquier vecino puede hablar porque es lo que marca la ley. Los plenos extraordinarios no hablan al público. Pero de ahora... ¿Pueden hablar el pleno o no se habla? Perdón, es que...
-[3420.0 → 3450.0] Y todos estuvimos de acuerdo en que el 12 de marzo se realizara un contrato con la empresa Garbialdi. Luego, posteriormente, José Ángel también afirmaba que los contratos de emergencia y subsanación eran indispensables y se debían realizar. Y todos estuvimos de acuerdo en que el 12 de marzo se realizara un contrato con la empresa Garbialdi. Y todos estuvimos de acuerdo en que el 12 de marzo se realizara un contrato con la empresa Garbialdi.
-[3450.0 → 3480.0] ¿Qué es lo que está pasando en el pleno? Mire, yo no convoco este pleno. El pleno lo ha pedido el Partido Popular. ¿Dónde vamos por llevarse de verdad en la Secretaría de la Montería? El lunes pueden venir y terminen lo que consideren. Ustedes cobran por los plenos, pero los que venimos a escuchar no cobramos nada. Ah, venga, hasta luego. ¿Entiendes? Eso es lo que no puede ser. Y venimos a dar las quejas porque en realidad, el Partido Popular en general, estamos... El lunes, el lunes, perdone, perdone, el lunes puede hablar. Alberto, seguís.
-[3480.0 → 3510.0] Alberto, Alberto, ¿seguís? Alberto, ¿seguís? Si no puedo seguir. Ahora sí. A ver, señora, si quieren. Alberto, Alberto, seguid la intervención de la sala. Las gracias y todo eso que se comprometiste en la guindada que ha entrado antes del 30 de junio y está ahí. ¿Seguís? ¿Estáis esperando que nos seguimos? ¿Qué maleducación? ¿Qué te ha dado para vos? ¿No te ha dado para vos? De todas, no puedo hablar tampoco sin echar el parlante.
-[3510.0 → 3540.0] ¿Qué pasa con la gente? ¿No va a acabar? ¿Tú dices que 30 años? ¿30 años llevo aquí? Bueno, en el ayuntamiento no tanto, pero... ¿No vos me esquelío? No. Yo el lío no lo he creado. Estaba usted hablando en los veintes. Vamos a aclararse. Yo el lío no lo he creado nunca. Y no me alegro de lo peor, lo mejor.
-[3540.0 → 3570.0] ¿O se acabó la intervención? Se acabó la intervención. Se acabó la intervención. Se acabó la intervención. Solo espero que si alguien, algún dirigente del equipo de gobierno me contesta o habla sobre el pleno, hable de la basura. Única y exclusivamente. Gracias. Según la intervención, los tiempos están en dos minutos. Hemos hecho seis minutos.
-[3570.0 → 3600.0] Yo creo que no. Yo creo que no. Yo creo que no. Yo creo que no. Yo creo que no. Yo creo que no. Yo creo que no. Yo creo que no. Yo creo que no. Yo creo que no. Yo creo que no. Yo creo que no. Yo creo que no. Yo creo que no. Yo creo que no. Yo creo que no. Yo creo que no. Yo creo que no. Yo creo que no. Yo creo que no. Yo creo que no. Yo creo que no. Yo creo que no. Yo creo que no. Yo creo que no. Yo creo que no. Yo creo que no. Yo creo que no. Yo creo que no. Yo creo que no.
-[3600.0 → 3630.0] datos estadísticos, datos recogidos, de cómo el servicio de lo que teníamos en diciembre o enero o febrero al día de hoy no tiene nada que ver. De hecho, tenemos porcentajes de recogidas de más del 90% de RSU. Voy a explicar algunas cuestiones. Lo que más ha necesitado, sobre todo, la recogida de restos de podas, es lo que ha requerido un mayor periodo de normalización, debido a la acumulación de material pendiente que tuvimos
-[3630.0 → 3660.0] La situación mejora de forma constante, pero es verdad que aún no está al 100%, pero conforme avanza la prestación del servicio está mejorando. Los datos objetivos avalan esta evolución. Entre enero y junio de 2026, las incidencias relacionadas con contenedores descienden desde las 138 que teníamos en enero a las 50-55 que estamos teniendo en los últimos dos o tres meses.
-[3660.0 → 3690.0] reducciones del 90%. En consecuencia, la evolución del servicio durante el primer semestre del 2026, desde que este equipo de gobierno toma las medidas, no evidencia un empeoramiento, sino que lo que evidencia es una mejora progresiva, aunque evidentemente con desajustes y que aún no está al 100%. Puedo darles más datos, por ejemplo, miren. Las incidencias relacionadas con los contenedores,
-[3690.0 → 3720.0] muestra en esta gráfica dónde estábamos en enero y cómo vamos teniendo un descenso paulatino de lo que son las incidencias, que siguen siendo demasiadas, nos gustaría reducirlas al cero o a la mínima expresión, pero esto es lo que demuestra que hay un trabajo continuado de mejora sostenible y progresiva. ¿Estamos al 100%? Evidentemente no, pero hay una mejora que no tiene nada que ver con enero, con febrero, y no quiero hablar del mes de diciembre, que fue una auténtica pesadilla.
-[3720.0 → 3750.0] con la entrada de la nueva empresa, se produce un cambio de tendencia. La media mensual pasa de 126 incidencias a una media de 62, lo que supone una reducción del 50%. Desde el punto de vista estadístico, este es un indicador de aquellas cuestiones que van diciendo que, aunque no hemos llegado donde queremos llegar, el servicio poco a poco va normalizando y
-[3750.0 → 3780.0] Voy a dar un gráfico que me parece que es brutal, ¿no? Sobre todo por las épocas. En el mes de febrero, de recogida de enseres y de poda, que estamos hablando de un mes que no es temporada alta ni de una casa ni de otra, sobre todo de poda, tuvimos 108 incidencias. 108. Bien.
-[3780.0 → 3810.0] 42, una reducción de casi dos tercios recogiendo mucho más. Es decir, en esta gráfica se puede observar también cómo vamos reduciendo las incidencias que tenemos tanto de poda como de enseres durante los últimos meses.
-[3810.0 → 3840.0] de las incidencias de un 83%, a pesar de que los avisos se han multiplicado por tres, lógicamente por la poda, porque en enero y febrero hay mucho menos aviso para recoger poda que a partir de marzo, abril y mayo. Por lo tanto, aunque el servicio no es lo que nos gusta, aunque tiene incidencias, como la que ha comentado Alberto, como tiene incidencias, sobre todo los contenedores rotos, que ahora comentará alguna cuestión el alcalde,
-[3840.0 → 3870.0] Y además la inmensa mayoría de los días no suele haber incidencias a día de hoy con el RSU. Otra cosa es que no todos los días está al 100%, porque si no estuviera estaríamos aún más contentos.
-[3870.0 → 3900.0] una imagen de que estamos como estábamos al principio, de que no había una gestión, porque no sería cierto. En definitiva, esto también lo podemos ver por zonas, podemos ver cómo las cuestiones se van reduciendo y este también, quiero que lo vean, este gráfico es los avisos que tenemos de recogida de podas,
-[3900.0 → 3930.0] aquí donde teníamos las incidencias y casi con los mismos avisos cómo vamos reduciendo. Es decir, al final los datos que es para lo que estamos estudiando y estamos mirando para intentar que el servicio se normalice al 100% nos indican que sin estar satisfechos del todo, porque no lo podemos estar, el servicio progresivamente se va normalizando. Y yo creo que eso es una cuestión que es muy importante y que teníamos que decirlo. En definitiva, en análisis de los datos, las gráficas y la evolución mensual de estos indicadores,
-[3930.0 → 3960.0] nos dice es que en los dos primeros meses de 2026 el servicio atravesó una situación de especial dificultad, pero que las medidas adoptadas, priorización de la recogida de RSU, refuerzo del servicio, produjeron un efecto directo y medible sobre la calidad del servicio. Las incidencias relacionadas con contenedores disminuyen de manera significativa respecto al inicio del periodo y las incidencias relacionadas con el SEDES y PODAM muestran una reducción progresiva y sostenible
-[3960.0 → 3990.0] de la calidad del servicio. Es más, durante los meses de mayor actividad en la recogida de restos de poda, se mantiene un volumen de peticiones de recogida de poda, mientras que las incidencias continúan descendiendo, lo que evidencia que la capacidad de respuesta a lo que pide el ciudadano va mejorando. En definitiva, los hechos, lo que nos están diciendo es que la evolución del servicio durante el primer semestre de 2026, independientemente de que aún tiene carencias, y eso lo reconocemos, pero los indicadores objetivos verificables y cuantificables,
-[3990.0 → 4020.0] de la calidad del servicio. Acreditan que las medidas adoptadas por el equipo de gobierno están siendo eficaces y poco a poco están permitiendo recuperar la calidad que debe tener un servicio esencial para la ciudadanía. Gracias. SEÑOR PRESIDENTE. Muchas palabras, Vox. SEÑOR JOSÉ PÉREZ GARCÍA. Muchas gracias. DE ACUERDO. Gracias, alcalde. A ver, tenemos claro que lo importante es restablecer la recogida urgente en todo el municipio y polígonos industriales para evitar todos los riesgos sanitarios y daños de la imagen municipal. Hago un paréntesis.
-[4020.0 → 4050.0] de la calidad del servicio. Y le agradezco las palabras de compromiso porque refuerza lo que digo, que es un satélite absolutamente del PSOE. Pero bueno, proponemos, aquí venimos, además de hacer una crítica al equipo de Gobierno y haberles pedido la dimisión por la falta de gestión, lo que vamos a proponer son medidas. Medidas urgentes en 14 días, medidas tácticas en dos semanas, tres meses, un plan contractual entre tres y seis meses, ahorro de eficiencia,
-[4050.0 → 4080.0] de la calidad del servicio. En definitiva, el servicio progresivamente se va normalizando. Y yo creo que eso es una cuestión que nos dice
-[4080.0 → 4110.0] de la calidad del servicio. En el caso de la recogida de RSU, el servicio de la ciudad, la recogida de RSU, la recogida de RSU, la recogida de RSU, la recogida de RSU, la recogida de RSU, la recogida de RSU, la recogida de RSU, la recogida de RSU, la recogida de RSU, la recogida de RSU, la recogida de RSU, la recogida de RSU, la recogida de RSU, la recogida de RSU, la recogida de RSU, la recogida de RSU, la recogida de RSU, la recogida de RSU, la recogida de RSU, la recogida
-[4110.0 → 4140.0] de todas las incidencias, valga la redundancia. En las medidas tácticas entre dos semanas, tres meses, se puede establecer un contrato de emergencia, exigir documentación del plan de contingencia con flotas, nóminas, cuadrantes, trazabilidad de GPS de camiones y hojas de ruta, nombrar un coordinador municipal con poder sancionador y capacitaciones técnicas externas para controlar el servicio. Me salto algunas del plazo entre dos semanas y tres meses.
-[4140.0 → 4170.0] de la calidad del servicio. En el caso de la recogida de RSU, el servicio de la recogida de RSU es un beneficio que se ha reducido en el periodo de 30 meses. En el caso de la recogida de RSU, el servicio de la recogida de RSU es un beneficio que se ha reducido en el periodo de 30 meses. En el caso de la recogida de RSU, el servicio de la recogida de RSU es un beneficio que se ha reducido en el periodo de 30 meses. En el caso de la recogida de RSU, el servicio de la recogida de RSU es un beneficio que se ha reducido en el periodo de 30 meses. En
-[4170.0 → 4200.0] de la calidad del servicio. En el caso de la recogida de RSU, la recogida de RSU fue muy importante, porque la recogida de RSU fue muy importante, porque la recogida de RSU fue muy importante, porque la recogida de RSU fue muy importante, porque la recogida de RSU fue muy importante, porque la recogida de RSU fue muy importante, porque la recogida de RSU fue muy importante, porque la recogida de RSU fue muy importante, porque la recogida de RSU fue muy importante, porque la recogida de RSU fue muy importante, porque la recogida de RSU fue muy importante, porque la recogida de RSU fue muy importante, porque la recogida de RSU fue muy importante, porque la recogida de RSU fue muy importante, porque la recogida de RSU fue muy
-[4200.0 → 4230.0] de la calidad del servicio. En el caso de los indicadores de éxito, los indicadores de éxito son los que se han presentado en el año pasado, que son el número de sanciones aplicadas y cobradas, el número de sanciones aplicadas y cobradas, el número de sanciones aplicadas y variación del coste por toneladas. Y al final, si entre todos conseguimos un resultado de la medida de la medida de la medida de la medida de la medida de la medida de la medida de la medida de la medida de la medida de la medida de la medida de la medida de la medida de la medida de la medida de la medida de la medida de la medida de la medida de la medida de la medida de la medida de la medida de la medida de la medida de la medida de la medida de la medida
-[4230.0 → 4260.0] de la calidad del servicio. En el caso de que el servicio no se pueda solucionar, el servicio que se puede solucionar es el servicio de la red de servicios de la red de servicios de la red de servicios de la red de servicios de la red de servicios de la red de servicios de la red de servicios de la red de servicios de la red de servicios de la red de servicios de la red de servicios de la red de servicios de la red de servicios de la red de servicios de la red de servicios de la red de servicios
-[4260.0 → 4290.0] de la calidad del servicio. En este sentido, el servicio de la red de servicios de la RSU es un servicio que tiene una gran importancia para la calidad del servicio, porque es un servicio que tiene una gran importancia para la calidad del servicio. En este sentido, el servicio de la red de servicios de la RSU es un servicio que tiene una gran importancia para la calidad del servicio. En este sentido, el servicio de la RSU es un servicio que tiene una gran importancia para la calidad del servicio. En este sentido, el servicio de la RSU es un servicio que tiene una gran importancia para la calidad del servicio. En este sentido, el servicio de la RSU es un servicio que tiene una gran importancia para la calidad del servicio. En este sentido, el servicio de la RSU es un servicio que tiene una gran importancia para la calidad del servicio.
-[4290.0 → 4320.0] de la calidad del servicio. En el caso de la recogida de RSU, el servicio no estaba al 100% y yo lo que torné a hacer es la misma reflexión de antes. Lo que necesitamos es que la nueva licitación esté en marcha. Por tanto, creo que lo más importante es que se normalice el servicio y tener una calendarización y que la gente pueda saber, también nosotros, cuándo va a ser una realidad la nueva licitación. ¿Para qué? Para que podamos tener un servicio que sea normalizado. Y que la gente pueda saber, también nosotros, cuándo va a ser una realidad la nueva licitación. Y que la gente pueda saber, también nosotros, cuándo va a ser una realidad la nueva licitación.
-[4320.0 → 4350.0] lo que queremos, lo que queremos todos y todas, un servicio digno, de calidad y que esté a la altura de la ciudadanía, pero para eso, si este contrato de emergencias no es suficiente, se ha de tener la nueva licitación y eso es lo que se ha de hacer. Por tanto, tenemos ese objetivo. Por otra parte, los contenedores, que sí que me consta que ahora el señor alcalde nos explicará el tema de la compra o de la inversión para los contenedores y creo que es importante porque muchos de los problemas
-[4350.0 → 4380.0] Por lo tanto, saber cómo se va a hacer esa compra, cómo se va a hacer esa inversión y sobre todo con qué consignación presupuestaria o de qué forma se va a hacer. Y vuelvo a reiterar el tema de la tasa. Creo que es muy importante también la valoración de esa reducción, pero también instar a que los informes técnicos para que puedan avalar a nivel legal esta reducción se puedan hacer lo más pronto posible,
-[4380.0 → 4410.0] Sobre todo también tendréis la calendarización de cuándo se van a hacer esos informes o por lo menos de qué tiempo estamos hablando. Porque muchas veces lo que pasa en estas cuestiones es que se habla de muchas cosas, de cosas que se van a hacer, pero la temporalización, la calendarización no coincide en lo que se dice. Por lo tanto, sí que creo que es importante que el equipo de gobierno tenga mucho rigor en la calendarización, que sí que se pueda comprometer en cuándo estará la nueva licitación,
-[4410.0 → 4440.0] y la compra de los nuevos contenedores. Muchas gracias. Gracias, señor alcalde. Ahora voy a ver. Es reiterativo la afirmación que hacen tanto el Partido Popular como Vox de que el grupo municipal de compromiso está muy allegado al equipo de gobierno, somos satélites del Partido Socialista.
-[4440.0 → 4470.0] Quiero decirles a todos los vecinos y vecinas que a principios de legislatura, por parte del señor alcalde del equipo de gobierno, como presidente de la corporación, se nos va a convidar a varios grupos políticos a formar parte de las juntas de gobierno, que es donde se pasa toda la información del día a día de este ayuntamiento.
-[4470.0 → 4500.0] El Grupo Municipal de Compromiso aceptó esa invitación y formamos parte de esa Junta de Gobierno. Evidentemente, por esta cuestión, tenemos posiblemente más información que todos los demás grupos políticos que no han aceptado esa invitación.
-[4500.0 → 4530.0] normalmente cuando tanque el negocio, a hablar en los regidores que creo que tienen que hablar para informarme de las situaciones que me traen los vecinos y vecinas. Y así están todos los regidores del equipo de gobierno que me gustaría que en algún momento digan cuántas veces he preguntado si no he venido y he creado por teléfono
-[4530.0 → 4560.0] el equipo de gobierno. Esa es la taza de un político, de un regidor, de un ayuntamiento. Información y después fiscalización. Al menos es lo que yo creo que se debe hacer.
-[4560.0 → 4590.0] que se me deme para estar informado y poder informar a los vecinos que me pregunten, pues, escucha, yo de la falta de trabajo político o de fiscalización no voy a decir nada. Dicho eso, evidentemente, desde el Grupo Municipal de Compromiso, lo que acaba de comentar el compañero de Esquerra Unida, Unides Podem,
-[4590.0 → 4620.0] Evidentemente, estamos a favor de todo lo que se ha solicitado, pero que sepan todos y todas, sobre todo los vecinos, que un equipo de gobierno, sea de la administración que sea,
-[4620.0 → 4650.0] Y en este ayuntamiento se están teniendo verdaderos problemas porque posiblemente, ya que técnicos y todos los portavozos del Grupo Municipal saben que no están por la llavor de hacer el informe o no creen que deben hacerlo.
-[4650.0 → 4680.0] porque desde que ha comenzado la legislatura no han cobrado ninguna asignación del grupo municipal y eso lo saben todos y todas y si la han cobrado, la han cobrado tarde y de forma deficiente pero bueno, es lo que tenía está claro y me torno a reiterar que este ple es un ple que posiblemente
-[4680.0 → 4710.0] el episodio que hemos tenido en los vecinos y vecinas cuando nos han dicho que ustedes solo quieren cobrar pues a lo mejor, en parte, tienen razón porque posiblemente toda esta información se podría haber dado en un ple ordinario y más cuando lo tengamos el dilluns y me torno a reiterar y me gustaría acabar la nueva intervención para no alargarlo mucho no voy a utilizar esos cuatro minutos porque está todo ya más que dicho
-[4710.0 → 4740.0] que me gustaría que todo funcionara mejor creo que se va en esa línea lo que pasa es que se va muy poco a poco evidentemente la voluntad de todo aquel que gestiona un área es que funcione perfectamente me gustaría también que las incidencias bajaran
-[4740.0 → 4770.0] a la mínima expresión posible y si puede ser a ninguna incidencia pero va a ser difícil, incluso estando el servicio en pleno rendimiento, siempre van a haber incidencias y eso lo sabemos todos y todas, pero no ha pasado tarde, ha pasado hace 10 años, hace 20, hace 30 y hace 40 pero en fin, para acabar en el discurso del portavoz de VOX, en su primera intervención,
-[4770.0 → 4800.0] se ha pasado antes, pero le voy a decir ahora ha hablado de ese ese digamos manía obsesión que tienen de que el cambio climático no existe bueno, pues solo le voy a decir que en este mes de junio tenemos más de mil
-[4800.0 → 4830.0] se va a hacer un par de años y que se va a hacer un par de años y que se va a hacer un par de años y que se va a hacer un par de años y que se va a hacer un par de años y que se va a hacer un par de años y que se va a hacer un par de años y que se va a hacer un par de años y que se va a hacer un par de años y que se va a hacer un par de años y que se va a hacer un par de años y que se va a hacer un par de años y que se va a hacer un par de años y que se va a hacer un par de años
-[4830.0 → 4860.0] no es un ple de mandado, no estamos fatal, estamos mal pero los contratos de emergencia están para hacer un contrato y que el servicio sea válido y no tengamos este tipo de problemas, que no existen incidencias o la mínima expresión como bien tú dices tanto el señor alcalde nos ha recordado ha recordado en ocasiones y Rafa también ha recordado que en las comisiones de contratación tenemos portavoz en las comisiones de contratación no se vota nada los portavozos no decidimos nada
-[4860.0 → 4890.0] no ha sido el primer pleno en este pleno no, Rafa, si lo has dicho en las comisiones de contratación nosotros podemos aconsejar podemos sugerir podemos hacer propuestas pero no decidimos nada sobre el fondo de cualquier contrato nada y eso es una obviedad que puede hacer plausible la secretaria y si no, José Ángel que está en las comisiones no decidimos nada sobre ningún contrato nada
-[4890.0 → 4920.0] se va a hacer de todas formas, nosotros relacionado a las palabras de Teresa, pedíamos información, si auditeza, que funciones hace, vemos que no es una función de auditeza hoy en día auditar a la empresa que está realizando el servicio de basura porque según el informe que nos habéis pasado sus labores fueron liquidar económica el contrato, la liquidación económica del contrato de la empresa Garrialdi, que lo hizo muy bien, no lo dudo
-[4920.0 → 4950.0] y ahora está trabajando en la elaboración de los nuevos pliegos del contrato de auditar a la empresa actual que realiza el servicio, no nos ponéis nada en el pleno del 9 de marzo, José Ángel, en el expediente que se nos pasó de urgencia cinco horas antes del pleno, si llegó al que todos votamos a favor de esa urgencia porque era la rescisión del contrato había un punto en el que se decía que si
-[4950.0 → 4980.0] nosotros no lo hacíamos bien, lo aceptábamos y íbamos a bonificar o bien la tasa del 2025 o ver cómo se hacía en la tasa del 2026 y el señor alcalde en su speech después del pleno lo refrendaba el 9 de marzo según el informe de la tesorera hace un mes aproximadamente, esto no está en el expediente, pero hace un mes más menos
-[4980.0 → 5010.0] el presidente de la asamblea le dijo mira, abuere, confem lo de la bonificación de la tasa en palabras de la tesorera fa un mes, mes o menos desde el 9 de marzo que se aprobó desde el 9 de marzo que se aprobó dicha bonificación o dicha tasa eso no lo sabíamos y a fecha 23 de junio a fecha de la semana pasada no se sabe nada sobre el informe que tenga que hablar sobre dicha bonificación o tornar dinero desde la tasa del 25 o tornar dinero desde la tasa del 25
-[5010.0 → 5040.0] se ha pagado dinero de la tasa de 26 en numerosos plenos tanto Rafa como el señor Roberto, el señor alcalde, disculpe ha hablado que el servicio no era lo que queríamos que no estaba funcionando como quería nosotros pensamos que la tasa del 2026 tiene que ser bonificada también en parte porque el servicio que se ofrece al pagar una tasa no es el adecuado en la compra de contenedores sabemos que se va a hacer en fondos propios
-[5040.0 → 5070.0] que va a durar unos 4 o 6 mil que va a suponer unos 4 o 6 mil de fondos propios cuando siempre se ha dicho que el contrato de la basura no iba a suponer nada para el ayuntamiento la compra de contenedores será a través de fondos propios y sobre el nuevo pleno de contratación nosotros aconsejaremos dar datos económicos y técnicos de que es posible un contrato nuevo que no sea a 14 años de que es posible un contrato nuevo a través de renta de vehículos
-[5070.0 → 5100.0] de los vehículos y que es posible un contrato nuevo donde la vida útil de los vehículos termine antes de su amortización final y se pueda vender veremos el nuevo contrato si también está a 14 años si no está a 14 años o si nos hacen algo de caso pero eso es lo que pensamos y eso es lo que hemos comprobado en muchos contratos de RCU de recogida de RCU poder voluminosos de ciudades más
-[5100.0 → 5130.0] nosotros queremos que se nos dé información y que se acerte que el problema de la basura es un problema importante y que no se está fijando en la solución que cabe gracias señor alcalde, una pregunta de orden si por lo que ha dicho el portavoz del partido popular un minuto yo en cada momento he dicho que en las comisiones de contratación se vota el resto he dicho que estemos todos representados y decir
-[5130.0 → 5160.0] y a todos y todas que llevamos este año 7 comisiones de contratación y en todas ellas hay un punto que pone propuesta de los miembros de la comisión gracias es que no puede haber un debate para la gente no se preocupe no hay lugar no hay lugar bueno ya ha acabado el pleno yo voy a acabar el pleno informando a todos y todas
-[5160.0 → 5190.0] primero a ustedes y a los vecinos de que este pleno realmente es un pleno que voy a recorrer la intervención de la rechidora y el rechidor porque hemos hablado de residuos pero es un pleno que el pueblo se podría haber salvado es 4000 euros que nos va a cobrar se podría haber salvado el pueblo 4000 porque igual no le damos a una ONG 4000 por un tema que por activa y por negativa
-[5190.0 → 5220.0] pero en realidad es una tasa de la que se va a pagar y que se va a pagar con un precio que es el que se va a pagar con un precio que es el que se va a pagar con un precio que es el que se va a pagar con un precio que es el que se va a pagar con un precio que es el que se va a pagar con un precio que es el que se va a pagar con un precio que es el que se va a pagar con un precio que es el que se va a pagar con un precio que es el que se va a pagar con un precio que es el que se va a pagar con un precio que es el que se va a pagar con un precio que es el que se va a pagar con un precio
-[5220.0 → 5250.0] en el día de hoy, el pueblo se habrá salviado 4.000 euros y toda la información que ya la tiene que le voy a decir a mi rechidora que tiene toda la información así en expediente ¿puedo? para que lo deje a la gente todo este paquete que tiene así así si usted en la Diputación de las horas que se habrá pasado leyendo eso, toda la información que le ha hecho a la secretaria a la otra se habrá salviado por tanto la información la tenía no es verdad que no tenía información
-[5250.0 → 5280.0] porque el PLE se plantea en términos de información no de propuestas como a último hora hace un carrerillo ahí que ahora para la Xbox una carrerilla y va a echar por la vez propuestas y ya que es lo único que diga los costes porque lo hace el PLE perdona que estoy en intervención Samantes en un tema de bueno queremos saber no sé el formato de un PLE un PLE es algo más serio que queremos saber es que es que en este ayuntamiento están constituidos es que están para asesorarlos es que no les espera hablar en ustedes
-[5280.0 → 5310.0] no se ha utilizado ninguna por lo tanto en primer lugar reclusar absolutamente no el enfado sino la preocupación del marrachidor porque entiendo que eso pues efectivamente es que en la puerta podríamos haber hablado y estaríamos a 4.000 euros ahora no pues ustedes no van a cobrar por supuesto dejemos de comenzar segundo cuando hablamos de este contrato es un contrato que se ha hecho con una pulcritad
-[5310.0 → 5340.0] pero no es lo que se va a hacer en fondos propios en el caso de la tasa de los servicios en el caso de la tasa de los servicios en el caso de la tasa de los servicios en el caso de la tasa de los servicios en el caso de la tasa de los servicios en el caso de la tasa de los servicios en el caso de la tasa de los servicios en el caso de la tasa de los servicios en el caso de la tasa de los servicios en el caso de la tasa de los servicios en el caso de la tasa de los servicios en el caso de la tasa de los servicios en el caso de la tasa de los servicios
-[5340.0 → 5370.0] y que se va a hacer en fondos propios y que se va a hacer en fondos propios y que se va a hacer en fondos propios y que se va a hacer en fondos propios y que se va a hacer en fondos propios y que se va a hacer en fondos propios y que se va a hacer en fondos propios y que se va a hacer en fondos propios y que se va a hacer en fondos propios y que se va a hacer en fondos propios y que se va a hacer en fondos propios y que se va a hacer en fondos propios y que se va a hacer en fondos propios y que se va a hacer en fondos propios
-[5370.0 → 5400.0] absolutamente nada absolutamente nada más que risas y cachondeo y todo ese es el rollo de lo que se pone vale, por lo tanto en ese sentido bueno pues yo tengo que decirle que está clarísimo Es Pilar, primero planificación para tener un nuevo contrato el hacerlo y planificarlo ya cuando venimos de la oposición pero recordemos lo que había porque si ustedes no se han recordado pasamos una pandemia del 20 al 22 y toda la contratación de este ayuntamiento ha estado retrasada en este y todos los ayuntamientos
-[5400.0 → 5430.0] y por lo tanto en ese sentido cuando podamos traeremos uno de los contratos más importantes y lo haremos a conciencia el planteamiento político y técnico de ese contrato es de los mejores de la comunidad valenciana o era en ese momento como consecuencia de lo que pasó segunda fase, crisis y resolver la crisis y la resolvimos en tres récords o sea yo no tenía previsto que venía la DANA la DANA viera y bueno cada uno lo resuelve como pueda pues eso es lo que se ha hecho y lo que se ha hecho es que se ha hecho
-[5430.0 → 5460.0] se han superado la empresa falla, después tiene todo el soporte técnico y a partir de ahí tenemos que resolver una crisis, una más que hemos tenido y la resolvimos en tiempo y forma y rápido y estamos en un contrato de emergencia emergencia, la gente que sabe, yo lo explico por activa y por pasiva, ustedes tienen que saberlo bueno, ustedes lo saben, que emergencia es emergencia, no es una normalidad por eso digo emergencia y cuando decimos emergencia significa que lo emergente lo más necesario se hace todos los días y se hace, que es
-[5460.0 → 5490.0] han sacado residuos y cuando hay un desborde, un contenedor que está en mala situación, pues todo esto se reprega por eso usted ve, el que ve que a veces venían por los matines contenedores que no están repregados y acaban repregándose todos los días 700 contenedores todos los días que se repriegan y si alguno falla un día el sándem más se reprega 700 toneladas contrato de emergencia y que estamos intentando en el contrato de emergencia pues ya estamos trabajando como usted ha dicho y ha reconocido por la asistencia técnica hacer un contrato
-[5490.0 → 5520.0] han tenido un contrato nuevo un contrato nuevo que además se han dado cuenta como consecuencia de la crisis que hemos tenido que tenemos que poner también la neta chaviaria porque va todo aparellado y será mejor para el pueblo y lo vamos a hacer y lo haremos en que plazos? en los plazos que nos marca la legalidad no podemos avanzar más a la presa de lo que marca los plazos legales que tenemos ahora estamos trabajando en la ampliación de la emergencia buscando las fórmulas legales porque si no son legales no puedo ir al pleno vale, o no puedo resolver como alcalde
-[5520.0 → 5550.0] pero que cuando tengamos los nuevos contenedores que es la parte principal del problema los contenedores no la prestación del servicio la prestación del servicio que es de emergencia está funcionando muy bien, pero más los contenedores pues que se trenquen porque son muy viejos, porque no tienen tapas hemos arreglado 20 o 40 que creo que hemos arreglado pero así y todo pues el paisaje de Borrell y además con el camión pues efectivamente hay contenedores que se trenquen
-[5550.0 → 5580.0] y por lo tanto dificultan la repregada por eso es normal no queremos que pase pero dentro de lo que está pasando consideramos que es normal que esté pasando hasta que cambiemos los contenedores cuando tenemos que cambiar los contenedores como siempre he dicho los vecinos que se han ido también se lo voy a decir y en Marcial Traver y en todos los lugares en Casco Urbano, a marzo de diciembre y además en todos los lugares a marzo de diciembre de este año a marzo de diciembre de este año
-[5580.0 → 5610.0] y entre tanto, estamos trayendo el pliegue del próximo contrato, ¿cuánto será el próximo contrato, el nuevo contrato que mejorará si realmente en el tiempo que nos marque la legalidad a mi no sé, quiero decir podemos buscar si amortizamos antes o no, pero eso técnicamente tenemos que verlo lo que más nos interesa es nuestro pueblo vale, nosotros hemos dado igual 14, que 8, que 4, lo que queremos es un buen servicio para el que toque más servicio que es lo que vamos a hacer y tenerlo y eso es lo que queremos y es lo que vamos a tener por lo tanto tiene sentido
-[5610.0 → 5640.0] la tercera parte que es la que a la gente le interesa pues el contrato lo normal es que entre en vigor en el 2027 marzo, febrero, enero pues para ir y que sea un contrato para años y que esté definitivamente normalizado y mejore muchísimo porque entonces mejorará más porque va la neteja villera implícita también precisamente la neteja que acaba en marzo no José, en marzo se acaba si queremos llegar a todo pues antes de marzo sería complicado pero nosotros que queremos hacer pues lo mejor, después
-[5640.0 → 5670.0] creen sinceramente que no viven en este pueblo bueno, de pocos no viven en el pueblo pero no vemos todos los días lo que hay creen que no son conscientes pues claro que son conscientes lo que pasa es que el formar un plan para pagar 4000 euros no es el correcto y eso es lo que criticamos desde el pleno extraordinario primero la gente se ha cabreado porque no puede hablar en los extraordinarios, ni ahora ni hace desde el 79 en los extraordinarios si vale, por lo tanto cabrechos innecesarios que parece usted
-[5670.0 → 5700.0] se calentaban, el FF China el FF China y todo, parece que se calentaban eso por una parte, y por otra parte pues efectivamente la información la tienen ya en el expediente que tenían en el expediente y después pueden haber recurrido de mil maneras, y después tienen el uso plurinario que era una moción que habían planteado pues si quieren traer algún desgracia política en la tele que piensen que es lo que quieren pero que no hay excepción pues haber hecho un minuto y ya está y no perderse el tiempo desde el punto de vista nuestro información la tienen toda toda
-[5700.0 → 5730.0] la comisión de contratación que ha criticado usted es una comisión exacta de votar perdón un momento bueno, pues dice que estoy hablando yo o que ha hecho alusión en que no se vota ha hecho alusión en que no se vota es que no falta votar es que la comisión de información que tiene de contratación puede mandar información puede hacer propuestas, lo que usted considere hay gente de información ahí del contrato y de todo, si es que lo tienen todo por lo tanto hemos estado así, pues muy bien pues así, hora y media
-[5730.0 → 5760.0] 10 vale pues traemos radio político que piense que cada uno hará lo que quiera en las imágenes y ya está la realidad, la gente que sabe que estamos en fase de contratación de nuevos contenedores, que los contenedores estarán antes de diciembre instalados, los nuevos contenedores que es importante que el servicio en términos de recogida vale, en general está bien que tenemos incidencias puntuales ahora y hace 20 años por ejemplo cuando viene el verano cuando cambian las chafas no ahora, hace 20 años
-[5760.0 → 5790.0] cuando viene el verano cuando viene el verano cuando viene el verano cuando viene el verano cuando viene el verano cuando viene el verano cuando viene el verano cuando viene el verano cuando viene el verano cuando viene el verano cuando viene el verano cuando viene el verano cuando viene el verano cuando viene el verano
-[5790.0 → 5820.0] ahora es porque las incidencias se marquen o las marcamos nosotros otra cosa es la percepción de alguna ciudadanía, de algún sitio en concreto y la que queramos generar por último y terminaré repásense ustedes los facebooks que van a estar de moda los grupos de facebook donde gobierna el partido popular no sé, de aquí a la comarca eso lo repasan y verán fotos de contenedores desbordados hoy, lo verán en la diana, lo verán en la pobla lo verán en lidia hoy, si van, y verán contenedores desbordados
-[5820.0 → 5850.0] ¿eh? ¿la Pobla? bueno para la Pobla no hay pacto de gobierno lo veremos, lo veremos La Liana está en el PSOE, en Lidia está el PSOE Onda, mira Onda, la Pobla diga un gobierno, vale pero lo que quiero decir, lo que quiero decir a la gente es que hacer una foto y trasladarla es algo fácil que a más parece que algunos piensan que va a ser radio político, nosotros estamos en la tienda van a solucionar el tema de la pandemia van a solucionar la pandemia, nos van a dar
-[5850.0 → 5880.0] no hay pocos guisones sobre esta crisis al revés, algunas tienen que amarrarse de lo que han hecho especialmente la DANA VOX y el PP, los dos se ponen conco oberne vale, y por último decir que José, lo siento no vamos a dimitir sé que es una ilusión pero no, ni creo que creas que lo hagamos, es un tema que te ha salido ya aún, yo creo que no, en serio no, no no quiero ni que lo hagamos porque sabe que le iría peor, pero bueno vamos a acabar
-[5880.0 → 5910.0] son la bonificación si, acabe, dejad que acabe vamos a acabar diciendo que en principio de los que han hablado hoy así yo creo que más o menos las cosas quedan claras que si alguien tiene más información tenemos un departamento, Río Roja Neta tenemos los técnicos de medio ambiente tenemos al regidor para informarse de lo que queráis, podéis reír es Paula, Alberto, pasar su becho, otro bueno porque te chiles en él, que ríe porque cuando está riéndose, porque perdona
-[5910.0 → 5940.0] es que cuando estás riendo bueno, es que María José Tona ríguese es que es para rir, yo soy es para rir, pues yo lo sé pues si es para rir, muy bien, terminamos el pleno así un pleno convocado para cobrar que terminas riéndote esto es el resumen del Partido Popular no tengo nada más que decir si vos algo me sabes de la bonificación te lo explicaré porque estás riendo y yo cuando uno se ríe tanque el pleno y se ha acabado, levantamos la sesión
-[5940.0 → 5970.0] no, no, no, no, no no, no, no, no, no, no no, no, no, no, no no, no, no, no, no no, no, no, no, no no, no, no, no, no no, no, no, no, no no, no, no, no, no no, no, no, no, no no, no, no, no, no no, no, no, no, no no, no, no, no, no no, no, no, no, no no, no, no, no
-[5970.0 → 6000.0] no, no, no, no, no no, no, no, no, no, no no, no, no, no, no no, no, no, no, no no, no, no, no, no no, no, no, no, no no, no, no, no, no no, no, no, no, no no, no, no, no, no no, no, no, no, no no, no, no, no, no no, no, no, no, no no, no, no, no, no no, no, no, no, no no, no, no, no, no
-[6000.0 → 6030.0] no, no, no, no, no, no no, no, no, no, no, no, no no, no, no, no, no, no no, no, no, no, no, no no, no, no, no, no, no no, no, no, no, no, no no, no, no, no, no no, no, no, no, no, no no, no, no, no, no no, no, no, no, no no, no, no, no, no no, no, no, no, no no, no, no, no, no no, no, no, no, no
-[6030.0 → 6040.2] no, no, no, no, no no, no, no, no, no, no no, no, no, no, no no, no, no, no, no no, no, no, no, no
+[366.7 → 371.9] (SPEAKER_00) El orden del día, primeras certificadas a la sustitución por la observación del festenario presentada por el Grupo Popular,
+[372.2 → 374.0] (SPEAKER_00) por tanto tenemos que rectificar estas decisiones,
+[374.0 → 374.3] (SPEAKER_01) No,
+[374.3 → 374.4] (SPEAKER_00) ¿no?
+[374.4 → 382.3] (SPEAKER_01) son los suscribientes de, como antes comentaba que ha habido un problema con las firmas al escanear.
+[383.2 → 386.6] (SPEAKER_01) Es simplemente que los solicitantes del Pleno, que son los concejales del Grupo Popular,
+[387.0 → 391.4] (SPEAKER_01) ratifiquen que que sí que han solicitado el el Pleno para que me me quedan inconstancia.
+[391.5 → 392.5] (SPEAKER_01) Es un requisito formal, sin más.
+[392.5 → 394.8] (SPEAKER_00) Que que sea todo le que sea
+[394.8 → 394.9] (SPEAKER_02) Sí.
+[394.9 → 397.5] (SPEAKER_00) todo legal, eh, no tengamos ahí trompazos de
+[397.5 → 398.3] (SPEAKER_01) No, sí, sí, sí.
+[398.3 → 400.0] (SPEAKER_00) como ha habido varias equivocaciones e
+[400.0 → 400.4] (SPEAKER_03) Right.
+[404.3 → 407.6] (SPEAKER_01) O sea, entiendo que si ninguno se oponéis sí que dais por afirmado que sí,
+[407.6 → 407.9] (SPEAKER_00) Vale,
+[407.9 → 408.1] (SPEAKER_01) vale,
+[408.1 → 408.1] (SPEAKER_00) pero
+[408.1 → 408.3] (SPEAKER_01) vale.
+[408.3 → 409.0] (SPEAKER_00) que no esté
+[409.0 → 409.1] (SPEAKER_01) Pero
+[409.1 → 409.2] (SPEAKER_00) presente.
+[409.2 → 409.7] (SPEAKER_01) contrario,
+[409.7 → 410.0] (SPEAKER_01) vale.
+[410.7 → 410.9] (SPEAKER_00) Vale.
+[411.7 → 413.9] (SPEAKER_00) Es que nieguen, que nieguen problemas. Sí.
+[414.1 → 415.1] (SPEAKER_04) Excepto la hora que no está.
+[415.2 → 417.1] (SPEAKER_01) Sí, sí, sí, sí, pero con seis como,
+[417.1 → 417.3] (SPEAKER_00) Bueno,
+[417.3 → 417.5] (SPEAKER_01) o sea,
+[417.5 → 417.5] (SPEAKER_00) Guacarima,
+[417.5 → 419.2] (SPEAKER_01) con cuatro como ya es suficiente no hay problema.
+[419.5 → 420.7] (SPEAKER_00) Guacarima la resta.
+[421.7 → 423.2] (SPEAKER_00) En principio sí firma el PP,
+[423.4 → 425.3] (SPEAKER_00) firma el portavoz y,
+[425.4 → 429.5] (SPEAKER_00) espera, para convocar un presidente tiene que firmar las ocho recibos. Que eso está rectificación, ¿no?
+[429.6 → 430.1] (SPEAKER_00) Es por eso.
+[430.6 → 431.1] (SPEAKER_00) Básicamente.
+[431.1 → 431.6] (SPEAKER_01) Sí.
+[432.2 → 434.8] (SPEAKER_00) Va a ser más un punto importante que es el segundo,
+[436.1 → 447.2] (SPEAKER_00) el expediente 3058 de valla de auxilio de acuerdo en relación a la gestión del servicio de recogida de residuos, pot y voluminosos, la situación contractual de servicio y la taxa de enfermedades. Tiene la palabra el regidor en particular,
+[447.4 → 447.8] (SPEAKER_00) Alberto.
+[449.7 → 453.2] (SPEAKER_00) Buen día, señor alcalde. Muchas gracias. Buen día a todos y a todas.
+[455.1 → 462.6] (SPEAKER_00) Desde xuñoles, estem así para tratar uno de los temas más importantes que a día de hoy pensemos que preocupa a toda la ciudadanía de Rivarrocha,
+[463.5 → 464.8] (SPEAKER_00) a todo el conjunto de allá, dona igual,
+[465.0 → 465.5] (SPEAKER_00) a majors,
+[465.6 → 467.2] (SPEAKER_00) a xoves, a chiquets,
+[467.2 → 469.1] (SPEAKER_00) a tots xuven, a comercio, a tots.
+[469.8 → 477.4] (SPEAKER_00) El tema que hoy volem tratar y que es el motivo del nuestro ple extraordinario es la replega de la basura, la replega del FEM.
+[478.9 → 483.0] (SPEAKER_00) el contracte de la recollida dels residus sòlids urbans de poda i voluminosos.
+[483.7 → 488.7] (SPEAKER_00) Un tema que ja dura durant diversos mesos i que no acaba de solucionar-se.
+[489.1 → 489.9] (SPEAKER_00) És més,
+[489.9 → 495.7] (SPEAKER_00) m'atreviria a dir que la societat de Ribarrocha estem normalitzant una cosa que no és normal.
+[496.3 → 499.4] (SPEAKER_00) Una cosa que és veure basura pels carrers,
+[499.6 → 503.8] (SPEAKER_00) veure contenidors arrebusar de bon dematí, ara venim per a quasi.
+[504.8 → 510.2] (SPEAKER_00) Están normalizando un paisaje que no es normal y ni hacen riba roca que ya no hace caso,
+[510.3 → 512.7] (SPEAKER_00) porque pensamos que es normal, como he dicho.
+[513.2 → 514.8] (SPEAKER_00) Pero no, no es así nada.
+[515.6 → 517.6] (SPEAKER_00) No es normal ver contenedores trencados,
+[518.1 → 523.6] (SPEAKER_00) bruts, destrozados, basura por el voltante de ellos, basura por escampar por el carrer,
+[524.2 → 524.6] (SPEAKER_00) rates,
+[524.8 → 528.3] (SPEAKER_00) rates correquen por el carrer de un lloc a otro.
+[529.1 → 538.0] (SPEAKER_00) No es normal vore moltes nits baixar i no saber si han arreplegat la basura, si la van arreplegar.
+[538.1 → 543.1] (SPEAKER_00) Molts matins quan tixes de casa saber si hauran arreplegat la basura, si no la hauran arreplegat la basura.
+[543.3 → 544.0] (SPEAKER_00) És més,
+[544.2 → 545.5] (SPEAKER_00) venint perquè sí,
+[545.5 → 550.3] (SPEAKER_00) els contenidors del centre del poble estan plens de basura a aquestes hores.
+[552.4 → 564.0] (SPEAKER_05) Vosatros no creguem normal com a nit que sopien en casa de la moixa germana i xar i vore conlles de treballadors mitx guidant, mitx guidant contenidors del centre del poble. No és normal.
+[564.5 → 566.4] (SPEAKER_05) Lo normal és que passi el camió,
+[566.7 → 572.7] (SPEAKER_05) guia el contenidor de la basura i el torni a deixar per poder utilitzar-se el demà.
+[574.5 → 578.5] (SPEAKER_05) Qui no s'està acostumant a veure normal l'estat lamentable dels contenidors,
+[579.0 → 580.1] (SPEAKER_05) la basura pels carrers,
+[580.2 → 581.1] (SPEAKER_05) la insalubritat,
+[581.4 → 582.1] (SPEAKER_05) senyor alcalde,
+[582.2 → 583.1] (SPEAKER_05) la insalubritat?
+[583.4 → 585.3] (SPEAKER_05) Ho torne a dir i ho tornaré a repetir.
+[586.7 → 597.2] (SPEAKER_05) Vostès troben normal que en el mercat ambulant dels dillunsos estiga la parada de les olives o la parada de la fruta i al costat un contenidor ple de basura, ple no,
+[597.3 → 598.0] (SPEAKER_05) a rebosar?
+[598.6 → 600.5] (SPEAKER_05) En l'olor que per estos dies,
+[600.7 → 603.9] (SPEAKER_05) per esta calor i per estes fetges desprèn eixe contenidor,
+[604.4 → 607.2] (SPEAKER_05) menjar al costat de basura no és normal.
+[608.5 → 610.3] (SPEAKER_05) Trobem vostès normal que en els bars,
+[611.1 → 615.6] (SPEAKER_05) en lloc de parlar de la selecció espanyola i de que ahir guanyar es parle de la basura?
+[616.8 → 618.7] (SPEAKER_05) Tant joves com majors,
+[618.9 → 622.3] (SPEAKER_05) com adults com xiquets no és normal.
+[623.8 → 628.5] (SPEAKER_05) Nosaltres no creiem que aquestes coses siguin normal i les estem normalitzant.
+[629.3 → 645.9] (SPEAKER_05) Què diríem vostès, què diríem tots si anàrem a un poble de visita a manisse el metge o em vinguérem a la València ciutat, a qualsevol poble d'Espanya, i vinguérem els contenidors conforme els vinguérem així en Ribarroja.
+[646.1 → 647.0] (SPEAKER_05) Què diríem?
+[647.4 → 648.7] (SPEAKER_05) Este poble està brut.
+[649.5 → 650.7] (SPEAKER_05) A eso no es normal.
+[650.9 → 654.5] (SPEAKER_05) Pues a eso es lo que está pasando hoy en día en Riva Rocha.
+[656.0 → 670.2] (SPEAKER_05) Está claro que ustedes o la empresa o quien dirigís que la empresa o las órdenes que donen se afañan para mitigar unos contenedores y ir a depositar esa basura en otros contenedores donde la...
+[670.6 → 673.1] (SPEAKER_05) Ciutadania és menor,
+[673.2 → 676.3] (SPEAKER_05) el número de veïns és menor i lleven contenidor,
+[676.4 → 679.4] (SPEAKER_05) basura d'un contenidor en basura d'altres contenidors.
+[679.5 → 683.7] (SPEAKER_05) Això ho vàrem veure en Nadals, però és que esta setmana està tornant a passar.
+[684.5 → 686.6] (SPEAKER_05) Coses de treballadors en una furgoneta?
+[686.8 → 689.9] (SPEAKER_05) En una furgoneta no preparar per recollir fem,
+[690.4 → 698.4] (SPEAKER_05) replegant mig cuidant contenidors de uns carrers i transportant-la a altres contenidors d'altres carrers, d'altres zones menys concorregudes.
+[700.4 → 706.5] (SPEAKER_05) Com nosaltres el partit popular a això no ho volem, i són molts els ciutadans de Ribarrocha que a això no ho volen,
+[707.1 → 710.4] (SPEAKER_05) ens hem vist obligats a solicitar aquest ple extraordinari.
+[710.8 → 718.5] (SPEAKER_05) Un ple que mai haurem volgut solicitar, però que s'havia vist abocat a ell perquè Ribarraxa està plena de basura,
+[718.6 → 719.2] (SPEAKER_05) de fem,
+[719.4 → 723.2] (SPEAKER_05) d'insalubritat, i és una cosa que no volem per Ribarraxa.
+[724.0 → 730.5] (SPEAKER_05) Volem tindre informació de com estan tots aquells temes que preocupen els ciutadans i en especial de la basura.
+[734.5 → 735.7] (SPEAKER_05) Bueno, hay que desplazarse.
+[736.1 → 736.8] (SPEAKER_05) Hay que desplazarse, vale.
+[737.0 → 737.7] (SPEAKER_05) Hay que desplazarse.
+[738.0 → 742.9] (SPEAKER_05) Y queremos que la gente, los responsables políticos,
+[742.9 → 743.8] (SPEAKER_05) den la cara.
+[744.7 → 750.5] (SPEAKER_05) Han sido ya varios grupos los que han demandado repetidas ocasiones, tanto Vox como Esquerra Unida, responsabilidades políticas,
+[750.6 → 752.8] (SPEAKER_05) porque eso no es un problema puntual.
+[753.0 → 759.8] (SPEAKER_05) No es 1 de diciembre y el pleno del 23 de diciembre. No, ha comenzado el 1 de diciembre y hoy estamos a 3 de julio y el problema...
+[760.4 → 764.4] (SPEAKER_05) No s'ha agravat, però no s'ha solucionat. Ixa és la veritat.
+[764.8 → 767.9] (SPEAKER_05) Qui no té en el mòbil fotos de contenidors de basura?
+[768.2 → 769.6] (SPEAKER_05) vostès troben això normal?
+[770.3 → 774.5] (SPEAKER_05) tindran un mòbil fotos de contenidors de basura? fotos vídeos de rates?
+[774.9 → 779.7] (SPEAKER_05) vídeos de camions on els contenidors cauen i se queden escampats?
+[779.9 → 780.6] (SPEAKER_05) no ho sé.
+[782.6 → 784.8] (SPEAKER_05) nosaltres no volem a un equip de
+[785.5 → 788.3] (SPEAKER_05) Volem que mos enganyin que amaguen el cap o miren atre lloc.
+[788.6 → 790.9] (SPEAKER_05) Volem que afronten la realitat,
+[791.0 → 794.0] (SPEAKER_05) les responsabilitats que han d'agarrar,
+[794.0 → 802.3] (SPEAKER_05) perquè des de Nadal així han passat set mesos, set mesos i el problema de la basura segueix igual.
+[802.7 → 806.3] (SPEAKER_05) Volem solucions a un tema tan important.
+[807.0 → 816.6] (SPEAKER_05) y a la vegada tan preocupant, y volem soluciones válides y entenent que no poden ser rápidas cuan tantas millor.
+[816.6 → 817.7] (SPEAKER_05) Gracias. Continuamos después.
+[818.9 → 821.6] (SPEAKER_00) Bueno, pues hemos tenido ocho minutos aproximadamente,
+[822.0 → 826.0] (SPEAKER_00) cinco o seis minutos, cinco o seis,
+[826.1 → 827.7] (SPEAKER_00) cinco, perdón, cinco.
+[827.9 → 830.1] (SPEAKER_00) No era igual, pero había sido igual, eh. Tenías ahí,
+[830.3 → 835.8] (SPEAKER_00) eran tres, me han dicho cinco, pero yo quería haber hecho ocho. Lo digo por los tiempos de los demás, que tengo que ser bien, ¿vale?
+[836.2 → 838.3] (SPEAKER_00) Teresa, del Grupo Socialista.
+[839.6 → 840.8] (SPEAKER_01) Sí, buenos días.
+[841.5 → 844.2] (SPEAKER_01) Me quedo con dos cosas que has comentado.
+[844.4 → 851.5] (SPEAKER_01) El problema no se ha agravado, pero no se ha solucionado y entienden que no pueden ser rápidas, pero que se haga lo antes posible.
+[852.4 → 862.9] (SPEAKER_01) A partir de ahí, a partir de ahí el discurso que has comentado lo puedo entender de un vecino que no está al corriente, ni tiene documentación del día a día,
+[863.1 → 865.1] (SPEAKER_01) ni está convocado a las reuniones de gobierno,
+[865.3 → 867.1] (SPEAKER_01) ni tiene acceso a los expedientes,
+[867.4 → 870.5] (SPEAKER_01) ni se le cita a las juntas de portavoces.
+[870.8 → 874.8] (SPEAKER_01) Puedo entender esa postura tía del vecino que sufre la situación que tenemos.
+[875.6 → 877.8] (SPEAKER_01) De un concejal, de un portavoz.
+[878.2 → 881.6] (SPEAKER_01) de un componente de la Corporación Municipal no lo puedo entender.
+[881.8 → 883.6] (SPEAKER_01) Está haciendo demagogia pura.
+[883.7 → 884.3] (SPEAKER_01) Y claro,
+[884.4 → 889.6] (SPEAKER_01) yo cuando recibimos la propuesta del Pleno, de vuestra propuesta,
+[890.4 → 897.7] (SPEAKER_01) Francamente, esperaba sorprenderme, pero es que he buscado en la propuesta cuáles sean las opciones que dabas. Es decir,
+[897.8 → 900.6] (SPEAKER_01) como responsable político,
+[900.8 → 902.8] (SPEAKER_01) como perteneciente a la corporación municipal,
+[902.9 → 907.1] (SPEAKER_01) esperaba ver tus propuestas dentro de esa preocupación que todos tenemos,
+[907.3 → 913.9] (SPEAKER_01) esperaba ver qué propuestas planteabas siendo conocedor de primera mano de todo lo que pasa. Es decir,
+[914.0 → 915.6] (SPEAKER_01) nosotros pensamos...
+[915.8 → 918.6] (SPEAKER_01) Que esto no lo estáis haciendo y nuestra propuesta es esta.
+[918.6 → 922.4] (SPEAKER_01) Porque quiero agradecer a los que nos están oyendo que en este pleno no se va a votar nada.
+[922.6 → 926.6] (SPEAKER_01) O sea, esta reunión podríamos tenerla aquí o en la plaza del ayuntamiento o ayer viendo el partido.
+[926.9 → 928.4] (SPEAKER_01) Porque no vamos a votar nada,
+[928.5 → 932.0] (SPEAKER_01) porque no se propone nada en absoluto, que es para lo que van en los plenos.
+[932.0 → 932.7] (SPEAKER_01) Traer propuestas,
+[932.9 → 937.0] (SPEAKER_01) traer opciones y que la corporación vote si le parecen bien o mal.
+[938.1 → 940.7] (SPEAKER_01) Eso, francamente, me ha faltado.
+[941.7 → 956.2] (SPEAKER_01) La documentación la tenéis. El resumen de todo el proceso del trámite desde el inicio lo tenéis. Un expediente de mil y pico folios que parece ser que no os lo habéis leído y entonces pedís un pleno para que los habilitados nacionales dejen de hacer lo que están haciendo,
+[956.6 → 959.0] (SPEAKER_01) que sois conocedores de la situación en la que tenemos,
+[959.1 → 964.7] (SPEAKER_01) para que os hagan un resumen de cuatro folios, que es el que está en el expediente 615,
+[964.8 → 966.7] (SPEAKER_01) que habréis podido verlos, cuatro folios.
+[966.8 → 990.4] (SPEAKER_01) Para que os resuman se ve que los mil y pico del cliente que no sois capaces de mirar y entonces claro me sorprende que propuestas cero vais a apoyar al gobierno en esta situación tan comprometida y tan preocupante para todos porque nosotros estamos preocupados igual que vosotros lo que pasa que no solamente hablamos del sexo de los ángeles sino que tenemos que darle soluciones porque vuestro voto a un contrato que mejorará lo que teníamos.
+[991.3 → 991.9] (SPEAKER_01) Fue en contra.
+[992.2 → 1002.9] (SPEAKER_01) El resto de plenos que hemos tenido en el que teníamos que tomar cartas en el asunto y las cartas tenían que ser con la garantía jurídica y técnica de proponer penalidades, de hacer un seguimiento,
+[1003.0 → 1006.0] (SPEAKER_01) de rescindir el contrato, vuestro voto ha sido la abstención.
+[1006.1 → 1012.6] (SPEAKER_01) O sea, quiero decir, vuestra preocupación es absteneros a cualquier propuesta de actuación que se tenga que hacer ante el problema.
+[1012.7 → 1012.8] (SPEAKER_01) Sí,
+[1012.9 → 1013.9] (SPEAKER_01) hablar del problema,
+[1013.9 → 1018.2] (SPEAKER_01) pero no intentar ver cómo puedo participar en la solución, porque vosotros podéis participar con nosotros.
+[1018.0 → 1042.1] (SPEAKER_01) llevar con vuestro voto y vuestro voto ha sido en contra o abstenedos os molesta el trabajo de la ayunt de la ayuntamiento del equipo de gobierno os molesta que el gobierno incluso en las propuestas que ha hecho decir oye somos conocedores que francamente en este contrato que queríamos mejorar la empresa no ha respondido pero en esa tasa de basura que tiene que pagar el vecino vamos a intentar que en esos meses en los que fue
+[1042.6 → 1043.3] (SPEAKER_01) terrible,
+[1043.4 → 1044.1] (SPEAKER_01) porque fue terrible,
+[1044.3 → 1046.1] (SPEAKER_01) hacer una bonificación.
+[1046.6 → 1051.2] (SPEAKER_01) No os preocupa eso, os preocupa preguntar a ver si jurídicamente eso está bien hecho,
+[1051.3 → 1052.5] (SPEAKER_01) se ha pedido como toca.
+[1052.6 → 1054.5] (SPEAKER_01) Esa es vuestra preocupación.
+[1055.0 → 1061.0] (SPEAKER_01) Tengo que deciros que sois los concejales del voto en contra y de la abstención constante,
+[1061.2 → 1062.6] (SPEAKER_01) pero de todos los plenos.
+[1062.9 → 1065.6] (SPEAKER_01) Vuestro porcentaje está en un 90% aproximadamente.
+[1066.0 → 1069.5] (SPEAKER_01) O sea, vuestra participación en el gobierno es o en contra o abstención.
+[1070.7 → 1080.9] (SPEAKER_01) de la crítica demagógica, de la crítica no constructiva, de propuestas cero para mejorar la calidad de vida de nuestros vecinos, porque venir aquí a presentar un pleno para que hablemos de la basura, sin ninguna propuesta,
+[1081.0 → 1084.3] (SPEAKER_01) porque no he visto ninguna propuesta salvo hablar de la basura que la vemos todos,
+[1084.4 → 1085.5] (SPEAKER_01) que la vemos todos.
+[1086.9 → 1112.6] (SPEAKER_01) que salieran de esa situación es que da la sensación de que de que festejan que nos haya salido mal la empresa porque no nos ha salido al gobierno nos ha salido al municipio al ayuntamiento a nos ha salido mal la adjudicación de la empresa pues sí desgraciadamente y no se puede hacer como la empresa privada que dices oye tú mañana no vengas no se puede hacer así deberías de saberlo el vecino de la calle puedes entender que eso no lo no lo comprenda pero vosotros sí vosotros sí que tenéis que comprenderlos que no podemos hacer eso
+[1113.4 → 1115.6] (SPEAKER_01) Hacéis uso de la mala política,
+[1115.7 → 1118.4] (SPEAKER_01) hacéis uso de la política de la mala fe,
+[1118.5 → 1119.4] (SPEAKER_01) francamente.
+[1119.7 → 1122.1] (SPEAKER_01) Este pleno demuestra esa situación.
+[1122.4 → 1130.8] (SPEAKER_01) Y por poner un poco en antecedentes, porque es que parece que venís a informaros ahora como si no hubiéramos estado desde el minuto uno informando a todo el mundo,
+[1130.9 → 1136.4] (SPEAKER_01) a vosotros principalmente como corporación municipal y a los vecinos en todo momento,
+[1136.5 → 1139.9] (SPEAKER_01) porque si algo hay en este ayuntamiento es la comunicación.
+[1140.1 → 1141.7] (SPEAKER_01) Comunicación directa con todos los vecinos.
+[1142.7 → 1160.8] (SPEAKER_20) Tuvimos un pleno el 8 de septiembre en el que estuvimos de adjudicación de la empresa en la que estábamos muy contentos porque entendíamos que era una mejora frente a lo que teníamos un servicio de los siete días de la semana aumentábamos la recogida de los verdes de los incontrolados mejoras en poda mejoras en enseres
+[1161.8 → 1170.3] (SPEAKER_20) ¿Realmente creéis que nosotros pensábamos que esa empresa no iba a funcionar? Es que me parece surrealista. Las garantías, el contrato supervisado por los técnicos.
+[1170.5 → 1172.8] (SPEAKER_20) No hay ningún político en las contrataciones.
+[1173.1 → 1174.9] (SPEAKER_20) Oye, presentaron todo.
+[1175.0 → 1176.0] (SPEAKER_20) No fueron capaces,
+[1176.1 → 1176.4] (SPEAKER_20) cierto,
+[1176.6 → 1177.3] (SPEAKER_20) no fueron capaces.
+[1177.5 → 1178.5] (SPEAKER_20) Pero ya os he dicho antes,
+[1178.5 → 1182.1] (SPEAKER_20) es que no se puede decir, tú mañana no vengas, tú mañana no vengas, aquí no vale.
+[1182.5 → 1182.9] (SPEAKER_20) No vale.
+[1183.2 → 1184.7] (SPEAKER_20) Deberíais de saber lo que no es así.
+[1184.8 → 1186.7] (SPEAKER_20) Además, es que ha sido una rescisión de contrato.
+[1186.6 → 1202.0] (SPEAKER_20) tratu en tiempo récord deciros que ese voto de la adjudicación de ese contrato fue en contra por vuestra parte o sea esa mejora que presentábamos y esa adjudicación de contrato por vuestra parte fue en contra o sea si no hubiéramos tenido los votos necesarios vuestro voto fue no mejorar el servicio de basura
+[1202.8 → 1208.7] (SPEAKER_20) Luego tuvimos el 3 de noviembre una providencia del alcalde una vez adjudicado porque la empresa,
+[1208.9 → 1215.7] (SPEAKER_20) y así lo presentaron y se valoró, que no empezara el 15 de noviembre, que necesitaba los medios porque es verdad,
+[1215.8 → 1222.2] (SPEAKER_20) es una infraestructura que una empresa no tiene los camiones ni el personal ahí nada más en el punto de salida para empezar al día siguiente.
+[1223.3 → 1228.5] (SPEAKER_20) Se le da el plazo para el 1 de diciembre para garantizar su puesta en marcha. El 18 de diciembre,
+[1228.7 → 1230.5] (SPEAKER_20) o sea, 18 días después de empezar,
+[1230.6 → 1238.9] (SPEAKER_20) ya hay una providencia del alcalde pidiendo informes de esa asesoría externa que teníamos, esa auditoría, para ver qué estaba pasando con el tema de la basura.
+[1239.4 → 1244.5] (SPEAKER_20) No sé si vosotros todo eso no habéis estado en eso plenos. No lo sé si es que alguno o no lo habéis sabido ver.
+[1244.6 → 1251.5] (SPEAKER_20) El 23 de diciembre se inicia el expediente de imposición de penalidades. Informe a los 15 días primeros. Informe a segundo.
+[1251.6 → 1253.3] (SPEAKER_20) Vuestro voto fue abstención.
+[1253.9 → 1257.8] (SPEAKER_20) O sea, contratamos un servicio nuevo de mejora y vuestro voto se encontra.
+[1258.2 → 1262.2] (SPEAKER_20) Vemos que no funciona y que hay que aplicar penalidades. Vuestro voto es abstención.
+[1262.7 → 1266.9] (SPEAKER_20) por favor ¿cómo explicáis eso? ¿esa es vuestra preocupación? ¿esa es vuestra acción política?
+[1267.1 → 1268.6] (SPEAKER_20) ¿esa es vuestra responsabilidad política?
+[1268.8 → 1274.3] (SPEAKER_20) porque fue abstención ¿eh? o sea ¿hacer penalidad a una empresa que desgraciadamente no estaba funcionando? no,
+[1274.4 → 1288.8] (SPEAKER_20) yo me abstengo, me abstengo pero luego me voy al bar a hablar de que la basura o hacer una foto al contenedor que tiene desbordes o sea esa política es un poco ¿qué quieres que te diga? luego se os ha pasado porque tenéis el expediente, yo me lo he mirado
+[1288.7 → 1291.0] (SPEAKER_20) Ha dado milipico folios el expediente primero,
+[1291.3 → 1292.5] (SPEAKER_20) 163,
+[1292.5 → 1297.0] (SPEAKER_20) el segundo que ha tenido que preparar para que hoy hablemos de la basura como podíamos hablar un día de Pascua.
+[1298.0 → 1301.8] (SPEAKER_20) Se hace control de seguimiento por auditorías terra y nuestra propia,
+[1301.9 → 1303.8] (SPEAKER_20) de nuestro técnico y de los jurídicos.
+[1304.0 → 1315.1] (SPEAKER_20) El pleno del 7 de enero volvemos a tener el voto en abstención vuestra, digo vuestra porque sois los que habéis presentado hoy para que hablemos hoy de esto y no del partido del 3 a 0 de España de ayer.
+[1315.4 → 1323.2] (SPEAKER_20) Y se hace la elevación definitiva de la penalización con informes porque cuando tú resuelves un contrato tienes que tener todas las garantías.
+[1323.2 → 1323.3] (SPEAKER_20) garantías,
+[1323.3 → 1325.0] (SPEAKER_20) eso pasa en la administración pública,
+[1325.1 → 1328.9] (SPEAKER_20) todas las garantías de ver las justificaciones, los informes técnicos,
+[1329.0 → 1333.6] (SPEAKER_20) los informes jurídicos y el 9 de marzo tenéis a vuestra disposición, porque lo habéis tenido,
+[1333.7 → 1338.9] (SPEAKER_20) un informe técnico y jurídico donde resolvemos con el anterior contrato, con Garbialdi,
+[1338.9 → 1344.2] (SPEAKER_20) resolvemos el día 9 y somos tan ineptos para vosotros que tres días después,
+[1344.2 → 1348.4] (SPEAKER_20) el día 12, ya está otra empresa con contrato de emergencia funcionando que es FCC.
+[1349.8 → 1354.8] (SPEAKER_20) Por favor, pregunten en cualquier ayuntamiento lo que cuesta la resolución de un contrato.
+[1355.2 → 1357.2] (SPEAKER_20) No tenéis comunicación ni información,
+[1357.5 → 1360.1] (SPEAKER_20) tenéis toda la vida y por haber como concejales que sois.
+[1360.2 → 1367.9] (SPEAKER_20) Pero es que además desde el área de comunicaciones se han hecho notas de prensa, retransmisiones del alcalde dando explicaciones, de mi compañero Rafa,
+[1368.0 → 1369.2] (SPEAKER_20) el concejal del área.
+[1369.9 → 1373.6] (SPEAKER_20) Vídeos informativos. En todos los spy overts, en todos,
+[1373.6 → 1377.6] (SPEAKER_20) que se han hecho dos rondas en urbanizaciones y en el casco urbano,
+[1377.6 → 1383.2] (SPEAKER_20) se ha explicado el tema de la basura. Porque no nos escondemos, como has dicho tú, la cabeza debajo del ala.
+[1383.7 → 1386.6] (SPEAKER_20) Se ha dado las explicaciones por parte del alcalde y el concejal.
+[1386.7 → 1391.8] (SPEAKER_20) Lo primero que se ha tratado, explicar el problema y explicar cómo lo intentamos resolver.
+[1392.1 → 1394.4] (SPEAKER_20) No hemos escondido absolutamente nada.
+[1394.5 → 1396.3] (SPEAKER_20) Y claro, hoy venís al pleno.
+[1397.4 → 1399.4] (SPEAKER_20) un pleno en el que presentáis una propuesta,
+[1399.5 → 1400.6] (SPEAKER_20) que bueno,
+[1400.7 → 1404.0] (SPEAKER_20) es una instancia, una declaración de intenciones, con ocho puntos,
+[1404.1 → 1408.5] (SPEAKER_20) de los cuales cuatro de ellos ya los tenéis en el expediente del último pleno.
+[1408.8 → 1409.8] (SPEAKER_20) Cuatro de ellos, ¿eh?
+[1410.0 → 1420.2] (SPEAKER_20) Porque la resolución del contrato del SRU, las funciones de Auditesa, si FCC hace... todo eso está pendiente y todo lo que habéis pedido ha hecho falta que nuestros...
+[1421.0 → 1429.5] (SPEAKER_20) nuestro equipo eh jurídico. Todos los ases habilitados tanto eh la secretaria como la tesorera tengan que haceros uh un expediente
+[1430.2 → 1439.8] (SPEAKER_20) para que para haceros vuestro trabajo que es leeros el expediente como todo el mundo. O haber venido a preguntar, que es muy sencillo, pero a lo mejor es más bonito montar aquí en la plaza del pueblo para decir vamos a hablar de la basura.
+[1441.4 → 1442.6] (SPEAKER_20) El punto uno,
+[1442.7 → 1446.3] (SPEAKER_20) dos, tres, cuatro y cinco de los ocho que presentáis la
+[1446.3 → 1446.6] (SPEAKER_21) Chaval.
+[1446.6 → 1451.5] (SPEAKER_20) secretaria de este ayuntamiento os explica en dos hojas, lo que pasa que hay que leerles el expediente,
+[1451.6 → 1452.8] (SPEAKER_20) en dos hojas.
+[1453.7 → 1458.3] (SPEAKER_20) El tema de las bonificaciones de la basura, cómo lo vamos a hacer, porque claro,
+[1458.4 → 1465.0] (SPEAKER_20) como el alcalde ha dicho que vamos a hacer una bonificación porque entendemos que ha habido un mal servicio y que tampoco tiene que repercutir en nuestros vecinos,
+[1465.1 → 1465.8] (SPEAKER_20) dos folios.
+[1466.5 → 1479.7] (SPEAKER_20) Los folios que son, las líneas quieren ser fluorescentes, porque hasta eso parece que os sabe mal. Vamos a ver, se ha dicho que va a haber una reducción de basura y no lo ha consultado con la tesorera y ahí le pillamos y decimos que no va a cumplir. Venga, por favor,
+[1479.9 → 1490.3] (SPEAKER_20) entonces perdonarme, pero creo que tenéis que cambiar esa postura y sobre todo el desaliento de ver que no habéis traído ninguna propuesta.
+[1490.4 → 1493.5] (SPEAKER_20) Nos habéis reunido hoy aquí como podríamos habernos reunido en la plaza del...
+[1493.2 → 1493.6] (SPEAKER_20) el pueblo.
+[1493.8 → 1495.4] (SPEAKER_20) Porque propuestas, ninguno.
+[1496.1 → 1497.7] (SPEAKER_20) No habéis presentado ninguna opción.
+[1497.8 → 1499.6] (SPEAKER_20) O sea, como teníais dos opciones.
+[1500.5 → 1503.7] (SPEAKER_20) Una como responsables políticos que sois de la corporación municipal.
+[1503.9 → 1505.1] (SPEAKER_20) Hoy aprovecháis, oye mira,
+[1505.2 → 1510.1] (SPEAKER_20) de este problema nosotros creemos que no habéis puesto el enfoque o que la propuesta podría ser esta,
+[1510.2 → 1512.1] (SPEAKER_20) esta o esta y lo hubiéramos votado.
+[1512.3 → 1520.8] (SPEAKER_20) Estamos aquí hablando de la basura porque no sabéis leído el expediente o no lo habéis querido mirar o la que habéis hecho la propuesta. Vamos a montar un pleno,
+[1520.8 → 1524.6] (SPEAKER_20) vamos a remover la basura para ver si conseguimos que huela más,
+[1524.6 → 1527.4] (SPEAKER_20) para ver si conseguimos que huela más. Esa es la solución.
+[1527.3 → 1528.1] (SPEAKER_20) La solución que dais.
+[1528.3 → 1532.2] (SPEAKER_20) Nosotros, me dijo a nuestros vecinos y a los que nos estén oyendo.
+[1532.9 → 1534.4] (SPEAKER_20) El objetivo sigue siendo el mismo,
+[1534.5 → 1538.8] (SPEAKER_20) el que empezamos a principio del 2025 con el inicio del contrato,
+[1538.9 → 1540.8] (SPEAKER_20) mejorar el contrato de la basura.
+[1540.9 → 1541.7] (SPEAKER_20) ¿Qué ha pasado?
+[1541.8 → 1552.6] (SPEAKER_20) Pues que la empresa no ha sido lo que esperábamos que fuera y eso tiene que tener unas garantías jurídicas y técnicas para poder resolver con ellos y poder contratar con otra empresa.
+[1552.8 → 1558.7] (SPEAKER_20) No es más, no se puede hacer de otra manera en la administración y por parte de todo este problema que hemos tenido.
+[1559.1 → 1583.4] (SPEAKER_20) desde el 1 de diciembre que empezaron dar información a nuestros vecinos de primera mano primero a la corporación municipal que lo saben y si no es así que lo diga los compañeros los dos partidos ahora cuando les toque el turno de primera mano en todo momento hemos comparecencias de nuestro alcalde comparecencias en todos los barrios para explicar lo que estaba pasando siendo el punto principal y primero la basura el punto primero y principal la basura entonces
+[1584.0 → 1584.4] (SPEAKER_20) Mmm,
+[1584.7 → 1595.9] (SPEAKER_20) perdonarme, pero ha sido muy triste que nos reunáis hoy aquí para no traer ninguna propuesta en absoluto, salvo, como he dicho antes, remover y remover la basura,
+[1595.9 → 1597.6] (SPEAKER_20) porque eso vende mucho,
+[1597.7 → 1598.2] (SPEAKER_20) nada más.
+[1599.5 → 1600.1] (SPEAKER_22) Gracias.
+[1601.5 → 1602.3] (SPEAKER_22) ¿Las palabras,
+[1602.4 → 1603.1] (SPEAKER_22) votos?
+[1605.6 → 1606.1] (SPEAKER_23) Muchas gracias.
+[1606.3 → 1610.1] (SPEAKER_23) Señor alcalde, señoras y señores concejales,
+[1610.3 → 1611.5] (SPEAKER_23) queridísimos vecinos.
+[1611.9 → 1616.2] (SPEAKER_23) Después de la intervención de la portavoz del Grupo Socialista,
+[1616.3 → 1619.0] (SPEAKER_23) creo que nos queda levantarnos a aplaudir y, por supuesto,
+[1619.2 → 1626.3] (SPEAKER_23) la falta de recogida de basuras es una culpa del Grupo Partido Popular.
+[1626.4 → 1628.2] (SPEAKER_23) Claro, ha quedado claro.
+[1629.1 → 1631.3] (SPEAKER_23) La situación de la recogida de residuos,
+[1631.3 → 1637.3] (SPEAKER_23) poda y voluminosos en Ribarroja de Turia no admite más excusas, ni más desidia ni más improvisación.
+[1638.0 → 1639.5] (SPEAKER_23) Estamos a un servicio esencial,
+[1639.8 → 1646.5] (SPEAKER_23) pero también estamos ante un problema real de gestión pública que afecta al bolsillo de los vecinos,
+[1646.6 → 1650.7] (SPEAKER_23) a la limpieza de las calles y a la credibilidad de este ayuntamiento.
+[1651.4 → 1663.7] (SPEAKER_23) Venimos a decir algo con claridad. Cuando un gobierno local administra tan deficientemente porque están en el gobierno sobre algo tan importante o con decisiones que no se explican con suficiente rigor,
+[1663.8 → 1666.1] (SPEAKER_23) a pesar de que ustedes digan lo contrario,
+[1666.2 → 1667.4] (SPEAKER_23) como hemos podido comprobar,
+[1667.5 → 1670.5] (SPEAKER_23) lo que se nos llena no es solo un contrato, un expediente,
+[1670.5 → 1672.6] (SPEAKER_23) sino la confianza de todo un pueblo.
+[1673.4 → 1676.1] (SPEAKER_23) Esa confianza ya está muy dañada en España.
+[1676.4 → 1680.6] (SPEAKER_23) Los casos de corrupción, porque es que no se puede evitar que cerca al PSOE,
+[1680.7 → 1682.4] (SPEAKER_23) el mismo partido que está en el gobierno,
+[1682.5 → 1692.8] (SPEAKER_23) en el Ayuntamiento de Riva Roja y el entorno al presidente del gobierno con procedimientos que han alcanzado a ministros altos cargos y personas del círculo de Pedro Sánchez,
+[1692.9 → 1699.5] (SPEAKER_23) la Guardia Civil nos hemos enterado ahora y la Agencia Tributaria, personas que hasta hace nada dirigían ese partido.
+[1700.1 → 1701.7] (SPEAKER_23) de una forma criminal,
+[1701.9 → 1704.6] (SPEAKER_23) hoy muchos de ellos están en prisión.
+[1705.5 → 1710.0] (SPEAKER_23) Permítame que les indique lo que es la palabra criminal que tiene tres acepciones.
+[1710.9 → 1712.3] (SPEAKER_23) una delito grave,
+[1712.4 → 1717.6] (SPEAKER_23) como parte de la cúpula del PSOE actuada con varios dirigentes que están hoy en prisión, y dos,
+[1717.7 → 1721.2] (SPEAKER_23) que es la más importante y la que se refiere a este pleno,
+[1721.7 → 1724.2] (SPEAKER_23) acción indebida o reprensible.
+[1724.3 → 1728.8] (SPEAKER_23) Y en mi opinión la segunda acepción es la que responde al punto único de este pleno.
+[1728.8 → 1732.6] (SPEAKER_23) Se ha tratado de forma criminal para los vecinos.
+[1733.1 → 1737.7] (SPEAKER_23) No estamos ante una cuestión menor ni ante un trámite burocrático como intentaban explicar.
+[1737.9 → 1741.0] (SPEAKER_23) Si algo se ha hecho mal hay que asumirlo, para eso está uno en el gobierno.
+[1741.6 → 1742.7] (SPEAKER_23) Pedimos que el equipo...
+[1743.2 → 1753.6] (SPEAKER_23) del Gobierno detalle con absoluta precisión por qué se está prestando actualmente y de forma tan nefasta el servicio de recogida de basura, de podas y voluminosos.
+[1753.9 → 1757.1] (SPEAKER_23) Los vecinos deben saber quién y cómo se recoge la basura.
+[1757.7 → 1760.4] (SPEAKER_23) Esto, de momento, prácticamente ni se sabe.
+[1760.7 → 1762.4] (SPEAKER_23) Hay una necesidad inmediata.
+[1762.5 → 1767.1] (SPEAKER_23) Cuando una administración recurre de forma reiterada a la fórmula excepcional,
+[1767.1 → 1769.3] (SPEAKER_23) como está pasado con la recogida de basuras,
+[1769.4 → 1776.1] (SPEAKER_23) lo que transmite es improvisación, debilidad política y en el peor de los casos desprecio a los ciudadanos.
+[1776.5 → 1789.5] (SPEAKER_23) Hoy celebramos este pleno porque la situación de recogida puede voluminosos en Riva Roja es el resultado directo de una gestión política deficiente, desordenada y profundamente irresponsable. Y conviene decirlo con claridad,
+[1789.7 → 1796.2] (SPEAKER_23) los vecinos no están sufriendo un problema técnico aislado, están sufriendo consecuencias de un gobierno casi...
+[1796.1 → 1802.5] (SPEAKER_23) casi o incapaz de anticiparse de resolver a tiempo y de dar respuestas serias a un servicio esencial.
+[1802.9 → 1811.9] (SPEAKER_23) Desde el Grupo Municipal Vox no vamos a participar en el juego de las excusas. Cuando un ayuntamiento no consigue garantizar algo tan básico como es la recogida de basuras,
+[1812.6 → 1816.9] (SPEAKER_23) lo que falta no es un contrato, falta una dirección política real,
+[1817.0 → 1822.0] (SPEAKER_23) falla la previsión, falla la coordinación y falla sobre todo la responsabilidad.
+[1822.5 → 1829.8] (SPEAKER_23) Este pleno extraordinario no debía existir si el equipo de gobierno hubiera gestionado con eficacia, con rigor y, por supuesto, con sentido común.
+[1830.3 → 1834.3] (SPEAKER_23) Pero como no lo han hecho, hoy están obligados a dar explicaciones políticas,
+[1834.9 → 1836.5] (SPEAKER_23) no evasivas ni administrativas.
+[1836.8 → 1837.9] (SPEAKER_23) La realidad es sencilla.
+[1838.6 → 1850.8] (SPEAKER_23) Han convertido un servicio esencial en un problema permanente para los ciudadanos, con una imagen de improvisación que perjudica a vecinos y comercio y eso tiene responsables en política.
+[1851.3 → 1859.2] (SPEAKER_23) No se puede esconder la mala gestión detrás de trámites, de subcontratas, de cambio de empresas o de fórmulas excepcionales. Cuando un gobierno local funciona mal,
+[1859.3 → 1863.9] (SPEAKER_23) el primer deber democrático es asumirlo y el siguiente es dimitir.
+[1864.5 → 1867.1] (SPEAKER_23) Además, no hablamos de un contexto cualquiera.
+[1867.3 → 1868.1] (SPEAKER_23) En España,
+[1868.2 → 1869.6] (SPEAKER_23) como he comentado antes,
+[1869.9 → 1872.1] (SPEAKER_23) acumulan escándalos, casos de corrupción.
+[1872.2 → 1876.0] (SPEAKER_23) Una forma de gobernar marcada por la degeneración institucional,
+[1876.1 → 1879.7] (SPEAKER_23) el amiguismo y la pérdida de credibilidad pública.
+[1880.7 → 1882.3] (SPEAKER_23) Ese clima político nacional,
+[1882.3 → 1888.6] (SPEAKER_23) desde luego, no les ayuda absolutamente a gobiernos como el del PSOE y con ayudas, por qué no decirlo,
+[1888.6 → 1891.8] (SPEAKER_23) de satélites como Compromís y la extrema izquierda radical.
+[1892.0 → 1895.3] (SPEAKER_23) Actúan tarde mal y sin rendir cuentas con claridad.
+[1895.7 → 1898.9] (SPEAKER_23) Cuando la corrupción y la mala gestión se normaliza arriba,
+[1899.1 → 1900.6] (SPEAKER_23) en sus dirigentes,
+[1900.7 → 1904.2] (SPEAKER_23) lamentablemente acaba contaminando toda la organización.
+[1904.8 → 1907.7] (SPEAKER_23) Por eso hoy, desde el Grupo Municipal Bohrriba Roja de Turia,
+[1908.2 → 1908.9] (SPEAKER_23) decimos basta.
+[1909.2 → 1910.5] (SPEAKER_23) Basta de improvisación,
+[1910.8 → 1915.0] (SPEAKER_23) basta de excusas y basta de despreciar la paciencia de los vecinos.
+[1915.2 → 1921.9] (SPEAKER_23) Basta de seguir cargando sobre los ciudadanos el coste de una gestión totalmente incomponentes y fanatismo climático.
+[1922.1 → 1932.0] (SPEAKER_23) que arruina a las personas, a las familias, a los comercios y a nuestra nación. Exigimos que el equipo de Gobierno asuma su responsabilidad política por este fracaso, porque lo es.
+[1932.4 → 1935.7] (SPEAKER_23) Porque cuando un servicio básico se deteriora hasta este punto,
+[1935.8 → 1937.2] (SPEAKER_23) cuando se encadenan problemas,
+[1937.7 → 1946.7] (SPEAKER_23) contratos fallidos y soluciones provisionales, la conclusión es evidente: han demostrado que no están capacitados para gestionar con solvencia
+[1946.8 → 1949.4] (SPEAKER_23) una cuestión tan sensible y tan importante.
+[1949.7 → 1952.9] (SPEAKER_23) Y si no tiene la valentía de reconocerlo por iniciativa propia,
+[1953.2 → 1956.0] (SPEAKER_23) deberán hacerlo hoy ante este pleno y ante los vecinos.
+[1956.2 → 1963.7] (SPEAKER_23) La dignidad institucional no consiste en resistir a cualquier precio como está haciendo el señor presidente del gobierno Pedro Sánchez,
+[1964.1 → 1971.0] (SPEAKER_23) sino en saber hacerse a un lado cuando se ha perdido la confianza y se ha deteriorado de tal manera un servicio público.
+[1971.8 → 1980.5] (SPEAKER_23) Riva Roja necesita un gobierno que resuelva problemas, no que los cree ni los multiplique. Necesita seriedad, responsabilidad y respeto a los vecinos.
+[1980.8 → 1984.9] (SPEAKER_23) Y hoy, lamentablemente, el equipo de gobierno no está dando ninguna de esas tres cosas.
+[1985.1 → 1985.9] (SPEAKER_23) Muchas gracias.
+[1987.3 → 1989.6] (SPEAKER_22) Más palabras y es que ahora no ya podemos.
+[1991.7 → 1993.2] (SPEAKER_24) Bon dia, moltes gràcies.
+[1993.9 → 2013.7] (SPEAKER_24) Bueno, en primer lloc, eh com hem parlat, eh del que estem parlant, ra la recollida de residus, la poda i les voluminosos són serveis essencials i de fet són uns serveis que probablement siguen els serveis que més es veuen, no, i per tant eh el veí o la veïna més pot veure i quan no està funcionant bé, pot ser més criticat és. De fet,
+[2013.7 → 2018.8] (SPEAKER_24) lo que estem trobant es que hi ha diferents caixers veïnals, i això és una realitat, i per tant
+[2018.6 → 2022.9] (SPEAKER_24) Hem de parlar-la, hem de abordar-la, i hem de donar-li aquest,
+[2023.0 → 2026.8] (SPEAKER_24) o siga, el espai. És veritat que hi ha propostes.
+[2027.7 → 2033.4] (SPEAKER_24) Durant aquests últims mesos, el que hem viscut és que el servei de recollida de residus no ha funcionat.
+[2034.1 → 2043.5] (SPEAKER_24) Ha sigut, és veritat, un problema en l'empresa adjudicatària i sí, també és veritat que l'Ajuntament va donar resposta a aquesta realitat.
+[2044.2 → 2048.6] (SPEAKER_24) Actualmente ningú contracte d'emergència amb la segona empresa que va quedar, FCC,
+[2048.8 → 2055.3] (SPEAKER_24) però també és veritat que el servei no està funcionant de la manera correcta. Trobem també el tema del permís dels contenidors.
+[2056.0 → 2061.1] (SPEAKER_24) y troben que, bueno, pues que hi ha basura i que és una realitat que es veu i que totes i tots sabem.
+[2061.9 → 2073.0] (SPEAKER_24) En este sentit, la meua intervenció es basa en intentar aclarir diferents qüestions i poder, bueno, doncs, resoldre dubtes i també que la ciutadania tinga o,
+[2073.1 → 2081.9] (SPEAKER_24) per lo menos, sirva a este ple per aclarir diferents qüestions, perquè, per lo menos, ella que no es vota, no?, sí que tinguem qüestions que se puguen aclarir.
+[2082.2 → 2107.2] (SPEAKER_24) En primer lloc, actualment hi ha un contracte d'emergència amb la segona empresa que quedarà en aquesta licitació i és un contracte d'una duració d'un any però crec que sí que és important parlar de la nova licitació, perquè sincerament pense que esta nova licitació lo que farà és que la empresa siga responsable que assumisca a lo que es presenta però que tinga un servei molt més regular i amb molta més solvència.
+[2107.8 → 2110.8] (SPEAKER_24) y que solucione el problema. ¿Verdad, cree que es importante, uno,
+[2110.9 → 2112.2] (SPEAKER_24) que esa no balización,
+[2112.3 → 2113.0] (SPEAKER_24) bueno,
+[2113.1 → 2118.0] (SPEAKER_24) pues una calendarización de cuándo va a estar y que siga una realidad?
+[2118.4 → 2127.6] (SPEAKER_24) Porque yo creo que lo importante sería que cuando acabe este contrato de emergencia, la nueva licitación esté preparada para que no se tenga que alargar este contrato de emergencia.
+[2128.7 → 2133.1] (SPEAKER_24) Dins, òbviament, de la part administrativa d'un ajuntament, etcètera, però crec que això és molt important.
+[2133.7 → 2135.4] (SPEAKER_24) Dos, els nous contenidors.
+[2135.8 → 2155.6] (SPEAKER_24) En el propi informe municipal indica que existís una memòria justificativa, però encara falta esa consignació pressupostària per a estos nous contenidors. Per tant, si es va a assumir des de l'Ajuntament esta compra o esta inversió, saber d'on, esa inversió de on va a estar,
+[2156.1 → 2158.1] (SPEAKER_24) com se va a fer, com se va a pagar.
+[2158.7 → 2182.0] (SPEAKER_24) I sobretot també en eixa nova licitació que se va fer entenc i entendem que s'ha de reduir eixa inversió que se va fer en estos contenidors que anem a comprar nous perquè va a canviar eixa nova licitació. Per tant aclarir aquestes dues qüestions i quan es va a fer la compra i la nova licitació. I per altra banda el tema de la taxa de residus. El que trobem és que en el informe
+[2183.0 → 2194.0] (SPEAKER_24) És parlar en l'informació de tresoreria que confirma que sí que existeix una voluntat d'estudiar una possible compensació o devolució de la taxa per les deficiències del servei.
+[2194.6 → 2220.5] (SPEAKER_24) I fins i tot assenyala que es podria existir cobertura legal si s'acredita, no? Però també és veritat que indica l'informe que abans de de de de que això fugassa una realitat fa falta un informe tècnic que determine exactament eh quins serveis són els que ens han prestat i que tot estiga molt ben tancat per a que es puga fer. Per tant crec que també és important, bueno, ser clars perquè, clar, no fer falses il·lusions també als veïns i les veïnes.
+[2220.3 → 2229.1] (SPEAKER_24) fines para que todo esté tan cat y que no siga, se va a reduir o no porque de perfecto tiene que tener un informe técnico y todo ha de estar bien avalado.
+[2229.6 → 2230.2] (SPEAKER_24) Por tanto,
+[2230.3 → 2231.5] (SPEAKER_24) creo que es importante,
+[2231.7 → 2232.4] (SPEAKER_24) bueno,
+[2232.5 → 2232.8] (SPEAKER_24) hui.
+[2233.4 → 2244.1] (SPEAKER_24) Aclarides des tres qüestions. Uno, quan es va fer la nova licitació per a tindre un servei com el que tots i totes volem. Dos, d'on van eixir els diners per pagar els nous contenidors.
+[2244.4 → 2248.8] (SPEAKER_24) Tres, si se va reduir de esa nova licitació la compra de contenidors. I quatre,
+[2249.4 → 2258.0] (SPEAKER_24) calendarisació per a fer els informes tècnics per a que sigui una realitat que la taxa del 2025 i 26 es puga reduir.
+[2258.1 → 2258.6] (SPEAKER_24) Gràcies.
+[2259.4 → 2260.8] (SPEAKER_22) Gracias, Compromís.
+[2260.9 → 2261.2] (SPEAKER_22) Baja.
+[2265.6 → 2268.4] (SPEAKER_23) Gràcies, senyor alcalde. Bon dia a totes i a tots.
+[2270.7 → 2272.0] (SPEAKER_23) Uf, tela.
+[2272.2 → 2279.4] (SPEAKER_23) Avui divendres 3 de juliol tenim un ple extraordinari que la veritat...
+[2281.8 → 2283.6] (SPEAKER_23) A mi, pues,
+[2283.8 → 2288.8] (SPEAKER_23) tinc sensacions contraïdes, no?
+[2289.3 → 2299.6] (SPEAKER_23) Jo entenc que demanarem un pla extraordinari per a control i fiscalització a l'equip de govern seria lo més normal.
+[2300.8 → 2309.6] (SPEAKER_23) Però demanar un ple extraordinari per a un punt com aquest, que és la recollida de residus sòlids, és a dir, la tassa de basura,
+[2309.8 → 2315.4] (SPEAKER_23) la veritat, tenint un ple el proper dilluns, un ple ordinari,
+[2315.5 → 2321.5] (SPEAKER_23) es podria haver portat una moció perquè es donaran les explicacions pertinents.
+[2323.3 → 2324.4] (SPEAKER_23) Dites són...
+[2324.9 → 2340.0] (SPEAKER_23) Eh... vaig a intentar contestar algunes afirmacions que s'han fet en aquest ple per part dels distints portaveus dels grups municipals.
+[2341.1 → 2351.8] (SPEAKER_23) Jo pense que per a que la gent sàpiga la situació que tenim en la recollida de basura...
+[2352.6 → 2359.1] (SPEAKER_23) Crec que hem de saber d'on venim. I venim d'un contracte que,
+[2359.1 → 2366.4] (SPEAKER_23) abans d'estar molts anys i estar ja pràcticament obsolet, necessitaven millorar i tots ho sabíem.
+[2367.2 → 2377.9] (SPEAKER_23) I d'ahir que se fera el nou contracte. Aquest contracte m'agradaria dir-li a tots els veïns i veïnes que, en aquest Ajuntament,
+[2378.6 → 2388.3] (SPEAKER_23) Tenim una comissió de contractació. Una comissió de contractació on estan representats tots els partits que componen este ple.
+[2389.0 → 2390.2] (SPEAKER_23) Partit Popular,
+[2390.6 → 2391.7] (SPEAKER_23) Vox,
+[2391.7 → 2392.9] (SPEAKER_23) Esquerra Unida,
+[2393.0 → 2394.2] (SPEAKER_23) Unió i Podem,
+[2394.2 → 2396.4] (SPEAKER_23) el Partit Socialista i, com no,
+[2396.5 → 2397.4] (SPEAKER_23) Compromís.
+[2399.5 → 2407.8] (SPEAKER_40) Ese contracte nou de basura ha passat per ix a comissió abans que per es plenari.
+[2409.0 → 2411.2] (SPEAKER_40) Ha passat per plenari,
+[2411.3 → 2412.7] (SPEAKER_40) per comissió de contractació.
+[2413.9 → 2425.4] (SPEAKER_40) Han hagut diferències entre es membres, però en es plenari se vota i la majoria decidix. Estem en un estat democràtic.
+[2426.1 → 2429.6] (SPEAKER_40) I això pensi que alguns no ho entenen.
+[2430.5 → 2431.3] (SPEAKER_40) Però, en fi,
+[2431.5 → 2436.6] (SPEAKER_40) mentre tinguem democràcia seguirem amb les coses que els estem fent.
+[2437.7 → 2445.8] (SPEAKER_40) Vull comentar que aquest nou contracte tenia una particularitat.
+[2446.4 → 2452.6] (SPEAKER_40) Per al MES, per al Grup Municipal de Compromís, una particularitat molt positiva,
+[2452.6 → 2462.4] (SPEAKER_40) i era que a la vegà que se feia aquest contracte, se feia un contracte per auditar el servici de la recollida de basura.
+[2463.6 → 2470.5] (SPEAKER_40) Un contracte que tots en la comissió de contractació vàrem creure que era idoni.
+[2471.3 → 2488.1] (SPEAKER_40) y que a la vista de todo lo que ha ocurrido ha servido para que el Ayuntamiento de Ribarrocha tuviera herramientas para poder rescindir el contracte en la empresa licitadora que no estaba cumpliendo.
+[2489.0 → 2493.9] (SPEAKER_40) A banda del informe técnico del responsable del contracte, Felipe García,
+[2494.0 → 2495.1] (SPEAKER_40) que ha...
+[2495.6 → 2498.1] (SPEAKER_40) Crec que ha sigut determinant.
+[2500.7 → 2509.3] (SPEAKER_40) Jo m'agradaria explicar un poc als veïns i veïnes que,
+[2509.4 → 2514.0] (SPEAKER_40) com ha dit la portaveu del Partit Socialista,
+[2514.1 → 2520.5] (SPEAKER_40) l'administració pública funciona a un altre ritme i en unes altres.
+[2522.4 → 2524.3] (SPEAKER_40) Circumstàncies. Jo,
+[2524.5 → 2526.2] (SPEAKER_40) amb tot això de saber,
+[2526.9 → 2527.8] (SPEAKER_40) tinc una empresa,
+[2527.8 → 2528.6] (SPEAKER_40) sóc autònom,
+[2529.1 → 2546.4] (SPEAKER_40) avui deuria estar treballant, ahir podia haver estat mirant el partit d'Espanya però me vaig haver de llegir el 165 fulles de l'informe o de l'expedient que anava per a aquest ple.
+[2547.1 → 2553.4] (SPEAKER_40) Però bueno, almenys escoltava com celebraven els gols en la plaça.
+[2554.5 → 2555.3] (SPEAKER_40) En fi,
+[2555.4 → 2559.0] (SPEAKER_40) l'administració pública funciona de diferent forma.
+[2559.0 → 2562.2] (SPEAKER_40) Jo, en el meu negoci, si una cosa no me funciona,
+[2562.4 → 2563.9] (SPEAKER_40) la canvia automàticament.
+[2564.2 → 2569.5] (SPEAKER_40) Si jo demane un servici extern i no me complís, busque un altre.
+[2570.0 → 2573.0] (SPEAKER_40) Però en l'administració no passa això.
+[2573.6 → 2579.5] (SPEAKER_40) L'administració té uns temps i unes condicions totalment diferents.
+[2579.8 → 2582.9] (SPEAKER_40) Per a rescindir el contracte tots i totes sabem,
+[2583.1 → 2585.3] (SPEAKER_40) almenys els que estem en aquesta corporació,
+[2585.5 → 2588.1] (SPEAKER_40) tots els passos que s'han de seguir.
+[2589.2 → 2596.8] (SPEAKER_40) Informes jurídics, informes tècnics, i així n'hi ha i tot de vegades.
+[2598.6 → 2599.9] (SPEAKER_40) Si hay alguien en el tema,
+[2600.6 → 2603.6] (SPEAKER_40) y me puse a emitir el contrato del agua,
+[2604.0 → 2610.6] (SPEAKER_40) que llevamos años y años y hasta ahora no hemos tenido una resolución,
+[2610.8 → 2620.5] (SPEAKER_40) porque las empresas al final, pues, como quieren aportarse el gato al agua, pues impugnen los contratos,
+[2620.6 → 2623.0] (SPEAKER_40) lo denuncian y...
+[2623.5 → 2626.9] (SPEAKER_40) Entrem en un procés que es dilata en el temps.
+[2628.7 → 2629.7] (SPEAKER_40) No estan en taçó,
+[2629.8 → 2647.1] (SPEAKER_40) des del Grup Municipal de Compromís reconeguem que el servei de prestació de recollida de basura, la veritat és que no està funcionant com en principi se creia que anava a funcionar.
+[2647.6 → 2651.8] (SPEAKER_40) i més donar el contracte que s'havia realitzat.
+[2652.5 → 2670.6] (SPEAKER_40) És cert que el primer mes tinguérem unes deficiències molt importants i això va portar a la cancel·lació del contracte en l'empresa adjudicatària.
+[2670.7 → 2672.4] (SPEAKER_40) Se feu un...
+[2673.0 → 2680.5] (SPEAKER_40) contracte d'emergència en la primera empresa que havia quedat en la licitació per a poder subsanar però clar,
+[2680.6 → 2688.6] (SPEAKER_40) el tema està en què aquesta empresa ha de funcionar el millor possible
+[2690.7 → 2694.2] (SPEAKER_40) Excepte que n'hi ha contenidors que estan destrossats.
+[2694.2 → 2701.6] (SPEAKER_40) Jo que visc en el centre del poble, al voltant d'on visc, estan tots destrossats.
+[2702.6 → 2704.9] (SPEAKER_40) Parlant de membres de l'equip de govern,
+[2705.3 → 2711.2] (SPEAKER_40) m'han dit que van a fer la compra dels contenidors en recursos propis.
+[2711.4 → 2715.2] (SPEAKER_40) Supose que explicaran ara de quina forma ho van a fer.
+[2717.8 → 2720.3] (SPEAKER_40) Pero bueno, es lo que tenemos.
+[2720.4 → 2731.2] (SPEAKER_40) Yo como de ahí tengo que estar cabrechado con cómo funciona el servicio de recogida de basura,
+[2731.2 → 2738.7] (SPEAKER_40) pero entiendo que como miembro de esta corporación y sabedor de todos los pasos que se ha hecho en este proceso,
+[2738.8 → 2741.3] (SPEAKER_40) pues he de decir que...
+[2742.7 → 2744.0] (SPEAKER_40) No es normal,
+[2744.3 → 2747.1] (SPEAKER_40) pero tenemos lo que tenemos,
+[2747.2 → 2758.1] (SPEAKER_40) nos ha tocado adquirir una empresa que no ha funcionado y eso ha venido donado a que el mes,
+[2758.4 → 2759.4] (SPEAKER_40) la segunda,
+[2759.6 → 2769.4] (SPEAKER_40) tenga que acceder a un contracte de emergencia para poder solucionarlo. Entre otras cosas, no me imaginea que el gobierno recogiendo la basura tres días.
+[2770.3 → 2770.9] (SPEAKER_40) En fin,
+[2771.1 → 2773.3] (SPEAKER_40) al
+[2775.3 → 2788.3] (SPEAKER_40) portavoz de Vox he de decirle que la seua intervención la veritat es que abanda de lamentable, pero a mí es una opinión propia,
+[2788.5 → 2796.2] (SPEAKER_40) pues bueno, es la que ustedes están haciendo, entonces yo lo están representando.
+[2797.0 → 2799.5] (SPEAKER_40) Ha demanat la dimissió de l'equip de govern,
+[2799.9 → 2805.5] (SPEAKER_40) ha demanat la dimissió de tot per per perquè no han actuat correctament.
+[2806.3 → 2822.9] (SPEAKER_40) Jo, això de no actuar correctament quan en un pla r record s'ha pogut concloure el contracte que ni havia en la empresa que se queda la licitació, la veritat és que no sé fins a quin punt.
+[2823.4 → 2830.0] (SPEAKER_40) mi opinión diferenciales hasta aquí un punto puede ser normal.
+[2830.3 → 2830.9] (SPEAKER_40) Pero bueno,
+[2831.0 → 2840.8] (SPEAKER_40) ustedes lo único que hacen en su discurso es mezclar la democracia en este país,
+[2842.9 → 2848.1] (SPEAKER_40) achacen los problemas de las agrupaciones políticas.
+[2849.0 → 2874.5] (SPEAKER_40) en la falta de transparencia y que, y al final, ese mensaje que está calando en la gente es que la democracia no sirve para nada y es un mensaje muy peligroso. Y yo desde así me gustaría que se replantearan ese tipo de discursos que no son no más que crear odio entre...
+[2876.2 → 2878.0] (SPEAKER_40) Tot i tot és.
+[2878.4 → 2879.8] (SPEAKER_40) Després seguiré. Gràcies.
+[2881.1 → 2883.2] (SPEAKER_41) I més probablement, segons intervenció,
+[2883.3 → 2884.3] (SPEAKER_41) ja estem sense temps.
+[2884.4 → 2886.8] (SPEAKER_41) Hem tingut la primera que acaba de fer el que he considerat.
+[2887.8 → 2889.0] (SPEAKER_40) Gràcies, senyor alcalde.
+[2889.0 → 2897.7] (SPEAKER_40) Vaig a ajustar-me a estret, però la senyora portaveu del PSOE ha parlat sis minuts més que jo i el senyor Rafa Compromís cinc minuts més que jo.
+[2898.8 → 2901.0] (SPEAKER_40) Había en 20 este pleno a hablar de la basura.
+[2901.4 → 2901.9] (SPEAKER_40) Y si Teresa,
+[2902.1 → 2904.2] (SPEAKER_40) si estás enojada o enfadada por tu salud,
+[2904.3 → 2904.9] (SPEAKER_40) relájate.
+[2905.4 → 2909.1] (SPEAKER_40) Porque yo traslado la voz del pueblo,
+[2909.1 → 2915.5] (SPEAKER_40) la preocupación y la falta de información que tienen los vecinos. Y no solo el Partido Popular,
+[2915.6 → 2920.3] (SPEAKER_40) porque Esquerra Unida Podemos también ha hablado que desconoce muchos puntos,
+[2920.5 → 2922.9] (SPEAKER_40) porque Vox ha hablado que desconoce muchos puntos,
+[2923.1 → 2925.6] (SPEAKER_40) porque ustedes nos dan la información que nos dan.
+[2925.6 → 2928.8] (SPEAKER_40) Y gracias a este pleno nosotros tenemos más información hoy.
+[2929.5 → 2935.9] (SPEAKER_42) que hace una semana. Gracias a este pleno hoy tenemos más información que hace una semana. Y eso es así.
+[2937.6 → 2942.8] (SPEAKER_42) Ya que tú te hacías una cronología de los actos te voy a decir, en el pleno del 23 de diciembre,
+[2942.9 → 2950.7] (SPEAKER_42) que es cuando se inicia todo esto, bueno, antes con el comunicado del señor alcalde afirmaba que se estaban poniendo, a ver, se están teniendo problemas con la empresa Garbialdi.
+[2951.9 → 2958.1] (SPEAKER_42) Siempre os habéis quejado de que el contrato antiguo, el firmado por el antiguo gobierno del Partido Popular,
+[2958.3 → 2962.5] (SPEAKER_42) que estaba 14 años, estaba caduco y había que mejorarlo, por supuesto.
+[2962.6 → 2970.7] (SPEAKER_42) Y siempre hemos afirmado desde el Partido Popular que si 15 años después no vamos a firmar un contrato, un servicio que mejore el antiguo, ¿para qué?
+[2971.2 → 2972.7] (SPEAKER_42) ¿Para qué firmarlo?
+[2974.7 → 2976.6] (SPEAKER_42) Ha estado 14 años también por...
+[2977.2 → 2997.8] (SPEAKER_42) Falta de planificación y falta de gestión del equipo de gobierno porque el contrato del PP finalizaba en el año 2021 a todos los vecinos en el año 2021 y fue prorrogado por ustedes el 22 el 23 el 24 hasta diciembre del 25 cuatro años de prórroga
+[2998.3 → 2999.5] (SPEAKER_42) Hecha por ustedes,
+[2999.7 → 3005.6] (SPEAKER_42) única y exclusivamente por el equipo de gobierno del PSOE, que era el que gobierna con mayoría absoluta.
+[3006.0 → 3008.8] (SPEAKER_42) Nosotros en este pleno estamos aquí para pedir información.
+[3009.7 → 3015.1] (SPEAKER_42) Dar soluciones es tarea del equipo de gobierno,
+[3015.3 → 3016.4] (SPEAKER_42) que podemos proponer,
+[3016.5 → 3016.8] (SPEAKER_42) claro.
+[3017.8 → 3022.1] (SPEAKER_42) Y ustedes nos pueden responder que estamos trabajando en ello, que esa idea ya la tenían.
+[3022.3 → 3022.8] (SPEAKER_42) Claro,
+[3022.9 → 3024.1] (SPEAKER_42) que es lo que hacen,
+[3024.1 → 3024.8] (SPEAKER_42) lo que suelen hacer.
+[3025.0 → 3029.3] (SPEAKER_42) Hemos propuesto en diferentes mociones, unas las han votado en contra,
+[3029.4 → 3036.3] (SPEAKER_42) otras han votado a favor y las que han votado a favor estamos igual que cuando se votó a favor,
+[3036.3 → 3037.5] (SPEAKER_42) sin hacer nada,
+[3037.7 → 3038.2] (SPEAKER_42) nada.
+[3039.8 → 3047.8] (SPEAKER_42) El alcalde en su discurso, en sus comparecencias, ya hablaba de que había que cambiar los contenedores en diciembre,
+[3047.9 → 3048.9] (SPEAKER_42) en diciembre,
+[3049.1 → 3051.4] (SPEAKER_42) que ya estaban muy deteriorados.
+[3051.9 → 3063.0] (SPEAKER_42) José Ángel afirmaba en ese mismo pleno que se iba a prorrogar el contrato de limpieza diaria hasta marzo del 2027.
+[3063.9 → 3067.3] (SPEAKER_42) Y luego sabemos que quieren unificar los contratos, es decir,
+[3067.4 → 3073.3] (SPEAKER_42) la licitación del nuevo contrato de recogida de basura no va a estar hasta marzo del 2027?
+[3074.2 → 3075.1] (SPEAKER_42) Pregunte,
+[3075.2 → 3077.0] (SPEAKER_42) ¿no va a estar hasta marzo del 27?
+[3078.4 → 3086.0] (SPEAKER_42) El señor Rafa afirmaba que era una obviedad que el contrato...
+[3086.4 → 3089.3] (SPEAKER_42) estaba fallando y que se iban a imponer sanciones,
+[3089.4 → 3099.8] (SPEAKER_42) a las cuales nosotros siempre estuvimos a favor de las sanciones y votamos abstención porque habíamos votado en contra del contrato de la basura,
+[3099.9 → 3100.7] (SPEAKER_42) sí, en contra,
+[3100.7 → 3110.0] (SPEAKER_42) porque nos parecía hiriente algunas cosas como que volviera a durar un contrato 14 años, porque quién sabe en el 2000.
+[3110.7 → 3111.5] (SPEAKER_42) 40,
+[3111.6 → 3116.7] (SPEAKER_42) cómo habrá evolucionado la sociedad para que estemos todavía con un contrato del año 2025.
+[3118.9 → 3122.6] (SPEAKER_42) Vox ya exigía responsabilidades en aquel pleno, junto con nosotros.
+[3123.1 → 3126.5] (SPEAKER_42) Luego se unió Esquerra Unida también pidiendo responsabilidades políticas.
+[3127.1 → 3129.6] (SPEAKER_42) Lo que está claro es que ustedes,
+[3129.7 → 3134.1] (SPEAKER_42) las responsabilidades políticas depende del tipo de administración.
+[3134.7 → 3138.1] (SPEAKER_42) Si la administración es Generalitat Valenciana, gobernada por el Partido Popular,
+[3138.3 → 3139.9] (SPEAKER_42) hay que pedir responsabilidades políticas.
+[3140.1 → 3140.6] (SPEAKER_42) Se exigen.
+[3141.2 → 3143.3] (SPEAKER_42) Si las responsabilidades de la Gobierno de España,
+[3143.4 → 3146.5] (SPEAKER_42) gobernada por el PSOE, no es necesario pedir responsabilidades políticas.
+[3146.9 → 3150.8] (SPEAKER_42) Y si la administración pública es el Ayuntamiento de Riba Roja,
+[3150.8 → 3153.1] (SPEAKER_42) con pedir disculpas es suficiente.
+[3154.6 → 3155.4] (SPEAKER_42) Porque, claro,
+[3155.5 → 3158.1] (SPEAKER_42) si no, nosotros estamos en contra de un servicio...
+[3159.1 → 3160.7] (SPEAKER_42) esencial, básico.
+[3162.4 → 3166.4] (SPEAKER_42) El señor alcalde ya afirmaba hace meses,
+[3166.5 → 3167.2] (SPEAKER_42) hace meses,
+[3167.3 → 3170.9] (SPEAKER_42) que el cambio iba a ser inminente.
+[3171.2 → 3173.4] (SPEAKER_42) Hace meses en el pleno de enero,
+[3173.5 → 3174.7] (SPEAKER_42) que en dos, tres,
+[3174.8 → 3175.6] (SPEAKER_42) cuatro meses,
+[3175.8 → 3176.9] (SPEAKER_42) han pasado siete,
+[3177.0 → 3180.8] (SPEAKER_42) se verían las soluciones y el problema marcharía.
+[3182.5 → 3185.9] (SPEAKER_42) La realización de un contrato de emergencia por la empresa FCC,
+[3186.1 → 3186.7] (SPEAKER_42) que gracias,
+[3187.0 → 3191.0] (SPEAKER_42) ¿significa esto que tiene que ser malo el contrato?
+[3191.8 → 3193.2] (SPEAKER_42) ¿Qué es lo que está ocurriendo?
+[3193.3 → 3198.6] (SPEAKER_42) ¿Tiene que ser deficiente ese servicio porque el contrato sea de emergencia?
+[3199.5 → 3200.4] (SPEAKER_42) Yo creo que no.
+[3201.0 → 3206.7] (SPEAKER_42) En la gana se hicieron muchos contratos de emergencia y no fueron hechos de forma...
+[3207.4 → 3209.3] (SPEAKER_42) Ni pasable, ni deficiente,
+[3209.4 → 3209.9] (SPEAKER_42) ni mala.
+[3210.1 → 3216.6] (SPEAKER_42) Fueron contratos hechos porque se entendía la necesidad y se llevaban a cabo con todo el buen hacer.
+[3218.8 → 3234.0] (SPEAKER_42) Luego, posteriormente, José Ángel también afirmaba que los contratos de emergencia y subsanación eran indispensables y se debían realizar y todos estuvimos de acuerdo en que el 12 de marzo se realizara un contrato
+[3234.5 → 3235.5] (SPEAKER_42) con la empresa FCC,
+[3235.7 → 3239.7] (SPEAKER_42) un contrato de emergencia que suplantaba a la empresa Gardialdi.
+[3239.8 → 3241.2] (SPEAKER_42) Lo de la empresa Gardialdi,
+[3241.2 → 3245.0] (SPEAKER_42) todos sabemos que ustedes dieron comunicados desde el ayuntamiento,
+[3245.0 → 3249.7] (SPEAKER_42) el señor alcalde en redes sociales hizo comunicados, pero el problema de la empresa Gardialdi,
+[3249.8 → 3253.6] (SPEAKER_42) todos saben que acabó el 9 de marzo.
+[3254.1 → 3260.2] (SPEAKER_42) A partir del 9 de marzo no se pueden refugiar en los problemas de la empresa Garbialdi,
+[3260.3 → 3268.1] (SPEAKER_42) que han trabajado muy bien todos los técnicos para hacer el finiquito del contrato. Pero a partir del 9 de marzo la empresa Garbialdi no existe.
+[3268.4 → 3275.1] (SPEAKER_42) El problema de la basura sigue existiendo y es responsabilidad según... Gracias, un momentito y acabe.
+[3277.7 → 3283.3] (SPEAKER_42) Usted parlabas, señor alcalde, de que tenía que hacer una política honesta y transparente. Honesta si ve del Partido Popular.
+[3283.9 → 3289.9] (SPEAKER_42) Si es de vostés, cuando habla la señora Teresa se enfada, se enfada, se enfada y se enoja mucho porque nosotros actuamos.
+[3289.9 → 3291.9] (SPEAKER_42) Pero de basura, señora Teresa,
+[3292.0 → 3293.0] (SPEAKER_42) usted no ha hablado nada,
+[3293.2 → 3293.9] (SPEAKER_42) nada,
+[3294.0 → 3298.6] (SPEAKER_42) ni ha dado una solución. Y son ustedes los que tienen que dar soluciones, no nosotros.
+[3299.6 → 3302.8] (SPEAKER_42) No es el Partido Popular el único que desconoce cómo está.
+[3303.1 → 3307.9] (SPEAKER_42) Es que ha reunida y compromís, compromís no tanto porque es más ha llegado a ustedes,
+[3308.1 → 3313.5] (SPEAKER_42) pero es que ha reunida a vos y nosotros no conocemos toda la información de primera mano.
+[3313.6 → 3314.2] (SPEAKER_42) Ahora sí,
+[3314.3 → 3315.2] (SPEAKER_42) ahora sí.
+[3316.2 → 3317.9] (SPEAKER_42) Nosotros pensamos...
+[3318.4 → 3333.2] (SPEAKER_42) Que hay formas de gestionar el contrato de la basura y si hay que realizar otro contrato de emergencia o suplantar o modificar el contrato actual de vigencia con FCC para que se solucione el problema de la basura y se lleve a cabo una recogida.
+[3333.6 → 3338.9] (SPEAKER_42) Señor alcalde, Teresa ha hablado seis minutos más que yo en la primera intervención.
+[3338.9 → 3340.5] (SPEAKER_42) Seis minutos más que yo.
+[3344.0 → 3359.4] (SPEAKER_41) Bé, vostè com sempre primer s'autoregula, s'autoregula perquè té el temps que vostè considere, perquè guanyant un pla extraordinari vostè s'ha demanat un pla extraordinari, no ha anat a un ordinari, entre altres coses no pot parlar la gent perquè és extraordinari,
+[3359.5 → 3368.6] (SPEAKER_41) avui hi ha d'haver un extraordinari, però bueno, ha anat a un extraordinari i té vostè este assatge i li ha dit que com un tema important que vostè utilitze el temps que considere.
+[3369.5 → 3372.5] (SPEAKER_41) Utilizar del que usted ha dicho, y después diré que no es tan importante,
+[3372.6 → 3373.6] (SPEAKER_41) debería dar tiempo a los otros.
+[3373.7 → 3374.5] (SPEAKER_41) Y eso ha hecho.
+[3374.7 → 3376.1] (SPEAKER_41) Estamos en la segunda intervención,
+[3376.2 → 3377.2] (SPEAKER_41) que son dos minutos,
+[3377.4 → 3378.8] (SPEAKER_41) y estamos en cinco minutos.
+[3383.8 → 3385.4] (SPEAKER_41) Es que en escenario no se puede.
+[3385.8 → 3387.4] (SPEAKER_41) Si hubiera venido un ordinario, sí.
+[3387.5 → 3388.7] (SPEAKER_41) Me ha convocado el Partido Popular.
+[3388.8 → 3389.6] (SPEAKER_41) Dígase el Partido Popular,
+[3389.7 → 3390.2] (SPEAKER_41) a mí no.
+[3391.5 → 3398.0] (SPEAKER_41) Nosotros, ¿cómo regula el pleno el secretario del foro en tema de intervenciones?
+[3402.0 → 3403.5] (SPEAKER_41) No lo sé,
+[3403.5 → 3404.1] (SPEAKER_41) pero nosotros,
+[3404.2 → 3405.2] (SPEAKER_41) un momento,
+[3405.2 → 3406.7] (SPEAKER_41) nosotros no hemos pedido el pleno.
+[3406.9 → 3413.3] (SPEAKER_41) Si hubiera sido un pleno ordinario, que lo ha dicho Rafa de Compromís, cualquier vecino puede hablar porque es lo que marca la ley.
+[3413.4 → 3416.6] (SPEAKER_41) Los plenos extraordinarios no habla el público.
+[3417.2 → 3417.8] (SPEAKER_41) Perdón, ahora.
+[3417.8 → 3418.3] (SPEAKER_42) ¿Qué tal?
+[3419.0 → 3421.8] (SPEAKER_41) Perdón, es que estoy dando la voz y debía de cortar ya esto ya.
+[3422.4 → 3424.2] (SPEAKER_41) Pueden estar como oyentes, es público,
+[3424.2 → 3425.5] (SPEAKER_41) pero no hay intervención del público.
+[3425.6 → 3427.3] (SPEAKER_41) En el ordinario, que es el lunes,
+[3427.4 → 3428.5] (SPEAKER_41) de aquí nada,
+[3428.7 → 3430.4] (SPEAKER_41) pueden venir y intervenir lo que consideren.
+[3430.5 → 3434.4] (SPEAKER_41) Se inicia intervención, pero en la sesión que estás, estás en el doble de temps.
+[3435.3 → 3436.1] (SPEAKER_41) Vale,
+[3436.2 → 3436.4] (SPEAKER_41) venga.
+[3440.7 → 3441.9] (SPEAKER_42) Señora, sí.
+[3444.1 → 3446.1] (SPEAKER_41) No puedo hablar en escenario.
+[3446.4 → 3447.7] (SPEAKER_41) Siento que la ley sea así,
+[3447.8 → 3448.4] (SPEAKER_41) pero es que es así.
+[3448.6 → 3449.6] (SPEAKER_41) Por tanto, en ese sentido,
+[3449.7 → 3453.9] (SPEAKER_41) mire, yo no convoco este pleno.
+[3454.6 → 3456.2] (SPEAKER_41) El pleno lo ha pedido el Partido Popular.
+[3458.9 → 3461.2] (SPEAKER_41) El lunes pueden venir e intervenir lo que consideren.
+[3465.4 → 3465.9] (SPEAKER_41) Venga,
+[3466.0 → 3466.4] (SPEAKER_41) hasta luego.
+[3466.8 → 3471.0] (SPEAKER_43) eso es lo que no puede ser y venimos a dar las quejas porque en realidad
+[3472.0 → 3472.5] (SPEAKER_40) El lunes,
+[3472.5 → 3473.2] (SPEAKER_43) Tenemos partido popular
+[3473.2 → 3473.4] (SPEAKER_40) el
+[3473.4 → 3473.7] (SPEAKER_43) aquí.
+[3473.7 → 3474.1] (SPEAKER_40) lunes,
+[3474.1 → 3474.2] (SPEAKER_43) Estamos
+[3474.2 → 3474.8] (SPEAKER_40) el
+[3474.8 → 3475.3] (SPEAKER_43) a la gente
+[3475.3 → 3479.8] (SPEAKER_40) lunes, perdone, perdone, perdone, el lunes puede hablar, Alberto Seguis,
+[3479.8 → 3479.9] (SPEAKER_43) Sí,
+[3479.9 → 3480.0] (SPEAKER_40) Alberto,
+[3480.0 → 3481.4] (SPEAKER_43) ustedes pueden hablar y nosotros podéis.
+[3481.4 → 3482.1] (SPEAKER_40) Alberto Seguis,
+[3482.1 → 3482.2] (SPEAKER_43) Menos
+[3482.2 → 3482.5] (SPEAKER_40) por favor,
+[3482.5 → 3482.7] (SPEAKER_43) los demás.
+[3482.7 → 3486.5] (SPEAKER_40) Alberto Seguis, a ver, señora, ahora sigue,
+[3486.5 → 3490.5] (SPEAKER_40) pero no, a ver, señora, si quieren.
+[3490.5 → 3491.0] (SPEAKER_41) Alberto,
+[3491.0 → 3491.4] (SPEAKER_41) Alberto.
+[3492.0 → 3493.5] (SPEAKER_41) No, que ahí la intervención te la ha traído en sí.
+[3493.5 → 3498.1] (SPEAKER_42) La radio y todo eso que se comprometiste, la guitaba, hasta el 30 de octubre y está ahí.
+[3498.1 → 3498.3] (SPEAKER_41) Sí, sí.
+[3498.3 → 3501.7] (SPEAKER_42) Estáis esperando que nos quedemos con los muertos.
+[3501.7 → 3502.3] (SPEAKER_41) Que es preeducación.
+[3502.6 → 3502.8] (SPEAKER_42) Eh...
+[3502.8 → 3503.1] (SPEAKER_40) Luego.
+[3503.1 → 3504.0] (SPEAKER_41) No tiene nada para ofrecer.
+[3504.0 → 3505.1] (SPEAKER_42) Esa es la realidad.
+[3505.1 → 3505.9] (SPEAKER_41) Esto no para ofrecer.
+[3506.3 → 3509.8] (SPEAKER_42) O de todas... joder, tampoco hablar tan poco sin echar para atrás, joder.
+[3509.8 → 3512.9] (SPEAKER_41) Perfecto y reintervenación para que parle el chen. Esa es lo que va a hablar.
+[3513.3 → 3515.9] (SPEAKER_41) Y importa menos. Incluso así 30 años. Va.
+[3516.3 → 3516.8] (SPEAKER_40) Per una paraula.
+[3516.8 → 3516.9] (SPEAKER_40) És veritat.
+[3516.9 → 3517.3] (SPEAKER_41) Mare meva.
+[3517.3 → 3519.8] (SPEAKER_42) 30 anys llevo aquí?
+[3520.5 → 3523.9] (SPEAKER_42) Bueno, el Ayuntamiento, no tantos, pero...
+[3524.5 → 3526.7] (SPEAKER_42) Eh... A ver,
+[3528.4 → 3530.1] (SPEAKER_42) no vos més que lío, no.
+[3530.5 → 3531.8] (SPEAKER_42) Yo lío no le he creat.
+[3532.6 → 3534.1] (SPEAKER_42) Estaba usted parlante en los veíns.
+[3534.4 → 3538.9] (SPEAKER_42) Anem a clarirse. Yo lío no le he creat cao y no me alegre de lo peor lo mejor.
+[3540.9 → 3542.1] (SPEAKER_41) Ho acabo d'intervenció, treballaré.
+[3542.1 → 3542.9] (SPEAKER_43) Es mantén la seva.
+[3543.9 → 3562.3] (SPEAKER_42) Acaba la intervenció. Acaba la intervenció. Soles espere de que si algún dirigente del equipo de gobierno me contesta o habla sobre en el pleno, hable de la basura, única y exclusivamente.
+[3562.6 → 3563.0] (SPEAKER_42) Gracias.
+[3564.4 → 3567.1] (SPEAKER_41) Segona intervenció, estem, s'està en dos minuts.
+[3567.7 → 3574.4] (SPEAKER_40) Ha estat 6 minuts. He tallat perquè el públic m'ha tallat, he dit les explicacions oportunes a públic perquè són així.
+[3575.8 → 3576.6] (SPEAKER_60) Ara i sempre,
+[3576.7 → 3577.1] (SPEAKER_60) val?
+[3577.5 → 3578.9] (SPEAKER_60) I quan et donen la paraula a tu,
+[3579.0 → 3582.7] (SPEAKER_60) perquè siguis, no vull que ho siguis, perquè està una persona parlant que saps que no pot parlar.
+[3583.1 → 3586.5] (SPEAKER_60) No, està parlant i chillant i no vull intervenir-li.
+[3587.0 → 3587.7] (SPEAKER_60) Per donar-li cobertura.
+[3588.1 → 3589.0] (SPEAKER_60) Seguis, per favor,
+[3589.1 → 3589.6] (SPEAKER_60) Rafa.
+[3590.7 → 3591.3] (SPEAKER_61) Sí, buenas.
+[3593.2 → 3610.1] (SPEAKER_62) Independientemente de algunas cuestiones, y sabiendo que el servicio no está normalizado al 100%, yo sí que voy a dar unos datos, datos estadísticos, datos recogidos de cómo el servicio de lo que teníamos en diciembre o enero o febrero al día de hoy no tiene nada que ver.
+[3610.6 → 3616.9] (SPEAKER_62) De hecho tenemos porcentajes de recogidas de más del 90% de RCU. Voy a explicar algunas cuestiones.
+[3618.8 → 3628.7] (SPEAKER_62) Lo que más ha necesitado, sobre todo, la recogida de restos de poda es lo que ha requerido mayor periodo de normalización debido a la acumulación de material pendiente que tuvimos en los meses anteriores.
+[3629.4 → 3630.0] (SPEAKER_62) Pese a ello,
+[3630.0 → 3632.0] (SPEAKER_62) la situación mejora de forma constante,
+[3632.2 → 3636.2] (SPEAKER_62) pero es verdad que aún no está al 100%, pero conforme avanza la prestación del servicio.
+[3636.1 → 3637.2] (SPEAKER_62) El servicio está mejorando.
+[3637.8 → 3640.6] (SPEAKER_62) Los datos objetivos avalan esta evolución.
+[3641.2 → 3654.0] (SPEAKER_62) Entre enero y junio de 2026 las incidencias relacionadas con contenedores descienden desde las 138 que teníamos en enero a las 50-55 que estamos teniendo en los últimos dos-tres meses.
+[3654.9 → 3658.1] (SPEAKER_62) Es decir, valores muy por debajo y no cuento lo de diciembre,
+[3658.1 → 3666.1] (SPEAKER_62) porque si no, nos hablaríamos de reducciones del 90%. En consecuencia, la evolución del servicio durante el primer semestre del 2026,
+[3666.1 → 3668.3] (SPEAKER_62) desde que este equipo de gobierno toma las medidas,
+[3668.5 → 3670.5] (SPEAKER_62) no evidencia un empeoramiento,
+[3670.6 → 3677.7] (SPEAKER_62) sino que lo que evidencia es una mejora progresiva, aunque evidentemente con desajustes y que aún no está al 100%.
+[3679.7 → 3682.1] (SPEAKER_62) puedo darles más datos. Por ejemplo, miren.
+[3682.6 → 3689.1] (SPEAKER_62) Las incidencias relacionadas con los contenedores, que aquí los tienen,
+[3689.2 → 3691.0] (SPEAKER_62) muestran en esta gráfica
+[3691.5 → 3701.8] (SPEAKER_62) dónde estábamos en enero y cómo vamos teniendo un descenso paulatino de lo que son las incidencias, que siguen siendo demasiadas. Nos gustaría reducirlas al cero o a la mínima expresión,
+[3701.9 → 3707.1] (SPEAKER_62) pero esto es lo que demuestra que hay un trabajo continuado de mejora sostenible y progresiva.
+[3707.3 → 3709.9] (SPEAKER_62) ¿Estamos al 100%? Evidentemente no,
+[3709.9 → 3716.2] (SPEAKER_62) pero hay una mejora que no tiene nada que ver con enero, con febrero, y no quiero hablar del mes de diciembre,
+[3716.2 → 3717.6] (SPEAKER_62) que fue una auténtica pesadilla.
+[3717.4 → 3717.8] (SPEAKER_62) salida.
+[3718.0 → 3718.6] (SPEAKER_62) Es decir,
+[3718.6 → 3723.4] (SPEAKER_62) a partir de marzo coincidiendo con la entrada de la nueva empresa se produce un cambio de tendencia.
+[3724.6 → 3740.3] (SPEAKER_62) La media mensual pasa de 126 incidencias a una media de 62, lo que supone una reducción del 50%. Desde el punto de vista estadístico este es un indicador de aquellas cuestiones que van diciendo que aunque no hemos llegado donde queremos llegar,
+[3740.6 → 3743.8] (SPEAKER_62) el servicio poco a poco va normalizando y va mejorando.
+[3744.9 → 3745.4] (SPEAKER_62) Fíjese,
+[3745.5 → 3755.8] (SPEAKER_62) también ocurre con el tema de los enseres y la poda. Y les voy a dar un gráfico que me parece que es brutal, ¿no?, sobre todo por las épocas. En el mes de febrero,
+[3756.9 → 3767.4] (SPEAKER_62) de recogidas de enseres y de poda, que estamos hablando de un mes que no es temporada alta, ni de una casa ni de otra, sobre todo de poda, tuvimos 108 incidencias. 108.
+[3767.7 → 3768.2] (SPEAKER_62) Bien.
+[3769.1 → 3772.1] (SPEAKER_62) En el mes de junio, que estamos en plena temporada,
+[3772.2 → 3773.0] (SPEAKER_62) lo más alto,
+[3773.0 → 3773.7] (SPEAKER_62) lo más complicado,
+[3773.9 → 3777.5] (SPEAKER_62) gestionando tres y cuatro veces mayor cantidad de recogidas,
+[3777.6 → 3780.5] (SPEAKER_62) hemos tenido un total de 42,
+[3780.8 → 3784.9] (SPEAKER_62) una reducción de casi dos tercios recogiendo mucho más.
+[3785.0 → 3795.2] (SPEAKER_62) Es decir, en esta gráfica se puede observar también cómo vamos reduciendo las incidencias que tenemos tanto de poda como de enseres durante los últimos...
+[3795.2 → 3795.9] (SPEAKER_62) meses.
+[3796.1 → 3821.7] (SPEAKER_62) Es decir, lo que esto confirma es que hay una aplicación, te concentra casi dos tercios de las incidencias y luego están las telefónicas y concretamente en las telefónicas tenemos una reducción de las incidencias de un 83% a pesar de que los avisos se han multiplicado por tres, lógicamente por la poda, porque enero y febrero hay mucho menos aviso para recoger poda que a partir de marzo.
+[3821.5 → 3846.5] (SPEAKER_62) marzo abril y mayo por lo tanto aunque el servicio no es lo que nos gusta aunque tiene incidencias como la que ha comentado alberto como tiene incidencias sobre todos los contenedores rotos que ahora comentará alguna cuestión el alcalde esas incidencias que hay se suelen resolver en menos de 24 horas y además la inmensa mayoría de los días no suele haber incidencias a día de hoy con el rseu
+[3847.1 → 3859.2] (SPEAKER_62) Otra cosa es que no todos los días está al 100% porque si lo estuviera estaríamos aún más contentos. Pero por tanto los datos no respaldan la afirmación del que el servicio haya empeorado durante el primer semestre de 2026.
+[3859.7 → 3862.1] (SPEAKER_62) El servicio lo que ha hecho es mejorar.
+[3862.5 → 3867.6] (SPEAKER_62) Ahora no ha mejorado lo que nos hubiera gustado ni lo tenemos en el nivel que nos gustaría tenerlo.
+[3867.9 → 3873.6] (SPEAKER_62) Pero no se puede generar una imagen de que estamos como estábamos al principio,
+[3873.7 → 3876.4] (SPEAKER_62) de que no había una gestión porque no sería cierto.
+[3876.6 → 3885.8] (SPEAKER_62) En definitiva, eso también lo podemos ver por zonas, podemos ver cómo las cuestiones se van reduciendo y este también,
+[3885.9 → 3888.0] (SPEAKER_62) quiero que lo vean, ¿no?
+[3888.1 → 3893.5] (SPEAKER_62) Este gráfico es los avisos que tenemos de recogida de podas.
+[3894.2 → 3895.8] (SPEAKER_62) Los avisos es cuando llama la gente,
+[3895.9 → 3896.8] (SPEAKER_62) cuando no solicita,
+[3896.9 → 3898.5] (SPEAKER_62) cómo tenemos este nivel.
+[3898.9 → 3904.6] (SPEAKER_62) Y vean ustedes aquí dónde teníamos las incidencias y casi con los mismos avisos cómo vamos reduciendo.
+[3905.0 → 3905.7] (SPEAKER_62) Es decir,
+[3905.7 → 3916.1] (SPEAKER_62) al final los datos que es para lo que estamos estudiando y estamos mirando para intentar que el servicio se normaliza al 100% nos indican que sin estar satisfechos del todo porque no lo podemos estar,
+[3916.1 → 3918.7] (SPEAKER_62) el servicio progresivamente se va normalizando.
+[3918.8 → 3923.9] (SPEAKER_62) Y yo creo que eso es una cuestión que es muy importante y que teníamos que decirlo.
+[3924.1 → 3930.5] (SPEAKER_62) En definitiva, en análisis de los datos, las gráficas y la evolución mensual de estos indicadores, lo que nos dice...
+[3930.5 → 3941.5] (SPEAKER_62) Es que los dos primeros meses de 2026 el servicio atravesó una situación de especial dificultad, pero que las medidas adoptadas, priorización de la recogida de residuos, refuerzo del servicio,
+[3941.6 → 3945.6] (SPEAKER_62) produjeron un efecto directo y medible sobre la calidad de servicio.
+[3946.2 → 3959.9] (SPEAKER_62) Las incidencias relacionadas con contenedores disminuyen de manera significativa respecto al inicio del periodo, y las incidencias relacionadas con las sedes y podas muestran una reducción progresiva y sostenible a partir de la reorganización del servicio.
+[3960.5 → 3970.8] (SPEAKER_62) Es más, durante los meses de mayor actividad en la recogida de restos de poda se mantiene un volumen de peticiones de recogida de poda, mientras que las incidencias continúan descendiendo,
+[3970.9 → 3975.7] (SPEAKER_62) lo que evidencia que la capacidad de respuesta a lo que pide el ciudadano va mejorando.
+[3976.6 → 3982.7] (SPEAKER_62) En definitiva, los hechos lo que nos están diciendo es que la evolución del servicio durante el primer semestre de 2026,
+[3982.9 → 3985.9] (SPEAKER_62) independientemente de que aún tiene carencias y eso lo reconocemos,
+[3986.0 → 4000.6] (SPEAKER_62) pero los indicadores objetivos verificables y cuantificables acreditan que las medidas adoptadas por el equipo de gobierno están siendo eficaces y poco a poco están permitiendo recuperar la calidad que debe tener un servicio esencial para la ciudadanía. Gracias.
+[4001.9 → 4003.1] (SPEAKER_60) Mes palabras,
+[4003.3 → 4004.1] (SPEAKER_60) Vox, José.
+[4005.2 → 4006.1] (SPEAKER_62) Muchas gracias.
+[4007.1 → 4007.7] (SPEAKER_62) De acuerdo,
+[4007.8 → 4008.6] (SPEAKER_62) gracias alcalde.
+[4009.2 → 4024.8] (SPEAKER_60) A ver, tenemos claro que lo importante es restablecer la recogida urgente en todo el municipio y polígonos industriales para evitar todos los riesgos sanitarios y daños de la imagen municipal. Hago un paréntesis y le agradezco las palabras de compromiso porque refuerza lo que digo,
+[4024.9 → 4026.7] (SPEAKER_60) que es un satélite absolutamente del PSOE.
+[4026.8 → 4035.9] (SPEAKER_60) Pero bueno, proponemos, aquí venimos, además de hacer una crítica al equipo de gobierno y haberles pedido la dimisión.
+[4035.9 → 4054.2] (SPEAKER_60) por la falta de gestión lo que vamos a proponer son medidas, medidas urgentes en 14 días, medidas tácticas en 2 semanas 3 meses, un plan contractual entre 3 y 6 meses, ahorro de eficiencia, sostenibilidad, convivencia ciudadana, plan político de comunicación y indicadores de éxito de KPIs.
+[4054.3 → 4056.3] (SPEAKER_60) Como tengo esos cuatro minutos,
+[4056.5 → 4059.2] (SPEAKER_60) voy a intentar resumirlo lo máximo posible,
+[4059.4 → 4062.7] (SPEAKER_60) pero tiene que haber unas medidas urgentes que se pueden aplicar desde hoy.
+[4062.6 → 4087.5] (SPEAKER_60) y hoy en 14 días que es la fiscalización al detalle del contrato para que active rutas básicas 24 7 hasta normalizar un servicio exigir un plan operativo y unas claves de rendimiento los famosos KPIs en 48 horas con sanciones automáticas movilizar incluso todos los recursos municipales posibles las brigadas vehículos municipales convenio temporal con empresas
+[4087.5 → 4095.6] (SPEAKER_60) presas privadas locales, como se ha comentado al Partido Popular, que en la Adana se hizo y se hizo francamente bien y pagar por un servicio efectivamente prestado.
+[4096.1 → 4104.0] (SPEAKER_60) Comunicaciones: informar diariamente a la ciudadanía sobre las rutas reestablecidas y los puntos de recogida temporales mediante una web municipal,
+[4104.2 → 4112.7] (SPEAKER_60) redes oficiales y que el teléfono gratuito de incidencias pues siga recogiendo todas las incidencias, no haga la redundancia.
+[4112.5 → 4116.6] (SPEAKER_60) ...en las medidas tácticas entre dos semanas,
+[4116.7 → 4117.2] (SPEAKER_60) tres meses.
+[4118.1 → 4125.9] (SPEAKER_62) Se puede establecer un contrato de emergencia, exigir documentación del plan de contingencia con flotas, nóminas cuadrantes, trazabilidad de GPS,
+[4126.1 → 4127.4] (SPEAKER_62) de camiones y hojas de ruta,
+[4127.5 → 4135.4] (SPEAKER_62) nombrar un coordinador municipal con poder sancionador y capacitaciones técnicas externas para controlar el servicio,
+[4135.5 → 4143.4] (SPEAKER_62) exento algunas del plazo entre dos semanas y tres meses. Un plan contractual y de control en tres seis meses.
+[4143.5 → 4170.4] (SPEAKER_62) con una licitación realmente competitiva y transparente con cláusulas firmes con sustitución de contenedores en caso de que se estén estropeados en 72 horas y transparencia y control ciudadano rutas gps agregadas esto nos parece importante y además crear un observatorio para tranquilizar a la población con participación de oposición asociación de vecinos y empresarios del polígono ahorro y eficiencia con un modelo de pago por efecto
+[4170.2 → 4181.0] (SPEAKER_60) Por eficiencia, fomentar la participación privada con estudios para externalizar incluso algunos servicios auxiliares, como limpiezas en puntos de contenedores o mantenimientos de unidades de poda,
+[4181.0 → 4196.8] (SPEAKER_60) sostenibilidad con implantaciones de rutas diferenciadas y medidas ambientales, regulación de horario y control manteniendo ese horario de 8 a 11 y sanciones por incumplimientos y un plan político de comunicación con un mensaje central.
+[4196.9 → 4201.0] (SPEAKER_60) central, de gestión responsable y eficiente y con control público.
+[4201.1 → 4206.4] (SPEAKER_60) Acciones concretas de reputación, publicar auditorías y cronogramas de las medidas,
+[4206.9 → 4219.0] (SPEAKER_60) mantener un tono de rigor fiscal y de apoyo de iniciativa privada y denunciar esas ineficiencias del pasado y en los indicadores de éxito con los KPIs el porcentaje de rutas completadas diariamente,
+[4219.3 → 4221.4] (SPEAKER_60) tiempo medio de resolución de incidencias.
+[4221.7 → 4239.1] (SPEAKER_63) Número de sanciones aplicadas y cobradas y variación del coste por toneladas y al final si entre todos conseguimos solventar este gravísimo problema que tiene el Ayuntamiento pues habremos dado la talla política democrática que es lo que queremos.
+[4239.1 → 4239.7] (SPEAKER_63) Muchas gracias.
+[4242.2 → 4242.7] (SPEAKER_62) Bien.
+[4252.4 → 4253.0] (SPEAKER_63) Gràcies.
+[4253.7 → 4254.1] (SPEAKER_63) Bueno,
+[4254.1 → 4278.7] (SPEAKER_63) jo en primer lloc no dubte de la bona voluntat del Partit Socialista en esta matèria, però sí que, almenys per la meua opinió, crec que vendré gestió en esta matèria. Crec que no és una bona idea perquè sí que hi ha desobjectives, però també hi ha una realitat ciutadana que és la que és i hi ha un problema que no és culpa del Partit Socialista lo que va passar,
+[4278.8 → 4279.2] (SPEAKER_63) però...
+[4279.9 → 4295.9] (SPEAKER_60) eh in este sentit vendre eh gestió en esta matèria crec que no és una bona idea perquè sí, hi ha qüestions que no estan resoltes i sí, i el servei està fallant. De fet, el regidor eh del que ha parlat és que el servei no estava al 100%, i jo
+[4296.5 → 4321.6] (SPEAKER_63) lo que torna a hacer es la mateixa reflexión d'abans. Lo que necessitem es que la nova licitació estiga en marxa, per tant crec que lo més important és que se normalitze el servei i tindre una calendarització i que la gent ho puga saber, també nosaltres, quan va estar, quan va ser una realitat la nova licitació, per a què, per a què puguem tindre un servei el més, lo que volem.
+[4321.7 → 4337.2] (SPEAKER_64) Reitere, lo que volem tot és que hi tot. Un servei digne, de qualitat, i que estigui a l'altura de la ciutadania. Però per a això, si este contracte de mercències no és suficient, s'ha de tindre una licitació, i això és lo que s'ha de fer. Per tant, tenim eixe objectiu. Per altra banda,
+[4337.7 → 4348.7] (SPEAKER_64) els contenidors, que sí que me consta que ara el senyor alcalde ens explicarà el tema de la compra o de la inversió per als contenidors, i crec que és important perquè molts dels problemes venen
+[4348.4 → 4350.3] (SPEAKER_64) que se venden donats per als contenidors. Per tant,
+[4350.6 → 4354.4] (SPEAKER_64) saber com se va a fer esa compra, com se va a fer esa inversió.
+[4355.0 → 4375.1] (SPEAKER_64) I sobretot, en quina consignació pressupostària o de quina forma se va a fer. I torna a reiterar el tema de la taxa, crec que és molt important també, no? la valoració i la reducció, però també instar a que els informes tècnics, per a que puguen avalar a nivell legal esta reducció, se puguen fer lo més prontament possible,
+[4375.5 → 4379.7] (SPEAKER_64) per a que la gent puga tindre i sa reducció lo més prontament possible i,
+[4379.7 → 4381.6] (SPEAKER_64) sobretot, també tindre i sa calendarització.
+[4381.7 → 4394.7] (SPEAKER_64) d'eguany se va a fer eixos informes o per lo menos en de quin temps estem parlant, perquè moltes voltes bueno lo que passa en estes qüestions es que se parlen de de moltes coses, de coses que se volen fer, pero la temporalització, la calendarització,
+[4394.8 → 4400.5] (SPEAKER_64) pues no no no coincidix en lo que se diu, per tant si que crec que es important tinga
+[4401.0 → 4412.3] (SPEAKER_64) de rigor en la calendarización que sí que se puga comprometre en cuant estará en la nueva licitación, ese informe es para la taxa y la compra de los nuevos contenedores.
+[4412.5 → 4413.0] (SPEAKER_64) Muchas gracias.
+[4413.6 → 4414.1] (SPEAKER_60) Permiso.
+[4418.0 → 4419.3] (SPEAKER_60) Gracias, señor alcalde.
+[4419.4 → 4422.8] (SPEAKER_60) Es reiteratiu.
+[4424.6 → 4434.3] (SPEAKER_60) La firma que fan tanto el Partido Popular con Vox de que el compromiso, según Municipal de Compromiso, está muy allegado al equipo de gobierno,
+[4434.8 → 4446.5] (SPEAKER_60) somos satélites del Partido Socialista... Yo voy a agradecerle a todos los vecinos y vecinas que a principios de legislatura, por parte de...
+[4447.6 → 4468.7] (SPEAKER_60) del señor alcalde del equipo de gobierno como presidente de la corporación se va a invitar a varios grupos políticos a formar parte de les juntes de gobierno que es a un se pasa toda la información del día a día de de este ayuntamiento.
+[4469.7 → 4477.0] (SPEAKER_60) El Grupo Municipal de Compromís va aceptar esa invitación y formemos parte de esa junta de gobierno.
+[4477.7 → 4486.8] (SPEAKER_60) Evidentemente per esta cuestión tenemos posiblemente más información que todos los demás grupos políticos que no han aceptado esa invitación.
+[4487.4 → 4488.2] (SPEAKER_60) Pero a banda,
+[4488.3 → 4491.6] (SPEAKER_60) quiero decirle a todos los vecinos y vecinas que este rechidor,
+[4492.4 → 4493.9] (SPEAKER_60) al menos...
+[4494.4 → 4511.8] (SPEAKER_60) Un país debe caer cada semana aparece en este ayuntamiento, cuando puedo, normalmente cuando tanque el negocio, a hablar en los regidores que creo que tienen que hablar para informarme de la situación que me traigan los vecinos y vecinas.
+[4512.1 → 4514.8] (SPEAKER_60) Y así están todos los regidores del equipo de gobierno.
+[4516.0 → 4531.1] (SPEAKER_60) que me agradaría que en algún momento dijeran cuántas veces he preguntado si no he venido, he quedado por teléfono y me he enterado de todo lo que está haciendo el equipo de gobierno y todo lo que piensa hacer el equipo de gobierno.
+[4531.7 → 4535.9] (SPEAKER_60) Esa es la tasca de un político,
+[4536.1 → 4537.5] (SPEAKER_60) de un rechidor,
+[4537.9 → 4539.1] (SPEAKER_60) de un ayuntamiento.
+[4540.2 → 4541.4] (SPEAKER_60) Información.
+[4544.4 → 4568.8] (SPEAKER_60) y después fiscalización al menos es lo que yo creo que se debe hacer si vostés no hacen allá vostés pero criticar algo que femes de mes para estar informado y poder informar a veíns que pregunten pues escolta yo de la seua falta
+[4569.4 → 4574.1] (SPEAKER_60) de trabajo político o de fiscalización no va a echar de res.
+[4577.6 → 4595.9] (SPEAKER_60) Evidentemente, desde el grupo municipal de Compromís, lo que acaba de comentar el compañero de Esquerra Unida Unidas Podemos, evidentemente estamos a favor de todo lo que se ha solicitado.
+[4597.3 → 4609.2] (SPEAKER_62) Que sàpiguen tots i totes, sobretot els veïns, que un equip de govern siga de l'administració que siga sense... Bé,
+[4609.3 → 4613.6] (SPEAKER_62) els que manen el partit popular,
+[4613.7 → 4623.0] (SPEAKER_62) que sentència n'han tingut, sense informes tècnics no poden manejar ni un dit. I en aquest ajuntament...
+[4623.8 → 4632.1] (SPEAKER_60) Se están tenindo verdaderos problemas porque posiblemente gaxquen técnicas y toches
+[4633.4 → 4646.1] (SPEAKER_60) portaveos del Grupo Municipal saben que no están en la labor de hacer el informe o no creen que deben de hacerlo,
+[4646.3 → 4649.5] (SPEAKER_60) de hecho estén patindo toches del Grupo Municipal.
+[4650.1 → 4656.3] (SPEAKER_62) Perquè des que ha començat la legislatura encara no hem cobrat ninguna signeació del grup municipal,
+[4656.5 → 4664.9] (SPEAKER_62) i això ho sabem tots i totes, i si l'han cobrat l'han cobrat tard i de forma deficient,
+[4664.9 → 4665.9] (SPEAKER_62) però bueno,
+[4666.0 → 4667.7] (SPEAKER_62) és lo que n'hi ha.
+[4669.7 → 4670.6] (SPEAKER_62) Està clar,
+[4670.8 → 4674.5] (SPEAKER_62) i me torne a reiterar que este ple és un ple...
+[4675.2 → 4686.6] (SPEAKER_60) Que possiblement l'episodi que hem tingut en els veïns i veïnes quan ens han dit que vostès no volen cobrar,
+[4686.8 → 4701.5] (SPEAKER_60) doncs potser en part tenen raó perquè possiblement tota aquesta informació es podia haver donat en un ple ordinari i més quan el tenim el dilluns i me torno a reiterar.
+[4702.4 → 4707.5] (SPEAKER_60) Y me agradaría acabar la nueva intervención, pa no allargaros muy, no voy a utilizar esos cuatro minutos,
+[4707.6 → 4709.7] (SPEAKER_60) porque está ya todo más que dicho,
+[4709.9 → 4716.6] (SPEAKER_60) que me agradaría que todo funcionara mejor,
+[4716.8 → 4720.0] (SPEAKER_60) creo que se va a neixa línea,
+[4720.2 → 4725.5] (SPEAKER_60) lo que pasa es que se va muy poco a poco. Evidentemente, la...
+[4727.2 → 4736.1] (SPEAKER_60) La voluntat de tot aquell que gestiona un area és que funcione perfectament.
+[4737.1 → 4748.2] (SPEAKER_60) M'agradaria també que les incidències baixaran a la mínima expressió possible i si pot ser a ninguna incidència, però va ser difícil, inclús estant el servici...
+[4749.7 → 4758.7] (SPEAKER_60) En ple rendiment sempre van haver incidències, i això ho sabem tots i totes, però no ha passat ara, ha passat fa 10 anys, fa 20,
+[4758.7 → 4759.7] (SPEAKER_60) fa 30 i fa 40.
+[4760.4 → 4761.1] (SPEAKER_60) Però en fi,
+[4761.3 → 4763.1] (SPEAKER_60) per acabar,
+[4763.2 → 4771.9] (SPEAKER_60) en el discurs del portaveu de Vox en la seva primera intervenció se m'ha passat abans, però li ho vaig a dir ara.
+[4773.5 → 4776.0] (SPEAKER_60) Ha parlat de ese,
+[4776.2 → 4777.3] (SPEAKER_60) ese,
+[4777.5 → 4778.8] (SPEAKER_60) esa.
+[4782.6 → 4784.3] (SPEAKER_80) Diguem mania,
+[4784.3 → 4790.6] (SPEAKER_80) obsessió, que tenen de que el canvi climàtic no existís.
+[4790.7 → 4791.4] (SPEAKER_80) Va bé?
+[4791.5 → 4792.1] (SPEAKER_80) Bueno,
+[4792.2 → 4802.6] (SPEAKER_80) doncs, mireu, això és el que vull dir que en aquest mes de juny portem més de mil morts per calor.
+[4803.2 → 4806.0] (SPEAKER_80) Si això no és un canvi climàtic...
+[4806.8 → 4809.4] (SPEAKER_80) Como digo en la descripción, que venga Dios y lo vea. Gracias.
+[4810.6 → 4812.0] (SPEAKER_81) No te voy a dar el señor Bertuo.
+[4813.6 → 4814.0] (SPEAKER_81) Gracias.
+[4816.2 → 4816.6] (SPEAKER_81) Rafa,
+[4816.7 → 4818.1] (SPEAKER_81) gracias por hablar de la basura.
+[4818.5 → 4818.8] (SPEAKER_81) Yo,
+[4818.8 → 4822.4] (SPEAKER_81) nosotros nunca hemos dicho que estemos peor que en diciembre.
+[4822.6 → 4823.8] (SPEAKER_81) Nunca lo hemos dicho.
+[4823.8 → 4826.7] (SPEAKER_81) En este pleno y nunca y en ningún sitio.
+[4827.2 → 4830.8] (SPEAKER_81) Hemos dicho que estamos mal y es algo que nos ha refrendado. No estamos fatal,
+[4830.9 → 4831.4] (SPEAKER_81) estamos mal.
+[4832.0 → 4841.4] (SPEAKER_81) Pero los contratos de emergencia están para hacer un contrato y que el servicio sea válido y no tengamos este tipo de problemas,
+[4841.4 → 4844.2] (SPEAKER_81) que no existan incidencias o la mínima expresión, como bien tú dices.
+[4845.7 → 4848.2] (SPEAKER_81) Tanto el señor alcalde nos ha recordado...
+[4848.7 → 4851.3] (SPEAKER_81) Ha recordado en ocasiones, y Rafa también ha recordado,
+[4851.4 → 4857.0] (SPEAKER_81) que en las comisiones de contratación estamos espectadores. Las comisiones de contratación no se vota res.
+[4857.1 → 4860.1] (SPEAKER_81) Es portaveos, no decidimos res.
+[4860.3 → 4862.0] (SPEAKER_81) Sí, en este pleno no.
+[4862.1 → 4863.0] (SPEAKER_81) Rafa, sí, lo has dicho.
+[4863.4 → 4867.2] (SPEAKER_81) En las comisiones de contratación nosotros podemos aconsejar,
+[4867.3 → 4870.6] (SPEAKER_81) podemos sugerir, podemos hacer propuestas,
+[4870.6 → 4871.3] (SPEAKER_81) pero...
+[4871.9 → 4877.2] (SPEAKER_81) No decidim res sobre el fons de qualsevol contracte, res,
+[4877.4 → 4890.6] (SPEAKER_81) i això és una obvietat que pot fer plausible la secretària i, si no, José Ángel, que estan les comissions. No decidim res sobre cap contracte, res. Els contractes venen donats.
+[4891.9 → 4894.2] (SPEAKER_81) De totes formes, nosaltres...
+[4894.6 → 4897.8] (SPEAKER_81) Las sonadas palabras de Teresa pedíamos información,
+[4897.9 → 4898.1] (SPEAKER_81) sí,
+[4898.2 → 4899.4] (SPEAKER_81) Auditesa, ¿qué funciones hace?
+[4899.5 → 4906.5] (SPEAKER_81) Vemos que no es una función de Auditesa hoy en día auditar a la empresa que está realizando el servicio de basura,
+[4906.6 → 4909.0] (SPEAKER_81) porque según el informe que nos habéis pasado,
+[4909.2 → 4918.9] (SPEAKER_81) sus labores fueron liquidar económica el contrato, la liquidación económica del contrato de la empresa Garrigaldi, que lo hizo muy bien, no lo dudo.
+[4919.9 → 4924.4] (SPEAKER_81) Y ahora está trabajando en la elaboración de los nuevos pliegos del contrato.
+[4925.7 → 4930.4] (SPEAKER_81) De auditar a la empresa actual que realiza el servicio no nos ponéis nada.
+[4931.0 → 4940.4] (SPEAKER_81) En el pleno del 9 de marzo José Ángel, en el expediente que se nos pasó de urgencia cinco horas antes del pleno si llegó,
+[4940.5 → 4945.5] (SPEAKER_81) al que todos votamos a favor de esa urgencia porque era la rescisión del contrato.
+[4946.4 → 4958.5] (SPEAKER_81) Había un punto en el que se decía que si nosotros no lo hacíamos bien, lo aceptábamos e íbamos a bonificar o bien la tasa del 2025 o ver cómo se hacía la tasa del 2026.
+[4958.8 → 4963.7] (SPEAKER_81) Y el señor alcalde en su speech después del pleno lo refrendaba el 9 de marzo.
+[4966.3 → 4968.3] (SPEAKER_81) Según el informe de la tesorera...
+[4969.3 → 4980.3] (SPEAKER_81) Hace un mes aproximadamente, esto no está en el expediente, pero hace un mes más menos la tesorera, el alcalde le dijo,
+[4980.4 → 4980.6] (SPEAKER_81) mira,
+[4980.7 → 4983.3] (SPEAKER_81) abore, confirm lo de la bonificación de la tasa.
+[4984.9 → 4986.2] (SPEAKER_81) En palabras de la tesorera,
+[4986.3 → 4987.5] (SPEAKER_81) fue un mes más o menos.
+[4987.9 → 4996.5] (SPEAKER_81) Desde el 9 de marzo que se aprobó, desde el 9 de marzo que se aprobó dicha bonificación o dicha tasa. Eso no lo sabíamos.
+[4996.5 → 4998.7] (SPEAKER_81) Y a fecha 23 de junio,
+[4998.8 → 5000.6] (SPEAKER_81) a fecha de la semana pasada,
+[5001.2 → 5006.3] (SPEAKER_81) no se sabe nada sobre el informe que tiene que hablar sobre esa bonificación.
+[5007.5 → 5011.0] (SPEAKER_81) O tornar diners de la tasa del 25 o tornar diners de la tasa del 26.
+[5011.3 → 5012.9] (SPEAKER_81) En numerosos plenos,
+[5013.1 → 5015.6] (SPEAKER_81) tan Rafa como el señor Roberto,
+[5015.7 → 5016.8] (SPEAKER_81) el señor alcalde, disculpe,
+[5017.6 → 5021.1] (SPEAKER_81) ha hablado que el servicio no era lo que volíamos,
+[5021.2 → 5033.6] (SPEAKER_81) que no estaba funcionando como calía. Nosotros pensamos que la tasa del 2026 tiene que ser bonificada también en parte porque el servicio que se ofrece al pagar una tasa no es el adecuado.
+[5035.2 → 5039.7] (SPEAKER_81) En la compra de contenidors sabem que se va a fer en fons propis,
+[5039.9 → 5041.5] (SPEAKER_81) que va a durar uns 4 o 6.000,
+[5041.6 → 5050.1] (SPEAKER_81) que va a suposar uns 4 o 6.000 de fons propis, quan sempre s'ha dit que el contracte de la basura no anava a suposar res per a l'Ajuntament.
+[5050.2 → 5053.1] (SPEAKER_81) La compra de contenidors serà a través de fons propis.
+[5053.3 → 5055.4] (SPEAKER_81) I sobre el nou plec de contractació,
+[5056.0 → 5058.6] (SPEAKER_81) nosaltres aconsellarem donar dades.
+[5059.1 → 5065.4] (SPEAKER_82) econòmiques i tècniques de que és possible un contracte nou que no sigui a 14 anys.
+[5065.5 → 5070.5] (SPEAKER_82) De que és possible un contracte nou a través de renting dels vehicles o alquiler dels vehicles.
+[5070.6 → 5079.3] (SPEAKER_82) I que és possible un contracte nou on la vida útil dels vehicles acabi abans de la seva amortització final i es pugui vendre.
+[5081.0 → 5083.8] (SPEAKER_82) Volem el nou contracte si també és a 14 anys,
+[5083.9 → 5086.2] (SPEAKER_82) si no és a 14 anys o si ens fan alguna cosa de cas.
+[5086.3 → 5091.4] (SPEAKER_82) Però això és el que pensem i això és el que hem comprovat en molts contractes.
+[5092.2 → 5099.6] (SPEAKER_82) D'RSEU, de recollida d'RSEU poder voluminósos de ciutats més nombroses en ciutadania que Ribarroja.
+[5100.0 → 5109.4] (SPEAKER_82) Vosaltres volem que es doni informació i que s'accepti que el problema de la basura és un problema important i que no s'està ficant la solució que cal.
+[5109.5 → 5110.0] (SPEAKER_82) Gràcies.
+[5111.0 → 5112.6] (SPEAKER_80) ...el alcalde, un apunte de la parte.
+[5121.0 → 5125.8] (SPEAKER_80) Jo en cap moment he dit que en les comissions de contractació se vota res.
+[5126.0 → 5128.2] (SPEAKER_80) He dit que estem tots representats.
+[5128.7 → 5142.2] (SPEAKER_80) I dir a tots i totes que portem en aquest any set comissions de contractació i en totes elles n'hi ha un punt que posa proposta dels membres de la comissió.
+[5142.7 → 5143.5] (SPEAKER_80) Gràcies.
+[5144.9 → 5147.8] (SPEAKER_81) No, és que puc avui debatre la 100.
+[5147.8 → 5149.8] (SPEAKER_82) No, no, no, falta tantes plataformes, senyor.
+[5149.8 → 5149.8] (SPEAKER_81) No,
+[5149.8 → 5150.2] (SPEAKER_82) No hi ha cap més.
+[5150.2 → 5156.1] (SPEAKER_81) no, no se preocupe, no hi ha bruixa, no hi ha... no ha lloc, hi ha un switcher, no ha lloc. Bé,
+[5156.2 → 5157.0] (SPEAKER_81) ja ha acabat el ple.
+[5157.5 → 5164.8] (SPEAKER_81) Jo vull que acabi el ple informant primer a vostès i als veïns que aquest ple realment...
+[5167.4 → 5176.7] (SPEAKER_81) És un ple que vaig a recursar la intervenció de la marexidora i els regidors, perquè hem parlat de residus, però és un ple que el pobre se podia haver estalviat.
+[5176.9 → 5179.1] (SPEAKER_81) És quatre mil euros que no va cobrar,
+[5179.2 → 5181.0] (SPEAKER_81) se podia haver estalviat el pobre.
+[5181.2 → 5181.9] (SPEAKER_81) Quatre mil.
+[5182.8 → 5184.3] (SPEAKER_81) Perquè igual no donateu a una ONG.
+[5184.6 → 5185.4] (SPEAKER_81) Quatre mil.
+[5186.2 → 5190.5] (SPEAKER_81) Per un tema que per activa i per passiva...
+[5190.9 → 5192.4] (SPEAKER_81) Des escamas de información,
+[5192.6 → 5193.6] (SPEAKER_81) portavoz del particular,
+[5193.7 → 5195.0] (SPEAKER_81) liberad en la diputación,
+[5195.0 → 5196.2] (SPEAKER_81) per tanto escarre públic,
+[5196.4 → 5197.0] (SPEAKER_81) liberad,
+[5197.1 → 5202.4] (SPEAKER_81) que paguen tots i totes, per informarse y tindre fil per ronda a qualsevol dubte que tinga.
+[5202.6 → 5204.3] (SPEAKER_81) Ha cridat l'alcalde per saber algo?
+[5204.8 → 5208.2] (SPEAKER_81) Ha cridat el regidor de residuos? Ha cridat el portavoz?
+[5209.3 → 5210.7] (SPEAKER_81) Zero a ningú.
+[5211.1 → 5212.1] (SPEAKER_81) A ningú.
+[5212.7 → 5215.7] (SPEAKER_81) Perquè el que interés és el ple i els diners.
+[5216.6 → 5230.0] (SPEAKER_81) i a diners perquè això s'ha preguntat a priori d'avui dilluns el poble s'ha vist enviar 4.000 euros i tota la informació que ella la té que li ho ha dit la meva regidora que té tota la informació així en un expedient, voleu? així
+[5232.2 → 5233.2] (SPEAKER_81) la que ha fet la gent,
+[5233.2 → 5233.6] (SPEAKER_81) així,
+[5233.8 → 5235.8] (SPEAKER_81) tot aquest paquet que tenen així,
+[5236.0 → 5236.6] (SPEAKER_81) així
+[5237.5 → 5240.5] (SPEAKER_81) Si vostè la diputació de Sóller sabrà passar i així està això,
+[5240.8 → 5244.6] (SPEAKER_81) tota la informació que li ha fet a la secretària, l'altra sabrà estalviar.
+[5244.7 → 5246.1] (SPEAKER_81) Per tant, la informació la tenia.
+[5246.1 → 5247.8] (SPEAKER_81) No és veritat que no tenia informació.
+[5248.3 → 5249.8] (SPEAKER_81) A partir d'això cau tot el ple,
+[5249.9 → 5252.1] (SPEAKER_81) perquè el ple se planteja en termes d'informació,
+[5252.1 → 5256.6] (SPEAKER_81) no de propostes com ah, últimament ha fet un carrer allí ahir que ara parlaré de Vox,
+[5256.6 → 5259.6] (SPEAKER_81) una carrerilla i vaig a portar més propostes, ja ho que cal saber,
+[5259.7 → 5261.2] (SPEAKER_81) que és únic que hi ha les vostres,
+[5261.7 → 5262.5] (SPEAKER_81) perquè l'altre ple,
+[5262.5 → 5264.1] (SPEAKER_81) perdona, perdona que estic en intervenció.
+[5264.3 → 5267.2] (SPEAKER_81) En el ple s'han mantés en un tema de, bé,
+[5267.3 → 5268.0] (SPEAKER_81) no volem saber,
+[5268.1 → 5270.6] (SPEAKER_81) molt bé, però volem saber, no sé, forma't un ple,
+[5270.8 → 5273.0] (SPEAKER_81) un ple és alguna cosa més seriosa que volem saber,
+[5273.3 → 5275.7] (SPEAKER_81) és que els canals estan constituïts en l'Ajuntament,
+[5275.8 → 5277.6] (SPEAKER_81) és que estan per assessorar-los,
+[5277.7 → 5279.2] (SPEAKER_81) és que no n'haurà esperat parlar amb vostès,
+[5279.8 → 5281.0] (SPEAKER_81) no ha utilitzat ningú.
+[5282.9 → 5283.4] (SPEAKER_81) Per tant,
+[5283.4 → 5284.0] (SPEAKER_81) primer jo,
+[5284.1 → 5289.8] (SPEAKER_81) recusar absolutament, no d'enfadó, sinó la preocupació de més de xidora perquè entenc que això,
+[5289.9 → 5293.9] (SPEAKER_81) efectivament, és que a la porta podien parlar i se n'anaven a estalviar 4.000 euros.
+[5295.0 → 5297.2] (SPEAKER_81) Ara no, vostès no venen a cobrar el pressupost.
+[5297.8 → 5299.0] (SPEAKER_81) I sempre és començar.
+[5299.4 → 5300.0] (SPEAKER_81) Segon,
+[5301.8 → 5310.1] (SPEAKER_81) quan parlem d'aquest contracte, és un contracte que s'ha fet amb una pulcritat i una serietat i una esforçat absoluta.
+[5310.8 → 5312.5] (SPEAKER_81) Mira la diferencia con vuestro gobernante.
+[5314.1 → 5318.2] (SPEAKER_81) El contracte de Aweas del año 2012
+[5319.6 → 5321.5] (SPEAKER_81) va a ser resolto en el Suprem.
+[5323.1 → 5324.3] (SPEAKER_81) Lo agarramos nosotros,
+[5325.2 → 5327.2] (SPEAKER_81) porque venía por una resolución del Suprem en contra,
+[5327.3 → 5329.7] (SPEAKER_81) y hemos tenido que trabajar también y determinando el Suprem.
+[5330.2 → 5330.8] (SPEAKER_81) O sea,
+[5330.8 → 5331.5] (SPEAKER_81) Bodice,
+[5331.6 → 5334.0] (SPEAKER_81) que los contractes importantes no son fáciles de resolver.
+[5334.7 → 5341.0] (SPEAKER_81) I aquest any resulta que és rècord i ho han resolt sense ni una incidència ni una altra empresa treballant.
+[5341.2 → 5342.3] (SPEAKER_81) I això és molt important.
+[5343.2 → 5345.0] (SPEAKER_81) Bé, què recorreguem així?
+[5345.2 → 5347.2] (SPEAKER_81) Perquè ja que estem així hem de dir també,
+[5347.4 → 5351.4] (SPEAKER_81) recorreguem que el comanditar regidor li ha donat dades.
+[5351.7 → 5355.8] (SPEAKER_81) No el que vostès volen que passi, que és el que volen que passi. Quanto peor, mejor,
+[5356.1 → 5358.0] (SPEAKER_81) com diem nosaltres, que és una Espanya,
+[5358.1 → 5358.9] (SPEAKER_81) que ja salvarem nosaltres.
+[5359.6 → 5363.2] (SPEAKER_81) Pues así no volvemos tres, pero ahora sí tienen alguna ocasión de ganar alguna elección,
+[5363.4 → 5364.9] (SPEAKER_81) pero que todas las hombres pedíen,
+[5365.0 → 5366.6] (SPEAKER_81) tres dineros y tres elecciones,
+[5366.7 → 5370.4] (SPEAKER_81) que se olvide la gente de la preocupación, absolutamente nada,
+[5371.0 → 5375.6] (SPEAKER_81) absolutamente nada más que risas y cachondeo y todo,
+[5375.7 → 5377.4] (SPEAKER_81) ese es el rollo del cepelín,
+[5377.5 → 5377.9] (SPEAKER_81) vale,
+[5378.1 → 5379.3] (SPEAKER_81) pero antes de sentir,
+[5379.5 → 5380.0] (SPEAKER_81) bueno,
+[5380.1 → 5382.1] (SPEAKER_81) pues yo tengo que decirle que está clarísimo,
+[5382.3 → 5383.3] (SPEAKER_81) espilás, primero.
+[5384.2 → 5386.3] (SPEAKER_81) planificació per tindre un nou contracte,
+[5386.3 → 5389.2] (SPEAKER_81) el farem i ho planificarem ja quan vinguin de l'oposició.
+[5391.1 → 5400.1] (SPEAKER_81) Prorrogarem el que hi havia perquè si vostès no s'han recordat passem una pandèmia del 20 al 22 i tota la contractació d'aquest ajuntament ha estat retrasada en aquest i tots els ajuntaments.
+[5402.1 → 5414.9] (SPEAKER_81) I, per tant, he de sentir quan puguem traurem un dels contractes més importants i oferim a consciència i plantejament polític i tècnic, aquest contracte és dels millors de la comunitat valenciana, o era en aquell moment.
+[5415.6 → 5417.0] (SPEAKER_81) Com a conseqüència del que passa,
+[5417.2 → 5421.1] (SPEAKER_81) segona fase, crisi i resolució de la crisi. I la resolució és un record.
+[5421.9 → 5425.6] (SPEAKER_81) Jo no tenia previst que venia la dana, la dana vingué i,
+[5425.7 → 5426.0] (SPEAKER_81) bé,
+[5426.6 → 5427.6] (SPEAKER_81) cada d'una resolució com pugui.
+[5429.6 → 5430.7] (SPEAKER_81) Pues resulta que paregut.
+[5431.8 → 5437.7] (SPEAKER_81) La empresa falla, después tiene todo el soporte técnico y a partir de ahí tiene que resolver una crisis una más de las que hemos tenido.
+[5438.7 → 5440.9] (SPEAKER_81) Y la resolvemos en tensión y forma y rápida.
+[5441.2 → 5444.9] (SPEAKER_81) Y estamos en un contrato de emergencia. Emergencia. La gente que sabe,
+[5445.0 → 5445.7] (SPEAKER_81) yo os lo explique,
+[5445.8 → 5448.5] (SPEAKER_81) por activa y por pasiva y vosotros tienen que saberlo. Bueno, vosotros lo saben.
+[5449.1 → 5451.7] (SPEAKER_81) Que emergencias en emergencia, no es una normalidad,
+[5451.9 → 5458.4] (SPEAKER_81) pero eso es emergencia y cuando se dice emergencia significa que lo emergente lo más necesario se falta ocho días y se falta,
+[5458.5 → 5462.5] (SPEAKER_81) que es repregar residuos y cuan ya pues un desborde,
+[5462.6 → 5464.5] (SPEAKER_81) un contenedor que está en mala situación,
+[5464.7 → 5467.8] (SPEAKER_81) pues todo eso se reprega, pero eso usted ve el que ve,
+[5467.9 → 5471.7] (SPEAKER_81) que ve ese día en pleno matins, contenedores que se están repregando y que se quedan repregándose todos los días.
+[5472.8 → 5477.5] (SPEAKER_81) Setze contenidors tots els dies que es replieguen i si algun no falla un dia se'n demà se repliega.
+[5477.7 → 5479.8] (SPEAKER_81) Setze tonelles.
+[5481.2 → 5485.1] (SPEAKER_81) Contracte d'emergència. I què està fet en tant tant el contracte d'emergència?
+[5485.8 → 5490.2] (SPEAKER_81) Pues ya estamos trabajando como esté hoy, ya lo hemos hecho, pero la asistencia técnica hacer un contracte nuevo,
+[5490.4 → 5501.5] (SPEAKER_81) un contracte nuevo que además no tiene en cuenta como consecuencia de la crisis que hemos tenido que tenemos que poner también la mitad de la aviaria porque va todo aparellado y será mejor para el pueblo y lo vamos a hacer y lo haremos.
+[5502.5 → 5505.2] (SPEAKER_81) ¿En qué plazos? ¿En los plazos que marca la legalidad?
+[5505.5 → 5509.4] (SPEAKER_81) No podemos avanzar más a presa de lo que marca los plazos legales que tenemos.
+[5510.1 → 5520.0] (SPEAKER_81) Ara s'entra guanyant en l'ampliació de la emergència buscant de les fórmules legals, perquè si no legal no podrà ple o no pot resoldre com alcalde,
+[5520.1 → 5524.7] (SPEAKER_81) però que quan abans tinguem els nous contenidors, que és part principal del problema,
+[5524.8 → 5526.3] (SPEAKER_81) els contenidors.
+[5527.5 → 5529.0] (SPEAKER_81) No la prestación del cervell.
+[5529.1 → 5531.1] (SPEAKER_81) La prestación del cervell, que es de emergencia,
+[5531.2 → 5532.4] (SPEAKER_81) está funcionando prou bé.
+[5532.6 → 5540.5] (SPEAKER_81) El problema es que los contenedores se trenquen porque son muy viejos, porque no tienen tapas, han arreglado 40 que tenían arreglados,
+[5540.7 → 5544.8] (SPEAKER_81) pero si no, pues el paisaje es más morrico de vorell y además,
+[5544.9 → 5551.9] (SPEAKER_81) como el camión, pues efectivamente tenían contenedores que se trenquen y perjudicen la reproducción.
+[5552.7 → 5553.7] (SPEAKER_81) Però això és normal,
+[5553.8 → 5560.7] (SPEAKER_81) no volem que passi, però dintre del que està passant considerem que és normal que estigui passant,
+[5560.7 → 5562.9] (SPEAKER_81) fins que canviem els contenidors.
+[5563.1 → 5565.2] (SPEAKER_81) Quan anem a canviar els contenidors, com sempre he dit,
+[5565.8 → 5571.0] (SPEAKER_81) els veïns que s'han anat també s'ho vaig dir i han marxat a veure i en tot això que es troba.
+[5572.0 → 5573.2] (SPEAKER_81) Abans de desembre,
+[5573.3 → 5574.4] (SPEAKER_81) i a més ho sap tot el món,
+[5574.5 → 5575.7] (SPEAKER_81) abans de desembre d'este any.
+[5575.9 → 5578.8] (SPEAKER_81) Abans de desembre d'este any n'hi haurà contenidors nous,
+[5579.0 → 5586.3] (SPEAKER_81) i entre tant estarem traient el plec del pròxim contracte. Quan estarà el pròxim contracte, el megacontracte, què millora?
+[5586.4 → 5589.8] (SPEAKER_81) Sí, realment, en el temps que ho marquen, la legalitat,
+[5589.9 → 5590.7] (SPEAKER_81) no sé,
+[5590.8 → 5597.7] (SPEAKER_81) podem buscar si amortitzem abans o no, però això tècnicament haurien de veure el que més interessa en el nostre poble.
+[5597.5 → 5597.7] (SPEAKER_81) el poble.
+[5598.1 → 5600.0] (SPEAKER_81) Nosaltres hem de tenir igual 14,
+[5600.1 → 5600.9] (SPEAKER_81) que 8, que 4,
+[5601.0 → 5602.8] (SPEAKER_81) el que volem és un bon servei,
+[5602.9 → 5606.1] (SPEAKER_81) perquè quanta cosa servei, què és el que hem de fer, i tindrem.
+[5606.2 → 5607.7] (SPEAKER_81) I això és el que hem de fer.
+[5608.9 → 5609.3] (SPEAKER_81) Per tant,
+[5609.4 → 5611.0] (SPEAKER_81) tenint sentit, la tercera part,
+[5611.1 → 5612.4] (SPEAKER_81) que és la que la gent li interessa,
+[5612.5 → 5616.3] (SPEAKER_81) doncs el contracte, lo normal és que entre en vigor en el 2027.
+[5616.5 → 5617.6] (SPEAKER_81) març, febrer, gener,
+[5617.9 → 5620.6] (SPEAKER_81) doncs per ahir, i que sigui un contracte per anys,
+[5620.7 → 5628.7] (SPEAKER_81) i que estiga definitivament normalitzat i millori moltíssim, perquè llavors millorar més perquè val la mateixa viera implícita també.
+[5629.7 → 5632.0] (SPEAKER_81) Precisament la mateixa que acaba en març, no, José?
+[5632.1 → 5632.8] (SPEAKER_81) En març acaba.
+[5633.0 → 5635.8] (SPEAKER_81) Si volem lligar-ho tot, doncs abans de març seria complicat.
+[5636.7 → 5638.2] (SPEAKER_81) Pero no sabe qué más hacer, por lo mejor.
+[5638.7 → 5639.2] (SPEAKER_81) Después,
+[5639.3 → 5642.4] (SPEAKER_81) ¿vosotros creéis sinceramente que no vive en este pueblo?
+[5644.6 → 5648.6] (SPEAKER_81) De vos no vive en el pueblo, pero no vivimos ocho días lo que ni ha...
+[5649.2 → 5650.7] (SPEAKER_81) ¿Creen que no somos conscientes?
+[5651.2 → 5655.8] (SPEAKER_81) Pues claro que somos conscientes, lo que pasa es que el formato de un ple para pagar 4.000 euros no es el correcto.
+[5655.8 → 5657.7] (SPEAKER_81) Y eso es lo que criticamos desde el plenario.
+[5658.0 → 5658.5] (SPEAKER_81) Primera,
+[5658.5 → 5663.1] (SPEAKER_81) la gente cabecha porque no puede hablar en los plenarios, ni ahora ni desde el 79.
+[5664.3 → 5665.4] (SPEAKER_81) en el sortinari sí,
+[5665.5 → 5673.6] (SPEAKER_81) petant, que habrá hechos innecesarios que parece que estén encarentados en Facebook y todo parece que se aventaban cara,
+[5673.7 → 5676.8] (SPEAKER_81) siempre una parte y por otra parte, pues efectivamente,
+[5676.8 → 5684.0] (SPEAKER_81) la información la tienen ya en el expediente que tenían en el expediente y después podrían recurrir de mil maneras y después tener un simple ordinario,
+[5684.5 → 5686.1] (SPEAKER_81) que en una emoción que se planteja,
+[5686.3 → 5689.9] (SPEAKER_81) pues si hoy entra un debate político y si en la tele que piensa que lo que vale,
+[5689.9 → 5690.8] (SPEAKER_81) en el sección,
+[5690.9 → 5691.0] (SPEAKER_81) pues
+[5691.0 → 5695.9] (SPEAKER_81) hauríem sigut mil metres i no perdre així el temps des del punt de vista nostre.
+[5696.1 → 5697.5] (SPEAKER_81) Informació la tenen tota,
+[5697.7 → 5698.9] (SPEAKER_81) tota.
+[5700.6 → 5704.7] (SPEAKER_81) La Comissió de Contractació, que critica vostè, és una comissió exactament votada,
+[5704.8 → 5706.5] (SPEAKER_81) perdoneu, exacte.
+[5708.6 → 5709.5] (SPEAKER_81) Perdisi que si parla jo,
+[5709.6 → 5715.0] (SPEAKER_81) o que afecta a l'al·lusió en què no es vota. Afecta a l'al·lusió en què no es vota. És que no falta votar,
+[5715.1 → 5725.4] (SPEAKER_81) és que la Comissió d'Informació que tenen de contractació poden anar a informar-se o fer propostes, el que vostè consideri. De tota informació, del contracte, de tot, si és que ho tenen tot.
+[5725.7 → 5730.1] (SPEAKER_81) Tant hem estat així, doncs molt bé, hora i mitja, són les 10,
+[5730.2 → 5737.0] (SPEAKER_81) que hi ha un debat polític que pensem que farà el que vulgui en les imatges i ja està.
+[5737.3 → 5738.3] (SPEAKER_81) La realitat.
+[5739.3 → 5742.6] (SPEAKER_81) La gent ha de saber que estem en fase de contractació dels nous contenidors,
+[5742.7 → 5744.8] (SPEAKER_81) que els contenidors estaran abans de desembre instal·lats,
+[5744.9 → 5746.2] (SPEAKER_81) els nous contenidors, que és important,
+[5746.4 → 5751.8] (SPEAKER_81) que el servei, en termes de replegada, en termes de replegada, en general està bé,
+[5751.9 → 5758.4] (SPEAKER_81) que tenim incidències puntuals, ara i fa 20 anys, per exemple, quan ve l'estiu, quan canvien els xofers, no ara.
+[5758.9 → 5761.9] (SPEAKER_81) Fa 20 anys quan o anava particular i abans quan o anava al sobre.
+[5762.1 → 5773.8] (SPEAKER_81) Quan hi ha canvis per exemple de xòfer per les vacances sí que hi ha problemes puntuals en alguns contenidors que nosaltres no recordem, però en general són 7-6 punts tots els dies que es repeteixen, o pràcticament tots els dies.
+[5774.6 → 5775.9] (SPEAKER_81) En aquest sentit...
+[5776.5 → 5778.3] (SPEAKER_81) Yo voy a donar exactamente,
+[5778.4 → 5786.1] (SPEAKER_81) diría, la tranquilidad. Y por último dir que efectivamente las dades que ha donado Rafa no es porque no reconozcamos lo que está pasando,
+[5786.2 → 5786.5] (SPEAKER_81) José,
+[5786.7 → 5797.6] (SPEAKER_81) porque son reales, es decir, reales porque las incidencias se marquen o no las marquen nosotros. Otra cosa es la percepción de alguna ciudadanía, de algún sitio en concreto y la que queramos generar.
+[5798.7 → 5803.9] (SPEAKER_81) Porque terminaré, repásense ustedes los Facebooks, como está de moda los grupos de Facebook,
+[5804.1 → 5805.8] (SPEAKER_81) donde gobierna el Partido Popular,
+[5805.9 → 5806.4] (SPEAKER_81) no sé,
+[5806.5 → 5809.9] (SPEAKER_81) de aquí a la comarca se los repasan y verán fotos de contenedores desbordados.
+[5810.0 → 5812.5] (SPEAKER_81) Hoy lo verán en la Diana,
+[5812.7 → 5814.1] (SPEAKER_81) lo verán en la Pobla,
+[5814.2 → 5815.4] (SPEAKER_81) lo verán en Lidia.
+[5815.5 → 5818.7] (SPEAKER_81) Hoy si van y verán contenedores desbordados.
+[5823.0 → 5823.5] (SPEAKER_81) La Pobla.
+[5824.4 → 5826.0] (SPEAKER_81) Bueno, para poner un pacto igual,
+[5826.2 → 5827.2] (SPEAKER_81) a volver, no volver.
+[5827.5 → 5828.6] (SPEAKER_81) La Liana está al sue,
+[5828.6 → 5828.9] (SPEAKER_83) Un
+[5828.9 → 5829.0] (SPEAKER_81) En
+[5829.0 → 5829.2] (SPEAKER_83) dato.
+[5829.2 → 5830.1] (SPEAKER_81) Liria está al sue,
+[5830.2 → 5831.8] (SPEAKER_81) Onda, mira,
+[5831.9 → 5833.5] (SPEAKER_81) Onda, La Pobla,
+[5833.6 → 5834.8] (SPEAKER_81) diga un gobierno,
+[5835.0 → 5835.3] (SPEAKER_81) ¿vale?
+[5835.5 → 5838.1] (SPEAKER_81) Pero lo que voy a decir, lo que voy a decir a la gente,
+[5838.2 → 5844.5] (SPEAKER_81) es que hacer una foto y trasladarla es algo fácil que además parece que algunos piensen que van a la red política.
+[5844.7 → 5845.7] (SPEAKER_81) Nosotros tenemos la faena,
+[5845.9 → 5847.9] (SPEAKER_81) van a solventar el tema de la pandemia,
+[5848.1 → 5849.3] (SPEAKER_81) van a solventar el tema de la dana.
+[5849.3 → 5855.7] (SPEAKER_81) Les dones donen poques lliçons en solucionar crisis, al revés, algunes tenien que amagar-se del que han fet especialment la dana,
+[5855.8 → 5856.8] (SPEAKER_81) Vox i el PP,
+[5857.0 → 5859.2] (SPEAKER_81) els dos, com governen.
+[5859.4 → 5861.3] (SPEAKER_81) I per últim dir que...
+[5862.1 → 5862.7] (SPEAKER_81) José,
+[5862.9 → 5863.4] (SPEAKER_81) lo siento,
+[5863.5 → 5864.2] (SPEAKER_81) no vamos a admitir.
+[5865.0 → 5868.7] (SPEAKER_81) Sé que es una ilusión, pero ni creo que creas que lo hagamos.
+[5868.7 → 5870.4] (SPEAKER_81) Es un tema que te ha salido ya aún.
+[5870.5 → 5871.7] (SPEAKER_81) Yo creo que no, en serio,
+[5871.9 → 5876.9] (SPEAKER_81) no quiero ni que lo hagamos porque sé que le iría peor.
+[5877.0 → 5877.5] (SPEAKER_81) Pero bueno,
+[5877.6 → 5887.9] (SPEAKER_81) vamos a acabar diciendo que en principio, de los que han hablado hoy así.
+[5888.4 → 5897.8] (SPEAKER_81) Jo crec que més o menys les coses queden clares, que si avui tenim més informació, tenim un departament en ribarroig en neta, tenim els tècnics de medi ambient,
+[5897.9 → 5900.1] (SPEAKER_81) tenim el regidor per informar-se del que heu de fer.
+[5900.8 → 5902.3] (SPEAKER_81) Podeu riure, Pablo,
+[5902.5 → 5902.9] (SPEAKER_81) Alberto,
+[5902.9 → 5903.9] (SPEAKER_81) passar-se el brexo al truc.
+[5904.2 → 5905.9] (SPEAKER_81) Ho heu perquè et xires en ell per riure.
+[5905.9 → 5906.6] (SPEAKER_84) Luís és l'amigo
+[5906.6 → 5910.9] (SPEAKER_81) No, perquè Juan està rient-se, perquè perdona, és que Juan està rient-se.
+[5911.2 → 5913.7] (SPEAKER_81) Bueno, és que María José està rient-se.
+[5916.7 → 5917.2] (SPEAKER_81) O sigui,
+[5917.2 → 5917.2] (SPEAKER_82) Jo
+[5917.2 → 5917.4] (SPEAKER_81) jo sé,
+[5917.4 → 5917.5] (SPEAKER_82) he
+[5917.5 → 5918.5] (SPEAKER_81) potser per anar a ser,
+[5918.6 → 5919.1] (SPEAKER_81) molt bé,
+[5919.2 → 5920.2] (SPEAKER_81) terminados el pleno así,
+[5920.3 → 5927.6] (SPEAKER_81) un pleno convocado para cobrar que terminas riéndote. Esto es el resumen del Partido Popular, no tengo nada más que decir.
+[5927.7 → 5929.4] (SPEAKER_81) Si vos algo me sabe de la bonificación,
+[5929.5 → 5930.0] (SPEAKER_81) te lo aplícale,
+[5930.2 → 5935.8] (SPEAKER_81) porque esto es ríense y yo cuando uno se ríe, tanque el pleno y se acabó. Levantamos la sesión.

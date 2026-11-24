@@ -13,6 +13,8 @@
  */
 
 /** A line that opens with a `[start → end]` (or `->`) timestamp marker. */
+import { MAX_RACHA_DE_BUCLE, rachaDeBucle } from './transcript-sanity'
+
 const TIMESTAMP_LINE = /^\s*\[\s*\d+(?:\.\d+)?\s*(?:→|->)\s*\d+(?:\.\d+)?\s*\]/
 
 /** Minimum substantive (non-whitespace) characters for a usable transcript. */
@@ -100,6 +102,17 @@ export function assessTranscript(text: string): TranscriptAssessment {
     issues.push(
       `repetición difusa: ${Math.round(dupShare * 100)}% de las líneas están duplicadas ` +
         `(máx ${Math.round(MAX_DUPLICATE_SHARE * 100)}%) — típico de Whisper sobre valenciano; ` +
+        `re-transcribe antes de extraer`,
+    )
+  }
+  // El bucle en los bordes de la sesión (transcript-sanity.ts, MAX_RACHA_DE_BUCLE):
+  // la cuota duplicada de arriba es global y `1xmr0do` daba justo el 25 %, que
+  // no supera el corte. Las declaraciones de en medio pueden ser reales; lo que
+  // no es real es la transcripción, y se re-transcribe antes de extraer.
+  const racha = rachaDeBucle(raw)
+  if (racha >= MAX_RACHA_DE_BUCLE) {
+    issues.push(
+      `bucle de Whisper: ${racha} líneas idénticas seguidas (máx ${MAX_RACHA_DE_BUCLE - 1}) — ` +
         `re-transcribe antes de extraer`,
     )
   }

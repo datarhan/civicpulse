@@ -59,6 +59,7 @@ import {
   writtenOffChunks,
   isMapComplete,
   usageFromSse,
+  conservarAlReanudar,
   GIVE_UP_AFTER_ATTEMPTS,
   type FailedChunk,
   type IntentoDeTrozo,
@@ -793,13 +794,11 @@ async function main() {
     // Carry forward ONLY the re-verified chunks. A chunk being re-attempted
     // must not keep its old segments as well as gain new ones, or the map ends
     // up holding both readings of the same minutes.
-    const chunkOfLabel = (label: string): number => Number(label.slice(1, label.indexOf('/')))
-    const keptSegments = prior
-      ? prior.segments.filter((s) =>
-          doneChunks.has(Math.floor(s.start / SPEAKER_MAP_CHUNK_SECONDS)),
-        )
-      : []
-    const keptRows = prior ? prior.rows.filter((r) => doneChunks.has(chunkOfLabel(r.label))) : []
+    // Segments AND rows by the chunk their LABEL names, never by time: see
+    // `conservarAlReanudar` for the 15uvjew rows this used to orphan.
+    const { segments: keptSegments, rows: keptRows } = prior
+      ? conservarAlReanudar(prior, doneChunks)
+      : { segments: [], rows: [] }
     if (prior) {
       // RE-OPENED means "below the floor, so it will be asked again". A chunk
       // written off has also lost its segments, but it is not going to be asked
@@ -1088,6 +1087,10 @@ async function main() {
       segments,
       rows,
       rejected,
+      // Carried with the rows they describe: a pass that retired rows from
+      // `prior` must stay on record once those rows are carried forward,
+      // or the map would read as one no revalidation ever looked at.
+      ...(prior?.revalidaciones ? { revalidaciones: prior.revalidaciones } : {}),
       stats: {
         // The SESSION's chunk count, not this run's plan. A capped run that
         // wrote 16 of 25 must not look complete — that is what tells the

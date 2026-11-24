@@ -1,6 +1,6 @@
 {
   "plenoId": "51k7yx",
-  "generatedAt": "2026-11-23T10:05:43.005Z",
+  "generatedAt": "2026-11-23T18:34:33.184Z",
   "model": "gemini-3.5-flash",
   "promptVersion": "speaker-map-v2",
   "chunkSeconds": 600,
@@ -3753,7 +3753,7 @@
   ],
   "stats": {
     "chunksExpected": 16,
-    "chunksTranscribed": 7,
+    "chunksTranscribed": 8,
     "failedChunks": [
       {
         "chunk": 0,
@@ -3763,42 +3763,39 @@
           "prompt": "speaker-map-v2",
           "floor": 0.85,
           "thinking": "low"
-        }
+        },
+        "sinLectura": "HTTP 503: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
       },
       {
         "chunk": 8,
-        "why": "never attempted (call budget spent; resumes next run)"
+        "why": "quota exhausted, never attempted further"
       },
       {
         "chunk": 9,
-        "why": "never attempted (call budget spent; resumes next run)"
+        "why": "never attempted (quota exhausted earlier in the run)"
       },
       {
         "chunk": 10,
-        "why": "never attempted (call budget spent; resumes next run)"
+        "why": "never attempted (quota exhausted earlier in the run)"
       },
       {
         "chunk": 11,
-        "why": "never attempted (call budget spent; resumes next run)"
+        "why": "never attempted (quota exhausted earlier in the run)"
       },
       {
         "chunk": 12,
-        "why": "never attempted (call budget spent; resumes next run)"
+        "why": "never attempted (quota exhausted earlier in the run)"
       },
       {
         "chunk": 13,
-        "why": "never attempted (call budget spent; resumes next run)"
+        "why": "never attempted (quota exhausted earlier in the run)"
       },
       {
         "chunk": 14,
-        "why": "never attempted (call budget spent; resumes next run)"
-      },
-      {
-        "chunk": 15,
-        "why": "never attempted (call budget spent; resumes next run)"
+        "why": "never attempted (quota exhausted earlier in the run)"
       }
     ],
-    "labelsSeen": 33,
+    "labelsSeen": 0,
     "rowsAccepted": 6,
     "rowsRejected": 21,
     "rejectedBy": {
@@ -3808,8 +3805,16 @@
       "evidence-speaker-mismatch": 8,
       "ambiguous": 1
     },
-    "attemptedThisRun": 8,
-    "apiCalls": 16,
+    "attemptedThisRun": 2,
+    "apiCalls": 6,
     "coverage": 0.5225208420025526
-  }
+  },
+  "revalidaciones": [
+    {
+      "fecha": "2026-11-24",
+      "regla": "respuesta-breve-y-prueba-perdida",
+      "retiradas": 0,
+      "noEvaluadas": 1
+    }
+  ]
 }

@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-11-22T13:11:58.457Z",
-  "consultadoEl": "2026-11-22",
+  "generatedAt": "2026-11-24T15:24:26.191Z",
+  "consultadoEl": "2026-11-24",
   "fuente": {
     "nombre": "SINAC · Sistema de Información Nacional de Aguas de Consumo (Ministerio de Sanidad)",
     "url": "https://sinac.sanidad.gob.es/CiudadanoWeb/ciudadano/informacionAbastecimientoActionEntrada.do",
-    "atribucion": "Fuente: Ministerio de Sanidad, SINAC. Consultado el 2026-11-22; cada boletín lleva su fecha de toma.",
+    "atribucion": "Fuente: Ministerio de Sanidad, SINAC. Consultado el 2026-11-24; cada boletín lleva su fecha de toma.",
     "licencia": "Aviso legal del Ministerio de Sanidad: reutilización permitida citando la fuente y la fecha de la última actualización, sin desnaturalizar la información"
   },
   "municipio": {
@@ -618,9 +618,9 @@
         {
           "codigo": "045",
           "nombre": "Cloro libre residual",
-          "valor": 0.6,
+          "valor": 0.1,
           "unidad": "mg/L",
-          "fecha": "2026-11-11"
+          "fecha": "2026-11-18"
         },
         {
           "codigo": "046",
@@ -660,9 +660,9 @@
         {
           "codigo": "051",
           "nombre": "PH",
-          "valor": 7.5,
+          "valor": 7.6,
           "unidad": "Unidades pH",
-          "fecha": "2026-11-11"
+          "fecha": "2026-11-18"
         },
         {
           "codigo": "052",
@@ -683,7 +683,7 @@
           "nombre": "Turbidez",
           "valor": 0,
           "unidad": "UNF",
-          "fecha": "2026-11-11"
+          "fecha": "2026-11-18"
         },
         {
           "codigo": "055",
@@ -697,21 +697,21 @@
           "nombre": "Color",
           "valor": 0,
           "unidad": "mg Pt-Co/L",
-          "fecha": "2026-11-11"
+          "fecha": "2026-11-18"
         },
         {
           "codigo": "057",
           "nombre": "Olor",
           "valor": 1,
           "unidad": "In. Dil.",
-          "fecha": "2026-11-11"
+          "fecha": "2026-11-18"
         },
         {
           "codigo": "058",
           "nombre": "Sabor",
           "valor": 2,
           "unidad": "In. Dil.",
-          "fecha": "2026-11-11"
+          "fecha": "2026-11-18"
         },
         {
           "codigo": "064",

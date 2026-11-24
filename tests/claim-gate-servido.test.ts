@@ -32,6 +32,7 @@ const ROOT = join(__dirname, '..')
 const TROZOS = join(ROOT, 'public/data/pleno-claims')
 
 type Servida = ClaimVisibilityInput & {
+  procedencia?: string
   claim: { id: string; type?: string }
   verification: { verdict?: string }
   visibility?: string
@@ -67,7 +68,15 @@ describe('lo servido: ninguna declaración se pliega con un veredicto fundado', 
 
   it('ninguna fila `toggle` lleva un veredicto fundado', () => {
     const plegadasFundadas = servidas
-      .filter((it) => it.visibility === 'toggle' && fundada(it))
+      // Salvo la que pliega su marca de procedencia (decisión del operador,
+      // 23-11-2026): su rótulo honesto es la marca, que va debajo del literal
+      // en /declaraciones y en /plenos/:id junto al veredicto.
+      .filter(
+        (it) =>
+          it.visibility === 'toggle' &&
+          fundada(it) &&
+          (it.procedencia ?? 'en-vigente') === 'en-vigente',
+      )
       .map((it) => `${it.claim.id} (${it.verification.verdict})`)
     expect(plegadasFundadas).toEqual([])
   })

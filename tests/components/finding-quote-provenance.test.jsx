@@ -25,7 +25,8 @@ import {
 } from '../../src/components/PlenoFindings'
 import { FindingDetailCard } from '../../src/pages/Hallazgos'
 import { invalidateSnapshots, peekSnapshot } from '../../src/lib/snapshot-store'
-import { MARKED_STATUS_IDS } from '../../src/scraper/quote-provenance'
+import { MARKED_STATUS_IDS, REANCHORABLE_STATUS_IDS } from '../../src/scraper/quote-provenance'
+import { citaRetenida } from '../../src/lib/cita-retenida.js'
 
 const ROOT = join(__dirname, '..', '..')
 const FINDINGS = JSON.parse(readFileSync(join(ROOT, 'public/data/pleno-findings.json'), 'utf8'))
@@ -37,6 +38,7 @@ const PROVENANCE = JSON.parse(
 const MARK_TEXT = {
   'solo-en-sustituida': 'no consta en la transcripción revisada',
   'sin-determinar': 'no hemos podido comprobarlo',
+  'transcripcion-dudosa': 'transcripción defectuosa',
 }
 
 const realFetch = globalThis.fetch
@@ -80,15 +82,27 @@ afterAll(() => {
  * siguen sin marca, que es lo que distingue «marca la cita afectada» de
  * «marca todas las citas».
  */
+// Re-anclable: estas pruebas hablan de la cita que NO consta en el texto vigente.
+// `transcripcion-dudosa` suele constar en él; su marca es otra pregunta.
 const affected = FINDINGS.items.find((f) => {
   const rows = PROVENANCE.quotes[f.id] ?? []
-  return rows.length > 0 && MARKED_STATUS_IDS.includes(rows[0].status)
+  return rows.length > 0 && REANCHORABLE_STATUS_IDS.includes(rows[0].status)
 })
 
-/** El primer hallazgo cuyas tres primeras citas están TODAS en el texto vigente. */
+/**
+ * El primer hallazgo cuyas citas están TODAS en el texto vigente. Eran «las tres
+ * primeras», pero la ficha y el detalle pintan todas: el 23-11-2026, al
+ * re-transcribir 1237hbp, la cuarta de `f-2026-07-03-cit-df8455` pasó a «solo en
+ * la sustituida», y el control positivo eligió un hallazgo que sí debía marcarse.
+ */
 const sound = FINDINGS.items.find((f) => {
-  const rows = (PROVENANCE.quotes[f.id] ?? []).slice(0, 3)
-  return rows.length > 0 && rows.every((r) => r.status === 'en-vigente')
+  const rows = PROVENANCE.quotes[f.id] ?? []
+  // Y que pinte sus literales: una cita retenida por la puerta no deja texto
+  // con el que comprobar que la ficha publica sus citas.
+  return (
+    rows.length > 0 &&
+    rows.every((r, i) => r.status === 'en-vigente' && !citaRetenida(r, f.quotes?.[i]))
+  )
 })
 
 /**

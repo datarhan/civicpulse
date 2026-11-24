@@ -32,6 +32,7 @@ import {
 } from '../src/scraper/corporation-seats'
 import { resetBudget, loadConfigFromEnv, getRunStats } from '../src/llm/client'
 import { startRun, formatManifest } from '../src/scraper/run-manifest'
+import { anotarDesenlace, decidirDesenlace } from '../src/scraper/pleno-claims-desenlace'
 import { vedaActiva } from './lib/veda'
 
 const OUT_PATH = resolve('public/data/pleno-claims-suggestions.json')
@@ -470,7 +471,7 @@ async function main() {
       accumulated.push(...(previousByPleno.get(id) ?? []))
       // Saltada con su motivo, no intentada: «no la toqué por la veda» no es «la
       // intenté y no salió nada» (regla 2 de DATA_INTEGRITY).
-      run.skip('loreg-freeze — atribución conservada')
+      anotarDesenlace(run, { tipo: 'conservada-veda' })
       completed += 1
       writeSnapshot()
       continue
@@ -495,15 +496,24 @@ async function main() {
       // A pleno whose claims genuinely all disappear is not a thing that
       // happens: the transcript only grows or is replaced by a better one.
       const previousForPleno = previousByPleno.get(id) ?? []
-      if (fresh.length === 0 && previousForPleno.length > 0) {
+      // Preservation check below: would this overwrite leave any published
+      // finding with an orphan sourceClaimId for this pleno? Both guards and
+      // their order live in `decidirDesenlace`, which is what the manifest
+      // test pins; every branch below records through `anotarDesenlace`.
+      const desenlace = decidirDesenlace({
+        fresh,
+        previous: previousForPleno,
+        cited: findingsCitations.get(id),
+        forceOrphanFindings,
+      })
+      if (desenlace.tipo === 'preserved-empty') {
         process.stderr.write(
           `[extract·claims] ${id} PRESERVED — extraction returned 0 claims but ${previousForPleno.length} ` +
             `already exist. Refusing to replace a populated pleno with nothing; this is almost always a\n` +
             `[extract·claims]   dead backend rather than an empty session. Check the manifest below, then re-run.\n`,
         )
         accumulated.push(...previousForPleno)
-        run.attempt()
-        run.skip('extraction empty — previous claims preserved')
+        anotarDesenlace(run, desenlace)
         completed += 1
         const totalPreserved = writeSnapshot()
         process.stdout.write(
@@ -512,52 +522,43 @@ async function main() {
         continue
       }
 
-      // Preservation check: would this overwrite leave any published
-      // finding with an orphan sourceClaimId for this pleno?
-      const cited = findingsCitations.get(id)
-      if (cited && cited.size > 0) {
-        const freshIds = new Set(fresh.map((c) => c.id))
-        const orphans = [...cited].filter((cid) => !freshIds.has(cid))
-        if (orphans.length > 0 && !forceOrphanFindings) {
-          process.stderr.write(
-            `[extract·claims] ${id} SKIPPED — ${orphans.length}/${cited.size} cited claim(s) would be orphaned by overwrite:\n`,
-          )
-          for (const o of orphans.slice(0, 5)) process.stderr.write(`[extract·claims]     · ${o}\n`)
-          if (orphans.length > 5) {
-            process.stderr.write(`[extract·claims]     · …and ${orphans.length - 5} more\n`)
-          }
-          process.stderr.write(
-            `[extract·claims]   Pass --force-orphan-findings to override (will leave findings orphaned).\n`,
-          )
-          // Roll back: keep the OLD claims for this pleno on disk so the
-          // findings remain auditable.
-          const old = previousByPleno.get(id) ?? []
-          accumulated.push(...old)
-          guardSkipped.push({ plenoId: id, orphans })
-          completed += 1
-          const total = writeSnapshot()
-          process.stdout.write(
-            `[extract·claims] checkpoint ${completed}/${ids.length}: ${id} · PRESERVED (${old.length} old claim(s)) · snapshot=${total} total\n`,
-          )
-          continue
+      if (desenlace.tipo === 'orphan-guard') {
+        const { orphans } = desenlace
+        const cited = findingsCitations.get(id)?.size ?? orphans.length
+        process.stderr.write(
+          `[extract·claims] ${id} SKIPPED — ${orphans.length}/${cited} cited claim(s) would be orphaned by overwrite:\n`,
+        )
+        for (const o of orphans.slice(0, 5)) process.stderr.write(`[extract·claims]     · ${o}\n`)
+        if (orphans.length > 5) {
+          process.stderr.write(`[extract·claims]     · …and ${orphans.length - 5} more\n`)
         }
-        if (orphans.length > 0) {
-          process.stderr.write(
-            `[extract·claims] ${id} OVERWRITING despite ${orphans.length} orphan(s) (--force-orphan-findings)\n`,
-          )
-        }
+        process.stderr.write(
+          `[extract·claims]   Pass --force-orphan-findings to override (will leave findings orphaned).\n`,
+        )
+        // Roll back: keep the OLD claims for this pleno on disk so the
+        // findings remain auditable.
+        const old = previousByPleno.get(id) ?? []
+        accumulated.push(...old)
+        guardSkipped.push({ plenoId: id, orphans })
+        // Intentada y saltada con su motivo: el 2026-11-23 esta rama no
+        // anotaba nada y 225 llamadas salieron como «attempted 0».
+        anotarDesenlace(run, desenlace)
+        completed += 1
+        const total = writeSnapshot()
+        process.stdout.write(
+          `[extract·claims] checkpoint ${completed}/${ids.length}: ${id} · PRESERVED (${old.length} old claim(s)) · snapshot=${total} total\n`,
+        )
+        continue
+      }
+      if (desenlace.tipo === 'overwrite' && desenlace.orphansForced.length > 0) {
+        process.stderr.write(
+          `[extract·claims] ${id} OVERWRITING despite ${desenlace.orphansForced.length} orphan(s) (--force-orphan-findings)\n`,
+        )
       }
       accumulated.push(...fresh)
-      run.attempt()
-      if (fresh.length > 0) {
-        run.judge()
-        run.record('claims', fresh.length)
-      } else {
-        // A pleno that yields nothing is either a genuinely empty session or a
-        // dead backend. The manifest separates it from a successful one so the
-        // difference is visible.
-        run.neverAttempt()
-      }
+      // overwrite → judged; empty → never-attempted (an empty session or a dead
+      // backend, kept apart from a successful one).
+      anotarDesenlace(run, desenlace)
       completed += 1
       const total = writeSnapshot()
       process.stdout.write(

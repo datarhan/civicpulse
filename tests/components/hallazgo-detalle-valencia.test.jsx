@@ -196,6 +196,23 @@ const LA_LISTA = {
 }
 
 /**
+ * La entradilla con citas de una transcripción defectuosa: el dato publicado el
+ * 24-11-2026 no trae ninguna —1237hbp, la única sesión con hallazgos que la
+ * tenía, se re-transcribió el 23-11—, y la cláusula sólo se pinta cuando hay.
+ */
+const LA_LISTA_CON_DUDOSAS = {
+  ...LA_LISTA,
+  nombre: '/hallazgos con citas de una transcripción defectuosa',
+  fetch: {
+    ...MAPA_PUBLICADO,
+    '/data/finding-quote-provenance.json': {
+      ...PROV,
+      stats: { ...PROV.stats, transcripcionDudosa: 3 },
+    },
+  },
+}
+
+/**
  * Las dos frases de una lista sin fichas que pintar: ninguna publicada, y ninguna
  * que pase el filtro. Para la segunda, todas las fichas son informativas y se pulsa
  * el filtro de las críticas, que se pinta aunque no haya ninguna.
@@ -403,6 +420,13 @@ describe('/hallazgos en valencià', () => {
     expect.soft([...new Set(r.iguales)], 'se lee igual en castellano y en valencià').toEqual([])
   }, 300000)
 
+  it('la entradilla con citas de una transcripción defectuosa', async () => {
+    const r = await compara(LA_LISTA_CON_DUDOSAS)
+    expect(r.ca.piezas.join('\n')).toContain('transcripció vigent de les quals és defectuosa')
+    expect.soft([...new Set(r.castellano)], 'castellano dentro del valencià').toEqual([])
+    expect.soft([...new Set(r.iguales)], 'se lee igual en castellano y en valencià').toEqual([])
+  }, 300000)
+
   it.each(SIN_FICHAS)(
     '$nombre',
     async (esc) => {
@@ -429,7 +453,13 @@ describe('cobertura de la guarda', () => {
     const claves = Object.keys(CATALOGUE.es).filter((k) => PREFIJOS.some((p) => k.startsWith(p)))
     expect(claves.length, 'el catálogo no tiene cadenas de la página').toBeGreaterThan(30)
     const leido = []
-    for (const esc of [...ESCENARIOS_FICHA, ...ESCENARIOS_RETIRADA, LA_LISTA, ...SIN_FICHAS])
+    for (const esc of [
+      ...ESCENARIOS_FICHA,
+      ...ESCENARIOS_RETIRADA,
+      LA_LISTA,
+      LA_LISTA_CON_DUDOSAS,
+      ...SIN_FICHAS,
+    ])
       leido.push(...(await pintaYLee(esc, 'es')).piezas)
     const texto = leido.join('\n')
     const sinPintar = claves.filter((clave) =>

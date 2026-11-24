@@ -34,8 +34,16 @@ export const VENTANA_S = 60
  * Un resto más corto que esto se suma al trozo anterior: un trozo de 3 s
  * («chunk 12/12: 1 segs», 19-11-2026) se transcribe sin ningún contexto y, si
  * es más corto aún, puede rechazarlo la API después de pagados los demás.
+ *
+ * Era 30 s. El 23-11-2026, en `1237hbp`, el último corte buscó silencio y cayó
+ * en 5977 s de 6040: 63 s de la música del cierre, solos, volvieron como 200
+ * sin texto, y la regla del trozo vacío negó la sesión entera —con razón: un
+ * trozo vacío no se distingue de una lectura fallida, así que esa regla no se
+ * afloja—. Los plenos acaban con música; a 120 s la cola queda pegada a la
+ * habla que la precede. El último trozo llega así a `TROZO_S + COLA_MIN_S`
+ * (1320 s), por debajo de lo que ya se sube de una vez (`UMBRAL_TROCEO_S`).
  */
-export const COLA_MIN_S = 30
+export const COLA_MIN_S = 120
 
 /** El filtro de ffmpeg que produce lo que lee `parseSilencios`. */
 export const FILTRO_SILENCIOS = 'silencedetect=noise=-30dB:d=0.3'

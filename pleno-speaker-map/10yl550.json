@@ -12304,38 +12304,6 @@
       "weak": false
     },
     {
-      "label": "c02/SPEAKER_06",
-      "bloc": "VOX",
-      "slug": "jose-luis-fernandez-santamaria",
-      "heardAs": null,
-      "evidence": [
-        {
-          "spokenBy": "c02/SPEAKER_00",
-          "at": 1579,
-          "quote": "Vox?",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": true,
-      "weak": false
-    },
-    {
-      "label": "c02/SPEAKER_07",
-      "bloc": "Compromís",
-      "slug": "rafael-folgado-navarro",
-      "heardAs": null,
-      "evidence": [
-        {
-          "spokenBy": "c02/SPEAKER_00",
-          "at": 1583,
-          "quote": "Compromís?",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": true,
-      "weak": false
-    },
-    {
       "label": "c03/SPEAKER_01",
       "bloc": "PP",
       "slug": "juan-boix-martinez",
@@ -12464,22 +12432,6 @@
       "weak": true
     },
     {
-      "label": "c08/SPEAKER_03",
-      "bloc": "VOX",
-      "slug": "jose-luis-fernandez-santamaria",
-      "heardAs": null,
-      "evidence": [
-        {
-          "spokenBy": "c08/SPEAKER_00",
-          "at": 4803.9,
-          "quote": "Vox?",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": true,
-      "weak": false
-    },
-    {
       "label": "c08/SPEAKER_06",
       "bloc": "PP",
       "slug": "alberto-gimeno-calvo",
@@ -12590,38 +12542,6 @@
       ],
       "namesIndividual": false,
       "weak": true
-    },
-    {
-      "label": "c10/SPEAKER_04",
-      "bloc": "VOX",
-      "slug": "jose-luis-fernandez-santamaria",
-      "heardAs": null,
-      "evidence": [
-        {
-          "spokenBy": "c10/SPEAKER_01",
-          "at": 6486,
-          "quote": "Vox?",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": true,
-      "weak": false
-    },
-    {
-      "label": "c10/SPEAKER_05",
-      "bloc": "EU-Podem",
-      "slug": "jose-manuel-gallardo-martinez",
-      "heardAs": null,
-      "evidence": [
-        {
-          "spokenBy": "c10/SPEAKER_01",
-          "at": 6488,
-          "quote": "Esquerra Unida Podem?",
-          "relation": "turn-grant"
-        }
-      ],
-      "namesIndividual": true,
-      "weak": false
     },
     {
       "label": "c10/SPEAKER_06",
@@ -13241,6 +13161,31 @@
       "label": "c21/SPEAKER_02",
       "reason": "unresolvable",
       "detail": "heard \"Alberto de Lamo\" but the cited quote does not contain it"
+    },
+    {
+      "label": "c02/SPEAKER_06",
+      "reason": "roll-call",
+      "detail": "turn-grant at 1579s «Vox?» is answered only by «Abstenció.» — a vote read back"
+    },
+    {
+      "label": "c02/SPEAKER_07",
+      "reason": "roll-call",
+      "detail": "turn-grant at 1583s «Compromís?» is answered only by «A favor.» — a vote read back"
+    },
+    {
+      "label": "c08/SPEAKER_03",
+      "reason": "roll-call",
+      "detail": "turn-grant at 4803.9s «Vox?» is answered only by «En contra.» — a vote read back"
+    },
+    {
+      "label": "c10/SPEAKER_04",
+      "reason": "roll-call",
+      "detail": "turn-grant at 6486s «Vox?» is answered only by «A favor.» — a vote read back"
+    },
+    {
+      "label": "c10/SPEAKER_05",
+      "reason": "roll-call",
+      "detail": "turn-grant at 6488s «Esquerra Unida Podem?» is answered only by «En contra.» — a vote read back"
     }
   ],
   "stats": {
@@ -13248,17 +13193,26 @@
     "chunksTranscribed": 25,
     "failedChunks": [],
     "labelsSeen": 21,
-    "rowsAccepted": 50,
-    "rowsRejected": 53,
+    "rowsAccepted": 45,
+    "rowsRejected": 58,
     "rejectedBy": {
       "ambiguous": 13,
       "evidence-speaker-mismatch": 4,
       "unresolvable": 21,
       "label-collision": 2,
-      "relation-contradicted": 13
+      "relation-contradicted": 13,
+      "roll-call": 5
     },
     "attemptedThisRun": 4,
     "apiCalls": 6,
     "coverage": 1
-  }
+  },
+  "revalidaciones": [
+    {
+      "fecha": "2026-11-24",
+      "regla": "respuesta-breve-y-prueba-perdida",
+      "retiradas": 5,
+      "noEvaluadas": 6
+    }
+  ]
 }

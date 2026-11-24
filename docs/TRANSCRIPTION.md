@@ -259,8 +259,10 @@ blind every 1200 s, 71 of 195 seams in 23 transcripts fell mid-sentence, and
 sentence went on in the next chunk. Now `trocear_audio` runs ffmpeg
 `silencedetect` over the session and `src/scraper/cortes-audio.ts` moves each
 cut to the middle of the longest silence within ±60 s of its mark, logging how
-many found none. A remainder under 30 s joins the chunk before it rather than
-going up alone. The offsets come from the real cut points. Overlapping chunks
+many found none. A remainder under 120 s joins the chunk before it rather than
+going up alone (30 s until 2026-11-23, when 63 s of `1237hbp`'s closing music,
+sent alone, came back as an empty 200 and the empty-chunk rule refused the
+whole session). The offsets come from the real cut points. Overlapping chunks
 was rejected: reconciling two transcriptions of the same audio rewrites text,
 which a verbatim quote cannot survive.
 
@@ -272,9 +274,12 @@ quote whose lines carry two different blocs; it used to take the bloc of the
 line where the quote began.
 
 **Every engine's output must clear the degenerate-transcript sanity gate**
-(`src/scraper/transcript-sanity.ts`). Repetition-loop, dominant-line and
-no-content transcripts are quarantined rather than published, and the pleno
-stays in the backlog for retry. Sweep the published corpus any time with
+(`src/scraper/transcript-sanity.ts`). Repetition-loop, dominant-line,
+loop-run and no-content transcripts are quarantined rather than published, and
+the pleno stays in the backlog for retry. `loop-run` (2026-11-23) catches the
+loop that eats only the session's edges — the music before and after, heard as
+«La Lucha de los Malditos» window after window — which the whole-file shares
+miss; the extractor's `assessTranscript` refuses the same files. Sweep the published corpus any time with
 `npm run check:transcripts` (exit 1 on any failure).
 
 **And the second failure mode: the engine TRANSLATES instead of transcribing.**
