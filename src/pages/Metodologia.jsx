@@ -1324,7 +1324,13 @@ function ContratoEditorial() {
               frase concreta en que la presidencia lo nombró al dar la palabra —«Compromís, Rafa»—
               con el segundo exacto de la grabación en que se dijo. El nombre y el partido tienen
               que aparecer en esa frase: si el mapa no acredita quién hablaba, la cita se publica{' '}
-              <strong>sin grupo</strong>, y eso es una respuesta, no un fallo.
+              <strong>sin grupo</strong>, y eso es una respuesta, no un fallo. Leer el voto de cada
+              grupo tras una votación («¿Vox? —Abstenció») no es dar la palabra, ni lo es una
+              respuesta breve («Sí», «No, gràcies») tras la que esa voz no sigue hablando: quien
+              contesta así no se identifica, y a veces contesta la propia presidencia. Desde que se
+              añadió esta regla, en noviembre de 2026, ninguna de las dos acredita a nadie en los
+              fragmentos que se validan; los mapas guardados antes, y los fragmentos que un mapa a
+              medias arrastra de noches anteriores, todavía conservan filas que se apoyan en ellas.
             </p>
             <p id="atribucion-firmada" style={{ margin: '8px 0 0', scrollMarginTop: 24 }}>
               <strong>Hay una segunda vía, y sólo esa</strong>: una persona firma con su nombre el
