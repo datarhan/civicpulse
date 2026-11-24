@@ -236,7 +236,14 @@ describe('Otro sentinel — the validator refuses to let it back in', () => {
     const seats = seatsFromOfficials(doc)
     const segments = [
       { start: 0, end: 2, speaker: 'SPEAKER_00', text: 'Mes paraules? Rafa.' },
-      { start: 2, end: 6, speaker: 'SPEAKER_01', text: 'Gracies.' },
+      // A real turn, not a bare «Gracies.»: since 2026-11-24 a one- or two-word
+      // answer that stops identifies nobody (`short-answer`, speaker-map-validate).
+      {
+        start: 2,
+        end: 6,
+        speaker: 'SPEAKER_01',
+        text: 'Gracies, alcalde. Nosaltres anem a votar a favor',
+      },
     ]
     const candidate = {
       label: 'SPEAKER_01',
