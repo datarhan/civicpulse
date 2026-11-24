@@ -1,13 +1,22 @@
 import { afterEach, describe, expect, it } from 'vitest'
 import { fireEvent, render, screen } from '@testing-library/react'
-import { readFileSync } from 'node:fs'
+import { MemoryRouter } from 'react-router-dom'
 
 import { CATALOGUE, LocaleProvider } from '../src/i18n'
 import { GLOSARIO, partesConTerminos } from '../src/glosario'
 import { TarjetaEnBreve } from '../src/components/EnBreve'
 import { AgendaRow } from '../src/components/plenos/AgendaRow'
 import { TERMINOS_DE_ACCESO } from '../src/lib/empleo-publico'
-import { PALABRAS_DEL_PLENO, vocabularioDelOrdenDelDia } from '../src/scraper/en-breve-plenos'
+import {
+  PALABRAS_DEL_PLENO,
+  SIGLAS_DEL_PLENO,
+  vocabularioDelOrdenDelDia,
+} from '../src/scraper/en-breve-plenos'
+import { RetribucionesPanel } from '../src/pages/Cargos'
+import { installFetchMock } from './setup/mockFetch'
+import ispaPublicado from '../public/data/ispa.json'
+import dedicacionesPublicadas from '../public/data/dedicaciones.json'
+import officialsPublicados from '../public/data/officials.json'
 
 /**
  * El glosario, segunda tanda (plan «dos lecturas», 4a.7): las siglas y palabras
@@ -56,14 +65,17 @@ describe('las entradas nuevas', () => {
     }
   })
 
-  it('ninguna definición lleva una cifra del Ayuntamiento ni una sigla del año', () => {
-    // Una definición es verdad de cualquier ayuntamiento: los años que salen son
-    // los de una norma («de 1986»), nunca los de un expediente de aquí.
+  it('ninguna definición lleva una cifra ni un nombre de aquí', () => {
+    // Una definición es verdad de cualquier ayuntamiento: el único número es el
+    // año de una norma («de 1986»), nunca un importe ni un expediente.
+    const nombres = officialsPublicados.officials.map((o) => o.name).filter(Boolean)
+    expect(nombres.length, 'hay nombres con los que comparar').toBeGreaterThan(0)
     for (const clave of NUEVAS) {
       for (const cat of [ES, CA]) {
         const def = cat[`glosario.${clave}.def`]
-        expect(def, clave).not.toMatch(/€|\d+[.,]\d/)
+        expect(def.replace(/\b1986\b/g, ''), clave).not.toMatch(/\d|€/)
         expect(def, clave).not.toMatch(/Riba-roja/)
+        for (const n of nombres) expect(def, `${clave}: ${n}`).not.toContain(n)
       }
     }
   })
@@ -77,6 +89,8 @@ describe('las entradas nuevas', () => {
     // Art. 46.2.e LBRL: la parte de control incluye mociones, que se votan.
     expect(ES['glosario.parteInformativa.def']).not.toMatch(/Sus puntos no se votan/)
     expect(ES['glosario.parteInformativa.def']).toMatch(/De lo que se da cuenta no se vota/)
+    expect(CA['glosario.parteInformativa.def']).not.toMatch(/Els seus punts no es voten/)
+    expect(CA['glosario.parteInformativa.def']).toMatch(/Allò de què es dona compte no es vota/)
   })
 
   it('la oferta de empleo no pone «tres años» al lado de un año de oferta', () => {
@@ -88,7 +102,8 @@ describe('las entradas nuevas', () => {
 
 describe('el orden del día nombra aparte las siglas de sus títulos', () => {
   it('RPT, PMS, ROF y PEF son palabras del pleno, con su entrada', () => {
-    for (const p of ['rpt', 'pms', 'rof', 'pef']) {
+    expect([...SIGLAS_DEL_PLENO].sort()).toEqual(['pef', 'pms', 'rof', 'rpt'])
+    for (const p of SIGLAS_DEL_PLENO) {
       expect(PALABRAS_DEL_PLENO).toContain(p)
       expect(typeof ES[`plenos.palabra.${p}`]).toBe('string')
       expect(typeof CA[`plenos.palabra.${p}`]).toBe('string')
@@ -112,7 +127,7 @@ describe('el orden del día nombra aparte las siglas de sus títulos', () => {
     'Moción sobre el PEFC forestal',
   ])('ninguna sigla dentro de otra palabra: «%s»', (titulo) => {
     const v = vocabularioDelOrdenDelDia([punto(titulo)])
-    for (const p of ['rpt', 'pms', 'rof', 'pef']) expect(v).not.toContain(p)
+    for (const p of SIGLAS_DEL_PLENO) expect(v).not.toContain(p)
   })
 })
 
@@ -175,8 +190,28 @@ describe('/cargos ata la dedicación y el ISPA', () => {
     expect(terminosDe(CA, 'cargos.ispa.total')).toEqual(['ispa'])
   })
 
-  it('Cargos.jsx pinta esa línea con sus términos, no con `t()` a secas', () => {
-    const src = readFileSync('src/pages/Cargos.jsx', 'utf8')
-    expect(src).toMatch(/FraseConTerminos/)
+  it('el panel de retribuciones pinta «ISPA» como botón, sin marca a la vista, y la definición fuera de la cabecera', async () => {
+    installFetchMock({
+      '/data/ispa.json': ispaPublicado,
+      '/data/dedicaciones.json': dedicacionesPublicadas,
+      '/data/officials.json': officialsPublicados,
+    })
+    const { container } = render(
+      <LocaleProvider>
+        <MemoryRouter>
+          <RetribucionesPanel />
+        </MemoryRouter>
+      </LocaleProvider>,
+    )
+    const boton = await screen.findByRole('button', { name: 'ISPA' })
+    expect(container.textContent).not.toContain('[[')
+    fireEvent.click(boton)
+    const def = document.getElementById(boton.getAttribute('aria-controls'))
+    expect(def?.textContent).toContain(ES['glosario.ispa.def'])
+    // Dentro de la cabecera flexible, abrirla empujaba el total a otra línea: la
+    // definición va fuera de la fila que pone el título y el total lado a lado.
+    const cabecera = boton.closest('div[style*="flex-wrap"]')
+    expect(cabecera, 'la línea vive en la cabecera flexible').not.toBeNull()
+    expect(cabecera.contains(def)).toBe(false)
   })
 })

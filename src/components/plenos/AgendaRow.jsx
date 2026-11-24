@@ -79,12 +79,14 @@ export function AgendaRow({ item }) {
           )}
           <Pill tone={SECTION_TONE[item.section] || 'ghost'} size="xs">
             {termino ? (
-              <FraseConTerminos
-                frase={`[[${termino}|${rotulo}]]`}
-                abierto={abierto}
-                onAbrir={setAbierto}
-                idPanel={idPanel}
-              />
+              <span className="cp-parte-del-punto">
+                <FraseConTerminos
+                  frase={`[[${termino}|${rotulo}]]`}
+                  abierto={abierto}
+                  onAbrir={setAbierto}
+                  idPanel={idPanel}
+                />
+              </span>
             ) : (
               rotulo
             )}
@@ -92,7 +94,12 @@ export function AgendaRow({ item }) {
         </div>
         <div style={{ marginTop: 2, color: 'var(--ink)', lineHeight: 1.4 }}>{item.title}</div>
         {abierto && (
-          <DefinicionGlosario clave={abierto} id={idPanel} onCerrar={() => setAbierto(null)} />
+          <DefinicionGlosario
+            clave={abierto}
+            id={idPanel}
+            onCerrar={() => setAbierto(null)}
+            className="cp-definicion-suelta"
+          />
         )}
       </div>
     </div>

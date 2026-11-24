@@ -122,16 +122,15 @@ export function votosEnBreve(votos: readonly VotoPublicado[]): VotosEnBreve | nu
  * admite marca, así que la página las nombra aparte. El orden es el de la
  * lista que se pinta.
  */
+/** Las siglas de la sede que el glosario explica (segunda tanda). */
+export const SIGLAS_DEL_PLENO = ['rpt', 'pms', 'rof', 'pef'] as const
+
 export const PALABRAS_DEL_PLENO = [
   'mocion',
   'reconocimientoExtrajudicial',
   'sinDictaminar',
   'urgencia',
-  // Siglas de la sede (glosario, segunda tanda).
-  'rpt',
-  'pms',
-  'rof',
-  'pef',
+  ...SIGLAS_DEL_PLENO,
 ] as const
 
 export type PalabraDelPleno = (typeof PALABRAS_DEL_PLENO)[number]
