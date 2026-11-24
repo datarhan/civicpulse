@@ -8,7 +8,7 @@
  * `compute:finding-quote-provenance` and `triage:quote-reanchor` cannot end up
  * disagreeing about which bytes they are looking at.
  */
-import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs'
+import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
 import { transcriptKind } from '../../src/lib/transcript-kind.js'
@@ -18,9 +18,9 @@ import { archivosDe } from '../../src/scraper/superseded-archive'
 export const TRANSCRIPTS_DIR = 'public/data/pleno-transcripts'
 export const SUPERSEDED_DIR = 'public/data/pleno-transcripts/superseded'
 
-function readIfExists(path: string): { text: string; bytes: number } | null {
+function readIfExists(path: string): { text: string } | null {
   if (!existsSync(path)) return null
-  return { text: readFileSync(path, 'utf8'), bytes: statSync(path).size }
+  return { text: readFileSync(path, 'utf8') }
 }
 
 /**
@@ -64,8 +64,6 @@ export function loadSessionTexts(
     out.set(id, {
       current: a?.text ?? null,
       superseded: b?.text ?? null,
-      currentBytes: a?.bytes ?? 0,
-      supersededBytes: b?.bytes ?? 0,
     })
   }
   return out

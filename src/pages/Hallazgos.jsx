@@ -593,6 +593,14 @@ export default function Hallazgos() {
     }),
     '{enlace}',
   )
+  // La cláusula de las citas de una transcripción defectuosa, sólo cuando hay
+  // alguna: «otros 0» no se escribe.
+  const clausulaDudosas =
+    provStats?.transcripcionDudosa > 0
+      ? rellena(t('hallazgos.lista.transcripciones.dudosas'), {
+          n: provStats.transcripcionDudosa,
+        })
+      : ''
   const [transcripcionesAntes, transcripcionesDespues] = provStats
     ? partePorHueco(
         rellena(t('hallazgos.lista.transcripciones'), {
@@ -600,6 +608,7 @@ export default function Hallazgos() {
           enVigente: provStats.enVigente,
           soloEnSustituida: provStats.soloEnSustituida,
           sinDeterminar: provStats.sinDeterminar,
+          dudosas: clausulaDudosas,
         }),
         '{enlace}',
       )
@@ -911,18 +920,22 @@ export default function Hallazgos() {
         {/* Counted from the derived snapshot, never typed here: a figure written
             into a page goes false on its own the next time a session is
             re-transcribed, and nobody edits a page to notice. */}
-        {provStats && provStats.soloEnSustituida + provStats.sinDeterminar > 0 && (
-          <div style={{ marginTop: 8 }}>
-            <Marcado texto={transcripcionesAntes} estilo={TINTA} />
-            <a
-              href="/metodologia#citas-transcripcion"
-              style={{ color: 'var(--civic)', textDecoration: 'underline' }}
-            >
-              {t('hallazgos.lista.transcripciones.enlace')}
-            </a>
-            <Marcado texto={transcripcionesDespues} estilo={TINTA} />
-          </div>
-        )}
+        {provStats &&
+          provStats.soloEnSustituida +
+            provStats.sinDeterminar +
+            (provStats.transcripcionDudosa ?? 0) >
+            0 && (
+            <div style={{ marginTop: 8 }}>
+              <Marcado texto={transcripcionesAntes} estilo={TINTA} />
+              <a
+                href="/metodologia#citas-transcripcion"
+                style={{ color: 'var(--civic)', textDecoration: 'underline' }}
+              >
+                {t('hallazgos.lista.transcripciones.enlace')}
+              </a>
+              <Marcado texto={transcripcionesDespues} estilo={TINTA} />
+            </div>
+          )}
         {/* Same rule as above: counted from the derived snapshot at render
             time. This one moves every time the verdict engine re-judges a
             claim, which is a background job — a number typed here would go

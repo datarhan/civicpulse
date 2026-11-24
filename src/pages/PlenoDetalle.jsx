@@ -30,6 +30,7 @@ import { rutaDeSesion, sesionDeParametro } from '../scraper/ruta-de-sesion'
 import { hallazgosPorTema } from '../scraper/hallazgos-por-tema'
 import { rotuloDe, useLocale, useT } from '../i18n'
 import { transcriptKind } from '../lib/transcript-kind.js'
+import { assessTranscriptSanity } from '../scraper/transcript-sanity'
 import { cuentaCotejadas, desgloseCotejadas, entreParentesis } from '../lib/cotejo'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 
@@ -113,8 +114,31 @@ function TranscriptPanel({ plenoId }) {
   if (state.loading) return <EmptyNote>{t('plenoDetail.transcriptLoading')}</EmptyNote>
   if (state.missing) return <EmptyNote>{t('plenoDetail.transcriptMissing')}</EmptyNote>
   const kind = transcriptKind(state.text)
+  // La misma guarda que pone en cuarentena una transcripción nueva y que decide
+  // la marca «transcripción defectuosa» de sus declaraciones (`vigenteEsDudosa`),
+  // sobre el mismo texto que se pinta debajo: la advertencia y la marca no
+  // pueden discrepar. Sólo audio: un acta no sale de un motor de reconocimiento.
+  const defectuosa = kind === 'audio' && !assessTranscriptSanity(state.text).ok
   return (
     <>
+      {defectuosa && (
+        <div
+          data-transcripcion-defectuosa
+          role="note"
+          style={{
+            fontSize: 'var(--fs-aux)',
+            color: 'var(--warn-ink)',
+            background: 'var(--warn-soft)',
+            borderLeft: '3px solid var(--warn)',
+            padding: '8px 12px',
+            borderRadius: 'var(--r-input)',
+            marginBottom: 8,
+            lineHeight: 1.5,
+          }}
+        >
+          {t('plenoDetail.transcriptDefectuosa')}
+        </div>
+      )}
       {/* 23 of 42 files here are acta text, not audio. Identical extension,
           identical line shape, identical tab — and a "verbatim" taken from an
           acta quotes the secretary's already-condensed minutes, not what a

@@ -139,7 +139,7 @@ function cadaForma() {
   // «sin determinar», ni dos citas de una ficha con la misma marca de procedencia,
   // ni una ficha firmada por una persona, ni una cita del grupo «Otro». Cada fila
   // es [procedencia, puerta], por su posición en los enums importados.
-  const [vigente, sustituida, sinDeterminar] = QUOTE_PROVENANCE_STATUS_IDS
+  const [vigente, sustituida, sinDeterminar, dudosa] = QUOTE_PROVENANCE_STATUS_IDS
   const [shown, toggle, hidden] = CLAIM_VISIBILITIES
   const marcas = [
     [
@@ -149,14 +149,14 @@ function cadaForma() {
     ],
     [
       [sustituida, toggle],
-      [vigente, hidden],
-      [vigente, hidden],
+      [dudosa, toggle],
+      [dudosa, hidden],
     ],
     [
       [sustituida, shown],
       [sustituida, toggle],
       [sinDeterminar, shown],
-      [vigente, hidden],
+      [dudosa, hidden],
     ],
   ]
   const prov = mapa['/data/finding-quote-provenance.json']

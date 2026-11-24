@@ -1808,6 +1808,14 @@ export const CATALOGUE = {
     'declaraciones.tema.educacion': 'Educación',
     'declaraciones.tema.other': 'Sin clasificar',
     'declaraciones.sinAtribuir': 'sin atribuir',
+    // Dónde consta el literal de una declaración (`MarcaDeProcedencia`). El chip
+    // es el de /hallazgos; la nota es propia: una declaración no se reancla.
+    'declaraciones.procedencia.sustituida.nota':
+      'Estas palabras salen de la transcripción anterior de la sesión, que se volvió a transcribir con un motor mejor; en la vigente, que no es más corta, no aparecen así. El motor anterior traducía a menudo al castellano lo dicho en valencià —y entonces las cifras pueden no coincidir con lo que se dijo— o lo redactaba a su manera. La marca habla del texto, no de quién habló, y el veredicto se calculó sobre estas mismas palabras.',
+    'declaraciones.procedencia.sinDeterminar.nota':
+      'No podemos situar estas palabras en la transcripción vigente de la sesión: o no la hay, o tiene menos palabras que la que sustituyó, y entonces su ausencia puede deberse al cambio de motor o a un tramo que la nueva pasada no cubre. No afirmamos ninguna de las dos cosas.',
+    'declaraciones.procedencia.dudosa.nota':
+      'La transcripción vigente de esta sesión no supera nuestra comprobación de calidad: el texto muestra fallos del motor que la produjo, como frases repetidas que nadie dijo o pasajes traducidos a otra lengua. Contra ese texto no se puede confirmar que estas sean las palabras que se dijeron, aparezcan o no en él; si la sesión tiene una transcripción anterior, pueden salir de ella, de un motor que a menudo traducía o redactaba a su manera. Hace falta volver a transcribir la sesión y extraer de nuevo sus declaraciones. La marca habla del texto, no de quién habló.',
     'declaraciones.evidencia.una': 'evidencia',
     'declaraciones.evidencia.varias': 'evidencias',
     // La fuente de cada fila de evidencia (EVIDENCE_KINDS).
@@ -1944,6 +1952,8 @@ export const CATALOGUE = {
       'Texto del acta oficial, no del audio. Las marcas de tiempo son sintéticas: el acta es un resumen ya redactado por secretaría, así que una cita literal de aquí cita el acta, no la intervención.',
     'plenoDetail.transcriptAudio':
       'Transcripción automática del audio de la sesión. Puede contener errores de reconocimiento; el acta oficial prevalece.',
+    'plenoDetail.transcriptDefectuosa':
+      'Esta transcripción no supera nuestra comprobación de calidad: el texto muestra fallos del motor que la produjo, como frases repetidas que nadie dijo o pasajes traducidos a otra lengua. Hasta que se vuelva a transcribir no debe leerse como un registro de lo que se dijo, y las declaraciones y las citas de esta sesión llevan la marca «transcripción defectuosa».',
     'plenoDetail.expediente': 'Expte. {expediente}',
     'plenoDetail.voto.resultado': 'Resultado',
     'plenoDetail.voto.desglose': 'Desglose',
@@ -2329,7 +2339,9 @@ export const CATALOGUE = {
     'hallazgos.lista.como.enlace': 'vía de rectificación',
     'hallazgos.lista.como.metodologia': 'Leer metodología →',
     'hallazgos.lista.transcripciones':
-      '**Citas y transcripciones.** Varias sesiones se transcribieron una segunda vez con un motor mejor. De los {quotes} literales publicados aquí, **{enVigente}** aparecen en la transcripción vigente de su sesión; **{soloEnSustituida}** sólo en la que se sustituyó, y {sinDeterminar} no se pueden situar en ninguna de las dos. Los que no constan en el texto vigente llevan su marca al lado. No reescribimos ninguna cita por nuestra cuenta. {enlace}',
+      '**Citas y transcripciones.** Varias sesiones se transcribieron una segunda vez con un motor mejor. De los {quotes} literales publicados aquí, **{enVigente}** aparecen en la transcripción vigente de su sesión; **{soloEnSustituida}** sólo en la que se sustituyó, y {sinDeterminar} no se pueden situar en ninguna de las dos{dudosas}. Todos, salvo los {enVigente} primeros, llevan su marca al lado. No reescribimos ninguna cita por nuestra cuenta. {enlace}',
+    'hallazgos.lista.transcripciones.dudosas':
+      '; otros **{n}** son de sesiones cuya transcripción vigente es defectuosa',
     'hallazgos.lista.transcripciones.enlace': 'Qué significa cada marca →',
     'hallazgos.lista.contraste':
       '**Citas y datos municipales.** Las afirmaciones que sostienen estas citas se cotejan automáticamente con los datos del ayuntamiento. De las {citasConClaim} de aquí, el cotejo encontró algún dato sobre **{shown}**; para **{toggle}** no encontró nada que las confirme ni que las desmienta, y otras **{hidden}** son acusaciones públicas sin ese contraste, que en {enlace} no se publican. Llevan su marca al lado: que una acusación no tenga contraste no la declara falsa, y por sí solo no retira nada.',
@@ -2414,14 +2426,21 @@ export const CATALOGUE = {
     'findings.citas.procedencia.sustituida.title':
       'La sesión se transcribió de nuevo con un motor mejor y estas palabras no aparecen en el texto nuevo.',
     'findings.citas.procedencia.sustituida.nota.una':
-      'Sesión re-transcrita con un motor mejor. {sujeto} consta literalmente en la transcripción anterior y no en la vigente, que es más extensa: el asunto se debatió, pero la literalidad entrecomillada es la del primer transcriptor y no está confirmada contra el mejor texto disponible. Reanclarla es trabajo de una persona; aquí no se reescribe sola.',
+      'Sesión re-transcrita con un motor mejor. {sujeto} consta en la transcripción anterior y no en la vigente, que no tiene menos palabras: la literalidad entrecomillada es la del primer transcriptor y no está confirmada contra el mejor texto disponible. Reanclarla es trabajo de una persona; aquí no se reescribe sola.',
     'findings.citas.procedencia.sustituida.nota.varias':
-      'Sesión re-transcrita con un motor mejor. {sujeto} constan literalmente en la transcripción anterior y no en la vigente, que es más extensa: el asunto se debatió, pero la literalidad entrecomillada es la del primer transcriptor y no está confirmada contra el mejor texto disponible. Reanclarla es trabajo de una persona; aquí no se reescribe sola.',
+      'Sesión re-transcrita con un motor mejor. {sujeto} constan en la transcripción anterior y no en la vigente, que no tiene menos palabras: la literalidad entrecomillada es la del primer transcriptor y no está confirmada contra el mejor texto disponible. Reanclarla es trabajo de una persona; aquí no se reescribe sola.',
     'findings.citas.procedencia.sinDeterminar.chip': 'no hemos podido comprobarlo',
     'findings.citas.procedencia.sinDeterminar.title':
       'No podemos decir si estas palabras cambiaron al re-transcribir o si el tramo no está cubierto.',
     'findings.citas.procedencia.sinDeterminar.nota':
       'La transcripción vigente de esta sesión es más corta que la que sustituyó, así que la ausencia de las palabras de {sujeto} puede deberse al cambio de motor o a un tramo que la nueva pasada no cubre. No afirmamos ninguna de las dos cosas.',
+    'findings.citas.procedencia.dudosa.chip': 'transcripción defectuosa',
+    'findings.citas.procedencia.dudosa.title':
+      'La transcripción vigente de esta sesión no supera nuestra comprobación de calidad: hay que volver a transcribirla.',
+    'findings.citas.procedencia.dudosa.nota.una':
+      'La transcripción vigente de esta sesión no supera nuestra comprobación de calidad: el texto muestra fallos del motor que la produjo, como frases repetidas que nadie dijo o pasajes traducidos a otra lengua. {sujeto} no se puede cotejar contra ella: que las palabras aparezcan o no en ese texto no confirma la literalidad entrecomillada. Hace falta volver a transcribir la sesión; no reescribimos la cita por nuestra cuenta. La marca habla del texto, no de quién habló.',
+    'findings.citas.procedencia.dudosa.nota.varias':
+      'La transcripción vigente de esta sesión no supera nuestra comprobación de calidad: el texto muestra fallos del motor que la produjo, como frases repetidas que nadie dijo o pasajes traducidos a otra lengua. {sujeto} no se pueden cotejar contra ella: que las palabras aparezcan o no en ese texto no confirma la literalidad entrecomillada. Hace falta volver a transcribir la sesión; no reescribimos las citas por nuestra cuenta. La marca habla del texto, no de quién habló.',
     'findings.citas.procedencia.enlace': 'Cómo se comprueba una cita →',
     // Si algún dato municipal respalda lo que dicen (`CONTRAST_MARK`, por la puerta
     // de claim-public-gate.ts).
@@ -2772,7 +2791,7 @@ export const CATALOGUE = {
     'metodologia.frase.trinquete-veredictos':
       'Cada etapa mueve un veredicto en un solo sentido, ninguna automática lo refuerza, y un veredicto que afirma algo nombra contra qué se comprobó, salvo la retractación de un curador.',
     'metodologia.frase.citas-transcripcion':
-      'Las citas de los hallazgos salen de una transcripción automática; si no constan en el mejor texto lo marcamos, si no constan en ninguno no se publican, y no las reescribimos por nuestra cuenta.',
+      'Las citas de hallazgos y declaraciones salen de una transcripción automática: si no constan en un texto fiable las marcamos, si no constan en ninguno no se publican, y no las reescribimos por nuestra cuenta.',
     'metodologia.frase.citas-contraste':
       'Una puerta editorial decide si una afirmación se enseña con sus datos, como no contrastada o se retiene, y lo que se retiene es la cita, no lo que se dijo.',
     'metodologia.frase.plazos-vencidos':
@@ -5495,6 +5514,12 @@ export const CATALOGUE = {
     'declaraciones.tema.educacion': 'Educació',
     'declaraciones.tema.other': 'Sense classificar',
     'declaraciones.sinAtribuir': 'sense atribuir',
+    'declaraciones.procedencia.sustituida.nota':
+      'Estes paraules ixen de la transcripció anterior de la sessió, que es va tornar a transcriure amb un motor millor; en la vigent, que no és més curta, no apareixen així. El motor anterior traduïa sovint al castellà el que es deia en valencià —i aleshores les xifres poden no coincidir amb el que es va dir— o ho redactava a la seua manera. La marca parla del text, no de qui va parlar, i el veredicte es va calcular sobre estes mateixes paraules.',
+    'declaraciones.procedencia.sinDeterminar.nota':
+      'No podem situar estes paraules en la transcripció vigent de la sessió: o no n’hi ha, o té menys paraules que la que va substituir, i aleshores la seua absència pot deure’s al canvi de motor o a un tram que la nova passada no cobreix. No afirmem cap de les dues coses.',
+    'declaraciones.procedencia.dudosa.nota':
+      'La transcripció vigent d’esta sessió no supera la nostra comprovació de qualitat: el text mostra errors del motor que la va produir, com ara frases repetides que ningú no va dir o passatges traduïts a una altra llengua. Amb eixe text no es pot confirmar que estes siguen les paraules que es van dir, hi apareguen o no; si la sessió té una transcripció anterior, poden eixir d’ella, d’un motor que sovint traduïa o ho redactava a la seua manera. Cal tornar a transcriure la sessió i extraure de nou les seues declaracions. La marca parla del text, no de qui va parlar.',
     'declaraciones.evidencia.una': 'evidència',
     'declaraciones.evidencia.varias': 'evidències',
     'ledger.evidencia.tender': 'Contracte',
@@ -5601,6 +5626,8 @@ export const CATALOGUE = {
       'Text de l’acta oficial, no de l’àudio. Les marques de temps són sintètiques: l’acta és un resum ja redactat per secretaria, així que una cita literal d’ací cita l’acta, no la intervenció.',
     'plenoDetail.transcriptAudio':
       'Transcripció automàtica de l’àudio de la sessió. Pot contindre errors de reconeixement; l’acta oficial preval.',
+    'plenoDetail.transcriptDefectuosa':
+      'Esta transcripció no supera la nostra comprovació de qualitat: el text mostra errors del motor que la va produir, com ara frases repetides que ningú no va dir o passatges traduïts a una altra llengua. Fins que es torne a transcriure no s’ha de llegir com un registre del que es va dir, i les declaracions i les cites d’esta sessió porten la marca «transcripció defectuosa».',
     'plenoDetail.expediente': 'Exp. {expediente}',
     'plenoDetail.voto.resultado': 'Resultat',
     'plenoDetail.voto.desglose': 'Desglossament',
@@ -5958,7 +5985,9 @@ export const CATALOGUE = {
     'hallazgos.lista.como.enlace': 'via de rectificació',
     'hallazgos.lista.como.metodologia': 'Llegiu la metodologia →',
     'hallazgos.lista.transcripciones':
-      '**Cites i transcripcions.** Diverses sessions es van transcriure una segona vegada amb un motor millor. Dels {quotes} literals publicats ací, **{enVigente}** apareixen en la transcripció vigent de la seua sessió; **{soloEnSustituida}** només en la que es va substituir, i {sinDeterminar} no es poden situar en cap de les dues. Els que no consten en el text vigent porten la seua marca al costat. No reescrivim cap cita pel nostre compte. {enlace}',
+      '**Cites i transcripcions.** Diverses sessions es van transcriure una segona vegada amb un motor millor. Dels {quotes} literals publicats ací, **{enVigente}** apareixen en la transcripció vigent de la seua sessió; **{soloEnSustituida}** només en la que es va substituir, i {sinDeterminar} no es poden situar en cap de les dues{dudosas}. Tots, llevat dels {enVigente} primers, porten la seua marca al costat. No reescrivim cap cita pel nostre compte. {enlace}',
+    'hallazgos.lista.transcripciones.dudosas':
+      '; uns altres **{n}** són de sessions la transcripció vigent de les quals és defectuosa',
     'hallazgos.lista.transcripciones.enlace': 'Què vol dir cada marca →',
     'hallazgos.lista.contraste':
       '**Cites i dades municipals.** Les afirmacions que sostenen estes cites s’acaren automàticament amb les dades de l’ajuntament. De les {citasConClaim} d’ací, l’acarament va trobar alguna dada sobre **{shown}**; per a **{toggle}** no va trobar res que les confirme ni que les desmentisca, i unes altres **{hidden}** són acusacions públiques sense eixe contrast, que en {enlace} no es publiquen. Porten la seua marca al costat: que una acusació no tinga contrast no la declara falsa, i per si sol no retira res.',
@@ -6013,14 +6042,21 @@ export const CATALOGUE = {
     'findings.citas.procedencia.sustituida.title':
       'La sessió es va transcriure de nou amb un motor millor i estes paraules no apareixen en el text nou.',
     'findings.citas.procedencia.sustituida.nota.una':
-      'Sessió retranscrita amb un motor millor. {sujeto} consta literalment en la transcripció anterior i no en la vigent, que és més extensa: l’assumpte es va debatre, però la literalitat entre cometes és la del primer transcriptor i no està confirmada contra el millor text disponible. Tornar-la a ancorar és feina d’una persona; ací no es reescriu sola.',
+      'Sessió retranscrita amb un motor millor. {sujeto} consta en la transcripció anterior i no en la vigent, que no té menys paraules: la literalitat entre cometes és la del primer transcriptor i no està confirmada contra el millor text disponible. Tornar-la a ancorar és feina d’una persona; ací no es reescriu sola.',
     'findings.citas.procedencia.sustituida.nota.varias':
-      'Sessió retranscrita amb un motor millor. {sujeto} consten literalment en la transcripció anterior i no en la vigent, que és més extensa: l’assumpte es va debatre, però la literalitat entre cometes és la del primer transcriptor i no està confirmada contra el millor text disponible. Tornar-la a ancorar és feina d’una persona; ací no es reescriu sola.',
+      'Sessió retranscrita amb un motor millor. {sujeto} consten en la transcripció anterior i no en la vigent, que no té menys paraules: la literalitat entre cometes és la del primer transcriptor i no està confirmada contra el millor text disponible. Tornar-la a ancorar és feina d’una persona; ací no es reescriu sola.',
     'findings.citas.procedencia.sinDeterminar.chip': 'no ho hem pogut comprovar',
     'findings.citas.procedencia.sinDeterminar.title':
       'No podem dir si estes paraules van canviar en tornar a transcriure o si el tram no està cobert.',
     'findings.citas.procedencia.sinDeterminar.nota':
       'La transcripció vigent d’esta sessió és més curta que la que va substituir, així que l’absència de les paraules de {sujeto} pot deure’s al canvi de motor o a un tram que la nova passada no cobreix. No afirmem cap de les dues coses.',
+    'findings.citas.procedencia.dudosa.chip': 'transcripció defectuosa',
+    'findings.citas.procedencia.dudosa.title':
+      'La transcripció vigent d’esta sessió no supera la nostra comprovació de qualitat: cal tornar-la a transcriure.',
+    'findings.citas.procedencia.dudosa.nota.una':
+      'La transcripció vigent d’esta sessió no supera la nostra comprovació de qualitat: el text mostra errors del motor que la va produir, com ara frases repetides que ningú no va dir o passatges traduïts a una altra llengua. {sujeto} no s’hi pot acarar: que les paraules hi apareguen o no no confirma la literalitat entre cometes. Cal tornar a transcriure la sessió; no reescrivim la cita pel nostre compte. La marca parla del text, no de qui va parlar.',
+    'findings.citas.procedencia.dudosa.nota.varias':
+      'La transcripció vigent d’esta sessió no supera la nostra comprovació de qualitat: el text mostra errors del motor que la va produir, com ara frases repetides que ningú no va dir o passatges traduïts a una altra llengua. {sujeto} no s’hi poden acarar: que les paraules hi apareguen o no no confirma la literalitat entre cometes. Cal tornar a transcriure la sessió; no reescrivim les cites pel nostre compte. La marca parla del text, no de qui va parlar.',
     'findings.citas.procedencia.enlace': 'Com es comprova una cita →',
     'findings.citas.contraste.lead.una':
       '{citas} es va acarar automàticament amb la base documental municipal —la contractació des de 2017, les subvencions i les promeses publicades— i no va aparéixer cap dada que la confirme ni que la desmentisca. Això no la fa falsa: vol dir que no ho sabem — i sobre fets anteriors a eixa cobertura, que no podíem saber-ho.',
@@ -6351,7 +6387,7 @@ export const CATALOGUE = {
     'metodologia.frase.trinquete-veredictos':
       "Cada etapa mou un veredicte en un sol sentit, cap d'automàtica no el reforça, i un veredicte que afirma alguna cosa nomena amb què es va comprovar, excepte la retractació d'un curador.",
     'metodologia.frase.citas-transcripcion':
-      "Les cites de les troballes ixen d'una transcripció automàtica; si no consten en el millor text ho marquem, si no consten en cap no es publiquen, i no les reescrivim pel nostre compte.",
+      "Les cites de troballes i declaracions ixen d'una transcripció automàtica: si no consten en un text fiable les marquem, si no consten en cap no es publiquen, i no les reescrivim pel nostre compte.",
     'metodologia.frase.citas-contraste':
       'Una porta editorial decidix si una afirmació es mostra amb les seues dades, com a no contrastada o es reté, i el que es reté és la cita, no el que es va dir.',
     'metodologia.frase.plazos-vencidos':

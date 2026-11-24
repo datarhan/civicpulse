@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-23T19:43:11.732Z",
+  "generatedAt": "2026-11-24T12:58:31.223Z",
   "version": "1",
   "plenoId": "toa3rc",
   "plenoDate": "2025-12-26",
@@ -31,7 +31,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -58,7 +59,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     },
     {
       "claim": {
@@ -86,7 +88,8 @@
         "evidence": [],
         "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "toggle",
+      "procedencia": "solo-en-sustituida"
     }
   ]
 }
