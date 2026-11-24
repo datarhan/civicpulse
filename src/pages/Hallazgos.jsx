@@ -593,6 +593,14 @@ export default function Hallazgos() {
     }),
     '{enlace}',
   )
+  // La cláusula de las citas de una transcripción defectuosa, sólo cuando hay
+  // alguna: «otros 0» no se escribe.
+  const clausulaDudosas =
+    provStats?.transcripcionDudosa > 0
+      ? rellena(t('hallazgos.lista.transcripciones.dudosas'), {
+          n: provStats.transcripcionDudosa,
+        })
+      : ''
   const [transcripcionesAntes, transcripcionesDespues] = provStats
     ? partePorHueco(
         rellena(t('hallazgos.lista.transcripciones'), {
@@ -600,13 +608,7 @@ export default function Hallazgos() {
           enVigente: provStats.enVigente,
           soloEnSustituida: provStats.soloEnSustituida,
           sinDeterminar: provStats.sinDeterminar,
-          // La cláusula sólo cuando hay alguna: «otros 0» no se escribe.
-          dudosas:
-            provStats.transcripcionDudosa > 0
-              ? rellena(t('hallazgos.lista.transcripciones.dudosas'), {
-                  n: provStats.transcripcionDudosa,
-                })
-              : '',
+          dudosas: clausulaDudosas,
         }),
         '{enlace}',
       )

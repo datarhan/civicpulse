@@ -2339,7 +2339,7 @@ export const CATALOGUE = {
     'hallazgos.lista.como.enlace': 'vía de rectificación',
     'hallazgos.lista.como.metodologia': 'Leer metodología →',
     'hallazgos.lista.transcripciones':
-      '**Citas y transcripciones.** Varias sesiones se transcribieron una segunda vez con un motor mejor. De los {quotes} literales publicados aquí, **{enVigente}** aparecen en la transcripción vigente de su sesión; **{soloEnSustituida}** sólo en la que se sustituyó, y {sinDeterminar} no se pueden situar en ninguna de las dos{dudosas}. Todos esos llevan su marca al lado. No reescribimos ninguna cita por nuestra cuenta. {enlace}',
+      '**Citas y transcripciones.** Varias sesiones se transcribieron una segunda vez con un motor mejor. De los {quotes} literales publicados aquí, **{enVigente}** aparecen en la transcripción vigente de su sesión; **{soloEnSustituida}** sólo en la que se sustituyó, y {sinDeterminar} no se pueden situar en ninguna de las dos{dudosas}. Todos, salvo los {enVigente} primeros, llevan su marca al lado. No reescribimos ninguna cita por nuestra cuenta. {enlace}',
     'hallazgos.lista.transcripciones.dudosas':
       '; otros **{n}** son de sesiones cuya transcripción vigente es defectuosa',
     'hallazgos.lista.transcripciones.enlace': 'Qué significa cada marca →',
@@ -5985,7 +5985,7 @@ export const CATALOGUE = {
     'hallazgos.lista.como.enlace': 'via de rectificació',
     'hallazgos.lista.como.metodologia': 'Llegiu la metodologia →',
     'hallazgos.lista.transcripciones':
-      '**Cites i transcripcions.** Diverses sessions es van transcriure una segona vegada amb un motor millor. Dels {quotes} literals publicats ací, **{enVigente}** apareixen en la transcripció vigent de la seua sessió; **{soloEnSustituida}** només en la que es va substituir, i {sinDeterminar} no es poden situar en cap de les dues{dudosas}. Tots eixos porten la seua marca al costat. No reescrivim cap cita pel nostre compte. {enlace}',
+      '**Cites i transcripcions.** Diverses sessions es van transcriure una segona vegada amb un motor millor. Dels {quotes} literals publicats ací, **{enVigente}** apareixen en la transcripció vigent de la seua sessió; **{soloEnSustituida}** només en la que es va substituir, i {sinDeterminar} no es poden situar en cap de les dues{dudosas}. Tots, llevat dels {enVigente} primers, porten la seua marca al costat. No reescrivim cap cita pel nostre compte. {enlace}',
     'hallazgos.lista.transcripciones.dudosas':
       '; uns altres **{n}** són de sessions la transcripció vigent de les quals és defectuosa',
     'hallazgos.lista.transcripciones.enlace': 'Què vol dir cada marca →',
