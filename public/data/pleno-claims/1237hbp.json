@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-23T19:43:11.732Z",
+  "generatedAt": "2026-11-23T18:48:57.185Z",
   "version": "1",
   "plenoId": "1237hbp",
   "plenoDate": "2026-07-03",
@@ -266,33 +266,6 @@
     },
     {
       "claim": {
-        "id": "1237hbp-021-pro-755c47",
-        "plenoId": "1237hbp",
-        "plenoDate": "2026-07-03",
-        "segmentIndex": 21,
-        "type": "promesa",
-        "speakerGroup": null,
-        "verbatim": "el Ayuntamiento va a dar respuesta a esta realidad.",
-        "context": "También es verdad que el Ayuntamiento va a dar respuesta a esta realidad. Actualmente tenemos un contrato de emergencia con la segunda empresa que quedará, FCC, pero también es verdad que el servicio no está funcionando de la manera correcta.",
-        "topic": "medio-ambiente",
-        "entities": {},
-        "confidence": 0.7,
-        "reasoning": "Se menciona un compromiso del Ayuntamiento para abordar la situación del servicio de recogida de residuos, lo que puede ser verificado con futuras acciones o decisiones del Ayuntamiento.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1237hbp-021-pro-755c47",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": [
-          "promises"
-        ]
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
         "id": "1237hbp-022-afi-90d3aa",
         "plenoId": "1237hbp",
         "plenoDate": "2026-07-03",
@@ -347,95 +320,6 @@
     },
     {
       "claim": {
-        "id": "1237hbp-023-cit-a6246f",
-        "plenoId": "1237hbp",
-        "plenoDate": "2026-07-03",
-        "segmentIndex": 23,
-        "type": "cita_obra",
-        "speakerGroup": null,
-        "verbatim": "la situación de recogida de los poderes voluminosos en Riva Roja es una situación que no se puede evitar.",
-        "context": "La situación de recogida de los poderes voluminosos en Riva Roja es una situación que no se puede evitar.",
-        "topic": "medio-ambiente",
-        "entities": {
-          "referencedEntity": "recogida de los poderes voluminosos"
-        },
-        "confidence": 0.6,
-        "reasoning": "Se hace referencia a una situación específica relacionada con la recogida de residuos voluminosos.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1237hbp-023-cit-a6246f",
-        "verdict": "sin-datos",
-        "summary": "Analicé la afirmación (una opinión no verificable sobre que la situación de recogida de voluminosos \"no se puede evitar\") frente a los tres candidatos (contratos administrativos de Riba-roja de Túria sobre RSU/poda/voluminosos).",
-        "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "confidence": 0.2,
-        "source": "verdict-engine"
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1237hbp-029-afi-e1de2a",
-        "plenoId": "1237hbp",
-        "plenoDate": "2026-07-03",
-        "segmentIndex": 29,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "venimos de un contrato que, antes de estar ya prácticamente obsoleto, necesitábamos mejorar y todos lo sabíamos.",
-        "context": "Yo creo que para que la gente sepa la situación que tenemos en la recogida de basura, creo que tenemos que saber de dónde venimos. Y venimos de un contrato que, antes de estar ya prácticamente obsoleto, necesitábamos mejorar y todos lo sabíamos.",
-        "topic": "medio-ambiente",
-        "entities": {
-          "referencedEntity": "contrato de recogida de basura"
-        },
-        "confidence": 0.8,
-        "reasoning": "Se menciona un contrato de recogida de basura que se considera obsoleto, lo cual puede ser verificado a través de documentos del ayuntamiento.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1237hbp-029-afi-e1de2a",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1237hbp-029-cit-0d2047",
-        "plenoId": "1237hbp",
-        "plenoDate": "2026-07-03",
-        "segmentIndex": 29,
-        "type": "cita_obra",
-        "speakerGroup": null,
-        "verbatim": "este nuevo contrato de basura ha pasado por esa comisión antes que por los plenos.",
-        "context": "Este nuevo contrato de basura ha pasado por esa comisión antes que por los plenos. Ha pasado por plenos, por comisiones de contratación, ha habido diferencias entre los miembros, pero en los plenos se vota y la mayoría decide.",
-        "topic": "medio-ambiente",
-        "entities": {
-          "referencedEntity": "nuevo contrato de basura"
-        },
-        "confidence": 0.9,
-        "reasoning": "Se menciona un nuevo contrato de basura que ha seguido un proceso específico de aprobación, lo cual puede ser verificado en las actas de las comisiones y plenos.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1237hbp-029-cit-0d2047",
-        "verdict": "sin-datos",
-        "summary": "La afirmación es de naturaleza procedimental (orden de trámite: comisión de contratación antes que el pleno), no una cifra, fecha o hecho verificable a partir de un registro de contrato/subvención/presupuesto.",
-        "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "confidence": 0.2,
-        "source": "verdict-engine"
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
         "id": "1237hbp-030-cit-eea251",
         "plenoId": "1237hbp",
         "plenoDate": "2026-07-03",
@@ -483,64 +367,6 @@
       },
       "verification": {
         "claimId": "1237hbp-034-afi-749021",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1237hbp-034-cit-2c142d",
-        "plenoId": "1237hbp",
-        "plenoDate": "2026-07-03",
-        "segmentIndex": 34,
-        "type": "cita_obra",
-        "speakerGroup": null,
-        "verbatim": "van a hacer la compra de los contenedores en recursos propios",
-        "context": "Hablando con miembros del equipo de gobierno, me han dicho que van a hacer la compra de los contenedores en recursos propios. Supongo que ahora explicarán de qué forma lo van a hacer.",
-        "topic": "medio-ambiente",
-        "entities": {
-          "referencedEntity": "compra de contenedores"
-        },
-        "confidence": 0.7,
-        "reasoning": "Se menciona una acción futura de compra de contenedores, que puede ser verificada con el presupuesto municipal o actas de decisiones del gobierno local.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1237hbp-034-cit-2c142d",
-        "verdict": "sin-datos",
-        "summary": "Se analizó la afirmación (declaración prospectiva sobre financiar la compra de contenedores \"en recursos propios\") frente a los 8 candidatos.",
-        "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "confidence": 0.2,
-        "source": "verdict-engine"
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1237hbp-035-cit-69b7e7",
-        "plenoId": "1237hbp",
-        "plenoDate": "2026-07-03",
-        "segmentIndex": 35,
-        "type": "cita_convenio",
-        "speakerGroup": null,
-        "verbatim": "van a hacer la compra de los contenedores en recursos propios.",
-        "context": "Hablando con miembros del equipo de gobierno, me han dicho que van a hacer la compra de los contenedores en recursos propios. Supongo que ahora explicarán de qué forma lo van a hacer.",
-        "topic": "medio-ambiente",
-        "entities": {
-          "referencedEntity": "contenedores"
-        },
-        "confidence": 0.8,
-        "reasoning": "Se menciona una acción futura de compra de contenedores, lo que puede ser verificado con los planes de adquisición del gobierno local.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1237hbp-035-cit-69b7e7",
         "verdict": "sin-datos",
         "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
@@ -1447,203 +1273,6 @@
     },
     {
       "claim": {
-        "id": "1237hbp-091-pro-f77eec",
-        "plenoId": "1237hbp",
-        "plenoDate": "2026-07-03",
-        "segmentIndex": 91,
-        "type": "promesa",
-        "speakerGroup": null,
-        "verbatim": "que es posible un contrato nuevo donde la vida útil de los vehículos termine antes de su amortización final y se pueda vender",
-        "context": "...que es posible un contrato nuevo donde la vida útil de los vehículos termine antes de su amortización final y se pueda vender veremos el nuevo contrato si también está a 14 años...",
-        "topic": "fiscal",
-        "entities": {},
-        "confidence": 0.6,
-        "reasoning": "Se menciona la posibilidad de un nuevo contrato con condiciones específicas, lo que puede ser verificado en futuras decisiones del pleno.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1237hbp-091-pro-f77eec",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": [
-          "promises"
-        ]
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1237hbp-092-afi-ab2f7b",
-        "plenoId": "1237hbp",
-        "plenoDate": "2026-07-03",
-        "segmentIndex": 92,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "llevamos este año 7 comisiones de contratación",
-        "context": "...y a todos y todas que llevamos este año 7 comisiones de contratación y",
-        "topic": "transparencia",
-        "entities": {
-          "count": 7,
-          "countUnit": "comisiones"
-        },
-        "confidence": 0.9,
-        "reasoning": "Se menciona un número específico de comisiones de contratación realizadas en el año actual, lo cual puede ser verificado a través de actas o registros del pleno.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1237hbp-092-afi-ab2f7b",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1237hbp-093-afi-8e84d6",
-        "plenoId": "1237hbp",
-        "plenoDate": "2026-07-03",
-        "segmentIndex": 93,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "este pleno realmente es un pleno que voy a recorrer la intervención de la rechidora y el rechidor porque hemos hablado de residuos pero es un pleno que el pueblo se podría haber salvado es 4000 euros que nos va a cobrar",
-        "context": "...porque hemos hablado de residuos pero es un pleno que el pueblo se podría haber salvado es 4000 euros que nos va a cobrar se podría haber salvado el pueblo 4000 porque igual no le damos a u",
-        "topic": "fiscal",
-        "entities": {
-          "amountEuros": 4000
-        },
-        "confidence": 0.8,
-        "reasoning": "Se menciona una cifra concreta de 4000 euros que se relaciona con un costo que podría haberse evitado, lo que permite verificar la afirmación en registros de gastos o presupuestos.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1237hbp-093-afi-8e84d6",
-        "verdict": "sin-datos",
-        "summary": "La afirmación es una opinión política sobre un pleno que \"el pueblo se podría haber salvado\" porque cuesta 4000 euros (probablemente el coste de celebrar el pleno o de un gasto asociado a residuos).",
-        "evidence": [],
-        "checkedAgainst": [],
-        "derivedBy": [
-          "verdict-engine"
-        ],
-        "confidence": 0.2,
-        "source": "verdict-engine"
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1237hbp-100-pro-ae0b12",
-        "plenoId": "1237hbp",
-        "plenoDate": "2026-07-03",
-        "segmentIndex": 100,
-        "type": "promesa",
-        "speakerGroup": null,
-        "verbatim": "cuando podamos traeremos uno de los contratos más importantes y lo haremos a conciencia",
-        "context": "y por lo tanto en ese sentido cuando podamos traeremos uno de los contratos más importantes y lo haremos a conciencia el planteamiento político y técnico de ese contrato es de los mejores de la comunidad valenciana",
-        "topic": "other",
-        "entities": {},
-        "confidence": 0.7,
-        "reasoning": "El orador se compromete a traer un contrato importante en el futuro, lo que es una promesa verificable.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1237hbp-100-pro-ae0b12",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": [
-          "promises"
-        ]
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1237hbp-100-afi-bbe22e",
-        "plenoId": "1237hbp",
-        "plenoDate": "2026-07-03",
-        "segmentIndex": 100,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "resolvimos la crisis y la resolvimos en tres récords",
-        "context": "segunda fase, crisis y resolver la crisis y la resolvimos en tres récords o sea yo no tenía previsto que venía la DANA",
-        "topic": "other",
-        "entities": {
-          "count": 3,
-          "countUnit": "récords"
-        },
-        "confidence": 0.6,
-        "reasoning": "Se menciona que la crisis se resolvió en tres récords, lo que puede ser verificado con datos sobre la gestión de la crisis.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1237hbp-100-afi-bbe22e",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1237hbp-101-afi-c2ead8",
-        "plenoId": "1237hbp",
-        "plenoDate": "2026-07-03",
-        "segmentIndex": 101,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "resolvimos en tres récords",
-        "context": "y la resolvimos en tres récords o sea yo no tenía previsto que venía la DANA la DANA viera y bueno cada uno lo resuelve como pueda",
-        "topic": "other",
-        "entities": {},
-        "confidence": 0.6,
-        "reasoning": "Se menciona un hecho cuantificable sobre la resolución de una crisis en un tiempo récord, que puede ser verificado con datos sobre la gestión de la crisis.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1237hbp-101-afi-c2ead8",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1237hbp-101-cit-766d12",
-        "plenoId": "1237hbp",
-        "plenoDate": "2026-07-03",
-        "segmentIndex": 101,
-        "type": "cita_obra",
-        "speakerGroup": null,
-        "verbatim": "el planteamiento político y técnico de ese contrato es de los mejores de la comunidad valenciana",
-        "context": "y lo haremos a conciencia el planteamiento político y técnico de ese contrato es de los mejores de la comunidad valenciana o era en ese momento como consecuencia de lo que pasó",
-        "topic": "other",
-        "entities": {
-          "referencedEntity": "contrato importante"
-        },
-        "confidence": 0.5,
-        "reasoning": "Se hace referencia a un contrato que se considera de alta calidad, lo que puede ser verificado al revisar la documentación del contrato.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1237hbp-101-cit-766d12",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted"
-        ]
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
         "id": "1237hbp-102-afi-463285",
         "plenoId": "1237hbp",
         "plenoDate": "2026-07-03",
@@ -1843,33 +1472,6 @@
     },
     {
       "claim": {
-        "id": "1237hbp-106-pro-78e9f6",
-        "plenoId": "1237hbp",
-        "plenoDate": "2026-07-03",
-        "segmentIndex": 106,
-        "type": "promesa",
-        "speakerGroup": null,
-        "verbatim": "lo que queremos es un buen servicio para el que toque más servicio que es lo que vamos a hacer y tenerlo y eso es lo que queremos y es lo que vamos a tener",
-        "context": "...lo que queremos es un buen servicio para el que toque más servicio que es lo que vamos a hacer y tenerlo y eso es lo que queremos y es lo que vamos a tener por lo tanto tiene sentido...",
-        "topic": "medio-ambiente",
-        "entities": {},
-        "confidence": 0.7,
-        "reasoning": "Se expresa un compromiso de mejorar el servicio de recogida de residuos, lo que puede ser verificado en futuros contratos o acuerdos.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1237hbp-106-pro-78e9f6",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": [
-          "promises"
-        ]
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
         "id": "1237hbp-106-afi-3ffbcb",
         "plenoId": "1237hbp",
         "plenoDate": "2026-07-03",
@@ -1897,33 +1499,6 @@
     },
     {
       "claim": {
-        "id": "1237hbp-107-pro-4d498c",
-        "plenoId": "1237hbp",
-        "plenoDate": "2026-07-03",
-        "segmentIndex": 107,
-        "type": "promesa",
-        "speakerGroup": null,
-        "verbatim": "lo que queremos es un buen servicio para el que toque más servicio que es lo que vamos a hacer y tenerlo y eso es lo que queremos y es lo que vamos a tener",
-        "context": "a legalidad a mi no sé, quiero decir podemos buscar si amortizamos antes o no, pero eso técnicamente tenemos que verlo lo que más nos interesa es nuestro pueblo vale, nosotros hemos dado igual 14, que 8, que 4, lo que queremos es un buen servicio para el que toque más servicio que es lo que vamos a hacer y tenerlo y eso es lo que queremos y es lo que vamos a tener por lo tanto tiene sentido",
-        "topic": "other",
-        "entities": {},
-        "confidence": 0.8,
-        "reasoning": "El orador expresa un compromiso de mejorar el servicio, lo que se puede verificar en futuras acciones del municipio.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1237hbp-107-pro-4d498c",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": [
-          "promises"
-        ]
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
         "id": "1237hbp-107-pro-74e931",
         "plenoId": "1237hbp",
         "plenoDate": "2026-07-03",
@@ -1942,35 +1517,6 @@
       },
       "verification": {
         "claimId": "1237hbp-107-pro-74e931",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": [
-          "promises"
-        ]
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1237hbp-110-pro-19293e",
-        "plenoId": "1237hbp",
-        "plenoDate": "2026-07-03",
-        "segmentIndex": 110,
-        "type": "promesa",
-        "speakerGroup": null,
-        "verbatim": "los contenedores estarán antes de diciembre instalados",
-        "context": "la gente que sabe que estamos en fase de contratación de nuevos contenedores, que los contenedores estarán antes de diciembre instalados, los nuevos contenedores que es importante que el servicio en términos de recogida vale, en general está bien que tenemos incidencias puntuales ahora y hace 20 años",
-        "topic": "medio-ambiente",
-        "entities": {
-          "date": "2026-12-01"
-        },
-        "confidence": 0.8,
-        "reasoning": "La afirmación menciona una fecha concreta para la instalación de nuevos contenedores, lo que permite verificar si se cumple o no.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1237hbp-110-pro-19293e",
         "verdict": "sin-datos",
         "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],

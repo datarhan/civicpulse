@@ -61,6 +61,8 @@ export interface TranscriptSanityReport {
   translatedShare: number
   /** La racha seguida más larga. Un trozo traducido entero es una racha. */
   longestTranslatedRun: number
+  /** Líneas idénticas seguidas, la racha más larga: ver `rachaDeBucle`. */
+  longestLoopRun: number
 }
 
 /** A real pleno session never yields fewer content lines than this. */
@@ -187,6 +189,64 @@ export function lineaTraducida(linea: string): boolean | null {
 export const MAX_TRANSLATED_SHARE = 0.05
 export const MAX_TRANSLATED_RUN = 8
 
+// ─── El bucle en los bordes ─────────────────────────────────────────────────
+
+/**
+ * El tercer modo de fallo, medido el 23-11-2026: el bucle no se come la
+ * sesión, se come sus BORDES. La música de antes de empezar y de después de
+ * levantar la sesión sale como un título que nadie dijo —«La Lucha de los
+ * Malditos», «La Lucha por la Vida»— una ventana de 30 s tras otra, y entre
+ * medias está el pleno de verdad.
+ *
+ * Las medidas de arriba son GLOBALES y por eso no lo ven: en `1xmr0do` el
+ * título es el 17 % del fichero (corte, 30 %) y sale 19 veces (suelo, 20); en
+ * `1237hbp`, el 20 %. Se publicaron los dos. Lo que delata el bucle no es
+ * cuánto ocupa sino que se repite SEGUIDO: medido sobre las 50 transcripciones
+ * publicadas, ninguna sesión sana repite la misma línea más de 3 veces seguidas
+ * («Sí.», «but», «0»), y estas dos lo hacen 20 y 32 veces.
+ *
+ * Una racha se mide así, y cada regla tiene su caso en la prueba:
+ *   · las líneas vacías no la cortan — `1237hbp` intercala ventanas en blanco;
+ *   · las cortas tampoco cuentan — una votación nominal son catorce «Sí.»
+ *     seguidos, y es un pleno (la fixture sana de marzo lo trae); el bucle de
+ *     una palabra ya lo cazan `repetition-loop` y `dominant-line`;
+ *   · la marca de hablante no cuenta — la diarización no debe esconder un bucle;
+ *   · una línea que es la misma frase repetida cuenta como esa frase — el
+ *     decodificador atascado mete el título veinte veces en una ventana.
+ *
+ * El corte va en 8, a más del doble del máximo sano y a menos de la mitad del
+ * bucle más corto visto: cuatro minutos del mismo título no son un pleno.
+ */
+export const MAX_RACHA_DE_BUCLE = 8
+
+/** Por debajo de esto una línea se repite de verdad: «Sí.», «Gracias.», «A favor». */
+const RACHA_MIN_CARACTERES = 15
+
+const MARCA_DE_HABLANTE = /^\((?:SPEAKER_\d+|UNKNOWN)[^)]*\)\s*/
+/** Una frase de 3+ caracteres repetida entera, separada por espacio o puntuación. */
+const FRASE_REPETIDA = /^(.{3,}?)(?:[\s,.;:]+\1)+[\s,.;:]*$/
+
+function lineaDeBucle(linea: string): string {
+  const l = linea.replace(TIMESTAMP_PREFIX, '').replace(MARCA_DE_HABLANTE, '').trim()
+  const m = FRASE_REPETIDA.exec(l)
+  return m ? m[1].trim() : l
+}
+
+/** La racha más larga de líneas idénticas seguidas (0 si no hay ninguna). */
+export function rachaDeBucle(raw: string): number {
+  let mejor = 0
+  let racha = 0
+  let anterior: string | null = null
+  for (const bruta of raw.split('\n')) {
+    const l = lineaDeBucle(bruta)
+    if (l.length < RACHA_MIN_CARACTERES) continue
+    racha = l === anterior ? racha + 1 : 1
+    anterior = l
+    if (racha > mejor) mejor = racha
+  }
+  return mejor
+}
+
 export function assessTranscriptSanity(raw: string): TranscriptSanityReport {
   const contentLines = raw
     .split('\n')
@@ -246,6 +306,9 @@ export function assessTranscriptSanity(raw: string): TranscriptSanityReport {
   // MAX_TRANSLATED_SHARE.
   if (translatedShare > MAX_TRANSLATED_SHARE || longestTranslatedRun >= MAX_TRANSLATED_RUN)
     reasons.push('translated-passages')
+  // El bucle en los bordes: ver MAX_RACHA_DE_BUCLE.
+  const longestLoopRun = rachaDeBucle(raw)
+  if (longestLoopRun >= MAX_RACHA_DE_BUCLE) reasons.push('loop-run')
 
   return {
     ok: reasons.length === 0,
@@ -260,6 +323,7 @@ export function assessTranscriptSanity(raw: string): TranscriptSanityReport {
     translatedLines,
     translatedShare,
     longestTranslatedRun,
+    longestLoopRun,
   }
 }
 

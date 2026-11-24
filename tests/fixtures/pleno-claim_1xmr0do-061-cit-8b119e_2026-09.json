@@ -1,0 +1,17 @@
+{
+  "id": "1xmr0do-061-cit-8b119e",
+  "plenoId": "1xmr0do",
+  "plenoDate": "2026-09-07",
+  "segmentIndex": 61,
+  "type": "cita_obra",
+  "speakerGroup": null,
+  "verbatim": "hemos remodelado toda la parte interna de la Mallá para hacerla, bueno, pues de una piscina que de ahora es ciertamente complicada",
+  "context": "Se informa de la reforma del interior de la instalación de la Mallá (piscina), con la finalidad de modernizarla; se reconoce que hay molestias mientras duran las obras.",
+  "topic": "urbanismo",
+  "entities": {
+    "referencedEntity": "remodelación interior de la mallá (piscina)"
+  },
+  "confidence": 0.7,
+  "reasoning": "Obra citada como ejecutada o en ejecución; se esperaría un contrato/licitación o expediente de obra de reforma de la instalación de la Mallá en el perfil de contratante o en actas.",
+  "requiresHumanApproval": true
+}
