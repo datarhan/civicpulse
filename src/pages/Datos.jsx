@@ -1153,6 +1153,7 @@ export default function Datos() {
             qué es esto y dónde se lee mejor una cifra suelta. */}
         <p
           data-datos-frase=""
+          data-lectura-vecinal=""
           style={{
             fontSize: 'var(--fs-body)',
             color: 'var(--ink)',

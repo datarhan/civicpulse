@@ -47,6 +47,7 @@ export function SesionesDelAnio({ filas, agendas }) {
       className="cp-card cp-en-breve cp-plenos-anio"
       data-tarjeta=""
       data-plenos-anio=""
+      data-lectura-vecinal=""
       aria-labelledby="plenos-anio-titulo"
     >
       <style>{estiloEnBrevePlenos}</style>

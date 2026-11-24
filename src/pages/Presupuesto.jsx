@@ -611,8 +611,12 @@ function CascadaCard() {
                 }}
               />
             </div>
+            {/* `data-cifra`: lo que casa esta fila con la cifra de «En breve» que
+                enlaza aquí (`TarjetaEnBreve`, tests/e2e/lectura-vecinal.spec.ts). */}
             <div
               className="mono"
+              data-cifra={f.id}
+              data-cifra-valor={f.v}
               style={{
                 fontSize: 'var(--fs-body)',
                 fontWeight: 500,
@@ -1131,13 +1135,15 @@ function AprobadoPar() {
         {desequilibrio !== null && (
           <div style={{ marginTop: 12 }}>
             <Aviso tone="warn" id="descuadre">
-              <Marcado
-                texto={rellena(t('presupuesto.descuadre'), {
-                  ingresos: euros(s.totalRevenue),
-                  gastos: euros(s.totalExpense),
-                  dif: euros(Math.abs(desequilibrio)),
-                })}
-              />
+              <span data-cifra="descuadre" data-cifra-valor={Math.abs(desequilibrio)}>
+                <Marcado
+                  texto={rellena(t('presupuesto.descuadre'), {
+                    ingresos: euros(s.totalRevenue),
+                    gastos: euros(s.totalExpense),
+                    dif: euros(Math.abs(desequilibrio)),
+                  })}
+                />
+              </span>
             </Aviso>
           </div>
         )}
@@ -1340,6 +1346,8 @@ function DeudaVivaSection() {
           <div style={{ textAlign: 'right', flexShrink: 0 }}>
             <div
               className="mono"
+              data-cifra="deuda"
+              data-cifra-valor={ultimo.deudaEuros}
               style={{ fontSize: 'var(--fs-card)', fontWeight: 500, letterSpacing: '-.02em' }}
             >
               {euros(ultimo.deudaEuros)}

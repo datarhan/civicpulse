@@ -239,6 +239,8 @@ export default function EnBrevePresupuesto() {
             : rellena(t('presupuesto.enBreve.limite.pregunta'), { year: l.year })
         }
         cifra={eurosBreves(l.definitivo)}
+        cifraClave="definitivo"
+        cifraValor={l.definitivo}
         cifraNota={
           l.porVecino != null
             ? rellena(t('presupuesto.enBreve.porVecino'), { x: euros(l.porVecino) })
@@ -280,6 +282,8 @@ export default function EnBrevePresupuesto() {
         id="gastado"
         pregunta={t('presupuesto.enBreve.gastado.pregunta')}
         cifra={eurosBreves(g.ejecutado)}
+        cifraClave="ejecutado"
+        cifraValor={g.ejecutado}
         cifraNota={rellena(t('presupuesto.enBreve.gastado.cifraNota'), { n: g.deCada100 })}
         figura={<FiguraGastado gastado={g} />}
         frases={[
@@ -364,6 +368,8 @@ export default function EnBrevePresupuesto() {
         id="deuda"
         pregunta={t('presupuesto.enBreve.deuda.pregunta')}
         cifra={eurosBreves(d.deudaEuros)}
+        cifraClave="deuda"
+        cifraValor={d.deudaEuros}
         cifraNota={
           d.porVecino != null
             ? rellena(t('presupuesto.enBreve.porVecino'), { x: euros(d.porVecino) })
@@ -397,6 +403,8 @@ export default function EnBrevePresupuesto() {
         id="rareza"
         pregunta={t('presupuesto.enBreve.rareza.pregunta')}
         cifra={eurosBreves(Math.abs(z.diferencia))}
+        cifraClave="descuadre"
+        cifraValor={Math.abs(z.diferencia)}
         cifraNota={t('presupuesto.enBreve.rareza.cifraNota')}
         frases={[
           z.diferencia > 0
