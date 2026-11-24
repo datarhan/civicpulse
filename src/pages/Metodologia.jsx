@@ -724,9 +724,12 @@ function ContratoEditorial() {
             persona. Fuera de la veda, cada pasada de la tarea de plenos (lunes y jueves) vuelve a
             atribuir como mucho dos sesiones ya publicadas; las demás conservan su mapa de voces y
             esperan a una pasada siguiente, para que un mapa defectuoso no cambie decenas de
-            sesiones antes de que alguien lo vea. Las mediciones vigentes son públicas en el
-            repositorio (<code>.automation-measurements.json</code>) y caducan a los 90 días, porque
-            una precisión medida contra un modelo que ya no se usa es un dato histórico, no una
+            sesiones antes de que alguien lo vea. En una sesión ya publicada, atribuir sólo da grupo
+            a las declaraciones que no lo tenían: no las vuelve a extraer, no cambia un grupo ya
+            puesto ni uno firmado o corregido por una persona, y no atribuye ninguna a un grupo de
+            un solo concejal. Las mediciones vigentes son públicas en el repositorio (
+            <code>.automation-measurements.json</code>) y caducan a los 90 días, porque una
+            precisión medida contra un modelo que ya no se usa es un dato histórico, no una
             garantía.
           </p>
         </div>

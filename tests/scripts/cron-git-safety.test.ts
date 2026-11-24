@@ -187,6 +187,9 @@ const STEP_OUTPUTS: Record<string, string> = {
   'veda:activa': '',
   'extract:speaker-map': '',
   'extract:pleno-claims': '',
+  // La re-unión de una sesión ya publicada con su mapa (sin re-extraer). El stub
+  // imprime lo que imprime el de verdad según STUB_REUNE_* (ver el stub).
+  'reunir:atribucion': '',
   // El brazo de la transcripción lo llama tras extraer. Sin script en el
   // package.json del arenero, npm sale con «Missing script» y la pasada lo
   // registra como un fallo que no es suyo.
@@ -311,6 +314,24 @@ fi
 # conservó las declaraciones de antes (lo que imprime el de verdad).
 if [ "$name" = "extract:pleno-claims" ]; then
   case " \${STUB_PRESERVA:-} " in *" \${2:-} "*) echo "[extract·claims] \${2} PRESERVED — stub"; exit 0 ;; esac
+fi
+# reunir:atribucion imprime su desenlace como el de verdad y apunta sus
+# argumentos. Por defecto une (y reescribe las sugerencias, como el de verdad);
+# STUB_REUNE_NADA: «nada que escribir»; STUB_REUNE_SIN_COTEJO: sin transcripción.
+if [ "$name" = "reunir:atribucion" ]; then
+  shift
+  printf '%s\n' "$*" >> .stub-reunir-args
+  _p=""; _prev=""
+  for _a in "$@"; do [ "$_prev" = "--pleno" ] && _p="$_a"; _prev="$_a"; done
+  case " \${STUB_FAIL:-} " in *" reunir:atribucion "*) echo "[reunir-atribucion] ABORTADO: stub" >&2; exit 1 ;; esac
+  case " \${STUB_REUNE_SIN_COTEJO:-} " in *" $_p "*)
+    echo "[reunir-atribucion] con mapa pero sin poder cotejarlo (sin transcripción o ilegible), NO intentadas: $_p"
+    echo "[reunir-atribucion] nada que escribir"; exit 0 ;;
+  esac
+  case " \${STUB_REUNE_NADA:-} " in *" $_p "*) echo "[reunir-atribucion] nada que escribir"; exit 0 ;; esac
+  printf '{"items":[{"id":"c-%s","plenoId":"%s","speakerGroup":"PSOE"}]}\n' "$_p" "$_p" > public/data/pleno-claims-suggestions.json
+  echo "[reunir-atribucion] escrito $PWD/public/data/pleno-claims-suggestions.json: 3 grupo(s) en 1 sesión(es)"
+  exit 0
 fi
 if [ "$name" = "extraccion:pendiente" ]; then
   echo "[stub] ran $name" >&2
@@ -1626,6 +1647,7 @@ describe('hallazgos-pipeline.sh · cada recuento del parte dice lo que mide', ()
     extraidos: /(\d+) extracted\b/,
     mapas: /(\d+) speaker map\(s\)/,
     reextraidos: /(\d+) re-extracted\b/,
+    reunidos: /(\d+) re-joined\b/,
   }
   type Recuentos = Record<keyof typeof RECUENTOS, number | null>
   const leer = (linea: string): Recuentos => {
@@ -1638,6 +1660,7 @@ describe('hallazgos-pipeline.sh · cada recuento del parte dice lo que mide', ()
       extraidos: cifra(RECUENTOS.extraidos),
       mapas: cifra(RECUENTOS.mapas),
       reextraidos: cifra(RECUENTOS.reextraidos),
+      reunidos: cifra(RECUENTOS.reunidos),
     }
   }
 
@@ -1672,26 +1695,42 @@ describe('hallazgos-pipeline.sh · cada recuento del parte dice lo que mide', ()
   }> = [
     {
       caso: 'una noche de mapa y re-extracción no dice que transcribió',
-      preparar: () => ({ GEMINI_API_KEY: 'sandbox-key', SPEAKER_MAP_CALL_BUDGET: '4' }),
+      // Sin nada publicado de la sesión: sólo ésas se re-extraen.
+      preparar: (dir) => {
+        writeFileSync(join(dir, 'public/data/pleno-claims-verified.json'), '{"items":[]}\n')
+        return { GEMINI_API_KEY: 'sandbox-key', SPEAKER_MAP_CALL_BUDGET: '4' }
+      },
       pruebas: [
         '[stub] wrote pleno-speaker-map/sandboxpleno.json',
         'claims re-extracted with map attribution',
       ],
-      esperado: { transcritos: 0, extraidos: 0, mapas: 1, reextraidos: 1 },
+      esperado: { transcritos: 0, extraidos: 0, mapas: 1, reextraidos: 1, reunidos: 0 },
+      verifica: true,
+    },
+    {
+      caso: 'una noche de mapa sobre una sesión publicada la re-une, y lo dice aparte',
+      // El arenero sin pleno-claims-verified.json cuenta la sesión como
+      // publicada («ante la duda, 1»).
+      preparar: () => ({ GEMINI_API_KEY: 'sandbox-key', SPEAKER_MAP_CALL_BUDGET: '4' }),
+      pruebas: [
+        '[stub] wrote pleno-speaker-map/sandboxpleno.json',
+        '✓ sandboxpleno re-unida con su mapa',
+      ],
+      esperado: { transcritos: 0, extraidos: 0, mapas: 1, reextraidos: 0, reunidos: 1 },
       verifica: true,
     },
     {
       caso: 'una noche de transcripción lo dice, con su extracción aparte',
       preparar: conVideo,
       pruebas: ['[stub] ran transcribe-pleno p1', '✓ p1 claims extracted'],
-      esperado: { transcritos: 1, extraidos: 1, mapas: 0, reextraidos: 0 },
+      esperado: { transcritos: 1, extraidos: 1, mapas: 0, reextraidos: 0, reunidos: 0 },
       verifica: true,
     },
     {
       caso: 'una transcripción cuya extracción falla cuenta como transcrita, y no se verifica',
       preparar: (dir) => ({ ...conVideo(dir), STUB_FAIL: 'extract:pleno-claims' }),
       pruebas: ['[stub] ran transcribe-pleno p1', 'warn: claim extract failed for p1'],
-      esperado: { transcritos: 1, extraidos: 0, mapas: 0, reextraidos: 0 },
+      esperado: { transcritos: 1, extraidos: 0, mapas: 0, reextraidos: 0, reunidos: 0 },
       verifica: false,
     },
   ]
@@ -2318,14 +2357,20 @@ describe('scrape-ci-blocked.sh · un push rechazado se recupera solo', () => {
  * Decisión 4.4 del plan de plenos (22-11-2026). En veda electoral el brazo del
  * mapa de voces no corre: el mapa decide a qué grupo se atribuye cada cita de un
  * candidato. Y haya veda o no, como mucho REATRIBUCION_MAX (2) sesiones ya
- * publicadas se re-extraen con atribución por pasada, para que una versión mala
- * del mapa no vuelva a etiquetar decenas de sesiones en una noche.
+ * publicadas reciben grupos por pasada, para que una versión mala del mapa no
+ * vuelva a etiquetar decenas de sesiones en una noche.
+ *
+ * Desde el 23-11-2026 una sesión publicada no se re-extrae: se re-une con
+ * `reunir:atribucion`, porque la guarda de huérfanas niega la re-extracción de
+ * toda sesión citada por un hallazgo y la sesión se quedaba sin grupo para
+ * siempre. La re-extracción queda para las que no tienen nada publicado.
  */
 describe('hallazgos-pipeline.sh · veda electoral y tope de re-atribución', () => {
   const BASE = { GEMINI_API_KEY: 'sandbox-key', SPEAKER_MAP_CALL_BUDGET: '8' }
   const cuenta = (log: string, re: RegExp) => log.split('\n').filter((l) => re.test(l)).length
   const REEXTRAIDA = /claims re-extracted with map attribution/
-  const EN_ESPERA_POR_TOPE = /re-extracción EN ESPERA \(tope/
+  const REUNIDA = /re-unida con su mapa/
+  const EN_ESPERA_POR_TOPE = /re-unión EN ESPERA \(tope/
 
   it('sin veda el brazo del mapa corre (control: si no, lo de abajo no prueba nada)', () => {
     const dir = makeSandbox()
@@ -2353,7 +2398,7 @@ describe('hallazgos-pipeline.sh · veda electoral y tope de re-atribución', () 
     expect(r.log).not.toMatch(/\[stub\] wrote pleno-speaker-map/)
   }, 120_000)
 
-  it('re-atribuye como mucho 2 sesiones publicadas por pasada; las demás conservan el mapa', () => {
+  it('re-une como mucho 2 sesiones publicadas por pasada; las demás conservan el mapa', () => {
     const ids = ['s1', 's2', 's3', 's4']
     const dir = makeSandbox({ publicadas: ids })
     const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', {
@@ -2361,33 +2406,112 @@ describe('hallazgos-pipeline.sh · veda electoral y tope de re-atribución', () 
       STUB_BACKLOG: ids.join(' '),
     })
     for (const id of ids) expect(r.log).toContain(`[stub] wrote pleno-speaker-map/${id}.json`)
-    expect(cuenta(r.log, REEXTRAIDA)).toBe(2)
+    expect(cuenta(r.log, REUNIDA)).toBe(2)
     expect(cuenta(r.log, EN_ESPERA_POR_TOPE)).toBe(2)
+    // Una sesión publicada ya no se re-extrae: la guarda de huérfanas lo negaría.
+    expect(cuenta(r.log, REEXTRAIDA)).toBe(0)
+    expect(r.log).not.toContain('[stub] ran extract:pleno-claims')
+    expect(r.log).toMatch(
+      /re-unión de sesiones publicadas: 2 unida\(s\) · 0 sin nada que unir · 0 no intentada\(s\) · 0 fallida\(s\) · 2 en espera por el tope/,
+    )
+    // Con lo que la tubería le pasa: escribir, una sesión, tope 1 por llamada.
+    expect(readFileSync(join(dir, '.stub-reunir-args'), 'utf8').trim().split('\n')).toEqual([
+      '--write --max 1 --pleno s1',
+      '--write --max 1 --pleno s2',
+    ])
+    // Y lo unido se verifica y se sella, que es lo que lo lleva a lo publicado.
+    expect(r.log).toMatch(/re-verifying claims \(0 extracted · 0 re-extracted · 2 re-joined\)/)
+    expect(r.log).toContain('[stub] ran verify:pleno-claims')
+    expect(r.log).toMatch(/· 2 re-joined · /)
+    expect(r.committed).toContain('public/data/pleno-claims-suggestions.json')
 
     // Su mapa ya está completo, así que no vuelven en el backlog: la pasada
-    // siguiente las re-extrae desde la lista de pendientes.
+    // siguiente las une desde la lista de pendientes.
     const pendientes = join(dir, '.cache/reatribucion-pendiente.txt')
     expect(readFileSync(pendientes, 'utf8').trim().split('\n')).toEqual(['s3', 's4'])
     const r2 = runScript(dir, 'scripts/hallazgos-pipeline.sh', { ...BASE, STUB_BACKLOG: ' ' })
-    expect(r2.log).toMatch(/re-extracciones pendientes de otras pasadas: 2/)
-    expect(r2.log).toContain('✓ s3 claims re-extracted')
-    expect(r2.log).toContain('✓ s4 claims re-extracted')
+    expect(r2.log).toMatch(/re-atribuciones pendientes de otras pasadas: 2/)
+    expect(r2.log).toContain('✓ s3 re-unida con su mapa')
+    expect(r2.log).toContain('✓ s4 re-unida con su mapa')
     expect(readFileSync(pendientes, 'utf8').trim()).toBe('')
   }, 240_000)
 
-  it('una re-extracción que una guarda deja sin efecto no gasta tope ni sale de la lista', () => {
-    const dir = makeSandbox({ publicadas: ['s1', 's2'] })
+  it('la re-unión no necesita el backend de texto; la re-extracción sí', () => {
+    const dir = makeSandbox({ publicadas: ['s1'] })
+    // Un `claude` que nunca contesta, como en «un backend caído…».
+    const bin = join(dir, 'fakebin')
+    mkdirSync(bin, { recursive: true })
+    writeFileSync(join(bin, 'claude'), '#!/bin/sh\necho "quota" >&2\nexit 1\n')
+    chmodSync(join(bin, 'claude'), 0o755)
     const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', {
       ...BASE,
-      STUB_BACKLOG: 's1 s2',
-      STUB_PRESERVA: 's1',
-      REATRIBUCION_MAX: '1',
+      PATH: `${bin}:${process.env.PATH}`,
+      STUB_BACKLOG: 's1 nueva1',
+      LLM_BACKEND: 'claude-code',
     })
-    expect(r.log).toMatch(/s1 PRESERVED — stub/)
-    expect(r.log).toMatch(/s1: re-extracción SIN EFECTO/)
-    expect(r.log).toContain('✓ s2 claims re-extracted')
-    expect(cuenta(r.log, EN_ESPERA_POR_TOPE)).toBe(0)
+    expect(r.log, 'el backend no se dio por caído: la prueba no mide nada').toMatch(
+      /DEGRADADA: sin backend de texto/,
+    )
+    expect(r.log).toContain('✓ s1 re-unida con su mapa')
+    expect(r.log).toMatch(/nueva1 mapeado, re-extracción EN ESPERA \(sin backend de texto\)/)
+  }, 120_000)
+
+  it('cada desenlace de la re-unión se cuenta aparte y sólo «unida» y «nada» salen de la lista', () => {
+    const dir = makeSandbox({ publicadas: ['a', 'b', 'c', 'd'] })
+    const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', {
+      ...BASE,
+      STUB_BACKLOG: 'a b c',
+      STUB_REUNE_NADA: 'a',
+      STUB_REUNE_SIN_COTEJO: 'b',
+      REATRIBUCION_MAX: '5',
+    })
+    expect(r.log).toMatch(/a: re-unión sin nada que unir/)
+    expect(r.log).toMatch(/b: re-unión NO INTENTADA/)
+    expect(r.log).toContain('✓ c re-unida con su mapa')
+    expect(r.log).toMatch(
+      /re-unión de sesiones publicadas: 1 unida\(s\) · 1 sin nada que unir · 1 no intentada\(s\) · 0 fallida\(s\) · 0 en espera por el tope/,
+    )
+    expect(readFileSync(join(dir, '.cache/reatribucion-pendiente.txt'), 'utf8').trim()).toBe('b')
+  }, 120_000)
+
+  it('una re-unión que falla no gasta tope, no tumba la noche y sigue en la lista', () => {
+    const dir = makeSandbox({ publicadas: ['s1'] })
+    const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', {
+      ...BASE,
+      STUB_BACKLOG: 's1',
+      STUB_FAIL: 'reunir:atribucion',
+    })
+    expect(r.status).toBe(0)
+    expect(r.log).toMatch(/ABORTADO: stub/)
+    expect(r.log).toMatch(/reunir:atribucion falló para s1/)
+    expect(r.log).toMatch(
+      /0 unida\(s\) · 0 sin nada que unir · 0 no intentada\(s\) · 1 fallida\(s\)/,
+    )
+    expect(r.log).toMatch(/no new extractions — skipping verify/)
     expect(readFileSync(join(dir, '.cache/reatribucion-pendiente.txt'), 'utf8').trim()).toBe('s1')
+  }, 120_000)
+
+  it('una noche sin nada que unir lo dice, a cero', () => {
+    const dir = makeSandbox()
+    const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', { ...BASE, STUB_BACKLOG: ' ' })
+    expect(r.log).toMatch(/speaker-map backlog: none/)
+    expect(r.log).toMatch(
+      /re-unión de sesiones publicadas: 0 unida\(s\) · 0 sin nada que unir · 0 no intentada\(s\) · 0 fallida\(s\) · 0 en espera por el tope/,
+    )
+  }, 120_000)
+
+  it('una re-extracción que una guarda deja sin efecto sigue en la lista', () => {
+    // Sólo llega aquí una sesión SIN nada publicado: las publicadas se re-unen.
+    const dir = makeSandbox({ publicadas: [] })
+    const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', {
+      ...BASE,
+      STUB_BACKLOG: 'n1 n2',
+      STUB_PRESERVA: 'n1',
+    })
+    expect(r.log).toMatch(/n1 PRESERVED — stub/)
+    expect(r.log).toMatch(/n1: re-extracción SIN EFECTO/)
+    expect(r.log).toContain('✓ n2 claims re-extracted')
+    expect(readFileSync(join(dir, '.cache/reatribucion-pendiente.txt'), 'utf8').trim()).toBe('n1')
   }, 120_000)
 
   it('un tope que no es un número se lee como 0, no como «sin tope»', () => {
@@ -2398,7 +2522,7 @@ describe('hallazgos-pipeline.sh · veda electoral y tope de re-atribución', () 
       REATRIBUCION_MAX: 'dos',
     })
     expect(r.log).toMatch(/REATRIBUCION_MAX=dos no es un número/)
-    expect(cuenta(r.log, REEXTRAIDA)).toBe(0)
+    expect(cuenta(r.log, REUNIDA)).toBe(0)
     expect(cuenta(r.log, EN_ESPERA_POR_TOPE)).toBe(1)
   }, 120_000)
 
@@ -2411,7 +2535,7 @@ describe('hallazgos-pipeline.sh · veda electoral y tope de re-atribución', () 
     })
     expect(cuenta(r.log, REEXTRAIDA)).toBe(2)
     expect(cuenta(r.log, EN_ESPERA_POR_TOPE)).toBe(1)
-    expect(r.log).toMatch(/s1 mapeado, re-extracción EN ESPERA \(tope/)
+    expect(r.log).toMatch(/s1 mapeado, re-unión EN ESPERA \(tope/)
   }, 120_000)
 })
 
