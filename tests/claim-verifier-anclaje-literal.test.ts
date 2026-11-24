@@ -32,8 +32,24 @@ const DATOS = {
   promises: leer('promises.json'),
 }
 const CITAS = (leer('pleno-claims-suggestions.json') as { items: PlenoClaim[] }).items
+/**
+ * Filas que el corpus ya no trae, congeladas tal cual salieron de él.
+ * `1xmr0do-061-cit-8b119e` venía de la transcripción con el bucle de Whisper en
+ * los bordes; re-transcrita y re-extraída el 23-11-2026, el pasaje sale en
+ * valenciano y ninguna fila nueva es esta. La fila es la real (copiada de
+ * `git show e64d2372:public/data/pleno-claims-suggestions.json`), no una forma
+ * escrita a mano, y sigue siendo el caso que esta prueba necesita.
+ */
+const RETIRADAS: PlenoClaim[] = [
+  JSON.parse(
+    readFileSync(
+      join(__dirname, 'fixtures', 'pleno-claim_1xmr0do-061-cit-8b119e_2026-09.json'),
+      'utf8',
+    ),
+  ),
+]
 const cita = (id: string): PlenoClaim => {
-  const c = CITAS.find((x) => x.id === id)
+  const c = CITAS.find((x) => x.id === id) ?? RETIRADAS.find((x) => x.id === id)
   if (!c) throw new Error(`la cita ${id} ya no está en el corpus extraído`)
   return c
 }
