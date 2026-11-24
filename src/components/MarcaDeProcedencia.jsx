@@ -86,7 +86,12 @@ export function MarcaDeProcedencia({ procedencia, style = {} }) {
         </Pill>
       </div>
       {t(marca.nota)}{' '}
-      <a href="/metodologia#citas-transcripcion" style={{ color: 'var(--civic)' }}>
+      {/* Subrayado: va dentro de un párrafo, y axe (link-in-text-block) exige que
+          se distinga sin depender del color. */}
+      <a
+        href="/metodologia#citas-transcripcion"
+        style={{ color: 'var(--civic)', textDecoration: 'underline' }}
+      >
         {t('findings.citas.procedencia.enlace')}
       </a>
     </div>
