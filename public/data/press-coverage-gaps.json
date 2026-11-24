@@ -1,25 +1,17 @@
 {
-  "generatedAt": "2026-11-23T19:43:39.648Z",
+  "generatedAt": "2026-11-24T05:49:27.829Z",
   "windowDays": 14,
-  "items": [
-    {
-      "kind": "promise",
-      "refId": "ac-psoe-168xzn8",
-      "label": "Construcción de hasta 40 viviendas de protección pública con prioridad para afectados por la Dana",
-      "date": "2026-11-09",
-      "keyword": ""
-    }
-  ],
+  "items": [],
   "covered": [],
   "stats": {
     "plenoItemsUncovered": 0,
-    "promisesUncovered": 1,
-    "candidatesExamined": 1,
+    "promisesUncovered": 0,
+    "candidatesExamined": 0,
     "tramitesExcluidos": 0,
     "titularesConsiderados": 9
   },
   "builtFrom": {
-    "plenos-agendas.json": "826806b22072",
+    "plenos-agendas.json": "3ac50acb67a0",
     "press-claims-verified.json": "10e308fc2880",
     "press.json": "f397a51aa510",
     "promises.json": "78479b1377ce"
