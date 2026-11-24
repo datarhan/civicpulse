@@ -13,8 +13,7 @@
 
 import { callLLMConProcedencia } from '../llm/client'
 import type { CallLlmOptions, RespuestaConProcedencia } from '../llm/client'
-import { decideAutomation } from './automation-policy'
-import { singleSeatBlocs } from './corporation-seats'
+import { retencionDeGrupo, type MotivoDeRetencion } from './retencion-de-grupo'
 import { PlenoClaimResponseSchema, type PlenoClaimExtraction } from '../llm/schemas'
 import {
   PLENO_CLAIM_PROMPT_VERSION,
@@ -315,18 +314,9 @@ export async function extractClaimsConProcedencia(
   // grupo que la composición no trae: no saber cuántos escaños tiene no es
   // saber que son varios. La decisión la toma la política, no este fichero.
   // CLAUDE.md: «a one-seat bloc is not bloc-level».
-  const unEscano = new Set(singleSeatBlocs(opts.currentSeats))
-  const enLaComposicion = new Set(opts.currentSeats.map((s) => s.bloc))
-  const nombrarAUnaPersona = decideAutomation({ kind: 'name-individual', namesIndividual: true })
-  type MotivoDeRetencion = keyof ClaimExtractionResult['stats']['blocsRetenidos']
+  const motivoDeRetencion = retencionDeGrupo(opts.currentSeats)
   const retenidas = new Map<string, MotivoDeRetencion>()
   const slugs = { emitidos: 0, retirados: 0 }
-  function motivoDeRetencion(bloc: string | null): MotivoDeRetencion | null {
-    if (bloc === null || nombrarAUnaPersona.allow) return null
-    if (unEscano.has(bloc)) return 'unEscano'
-    if (!enLaComposicion.has(bloc)) return 'fueraDeLaComposicion'
-    return null
-  }
 
   const seen = new Set<string>()
   const items: PlenoClaim[] = []

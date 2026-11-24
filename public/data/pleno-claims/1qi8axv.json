@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-24T12:58:31.223Z",
+  "generatedAt": "2026-11-24T13:28:19.813Z",
   "version": "1",
   "plenoId": "1qi8axv",
   "plenoDate": "2025-12-23",
@@ -2579,7 +2579,7 @@
         "plenoDate": "2025-12-23",
         "segmentIndex": 80,
         "type": "afirmacion_numerica",
-        "speakerGroup": null,
+        "speakerGroup": "PSOE",
         "verbatim": "sacar un préstamo de legislatura que lo he comentado ya varias veces en abril julio y septiembre",
         "context": "evidentemente eso es prácticamente imposible o sacar un préstamo de legislatura que lo he comentado ya varias veces en abril julio y septiembre o sacar un préstamo de legislatura para cuadrar ese remanente.",
         "topic": "fiscal",

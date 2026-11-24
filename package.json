@@ -251,6 +251,7 @@
     "indicador-reply": "npx tsx scripts/reply-indicador.ts",
     "render:og": "node scripts/render-og.mjs",
     "carry:attribution": "npx tsx scripts/carry-attribution.ts",
+    "reunir:atribucion": "npx tsx scripts/reunir-atribucion.ts",
     "check:sindic-fichas": "npx tsx scripts/check-sindic-fichas.ts",
     "check:sparse": "npx tsx scripts/check-sparse.ts",
     "check:hooks": "npx tsx scripts/check-hooks.ts",

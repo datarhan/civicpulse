@@ -570,7 +570,14 @@ reports where it is. Two gates sit in front of it (decision 4.4, 2026-11-22):
   freeze, a recomposition that would add or change a group, so a
   re-attribution whose verify failed just before the freeze waits for its end.
   A re-extraction that an extractor guard leaves without effect
-  (`PRESERVED`/`SKIPPED`/`CONSERVADA`) stays on the list and spends no cap. A freeze longer than
+  (`PRESERVED`/`SKIPPED`/`CONSERVADA`) stays on the list and spends no cap. That is
+  most published sessions: a finding that cites a session's statements makes the
+  orphan guard refuse its re-extraction, so the list never empties by itself.
+  `npm run reunir:atribucion` is the way through: it applies the same join to
+  the statements already extracted (no model call, no new ids), never over a
+  signed group or one a finding withdrew, and holds back one-seat groups; then
+  `npm run verify:pleno-claims`. It is dry-run by default and keeps the same cap
+  (`--max` raises it, for a run someone reviews). A freeze longer than
   eight days leaves `check:runs` reporting the speaker-map pass overdue: that is
   the freeze, not a dead step.
 

@@ -35,6 +35,7 @@ const CON_VEDA = [
   'scripts/extract-speaker-map.ts',
   'scripts/extract-speaker-map-texto.ts',
   'scripts/carry-attribution.ts',
+  'scripts/reunir-atribucion.ts',
   'scripts/reconcile-attribution.ts',
   'scripts/relabel-attribution.ts',
   'scripts/auto-curate-findings.ts',
