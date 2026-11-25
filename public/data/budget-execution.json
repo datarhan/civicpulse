@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-24T15:11:36.809Z",
+  "generatedAt": "2026-11-25T14:51:49.915Z",
   "source": "https://www.ribarroja.es/es/1_gestion_presupuestaria/2_estados_ejecucion_presupuesto",
   "periods": [
     {
@@ -1437,7 +1437,7 @@
       "Ejecución trimestral Ingresos Resumen 3T2025 (https://www.ribarroja.es/sites/www.ribarroja.es/files/1.2%20ITEM%2037.%20Ejecuci%C3%B3n%20trimestral.%20Ingresos.%20Resumen_0.pdf)"
     ],
     "hojasFallidas": [],
-    "motorOcr": "tesseract.js 7.0.0 (spa 4.0.0_best_int) sobre mupdf 1.28.1",
+    "motorOcr": "tesseract.js 7.0.0 (spa 4.0.0_best_int) sobre mupdf 1.28.6",
     "hojasOcr": [
       {
         "hoja": "Estado de ejecución ppto ingresos 4T2024 (https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/7085615/filesGroup/1.2-ITEM-37.-Estado-de-ejecucin-presupuestaria.-INGRESOS.pdf)",

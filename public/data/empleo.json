@@ -1,24 +1,99 @@
 {
-  "generatedAt": "2026-11-24T15:22:46.527Z",
+  "generatedAt": "2026-11-25T15:01:14.856Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 50,
-    "openTotal": 50,
-    "inRibaRoja": 37,
-    "closingSoon": 9,
-    "withDetail": 50,
+    "total": 51,
+    "openTotal": 51,
+    "inRibaRoja": 38,
+    "closingSoon": 8,
+    "withDetail": 51,
     "byMonth": {
-      "2026-11": 17,
+      "2026-11": 18,
       "2026-10": 27,
       "2026-09": 4,
       "2026-05": 2
     }
   },
   "items": [
+    {
+      "id": "2580",
+      "fo": 2580,
+      "codigo": "2026/00276",
+      "titulo": "Operario/a de limpieza con discapacidad o IPT",
+      "publishedAt": "2026-11-25",
+      "deadline": "2027-01-25",
+      "location": "Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2580",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00276"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Operario/a de limpieza con discapacidad o IPT"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Se requiere: - certificado de discapacidad o IPT - Carnet de carretillero en vigor - Conocimientos de uso de fregadora"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATACION DISCAPACIDAD"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Municipio: Riba-roja de Túria, Provincia: Valencia"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Turnos: Turno tarde"
+          },
+          {
+            "label": "Horario",
+            "value": "L-V (16:00-20:00H), posibilidad de hacer jornada completa"
+          },
+          {
+            "label": "Salario",
+            "value": "1444 € brutos/mes 12 pagas (jornada completa)"
+          },
+          {
+            "label": "Funciones",
+            "value": "Limpieza almacén, sanear zonas, uso de traspaleta eléctrica para la limpieza, manejo de fregadora, limpieza de exterior."
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATACION DISCAPACIDAD",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "1",
+        "observaciones": "Se requiere: - certificado de discapacidad o IPT - Carnet de carretillero en vigor - Conocimientos de uso de fregadora",
+        "jornada": "Turnos: Turno tarde",
+        "horario": "L-V (16:00-20:00H), posibilidad de hacer jornada completa",
+        "salario": "1444 € brutos/mes 12 pagas (jornada completa)",
+        "funciones": "Limpieza almacén, sanear zonas, uso de traspaleta eléctrica para la limpieza, manejo de fregadora, limpieza de exterior.",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
     {
       "id": "2578",
       "fo": 2578,
@@ -349,7 +424,7 @@
           },
           {
             "label": "Observaciones",
-            "value": "Empresa seria con continuidad y cartera fija de clientes ofrece flexibilidad horaria, seguiridad laboral, muy bien ambiente de trabajo e incentivos. Requisitos: - Experiencia mínima de 2 años como albañil de primera - Experiencia demostrable en reformas de viviendas y mantenimiento de instalaciones - PRL Construcción 20 horas (imprescindible) - Carnet de conducir B - Capacidad para trabajar en equipo - Persona organizada, polivalente y responsable - Compromiso y profesionalidad"
+            "value": "Empresa seria con continuidad y cartera fija de clientes ofrece flexibilidad horaria, seguiridad laboral, muy buen ambiente de trabajo e incentivos. Requisitos: - Experiencia mínima de 2 años como albañil de primera - Experiencia demostrable en reformas de viviendas y mantenimiento de instalaciones - PRL Construcción 20 horas (imprescindible) - Carnet de conducir B - Capacidad para trabajar en equipo - Persona organizada, polivalente y responsable - Compromiso y profesionalidad"
           },
           {
             "label": "Sector CNAE",
@@ -404,7 +479,7 @@
         "duracion": "Más de 6 meses",
         "numPuestos": "2",
         "categoria": "OFICIAL DE 1ª",
-        "observaciones": "Empresa seria con continuidad y cartera fija de clientes ofrece flexibilidad horaria, seguiridad laboral, muy bien ambiente de trabajo e incentivos. Requisitos: - Experiencia mínima de 2 años como albañil de primera - Experiencia demostrable en reformas de viviendas y mantenimiento de instalaciones - PRL Construcción 20 horas (imprescindible) - Carnet de conducir B - Capacidad para trabajar en equipo - Persona organizada, polivalente y responsable - Compromiso y profesionalidad",
+        "observaciones": "Empresa seria con continuidad y cartera fija de clientes ofrece flexibilidad horaria, seguiridad laboral, muy buen ambiente de trabajo e incentivos. Requisitos: - Experiencia mínima de 2 años como albañil de primera - Experiencia demostrable en reformas de viviendas y mantenimiento de instalaciones - PRL Construcción 20 horas (imprescindible) - Carnet de conducir B - Capacidad para trabajar en equipo - Persona organizada, polivalente y responsable - Compromiso y profesionalidad",
         "municipio": "Riba-roja de Túria",
         "provincia": "Valencia",
         "cp": "46190",

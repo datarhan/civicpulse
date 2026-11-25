@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-24T15:21:55.028Z",
+  "generatedAt": "2026-11-25T15:00:21.350Z",
   "source": {
     "platform": "SEPE Muniacteco 20-45",
     "pattern": "https://sepe.es/SiteSepe/…/municipios_20_45/<YEAR>/<MES>_<YEAR>/Muniacteco_20-45_COM.VALENCIANA.xls"
@@ -9,8 +9,14 @@
   "latestTotal": 1177,
   "stats": {
     "mesesRecorridos": 24,
-    "leidos": 22,
-    "arrastrados": [],
+    "leidos": 21,
+    "arrastrados": [
+      {
+        "period": "2025-10",
+        "estado": "sin-respuesta",
+        "motivo": "fetch failed"
+      }
+    ],
     "fueraDeLaSerie": [
       {
         "period": "2025-04",

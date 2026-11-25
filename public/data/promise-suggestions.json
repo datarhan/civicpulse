@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-11-24T15:24:26.857Z",
+  "generatedAt": "2026-11-25T15:02:58.524Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
   "counts": {
     "total": 14,
     "byProposedStatus": {
-      "documentada": 12,
-      "en-progreso": 2
+      "documentada": 10,
+      "en-progreso": 4
     },
     "llmEvidence": 0
   },
@@ -42,7 +42,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-24T15:24:26.775Z"
+      "generatedAt": "2026-11-25T15:02:58.390Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -61,13 +61,25 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-24T15:24:26.775Z"
+      "generatedAt": "2026-11-25T15:02:58.390Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
       "proposedStatus": "documentada",
-      "confidence": 0,
+      "confidence": 0.287,
       "reasoning": [
+        {
+          "url": "https://www.ribarroja.es/es/noticia/consulta-p%C3%BAblica-modificaci%C3%B3n-ordenanza-fiscal-tasa-servicio-escuela-de-verano",
+          "date": "2026-11-25",
+          "quote": "Consulta pública modificación Ordenanza Fiscal Tasa Servicio Escuela de Verano",
+          "kind": "press",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "matchedKeywords": [
+            "tasa",
+            "servicio",
+            "fiscal"
+          ]
+        },
         {
           "url": "https://regmeet.com/aytoribarroja/participaciones/aba18772fc70c8cbf79a79f413ef102b?idioma=castellano",
           "date": "2026-07-03",
@@ -80,7 +92,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-24T15:24:26.775Z"
+      "generatedAt": "2026-11-25T15:02:58.390Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -88,7 +100,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-24T15:24:26.775Z"
+      "generatedAt": "2026-11-25T15:02:58.390Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -96,7 +108,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-24T15:24:26.775Z"
+      "generatedAt": "2026-11-25T15:02:58.390Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -115,7 +127,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-24T15:24:26.775Z"
+      "generatedAt": "2026-11-25T15:02:58.390Z"
     },
     {
       "promiseId": "ac-psoe-1ryndd8",
@@ -136,25 +148,13 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-24T15:24:26.775Z"
+      "generatedAt": "2026-11-25T15:02:58.390Z"
     },
     {
       "promiseId": "ac-psoe-43brfs",
       "proposedStatus": "documentada",
-      "confidence": 0.287,
+      "confidence": 0.175,
       "reasoning": [
-        {
-          "url": "https://www.ribarroja.es/es/noticia/riba-roja-inicia-el-curso-escolar-con-3.375-alumnos-apoyando-a-las-familias-un-a%C3%B1o-m%C3%A1s-con-el-bono-vuelve-al-cole",
-          "date": "2026-09-09",
-          "quote": "Riba-roja inicia el curso escolar con 3.375 alumnos apoyando a las familias un año más con el Bono Vuelve al Cole",
-          "kind": "press",
-          "publisher": "Ayuntamiento de Riba-roja de Túria",
-          "matchedKeywords": [
-            "bono",
-            "vuelve",
-            "cole"
-          ]
-        },
         {
           "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQMVNCcl9scmFTR09WeVQ5dllUMmFPOVZUbXpSZGRNZVRScmlBeHl4YTNudWxJOHo0cDhkTnQ4Ml90cDF1TFZndWVXNGRxNElHQ29Cd3NpdEdIYjlOcVIyX3FMaXdGRnIyV241UmF2R3diR0Z3bnVqelVjbk9OZTc3RFR1d2k2T2FQU3RZTDZ3OVpKZXR5SmpfVkJIN285UnA5MkViNjUtOExQZHMta2tQRlAyM1FwdVNSTUdFSHhENnVDZVRmNkhMaG1PaV9sWEx1V0FOSi11UzF1T1Fl0gHiAUFVX3lxTE14SkVwbjBYeWpBVmU2SFFwdEJlVnI1NmFWb0xkVEVjN0ZsZERhdVY5SWp6QWxHU2tnMnB1UEgwR0ZKNXQ0WWtqcTB3cWdwRmlGcXFyeEpILVdWbGwtdmhpXzA3ejlHTm9HT2kxTTBnb2w5STN5QXAyWDBESVpkTWF1NVpkTWh2bVA1WDM1OTJ1RXpRcHVmbkRrdUlDNE5tQ1BYdEpuVU41blZpNDE4MG9Pd2Z3dTk3N2VaRmFZR2ZLWVh5cmhIX282alF3Nml3SkZ2djM3bzJuTTlHMHFMZURlckE?oc=5",
           "date": "2026-10-21",
@@ -175,6 +175,17 @@
           "matchedKeywords": [
             "bono",
             "edicion"
+          ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNU0pwZXgxWklpWWtWZlRZMU55SUZ6ZFdlZTBWWXJDcHpaazNMcE43OWdYSjhtX0hna3o4c3E1QlZuc1lfcWVpSWlsWEltVWdjWXNwQVdMZ21lZGYtb0ZMZzg0NmwwcGkxcENkd0JzaTRyU0NtQ2k2M0NNbUNsYjI5MEpMbFd3VkhHOXoxaEJGc0xVckpQRk9VclUtLXV6dHQ1Rk5xX21WMllSZ0k2Znc0Q2dwTThGWTNPSWVoOGpmWlRMMUxNM3ZtSlJUM1FCNnoyc1k40gHYAUFVX3lxTFBDZnNQc2Y3TlNzbjVjWWMwTnZDVkRkcUN1MGFzcndTOF9MRkpTRnBFcDZlTEd5MEl1WEhQN0JIcnVQNVpFcy1RbDhvbkRrNHB5bTlUVFlkTkV5aEhQMFBfRmxJYU14dG44WTYwaVFsUzJDeTk2YkpiZlYxdVg0ZC1nb1NMTS1NLXlhVVBPQmJiSms5X0hwNHhuQ2RvYzBQTkx5OFRsdzlJZEFxeGk5RUg3dmJ3VE84ZjQ2Z0cwNnFwVEZNN3dvRUU3ZkloZ2I1WDRXcmhuVTZnUg?oc=5",
+          "date": "2026-10-15",
+          "quote": "Riba-roja celebra la Fira de 10 con más de 50 comercios y bonos de 20 euros",
+          "kind": "press",
+          "publisher": "Levante-EMV",
+          "matchedKeywords": [
+            "bono",
+            "euro"
           ]
         },
         {
@@ -201,7 +212,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-24T15:24:26.775Z"
+      "generatedAt": "2026-11-25T15:02:58.390Z"
     },
     {
       "promiseId": "ac-psoe-17y448o",
@@ -252,6 +263,17 @@
           ]
         },
         {
+          "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNU0pwZXgxWklpWWtWZlRZMU55SUZ6ZFdlZTBWWXJDcHpaazNMcE43OWdYSjhtX0hna3o4c3E1QlZuc1lfcWVpSWlsWEltVWdjWXNwQVdMZ21lZGYtb0ZMZzg0NmwwcGkxcENkd0JzaTRyU0NtQ2k2M0NNbUNsYjI5MEpMbFd3VkhHOXoxaEJGc0xVckpQRk9VclUtLXV6dHQ1Rk5xX21WMllSZ0k2Znc0Q2dwTThGWTNPSWVoOGpmWlRMMUxNM3ZtSlJUM1FCNnoyc1k40gHYAUFVX3lxTFBDZnNQc2Y3TlNzbjVjWWMwTnZDVkRkcUN1MGFzcndTOF9MRkpTRnBFcDZlTEd5MEl1WEhQN0JIcnVQNVpFcy1RbDhvbkRrNHB5bTlUVFlkTkV5aEhQMFBfRmxJYU14dG44WTYwaVFsUzJDeTk2YkpiZlYxdVg0ZC1nb1NMTS1NLXlhVVBPQmJiSms5X0hwNHhuQ2RvYzBQTkx5OFRsdzlJZEFxeGk5RUg3dmJ3VE84ZjQ2Z0cwNnFwVEZNN3dvRUU3ZkloZ2I1WDRXcmhuVTZnUg?oc=5",
+          "date": "2026-10-15",
+          "quote": "Riba-roja celebra la Fira de 10 con más de 50 comercios y bonos de 20 euros",
+          "kind": "press",
+          "publisher": "Levante-EMV",
+          "matchedKeywords": [
+            "euro",
+            "comercio"
+          ]
+        },
+        {
           "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-aprueba-la-cuenta-general-del-a%C3%B1o-2025-que-certifica-un-super%C3%A1vit-de-4%E2%80%995-millones-de-euros-y-un-remanente-de-3%273-millones-en-el-presupuesto-econ%C3%B3mico",
           "date": "2026-10-13",
           "quote": "Riba-roja de Túria aprueba la cuenta general del año 2025 que certifica un superávit de 4’5 millones de euros y un remanente de 3'3 millones en el presupuesto económico",
@@ -274,7 +296,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-24T15:24:26.775Z"
+      "generatedAt": "2026-11-25T15:02:58.390Z"
     },
     {
       "promiseId": "ac-psoe-1bkbwjs",
@@ -319,17 +341,6 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMijwJBVV95cUxQdS1KWEd6U3RhYy1KMHdqM0k2SGdrLXp2ejFBWTNTLXdMSDhzMk96OE9tRnhQdTF5QlZQMDI5R1dTbjhnbUQtU1ZNX0k1bkJ1STBYc293ZG0yTkhyVUhfYklobU5EcnZZUVBvMHpjTHRCbzhXQUUxcm5BaTJjalludWsyMEFxd2ZmUWlLRkpKYmJ1UXBONy1hMkNOb04yV0pEQjBQa0Q5NEZnMkFsZUthcUw2eHFXRlR3dVkwWlV4MW93VUVscEl6TWI0SGZtOUp4cDRzbWVrUXN4Q2pMbkZsR0JLSEM0S2RxME9kX01YOTlUX3BPLV9Vc2duLXpTOGhhcGgwZHFsUnF3d2ZPNnNZ0gGjAkFVX3lxTFBobVBRTFgyUXlhWnhJcGMwRVhIMmpjVkxMODVpek9tNEhVeThWSTRBU21DYzVNUjUtazFOV3pzUTc0eDhpUFVWRG1uRVRPQXY1WGhxLUZQZzg5MTJOREFhNUd6a2MzSlZaZEY4MmMwRWt3ekxramUwYk5XaWhTbkdNWUpKSTdsX3R0UndaV0VVTURvdXZLS09sYlVZQTlNdEV2NXpra1Vib1doVC1xc0ZsaE9iVVJodXZSM3RUbzFxR1ZHZ1NfYzViMHlYbnJza0ljV2JXa2pVMmVlMmZoSTRPb2VnNlZoYVlUcWg5M19YS1M2Q3JiYkpRcGVZczdXc0RNbzlWeG5ua2Z3Y1ZUdC1GSGNqeUwxYy1OdlBPTVBmNk93Zw?oc=5",
-          "date": "2026-10-26",
-          "quote": "El proyecto europeo CircSyst impulsa la reutilización de agua industrial en Riba-roja con tecnología inteligente",
-          "kind": "press",
-          "publisher": "Cadena SER",
-          "matchedKeywords": [
-            "proyecto",
-            "europeo"
-          ]
-        },
-        {
           "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxQQjNCaUhiZmE0ejlGNnpzSFp1S0xsRjJzLW4tN0pOVXhkeEh5TE9PUWpaSXl3ZU1oRl9rckdsdlAtRlQ2YkU2OWhyRmVkRGl6cjM1bHFBaUNBck1SRnA4anZyQTBlU1lrY2taU2xGNllRczRueHNUOEFHZ1ljOW1xQ3IzN1FpVzVSSng4QVMyMkQwNGRTUzNCM21Nam05T2YwbEJlMXc3X1FseUdsZVZhN0RhQk9hTFpaQkhnalpPRkJUUVVWWmlNaFpldGJpb0puV3B6T0hBSXB5cG11QlZzVnNTMG9xSUpQ0gHuAUFVX3lxTE4zU0djZjcxOWFveXJQcE5RZ0FCaHozLXpfTVU1WkNTZ2pvZXc2YmZKOTRBdGN5bGpfdlN4QU9TaWFFVlg0VUZWdzdUcjB3NDJmbU9lWS0wQTZ0MFlIaF96bU1ZakRXbkRldnp6XzduaHNOZ1cwWjVYdDR3LWlkdFhsUEFidFlXcXNxZW0wSFVzZEszdVFrVjA2ZGE2aWZoeGVHSXN2d1htT1BsWXBFeTIxUGlfaGwwVDhMTFFmTWhKNzlDQXJEOFgwVlhYRXc5QUdyQTUyanpqYUEzeEl2TjFaeVJZbWpyckRobjVPamc?oc=5",
           "date": "2026-10-08",
           "quote": "Riba-roja prepara un ambicioso plan para transformar sus cuatro canteras: “Puede convertirse en uno de los proyectos más importantes de Europa”",
@@ -339,15 +350,26 @@
             "proyecto",
             "plan"
           ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxQcnJNWjcwTm1UQWw1aGVHZkpWR0plXzBfYTNjOVhMaXRuSzB4aEZyWnZmQnBfcXFSeWxnd0ZlQThtVDBncjFqcEdjTHF5RWhFSFBqeU03aTgzRUQ1aUNid0hvT3dCUHE2TVoyQTN4U29FZXFxaE9maHJyZFFJUXU4SV94c3BySGZkeTZZRFJPT19reGtZbndJT2dUdmlCSmM2ZE9QMkdmQ0hkcG96Vkh4Ti1mUDBQRWVhcWVQV0VqcFMwcTNPNHAzcjM2Vi13MWQ2aXA3VzI2MnpXcjdQX2pvOUw1cU9GUnJlTkHSAe8BQVVfeXFMUGZwRGt4X3hWd1NqVlp1T0JZb3RvUlZ0d0d6YTNpdC1KUnRFNnRoQ3JoV2ZNQ1ZjWG1FTXc5Z0xvR1YtTWpXY2lXNmJkN1NEblN5cmt2alQxYjB3MkZsQVpIcmlCWnloOXFSWXAxbmZxUkd1dk9wMzFtREpEb0pjNlFRZ2FCNGlRUnVMYXp6Tl9ra1Fqc01mRkxCM3JKQkFuZzMwWGs1dVdVTXZuNUk1STVNQ3E3aFFUTTRjRnduaVFXa3RVSUlRSF9wcmtocVZLMFVPU1ZIZTBvdksyRE1VRTZaSzNnOHlLMmxoclhvYUE?oc=5",
+          "date": "2026-10-03",
+          "quote": "Riba-roja mejora su gestión turística y supera la mitad de los requisitos para convertirse en un destino inteligente",
+          "kind": "press",
+          "publisher": "Levante-EMV",
+          "matchedKeywords": [
+            "turistica",
+            "destino"
+          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-24T15:24:26.775Z"
+      "generatedAt": "2026-11-25T15:02:58.390Z"
     },
     {
       "promiseId": "ac-psoe-1xeq50",
-      "proposedStatus": "documentada",
-      "confidence": 0.4,
+      "proposedStatus": "en-progreso",
+      "confidence": 0.7,
       "reasoning": [
         {
           "url": "https://www.ribarroja.es/es/noticia/riba-roja-destina-una-partida-de-7.000-euros-en-subvenciones-para-fomentar-la-pr%C3%A1ctica-del-deporte-y-mejorar-el-rendimiento-en-las-competiciones-oficiales",
@@ -362,6 +384,18 @@
             "competicion",
             "oficial",
             "deporte"
+          ]
+        },
+        {
+          "url": "https://www.ribarroja.es/es/noticia/adjudicaci%C3%B3n-provisional-subvenciones-deportistas-locales-a%C3%B1o-2026",
+          "date": "2026-11-25",
+          "quote": "Adjudicación provisional subvenciones deportistas locales año 2026",
+          "kind": "press",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "matchedKeywords": [
+            "subvencion",
+            "deportista",
+            "local"
           ]
         },
         {
@@ -397,21 +431,10 @@
             "2025",
             "localidad"
           ]
-        },
-        {
-          "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-aprueba-la-cuenta-general-del-a%C3%B1o-2025-que-certifica-un-super%C3%A1vit-de-4%E2%80%995-millones-de-euros-y-un-remanente-de-3%273-millones-en-el-presupuesto-econ%C3%B3mico",
-          "date": "2026-10-13",
-          "quote": "Riba-roja de Túria aprueba la cuenta general del año 2025 que certifica un superávit de 4’5 millones de euros y un remanente de 3'3 millones en el presupuesto económico",
-          "kind": "press",
-          "publisher": "Ayuntamiento de Riba-roja de Túria",
-          "matchedKeywords": [
-            "euro",
-            "2025"
-          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-24T15:24:26.775Z"
+      "generatedAt": "2026-11-25T15:02:58.390Z"
     },
     {
       "promiseId": "ac-psoe-1kui43c",
@@ -433,12 +456,12 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-24T15:24:26.775Z"
+      "generatedAt": "2026-11-25T15:02:58.390Z"
     },
     {
       "promiseId": "ac-psoe-1t88ans",
-      "proposedStatus": "documentada",
-      "confidence": 0.4,
+      "proposedStatus": "en-progreso",
+      "confidence": 0.7,
       "reasoning": [
         {
           "url": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-asigna-140.000-euros-en-subvenciones-econ%C3%B3micas-a-los-clubes-y-entidades-deportivas-para-financiar-sus-actividades-y-programas-de-la-temporada-25/26",
@@ -456,6 +479,17 @@
             "financiar",
             "actividad",
             "programa"
+          ]
+        },
+        {
+          "url": "https://www.ribarroja.es/es/noticia/adjudicaci%C3%B3n-provisional-subvenciones-deportistas-locales-a%C3%B1o-2026",
+          "date": "2026-11-25",
+          "quote": "Adjudicación provisional subvenciones deportistas locales año 2026",
+          "kind": "press",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "matchedKeywords": [
+            "subvencion",
+            "2026"
           ]
         },
         {
@@ -490,21 +524,10 @@
             "2025",
             "2026"
           ]
-        },
-        {
-          "url": "https://www.infoturia.com/riba-roja-de-turia/87032-riba-roja-assigna-140-000-euros-als-clubs-i-per-a-financar-les-seues-activitats.html",
-          "date": "2026-11-02",
-          "quote": "Riba-roja assigna 140.000 euros als clubs i per a finançar les seues activitats",
-          "kind": "press",
-          "publisher": "Periòdic del Camp de Túria",
-          "matchedKeywords": [
-            "euro",
-            "club"
-          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-24T15:24:26.775Z"
+      "generatedAt": "2026-11-25T15:02:58.390Z"
     },
     {
       "promiseId": "ac-psoe-168xzn8",
@@ -593,7 +616,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-24T15:24:26.775Z"
+      "generatedAt": "2026-11-25T15:02:58.390Z"
     }
   ],
   "llmEvidence": [],
