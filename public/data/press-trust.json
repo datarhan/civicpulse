@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-24T15:24:42.759Z",
+  "generatedAt": "2026-11-25T13:46:59.016Z",
   "windowDays": 30,
   "articles": [
     {
@@ -817,57 +817,6 @@
         "opinionFraction": 0
       },
       "score": 1
-    },
-    {
-      "articleId": "1je9lnf",
-      "articleFingerprint": "1vtkblg",
-      "outlet": "Universitat de València",
-      "outletHost": "uv.es",
-      "url": "https://news.google.com/rss/articles/CBMi4wJBVV95cUxQa3lLOC1faFBKckNpdE5CMUpiTGg0Njl3MWxnbnZsUG5BeF90T2t5ZTRSU1RvTmFSU0pIaThXQnFFVnZtLUZhZFgzdnpoRjNWTGlFOTBERTRwRG04akV5MlpON0dDSjBqQ0xTU21sUG1yTFJINk1zdjZjaV9WQ2lMcG5YbFY2LU9sRVZWcktEYklmSkNtXzdPbWhOWXNKZXRqY2otMnNIWmJDUDNTTkNTUHdkU2c5RUZJTXpwLVM3eDdiUjFOeE05ZkU2YWliOWlkQ3JuRllYcXhESHJjYVpXZ1lRZGJrdHRFZnhkVzg4TGk1TlllYmRha29OSm5XSTFXTk9yZ2gyZmlWcDZUREtIQnF6cjJBRDdjWXUtRzdLeUoxZFpCWW1oYV9TUUdZZkZGTVFrMXNOSnpDVVU0RlVrSVpRWkxwMUtrcmFvZko4Vms0ZTBfYlQxdTRQWDhnY0F2bDg4?oc=5",
-      "date": "2026-10-26T07:00:00.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": null,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 1
-    },
-    {
-      "articleId": "3ur23e",
-      "articleFingerprint": "1vqkbvs",
-      "outlet": "Universitat de València",
-      "outletHost": "uv.es",
-      "url": "https://news.google.com/rss/articles/CBMi6AJBVV95cUxORG9ZVUFNRG11UlUtSmRKZE9tbFItay1nWmU4d0RUbEVRdUdON3piODNXY1pjZG1oNmY3dm9aSDVJNFNjYkRjV0ZXR01FU2lzaU1LRmVybWc2YU1oWGxhb0ViMmI2MG8xZThrZ2VKS01zR21Gakphd1Q3NGlocTUyNDNWbDBibUdUQ1ZfWjhLYkpTLUtfY2RxOGpodUNMZlpFekM2T2VFaFVfckp0bUpDTm1pZXlpX3o1Vl9rUUtKeGdVaXBoUEZYRThZc1BtWGFaWmNWd201a2QtbVQ4YjcyLVNlUlRsRnRUR3VoM1FPeThhUmF0NUhiRTdvNEpDOVoxX2FkNTd3NFRvWERrQTFKSW45RGF2MWJaOUdkbFZ4bjN6WHVMZVFoNmJ1Q19MTkdzbTRxLTdBRzRKb2MzUVB3M1NzM1FneWhDUmZPMnZJSm13M3Z0bTYyTHRtNDZSTzR5REZHcjV1NGw?oc=5",
-      "date": "2026-10-26T07:00:00.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": null,
-        "factualClaimsPresent": null,
-        "opinionFraction": 0
-      },
-      "score": 1
-    },
-    {
-      "articleId": "ypkp7c",
-      "articleFingerprint": "1cs0g58",
-      "outlet": "Cadena SER",
-      "outletHost": "cadenaser.com",
-      "url": "https://news.google.com/rss/articles/CBMijwJBVV95cUxQdS1KWEd6U3RhYy1KMHdqM0k2SGdrLXp2ejFBWTNTLXdMSDhzMk96OE9tRnhQdTF5QlZQMDI5R1dTbjhnbUQtU1ZNX0k1bkJ1STBYc293ZG0yTkhyVUhfYklobU5EcnZZUVBvMHpjTHRCbzhXQUUxcm5BaTJjalludWsyMEFxd2ZmUWlLRkpKYmJ1UXBONy1hMkNOb04yV0pEQjBQa0Q5NEZnMkFsZUthcUw2eHFXRlR3dVkwWlV4MW93VUVscEl6TWI0SGZtOUp4cDRzbWVrUXN4Q2pMbkZsR0JLSEM0S2RxME9kX01YOTlUX3BPLV9Vc2duLXpTOGhhcGgwZHFsUnF3d2ZPNnNZ0gGjAkFVX3lxTFBobVBRTFgyUXlhWnhJcGMwRVhIMmpjVkxMODVpek9tNEhVeThWSTRBU21DYzVNUjUtazFOV3pzUTc0eDhpUFVWRG1uRVRPQXY1WGhxLUZQZzg5MTJOREFhNUd6a2MzSlZaZEY4MmMwRWt3ekxramUwYk5XaWhTbkdNWUpKSTdsX3R0UndaV0VVTURvdXZLS09sYlVZQTlNdEV2NXpra1Vib1doVC1xc0ZsaE9iVVJodXZSM3RUbzFxR1ZHZ1NfYzViMHlYbnJza0ljV2JXa2pVMmVlMmZoSTRPb2VnNlZoYVlUcWg5M19YS1M2Q3JiYkpRcGVZczdXc0RNbzlWeG5ua2Z3Y1ZUdC1GSGNqeUwxYy1OdlBPTVBmNk93Zw?oc=5",
-      "date": "2026-10-26T07:00:00.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": null,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 1
     }
   ],
   "outlets": [
@@ -968,38 +917,6 @@
       "contradictedRatio": null
     },
     {
-      "outlet": "Cadena SER",
-      "outletHost": "cadenaser.com",
-      "articleCount": 2,
-      "verdictCounts": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      },
-      "checkedClaims": 0,
-      "meanTrustScore": 1,
-      "verifiedRatio": null,
-      "contradictedRatio": null
-    },
-    {
-      "outlet": "Universitat de València",
-      "outletHost": "uv.es",
-      "articleCount": 2,
-      "verdictCounts": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      },
-      "checkedClaims": 0,
-      "meanTrustScore": 1,
-      "verifiedRatio": null,
-      "contradictedRatio": null
-    },
-    {
       "outlet": "La Vanguardia",
       "outletHost": "lavanguardia.com",
       "articleCount": 1,
@@ -1064,6 +981,22 @@
       "contradictedRatio": null
     },
     {
+      "outlet": "Cadena SER",
+      "outletHost": "cadenaser.com",
+      "articleCount": 1,
+      "verdictCounts": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 0,
+        "promesa-repetida": 0
+      },
+      "checkedClaims": 0,
+      "meanTrustScore": 1,
+      "verifiedRatio": null,
+      "contradictedRatio": null
+    },
+    {
       "outlet": "elDiario.es",
       "outletHost": "eldiario.es",
       "articleCount": 1,
@@ -1081,7 +1014,7 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "9910a58db76f",
+    "plenos-agendas.json": "e1d8536d4976",
     "press-claims-verified.json": "10e308fc2880",
     "press.json": "12e913a9dc0c",
     "promises.json": "78479b1377ce"
