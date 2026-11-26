@@ -1,0 +1,1307 @@
+{
+  "plenoId": "1xmr0do",
+  "generatedAt": "2026-11-26T10:19:13.716Z",
+  "model": "gemini-3.5-flash",
+  "promptVersion": "speaker-map-v2",
+  "chunkSeconds": 600,
+  "segments": [
+    {
+      "start": 948.7,
+      "end": 952.1,
+      "speaker": "c00/SPEAKER_01",
+      "text": "Bona... Buenas tardes a todas y a todos."
+    },
+    {
+      "start": 952.1,
+      "end": 954.8,
+      "speaker": "c00/SPEAKER_01",
+      "text": "Es tema en hora, sí."
+    },
+    {
+      "start": 954.8,
+      "end": 961.5,
+      "speaker": "c00/SPEAKER_01",
+      "text": "Anem a començar la ple ordinari. Salvo escortet en principi"
+    },
+    {
+      "start": 961.5,
+      "end": 968.1,
+      "speaker": "c00/SPEAKER_01",
+      "text": "de... tots els membres de la corporació estem presents en la sessió."
+    },
+    {
+      "start": 600,
+      "end": 602.1,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Tres punts."
+    },
+    {
+      "start": 602.1,
+      "end": 605.6,
+      "speaker": "c01/SPEAKER_00",
+      "text": "El primer punt seria l'aprovació de l'acta. Alguna qüestió a l'acta?"
+    },
+    {
+      "start": 605.6,
+      "end": 609.1,
+      "speaker": "c01/SPEAKER_00",
+      "text": "L'aprovem per unanimitat."
+    },
+    {
+      "start": 609.1,
+      "end": 619.3,
+      "speaker": "c01/SPEAKER_00",
+      "text": "I el segon punt, que és de tresoreria, d'un arconte de la d'informe trimestral de del PMP i té la paraula... José Ángel?"
+    },
+    {
+      "start": 619.3,
+      "end": 620.9,
+      "speaker": "c01/SPEAKER_00",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 621.9,
+      "end": 624.3,
+      "speaker": "c01/SPEAKER_01",
+      "text": "Bona vesprada. Pues donem compte del PMP."
+    },
+    {
+      "start": 624.3,
+      "end": 632.7,
+      "speaker": "c01/SPEAKER_01",
+      "text": "El segon trimestre del 2026 el resultat del PMP del període mitjà de pago és de cinquanta-sis amb noranta-sis dies. Per tant, encara per damunt del límit de trenta dies."
+    },
+    {
+      "start": 632.7,
+      "end": 636.3,
+      "speaker": "c01/SPEAKER_01",
+      "text": "Gràcies."
+    },
+    {
+      "start": 638.7,
+      "end": 640.5,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Paraules."
+    },
+    {
+      "start": 640.5,
+      "end": 641.2,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Salva."
+    },
+    {
+      "start": 641.2,
+      "end": 643.1,
+      "speaker": "c01/SPEAKER_02",
+      "text": "Sí. Bon vespre, gràcies."
+    },
+    {
+      "start": 643.1,
+      "end": 652.8,
+      "speaker": "c01/SPEAKER_02",
+      "text": "Bé, en este cas, tornem una altra volta a una dació de comptes del període mitjà de pagament per dalt de lo legal. Trenta dies és lo legal i estem en cinquanta-sis."
+    },
+    {
+      "start": 652.8,
+      "end": 660.1,
+      "speaker": "c01/SPEAKER_02",
+      "text": "Una situació que es repetix trimestre darrere trimestre. Al final és sempre la roda del hámster."
+    },
+    {
+      "start": 660.1,
+      "end": 670.3,
+      "speaker": "c01/SPEAKER_02",
+      "text": "Em crida l'atenció que de les factures pagades, perquè primer parlarem de les que estan pagades i després de les que de les que no ho estan,"
+    },
+    {
+      "start": 670.3,
+      "end": 677,
+      "speaker": "c01/SPEAKER_02",
+      "text": "sols se han pagat vint en en el període de pagament."
+    },
+    {
+      "start": 677,
+      "end": 685.8,
+      "speaker": "c01/SPEAKER_02",
+      "text": "Les restants sis-centes se han pagat fora... No. Les restant mil tres-centes mil tres-centes setanta-set fora del del"
+    },
+    {
+      "start": 685.8,
+      "end": 688,
+      "speaker": "c01/SPEAKER_02",
+      "text": "del període."
+    },
+    {
+      "start": 688,
+      "end": 691.2,
+      "speaker": "c01/SPEAKER_02",
+      "text": "Ací n'hi han factures que em criden l'atenció com pot ser, per exemple,"
+    },
+    {
+      "start": 691.2,
+      "end": 700.2,
+      "speaker": "c01/SPEAKER_02",
+      "text": "factures de llum que han tardat en pagar-les tres-cents trenta dies, dos-cents vint-i-quatre, dos-cents dinou."
+    },
+    {
+      "start": 700.2,
+      "end": 709.9,
+      "speaker": "c01/SPEAKER_02",
+      "text": "Factures com puga ser el manteniment dels ascensors dels edificis municipals que han tardat cent quaranta-huit dies."
+    },
+    {
+      "start": 709.9,
+      "end": 710.8,
+      "speaker": "c01/SPEAKER_02",
+      "text": "Eh,"
+    },
+    {
+      "start": 710.8,
+      "end": 720.3,
+      "speaker": "c01/SPEAKER_02",
+      "text": "clar, eixes podem dir que són grans empreses o ho són, però n'hi han altres com forns del poble que han tardat factures d'imports,"
+    },
+    {
+      "start": 720.3,
+      "end": 727.3,
+      "speaker": "c01/SPEAKER_02",
+      "text": "pues bueno, relativament baixets, cent vint-i-quatre dies en cobrar una factura."
+    },
+    {
+      "start": 727.3,
+      "end": 728.5,
+      "speaker": "c01/SPEAKER_02",
+      "text": "Per lo tant,"
+    },
+    {
+      "start": 728.5,
+      "end": 736.8,
+      "speaker": "c01/SPEAKER_02",
+      "text": "al final el el la radiografia de la gestió deixa molt que que desitjar."
+    },
+    {
+      "start": 736.8,
+      "end": 740.4,
+      "speaker": "c01/SPEAKER_02",
+      "text": "Ens agradaria saber, per tampoc traure conclusions precipitades,"
+    },
+    {
+      "start": 740.4,
+      "end": 747.2,
+      "speaker": "c01/SPEAKER_02",
+      "text": "quin és el saldo actual de l'Ajuntament, si ho pot dir, per favor, i"
+    },
+    {
+      "start": 747.2,
+      "end": 757,
+      "speaker": "c01/SPEAKER_02",
+      "text": "si els canvis estructurals que han vingut comentant en els últims plens si els ha si els ha dut a terme, perquè és evident que des de Tresoreria des del 2023"
+    },
+    {
+      "start": 757,
+      "end": 765.7,
+      "speaker": "c01/SPEAKER_02",
+      "text": "estan demanant eixos canvis, se veuen informe rera informe i no tenim no tenim constància de d'eixos canvis. Gràcies."
+    },
+    {
+      "start": 767.3,
+      "end": 768.4,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Més paraules."
+    },
+    {
+      "start": 768.4,
+      "end": 771.8,
+      "speaker": "c01/SPEAKER_00",
+      "text": "José Ángel. Ah, Rafa."
+    },
+    {
+      "start": 776.4,
+      "end": 781.9,
+      "speaker": "c01/SPEAKER_03",
+      "text": "Eh, bona vesprada a totes i a tots. Eh,"
+    },
+    {
+      "start": 781.9,
+      "end": 788.7,
+      "speaker": "c01/SPEAKER_03",
+      "text": "jo preguntar-li al al regidor d'Hissenda que, eh, segons l'informe que tenim"
+    },
+    {
+      "start": 788.7,
+      "end": 792.9,
+      "speaker": "c01/SPEAKER_03",
+      "text": "d'esta dació de comptes, hem de tindre en compte que és una dació de comptes, val?"
+    },
+    {
+      "start": 792.9,
+      "end": 806.8,
+      "speaker": "c01/SPEAKER_03",
+      "text": "Eh, diu que quan el període mitjà de pagament d'una administració pública de qualsevol de les entitats públiques pues supera el plas el plas màxim previst per la normativa pues n'hi ha que complir"
+    },
+    {
+      "start": 806.8,
+      "end": 809.6,
+      "speaker": "c01/SPEAKER_03",
+      "text": "un pla. I dona dos"
+    },
+    {
+      "start": 809.6,
+      "end": 812.8,
+      "speaker": "c01/SPEAKER_03",
+      "text": "dos dos qüestions que que s'han de complir."
+    },
+    {
+      "start": 812.8,
+      "end": 828.3,
+      "speaker": "c01/SPEAKER_03",
+      "text": "I és que l'import dels recursos que va a dedicar mensualment, eh, al pagament a proveïdors per a poder reduir el el període mitjà de pagament fins al plas màxim que fixa que fixa la normativa sobre morositat i després"
+    },
+    {
+      "start": 828.3,
+      "end": 847.9,
+      "speaker": "c01/SPEAKER_03",
+      "text": "el compromís d'adoptar les mesures quantificades de reducció de gastos, increment d'ingressos u o altres mesures de gestió de cobros i pagos que li que li permetisca generar la tresoreria necessària per a la reducció del període mitjà de pagament"
+    },
+    {
+      "start": 847.9,
+      "end": 858.9,
+      "speaker": "c01/SPEAKER_03",
+      "text": "a proveïdors fins al plas màxim que fixa que fixa la normativa sobre morositat. S'ha tingut en compte eixes dos qüestions? Estan treballant en ella? En quina situació es troba? Gràcies."
+    },
+    {
+      "start": 862.3,
+      "end": 863.9,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Veig a José Ángel."
+    },
+    {
+      "start": 865.8,
+      "end": 867.4,
+      "speaker": "c01/SPEAKER_01",
+      "text": "Eh, val."
+    },
+    {
+      "start": 867.4,
+      "end": 878.4,
+      "speaker": "c01/SPEAKER_01",
+      "text": "Bueno, eh, efectivament, per dir un dato, hui en el en els comptes de l'Ajuntament n'hi han un milió quatre-cents quaranta mil euros més a banda una pòlissa de crèdit de quatre milions d'euros sense disposar."
+    },
+    {
+      "start": 878.4,
+      "end": 888.7,
+      "speaker": "c01/SPEAKER_01",
+      "text": "O siga, que se pot utilitzar en qualsevol moment. En total tenim, a banda de lo que són els recursos de reconstrucció i demés, però fons pròpiament"
+    },
+    {
+      "start": 888.7,
+      "end": 897.8,
+      "speaker": "c01/SPEAKER_01",
+      "text": "propis de l'Ajuntament un milió quatre-cents quaranta mil euros més els quatre milions de pòlissa de crèdit que al no estar disposats pues no se paguen cap de d'interessos."
+    },
+    {
+      "start": 897.8,
+      "end": 909.8,
+      "speaker": "c01/SPEAKER_01",
+      "text": "Eh, si mitjam si me mirem la la mitja del del PMP dels últims mesos, dels últims trimestres, que efectivament continuem per dalt i és la pelea que este equip de govern està treballant,"
+    },
+    {
+      "start": 909.8,
+      "end": 924.9,
+      "speaker": "c01/SPEAKER_01",
+      "text": "eh, pues se va reduint poc a poquet a poquet. Estem treballant en eixe en eixe aspecte i si se n'anem a fer una comparativa en el segon trimestre del 2025 era de setanta-set amb noranta-nou i en el segon trimestre del 2026 de cinquanta-sis amb noranta-sis."
+    },
+    {
+      "start": 924.9,
+      "end": 930.4,
+      "speaker": "c01/SPEAKER_01",
+      "text": "No anem ser mai del 2024 que era de cent quatre dies."
+    },
+    {
+      "start": 930.4,
+      "end": 945.9,
+      "speaker": "c01/SPEAKER_01",
+      "text": "Lo qual la reducció és important i estem dins del pla econòmic financer que és en el que estem treballant. Això no no te lleva que moltes vegades pues un període de baixes dins del departament d'Intervenció també ho conporta algun que altre, eh, problema a la hora de traure relacions."
+    },
+    {
+      "start": 945.9,
+      "end": 960.2,
+      "speaker": "c01/SPEAKER_01",
+      "text": "Això també te diu pues, per exemple, que moltes factures com diu el Partit Popular, que portem molt de temps, moltes d'elles, eh, per problemes de firma no no s'havien firmat en el seu moment i i quan se firmen ja han passat el el terme legal. Unes altres,"
+    },
+    {
+      "start": 960.2,
+      "end": 973.1,
+      "speaker": "c01/SPEAKER_01",
+      "text": "perquè tenim problemes, que també estan en l'informe, que porten des de l'any 2021 i constantment estem demanant que per favor, encara que parega raro, que no ens donen ni el compte corrent per poder fer el pago"
+    },
+    {
+      "start": 973.1,
+      "end": 983.6,
+      "speaker": "c01/SPEAKER_01",
+      "text": "i eixes factures també computen en el PMP. Tot això ens ens ho conporta més més encara més informes perquè al final tens que netejar les. Però tu no pots netejar algo que està firmat per un tècnic i per un regidor perquè s'ha fet eixe treball, que es va fer fa tres o quatre anys. Tot això també computa en el PMP."
+    },
+    {
+      "start": 983.6,
+      "end": 998.9,
+      "speaker": "c01/SPEAKER_01",
+      "text": "No obstant, tenim que i continuem treballant en l'estructura de l'Ajuntament. La estructura de l'Ajuntament necessita un poc més de personal, eh, sobretot en Tresoreria. Encara que en Intervenció també estem ara coixos per per les baixes que que tenim."
+    },
+    {
+      "start": 998.9,
+      "end": 1000.9,
+      "speaker": "c01/SPEAKER_01",
+      "text": "Eh, no sé si em queda alguna coseta."
+    },
+    {
+      "start": 1000.9,
+      "end": 1015.7,
+      "speaker": "c01/SPEAKER_01",
+      "text": "Eh, sobre el tema del també n'hi han factures, que sí, que son cent vint dies, però n'hi han altres factures que en vint dies també se se han liquidat. Per això el PMP te dona, eh, cinquanta-sis dies que és de dins de del ratio."
+    },
+    {
+      "start": 1015.7,
+      "end": 1038.4,
+      "speaker": "c01/SPEAKER_01",
+      "text": "I nosaltres seguim treballant. Ara hem aprovat una oferta d'ocupació pública, un capítol u que alguns no han aprovat ací i que ens va i que és la ferramenta en la que podem treballar per ara a través de la oferta d'ocupació pública i acordada en taula en els sindicats anem a fer procediments per a tècnics que necessita l'Ajuntament per a continuar millorant entre altres coses el el PMP. Gràcies."
+    },
+    {
+      "start": 1038.8,
+      "end": 1040,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Més paraules."
+    },
+    {
+      "start": 1040,
+      "end": 1041.1,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Salva."
+    },
+    {
+      "start": 1041.1,
+      "end": 1042.2,
+      "speaker": "c01/SPEAKER_02",
+      "text": "Sí, gràcies."
+    },
+    {
+      "start": 1042.2,
+      "end": 1059.7,
+      "speaker": "c01/SPEAKER_02",
+      "text": "Eh, vostè ens comenta que l'Ajuntament té una disponibilitat de catorze milions d'euros, deu de saldo i qua- i quatre de un préstam o d'una pòlissa que nosaltres votarem en contra per no pagar, eh, pues els possibles interessos que es puguen derivar. Per lo tant,"
+    },
+    {
+      "start": 1059.7,
+      "end": 1069.7,
+      "speaker": "c01/SPEAKER_02",
+      "text": "ja canviem de l'últim ple. En l'últim ple no vostès no deien que no pagaven perquè Diputació els devia diners. Que no vol dir que Diputació ho haja de pagar, que segurament hi haurà algo pendent perquè al final els terminis són els que són."
+    },
+    {
+      "start": 1069.7,
+      "end": 1079.9,
+      "speaker": "c01/SPEAKER_02",
+      "text": "Però si vostès tenen disponibilitat de catorze milions d'euros, per què no paguen els dos milions cent que estan pendents?"
+    },
+    {
+      "start": 1079.9,
+      "end": 1089.1,
+      "speaker": "c01/SPEAKER_02",
+      "text": "Perquè no és que no tinguen diners, aleshores algo se està fent mal. No sé el què, vostès són els que gestionen, nosaltres no."
+    },
+    {
+      "start": 1089.1,
+      "end": 1095.2,
+      "speaker": "c01/SPEAKER_02",
+      "text": "Però lo que està clar és que se deuen dos milions cent setanta-dos mil euros en factures."
+    },
+    {
+      "start": 1095.2,
+      "end": 1104.6,
+      "speaker": "c01/SPEAKER_02",
+      "text": "Dels quals sol se estava pressupostat nou-cents cinquanta mil."
+    },
+    {
+      "start": 1104.6,
+      "end": 1117,
+      "speaker": "c01/SPEAKER_02",
+      "text": "Lo que vol dir que n'hi ha una diferència de un milió d'euros de lo que vostès pressupostaren i nosaltres votàrem en contra a lo que vostès han gastat. Un milió d'euros de més."
+    },
+    {
+      "start": 1117,
+      "end": 1122.6,
+      "speaker": "c01/SPEAKER_02",
+      "text": "És una quantitat a tindre en compte."
+    },
+    {
+      "start": 1122.6,
+      "end": 1131,
+      "speaker": "c01/SPEAKER_02",
+      "text": "I n'hi han n'hi han factures que són recurrents com manteniments de software,"
+    },
+    {
+      "start": 1131,
+      "end": 1146.6,
+      "speaker": "c01/SPEAKER_02",
+      "text": "com per exemple tenim ací el projecte de la vivenda tutelada, no, del Barrendis Moros i de la vivenda tutelada, ambdues, sis mil una factura i quatre mil una altra."
+    },
+    {
+      "start": 1146.6,
+      "end": 1148.8,
+      "speaker": "c01/SPEAKER_02",
+      "text": "I no estava pressupostat."
+    },
+    {
+      "start": 1148.8,
+      "end": 1154.4,
+      "speaker": "c01/SPEAKER_02",
+      "text": "Import pressupostari per a la factura zero."
+    },
+    {
+      "start": 1154.4,
+      "end": 1162.8,
+      "speaker": "c01/SPEAKER_02",
+      "text": "I eixos deu mil euros no els tenien previst? De repenet heu dit \"anem a gastar-ho\" o És que em sorprenen estes factures."
+    },
+    {
+      "start": 1162.8,
+      "end": 1177.8,
+      "speaker": "c01/SPEAKER_02",
+      "text": "N'hi han altres factures com per exemple els mocadors que se feren en Falles per als gossos, estos groguets, sis-cents euros."
+    },
+    {
+      "start": 1177.8,
+      "end": 1189.6,
+      "speaker": "c01/SPEAKER_02",
+      "text": "Zero de pressupost. O siga, de repent se alça un dia i diguem \"Això me pareix bona idea. Endavant.\" Que em pareix bé. Evidentment n'hi han reparacions que sorgixen, no n'hi ha previsió i n'hi ha que pagar-ho. Val."
+    },
+    {
+      "start": 1200,
+      "end": 1202.1,
+      "speaker": "c02/SPEAKER_00",
+      "text": "Pero un software que tots els mesos paguem 2300 €?"
+    },
+    {
+      "start": 1202.1,
+      "end": 1205.3,
+      "speaker": "c02/SPEAKER_00",
+      "text": "Això no estava previst en pressupost."
+    },
+    {
+      "start": 1205.3,
+      "end": 1207.8,
+      "speaker": "c02/SPEAKER_00",
+      "text": "Perquè l'impost és zero."
+    },
+    {
+      "start": 1207.8,
+      "end": 1210.6,
+      "speaker": "c02/SPEAKER_00",
+      "text": "Aleshores veurem ací una diferència entre lo que pressuposten que nosaltres votem en contra,"
+    },
+    {
+      "start": 1210.6,
+      "end": 1213.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "i votem en contra per eixe motiu, perquè al final"
+    },
+    {
+      "start": 1213.5,
+      "end": 1216.9,
+      "speaker": "c02/SPEAKER_00",
+      "text": "vostès pressuposten una cosa i fan lo que els dona la gana."
+    },
+    {
+      "start": 1216.9,
+      "end": 1221,
+      "speaker": "c02/SPEAKER_00",
+      "text": "I a les factures em remetisc."
+    },
+    {
+      "start": 1221,
+      "end": 1224.3,
+      "speaker": "c02/SPEAKER_00",
+      "text": "Però més allà, tornem a tresoreria, 2023."
+    },
+    {
+      "start": 1224.3,
+      "end": 1227.8,
+      "speaker": "c02/SPEAKER_00",
+      "text": "Des de 2023, el Departament de Tresoreria"
+    },
+    {
+      "start": 1227.8,
+      "end": 1232.8,
+      "speaker": "c02/SPEAKER_00",
+      "text": "està demanant més recursos."
+    },
+    {
+      "start": 1232.8,
+      "end": 1238,
+      "speaker": "c02/SPEAKER_00",
+      "text": "Fins i tot en els seus informes fons que si tingueren més recursos es podria regularitzar"
+    },
+    {
+      "start": 1238,
+      "end": 1243.6,
+      "speaker": "c02/SPEAKER_00",
+      "text": "el complex impost d'activitats econòmiques,"
+    },
+    {
+      "start": 1243.6,
+      "end": 1247.9,
+      "speaker": "c02/SPEAKER_00",
+      "text": "el qual efecte realitzaria de la qual realització derivarà un clar increment"
+    },
+    {
+      "start": 1247.9,
+      "end": 1251.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "dels ingressos municipals."
+    },
+    {
+      "start": 1251.5,
+      "end": 1255.4,
+      "speaker": "c02/SPEAKER_00",
+      "text": "O siga, des del 2023, el Departament de Tresoreria, a més de dir que vostès gasten massa,"
+    },
+    {
+      "start": 1255.4,
+      "end": 1258.6,
+      "speaker": "c02/SPEAKER_00",
+      "text": "però això ja ho sabem, ho tenim clar,"
+    },
+    {
+      "start": 1258.6,
+      "end": 1261.9,
+      "speaker": "c02/SPEAKER_00",
+      "text": "diuen que necessiten recursos, i en eixos recursos"
+    },
+    {
+      "start": 1261.9,
+      "end": 1264.9,
+      "speaker": "c02/SPEAKER_00",
+      "text": "augmentarem els ingressos."
+    },
+    {
+      "start": 1264.9,
+      "end": 1269.8,
+      "speaker": "c02/SPEAKER_00",
+      "text": "I vostès em diuen ara en el 2026 que estan mirant a veure d'incorporar més tècnics."
+    },
+    {
+      "start": 1269.8,
+      "end": 1275.1,
+      "speaker": "c02/SPEAKER_00",
+      "text": "En fi, la veritat és que no és falta de recursos, és falta de gestió."
+    },
+    {
+      "start": 1275.1,
+      "end": 1280.8,
+      "speaker": "c02/SPEAKER_00",
+      "text": "Per lo tant, evidentment, no compartim la seua forma de gestionar, però això és evident, ara,"
+    },
+    {
+      "start": 1280.8,
+      "end": 1284.8,
+      "speaker": "c02/SPEAKER_00",
+      "text": "fa un any i d'ací a dos anys o d'ací a un any, però jo"
+    },
+    {
+      "start": 1284.8,
+      "end": 1289.9,
+      "speaker": "c02/SPEAKER_00",
+      "text": "per treure-li un poquet de punt al tema canviaria el nom, en vegada de PMP,"
+    },
+    {
+      "start": 1289.9,
+      "end": 1294.6,
+      "speaker": "c02/SPEAKER_00",
+      "text": "Període Mitjà de Pago, ficaria PSOE Mal Pagador, que coincidix."
+    },
+    {
+      "start": 1294.6,
+      "end": 1298.4,
+      "speaker": "c02/SPEAKER_00",
+      "text": "Perquè al final és lo que este Ajuntament"
+    },
+    {
+      "start": 1298.4,
+      "end": 1303.2,
+      "speaker": "c02/SPEAKER_00",
+      "text": "està demostrant als empresaris i a les empreses. Gràcies."
+    },
+    {
+      "start": 1303.2,
+      "end": 1305.7,
+      "speaker": "c02/SPEAKER_01",
+      "text": "És paraula, Rafa."
+    },
+    {
+      "start": 1305.7,
+      "end": 1308.6,
+      "speaker": "c02/SPEAKER_02",
+      "text": "Gràcies, senyor alcalde. Bueno, preguntar-li al"
+    },
+    {
+      "start": 1308.6,
+      "end": 1313.8,
+      "speaker": "c02/SPEAKER_02",
+      "text": "regidor una altra volta si han inclòs en l'actualització del Pla de Tresoreria les qüestions que abans"
+    },
+    {
+      "start": 1313.8,
+      "end": 1317.8,
+      "speaker": "c02/SPEAKER_02",
+      "text": "jo li he comentat que estan en el informe,"
+    },
+    {
+      "start": 1317.8,
+      "end": 1321.7,
+      "speaker": "c02/SPEAKER_02",
+      "text": "l'import de recursos que va dedicat mensualment a pagar de proveïdors per a poder reduir el període mitjà de pagament"
+    },
+    {
+      "start": 1321.7,
+      "end": 1325.8,
+      "speaker": "c02/SPEAKER_02",
+      "text": "i el compromís d'adoptar mesures quantificatives de reducció de despeses o increment d'ingressos i altres mesures de gestió de cobraments i pagaments."
+    },
+    {
+      "start": 1325.8,
+      "end": 1328.5,
+      "speaker": "c02/SPEAKER_01",
+      "text": "Última intervenció, José."
+    },
+    {
+      "start": 1328.5,
+      "end": 1331.9,
+      "speaker": "c02/SPEAKER_03",
+      "text": "Està en el pla econòmic financer, Rafa."
+    },
+    {
+      "start": 1331.9,
+      "end": 1336.2,
+      "speaker": "c02/SPEAKER_03",
+      "text": "I estem utilitzant el pla econòmic financer per a dur endavant tot el que estem fent."
+    },
+    {
+      "start": 1336.2,
+      "end": 1339.7,
+      "speaker": "c02/SPEAKER_03",
+      "text": "I per això hi ha una reducció."
+    },
+    {
+      "start": 1339.7,
+      "end": 1345.4,
+      "speaker": "c02/SPEAKER_03",
+      "text": "El PMP pot ser Partit Popular Mal Pagador des de la Generalitat, per exemple, també,"
+    },
+    {
+      "start": 1345.4,
+      "end": 1349.3,
+      "speaker": "c02/SPEAKER_03",
+      "text": "eh? Però bueno, nosaltres, en fi, no anem a entrar en el soroll i en la demagògia pura i dura"
+    },
+    {
+      "start": 1349.3,
+      "end": 1353.9,
+      "speaker": "c02/SPEAKER_03",
+      "text": "perquè en un ajuntament un ajuntament està viu, un ajuntament fa coses, demà vénen uns veïns i n'hi ha que fer no sé què"
+    },
+    {
+      "start": 1353.9,
+      "end": 1359.2,
+      "speaker": "c02/SPEAKER_03",
+      "text": "i i són coses que l'ajuntament com este i qualsevol de qualsevol color, doncs anirà treballant i traent"
+    },
+    {
+      "start": 1359.2,
+      "end": 1362.7,
+      "speaker": "c02/SPEAKER_03",
+      "text": "tot això que és bo per a la ciutadania del seu poble."
+    },
+    {
+      "start": 1362.7,
+      "end": 1366.4,
+      "speaker": "c02/SPEAKER_03",
+      "text": "Vostès en la vida han vingut ací a votar en contra del pressupost i han justificat que el pressupost no el votaven"
+    },
+    {
+      "start": 1366.4,
+      "end": 1370.8,
+      "speaker": "c02/SPEAKER_03",
+      "text": "perquè resulta que els mocadors dels gossos no estaven pressupostats. Per favor."
+    },
+    {
+      "start": 1370.8,
+      "end": 1374.6,
+      "speaker": "c02/SPEAKER_03",
+      "text": "Això a un altre, doncs a lo millor, però ací a algú vet... Vostès han votat sempre en contra"
+    },
+    {
+      "start": 1374.6,
+      "end": 1379.3,
+      "speaker": "c02/SPEAKER_03",
+      "text": "doncs per què? És en contra per què el no per el no, com sol passar, perquè intentem negociar, però vostès no volen negociar. Però bueno."
+    },
+    {
+      "start": 1379.3,
+      "end": 1383.7,
+      "speaker": "c02/SPEAKER_03",
+      "text": "A banda d'això, també voten en contra dels extrajudicials, perquè el PMP també se incrementa per els extrajudicials."
+    },
+    {
+      "start": 1383.7,
+      "end": 1387.7,
+      "speaker": "c02/SPEAKER_03",
+      "text": "Vostès voten en contra dels extrajudicials i saben lo que signifiquen els extrajudicials per a un proveïdor,"
+    },
+    {
+      "start": 1387.7,
+      "end": 1390.2,
+      "speaker": "c02/SPEAKER_03",
+      "text": "eh? I vostès voten en contra."
+    },
+    {
+      "start": 1390.2,
+      "end": 1394.2,
+      "speaker": "c02/SPEAKER_03",
+      "text": "Però i i a banda de tot això, dins del pla econòmic financer nosaltres estem duent-lo a terme"
+    },
+    {
+      "start": 1394.2,
+      "end": 1398.8,
+      "speaker": "c02/SPEAKER_03",
+      "text": "i estem doncs rebaixant. Dins del pla econòmic financer també hi ha des del 2023,"
+    },
+    {
+      "start": 1398.8,
+      "end": 1402.9,
+      "speaker": "c02/SPEAKER_03",
+      "text": "des del 2023 este este govern ha consolidat a 139 persones."
+    },
+    {
+      "start": 1402.9,
+      "end": 1406.8,
+      "speaker": "c02/SPEAKER_03",
+      "text": "Una mala gestió que se veu que ha fet este ajuntament, que este ajuntament, este govern se troba a persones que duien ací 18 anys"
+    },
+    {
+      "start": 1406.8,
+      "end": 1411.2,
+      "speaker": "c02/SPEAKER_03",
+      "text": "en interinitat, eh? Interins,"
+    },
+    {
+      "start": 1411.2,
+      "end": 1414.9,
+      "speaker": "c02/SPEAKER_03",
+      "text": "sense el lloc de treball encara fix, eh? Per això, però som molt xistosos, 139,"
+    },
+    {
+      "start": 1414.9,
+      "end": 1418.6,
+      "speaker": "c02/SPEAKER_03",
+      "text": "i ara estem en unes altres procediments de 130 i pico persones més,"
+    },
+    {
+      "start": 1418.6,
+      "end": 1421.7,
+      "speaker": "c02/SPEAKER_03",
+      "text": "eh? Treballadors d'este ajuntament. En això estem,"
+    },
+    {
+      "start": 1421.7,
+      "end": 1426.7,
+      "speaker": "c02/SPEAKER_03",
+      "text": "eh? En millorar la qualitat del treball de la gent i a més en millorar el PMP i en eixes altres qüestions de serveis a la ciutadania de Riba-roja."
+    },
+    {
+      "start": 1426.7,
+      "end": 1431.5,
+      "speaker": "c02/SPEAKER_03",
+      "text": "Però vostès el no per el no i punt. I després m'atreveix a dir que pues mira, que voten en contra perquè per els mocadors."
+    },
+    {
+      "start": 1431.5,
+      "end": 1434.6,
+      "speaker": "c02/SPEAKER_03",
+      "text": "Xicot, per favor, un poquet de de serietat en el tema."
+    },
+    {
+      "start": 1434.6,
+      "end": 1437.9,
+      "speaker": "c02/SPEAKER_03",
+      "text": "Nosaltres continuem treballant, us agrade o no,"
+    },
+    {
+      "start": 1437.9,
+      "end": 1441.6,
+      "speaker": "c02/SPEAKER_03",
+      "text": "en rebaixar el PMP. Així anem a estar, eh? I"
+    },
+    {
+      "start": 1441.6,
+      "end": 1444.6,
+      "speaker": "c02/SPEAKER_03",
+      "text": "bueno, si tenim, perquè ací al final la corporació som tots, si tenim l'ajuda"
+    },
+    {
+      "start": 1444.6,
+      "end": 1448.8,
+      "speaker": "c02/SPEAKER_03",
+      "text": "i les idees que vostès proposen per a l'ajuntament encara no ens costarà ninguna, eh? Per a"
+    },
+    {
+      "start": 1448.8,
+      "end": 1452,
+      "speaker": "c02/SPEAKER_03",
+      "text": "millorar això, pues benvingudes seran. Mentre tant,"
+    },
+    {
+      "start": 1452,
+      "end": 1455.4,
+      "speaker": "c02/SPEAKER_03",
+      "text": "per nosaltres anirem continuarem treballant en l'equip, eh? I l'equip de tècnics"
+    },
+    {
+      "start": 1455.4,
+      "end": 1459,
+      "speaker": "c02/SPEAKER_03",
+      "text": "per a continuar millorant el PMP. I vaig a dir-li una cosa, perquè és que queda molt clar, és que en el seu"
+    },
+    {
+      "start": 1459,
+      "end": 1461.7,
+      "speaker": "c02/SPEAKER_03",
+      "text": "soroll que fa, eh?"
+    },
+    {
+      "start": 1461.7,
+      "end": 1465.4,
+      "speaker": "c02/SPEAKER_03",
+      "text": "Em parla dels 2 milions i pico, estem pagant el segon trimestre."
+    },
+    {
+      "start": 1465.4,
+      "end": 1468.4,
+      "speaker": "c02/SPEAKER_03",
+      "text": "Estem a finals del del tercer trimestre, aleshores no diga vostè que n'hi han 2 milions d'euros pendents de pagament,"
+    },
+    {
+      "start": 1468.4,
+      "end": 1470.9,
+      "speaker": "c02/SPEAKER_03",
+      "text": "que pareix que estiguen ara ahí,"
+    },
+    {
+      "start": 1470.9,
+      "end": 1474.6,
+      "speaker": "c02/SPEAKER_03",
+      "text": "eh? Pues mire, ara mateix en el en el tresoreria n'hi han 248.000 € pendents de pagament."
+    },
+    {
+      "start": 1474.6,
+      "end": 1477.6,
+      "speaker": "c02/SPEAKER_03",
+      "text": "Per a que tinga vostè més informació, eh? Que això és del al 30"
+    },
+    {
+      "start": 1477.6,
+      "end": 1481.3,
+      "speaker": "c02/SPEAKER_03",
+      "text": "de juny, eh? Al 30 de juny, no al 7 de setembre, eh?"
+    },
+    {
+      "start": 1481.3,
+      "end": 1483,
+      "speaker": "c02/SPEAKER_03",
+      "text": "Collons."
+    },
+    {
+      "start": 1483,
+      "end": 1484.1,
+      "speaker": "c02/SPEAKER_03",
+      "text": "El dentista."
+    },
+    {
+      "start": 1484.1,
+      "end": 1487.9,
+      "speaker": "c02/SPEAKER_03",
+      "text": "En lo qual, eh eixos dades que vostè està dient pues s'està tergiversant"
+    },
+    {
+      "start": 1487.9,
+      "end": 1491.8,
+      "speaker": "c02/SPEAKER_03",
+      "text": "i i pues això, pues manipulant un poquet les dades. Les dades estes no són de d'ara,"
+    },
+    {
+      "start": 1491.8,
+      "end": 1495.3,
+      "speaker": "c02/SPEAKER_03",
+      "text": "sinó del 30 de juny, son del segon trimestre. Aleshores ara mateix no estan eixes quantitats."
+    },
+    {
+      "start": 1495.3,
+      "end": 1498.5,
+      "speaker": "c02/SPEAKER_03",
+      "text": "N'hi hauran unes altres. Quan estiga la liquidació del tercer trimestre les revisarem i les compararem."
+    },
+    {
+      "start": 1498.5,
+      "end": 1502.2,
+      "speaker": "c02/SPEAKER_03",
+      "text": "Igual que vostè tampoc ha dit, pues això que dic jo, que n'hi ha factures ahí que és impossible pagar-les"
+    },
+    {
+      "start": 1502.2,
+      "end": 1505.6,
+      "speaker": "c02/SPEAKER_03",
+      "text": "perquè resulta que no tenim la possibilitat de contactar en el proveïdor,"
+    },
+    {
+      "start": 1505.6,
+      "end": 1509.1,
+      "speaker": "c02/SPEAKER_03",
+      "text": "i estan computant, i és complicat, és complicat quitar-les de del mig perquè"
+    },
+    {
+      "start": 1509.1,
+      "end": 1513.2,
+      "speaker": "c02/SPEAKER_03",
+      "text": "han sigut firmades i conformades i no és fàcil. En qualsevol cas,"
+    },
+    {
+      "start": 1513.2,
+      "end": 1515.6,
+      "speaker": "c02/SPEAKER_03",
+      "text": "també vull dir una cosa,"
+    },
+    {
+      "start": 1515.6,
+      "end": 1517.9,
+      "speaker": "c02/SPEAKER_03",
+      "text": "que tampoc la van a dir vostès, però bueno,"
+    },
+    {
+      "start": 1517.9,
+      "end": 1522,
+      "speaker": "c02/SPEAKER_03",
+      "text": "que és sobre la Dirección General de Estabilidad Presupuestaria y Gestión Financiera Territorial del Ministerio de Hacienda,"
+    },
+    {
+      "start": 1522,
+      "end": 1524.3,
+      "speaker": "c02/SPEAKER_03",
+      "text": "com vostès diuen en el tema de la tresoreria, diu:"
+    },
+    {
+      "start": 1524.3,
+      "end": 1528.7,
+      "speaker": "c02/SPEAKER_03",
+      "text": "No existen dificultades económicas que puedan llevar al incumplimiento del plazo legal de pago a proveedores."
+    },
+    {
+      "start": 1528.7,
+      "end": 1532.3,
+      "speaker": "c02/SPEAKER_03",
+      "text": "O siga, que no és un tema de de del tema econòmic."
+    },
+    {
+      "start": 1532.3,
+      "end": 1536.8,
+      "speaker": "c02/SPEAKER_03",
+      "text": "I vaig a dir-lis una cosa també, mira, una anècdota que ens ha passat, una anècdota no, és la situació del dia a dia també de l'Ajuntament."
+    },
+    {
+      "start": 1536.8,
+      "end": 1540,
+      "speaker": "c02/SPEAKER_03",
+      "text": "El dia 18 d'agost,"
+    },
+    {
+      "start": 1540,
+      "end": 1544.2,
+      "speaker": "c02/SPEAKER_03",
+      "text": "em crida una tècnica del de tresoreria i em diu: Ha hagut un ingrés de 840.000 €, 838.000 € a l'Ajuntament."
+    },
+    {
+      "start": 1544.2,
+      "end": 1547.8,
+      "speaker": "c02/SPEAKER_03",
+      "text": "És de la Generalitat. El cas és que no sabem a què fa referència"
+    },
+    {
+      "start": 1547.8,
+      "end": 1551.4,
+      "speaker": "c02/SPEAKER_03",
+      "text": "i no i no tenim ni idea. Diguí: Pues anem a veure, anem a investigar."
+    },
+    {
+      "start": 1551.4,
+      "end": 1555,
+      "speaker": "c02/SPEAKER_03",
+      "text": "Total, que als dos dies em diu: Pues mira, ja sabem de què són."
+    },
+    {
+      "start": 1555,
+      "end": 1557.7,
+      "speaker": "c02/SPEAKER_03",
+      "text": "Són de serveis socials del 2025."
+    },
+    {
+      "start": 1557.7,
+      "end": 1560.5,
+      "speaker": "c02/SPEAKER_03",
+      "text": "Diguí: Bueno, algo és algo que ja ho hem pagat."
+    },
+    {
+      "start": 1560.5,
+      "end": 1563.8,
+      "speaker": "c02/SPEAKER_03",
+      "text": "Si comptem des de el des de Anem a comptar des del dia u de gener,"
+    },
+    {
+      "start": 1563.8,
+      "end": 1567.6,
+      "speaker": "c02/SPEAKER_03",
+      "text": "al 18 d'agost són 226 dies?"
+    },
+    {
+      "start": 1567.6,
+      "end": 1571.4,
+      "speaker": "c02/SPEAKER_03",
+      "text": "Pues 226 dies ha tardat en pagar la Generalitat"
+    },
+    {
+      "start": 1571.4,
+      "end": 1575,
+      "speaker": "c02/SPEAKER_03",
+      "text": "eixos 800 No, no, set mesos, 7 x 30 210, més 16 dies,"
+    },
+    {
+      "start": 1575,
+      "end": 1578.1,
+      "speaker": "c02/SPEAKER_03",
+      "text": "226 dies."
+    },
+    {
+      "start": 1578.1,
+      "end": 1581.1,
+      "speaker": "c02/SPEAKER_03",
+      "text": "Que no són els 56, 226 dies."
+    },
+    {
+      "start": 1581.1,
+      "end": 1583,
+      "speaker": "c02/SPEAKER_03",
+      "text": "Gràcies."
+    },
+    {
+      "start": 1583,
+      "end": 1587.6,
+      "speaker": "c02/SPEAKER_01",
+      "text": "Bueno, ja era un ja que dir que és un un punt que és donar compte, no és de debat polític, però bueno, cadascú té llibertat."
+    },
+    {
+      "start": 1587.6,
+      "end": 1591.2,
+      "speaker": "c02/SPEAKER_01",
+      "text": "Però jo sempre vull dir una qüestió, a mi em pareix molt bé que un vulga els dos o tres minuts de glòria"
+    },
+    {
+      "start": 1591.2,
+      "end": 1595.7,
+      "speaker": "c02/SPEAKER_01",
+      "text": "perquè la televisió ho treu de no sé quin dia ho treu i aixina, pues bueno, pues es veu l'accent, no?"
+    },
+    {
+      "start": 1595.7,
+      "end": 1600.1,
+      "speaker": "c02/SPEAKER_01",
+      "text": "Però jo sempre he dit que abans de que se vegen els colors per dir les coses"
+    },
+    {
+      "start": 1600.1,
+      "end": 1603,
+      "speaker": "c02/SPEAKER_01",
+      "text": "com no són o mig com no són,"
+    },
+    {
+      "start": 1603,
+      "end": 1606,
+      "speaker": "c02/SPEAKER_01",
+      "text": "tenim les comissions informatives."
+    },
+    {
+      "start": 1606,
+      "end": 1609.6,
+      "speaker": "c02/SPEAKER_01",
+      "text": "Les comissions informatives per a que ho sàpia tota la gent, són comissions on se debat lo que ve al ple"
+    },
+    {
+      "start": 1609.6,
+      "end": 1613.5,
+      "speaker": "c02/SPEAKER_01",
+      "text": "i per tant, i lògicament com no pot ser d'altra manera i estem d'acord, tothom cobra per estar en eixes comissions informatives, tothom que té que cobrar."
+    },
+    {
+      "start": 1613.5,
+      "end": 1617.8,
+      "speaker": "c02/SPEAKER_01",
+      "text": "I jo sempre he indicat que en les comissions informatives està l'interventora, estan els tècnics i ahí és on se té que trillar"
+    },
+    {
+      "start": 1617.8,
+      "end": 1621.2,
+      "speaker": "c02/SPEAKER_01",
+      "text": "les qüestions que es donen compte al ple,"
+    },
+    {
+      "start": 1621.2,
+      "end": 1625.4,
+      "speaker": "c02/SPEAKER_01",
+      "text": "que és per obligació legal, però lo que ve a trillar és de la comissió informativa, cosa"
+    },
+    {
+      "start": 1625.4,
+      "end": 1629.6,
+      "speaker": "c02/SPEAKER_01",
+      "text": "que pareix, per lo que veig, que no es va a debatre. Les dubtes que tenim ací"
+    },
+    {
+      "start": 1629.6,
+      "end": 1634.1,
+      "speaker": "c02/SPEAKER_01",
+      "text": "sempre venen al ple, però mai a les comissions informatives que estan els tècnics per a informar-vos i dir-vos com està."
+    },
+    {
+      "start": 1634.1,
+      "end": 1637,
+      "speaker": "c02/SPEAKER_01",
+      "text": "Dit això,"
+    },
+    {
+      "start": 1637,
+      "end": 1640.6,
+      "speaker": "c02/SPEAKER_01",
+      "text": "dir-vos també que efectivament sabem, som conscients de que pagar més tard de lo que toca,"
+    },
+    {
+      "start": 1640.6,
+      "end": 1644.6,
+      "speaker": "c02/SPEAKER_01",
+      "text": "pues a ningú li agrada i menos si tens 10 milions en el banc,"
+    },
+    {
+      "start": 1644.6,
+      "end": 1648.2,
+      "speaker": "c02/SPEAKER_01",
+      "text": "com cap dels regidors que estem ací voldria pagar al dia següent."
+    },
+    {
+      "start": 1648.2,
+      "end": 1651.9,
+      "speaker": "c02/SPEAKER_01",
+      "text": "Però l'administració no és fàcil i ho sabeu. Per diferents motius ho ha explicat el regidor"
+    },
+    {
+      "start": 1651.9,
+      "end": 1654.6,
+      "speaker": "c02/SPEAKER_01",
+      "text": "en algun cas. Jo em quede en que tenim un Ajuntament"
+    },
+    {
+      "start": 1654.6,
+      "end": 1657.7,
+      "speaker": "c02/SPEAKER_01",
+      "text": "net econòmicament,"
+    },
+    {
+      "start": 1657.7,
+      "end": 1662.1,
+      "speaker": "c02/SPEAKER_01",
+      "text": "que el pressupost afronta la realitat i l'Estat, no que no siga el PP que governa"
+    },
+    {
+      "start": 1662.1,
+      "end": 1666.8,
+      "speaker": "c02/SPEAKER_01",
+      "text": "amb Vox en la Generalitat, sinó que siga l'Estat, el Govern d'Espanya,"
+    },
+    {
+      "start": 1666.8,
+      "end": 1671.6,
+      "speaker": "c02/SPEAKER_01",
+      "text": "executen el pressupost de vegades en el 12 i 13% les partides."
+    }
+  ],
+  "rows": [],
+  "rejected": [
+    {
+      "label": "c01/SPEAKER_00",
+      "reason": "evidence-speaker-mismatch",
+      "detail": "41.2s is SPEAKER_02, cited as SPEAKER_00"
+    },
+    {
+      "label": "c01/SPEAKER_01",
+      "reason": "relation-contradicted",
+      "detail": "turn-grant, but 16.7s is followed by SPEAKER_00"
+    },
+    {
+      "label": "c01/SPEAKER_02",
+      "reason": "relation-contradicted",
+      "detail": "reply, but 349.5s follows SPEAKER_01"
+    },
+    {
+      "label": "c01/SPEAKER_03",
+      "reason": "unresolvable",
+      "detail": "no name in the cited quote and the party is not single-seat"
+    },
+    {
+      "label": "c02/SPEAKER_01",
+      "reason": "unresolvable",
+      "detail": "heard \"Robert Raga Gadea, alcalde\" but the cited quote does not contain it"
+    },
+    {
+      "label": "c02/SPEAKER_02",
+      "reason": "ambiguous",
+      "detail": "heard \"Rafa\" fits 2: Rafael Gómez Sánchez, Rafael Folgado Navarro"
+    },
+    {
+      "label": "c02/SPEAKER_03",
+      "reason": "ambiguous",
+      "detail": "heard \"José\" fits 6: José Luis Ramos March, José Ángel Hernández Carrizosa, José Manuel Vila Oltra, María José Pradas Ramo, José Luis Fernández Santamaría, José Manuel Gallardo Martínez"
+    }
+  ],
+  "stats": {
+    "chunksExpected": 6,
+    "chunksTranscribed": 3,
+    "failedChunks": [
+      {
+        "chunk": 3,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 4,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 5,
+        "why": "never attempted (call budget spent; resumes next run)"
+      }
+    ],
+    "labelsSeen": 9,
+    "rowsAccepted": 0,
+    "rowsRejected": 7,
+    "rejectedBy": {
+      "evidence-speaker-mismatch": 1,
+      "relation-contradicted": 2,
+      "unresolvable": 2,
+      "ambiguous": 2
+    },
+    "attemptedThisRun": 3,
+    "apiCalls": 4,
+    "coverage": 0.45618702839446973
+  }
+}

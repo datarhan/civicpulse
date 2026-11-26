@@ -1,6 +1,6 @@
 {
   "plenoId": "51k7yx",
-  "generatedAt": "2026-11-23T18:34:33.184Z",
+  "generatedAt": "2026-11-26T10:15:39.754Z",
   "model": "gemini-3.5-flash",
   "promptVersion": "speaker-map-v2",
   "chunkSeconds": 600,
@@ -3544,6 +3544,3810 @@
       "end": 4723,
       "speaker": "c07/SPEAKER_03",
       "text": "eh, jo els diria que fa uns deu, la setmana passada concretament crec que va ser el divendres, se van donar les xifres..."
+    },
+    {
+      "start": 533.6,
+      "end": 542.8,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Aquestes són les preguntes en este plenari extraordinari."
+    },
+    {
+      "start": 544.7,
+      "end": 546.7,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Ah, falta la foto, és de veres."
+    },
+    {
+      "start": 549.9,
+      "end": 552.4,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Ah, me'n recordat, me'n recordat, és de veres."
+    },
+    {
+      "start": 553.8,
+      "end": 555.4,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Abans de començar el ple..."
+    },
+    {
+      "start": 555.4,
+      "end": 556.7,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Eh, la portada..."
+    },
+    {
+      "start": 557.3,
+      "end": 562.6,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Ah, abans de començar el ple hem acordat tots els portaveus de tots els grups polítics..."
+    },
+    {
+      "start": 562.6,
+      "end": 567.8,
+      "speaker": "c00/SPEAKER_00",
+      "text": "fer un minut de silenci per el tema de l'accident de l'alta línia de velocitat dels trens..."
+    },
+    {
+      "start": 567.8,
+      "end": 572.7,
+      "speaker": "c00/SPEAKER_00",
+      "text": "de Utrera i per... eh, la xiqueta que va morir en la DANA Fada Sánchez, així que..."
+    },
+    {
+      "start": 572.7,
+      "end": 577.2,
+      "speaker": "c00/SPEAKER_00",
+      "text": "guardarem un minut de silenci i iniciem el ple."
+    },
+    {
+      "start": 4800,
+      "end": 4805.3,
+      "speaker": "c08/SPEAKER_00",
+      "text": "dels beneficis d'estos primers nou mesos. La banca"
+    },
+    {
+      "start": 4805.3,
+      "end": 4812.8,
+      "speaker": "c08/SPEAKER_00",
+      "text": "va obtindre un benefici en estos primers nou mesos de més de vint-i-nou mil milions d'euros."
+    },
+    {
+      "start": 4812.8,
+      "end": 4817.5,
+      "speaker": "c08/SPEAKER_00",
+      "text": "I les energètiques de més de quinze mil milions d'euros."
+    },
+    {
+      "start": 4817.5,
+      "end": 4824.8,
+      "speaker": "c08/SPEAKER_00",
+      "text": "Eh, vostés votaren, eh, en contra de la excepció"
+    },
+    {
+      "start": 4824.8,
+      "end": 4829.8,
+      "speaker": "c08/SPEAKER_00",
+      "text": "ibèrica, que va ajudar a moltes famílies a poder pagar la llum i el gas."
+    },
+    {
+      "start": 4829.8,
+      "end": 4834,
+      "speaker": "c08/SPEAKER_00",
+      "text": "Vostés sempre han anat en contra dels drets de les persones."
+    },
+    {
+      "start": 4834,
+      "end": 4839,
+      "speaker": "c08/SPEAKER_00",
+      "text": "I ara, eh, diuen que estan a favor de la vaga. Vostés no estan a favor de la vaga. Quan és una organització està"
+    },
+    {
+      "start": 4839,
+      "end": 4841.5,
+      "speaker": "c08/SPEAKER_01",
+      "text": "Ells estan a favor de la vaga [inaudible]"
+    },
+    {
+      "start": 4841.5,
+      "end": 4843.1,
+      "speaker": "c08/SPEAKER_01",
+      "text": "Té la paraula el senyor"
+    },
+    {
+      "start": 4843.1,
+      "end": 4846.1,
+      "speaker": "c08/SPEAKER_00",
+      "text": "Senyor alcalde, per favor. Li demane per favor."
+    },
+    {
+      "start": 4846.1,
+      "end": 4848,
+      "speaker": "c08/SPEAKER_01",
+      "text": "[inaudible] un momentet."
+    },
+    {
+      "start": 4848,
+      "end": 4851.5,
+      "speaker": "c08/SPEAKER_01",
+      "text": "Obri, Rafa."
+    },
+    {
+      "start": 4851.5,
+      "end": 4854.3,
+      "speaker": "c08/SPEAKER_01",
+      "text": "N'hi ha un segon torn, per tant, per favor"
+    },
+    {
+      "start": 4854.3,
+      "end": 4856.4,
+      "speaker": "c08/SPEAKER_00",
+      "text": "Però"
+    },
+    {
+      "start": 4856.4,
+      "end": 4860.9,
+      "speaker": "c08/SPEAKER_01",
+      "text": "però és que després tens un altre torn i podràs dir podràs dir el que tingues que dir, però ningú interrompís a un altre. Acaba Rafa."
+    },
+    {
+      "start": 4860.9,
+      "end": 4862.4,
+      "speaker": "c08/SPEAKER_00",
+      "text": "Acaba vosté."
+    },
+    {
+      "start": 4862.4,
+      "end": 4867.8,
+      "speaker": "c08/SPEAKER_01",
+      "text": "Sí, que ja ha acabat. Estàs justet de temps i després n'hi ha un altre torn per a tots."
+    },
+    {
+      "start": 4867.8,
+      "end": 4872.3,
+      "speaker": "c08/SPEAKER_00",
+      "text": "Estàvem estàvem dient que estan a favor del dret a la vaga, val?"
+    },
+    {
+      "start": 4872.3,
+      "end": 4877.6,
+      "speaker": "c08/SPEAKER_00",
+      "text": "Sin embarg, estan en contra dels drets de les persones. Com s'entén això? M'ho hauran que explicar."
+    },
+    {
+      "start": 4877.6,
+      "end": 4922.6,
+      "speaker": "c08/SPEAKER_01",
+      "text": "Segon torn, vale? Per a que quede clar [riures] que qui vulga parlar que parle. José Ángel? Vale, pos va, José Ángel."
+    },
+    {
+      "start": 4922.6,
+      "end": 4933,
+      "speaker": "c08/SPEAKER_02",
+      "text": "Sí, nosotros vamos a apoyar la la propuesta y ¿por qué la vamos a apoyar? Pues entre otras cosas"
+    },
+    {
+      "start": 4933,
+      "end": 4938.8,
+      "speaker": "c08/SPEAKER_02",
+      "text": "porque lo que se trae aquí es lo que ha provocado que el gobierno de Pedro Sánchez convoque elecciones."
+    },
+    {
+      "start": 4938.8,
+      "end": 4945.2,
+      "speaker": "c08/SPEAKER_02",
+      "text": "Porque ustedes aquí se les acaba de llenar la boca que están de acuerdo, que les parece muy bien, que los trabajadores."
+    },
+    {
+      "start": 4945.2,
+      "end": 4951.7,
+      "speaker": "c08/SPEAKER_02",
+      "text": "Claro, es que en esos ocho años todas las propuestas que ha llevado el Gobierno de España las han tumbado ustedes, han votado en contra."
+    },
+    {
+      "start": 4951.7,
+      "end": 4956.4,
+      "speaker": "c08/SPEAKER_02",
+      "text": "Cuando hemos hablado aquí del tema salarial, ustedes la reforma la reforma laboral la votaron en contra,"
+    },
+    {
+      "start": 4956.4,
+      "end": 4962.7,
+      "speaker": "c08/SPEAKER_02",
+      "text": "¿eh? Reforma laboral que fíjate que gracias a esos incrementos la economía de España va mejor,"
+    },
+    {
+      "start": 4962.7,
+      "end": 4966.7,
+      "speaker": "c08/SPEAKER_02",
+      "text": "pero bueno, eso para algunos eh parece ser que no no les vale,"
+    },
+    {
+      "start": 4966.7,
+      "end": 4971.7,
+      "speaker": "c08/SPEAKER_02",
+      "text": "¿eh? Han votado ustedes en contra con todas aquellas reformas que de políticas que se han intentado hacer desde el Gobierno de España para que el acceso de la vivienda sea para todo el mundo,"
+    },
+    {
+      "start": 4971.7,
+      "end": 4973.9,
+      "speaker": "c08/SPEAKER_02",
+      "text": "¿eh? Todo eso han votado ustedes en contra. Han han votado ustedes en contra a todas aquellas políticas"
+    },
+    {
+      "start": 4973.9,
+      "end": 4980.2,
+      "speaker": "c08/SPEAKER_02",
+      "text": "que desde el Gobierno de España se han puesto en marcha para mitigar eh el incremento de precios, que no olvidemos"
+    },
+    {
+      "start": 4980.2,
+      "end": 4984.6,
+      "speaker": "c08/SPEAKER_02",
+      "text": "que viene provocado por el gran amigo de ustedes de Trump y y otro y otro amigo como Milei."
+    },
+    {
+      "start": 4984.6,
+      "end": 4990.5,
+      "speaker": "c08/SPEAKER_02",
+      "text": "Nosotros apoyamos esto porque estamos en contra de Trump y de Milei, porque estamos a favor de una sociedad justa,"
+    },
+    {
+      "start": 4990.5,
+      "end": 4994.8,
+      "speaker": "c08/SPEAKER_02",
+      "text": "¿eh? Y porque estamos a favor de políticas que vayan en el acceso de la vivienda,"
+    },
+    {
+      "start": 4994.8,
+      "end": 4999.6,
+      "speaker": "c08/SPEAKER_02",
+      "text": "seguramente como como aquellos países tan comunistas y tan dictaduras como es Austria, como es Alemania, como son Países Bajos,"
+    },
+    {
+      "start": 4999.6,
+      "end": 5002.9,
+      "speaker": "c08/SPEAKER_02",
+      "text": "¿eh? Incluso como el Reino Unido. Entonces eso es lo que lleva a las políticas"
+    },
+    {
+      "start": 5002.9,
+      "end": 5008.6,
+      "speaker": "c08/SPEAKER_02",
+      "text": "de la sociedad de la democracia, pero parece ser que a ustedes eso no les vale. Buscan políticas como las de principios del año 2000"
+    },
+    {
+      "start": 5008.6,
+      "end": 5014.3,
+      "speaker": "c08/SPEAKER_02",
+      "text": "que nos llevaron a una gran crisis con esa gran especulación. Pero bueno, no lo entendemos. Creemos que la sociedad y la economía tiene que ser impulsada"
+    },
+    {
+      "start": 5014.3,
+      "end": 5019,
+      "speaker": "c08/SPEAKER_02",
+      "text": "y uno de los motores es la propia eh actividad económica del Estado"
+    },
+    {
+      "start": 5019,
+      "end": 5024.2,
+      "speaker": "c08/SPEAKER_02",
+      "text": "y de las autonomías. Autonomías que no han puesto en marcha ninguna de las políticas que se han aprobado, autonomías que ustedes gobiernan. Gracias."
+    },
+    {
+      "start": 5024.2,
+      "end": 5028,
+      "speaker": "c08/SPEAKER_01",
+      "text": "Segona intervenció Partit Popular."
+    },
+    {
+      "start": 5028,
+      "end": 5035,
+      "speaker": "c08/SPEAKER_03",
+      "text": "Defensar el dret a la vaga és una cosa i donar suport a la vaga"
+    },
+    {
+      "start": 5035,
+      "end": 5039.5,
+      "speaker": "c08/SPEAKER_03",
+      "text": "contra el govern en el que vosaltres sou partícips, etcètera."
+    },
+    {
+      "start": 5039.5,
+      "end": 5046.5,
+      "speaker": "c08/SPEAKER_03",
+      "text": "Ara, ja m'ha deixat ben clar Esquerra Unida que la vaga va contra l'oposició. Que això seria per a fer-se-ho mirar també pels sindicats."
+    },
+    {
+      "start": 5046.5,
+      "end": 5050.7,
+      "speaker": "c08/SPEAKER_03",
+      "text": "Els que no governen són els que tenen que arreglar Espanya."
+    },
+    {
+      "start": 5050.7,
+      "end": 5056.7,
+      "speaker": "c08/SPEAKER_03",
+      "text": "Si el senyor Pedro Sánchez i el govern del PSOE no podia governar, que haguera deixat de governar i haguera convocat eleccions"
+    },
+    {
+      "start": 5056.7,
+      "end": 5060.6,
+      "speaker": "c08/SPEAKER_03",
+      "text": "anys enrere. Vamos."
+    },
+    {
+      "start": 5060.6,
+      "end": 5065.8,
+      "speaker": "c08/SPEAKER_03",
+      "text": "Jo sempre hem heus dit que es parla molt de vivenda: vuit anys de Botànic, zero vivendes."
+    },
+    {
+      "start": 5065.8,
+      "end": 5073.8,
+      "speaker": "c08/SPEAKER_03",
+      "text": "Vuit anys de Botànic, PSOE i Compromís en el govern, zero vivendes. Acabem d'aprovar un punt cedint a la Generalitat Valenciana"
+    },
+    {
+      "start": 5073.8,
+      "end": 5080.9,
+      "speaker": "c08/SPEAKER_03",
+      "text": "del Partit Popular i recolzat, perquè ho diran vostès, per Vox, terreno per a construir vivenda assequible."
+    },
+    {
+      "start": 5080.9,
+      "end": 5088,
+      "speaker": "c08/SPEAKER_03",
+      "text": "Això de societat justa, pareix ser que tots els propietaris de la vivenda en Espanya són de dreta i d'extrema dreta. No n'hi haurà cap propietari de vivenda i cap"
+    },
+    {
+      "start": 5088,
+      "end": 5095.1,
+      "speaker": "c08/SPEAKER_03",
+      "text": "persona que llogue que siga d'esquerra. Pareix ser que tots són de dreta i d'extrema dreta. Per altra banda,"
+    },
+    {
+      "start": 5095.1,
+      "end": 5101.2,
+      "speaker": "c08/SPEAKER_03",
+      "text": "defensa de lo públic, una posició clara, has dit José Manuel,"
+    },
+    {
+      "start": 5101.2,
+      "end": 5103.4,
+      "speaker": "c08/SPEAKER_03",
+      "text": "de l'esquerra com a model polític."
+    },
+    {
+      "start": 5103.4,
+      "end": 5105.8,
+      "speaker": "c08/SPEAKER_03",
+      "text": "El ple passat,"
+    },
+    {
+      "start": 5105.8,
+      "end": 5108.2,
+      "speaker": "c08/SPEAKER_03",
+      "text": "paraules textuals de Rafa:"
+    },
+    {
+      "start": 5108.2,
+      "end": 5115.6,
+      "speaker": "c08/SPEAKER_03",
+      "text": "«Es evidente que la experiencia y los años que he gobernado ya he servido que tienen un coste económico de servicio y de satisfacción que el gobierno municipal no puede o no es capaz de dar y por eso externaliza»."
+    },
+    {
+      "start": 5115.6,
+      "end": 5121.3,
+      "speaker": "c08/SPEAKER_03",
+      "text": "Continuava rient-se de mi quan parlava de privatització."
+    },
+    {
+      "start": 5121.3,
+      "end": 5125.2,
+      "speaker": "c08/SPEAKER_03",
+      "text": "I després concloïes, Rafa:"
+    },
+    {
+      "start": 5125.2,
+      "end": 5129.8,
+      "speaker": "c08/SPEAKER_03",
+      "text": "«A veces, para hablar hemos de ser conscientes de lo que hemos hecho antes»."
+    },
+    {
+      "start": 5129.8,
+      "end": 5132.1,
+      "speaker": "c08/SPEAKER_03",
+      "text": "¿Saps lo que feu vostè abans?"
+    },
+    {
+      "start": 5132.1,
+      "end": 5137.3,
+      "speaker": "c08/SPEAKER_03",
+      "text": "Votar a favor de la privatització del transport públic del servei del transport públic"
+    },
+    {
+      "start": 5137.3,
+      "end": 5139.6,
+      "speaker": "c08/SPEAKER_03",
+      "text": "de Riba-roja."
+    },
+    {
+      "start": 5139.6,
+      "end": 5142.3,
+      "speaker": "c08/SPEAKER_03",
+      "text": "De la privatització."
+    },
+    {
+      "start": 5142.3,
+      "end": 5145.9,
+      "speaker": "c08/SPEAKER_03",
+      "text": "¿Saps lo que fa ara? Defensar lo públic."
+    },
+    {
+      "start": 5145.9,
+      "end": 5148.6,
+      "speaker": "c08/SPEAKER_03",
+      "text": "Per favor, coherència."
+    },
+    {
+      "start": 5148.6,
+      "end": 5150.5,
+      "speaker": "c08/SPEAKER_03",
+      "text": "Siguem un poquet coherents. L'esquerra en estat pur."
+    },
+    {
+      "start": 5150.5,
+      "end": 5154.3,
+      "speaker": "c08/SPEAKER_03",
+      "text": "Vivenda: zero vivenda en vuit anys."
+    },
+    {
+      "start": 5154.3,
+      "end": 5158.9,
+      "speaker": "c08/SPEAKER_03",
+      "text": "Defensa de lo públic: vot a favor de la privatització. Menys mal que el seu company de moció es va abstindre, però vostè a favor de la privatització."
+    },
+    {
+      "start": 5158.9,
+      "end": 5163.3,
+      "speaker": "c08/SPEAKER_03",
+      "text": "I ara mos venen en el recolzament a esta vaga."
+    },
+    {
+      "start": 5163.3,
+      "end": 5167.6,
+      "speaker": "c08/SPEAKER_03",
+      "text": "Clar que estem a favor de les famílies, de la economia, d'uns preus justos,"
+    },
+    {
+      "start": 5167.6,
+      "end": 5171.8,
+      "speaker": "c08/SPEAKER_03",
+      "text": "de que les famílies puguen aplegar a final de mes, per supost."
+    },
+    {
+      "start": 5171.8,
+      "end": 5175.4,
+      "speaker": "c08/SPEAKER_03",
+      "text": "Ara, els camins per aplegar a eixos fins són molt diferents."
+    },
+    {
+      "start": 5175.4,
+      "end": 5178.8,
+      "speaker": "c08/SPEAKER_03",
+      "text": "Els seus que els nostres. Moltes gràcies."
+    },
+    {
+      "start": 5178.8,
+      "end": 5180.2,
+      "speaker": "c08/SPEAKER_01",
+      "text": "Més paraules?"
+    },
+    {
+      "start": 5180.2,
+      "end": 5184.6,
+      "speaker": "c08/SPEAKER_04",
+      "text": "Muchas gracias, alcalde. Lo voy a volver a repetir porque veo que la extrema izquierda"
+    },
+    {
+      "start": 5184.6,
+      "end": 5189.2,
+      "speaker": "c08/SPEAKER_04",
+      "text": "radical como siempre no escucha. La huelga es un derecho constitucional y como tal va a ser respetado por este grupo municipal."
+    },
+    {
+      "start": 5189.2,
+      "end": 5194.3,
+      "speaker": "c08/SPEAKER_04",
+      "text": "Y ahí lo voy a dejar. Si quiere tenemos un monográfico sobre lo que son los fondos de inversión y la compra de activos en una entidad de entidades eh de crédito que nos llevaría largo tiempo,"
+    },
+    {
+      "start": 5194.3,
+      "end": 5199.7,
+      "speaker": "c08/SPEAKER_04",
+      "text": "eh pero esta es la realidad que nos ocupa estando gobiernos del Partido Socialista es lo que ha pasado. Y respecto"
+    },
+    {
+      "start": 5199.7,
+      "end": 5204.9,
+      "speaker": "c08/SPEAKER_04",
+      "text": "la intervención suya, lo que sí que le digo es que eh llevan ocho años gobernando"
+    },
+    {
+      "start": 5204.9,
+      "end": 5210.8,
+      "speaker": "c08/SPEAKER_04",
+      "text": "y ahora eh en el último momento cuando ya se veían con el agua al cuello eh de pronto sacan dos propuestas para solucionar el problema que durante ocho años no han conseguido"
+    },
+    {
+      "start": 5210.8,
+      "end": 5215.5,
+      "speaker": "c08/SPEAKER_04",
+      "text": "y dice que votamos en contra. Las cosas cuando son tan graves eh se tienen que pactar y además creo que se tienen que pactar como el famoso pacto de Toledo con todas las"
+    },
+    {
+      "start": 5215.5,
+      "end": 5220.2,
+      "speaker": "c08/SPEAKER_04",
+      "text": "eh instituciones, actores implicados y fuerzas políticas. En el último Congreso"
+    },
+    {
+      "start": 5220.2,
+      "end": 5224.3,
+      "speaker": "c08/SPEAKER_04",
+      "text": "Nacional de Vivienda que en el último que se realizó en Valencia hará unos cuatro años el principal problema que todos los actores daban"
+    },
+    {
+      "start": 5224.3,
+      "end": 5228.5,
+      "speaker": "c08/SPEAKER_04",
+      "text": "eran los políticos, que entonces estaba gobernando el PSOE y aquí en Valencia"
+    },
+    {
+      "start": 5228.5,
+      "end": 5232.9,
+      "speaker": "c08/SPEAKER_04",
+      "text": "también, y ese era el principal problema. No había planes urbanísticos que avanzaban, para conceder una licencia era un drama"
+    },
+    {
+      "start": 5232.9,
+      "end": 5237.2,
+      "speaker": "c08/SPEAKER_04",
+      "text": "y al final se había criminalizado a ciertos actores. ¿Que hay que tomar algunas medidas sobre la especulación? Por supuesto estoy de acuerdo con usted,"
+    },
+    {
+      "start": 5237.2,
+      "end": 5242.9,
+      "speaker": "c08/SPEAKER_04",
+      "text": "pero aquí lo que tenemos que tener claro es que ustedes han estado ocho años gobernando y ahora vienen aquí como defensores"
+    },
+    {
+      "start": 5242.9,
+      "end": 5248.5,
+      "speaker": "c08/SPEAKER_04",
+      "text": "y como solucionadores de lo que hay que hacer. En fin, esto tiene una palabra, que es demagogia, así que muchísimas gracias."
+    },
+    {
+      "start": 5248.5,
+      "end": 5250,
+      "speaker": "c08/SPEAKER_01",
+      "text": "Més paraules?"
+    },
+    {
+      "start": 5250,
+      "end": 5252.2,
+      "speaker": "c08/SPEAKER_05",
+      "text": "Esquerra Unida Podem."
+    },
+    {
+      "start": 5252.2,
+      "end": 5257.7,
+      "speaker": "c08/SPEAKER_05",
+      "text": "Bueno, jo pense que la demagògia és vindre ací a defensar un dret, que és lo que ha fet la dreta i l'extrema dreta, però després votar en contra del mateix dret."
+    },
+    {
+      "start": 5257.7,
+      "end": 5262.6,
+      "speaker": "c08/SPEAKER_05",
+      "text": "Dit això, jo crec que tot el món sap que en el Parlament, o siga, que en el Congrés dels Diputats no hi ha una majoria absoluta, no hi ha una majoria,"
+    },
+    {
+      "start": 5262.6,
+      "end": 5266.8,
+      "speaker": "c08/SPEAKER_05",
+      "text": "aleshores el govern lo que ha fet és intentar portar les mesures per a tindre la majoria per a que i és que eh no per a que s'aproven."
+    },
+    {
+      "start": 5266.8,
+      "end": 5271.1,
+      "speaker": "c08/SPEAKER_05",
+      "text": "En este sentit, eh lo que hem vist és que hi han hagut coses que s'han aprovat i altres qüestions que no."
+    },
+    {
+      "start": 5271.1,
+      "end": 5276.3,
+      "speaker": "c08/SPEAKER_05",
+      "text": "Eh a més, també és una cosa molt important i és que en matèria de vivenda, en matèria d'habitatge, eh no totes les competències les té el Govern d'Espanya, també les tenen les autonomies. I lo que passa és que quan es aconsegueix"
+    },
+    {
+      "start": 5276.3,
+      "end": 5282,
+      "speaker": "c08/SPEAKER_05",
+      "text": "fer una norma en el Govern d'Espanya, que és com complicat, però se aconsegueix, després tenim les autonomies governades pel Partit Popular que incompleixen la norma."
+    },
+    {
+      "start": 5282,
+      "end": 5287.3,
+      "speaker": "c08/SPEAKER_05",
+      "text": "Aleshores, eh ja és que açò lo que fa el Partit Popular i lo que fa l'extrema dreta és l'extrema dreta és eh incomplir la llei, que és lo que fa la vostra companya de Madrid."
+    },
+    {
+      "start": 5287.3,
+      "end": 5292.3,
+      "speaker": "c08/SPEAKER_05",
+      "text": "Aleshores, eh és molt complicat, perquè és lo que fa és incomplir la llei de dotze/dos mil vint-i-tres, que és la que es va aprovar en el vot en contra de PP i Vox,"
+    },
+    {
+      "start": 5292.3,
+      "end": 5297,
+      "speaker": "c08/SPEAKER_05",
+      "text": "però si s'ha aprovat, el PP lo que hauria de fer és complir-la perquè és una llei"
+    },
+    {
+      "start": 5400,
+      "end": 5402.8,
+      "speaker": "c09/SPEAKER_00",
+      "text": "aprovat. Acor- de fet, parlant del concepte de radicalitat, que sempre el representant de Vox parla de la radicalitat,"
+    },
+    {
+      "start": 5402.8,
+      "end": 5406.3,
+      "speaker": "c09/SPEAKER_00",
+      "text": "que la diferència és, si jo represente la radicalitat, represente el salari mínim,"
+    },
+    {
+      "start": 5406.3,
+      "end": 5410.4,
+      "speaker": "c09/SPEAKER_00",
+      "text": "represente que no hi haja desnonaments, represente que es puga reduir la jornada laboral amb el mateix salari"
+    },
+    {
+      "start": 5410.4,
+      "end": 5413.9,
+      "speaker": "c09/SPEAKER_00",
+      "text": "i vostè, que segons vostè no és radical, representa que una empresa estrangera puga comprar cent o mil habitatges"
+    },
+    {
+      "start": 5413.9,
+      "end": 5416.5,
+      "speaker": "c09/SPEAKER_00",
+      "text": "perquè ahí no hi ha prioritat nacional, però que una persona espanyola o que viva ací o que està empadronada"
+    },
+    {
+      "start": 5416.5,
+      "end": 5420.3,
+      "speaker": "c09/SPEAKER_00",
+      "text": "no puga comprar-la, per què? Perquè ja la compra la empresa estrangera i li va a vendre eixa casa per, bueno, per una quantitat totalment desorbitada."
+    },
+    {
+      "start": 5420.3,
+      "end": 5423.9,
+      "speaker": "c09/SPEAKER_00",
+      "text": "Perquè això és lo que vostè defensa, és la llibertat mercantil que vostè defensa, per tant, front les polítiques de la llibertat mercantil,"
+    },
+    {
+      "start": 5423.9,
+      "end": 5427.2,
+      "speaker": "c09/SPEAKER_00",
+      "text": "lo que nosaltres apostem son per els decrets que han eixit, per totes les normes que s'han aprovat i que vostès han votat en contra"
+    },
+    {
+      "start": 5427.2,
+      "end": 5430.6,
+      "speaker": "c09/SPEAKER_00",
+      "text": "perquè el model de l'esquerra és habitatge, és defensa dels salaris, és baixar la jornada"
+    },
+    {
+      "start": 5430.6,
+      "end": 5434,
+      "speaker": "c09/SPEAKER_00",
+      "text": "i és per suposat defensar si hi ha sindicats que estan secundant una vaga, nosaltres per suposat donar eixe suport a esta vaga"
+    },
+    {
+      "start": 5434,
+      "end": 5436.8,
+      "speaker": "c09/SPEAKER_00",
+      "text": "i criticar i posar damunt de la taula que la dreta i la extrema dreta ha votat en contra,"
+    },
+    {
+      "start": 5436.8,
+      "end": 5440.5,
+      "speaker": "c09/SPEAKER_00",
+      "text": "encara que en el discurs ara vostès vulguen dir que esteu a favor, que defenseu uns drets, heu votat absolutament en contra."
+    },
+    {
+      "start": 5440.5,
+      "end": 5443,
+      "speaker": "c09/SPEAKER_00",
+      "text": "Per tant, la demagògia en este sentit i en este discurs és de la dreta i de la extrema dreta."
+    },
+    {
+      "start": 5443,
+      "end": 5444.5,
+      "speaker": "c09/SPEAKER_01",
+      "text": "Més paraules?"
+    },
+    {
+      "start": 5444.5,
+      "end": 5445.3,
+      "speaker": "c09/SPEAKER_01",
+      "text": "Compromís."
+    },
+    {
+      "start": 5445.3,
+      "end": 5448,
+      "speaker": "c09/SPEAKER_02",
+      "text": "Sí. Bueno,"
+    },
+    {
+      "start": 5448,
+      "end": 5452.8,
+      "speaker": "c09/SPEAKER_02",
+      "text": "anava a parlar de la demagògia, a veure, jo crec que José Manuel ho ha dit prou clar."
+    },
+    {
+      "start": 5452.8,
+      "end": 5457.6,
+      "speaker": "c09/SPEAKER_02",
+      "text": "Parlar de defensar el dret a la vaga, però no"
+    },
+    {
+      "start": 5457.6,
+      "end": 5461.8,
+      "speaker": "c09/SPEAKER_02",
+      "text": "estar d'acord en totes les mesures que presenta"
+    },
+    {
+      "start": 5461.8,
+      "end": 5466.8,
+      "speaker": "c09/SPEAKER_02",
+      "text": "esta moció, que ve per part de tan de sindicats, Comissions Obreres com UGT i de les"
+    },
+    {
+      "start": 5466.8,
+      "end": 5470.8,
+      "speaker": "c09/SPEAKER_02",
+      "text": "associacions sindicats de llogaters i llogateres"
+    },
+    {
+      "start": 5470.8,
+      "end": 5475.3,
+      "speaker": "c09/SPEAKER_02",
+      "text": "que nosaltres l'únic que hem fet ha sigut traslladar-ho al ple municipal,"
+    },
+    {
+      "start": 5475.3,
+      "end": 5478.4,
+      "speaker": "c09/SPEAKER_02",
+      "text": "me pareix a mi que és"
+    },
+    {
+      "start": 5478.4,
+      "end": 5480.9,
+      "speaker": "c09/SPEAKER_02",
+      "text": "parlar precisament de demagògia, val?"
+    },
+    {
+      "start": 5480.9,
+      "end": 5484.7,
+      "speaker": "c09/SPEAKER_02",
+      "text": "Perquè tot lo que se està demanant ací és lo que està demanant la gent del carrer,"
+    },
+    {
+      "start": 5484.7,
+      "end": 5488,
+      "speaker": "c09/SPEAKER_02",
+      "text": "la gent treballadora, la gent que no té vint pisos,"
+    },
+    {
+      "start": 5488,
+      "end": 5490.7,
+      "speaker": "c09/SPEAKER_02",
+      "text": "que no és propietària de vint pisos, la gent que no"
+    },
+    {
+      "start": 5490.7,
+      "end": 5495.3,
+      "speaker": "c09/SPEAKER_02",
+      "text": "és propietària de o és accionista d'una gran empresa energètica o d'un banc,"
+    },
+    {
+      "start": 5495.3,
+      "end": 5499.4,
+      "speaker": "c09/SPEAKER_02",
+      "text": "que això no li fa falta anar a la vaga, per supost, val? Perquè ja tenen prou rendabilitat,"
+    },
+    {
+      "start": 5499.4,
+      "end": 5503.7,
+      "speaker": "c09/SPEAKER_02",
+      "text": "però quan vostès parlen de llibertat, d'igualtat, de drets"
+    },
+    {
+      "start": 5503.7,
+      "end": 5507.5,
+      "speaker": "c09/SPEAKER_02",
+      "text": "i després en totes les propostes que s'han presentat durant totes estes últimes legislatures,"
+    },
+    {
+      "start": 5507.5,
+      "end": 5511.3,
+      "speaker": "c09/SPEAKER_02",
+      "text": "vostès han votat en contra. Si vostès el recolzament social i econòmic s'absté,"
+    },
+    {
+      "start": 5511.3,
+      "end": 5514.7,
+      "speaker": "c09/SPEAKER_02",
+      "text": "votar en contra es de Vox, votar en contra"
+    },
+    {
+      "start": 5514.7,
+      "end": 5518,
+      "speaker": "c09/SPEAKER_02",
+      "text": "tampoc com el PP a les mesures de dels decrets de mesures en el lloguer,"
+    },
+    {
+      "start": 5518,
+      "end": 5521.2,
+      "speaker": "c09/SPEAKER_02",
+      "text": "votar en contra del sistema de dependència, votar en contra"
+    },
+    {
+      "start": 5521.2,
+      "end": 5524.6,
+      "speaker": "c09/SPEAKER_02",
+      "text": "a la pròrroga dels descomptes de transport públic, votar en contra de la revalorització de les pensions,"
+    },
+    {
+      "start": 5524.6,
+      "end": 5528.7,
+      "speaker": "c09/SPEAKER_02",
+      "text": "que ja ens explicarà alguna vegada, no sé si ara o en campanya electoral, com volen"
+    },
+    {
+      "start": 5528.7,
+      "end": 5532.8,
+      "speaker": "c09/SPEAKER_02",
+      "text": "privatitzar les pensions i sobre tot d'on van a traure vuitanta-cinc mil milions"
+    },
+    {
+      "start": 5532.8,
+      "end": 5536.9,
+      "speaker": "c09/SPEAKER_02",
+      "text": "d'eixa modificació de l'IRPF que volen fer. Gràcies."
+    },
+    {
+      "start": 5536.9,
+      "end": 5539.7,
+      "speaker": "c09/SPEAKER_01",
+      "text": "Bueno, pues si ja estan, no? Crec, totes les intervencions, no queda ninguna."
+    },
+    {
+      "start": 5539.7,
+      "end": 5543,
+      "speaker": "c09/SPEAKER_01",
+      "text": "Apuntar dos datos importantes porque la historia a veces"
+    },
+    {
+      "start": 5543,
+      "end": 5545.4,
+      "speaker": "c09/SPEAKER_01",
+      "text": "la borramos rápida, ¿no?"
+    },
+    {
+      "start": 5545.4,
+      "end": 5548.8,
+      "speaker": "c09/SPEAKER_01",
+      "text": "El rescate el rescate a la banca"
+    },
+    {
+      "start": 5548.8,
+      "end": 5551.7,
+      "speaker": "c09/SPEAKER_01",
+      "text": "ha costado cien mil millones de euros."
+    },
+    {
+      "start": 5551.7,
+      "end": 5554.5,
+      "speaker": "c09/SPEAKER_01",
+      "text": "El rescate se dio porque el capitalismo más brutal"
+    },
+    {
+      "start": 5554.5,
+      "end": 5558.5,
+      "speaker": "c09/SPEAKER_01",
+      "text": "para insuflar a los bancos dinero"
+    },
+    {
+      "start": 5558.5,
+      "end": 5562.5,
+      "speaker": "c09/SPEAKER_01",
+      "text": "para no solo que compraran pisos, sino piso, coche, viaje, etcétera, etcétera, etcétera."
+    },
+    {
+      "start": 5562.5,
+      "end": 5565.7,
+      "speaker": "c09/SPEAKER_01",
+      "text": "De la liberación del suelo de Aznar,"
+    },
+    {
+      "start": 5565.7,
+      "end": 5568,
+      "speaker": "c09/SPEAKER_01",
+      "text": "recordarse que va a ser importante,"
+    },
+    {
+      "start": 5568,
+      "end": 5571.7,
+      "speaker": "c09/SPEAKER_01",
+      "text": "ha venido todo un proceso importante y la repercusión se está pagando aún todavía, me me hago al pueblo porque no quiero hablar en abstracto."
+    },
+    {
+      "start": 5571.7,
+      "end": 5575.7,
+      "speaker": "c09/SPEAKER_01",
+      "text": "Nosotros aquí teníamos propuestas avaladas por este Ayuntamiento"
+    },
+    {
+      "start": 5575.7,
+      "end": 5579.9,
+      "speaker": "c09/SPEAKER_01",
+      "text": "para construir de renta libre vora cinco mil viviendas."
+    },
+    {
+      "start": 5579.9,
+      "end": 5581.7,
+      "speaker": "c09/SPEAKER_01",
+      "text": "¿Lo ha escuchado bien?"
+    },
+    {
+      "start": 5581.7,
+      "end": 5583.7,
+      "speaker": "c09/SPEAKER_01",
+      "text": "Vora cinco mil viviendas."
+    },
+    {
+      "start": 5583.7,
+      "end": 5587.6,
+      "speaker": "c09/SPEAKER_01",
+      "text": "De ellas, el ochenta por cien fuera de ordenación urbanística,"
+    },
+    {
+      "start": 5587.6,
+      "end": 5590.1,
+      "speaker": "c09/SPEAKER_01",
+      "text": "es decir, transformando"
+    },
+    {
+      "start": 5590.1,
+      "end": 5592.5,
+      "speaker": "c09/SPEAKER_01",
+      "text": "naranjales en vivienda,"
+    },
+    {
+      "start": 5592.5,
+      "end": 5594.8,
+      "speaker": "c09/SPEAKER_01",
+      "text": "o garroferas o secano."
+    },
+    {
+      "start": 5594.8,
+      "end": 5597.8,
+      "speaker": "c09/SPEAKER_01",
+      "text": "Y los dineros que exigían eso, pues el caso de Porchinos,"
+    },
+    {
+      "start": 5597.8,
+      "end": 5600.7,
+      "speaker": "c09/SPEAKER_01",
+      "text": "que la han rescatado todos los españoles,"
+    },
+    {
+      "start": 5600.7,
+      "end": 5604.6,
+      "speaker": "c09/SPEAKER_01",
+      "text": "significaron ciento sesenta millones de euros"
+    },
+    {
+      "start": 5604.6,
+      "end": 5608.5,
+      "speaker": "c09/SPEAKER_01",
+      "text": "de compra de terrenos que la empresa Nozar,"
+    },
+    {
+      "start": 5608.5,
+      "end": 5612.1,
+      "speaker": "c09/SPEAKER_01",
+      "text": "que va a ser la adjudicataria para hacer esa operación, va a caer y lo paga el banco, uno era"
+    },
+    {
+      "start": 5612.1,
+      "end": 5614.9,
+      "speaker": "c09/SPEAKER_01",
+      "text": "entre otros el el el Bancaja de aquel que era, una una caja pequeñita,"
+    },
+    {
+      "start": 5614.9,
+      "end": 5617.2,
+      "speaker": "c09/SPEAKER_01",
+      "text": "el BBVA y otro banco."
+    },
+    {
+      "start": 5617.2,
+      "end": 5620,
+      "speaker": "c09/SPEAKER_01",
+      "text": "Que los han rescatado el dinero de todos los españoles."
+    },
+    {
+      "start": 5620,
+      "end": 5623.1,
+      "speaker": "c09/SPEAKER_01",
+      "text": "Es decir, ¿por qué digo esto? Lo que quiero decir"
+    },
+    {
+      "start": 5623.1,
+      "end": 5626.5,
+      "speaker": "c09/SPEAKER_01",
+      "text": "sobre este tema que es complicado, que es el de la vivienda y no es fácil,"
+    },
+    {
+      "start": 5626.5,
+      "end": 5629.7,
+      "speaker": "c09/SPEAKER_01",
+      "text": "es primero dos cosas, que tenemos que respetar efectivamente como se ha dicho porque yo he visto aquí una un comienzo interesante."
+    },
+    {
+      "start": 5629.7,
+      "end": 5633.1,
+      "speaker": "c09/SPEAKER_01",
+      "text": "Por una parte os hace gracia porque es una huelga contra el gobierno,"
+    },
+    {
+      "start": 5633.1,
+      "end": 5634.7,
+      "speaker": "c09/SPEAKER_01",
+      "text": "porque decís,"
+    },
+    {
+      "start": 5634.7,
+      "end": 5637.4,
+      "speaker": "c09/SPEAKER_01",
+      "text": "va bien porque les desgastamos, pero por otra parte no estáis de acuerdo en el fondo de la huelga,"
+    },
+    {
+      "start": 5637.4,
+      "end": 5641,
+      "speaker": "c09/SPEAKER_01",
+      "text": "porque o sea, decir que el fondo de la huelga va contra nuestros principios, entonces estáis ahí en este en este la parte de atrás con un maridaje"
+    },
+    {
+      "start": 5641,
+      "end": 5644.3,
+      "speaker": "c09/SPEAKER_01",
+      "text": "porque las huelgas siempre se hacen contra un gobierno."
+    },
+    {
+      "start": 5644.3,
+      "end": 5645.9,
+      "speaker": "c09/SPEAKER_01",
+      "text": "¿Y por qué? Pues porque consideran,"
+    },
+    {
+      "start": 5645.9,
+      "end": 5649.2,
+      "speaker": "c09/SPEAKER_01",
+      "text": "en toda la legitimidad del mundo los sindicatos, que las políticas que se están haciendo no están dando resultados"
+    },
+    {
+      "start": 5649.2,
+      "end": 5652.8,
+      "speaker": "c09/SPEAKER_01",
+      "text": "y aplican legítimamente. Por cierto, huelgas de los sindicatos de izquierdas de clase"
+    },
+    {
+      "start": 5652.8,
+      "end": 5655.4,
+      "speaker": "c09/SPEAKER_01",
+      "text": "a los socialistas gobernando le han hecho cuatro."
+    },
+    {
+      "start": 5655.4,
+      "end": 5658,
+      "speaker": "c09/SPEAKER_01",
+      "text": "Que en esta sería cinco."
+    },
+    {
+      "start": 5658,
+      "end": 5660.6,
+      "speaker": "c09/SPEAKER_01",
+      "text": "Y a los gobiernos de derechas tres."
+    },
+    {
+      "start": 5660.6,
+      "end": 5664.4,
+      "speaker": "c09/SPEAKER_01",
+      "text": "Para que para que también la gente contextualice que cada uno defiende sus intereses"
+    },
+    {
+      "start": 5664.4,
+      "end": 5667.4,
+      "speaker": "c09/SPEAKER_01",
+      "text": "y en este caso es el sindicato es los trabajadores de España."
+    },
+    {
+      "start": 5667.4,
+      "end": 5670.5,
+      "speaker": "c09/SPEAKER_01",
+      "text": "Y creo que es una actualidad clarísima los puntos que han dicho,"
+    },
+    {
+      "start": 5670.5,
+      "end": 5672.9,
+      "speaker": "c09/SPEAKER_01",
+      "text": "que están de actualidad. Es verdad."
+    },
+    {
+      "start": 5672.9,
+      "end": 5676.4,
+      "speaker": "c09/SPEAKER_01",
+      "text": "Ahora bien, también tengo que decir nosotros que por una parte lo que sí que queremos efectivamente"
+    },
+    {
+      "start": 5676.4,
+      "end": 5679.7,
+      "speaker": "c09/SPEAKER_01",
+      "text": "es que se reconduzca el clima de tensión que hay en este país,"
+    },
+    {
+      "start": 5679.7,
+      "end": 5683.4,
+      "speaker": "c09/SPEAKER_01",
+      "text": "que se vuelva a haber un entendimiento entre la patronal y los sindicatos,"
+    },
+    {
+      "start": 5683.4,
+      "end": 5686.9,
+      "speaker": "c09/SPEAKER_01",
+      "text": "que se faculte acuerdos políticos para la que eso pueda ser y que efectivamente"
+    },
+    {
+      "start": 5686.9,
+      "end": 5689.4,
+      "speaker": "c09/SPEAKER_01",
+      "text": "ese pacto que ha hecho Vox, Partido Popular"
+    },
+    {
+      "start": 5689.4,
+      "end": 5692,
+      "speaker": "c09/SPEAKER_01",
+      "text": "y Junts,"
+    },
+    {
+      "start": 5692,
+      "end": 5695.1,
+      "speaker": "c09/SPEAKER_01",
+      "text": "que era los independentistas que queríais meter en la cárcel y ahora son los socios vuestros,"
+    },
+    {
+      "start": 5695.1,
+      "end": 5697.8,
+      "speaker": "c09/SPEAKER_01",
+      "text": "pues que es un pacto muy malo para España."
+    },
+    {
+      "start": 5697.8,
+      "end": 5700,
+      "speaker": "c09/SPEAKER_01",
+      "text": "Y está dando dichos resultados,"
+    },
+    {
+      "start": 5700,
+      "end": 5703.4,
+      "speaker": "c09/SPEAKER_01",
+      "text": "que es votar en el Congreso como ha dicho el concejal en contra de las políticas"
+    },
+    {
+      "start": 5703.4,
+      "end": 5706.9,
+      "speaker": "c09/SPEAKER_01",
+      "text": "de de la mejora para nuestros vecinos y vecinas, en este caso la vivienda."
+    },
+    {
+      "start": 5706.9,
+      "end": 5709.8,
+      "speaker": "c09/SPEAKER_01",
+      "text": "Y acabar, y acabar, eh digamos que"
+    },
+    {
+      "start": 5709.8,
+      "end": 5713.2,
+      "speaker": "c09/SPEAKER_01",
+      "text": "España crece cinco veces más que Francia,"
+    },
+    {
+      "start": 5713.2,
+      "end": 5716.5,
+      "speaker": "c09/SPEAKER_01",
+      "text": "tres que tres que Italia y dos que Alemania."
+    },
+    {
+      "start": 5716.5,
+      "end": 5719.7,
+      "speaker": "c09/SPEAKER_01",
+      "text": "Pero nosotros no tenemos la la culpa de la guerra de Irak."
+    },
+    {
+      "start": 5719.7,
+      "end": 5723.2,
+      "speaker": "c09/SPEAKER_01",
+      "text": "Yo espero que el martes le peguen un revolcón importante a su socio"
+    },
+    {
+      "start": 5723.2,
+      "end": 5725.2,
+      "speaker": "c09/SPEAKER_01",
+      "text": "de Vox a Trump."
+    },
+    {
+      "start": 5725.2,
+      "end": 5728.7,
+      "speaker": "c09/SPEAKER_01",
+      "text": "Pero le peguemos un revolcón democrático, que es lo que tiene que pasar y que ganen los demócratas."
+    },
+    {
+      "start": 5728.7,
+      "end": 5731.6,
+      "speaker": "c09/SPEAKER_01",
+      "text": "Y que la guerra en Irán que estaba pactada"
+    },
+    {
+      "start": 5731.6,
+      "end": 5734.8,
+      "speaker": "c09/SPEAKER_01",
+      "text": "por el anterior, que era un tal Obama,"
+    },
+    {
+      "start": 5734.8,
+      "end": 5737.8,
+      "speaker": "c09/SPEAKER_01",
+      "text": "pactada la no proliferación nuclear, pactada y acordada,"
+    },
+    {
+      "start": 5737.8,
+      "end": 5741.3,
+      "speaker": "c09/SPEAKER_01",
+      "text": "se la han cargado en un periquete por intereses espurios"
+    },
+    {
+      "start": 5741.3,
+      "end": 5743.8,
+      "speaker": "c09/SPEAKER_01",
+      "text": "del petróleo y lo que hay detrás."
+    },
+    {
+      "start": 5743.8,
+      "end": 5747.8,
+      "speaker": "c09/SPEAKER_01",
+      "text": "Y lo que hace esta gente es cuidarnos del dinero a los españoles, a los europeos y al y al mundo."
+    },
+    {
+      "start": 5747.8,
+      "end": 5750.5,
+      "speaker": "c09/SPEAKER_01",
+      "text": "Esas guerras es lo que está, aparte de lo más importante las muertes que hay."
+    },
+    {
+      "start": 5750.5,
+      "end": 5753.9,
+      "speaker": "c09/SPEAKER_01",
+      "text": "Por tanto, en el en el fondo de la cuestión,"
+    },
+    {
+      "start": 5753.9,
+      "end": 5756.9,
+      "speaker": "c09/SPEAKER_01",
+      "text": "yo es que sí que creo que es importante que efectivamente"
+    },
+    {
+      "start": 5756.9,
+      "end": 5760,
+      "speaker": "c09/SPEAKER_01",
+      "text": "hay un cambio de rumbo en el mundo."
+    },
+    {
+      "start": 5760,
+      "end": 5762.4,
+      "speaker": "c09/SPEAKER_01",
+      "text": "En el mundo, no no hablo ya de España nada más."
+    },
+    {
+      "start": 5762.4,
+      "end": 5765.1,
+      "speaker": "c09/SPEAKER_01",
+      "text": "La la huelga está convocada,"
+    },
+    {
+      "start": 5765.1,
+      "end": 5768.1,
+      "speaker": "c09/SPEAKER_01",
+      "text": "eh sindicatos nosotros la recolzamos, nos han impulsado la moción,"
+    },
+    {
+      "start": 5768.1,
+      "end": 5771.3,
+      "speaker": "c09/SPEAKER_01",
+      "text": "la ha hecho l'Esquerra no extrema, l'Esquerra,"
+    },
+    {
+      "start": 5771.3,
+      "end": 5772.4,
+      "speaker": "c09/SPEAKER_01",
+      "text": "¿vale?"
+    },
+    {
+      "start": 5772.4,
+      "end": 5775.4,
+      "speaker": "c09/SPEAKER_01",
+      "text": "Y que en todo el derecho del mundo pues la gente tendrá quien quiera pues participar y quien no."
+    },
+    {
+      "start": 5775.4,
+      "end": 5778.1,
+      "speaker": "c09/SPEAKER_01",
+      "text": "Pero lo que está pasando"
+    },
+    {
+      "start": 5778.1,
+      "end": 5780.8,
+      "speaker": "c09/SPEAKER_01",
+      "text": "de que España sea el país que crece más de la Unión Europea,"
+    },
+    {
+      "start": 5780.8,
+      "end": 5783.6,
+      "speaker": "c09/SPEAKER_01",
+      "text": "que bueno, est- te puedo dar más datos de Riba-roja,"
+    },
+    {
+      "start": 5783.6,
+      "end": 5787.6,
+      "speaker": "c09/SPEAKER_01",
+      "text": "la renta en Riba-roja ha pasado a treinta y ocho mil euros casi,"
+    },
+    {
+      "start": 5787.6,
+      "end": 5790.8,
+      "speaker": "c09/SPEAKER_01",
+      "text": "o sea, un cuarenta y tres por cien en diez años"
+    },
+    {
+      "start": 5790.8,
+      "end": 5794,
+      "speaker": "c09/SPEAKER_01",
+      "text": "de subida, que eso se lo mella la cesta de la compra y la energía, es verdad,"
+    },
+    {
+      "start": 5794,
+      "end": 5796.6,
+      "speaker": "c09/SPEAKER_01",
+      "text": "pero es costes energéticos, ya lo sabéis."
+    },
+    {
+      "start": 5796.6,
+      "end": 5799.9,
+      "speaker": "c09/SPEAKER_01",
+      "text": "Y por tanto no es para no mejorar la bolsa de los trabajadores y los costes de la empresa por convenios,"
+    },
+    {
+      "start": 5799.9,
+      "end": 5803.4,
+      "speaker": "c09/SPEAKER_01",
+      "text": "es por costes energéticos de la especulación de las guerras que están habiendo en el mundo."
+    },
+    {
+      "start": 5803.4,
+      "end": 5805.5,
+      "speaker": "c09/SPEAKER_01",
+      "text": "Y eso es que teníamos que criticarlo todos."
+    },
+    {
+      "start": 5805.5,
+      "end": 5808.8,
+      "speaker": "c09/SPEAKER_01",
+      "text": "Así pues, anem a passar a la a la votació de este punt"
+    },
+    {
+      "start": 5808.8,
+      "end": 5811,
+      "speaker": "c09/SPEAKER_01",
+      "text": "i donar la moció per"
+    },
+    {
+      "start": 5811,
+      "end": 5812.8,
+      "speaker": "c09/SPEAKER_01",
+      "text": "per aprovada si ho estima el Ple."
+    },
+    {
+      "start": 5812.8,
+      "end": 5813.5,
+      "speaker": "c09/SPEAKER_01",
+      "text": "Vots a favor."
+    },
+    {
+      "start": 5813.5,
+      "end": 5814.7,
+      "speaker": "c09/SPEAKER_01",
+      "text": "Abstencions."
+    },
+    {
+      "start": 5814.7,
+      "end": 5815.7,
+      "speaker": "c09/SPEAKER_01",
+      "text": "Vots en contra."
+    },
+    {
+      "start": 5815.7,
+      "end": 5819.1,
+      "speaker": "c09/SPEAKER_01",
+      "text": "Queda aprovada per vots a favor del Partido Socialista,"
+    },
+    {
+      "start": 5819.1,
+      "end": 5822.3,
+      "speaker": "c09/SPEAKER_01",
+      "text": "Esquerra Unida Podem, Compromís y los votos en contra de Vox y Partido Popular. Pasemos al siguiente punto"
+    },
+    {
+      "start": 5822.3,
+      "end": 5824,
+      "speaker": "c09/SPEAKER_01",
+      "text": "que sería"
+    },
+    {
+      "start": 5824,
+      "end": 5828,
+      "speaker": "c09/SPEAKER_01",
+      "text": "eh impulso de los órganos de informaci-"
+    },
+    {
+      "start": 5828,
+      "end": 5830.7,
+      "speaker": "c09/SPEAKER_01",
+      "text": "Sí, dar dar cuenta de las resoluciones, ¿no?"
+    },
+    {
+      "start": 5830.7,
+      "end": 5831.5,
+      "speaker": "c09/SPEAKER_01",
+      "text": "Ah, tenemos una urgencia."
+    },
+    {
+      "start": 5831.5,
+      "end": 5832.4,
+      "speaker": "c09/SPEAKER_01",
+      "text": "Pasármela."
+    },
+    {
+      "start": 5832.4,
+      "end": 5836.4,
+      "speaker": "c09/SPEAKER_01",
+      "text": "Vale, pues hay una urgencia"
+    },
+    {
+      "start": 5836.4,
+      "end": 5837.2,
+      "speaker": "c09/SPEAKER_01",
+      "text": "Ah, vale, correcto. Sí."
+    },
+    {
+      "start": 5837.2,
+      "end": 5841.4,
+      "speaker": "c09/SPEAKER_01",
+      "text": "Eh la moción del veinticinco de noviembre, Día Internacional por la Eliminación de la Violencia de de contra les Dones"
+    },
+    {
+      "start": 5841.4,
+      "end": 5846.5,
+      "speaker": "c09/SPEAKER_01",
+      "text": "y viene avalada por el PSPV-PSOE, Esquerra Unida i Compromís."
+    },
+    {
+      "start": 5846.5,
+      "end": 5849.6,
+      "speaker": "c09/SPEAKER_01",
+      "text": "¿Tienen la palabra? Primero votemos la urgencia."
+    },
+    {
+      "start": 5849.6,
+      "end": 5852.4,
+      "speaker": "c09/SPEAKER_01",
+      "text": "Alzar la mano. Votemos la urgencia. Votos a favor de la urgencia."
+    },
+    {
+      "start": 5852.4,
+      "end": 5856.9,
+      "speaker": "c09/SPEAKER_01",
+      "text": "Sí, ya está explicada. Eh votos en abstenciones, votos en contra."
+    },
+    {
+      "start": 6000,
+      "end": 6001.8,
+      "speaker": "c10/SPEAKER_00",
+      "text": "Molt bé, doncs queda aprovada l'urgència."
+    },
+    {
+      "start": 6001.8,
+      "end": 6003.6,
+      "speaker": "c10/SPEAKER_01",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 6003.6,
+      "end": 6013.9,
+      "speaker": "c10/SPEAKER_00",
+      "text": "A favor de l'urgència: Grup Socialista, Podem i Compromís. En contra: Vox i... En contra de l'urgència: Vox i PP. No m'he equivocat, que no? Explicamos, por favor."
+    },
+    {
+      "start": 6013.9,
+      "end": 6017.5,
+      "speaker": "c10/SPEAKER_02",
+      "text": "Gràcies, alcalde. Bueno..."
+    },
+    {
+      "start": 6017.5,
+      "end": 6025.4,
+      "speaker": "c10/SPEAKER_00",
+      "text": "Sí, sí, sí. Vale, soy..."
+    },
+    {
+      "start": 6025.4,
+      "end": 6027.2,
+      "speaker": "c10/SPEAKER_02",
+      "text": "Vale, ara clica. Bueno."
+    },
+    {
+      "start": 6027.2,
+      "end": 6036.6,
+      "speaker": "c10/SPEAKER_02",
+      "text": "Traemos a este pleno la moción conjunta con los partidos de Esquerra Unida Podem y de Compromís, a los que bueno, pues agradezco la vuestra colaboración y aportaciones, ¿vale?"
+    },
+    {
+      "start": 6036.6,
+      "end": 6047.7,
+      "speaker": "c10/SPEAKER_02",
+      "text": "En este caso, para el veinticinco de noviembre, Día Internacional para la Eliminación de la Violencia contra las Mujeres."
+    },
+    {
+      "start": 6047.7,
+      "end": 6058,
+      "speaker": "c10/SPEAKER_02",
+      "text": "Bueno, los portavoces verán en sus mesas que les he dejado la exposición de motivos actualizada, ha cambiado un poco, para que la tengáis también y también enmendarla en el pleno para que quede ya cambiada."
+    },
+    {
+      "start": 6058,
+      "end": 6069.1,
+      "speaker": "c10/SPEAKER_02",
+      "text": "Bueno, partimos de una premisa clara y yo creo que coincidiréis conmigo, y es que ninguna mujer debe vivir con miedo ni ver condicionada su vida por ser mujer."
+    },
+    {
+      "start": 6069.1,
+      "end": 6080.3,
+      "speaker": "c10/SPEAKER_02",
+      "text": "Sin embargo, la violencia machista sigue destruyendo familias, vidas y futuros, ya sea de forma física, sexual, vicaria, económica o digital."
+    },
+    {
+      "start": 6080.3,
+      "end": 6091.5,
+      "speaker": "c10/SPEAKER_02",
+      "text": "Frente a esto, proponemos continuar haciendo las políticas que llevamos haciendo en nuestro pueblo, también que se hagan en aquellos municipios donde no se está haciendo, y precisamente estas políticas son para cambiar realidades que a día de hoy vivimos."
+    },
+    {
+      "start": 6091.5,
+      "end": 6103.5,
+      "speaker": "c10/SPEAKER_02",
+      "text": "Por tanto, lo que proponemos es reforzar estos recursos los trescientos sesenta y cinco días del año. Una víctima que pide ayuda no puede esperar para ser atendida."
+    },
+    {
+      "start": 6103.5,
+      "end": 6114.7,
+      "speaker": "c10/SPEAKER_02",
+      "text": "Por eso exigimos a la Generalitat la ampliación de los Centros Mujer para garantizar una atención personal y directa sin interrupciones."
+    },
+    {
+      "start": 6114.7,
+      "end": 6127,
+      "speaker": "c10/SPEAKER_02",
+      "text": "También las leyes y planes, en este caso, que hay que aprobar: exigimos una ley frente a la violencia vicaria. Sabemos que en el Gobierno de España se está trabajando en esta ley,"
+    },
+    {
+      "start": 6127,
+      "end": 6137.9,
+      "speaker": "c10/SPEAKER_02",
+      "text": "esperemos que se apruebe, ya que creemos que un maltratador no puede ser un buen padre y no puede estar cerca de sus hijos."
+    },
+    {
+      "start": 6137.9,
+      "end": 6150.1,
+      "speaker": "c10/SPEAKER_02",
+      "text": "Pero también exigimos un segundo pacto que se apruebe, un segundo Pacto contra la Violencia de Género y también un plan integral contra las violencias sexuales, en este caso, que sea trabajado por la Generalitat."
+    },
+    {
+      "start": 6150.1,
+      "end": 6162.3,
+      "speaker": "c10/SPEAKER_02",
+      "text": "Y además, el presupuesto y una firmeza municipal. En Riba-roja sabemos que somos la primera puerta a la que acuden las mujeres, por eso reclamamos financiación estable, prevención en las aulas y apoyo contundente en el movimiento asociativo."
+    },
+    {
+      "start": 6162.3,
+      "end": 6173.3,
+      "speaker": "c10/SPEAKER_02",
+      "text": "Insisto, esta moción no es un trámite ni una declaración decorativa, sino un compromiso político con hechos y espero que... bueno, les pido responsabilidad y su voto a favor. Gracias."
+    },
+    {
+      "start": 6173.3,
+      "end": 6176.6,
+      "speaker": "c10/SPEAKER_00",
+      "text": "Per paraules... Paula."
+    },
+    {
+      "start": 6176.6,
+      "end": 6183,
+      "speaker": "c10/SPEAKER_03",
+      "text": "Vale, sigue funciona, ¿no? Vale."
+    },
+    {
+      "start": 6183,
+      "end": 6195.1,
+      "speaker": "c10/SPEAKER_03",
+      "text": "Eh, bueno, ante ante todo, eh comentarles que hemos el Partido Popular ha votado en contra de la urgencia, puesto que, a pesar de que ustedes dicen que esta moción no es meramente un trámite,"
+    },
+    {
+      "start": 6195.1,
+      "end": 6207.3,
+      "speaker": "c10/SPEAKER_03",
+      "text": "eh año tras año, eh veinticinco N siempre hay una moción, entonces hay tiempo de sobra para preparar esa moción. Entonces, que llegue por urgencia"
+    },
+    {
+      "start": 6207.3,
+      "end": 6218.4,
+      "speaker": "c10/SPEAKER_03",
+      "text": "hoy lunes eh a las diez y media de la mañana, cuando tenemos comisiones, tenemos siempre una semana antes las comisiones, las mociones que van a pleno se tienen que preparar, los partidos políticos preparamos, los concejales, esas mociones, pues la verdad es que que vaya hoy"
+    },
+    {
+      "start": 6218.4,
+      "end": 6220.8,
+      "speaker": "c10/SPEAKER_00",
+      "text": "Ahí, el viernes."
+    },
+    {
+      "start": 6220.8,
+      "end": 6228,
+      "speaker": "c10/SPEAKER_03",
+      "text": "Yo he visto hoy, a mí me ha llegado hoy por correo y tengo el comprobante, a las diez y media de la mañana."
+    },
+    {
+      "start": 6228,
+      "end": 6239.1,
+      "speaker": "c10/SPEAKER_03",
+      "text": "Entonces, que entre a las diez y media de la mañana y que sobre la mesa estén las modificaciones tal, no me parece correcto."
+    },
+    {
+      "start": 6239.1,
+      "end": 6252.3,
+      "speaker": "c10/SPEAKER_03",
+      "text": "Eh no obstante, lo que les planteo en esta primera intervención a todos eh referente a la moción es una enmienda y es retirar el punto tres del apartado doce, el que habla de eh el derecho al aborto introducirlo en la Constitución"
+    },
+    {
+      "start": 6252.3,
+      "end": 6259.9,
+      "speaker": "c10/SPEAKER_03",
+      "text": "y entonces esto es la lo que les planteo: retirada del punto tres del subpunto doce, ¿vale?"
+    },
+    {
+      "start": 6259.9,
+      "end": 6267.8,
+      "speaker": "c10/SPEAKER_03",
+      "text": "Eh en función de lo que me digan, pues ya continuaré en mi segunda parte."
+    },
+    {
+      "start": 6267.8,
+      "end": 6273.4,
+      "speaker": "c10/SPEAKER_00",
+      "text": "Més paraules... Han d'apuntar-se lo que ha proposat la meua companya del PP y més paraules, José Luis."
+    },
+    {
+      "start": 6273.4,
+      "end": 6285.6,
+      "speaker": "c10/SPEAKER_04",
+      "text": "Muchas gracias. Pues efectivamente, el grupo municipal compartimos plenamente el rechazo a toda forma de violencia de contra las mujeres para que no quede ninguna duda."
+    },
+    {
+      "start": 6285.6,
+      "end": 6296.7,
+      "speaker": "c10/SPEAKER_04",
+      "text": "Rechazamos la violencia contra las mujeres. Ninguna mujer debe vivir con miedo en su hogar, ni en la calle, ni en el trabajo, ni en un entorno digital que tan... tanto está afectando hoy en día."
+    },
+    {
+      "start": 6296.7,
+      "end": 6309,
+      "speaker": "c10/SPEAKER_04",
+      "text": "Eh la protección de las víctimas, la prevención y la persecución efectiva de los agresores deben ser prioridades absoluta de las administraciones públicas, así lo creemos."
+    },
+    {
+      "start": 6309,
+      "end": 6321.1,
+      "speaker": "c10/SPEAKER_04",
+      "text": "Ahora bien, no podemos apoyar una moción que reduce el problema grave y en un marco exclusivamente ideológico, no de protección real de la mujer."
+    },
+    {
+      "start": 6321.1,
+      "end": 6333.3,
+      "speaker": "c10/SPEAKER_04",
+      "text": "Cada año eh más mujeres siguen asesinando mujeres, hay más violaciones, etcétera. Luego haré en el segundo turno una intervención especial eh sobre Ceuta, porque ahí la izquierda y aunque el alcalde lo dice la extrema izquierda más radical, no ha dicho ni pío sobre todas las agresiones que ha habido en Ceuta."
+    },
+    {
+      "start": 6333.3,
+      "end": 6344.4,
+      "speaker": "c10/SPEAKER_04",
+      "text": "eh ¿Qué defiende Vox? Una política de protección seria, sin ideología y sin dejar a ninguna víctima desamparada. Nuestra propuesta, y lo hemos transmitido en el Congreso,"
+    },
+    {
+      "start": 6344.4,
+      "end": 6356.6,
+      "speaker": "c10/SPEAKER_04",
+      "text": "es endurecer una respuesta penal, proteger especialmente a los menores y garantizar una ayuda efectiva a quienes sufren a quienes sufren violencia, no como lo que pasó eh aprobando una ley que sacaron, es que lo vamos a repetir todos los años, pero es que es la verdad:"
+    },
+    {
+      "start": 6356.6,
+      "end": 6368.7,
+      "speaker": "c10/SPEAKER_04",
+      "text": "con sus leyes sacaron a violadores de la cárcel. Nosotros lo que proponemos es endurecer esas penas, elevar las penas para delitos sexuales y establecer la prisión permanente"
+    },
+    {
+      "start": 6368.7,
+      "end": 6381,
+      "speaker": "c10/SPEAKER_04",
+      "text": "y además sustituir un marco normativo por una ley de protección integral de la violencia que ampare a los niños y a las mujeres. Si intentamos reforzar la protección de menores, especialmente de las niñas tuteladas,"
+    },
+    {
+      "start": 6381,
+      "end": 6393.1,
+      "speaker": "c10/SPEAKER_04",
+      "text": "y a que trae esto, para que no vuelva a pasar como en una conselleria donde estaba una señora que se ha publicado una donde se cometieron algunos abusos. Que evidentemente no fue ella, pero tuvo una responsabilidad política y ahí siguió."
+    },
+    {
+      "start": 6393.1,
+      "end": 6405.3,
+      "speaker": "c10/SPEAKER_04",
+      "text": "Garantizar asistencia, acompañamiento y prevención y desde luego claro, cambiar con cualquier medida concreta que proteja de verdad a las mujeres y a todas las víctimas. Pero no apoyaremos una una moción que convierte el veinticinco de noviembre en un acto de propaganda ideológica. La violencia contra las mujeres es algo serio."
+    },
+    {
+      "start": 6405.3,
+      "end": 6409,
+      "speaker": "c10/SPEAKER_00",
+      "text": "Més paraules? José Luis."
+    },
+    {
+      "start": 6409,
+      "end": 6410.6,
+      "speaker": "c10/SPEAKER_05",
+      "text": "Es podria dir..."
+    },
+    {
+      "start": 6410.6,
+      "end": 6412.3,
+      "speaker": "c10/SPEAKER_06",
+      "text": "Eh, la veu..."
+    },
+    {
+      "start": 6412.3,
+      "end": 6415.7,
+      "speaker": "c10/SPEAKER_05",
+      "text": "A veure, sí. Gràcies. Que esteis... Vale, per favor."
+    },
+    {
+      "start": 6415.7,
+      "end": 6427.7,
+      "speaker": "c10/SPEAKER_05",
+      "text": "Tienen la cara tan dura de presentar en el número cero en las pasadas elecciones generales como su candidato a maltratador Carlos Flores. ¿De qué estamos hablando?"
+    },
+    {
+      "start": 6427.7,
+      "end": 6436.4,
+      "speaker": "c10/SPEAKER_05",
+      "text": "Vosotros tenéis que saber y tenéis que pedir perdón que el tercero en la lista en las elecciones generales es un maltratador. Muy bien."
+    },
+    {
+      "start": 6436.4,
+      "end": 6447.8,
+      "speaker": "c10/SPEAKER_05",
+      "text": "Si se habla de responsabilidad política, les queda una sola hacia el futuro: pedir perdón por llevar a Carlos Flores como candidato a estas elecciones, que tiene una sentencia de maltratamiento."
+    },
+    {
+      "start": 6447.8,
+      "end": 6449.6,
+      "speaker": "c10/SPEAKER_05",
+      "text": "Es decir, no es algo..."
+    },
+    {
+      "start": 6449.6,
+      "end": 6451.7,
+      "speaker": "c10/SPEAKER_00",
+      "text": "Ya."
+    },
+    {
+      "start": 6451.7,
+      "end": 6453.6,
+      "speaker": "c10/SPEAKER_05",
+      "text": "Ahora."
+    },
+    {
+      "start": 6453.6,
+      "end": 6460.7,
+      "speaker": "c10/SPEAKER_04",
+      "text": "No sé, ahora estás así, estás..."
+    },
+    {
+      "start": 6460.7,
+      "end": 6463.3,
+      "speaker": "c10/SPEAKER_05",
+      "text": "Pero ya pero no me dejan responder..."
+    },
+    {
+      "start": 6463.3,
+      "end": 6468.1,
+      "speaker": "c10/SPEAKER_04",
+      "text": "Yo creo que ya te habías extendido."
+    },
+    {
+      "start": 6468.1,
+      "end": 6469.7,
+      "speaker": "c10/SPEAKER_05",
+      "text": "No, no me he extendido."
+    },
+    {
+      "start": 6469.7,
+      "end": 6471.6,
+      "speaker": "c10/SPEAKER_04",
+      "text": "Hola."
+    },
+    {
+      "start": 6471.6,
+      "end": 6473.1,
+      "speaker": "c10/SPEAKER_05",
+      "text": "Está ahí delante."
+    },
+    {
+      "start": 6473.1,
+      "end": 6477.5,
+      "speaker": "c10/SPEAKER_04",
+      "text": "Si sólo estás poniendo comas..."
+    },
+    {
+      "start": 6477.5,
+      "end": 6479.1,
+      "speaker": "c10/SPEAKER_00",
+      "text": "No, pues coma no."
+    },
+    {
+      "start": 6479.1,
+      "end": 6482,
+      "speaker": "c10/SPEAKER_05",
+      "text": "No, una coma..."
+    },
+    {
+      "start": 6482,
+      "end": 6490.4,
+      "speaker": "c10/SPEAKER_05",
+      "text": "Sí, per favor, demanaria a quants companys i companyes si em poden cedir la paraula per a poder continuar."
+    },
+    {
+      "start": 6490.4,
+      "end": 6492.3,
+      "speaker": "c10/SPEAKER_04",
+      "text": "Pero si..."
+    },
+    {
+      "start": 6492.3,
+      "end": 6497,
+      "speaker": "c10/SPEAKER_05",
+      "text": "Pero no me me he listo que si... Otra cosa es que después us gasteu els vossos minuts en les intervencions de la resta de sessions, però per a seguir..."
+    },
+    {
+      "start": 6497,
+      "end": 6507,
+      "speaker": "c10/SPEAKER_05",
+      "text": "Vale, doncs estava comentant que es que hi ha una clara diferencia política con esta gent, de una banda que no que se habla de maltrato pero llevan un maltratador en la lista de Vox i de los servicios sociales, así."
+    },
+    {
+      "start": 6507,
+      "end": 6518.7,
+      "speaker": "c10/SPEAKER_05",
+      "text": "De la otra banda, el tema de la moción que va arriba el veinticinco N es importante que eh la moción es que va llevar a los vecinos a que se fortalezcan los servicios municipales."
+    },
+    {
+      "start": 6518.7,
+      "end": 6532.7,
+      "speaker": "c10/SPEAKER_05",
+      "text": "Y por eso eh presentar los lo que es esta esta propuesta que que es muy importante ya que lamentablemente se ha tenido que modificar..."
+    },
+    {
+      "start": 6600,
+      "end": 6604.9,
+      "speaker": "c11/SPEAKER_00",
+      "text": "d'aquesta ciutat. Per tant, la urgència està està desestimada per la nostra parte [inaudible]"
+    },
+    {
+      "start": 6604.9,
+      "end": 6608.2,
+      "speaker": "c11/SPEAKER_00",
+      "text": "[inaudible] no ens importa [inaudible]"
+    },
+    {
+      "start": 6608.2,
+      "end": 6615.1,
+      "speaker": "c11/SPEAKER_00",
+      "text": "de manera permanent."
+    },
+    {
+      "start": 6615.1,
+      "end": 6619.3,
+      "speaker": "c11/SPEAKER_00",
+      "text": "També vull parlar del punt que faltava, la necessitat del partit. Fundada l'urgència"
+    },
+    {
+      "start": 6619.3,
+      "end": 6624.3,
+      "speaker": "c11/SPEAKER_00",
+      "text": "perquè el Ple de la moció se va apostar de manera absoluta."
+    },
+    {
+      "start": 6624.3,
+      "end": 6632.2,
+      "speaker": "c11/SPEAKER_00",
+      "text": "[inaudible] dona,"
+    },
+    {
+      "start": 6632.2,
+      "end": 6637.1,
+      "speaker": "c11/SPEAKER_00",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 6637.1,
+      "end": 6644.5,
+      "speaker": "c11/SPEAKER_00",
+      "text": "i que estan en contra de que una dona pugui optar a aquestes mesures"
+    },
+    {
+      "start": 6644.5,
+      "end": 6650.1,
+      "speaker": "c11/SPEAKER_00",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 6650.1,
+      "end": 6654.2,
+      "speaker": "c11/SPEAKER_00",
+      "text": "però pareix ser que vostès volen anar en eixa mateixa línia. Per la nostra part,"
+    },
+    {
+      "start": 6654.2,
+      "end": 6659.5,
+      "speaker": "c11/SPEAKER_00",
+      "text": "és clar que eixe punt no ens va a llevar. Es evident, nosaltres defensem"
+    },
+    {
+      "start": 6659.5,
+      "end": 6705.8,
+      "speaker": "c11/SPEAKER_00",
+      "text": "que n'hi haurà un poble digne i segur, i de fet el que volem és que es puga vindicar la construcció. També vull posar damunt de la taula una una proposta que a nosaltres ens va molt importar, com a Esquerra Unida, que és la part de la interseccionalitat i la part de les dones amb discapacitat que moltes voltes en les propostes estructurals s'obliden i per tant és essencialment involucrar-les. Dit això, crec que és una proposta absolutament essencial, crec que tots els espais polítics haurien d'estar a l'altura i per tant lo que hauria de fer la extrema dreta i la dreta és anar fora de les seues polítiques estatals, inclús de les coses valencianes, i votar a favor d'una proposta que parla de drets de les dones, que parla de la que parlàvem de la d'abans, no? De les famílies, d'eixa mateixa llei que parla la que que s'ha de portar a terme siga el govern que siga, i per tant lo que ha de fer la extrema dreta i la dreta és votar a favor d'una proposta que és clara en guanyar drets. Gràcies."
+    },
+    {
+      "start": 6705.8,
+      "end": 6708.9,
+      "speaker": "c11/SPEAKER_01",
+      "text": "Més paraules?"
+    },
+    {
+      "start": 6708.9,
+      "end": 6719.8,
+      "speaker": "c11/SPEAKER_01",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 6719.8,
+      "end": 6723.6,
+      "speaker": "c11/SPEAKER_02",
+      "text": "Sí, sí, no, a mi se me va a sentir segur."
+    },
+    {
+      "start": 6723.6,
+      "end": 6729.4,
+      "speaker": "c11/SPEAKER_02",
+      "text": "Anem a veure. Contestar-li com ha fet ja el representant d'Esquerra Unida"
+    },
+    {
+      "start": 6729.4,
+      "end": 6734.8,
+      "speaker": "c11/SPEAKER_02",
+      "text": "Podem a la representant del Partit Popular. El divendres a les"
+    },
+    {
+      "start": 6734.8,
+      "end": 6740.2,
+      "speaker": "c11/SPEAKER_02",
+      "text": "dos i trenta-huit, catorze trenta-huit hora peninsular, una hora menys en Canàries,"
+    },
+    {
+      "start": 6740.2,
+      "end": 6745.4,
+      "speaker": "c11/SPEAKER_02",
+      "text": "la portaveu del Partit Socialista ens envia al grup de portaveus"
+    },
+    {
+      "start": 6745.4,
+      "end": 6750.2,
+      "speaker": "c11/SPEAKER_02",
+      "text": "una moció sobre el vint-i-cinc N. Una primera moció que després"
+    },
+    {
+      "start": 6750.2,
+      "end": 6755.6,
+      "speaker": "c11/SPEAKER_02",
+      "text": "hem treballat en consensuat entre Partit Socialista, Esquerra Unida-Unides Podem"
+    },
+    {
+      "start": 6755.6,
+      "end": 6759.2,
+      "speaker": "c11/SPEAKER_02",
+      "text": "i Compromís. Donar-li les gràcies tant a la regidora del Partit Socialista"
+    },
+    {
+      "start": 6759.2,
+      "end": 6764.5,
+      "speaker": "c11/SPEAKER_02",
+      "text": "com als regidors d'Esquerra Unida-Unides Podem pel seu treball,"
+    },
+    {
+      "start": 6764.5,
+      "end": 6769.5,
+      "speaker": "c11/SPEAKER_02",
+      "text": "ha sigut un treball en equip i crec que"
+    },
+    {
+      "start": 6769.5,
+      "end": 6774.5,
+      "speaker": "c11/SPEAKER_02",
+      "text": "reflectix el sentiment de les tres formacions polítiques en quant"
+    },
+    {
+      "start": 6774.5,
+      "end": 6780.2,
+      "speaker": "c11/SPEAKER_02",
+      "text": "al nostre al nostre posicionament la igualtat de les dones."
+    },
+    {
+      "start": 6780.2,
+      "end": 6784.8,
+      "speaker": "c11/SPEAKER_02",
+      "text": "Nosaltres creguem que la violència masclista té un caràcter estructural"
+    },
+    {
+      "start": 6784.8,
+      "end": 6789.5,
+      "speaker": "c11/SPEAKER_02",
+      "text": "i les seues arrels es troben en la pervivència d'un sistema social patriarcal"
+    },
+    {
+      "start": 6789.5,
+      "end": 6794.8,
+      "speaker": "c11/SPEAKER_02",
+      "text": "present en les diferents estructures de la societat que perpetua les desigualtats"
+    },
+    {
+      "start": 6794.8,
+      "end": 6799.1,
+      "speaker": "c11/SPEAKER_02",
+      "text": "entre dones i homes. Aquest sistema reprodueix rols i estereotips"
+    },
+    {
+      "start": 6799.1,
+      "end": 6804.6,
+      "speaker": "c11/SPEAKER_02",
+      "text": "de gènere, resta credibilitat i autoritat a les dones, cosifica el seu cos,"
+    },
+    {
+      "start": 6804.6,
+      "end": 6809.6,
+      "speaker": "c11/SPEAKER_02",
+      "text": "devalua allò considerat femení i manté una cultura de l'abús"
+    },
+    {
+      "start": 6809.6,
+      "end": 6814.6,
+      "speaker": "c11/SPEAKER_02",
+      "text": "i de la violència sexual que limita la llibertat, l'autonomia i el dret de les dones."
+    },
+    {
+      "start": 6814.6,
+      "end": 6819.8,
+      "speaker": "c11/SPEAKER_02",
+      "text": "Nosaltres també estem a favor"
+    },
+    {
+      "start": 6819.8,
+      "end": 6824.2,
+      "speaker": "c11/SPEAKER_02",
+      "text": "de la igualtat dels homes i de les dones, com no podria ser d'una altra manera."
+    },
+    {
+      "start": 6824.2,
+      "end": 6828.8,
+      "speaker": "c11/SPEAKER_02",
+      "text": "I això vol dir que defensem la llibertat"
+    },
+    {
+      "start": 6828.8,
+      "end": 6833.7,
+      "speaker": "c11/SPEAKER_02",
+      "text": "que tenen les dones a decidir sobre el seu propi cos."
+    },
+    {
+      "start": 6833.7,
+      "end": 6838.4,
+      "speaker": "c11/SPEAKER_02",
+      "text": "I això és innegable per a nosaltres. Gràcies."
+    },
+    {
+      "start": 6838.4,
+      "end": 6844.7,
+      "speaker": "c11/SPEAKER_01",
+      "text": "Se oye este micrófono, ¿verdad? Apriétele que no se oye."
+    },
+    {
+      "start": 6844.7,
+      "end": 6846.3,
+      "speaker": "c11/SPEAKER_01",
+      "text": "Chilla."
+    },
+    {
+      "start": 6846.3,
+      "end": 6851.2,
+      "speaker": "c11/SPEAKER_03",
+      "text": "Bueno, simplemente María José ya te ha comentado. Los partidos fue el viernes en cuanto se envió la la propuesta,"
+    },
+    {
+      "start": 6851.2,
+      "end": 6857,
+      "speaker": "c11/SPEAKER_03",
+      "text": "pero bueno, lo importante al final no es la propuesta, es decir, la lucha contra la violencia violencias a las mujeres no es solo el veinticinco,"
+    },
+    {
+      "start": 6857,
+      "end": 6862.3,
+      "speaker": "c11/SPEAKER_03",
+      "text": "sino que se trabaja durante todo el año, es decir, durante los trescientos sesenta y cinco días"
+    },
+    {
+      "start": 6862.3,
+      "end": 6867.4,
+      "speaker": "c11/SPEAKER_03",
+      "text": "realizando todas las acciones que marcan los planes. Entonces, esta moción la llevamos porque es simbólica,"
+    },
+    {
+      "start": 6867.4,
+      "end": 6872.9,
+      "speaker": "c11/SPEAKER_03",
+      "text": "es importante que cada partido político tome posición, pero el gran trabajo para la prevención y actuación de las mujeres"
+    },
+    {
+      "start": 6872.9,
+      "end": 6878.4,
+      "speaker": "c11/SPEAKER_03",
+      "text": "es durante todo el año. Pero bueno, así intentamos siempre llevarla cuando toca"
+    },
+    {
+      "start": 6878.4,
+      "end": 6884.1,
+      "speaker": "c11/SPEAKER_03",
+      "text": "y la estamos llevando cuando toca porque el veinticinco aún no ha pasado."
+    },
+    {
+      "start": 6884.1,
+      "end": 6890.7,
+      "speaker": "c11/SPEAKER_03",
+      "text": "Sí que me preocupa lo que has comentado de retirar la propuesta en cuanto a quitar el derecho al aborto"
+    },
+    {
+      "start": 6890.7,
+      "end": 6895.4,
+      "speaker": "c11/SPEAKER_03",
+      "text": "y sí que me preocupa cuando está habiendo discursos bastante preocupantes"
+    },
+    {
+      "start": 6895.4,
+      "end": 6901.2,
+      "speaker": "c11/SPEAKER_03",
+      "text": "en cuanto a Vox, no sé si lo habéis leído, no sé si lo dijisteis, pero en el programa electoral"
+    },
+    {
+      "start": 6901.2,
+      "end": 6907.2,
+      "speaker": "c11/SPEAKER_03",
+      "text": "dice claramente que va a eliminar el derecho al aborto."
+    },
+    {
+      "start": 6907.2,
+      "end": 6912.9,
+      "speaker": "c11/SPEAKER_03",
+      "text": "Y esto es peligrosísimo, porque eso significa que si una mujer, una dona está embarazada,"
+    },
+    {
+      "start": 6912.9,
+      "end": 6918.5,
+      "speaker": "c11/SPEAKER_03",
+      "text": "el feto, si el feto tiene alguna malformación o si el feto o la madre tiene problemas para dar a luz,"
+    },
+    {
+      "start": 6918.5,
+      "end": 6924.3,
+      "speaker": "c11/SPEAKER_03",
+      "text": "va a estar obligada a dar a luz. O incluso si hay una violación,"
+    },
+    {
+      "start": 6924.3,
+      "end": 6930.1,
+      "speaker": "c11/SPEAKER_03",
+      "text": "el derogar esa ley lo que significaría es que no la van a permitir poder abortar."
+    },
+    {
+      "start": 6930.1,
+      "end": 6936,
+      "speaker": "c11/SPEAKER_03",
+      "text": "Y esto significa que sería movernos a la época del franquismo, cuando las mujeres no tenían este derecho"
+    },
+    {
+      "start": 6936,
+      "end": 6942.3,
+      "speaker": "c11/SPEAKER_03",
+      "text": "y lo tenían que hacer de manera clandestina o se tenían que ir a otros países. Eso sí que significa que solo que las mujeres que tenían más recursos"
+    },
+    {
+      "start": 6942.3,
+      "end": 6948,
+      "speaker": "c11/SPEAKER_03",
+      "text": "son las que podían irse al extranjero a abortar. Entonces, esto me preocupa porque este discurso es de Vox"
+    },
+    {
+      "start": 6948,
+      "end": 6953.9,
+      "speaker": "c11/SPEAKER_03",
+      "text": "y que el Partido Popular a nivel local esté pidiendo que se retire esa propuesta, eso es muy peligroso."
+    },
+    {
+      "start": 6953.9,
+      "end": 6959.5,
+      "speaker": "c11/SPEAKER_03",
+      "text": "Entonces, esto quiere decir que ya no es Vox, sino que es Vox y el Partido Popular."
+    },
+    {
+      "start": 6959.5,
+      "end": 6964.7,
+      "speaker": "c11/SPEAKER_03",
+      "text": "Pero esto se une, a lo mejor también si la visteis, la entrevista en la SER donde le preguntaban a"
+    },
+    {
+      "start": 6964.7,
+      "end": 6970.4,
+      "speaker": "c11/SPEAKER_03",
+      "text": "el portavoz, bueno a Núñez Feijóo, del Partido Popular sobre si era feminista. Bueno él dijo que era feminista porque se había criado con mujeres."
+    },
+    {
+      "start": 6970.4,
+      "end": 6975.9,
+      "speaker": "c11/SPEAKER_03",
+      "text": "¿Cuántos maltratadores hay que se han criado con mujeres y son maltratadores y asesinos, no?"
+    },
+    {
+      "start": 6975.9,
+      "end": 6981.7,
+      "speaker": "c11/SPEAKER_03",
+      "text": "Y pero lo peor de todo no es eso, que ya era bastante llamativo, sino que dijo que cuando si va a entrar, si entra a gobernar, espero que no entre jamás a gobernar,"
+    },
+    {
+      "start": 6981.7,
+      "end": 6987.6,
+      "speaker": "c11/SPEAKER_03",
+      "text": "es que el Ministerio de Igualdad lo iba a meter en el pack de otras carteras."
+    },
+    {
+      "start": 6987.6,
+      "end": 6993.3,
+      "speaker": "c11/SPEAKER_03",
+      "text": "Es decir, que no ve suficientemente importante un ministerio como para tener que quitarle esa importancia y meterlo"
+    },
+    {
+      "start": 6993.3,
+      "end": 6998.9,
+      "speaker": "c11/SPEAKER_03",
+      "text": "junto con los otros ministerios. Entonces, esto es lo que ahora mismo me da mucha pena,"
+    },
+    {
+      "start": 6998.9,
+      "end": 7004.9,
+      "speaker": "c11/SPEAKER_03",
+      "text": "un partido como es el Partido Popular de Estado que esté ya acercándose tanto a Vox por el ansia de poder."
+    },
+    {
+      "start": 7004.9,
+      "end": 7010.7,
+      "speaker": "c11/SPEAKER_03",
+      "text": "Entonces esto lo tenemos ahora mismo en el Estado español y si esto sale en estas próximas elecciones,"
+    },
+    {
+      "start": 7010.7,
+      "end": 7015.8,
+      "speaker": "c11/SPEAKER_03",
+      "text": "las mujeres vamos a tener un problema."
+    },
+    {
+      "start": 7015.8,
+      "end": 7023.8,
+      "speaker": "c11/SPEAKER_01",
+      "text": "¿Més paraules? Última intervención."
+    },
+    {
+      "start": 7023.8,
+      "end": 7026.4,
+      "speaker": "c11/SPEAKER_04",
+      "text": "Sí, ya, pero como se han sumado..."
+    },
+    {
+      "start": 7026.4,
+      "end": 7029.6,
+      "speaker": "c11/SPEAKER_04",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 7029.6,
+      "end": 7047.3,
+      "speaker": "c11/SPEAKER_04",
+      "text": "Bueno, en relación a lo que usted les decía, a lo que usted me ha comentado acerca de la urgencia, usted dice que el viernes se ha presentado. Si se ha presentado el viernes, ha tenido tiempo de sobra y más porque es"
+    },
+    {
+      "start": 7047.3,
+      "end": 7052.9,
+      "speaker": "c11/SPEAKER_04",
+      "text": "cada año hay una moción del veinticinco N."
+    },
+    {
+      "start": 7052.9,
+      "end": 7060.5,
+      "speaker": "c11/SPEAKER_04",
+      "text": "Y no le digo que no asista ni que tenga no tenga que hacerse, solo les estoy diciendo que sí que tiene tiempo suficiente para preparársela,"
+    },
+    {
+      "start": 7060.5,
+      "end": 7067.4,
+      "speaker": "c11/SPEAKER_04",
+      "text": "para prepararlo con la gente que lo tenga que preparar y llevarla a tiempo al pleno, que es lo mismo que nos piden a nosotros cuando llevamos las cosas a tiempo."
+    },
+    {
+      "start": 7067.4,
+      "end": 7074.3,
+      "speaker": "c11/SPEAKER_04",
+      "text": "Ahora voy a contestarle a todo su su carácter electoral y viene la derecha, pero bueno."
+    },
+    {
+      "start": 7074.3,
+      "end": 7079.9,
+      "speaker": "c11/SPEAKER_04",
+      "text": "En relación a la propuesta para que no quede ninguna duda, llevada a hoy, el Partido Popular de Riba-roja reitera su postura como hemos hecho siempre"
+    },
+    {
+      "start": 7079.9,
+      "end": 7084.7,
+      "speaker": "c11/SPEAKER_04",
+      "text": "en la lucha contra la violencia de género."
+    },
+    {
+      "start": 7084.7,
+      "end": 7089.6,
+      "speaker": "c11/SPEAKER_04",
+      "text": "Como he dicho otras veces aquí en el Pleno. Además, siempre hemos dicho que no basta el reconocimiento normativo de la igualdad de derechos entre mujeres y hombres en la sociedad"
+    },
+    {
+      "start": 7089.6,
+      "end": 7095.2,
+      "speaker": "c11/SPEAKER_04",
+      "text": "y que debemos seguir trabajando de una manera activa desde todos los ámbitos. Como he dicho a veces, sociales, políticos, económicos, culturales, educativos, para conseguir erradicar la violencia de género"
+    },
+    {
+      "start": 7095.2,
+      "end": 7100.4,
+      "speaker": "c11/SPEAKER_04",
+      "text": "y permitir esa igualdad real y efectiva entre hombres y mujeres sin convertir este feminismo en lo que ustedes lo han convertido, en una guerra de sexos."
+    },
+    {
+      "start": 7100.4,
+      "end": 7105.7,
+      "speaker": "c11/SPEAKER_04",
+      "text": "Consideramos que la propuesta llevada hoy"
+    },
+    {
+      "start": 7105.7,
+      "end": 7111,
+      "speaker": "c11/SPEAKER_04",
+      "text": "nos muestra, bien la habrán visto, una argumentación tanto en la exposición de motivos"
+    },
+    {
+      "start": 7111,
+      "end": 7116.4,
+      "speaker": "c11/SPEAKER_04",
+      "text": "meramente electoralista, que además aprovecha usted, que además no busca ningún consenso"
+    },
+    {
+      "start": 7116.4,
+      "end": 7121.8,
+      "speaker": "c11/SPEAKER_04",
+      "text": "con todos los grupos políticos para luchar unidos contra esta violencia de género existente en la sociedad, sino que nos muestra una realidad que hemos podido presenciar en medios de comunicación en nuestro país"
+    },
+    {
+      "start": 7121.8,
+      "end": 7127.2,
+      "speaker": "c11/SPEAKER_04",
+      "text": "en los últimos días. Busca generar la crispación en la sociedad,"
+    },
+    {
+      "start": 7127.2,
+      "end": 7132.7,
+      "speaker": "c11/SPEAKER_04",
+      "text": "busca el enfrentamiento en lugar de trabajar en el consenso de los intereses de la ciudadanía"
+    },
+    {
+      "start": 7132.7,
+      "end": 7138.1,
+      "speaker": "c11/SPEAKER_04",
+      "text": "a través de pactos que aúnen esfuerzos por la lucha por la desigualdad y la falta de derechos, la vulneración de los mismos."
+    },
+    {
+      "start": 7138.1,
+      "end": 7142.8,
+      "speaker": "c11/SPEAKER_04",
+      "text": "Es curioso"
+    },
+    {
+      "start": 7142.8,
+      "end": 7148.1,
+      "speaker": "c11/SPEAKER_04",
+      "text": "que ciertos actos acontecidos en la sociedad desde que ustedes están gobernando, con sus socios también, y que vulneran los derechos de las mujeres hayan sido obviados como es el caso de la situación que están viviendo en Ceuta las mujeres por la invasión sufrida en España por parte de Marruecos."
+    },
+    {
+      "start": 7148.1,
+      "end": 7153.5,
+      "speaker": "c11/SPEAKER_04",
+      "text": "Son ustedes unos abanderados de la igualdad."
+    },
+    {
+      "start": 7153.5,
+      "end": 7158.9,
+      "speaker": "c11/SPEAKER_04",
+      "text": "Parece ser que ningún partido político salvo ustedes defiende a la mujer,"
+    },
+    {
+      "start": 7158.9,
+      "end": 7201,
+      "speaker": "c11/SPEAKER_04",
+      "text": "salvo los suyos. Pero yo les pregunto, ¿dónde estaban ustedes, defensoras del lema «hermana, yo sí te creo», cuando aceptaron la ley del «solo sí es sí»?"
+    },
+    {
+      "start": 7200,
+      "end": 7205.3,
+      "speaker": "c12/SPEAKER_00",
+      "text": "ya se han beneficiado a mil ciento veintisiete agresores sexuales con ciento quince excarcelaciones."
+    },
+    {
+      "start": 7205.3,
+      "end": 7213,
+      "speaker": "c12/SPEAKER_00",
+      "text": "En la Comunidad Valenciana ya lo dije en otra ocasión, ciento cuarenta y ocho agresores sexuales beneficiados y trece salen a la calle."
+    },
+    {
+      "start": 7213,
+      "end": 7221,
+      "speaker": "c12/SPEAKER_00",
+      "text": "¿Dónde estaban entonces cuando fallaron las pulseras telemáticas de control de agresores por violencia de género y ahora nos proponen una monitoría en esta moción?"
+    },
+    {
+      "start": 7221,
+      "end": 7225.8,
+      "speaker": "c12/SPEAKER_00",
+      "text": "¿Dónde están las responsabilidades políticas?"
+    },
+    {
+      "start": 7225.8,
+      "end": 7233.3,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Vamos, como en el accidente del tren de la AEMET, no hubo responsabilidades políticas y ahora ha vuelto a suceder de nuevo."
+    },
+    {
+      "start": 7233.3,
+      "end": 7238.6,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Las responsabilidades políticas para ustedes, que lo sepa la ciudadanía, ni están ni se les espera."
+    },
+    {
+      "start": 7238.6,
+      "end": 7252.8,
+      "speaker": "c12/SPEAKER_00",
+      "text": "¿Dónde estaban ustedes cuando ha salido a la luz que la prostitución está en la génesis misma del PSOE y de la carrera política de Pedro Sánchez? ¿Pues este es el feminismo? ¿Feminismo es cuando yo pago, cuando cuando sí que tengo ese prostíbulo? Bueno."
+    },
+    {
+      "start": 7252.8,
+      "end": 7257.6,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Claro, no podemos esperar más de un gobierno cuyo presidente dice «si necesitan ayuda, que la pidan»."
+    },
+    {
+      "start": 7257.6,
+      "end": 7261.2,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Ya ha acabado el tiempo."
+    },
+    {
+      "start": 7261.2,
+      "end": 7266.8,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Por favor, [inaudible] Estoy terminando."
+    },
+    {
+      "start": 7266.8,
+      "end": 7270.8,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Le veo con muchas ganas de intervención, pero el debate tiene unos criterios."
+    },
+    {
+      "start": 7270.8,
+      "end": 7276.5,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Le voy a dar la palabra... [inaudible]"
+    },
+    {
+      "start": 7276.5,
+      "end": 7283.1,
+      "speaker": "c12/SPEAKER_01",
+      "text": "La intención de un texto es esa. Vosotros mismos establecéis que se siga así, pero si me pide que le dé un minutito más... Y ahí es cuando hablamos."
+    },
+    {
+      "start": 7283.1,
+      "end": 7295.3,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Lo malo es que a pesar de pedirlo, si necesitan ayuda que la pidan, lo malo es que a pesar de pedirlo no les hacen ni caso. Ustedes traen una moción propuesta de urgencia en la que además entre los puntos introducen"
+    },
+    {
+      "start": 7295.3,
+      "end": 7300.3,
+      "speaker": "c12/SPEAKER_00",
+      "text": "eh que quieren modificar la Constitución con respecto al derecho a la interrupción del embarazo."
+    },
+    {
+      "start": 7300.3,
+      "end": 7315.5,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Que quede claro, el PP defiende garantizar el aborto conforme a la ley vigente de forma segura con los mejores recursos sanitarios en la pública y en la privada. No tengo nada más que decirles, salvo que nosotros seguiremos trabajando por garantizar la igualdad"
+    },
+    {
+      "start": 7315.5,
+      "end": 7325.7,
+      "speaker": "c12/SPEAKER_00",
+      "text": "y seguiremos luchando para erradicar la violencia de género. No pongan palabras en mi boca que no he dicho. Garantizar el aborto conforme a la ley de plazos legal que está actualmente de forma segura"
+    },
+    {
+      "start": 7325.7,
+      "end": 7331,
+      "speaker": "c12/SPEAKER_00",
+      "text": "con los mejores recursos sanitarios en la pública y en la privada. Eso lo opinamos nosotros. Al igual que opinamos"
+    },
+    {
+      "start": 7331,
+      "end": 7339.6,
+      "speaker": "c12/SPEAKER_00",
+      "text": "que en los menores de dieciséis años y diecisiete años, aquellas mujeres para hacer la interrupción del embarazo los familiares o los los familiares, no, los padres o tutores"
+    },
+    {
+      "start": 7339.6,
+      "end": 7342.7,
+      "speaker": "c12/SPEAKER_00",
+      "text": "legales sean conocedores, conocedores, no estoy diciendo nada más. Gracias."
+    },
+    {
+      "start": 7342.7,
+      "end": 7344.5,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Més paraules."
+    },
+    {
+      "start": 7344.5,
+      "end": 7351.7,
+      "speaker": "c12/SPEAKER_02",
+      "text": "Muchas gracias, señor alcalde. Voy a tratar de ser lo más breve posible."
+    },
+    {
+      "start": 7351.7,
+      "end": 7357,
+      "speaker": "c12/SPEAKER_02",
+      "text": "Sigue sin entender lo que decimos. Afortunadamente, cada vez más los españoles sí que lo entienden."
+    },
+    {
+      "start": 7357,
+      "end": 7360.8,
+      "speaker": "c12/SPEAKER_02",
+      "text": "De todas formas, haremos un esfuerzo en explicarlo."
+    },
+    {
+      "start": 7360.8,
+      "end": 7371.1,
+      "speaker": "c12/SPEAKER_02",
+      "text": "Vox está a favor de la vida y, sobre todo, de los más desfavorecidos, que es un bebé cuando está en el vientre de su madre, desde el mismo momento de la concepción."
+    },
+    {
+      "start": 7371.1,
+      "end": 7377.3,
+      "speaker": "c12/SPEAKER_02",
+      "text": "Es lo que decimos, estamos a favor de la vida, no en contra de la muerte y en contra de la muerte."
+    },
+    {
+      "start": 7377.3,
+      "end": 7383,
+      "speaker": "c12/SPEAKER_02",
+      "text": "Pero la verdad es que las frases de de los dirigentes del PSOE son para enmarcar."
+    },
+    {
+      "start": 7383,
+      "end": 7389.9,
+      "speaker": "c12/SPEAKER_02",
+      "text": "No voy a decir quién la ha dicho porque lo saben perfectamente: «Soy feminista porque soy socialista», «Si quieren ayuda, que la pidan»,"
+    },
+    {
+      "start": 7389.9,
+      "end": 7397.6,
+      "speaker": "c12/SPEAKER_02",
+      "text": "«Son las cinco y no he comido» y «Ser socialista es tener muy poco y ofrecer mucho»."
+    },
+    {
+      "start": 7397.6,
+      "end": 7404.7,
+      "speaker": "c12/SPEAKER_02",
+      "text": "Traer aquí una moción sobre violencia contra las mujeres y la verdad es que con lo que ha ocurrido en Ceuta"
+    },
+    {
+      "start": 7404.7,
+      "end": 7412.9,
+      "speaker": "c12/SPEAKER_02",
+      "text": "a mí se me caen se me cae el alma al suelo porque la izquierda no ha dicho absolutamente nada de todas las violaciones y todas las agresiones"
+    },
+    {
+      "start": 7412.9,
+      "end": 7420.5,
+      "speaker": "c12/SPEAKER_02",
+      "text": "que han pasado en la ocupación que ha tenido, en la invasión de Ceuta."
+    },
+    {
+      "start": 7420.5,
+      "end": 7425.8,
+      "speaker": "c12/SPEAKER_02",
+      "text": "Con lo cual, es que no son de fiar, por lo tanto, no podemos aprobar esta esta moción que han presentado. Muchas gracias."
+    },
+    {
+      "start": 7425.8,
+      "end": 7428.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Més paraules."
+    },
+    {
+      "start": 7428.4,
+      "end": 7435.1,
+      "speaker": "c12/SPEAKER_03",
+      "text": "Jo vaig a ser vaig a intentar ser lo més breu possible. En primer lloc, per a la regidora del Partit Popular que parla de l'avort que està en contra de la constitució,"
+    },
+    {
+      "start": 7435.1,
+      "end": 7441.9,
+      "speaker": "c12/SPEAKER_03",
+      "text": "però si de que complirà la llei que prefereix, hauria de saber que la llei pot canviar i a més pot canviar si governa amb Vox,"
+    },
+    {
+      "start": 7441.9,
+      "end": 7448.5,
+      "speaker": "c12/SPEAKER_03",
+      "text": "perquè de fet el que diu Vox en les en el seu programa electoral és eliminar esta llei, per tant"
+    },
+    {
+      "start": 7448.5,
+      "end": 7456,
+      "speaker": "c12/SPEAKER_03",
+      "text": "si vostè va a governar o el Partit Popular amb Vox va a llevar esta llei, per tant això ho diu en el seu programa, per tant ahí"
+    },
+    {
+      "start": 7456,
+      "end": 7460.6,
+      "speaker": "c12/SPEAKER_03",
+      "text": "esta normativa pot canviar i pot afectar com ha dit Raquel a la de moltíssimes dones."
+    },
+    {
+      "start": 7460.6,
+      "end": 7467.8,
+      "speaker": "c12/SPEAKER_03",
+      "text": "Eh i ja per a acabar, també el tema de Ceuta a mi me me em genera un poc de no sé com dir-ho,"
+    },
+    {
+      "start": 7467.8,
+      "end": 7474.6,
+      "speaker": "c12/SPEAKER_03",
+      "text": "de d'angúnia quan eh els agressors són persones estrangeres de repàs la dreta i la extrema dreta li preocupa quan una dona siga agredida, no?"
+    },
+    {
+      "start": 7474.6,
+      "end": 7481.7,
+      "speaker": "c12/SPEAKER_03",
+      "text": "Quan a més les dades de la pròpia fiscalia va identificar els agressors marroquins, agressors eh espanyols"
+    },
+    {
+      "start": 7481.7,
+      "end": 7487.4,
+      "speaker": "c12/SPEAKER_03",
+      "text": "i belgues. Vull dir, que que eh la fiscalia ja ho va identificar."
+    },
+    {
+      "start": 7487.4,
+      "end": 7495.1,
+      "speaker": "c12/SPEAKER_03",
+      "text": "A més, hi ha una cosa molt eh essencial és que les víctimes principalment eren dones i xiquetes migrades, a més segons la fiscalia."
+    },
+    {
+      "start": 7495.1,
+      "end": 7503.8,
+      "speaker": "c12/SPEAKER_03",
+      "text": "I això també és un problema, què passa? Es es és un problema greu i cal denunciar-ho tots i totes, siga estranger o no."
+    },
+    {
+      "start": 7503.8,
+      "end": 7511.2,
+      "speaker": "c12/SPEAKER_03",
+      "text": "El problema és que la dreta i la extrema dreta es fixa en l'accent quan és una persona estrangera i això és fer la política de l'odi."
+    },
+    {
+      "start": 7511.2,
+      "end": 7518.5,
+      "speaker": "c12/SPEAKER_03",
+      "text": "Fan la política de l'odi i també lo que fan és la política de l'ino, perquè vostès plantegen un problema, però torne a reiterar lo mateix de les autonomies"
+    },
+    {
+      "start": 7518.5,
+      "end": 7527.3,
+      "speaker": "c12/SPEAKER_03",
+      "text": "i quan va haver una conferència sectorial d'infància per a fer una repartició de persones per a que estigueren en les autonomies, perquè ja havia llocs"
+    },
+    {
+      "start": 7527.3,
+      "end": 7534.3,
+      "speaker": "c12/SPEAKER_03",
+      "text": "i els governs del Partit Popular i de Vox lo que van fer és negar-se i estar en contra de la meua, vull dir una cosa, perquè vostès"
+    },
+    {
+      "start": 7534.3,
+      "end": 7542.3,
+      "speaker": "c12/SPEAKER_03",
+      "text": "en suposadament el programa diuen que estan en contra de les persones migrants, que no les volen i això, però fins a en el govern de la Comunitat Valenciana,"
+    },
+    {
+      "start": 7542.3,
+      "end": 7550.5,
+      "speaker": "c12/SPEAKER_03",
+      "text": "si se fixen en la renta valenciana d'inclusió, vos donaré un dato, eixa renta aprovada per Vox i PP lo que diu és que una persona irregularitzada pot cobrar la renta,"
+    },
+    {
+      "start": 7550.5,
+      "end": 7558.3,
+      "speaker": "c12/SPEAKER_03",
+      "text": "perquè després Vox diu que si els migrants no tal, qual, pas cual. Vostè aprova que una persona irregularitzada puga cobrar una renta pública."
+    },
+    {
+      "start": 7558.3,
+      "end": 7565.9,
+      "speaker": "c12/SPEAKER_03",
+      "text": "Per què? Perquè hi ha una norma que també els obliga, per tant, vostès fan una política absurda de dir"
+    },
+    {
+      "start": 7565.9,
+      "end": 7573.9,
+      "speaker": "c12/SPEAKER_03",
+      "text": "els migrants no, però hauria de saber que en el cas de Ceuta per exemple quan un migrant està en situació vulnerable o demana protecció internacional, Espanya no pot negar-se"
+    },
+    {
+      "start": 7573.9,
+      "end": 7581,
+      "speaker": "c12/SPEAKER_03",
+      "text": "perquè hi ha una normativa, per tant, vostès hauríeu de saber-ho perquè se està complint la norma en diferents qüestions, al igual que també feu vosaltres"
+    },
+    {
+      "start": 7581,
+      "end": 7587.6,
+      "speaker": "c12/SPEAKER_03",
+      "text": "en el cas de vostès en la Comunitat Valenciana, que aproveu una renta per a una persona migrant que no està regularitzada."
+    },
+    {
+      "start": 7587.6,
+      "end": 7596.4,
+      "speaker": "c12/SPEAKER_03",
+      "text": "Per a que després puga dir com que el tercer del congrés valencià és un maltractador, per a que hi hagi un informe de la política que fa la dreta i la extrema dreta. Gràcies."
+    },
+    {
+      "start": 7596.4,
+      "end": 7599.2,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Compromís, dos minuts."
+    },
+    {
+      "start": 7599.2,
+      "end": 7606.8,
+      "speaker": "c12/SPEAKER_04",
+      "text": "Gràcies, senyor alcalde. Bueno, la primera argumentació del Partit Popular ha sigut que la moció s'ha portat per urgència."
+    },
+    {
+      "start": 7606.8,
+      "end": 7615.5,
+      "speaker": "c12/SPEAKER_04",
+      "text": "Bueno, totes les coses són d'urgència i no se fan. Ha dit també que està a favor de la llei de l'avortament, que la van a complir i tal,"
+    },
+    {
+      "start": 7615.5,
+      "end": 7621.1,
+      "speaker": "c12/SPEAKER_04",
+      "text": "si la van votar en contra. Si vostès van votar la llei de l'avort en contra."
+    },
+    {
+      "start": 7621.1,
+      "end": 7627.7,
+      "speaker": "c12/SPEAKER_04",
+      "text": "És que és que la demagògia política és, vamos, sublime."
+    },
+    {
+      "start": 7627.7,
+      "end": 7638.3,
+      "speaker": "c12/SPEAKER_04",
+      "text": "En quant a Vox no tinc res a dir, per a què li vaig a dir si si ell mateix se descarara si ell mateix"
+    },
+    {
+      "start": 7638.3,
+      "end": 7643.5,
+      "speaker": "c12/SPEAKER_04",
+      "text": "Si ell mateix se descarara. També en l'educació que està demostrant ple darrere ple."
+    },
+    {
+      "start": 7643.5,
+      "end": 7651.9,
+      "speaker": "c12/SPEAKER_04",
+      "text": "Si parlem dels assassinats, doncs només enguany i fins a hui"
+    },
+    {
+      "start": 7651.9,
+      "end": 7659.7,
+      "speaker": "c12/SPEAKER_04",
+      "text": "quaranta-dos dones i tres menors han estat assassinades víctimes de la violència de gènere a l'Estat espanyol."
+    },
+    {
+      "start": 7659.7,
+      "end": 7668,
+      "speaker": "c12/SPEAKER_04",
+      "text": "A la Comunitat Valenciana sis han sigut assassinades per les seues parelles i esparelles."
+    },
+    {
+      "start": 7668,
+      "end": 7674,
+      "speaker": "c12/SPEAKER_04",
+      "text": "De lo de Mónica Oltra me vaig a vaig a passar de llarg"
+    },
+    {
+      "start": 7674,
+      "end": 7683.5,
+      "speaker": "c12/SPEAKER_04",
+      "text": "perquè espere que algun dia, algun dia algú li tinga que llavar la boca o li tinga que demanar perdó,"
+    },
+    {
+      "start": 7683.5,
+      "end": 7686.9,
+      "speaker": "c12/SPEAKER_04",
+      "text": "perquè els únics que l'han acusat són vostès, ella encara no està condemnada."
+    },
+    {
+      "start": 7686.9,
+      "end": 7688.9,
+      "speaker": "c12/SPEAKER_04",
+      "text": "Val?"
+    },
+    {
+      "start": 7688.9,
+      "end": 7698.4,
+      "speaker": "c12/SPEAKER_04",
+      "text": "Però vostè ple rera ple i sobretot quan portem mocions en favor de les dones trau en el tema."
+    },
+    {
+      "start": 7698.4,
+      "end": 7709.3,
+      "speaker": "c12/SPEAKER_04",
+      "text": "Abans ha dit la la regidora d'Igualtat a nomenar la la entrevista que li feren a a Feijóo a tres dies, val?"
+    },
+    {
+      "start": 7709.3,
+      "end": 7718.2,
+      "speaker": "c12/SPEAKER_04",
+      "text": "Que confirma que ell eliminaria el Ministeri d'Igualtat encar que es considerava feminista perquè s'ha criat amb moltes dones amb moltes més dones que homes."
+    },
+    {
+      "start": 7718.2,
+      "end": 7727.7,
+      "speaker": "c12/SPEAKER_04",
+      "text": "Jo espere que no se considere un drogaddicte per haver passat les meues meues fotos amb un narcotraficant, espere, val? És lo que espere."
+    },
+    {
+      "start": 7727.7,
+      "end": 7736.8,
+      "speaker": "c12/SPEAKER_04",
+      "text": "I en quant a lo de eixa circumstància i lo que han han comentat, cree que li vaig a deixar la paraula al senyor alcalde que que se ho explicarà un poquet millor que jo, gràcies."
+    },
+    {
+      "start": 7736.8,
+      "end": 7748,
+      "speaker": "c12/SPEAKER_01",
+      "text": "No tinc massa ganes de moltes coses de parlar-te, però bueno. Vos ho he menjat. Ah no, falta un minut, ah no, falta un minut."
+    },
+    {
+      "start": 7748,
+      "end": 7757,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Bueno, simplement era una moció que en principi que en el día de la violencia de género ya se va a hablar de todo menos de soluciones o de problemas."
+    },
+    {
+      "start": 7800,
+      "end": 7805,
+      "speaker": "c13/SPEAKER_00",
+      "text": "O de qué responsabilitats polítiques o quines accions polítiques o propostes podien aportar."
+    },
+    {
+      "start": 7805,
+      "end": 7807.9,
+      "speaker": "c13/SPEAKER_00",
+      "text": "S'ha fet un aquí un mètode enorme."
+    },
+    {
+      "start": 7807.9,
+      "end": 7812.1,
+      "speaker": "c13/SPEAKER_00",
+      "text": "I volia aclarir dos coses i primer és que la violència de gènere no entén de partits."
+    },
+    {
+      "start": 7812.1,
+      "end": 7815.6,
+      "speaker": "c13/SPEAKER_00",
+      "text": "O siga la violència masclista és estructural."
+    },
+    {
+      "start": 7815.6,
+      "end": 7819.4,
+      "speaker": "c13/SPEAKER_00",
+      "text": "És a dir, que dona igual del partit, dona igual la casa, dona igual la renta, dona igual tot."
+    },
+    {
+      "start": 7819.4,
+      "end": 7820.4,
+      "speaker": "c13/SPEAKER_00",
+      "text": "Existix."
+    },
+    {
+      "start": 7820.4,
+      "end": 7825.1,
+      "speaker": "c13/SPEAKER_00",
+      "text": "Per tant, no és d'un cas ni d'atres, sinó que existix estructuralment i n'hi ha que atacar-la."
+    },
+    {
+      "start": 7825.1,
+      "end": 7830.1,
+      "speaker": "c13/SPEAKER_00",
+      "text": "Atacar-la significa que hem de deixar de discutir per a replegar a  consensos"
+    },
+    {
+      "start": 7830.1,
+      "end": 7832.1,
+      "speaker": "c13/SPEAKER_00",
+      "text": "per a poder combatre-la."
+    },
+    {
+      "start": 7832.1,
+      "end": 7833.6,
+      "speaker": "c13/SPEAKER_00",
+      "text": "I de crispació nada,"
+    },
+    {
+      "start": 7833.6,
+      "end": 7836.3,
+      "speaker": "c13/SPEAKER_00",
+      "text": "per acabar ja con el Partido Popular,"
+    },
+    {
+      "start": 7836.3,
+      "end": 7840.7,
+      "speaker": "c13/SPEAKER_00",
+      "text": "més que nada quan el Partido Popular està inclòs en el Consell d'Igualtat com tots els partits polítics,"
+    },
+    {
+      "start": 7840.7,
+      "end": 7844.2,
+      "speaker": "c13/SPEAKER_00",
+      "text": "que és dels consells que més ens reunim a l'any per a totes les programacions,"
+    },
+    {
+      "start": 7844.2,
+      "end": 7847.9,
+      "speaker": "c13/SPEAKER_00",
+      "text": "en este cas la de ara ment que ha sigut aprovada pel consell,"
+    },
+    {
+      "start": 7847.9,
+      "end": 7851.7,
+      "speaker": "c13/SPEAKER_00",
+      "text": "que és la de ara del vint-i-cinc de novembre, està aprovat pel consell, llavors crispació ninguna."
+    },
+    {
+      "start": 7851.7,
+      "end": 7855.6,
+      "speaker": "c13/SPEAKER_00",
+      "text": "Vull dir-te que en Riba-roja lo que estem fent és treballar i mol"
+    },
+    {
+      "start": 7855.6,
+      "end": 7860.1,
+      "speaker": "c13/SPEAKER_00",
+      "text": "i no vulga ningú una crispació perquè sabem que la violència masclista encara falta molt per a poder eliminar-la, lamentablement."
+    },
+    {
+      "start": 7860.1,
+      "end": 7865.3,
+      "speaker": "c13/SPEAKER_00",
+      "text": "Per tant, anem a seguir en lo que estem fent que és complir les accions que hem marcat en els plans,"
+    },
+    {
+      "start": 7865.3,
+      "end": 7866.8,
+      "speaker": "c13/SPEAKER_00",
+      "text": "aprovats en el ple,"
+    },
+    {
+      "start": 7866.8,
+      "end": 7871,
+      "speaker": "c13/SPEAKER_00",
+      "text": "seguint eixa ruta clara que és important i de manera organitzada i planificada,"
+    },
+    {
+      "start": 7871,
+      "end": 7872.8,
+      "speaker": "c13/SPEAKER_00",
+      "text": "junt amb les quatre associacions"
+    },
+    {
+      "start": 7872.8,
+      "end": 7877.2,
+      "speaker": "c13/SPEAKER_00",
+      "text": "feministes que van a ser guardonades en la nit violeta"
+    },
+    {
+      "start": 7877.2,
+      "end": 7878.4,
+      "speaker": "c13/SPEAKER_00",
+      "text": "d'este any."
+    },
+    {
+      "start": 7878.4,
+      "end": 7884.1,
+      "speaker": "c13/SPEAKER_00",
+      "text": "I també amb el consell, que s'ha tengut moltes idees d'este consell, amb els centres educatius,"
+    },
+    {
+      "start": 7884.1,
+      "end": 7887.8,
+      "speaker": "c13/SPEAKER_00",
+      "text": "que també fan moltíssima feina en quant a la prevenció, i també amb els serveis municipals."
+    },
+    {
+      "start": 7887.8,
+      "end": 7893.9,
+      "speaker": "c13/SPEAKER_00",
+      "text": "Per tant, anem a continuar treballant i lo que vulguem en les mocions és aportar"
+    },
+    {
+      "start": 7893.9,
+      "end": 7898.7,
+      "speaker": "c13/SPEAKER_00",
+      "text": "i precisament combatre la violència masclista des de tots els àmbits."
+    },
+    {
+      "start": 7898.7,
+      "end": 7904.3,
+      "speaker": "c13/SPEAKER_01",
+      "text": "Molt bé, pues ha explicat Raquel la regidora."
+    },
+    {
+      "start": 7904.3,
+      "end": 7908.6,
+      "speaker": "c13/SPEAKER_01",
+      "text": "Sabeu que estem prop del vint-i-cinc N, i una declaració o no reivindicativa,"
+    },
+    {
+      "start": 7908.6,
+      "end": 7913.8,
+      "speaker": "c13/SPEAKER_01",
+      "text": "dir que lo important és la labor de tot l'any quan fem en les polítiques d'igualtat."
+    },
+    {
+      "start": 7913.8,
+      "end": 7915.9,
+      "speaker": "c13/SPEAKER_01",
+      "text": "Però jo em preocupa,"
+    },
+    {
+      "start": 7915.9,
+      "end": 7920.3,
+      "speaker": "c13/SPEAKER_01",
+      "text": "li ho he dit ja dos vegades i ho vaig a repetir, la ignorància és mol atrevida,"
+    },
+    {
+      "start": 7920.3,
+      "end": 7922.2,
+      "speaker": "c13/SPEAKER_01",
+      "text": "María José."
+    },
+    {
+      "start": 7922.2,
+      "end": 7926.8,
+      "speaker": "c13/SPEAKER_01",
+      "text": "Perquè si no fora ignorància i hagueres dit mentint, llavors encara és pitjor."
+    },
+    {
+      "start": 7926.8,
+      "end": 7929.5,
+      "speaker": "c13/SPEAKER_01",
+      "text": "Sobre tot per eixa explic que vos va dir"
+    },
+    {
+      "start": 7929.5,
+      "end": 7933.5,
+      "speaker": "c13/SPEAKER_01",
+      "text": "que implica tindre doble de consciència de lo que diu."
+    },
+    {
+      "start": 7933.5,
+      "end": 7937.9,
+      "speaker": "c13/SPEAKER_01",
+      "text": "O siga, dir que la gènesi del Partit Socialista està en la prostitució"
+    },
+    {
+      "start": 7937.9,
+      "end": 7940.9,
+      "speaker": "c13/SPEAKER_01",
+      "text": "és ignorància, primer que me quede ahir,"
+    },
+    {
+      "start": 7940.9,
+      "end": 7942.1,
+      "speaker": "c13/SPEAKER_01",
+      "text": "atrevida,"
+    },
+    {
+      "start": 7942.1,
+      "end": 7946,
+      "speaker": "c13/SPEAKER_01",
+      "text": "o una mentida tan compulsiva que no deuria d'estar i no ho està."
+    },
+    {
+      "start": 7946,
+      "end": 7949.3,
+      "speaker": "c13/SPEAKER_01",
+      "text": "La gènesi del Partit Socialista on està és que hui"
+    },
+    {
+      "start": 7949.3,
+      "end": 7954.5,
+      "speaker": "c13/SPEAKER_01",
+      "text": "en teatre, de gràcies als partits que té cent quaranta anys, vostè té una educació pública que deuria d'invocar"
+    },
+    {
+      "start": 7954.5,
+      "end": 7956.4,
+      "speaker": "c13/SPEAKER_01",
+      "text": "i sa formació."
+    },
+    {
+      "start": 7956.4,
+      "end": 7958.4,
+      "speaker": "c13/SPEAKER_01",
+      "text": "Que té una llibertat,"
+    },
+    {
+      "start": 7958.4,
+      "end": 7964,
+      "speaker": "c13/SPEAKER_01",
+      "text": "que té el dret a avortar, que el seu partit, i això són dades, va votar en contra i va recórrer al Constitucional."
+    },
+    {
+      "start": 7964,
+      "end": 7967.3,
+      "speaker": "c13/SPEAKER_01",
+      "text": "Que va votar en contra del divorci,"
+    },
+    {
+      "start": 7967.3,
+      "end": 7971.7,
+      "speaker": "c13/SPEAKER_01",
+      "text": "el seu partit, el mateix. Que va votar i i eixes coses en contra de la Constitució."
+    },
+    {
+      "start": 7971.7,
+      "end": 7974.9,
+      "speaker": "c13/SPEAKER_01",
+      "text": "El seu partit, i eixa és la gènesi del seu partit."
+    },
+    {
+      "start": 7974.9,
+      "end": 7978.6,
+      "speaker": "c13/SPEAKER_01",
+      "text": "La dels socialistes és morir en les presons"
+    },
+    {
+      "start": 7978.6,
+      "end": 7984.2,
+      "speaker": "c13/SPEAKER_01",
+      "text": "per la llibertat de vostè, del seu fill, per la educació, per la sanitat, per la igualtat. Morir en les presons"
+    },
+    {
+      "start": 7984.2,
+      "end": 7987.3,
+      "speaker": "c13/SPEAKER_01",
+      "text": "per ser d'algunes d'eixes coses."
+    },
+    {
+      "start": 7987.3,
+      "end": 7990.5,
+      "speaker": "c13/SPEAKER_01",
+      "text": "I eixa és la gènesi del Partit Socialista."
+    },
+    {
+      "start": 7990.5,
+      "end": 7994.2,
+      "speaker": "c13/SPEAKER_01",
+      "text": "I després, ovelles negres n'hi han en tots els llocs."
+    },
+    {
+      "start": 7994.2,
+      "end": 8000.7,
+      "speaker": "c13/SPEAKER_01",
+      "text": "Que l'únic per a dir l'únic partit d'Espanya condemnat per corrupció absoluta és el de vostè."
+    },
+    {
+      "start": 8000.7,
+      "end": 8002.8,
+      "speaker": "c13/SPEAKER_01",
+      "text": "Per corrupció."
+    },
+    {
+      "start": 8002.8,
+      "end": 8005.2,
+      "speaker": "c13/SPEAKER_01",
+      "text": "Sentència del Suprem."
+    },
+    {
+      "start": 8005.2,
+      "end": 8009.8,
+      "speaker": "c13/SPEAKER_01",
+      "text": "Però a més és tota la retòrica que em pareix"
+    },
+    {
+      "start": 8009.8,
+      "end": 8013.6,
+      "speaker": "c13/SPEAKER_01",
+      "text": "no vull parlar dels centenars de casos que tenen en processos de corrupció,"
+    },
+    {
+      "start": 8013.6,
+      "end": 8015.3,
+      "speaker": "c13/SPEAKER_01",
+      "text": "no vull entrar ahí."
+    },
+    {
+      "start": 8015.3,
+      "end": 8018.4,
+      "speaker": "c13/SPEAKER_01",
+      "text": "Simplement de una moció del vint-i-cinc N"
+    },
+    {
+      "start": 8018.4,
+      "end": 8021.7,
+      "speaker": "c13/SPEAKER_01",
+      "text": "per a defensar les dones que vostès van"
+    },
+    {
+      "start": 8021.7,
+      "end": 8027,
+      "speaker": "c13/SPEAKER_01",
+      "text": "anar-se a dir lo que ha dit en eixa barraquetat, en eixa llengua tan supina,"
+    },
+    {
+      "start": 8027,
+      "end": 8030.9,
+      "speaker": "c13/SPEAKER_01",
+      "text": "em pareix que al meyns demanar disculpes."
+    },
+    {
+      "start": 8030.9,
+      "end": 8035,
+      "speaker": "c13/SPEAKER_01",
+      "text": "Perquè els socialistes n'hi han molts en Espanya, uns que militen i altres que voten."
+    },
+    {
+      "start": 8035,
+      "end": 8039.9,
+      "speaker": "c13/SPEAKER_01",
+      "text": "I vull dir una cosa, les nostres formacions, a pesar de ovelles negres com ha dit"
+    },
+    {
+      "start": 8039.9,
+      "end": 8044,
+      "speaker": "c13/SPEAKER_01",
+      "text": "José Luis, que comentava una cosa, que tenim,"
+    },
+    {
+      "start": 8044,
+      "end": 8047.9,
+      "speaker": "c13/SPEAKER_01",
+      "text": "el canvi està que fa cada partit quan té una ovella negra, si se la menja o la expulsa o la tira"
+    },
+    {
+      "start": 8047.9,
+      "end": 8049.7,
+      "speaker": "c13/SPEAKER_01",
+      "text": "o la condemna."
+    },
+    {
+      "start": 8049.7,
+      "end": 8055.4,
+      "speaker": "c13/SPEAKER_01",
+      "text": "Eixe és el canvi important. Ovelles n'hi han en tots, vostès tenen maltractadors, vosaltres també, i els partits, perquè estos de la sal del maltractament estan de la sal,"
+    },
+    {
+      "start": 8055.4,
+      "end": 8057.4,
+      "speaker": "c13/SPEAKER_01",
+      "text": "Errejón."
+    },
+    {
+      "start": 8057.4,
+      "end": 8063.7,
+      "speaker": "c13/SPEAKER_01",
+      "text": "Però hi ha que fer lo que feu Podem o lo que fa el Partit Socialista, perquè n'hi ha un maltractador que sabem que va al carrer."
+    },
+    {
+      "start": 8063.7,
+      "end": 8070.3,
+      "speaker": "c13/SPEAKER_01",
+      "text": "No durs llistes, no presentar-los com a diputats en condemna me sembla, això seria vamos,"
+    },
+    {
+      "start": 8070.3,
+      "end": 8073.7,
+      "speaker": "c13/SPEAKER_01",
+      "text": "un tindre una rocha de incumpliment."
+    },
+    {
+      "start": 8073.7,
+      "end": 8077.2,
+      "speaker": "c13/SPEAKER_01",
+      "text": "Per tant, lo que vostè ha dit és molt greu."
+    },
+    {
+      "start": 8077.2,
+      "end": 8082.8,
+      "speaker": "c13/SPEAKER_01",
+      "text": "Molt greu. Perquè si vostè ha dit que hi ha hagut algun cas de prostitució, pues tindria la raó i s'ha expulsat,"
+    },
+    {
+      "start": 8082.8,
+      "end": 8088.6,
+      "speaker": "c13/SPEAKER_01",
+      "text": "però que la gènesi del Partit Socialista està en la prostitució és o ignorància o maldat en les seues paraules."
+    },
+    {
+      "start": 8088.6,
+      "end": 8092,
+      "speaker": "c13/SPEAKER_01",
+      "text": "Per tant, li demane retirar."
+    },
+    {
+      "start": 8092,
+      "end": 8097,
+      "speaker": "c13/SPEAKER_01",
+      "text": "I si no retira, quedarà escrit també per l'alcalde dir en acta que vostè té maldat política"
+    },
+    {
+      "start": 8097,
+      "end": 8103,
+      "speaker": "c13/SPEAKER_01",
+      "text": "contra els socialistes de tota Espanya i tots els socialistes del món. Efectivament. O retira"
+    },
+    {
+      "start": 8103,
+      "end": 8107.8,
+      "speaker": "c13/SPEAKER_01",
+      "text": "o retira si no diu que la gènesi del Partit Socialista està en la prostitució, passe lo que vulga, mantinga els seus vots,"
+    },
+    {
+      "start": 8107.8,
+      "end": 8111.2,
+      "speaker": "c13/SPEAKER_01",
+      "text": "val? Però jo crec que deuria retirar-lo."
+    },
+    {
+      "start": 8111.2,
+      "end": 8116,
+      "speaker": "c13/SPEAKER_01",
+      "text": "Sobre tot per respecte a molta gent que ha perdut la vida perquè vostè parle hui ací."
+    },
+    {
+      "start": 8116,
+      "end": 8117.8,
+      "speaker": "c13/SPEAKER_01",
+      "text": "Molta gent."
+    },
+    {
+      "start": 8117.8,
+      "end": 8120.7,
+      "speaker": "c13/SPEAKER_01",
+      "text": "I si no retira no passa res."
+    },
+    {
+      "start": 8120.7,
+      "end": 8123,
+      "speaker": "c13/SPEAKER_01",
+      "text": "Quedarà con lo que és."
+    },
+    {
+      "start": 8123,
+      "end": 8124.9,
+      "speaker": "c13/SPEAKER_01",
+      "text": "Passem a la votació."
+    },
+    {
+      "start": 8124.9,
+      "end": 8126.6,
+      "speaker": "c13/SPEAKER_01",
+      "text": "Anem a votar?"
+    },
+    {
+      "start": 8126.6,
+      "end": 8128.6,
+      "speaker": "c13/SPEAKER_01",
+      "text": "Vots a favor?"
+    },
+    {
+      "start": 8128.6,
+      "end": 8130.6,
+      "speaker": "c13/SPEAKER_01",
+      "text": "Abstencions?"
+    },
+    {
+      "start": 8130.6,
+      "end": 8132.6,
+      "speaker": "c13/SPEAKER_01",
+      "text": "Vots en contra?"
+    },
+    {
+      "start": 8132.6,
+      "end": 8138.4,
+      "speaker": "c13/SPEAKER_01",
+      "text": "A favor socialistes, Esquerra Unida Podem, Compromís y en contra Vox i Partit Popular."
+    },
+    {
+      "start": 8138.4,
+      "end": 8144.6,
+      "speaker": "c13/SPEAKER_01",
+      "text": "Passem ací al punt del dia que ja és"
+    },
+    {
+      "start": 8144.6,
+      "end": 8149,
+      "speaker": "c13/SPEAKER_01",
+      "text": "despatx extraordinari primer de resolucions, val?, de les resolucions."
+    },
+    {
+      "start": 8149,
+      "end": 8154,
+      "speaker": "c13/SPEAKER_01",
+      "text": "Resolucions. Partit Popular, Vox,"
+    },
+    {
+      "start": 8154,
+      "end": 8158.3,
+      "speaker": "c13/SPEAKER_01",
+      "text": "Esquerra Unida Podem, Compromís. Precs i preguntes,"
+    },
+    {
+      "start": 8158.3,
+      "end": 8160.5,
+      "speaker": "c13/SPEAKER_01",
+      "text": "Partit Popular. Antonio, per favor."
+    },
+    {
+      "start": 8160.5,
+      "end": 8162.4,
+      "speaker": "c13/SPEAKER_02",
+      "text": "Yo, la, ¿puedo hablar?"
+    },
+    {
+      "start": 8162.4,
+      "end": 8163.3,
+      "speaker": "c13/SPEAKER_01",
+      "text": "Sí."
+    },
+    {
+      "start": 8163.3,
+      "end": 8168.6,
+      "speaker": "c13/SPEAKER_02",
+      "text": "La primera pregunta es sobre el estado de las obras del barranco de Moros del centro de salud,"
+    },
+    {
+      "start": 8168.6,
+      "end": 8173,
+      "speaker": "c13/SPEAKER_02",
+      "text": "si se sabe si se va a hacer algo, si se va a habilitar, si se va a arreglar o si se"
+    },
+    {
+      "start": 8173,
+      "end": 8177.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "res más. Sobre lo que comenta José Luis"
+    },
+    {
+      "start": 8177.1,
+      "end": 8181.7,
+      "speaker": "c13/SPEAKER_02",
+      "text": "del carrer Joan Martorell, el inici de les obres dir-li a la difunta que en principio se va a hacer,"
+    },
+    {
+      "start": 8181.7,
+      "end": 8185.2,
+      "speaker": "c13/SPEAKER_02",
+      "text": "si se está previst fecha de començament,"
+    },
+    {
+      "start": 8185.2,
+      "end": 8188.9,
+      "speaker": "c13/SPEAKER_02",
+      "text": "y después comenta la gent, los usuarios del del complejo deportivo La Mallà,"
+    },
+    {
+      "start": 8188.9,
+      "end": 8191.8,
+      "speaker": "c13/SPEAKER_02",
+      "text": "que se va a tancar temporalment per una millora de les instal·lacions,"
+    },
+    {
+      "start": 8191.8,
+      "end": 8194.8,
+      "speaker": "c13/SPEAKER_02",
+      "text": "si es així, saber si és així,"
+    },
+    {
+      "start": 8194.8,
+      "end": 8199.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "y si se sabe algo de la bonament que se tenía que fer de la mensualitat"
+    },
+    {
+      "start": 8199.1,
+      "end": 8204.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "del mes de octubre del 2024, del mes de setembre del 2024 si se sabe algo."
+    },
+    {
+      "start": 8204.1,
+      "end": 8206.4,
+      "speaker": "c13/SPEAKER_01",
+      "text": "Tres preguntes del PP."
+    },
+    {
+      "start": 8206.4,
+      "end": 8209.8,
+      "speaker": "c13/SPEAKER_01",
+      "text": "Passem a la contestació de les preguntes del PP. José Luis, primer?"
+    },
+    {
+      "start": 8209.8,
+      "end": 8211.3,
+      "speaker": "c13/SPEAKER_00",
+      "text": "Sí, sí."
+    },
+    {
+      "start": 8211.3,
+      "end": 8216.7,
+      "speaker": "c13/SPEAKER_00",
+      "text": "Vale, con respecto al barranco de Moros, ya lo comenté que teníamos eh se había pedido una actuación que era"
+    },
+    {
+      "start": 8216.7,
+      "end": 8220.9,
+      "speaker": "c13/SPEAKER_00",
+      "text": "una de las fases. No hemos abierto por unas diferencias con la dirección facultativa,"
+    },
+    {
+      "start": 8220.9,
+      "end": 8227.6,
+      "speaker": "c13/SPEAKER_00",
+      "text": "que no no creo que sea un tema para tratar aquí, pero bueno, si quieres luego lo podemos hablar en un momento y te lo pueden decir las arquitectas. Y en esa misma línea"
+    },
+    {
+      "start": 8227.6,
+      "end": 8234.9,
+      "speaker": "c13/SPEAKER_00",
+      "text": "estamos haciendo también toda una actuación este para el tema de jardinería y demás, que sería la siguiente fase. No hemos abierto eh por"
+    },
+    {
+      "start": 8234.9,
+      "end": 8240,
+      "speaker": "c13/SPEAKER_00",
+      "text": "por diferencias y criterios técnicos ante una actuación y por prevención hemos preferido no abrirlo en en un tramo"
+    },
+    {
+      "start": 8240,
+      "end": 8244.6,
+      "speaker": "c13/SPEAKER_00",
+      "text": "que de momento no dificulta nada el paso por la calle Colón sigue estando como como estaba, pero ese tramo sí que queremos que se quede"
+    },
+    {
+      "start": 8244.6,
+      "end": 8247.8,
+      "speaker": "c13/SPEAKER_00",
+      "text": "confirmado. Con respecto a Joan Martorell sí,"
+    },
+    {
+      "start": 8247.8,
+      "end": 8251.9,
+      "speaker": "c13/SPEAKER_00",
+      "text": "ya están terminando de formalizarse la adjudicación de la empresa, de hecho hablamos con Secretaría para que en ese último cierre que se está haciendo de entrega de documentación"
+    },
+    {
+      "start": 8251.9,
+      "end": 8256,
+      "speaker": "c13/SPEAKER_00",
+      "text": "si podíamos ya eh contactar con ellos y ya nos hemos puesto en contacto tanto con la empresa como la dirección"
+    },
+    {
+      "start": 8256,
+      "end": 8260.6,
+      "speaker": "c13/SPEAKER_00",
+      "text": "y si no pasa nada el martes próximo queremos plantear la planificación para también trasladarlo a los vecinos afectados, a los comercios y con Policía"
+    },
+    {
+      "start": 8260.6,
+      "end": 8264.7,
+      "speaker": "c13/SPEAKER_00",
+      "text": "para ver esa actuación que es una actuación importante, grande y además con tráfico, pues para tener"
+    },
+    {
+      "start": 8264.7,
+      "end": 8266.8,
+      "speaker": "c13/SPEAKER_00",
+      "text": "una organización buena."
+    },
+    {
+      "start": 8266.8,
+      "end": 8271.2,
+      "speaker": "c13/SPEAKER_00",
+      "text": "Y con respecto a lo otro, José Luis, ¿lo comentas tú lo de La Mallà?"
+    },
+    {
+      "start": 8271.2,
+      "end": 8274.3,
+      "speaker": "c13/SPEAKER_03",
+      "text": "Raquel."
+    },
+    {
+      "start": 8274.3,
+      "end": 8276.3,
+      "speaker": "c13/SPEAKER_03",
+      "text": "Sí, primer i desprès."
+    },
+    {
+      "start": 8276.3,
+      "end": 8280,
+      "speaker": "c13/SPEAKER_03",
+      "text": "Bueno, per a quan s'ha adjudicat ja el contracte a una empresa que se diu Construcciones Xàtiva,"
+    },
+    {
+      "start": 8280,
+      "end": 8284.5,
+      "speaker": "c13/SPEAKER_03",
+      "text": "em he estat amb la empresa en el lloc, ja en La Mallà per veure de quina manera podíem fer les obres"
+    },
+    {
+      "start": 8284.5,
+      "end": 8286.9,
+      "speaker": "c13/SPEAKER_03",
+      "text": "sense tancar,"
+    },
+    {
+      "start": 8286.9,
+      "end": 8291.7,
+      "speaker": "c13/SPEAKER_03",
+      "text": "encara no està clar si se va a tancar o no, lo que sí que volem molt és la reforma és molt important, però estem valorant el que no se tanque, no?"
+    },
+    {
+      "start": 8291.7,
+      "end": 8296,
+      "speaker": "c13/SPEAKER_03",
+      "text": "Encara no tenim clar si se va a tancar o no, vale? Hores ara la direcció de l'obra ens ajuntarem altra vegada,"
+    },
+    {
+      "start": 8296,
+      "end": 8301.2,
+      "speaker": "c13/SPEAKER_03",
+      "text": "si se tanca jo pense que serà molt poquet, dos o tres dies quatre, crec, però bueno, no vull aventurar"
+    },
+    {
+      "start": 8301.2,
+      "end": 8304.6,
+      "speaker": "c13/SPEAKER_03",
+      "text": "uns dies sense que se torne a reunir, vale?"
+    },
+    {
+      "start": 8304.6,
+      "end": 8310.1,
+      "speaker": "c13/SPEAKER_03",
+      "text": "La esta reforma està previst que començarà a lo millor abans d'un més, més o menys, perquè ja està tot."
+    },
+    {
+      "start": 8310.1,
+      "end": 8319.8,
+      "speaker": "c13/SPEAKER_03",
+      "text": "I... bueno, eixa és la data."
+    },
+    {
+      "start": 8319.8,
+      "end": 8322.6,
+      "speaker": "c13/SPEAKER_01",
+      "text": "Més qüestions?"
+    },
+    {
+      "start": 8322.6,
+      "end": 8323.5,
+      "speaker": "c13/SPEAKER_02",
+      "text": "No."
+    },
+    {
+      "start": 8323.5,
+      "end": 8333.8,
+      "speaker": "c13/SPEAKER_02",
+      "text": "Sí, eh al respecte de de la de la bonificació de la taxa, estem pendents d'una de una xicoteta reunió per a poder"
     }
   ],
   "rows": [
@@ -3749,66 +7553,118 @@
       "label": "c07/SPEAKER_02",
       "reason": "relation-contradicted",
       "detail": "turn-grant, but 161s is followed by SPEAKER_00"
+    },
+    {
+      "label": "c08/SPEAKER_00",
+      "reason": "relation-contradicted",
+      "detail": "turn-grant, but 50s is followed by SPEAKER_01"
+    },
+    {
+      "label": "c08/SPEAKER_02",
+      "reason": "evidence-speaker-mismatch",
+      "detail": "126s is SPEAKER_02, cited as SPEAKER_01"
+    },
+    {
+      "label": "c08/SPEAKER_03",
+      "reason": "unresolvable",
+      "detail": "no name in the cited quote and the party is not single-seat"
+    },
+    {
+      "label": "c08/SPEAKER_05",
+      "reason": "evidence-speaker-mismatch",
+      "detail": "451s is SPEAKER_05, cited as SPEAKER_01"
+    },
+    {
+      "label": "c09/SPEAKER_00",
+      "reason": "unresolvable",
+      "detail": "no name in the cited quote and the party is not single-seat"
+    },
+    {
+      "label": "c09/SPEAKER_01",
+      "reason": "unresolvable",
+      "detail": "heard \"Alcalde\" but the cited quote does not contain it"
+    },
+    {
+      "label": "c09/SPEAKER_02",
+      "reason": "evidence-speaker-mismatch",
+      "detail": "45.3s is SPEAKER_02, cited as SPEAKER_01"
+    },
+    {
+      "label": "c10/SPEAKER_00",
+      "reason": "evidence-speaker-mismatch",
+      "detail": "17.5s is SPEAKER_00, cited as SPEAKER_02"
+    },
+    {
+      "label": "c10/SPEAKER_01",
+      "reason": "unresolvable",
+      "detail": "no name in the cited quote and the party is not single-seat"
+    },
+    {
+      "label": "c10/SPEAKER_02",
+      "reason": "relation-contradicted",
+      "detail": "reply, but 272.2s follows SPEAKER_03"
+    },
+    {
+      "label": "c10/SPEAKER_03",
+      "reason": "evidence-speaker-mismatch",
+      "detail": "176.6s is SPEAKER_03, cited as SPEAKER_00"
+    },
+    {
+      "label": "c10/SPEAKER_04",
+      "reason": "evidence-speaker-mismatch",
+      "detail": "273.4s is SPEAKER_04, cited as SPEAKER_00"
+    },
+    {
+      "label": "c10/SPEAKER_05",
+      "reason": "unresolvable",
+      "detail": "no name in the cited quote and the party is not single-seat"
+    },
+    {
+      "label": "c10/SPEAKER_06",
+      "reason": "unresolvable",
+      "detail": "no name in the cited quote and the party is not single-seat"
+    },
+    {
+      "label": "c11/SPEAKER_00",
+      "reason": "relation-contradicted",
+      "detail": "reply, but 128s follows SPEAKER_02"
+    },
+    {
+      "label": "c11/SPEAKER_01",
+      "reason": "unresolvable",
+      "detail": "no name in the cited quote and the party is not single-seat"
+    },
+    {
+      "label": "c11/SPEAKER_03",
+      "reason": "evidence-speaker-mismatch",
+      "detail": "246.3s is SPEAKER_03, cited as SPEAKER_01"
+    },
+    {
+      "label": "c11/SPEAKER_04",
+      "reason": "unresolvable",
+      "detail": "no name in the cited quote and the party is not single-seat"
+    },
+    {
+      "label": "c12/SPEAKER_00",
+      "reason": "unresolvable",
+      "detail": "no name in the cited quote and the party is not single-seat"
+    },
+    {
+      "label": "c12/SPEAKER_01",
+      "reason": "relation-contradicted",
+      "detail": "reply, but 151.7s follows SPEAKER_02"
+    },
+    {
+      "label": "c12/SPEAKER_03",
+      "reason": "evidence-speaker-mismatch",
+      "detail": "228.4s is SPEAKER_03, cited as SPEAKER_01"
+    },
+    {
+      "label": "c12/SPEAKER_04",
+      "reason": "evidence-speaker-mismatch",
+      "detail": "399.2s is SPEAKER_04, cited as SPEAKER_01"
     }
   ],
-  "stats": {
-    "chunksExpected": 16,
-    "chunksTranscribed": 8,
-    "failedChunks": [
-      {
-        "chunk": 0,
-        "why": "covered 0% (floor 85%)",
-        "attempts": 1,
-        "givenUpUnder": {
-          "prompt": "speaker-map-v2",
-          "floor": 0.85,
-          "thinking": "low"
-        },
-        "sinLectura": "HTTP 503: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
-      },
-      {
-        "chunk": 8,
-        "why": "quota exhausted, never attempted further"
-      },
-      {
-        "chunk": 9,
-        "why": "never attempted (quota exhausted earlier in the run)"
-      },
-      {
-        "chunk": 10,
-        "why": "never attempted (quota exhausted earlier in the run)"
-      },
-      {
-        "chunk": 11,
-        "why": "never attempted (quota exhausted earlier in the run)"
-      },
-      {
-        "chunk": 12,
-        "why": "never attempted (quota exhausted earlier in the run)"
-      },
-      {
-        "chunk": 13,
-        "why": "never attempted (quota exhausted earlier in the run)"
-      },
-      {
-        "chunk": 14,
-        "why": "never attempted (quota exhausted earlier in the run)"
-      }
-    ],
-    "labelsSeen": 0,
-    "rowsAccepted": 6,
-    "rowsRejected": 21,
-    "rejectedBy": {
-      "unresolvable": 6,
-      "evidence-outside-transcript": 3,
-      "relation-contradicted": 3,
-      "evidence-speaker-mismatch": 8,
-      "ambiguous": 1
-    },
-    "attemptedThisRun": 2,
-    "apiCalls": 6,
-    "coverage": 0.5225208420025526
-  },
   "revalidaciones": [
     {
       "fecha": "2026-11-24",
@@ -3816,5 +7672,34 @@
       "retiradas": 0,
       "noEvaluadas": 1
     }
-  ]
+  ],
+  "stats": {
+    "chunksExpected": 16,
+    "chunksTranscribed": 15,
+    "failedChunks": [
+      {
+        "chunk": 14,
+        "why": "covered 54% (floor 85%)",
+        "attempts": 1,
+        "givenUpUnder": {
+          "prompt": "speaker-map-v2",
+          "floor": 0.85,
+          "thinking": "low"
+        }
+      }
+    ],
+    "labelsSeen": 31,
+    "rowsAccepted": 6,
+    "rowsRejected": 43,
+    "rejectedBy": {
+      "unresolvable": 15,
+      "evidence-outside-transcript": 3,
+      "relation-contradicted": 7,
+      "evidence-speaker-mismatch": 17,
+      "ambiguous": 1
+    },
+    "attemptedThisRun": 8,
+    "apiCalls": 12,
+    "coverage": 0.9836851243345595
+  }
 }
