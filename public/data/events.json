@@ -1,35 +1,15 @@
 {
-  "generatedAt": "2026-11-25T14:52:55.734Z",
+  "generatedAt": "2026-11-26T14:18:16.429Z",
   "source": {
     "url": "https://www.ribarroja.es/es/eventos/rss.xml",
     "platform": "Drupal RSS (oficial)"
   },
   "stats": {
     "total": 50,
-    "upcoming": 7,
-    "nextDate": "2027-02-20T18:00:00.000Z"
+    "upcoming": 10,
+    "nextDate": "2026-11-26T17:30:00.000Z"
   },
   "events": [
-    {
-      "id": "3amk2c",
-      "title": "Competiciones deportivas 11 de septiembre de 2026",
-      "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-11-de-septiembre-de-2026",
-      "eventDate": "2026-09-11T16:00:00.000Z",
-      "eventDateText": "11 de septiembre de 2026 18:00",
-      "publishedDate": "2026-09-11T07:42:38.000Z",
-      "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_1_0.png?itok=9bVHsvJq"
-    },
-    {
-      "id": "3fijiw",
-      "title": "Competiciones deportivas 12 de septiembre de 2026",
-      "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-12-de-septiembre-de-2026",
-      "eventDate": "2026-09-12T07:00:00.000Z",
-      "eventDateText": "12 de septiembre de 2026 09:00",
-      "publishedDate": "2026-09-11T07:50:27.000Z",
-      "excerpt": null,
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_1_1.png?itok=hdRFb2eR"
-    },
     {
       "id": "1j0i6w2",
       "title": "Competiciones deportivas 13 de septiembre de 2026",
@@ -69,16 +49,6 @@
       "publishedDate": "2026-09-18T09:52:41.000Z",
       "excerpt": "&nbsp;",
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260915%20IMG_0855%20Grupo%20Besarabia.jpg?itok=LmOsXLY-"
-    },
-    {
-      "id": "b8u8us",
-      "title": "II Jornadas abolicionistas",
-      "link": "https://www.ribarroja.es/es/evento/ii-jornadas-abolicionistas",
-      "eventDate": "2026-09-18T15:00:00.000Z",
-      "eventDateText": "18 de septiembre de 2026 17:00",
-      "publishedDate": "2026-09-11T07:29:03.000Z",
-      "excerpt": "Una jornada de reflexión y sensibilización en torno a la prostitución, la explotación sexual y la defensa de los derechos humanos, que contará con la participación de destacadas voces del ámbito académico, profesional y…",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/II%20Jornadas%20abolicionistas.png?itok=2HC3s0Ra"
     },
     {
       "id": "1pkh0hc",
@@ -439,6 +409,36 @@
       "publishedDate": "2026-11-18T12:08:46.000Z",
       "excerpt": "&nbsp;",
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_22.png?itok=F7AgQAaC"
+    },
+    {
+      "id": "iuvwiy",
+      "title": "Competiciones deportivas jueves 26 de noviembre de 2026",
+      "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-jueves-26-de-noviembre-de-2026",
+      "eventDate": "2026-11-26T17:30:00.000Z",
+      "eventDateText": "26 de noviembre de 2026 18:30",
+      "publishedDate": "2026-11-26T10:56:44.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_23.png?itok=zIaEAWoK"
+    },
+    {
+      "id": "15hdwa8",
+      "title": "Competiciones deportivas sábado 28 de noviembre de 2026",
+      "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-s%C3%A1bado-28-de-noviembre-de-2026",
+      "eventDate": "2026-11-28T07:00:00.000Z",
+      "eventDateText": "28 de noviembre de 2026 08:00",
+      "publishedDate": "2026-11-26T10:59:11.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_24.png?itok=_6aeVovg"
+    },
+    {
+      "id": "d9a55k",
+      "title": "Competiciones deportivas domingo 29 de noviembre de 2026",
+      "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-domingo-29-de-noviembre-de-2026",
+      "eventDate": "2026-11-29T08:00:00.000Z",
+      "eventDateText": "29 de noviembre de 2026 09:00",
+      "publishedDate": "2026-11-26T11:00:54.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_25.png?itok=6qryZ6Zw"
     },
     {
       "id": "6x69fs",

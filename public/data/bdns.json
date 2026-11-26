@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-25T14:57:49.200Z",
+  "generatedAt": "2026-11-26T14:38:43.898Z",
   "source": {
     "url": "https://www.pap.hacienda.gob.es/bdnstrans/api/convocatorias/busqueda",
     "query": "riba-roja",
@@ -7,22 +7,33 @@
     "concesiones": "https://www.pap.hacienda.gob.es/bdnstrans/api/concesiones/busqueda?vpd=GE&nifCif=P4621600H"
   },
   "stats": {
-    "total": 175,
+    "total": 176,
     "granted": 161,
-    "received": 14,
+    "received": 15,
     "descartadas": 4,
-    "latestDate": "2026-11-17T00:00:00.000Z",
+    "latestDate": "2026-11-25T00:00:00.000Z",
     "concesiones": {
-      "total": 152,
-      "convocatorias": 125,
-      "importe": 46754152.73,
+      "total": 153,
+      "convocatorias": 126,
+      "importe": 46769152.73,
       "otrosInstrumentos": 0,
       "sinImporte": 0,
       "desde": "2022-02-08",
-      "hasta": "2026-11-17"
+      "hasta": "2026-11-25"
     }
   },
   "items": [
+    {
+      "id": 1146336,
+      "bdnsCode": "944775",
+      "description": "Convocatoria subvención nominativa Ayuntamiento de Ribarroja, Proyecto \"Yacimiento València la Vieja\": Campaña de consolidación y puesta en valor 2026",
+      "date": "2026-11-25T00:00:00.000Z",
+      "organ": "LOCAL · DIPUTACIÓN PROV. DE VALENCIA · DIPUTACIÓN PROVINCIAL DE VALENCIA",
+      "level1": "LOCAL",
+      "level2": "DIPUTACIÓN PROV. DE VALENCIA",
+      "direction": "received",
+      "sourceUrl": "https://www.pap.hacienda.gob.es/bdnstrans/GE/es/convocatoria/944775"
+    },
     {
       "id": 1144315,
       "bdnsCode": "942754",
@@ -1988,6 +1999,19 @@
     }
   ],
   "concesiones": [
+    {
+      "id": 159980936,
+      "codConcesion": "SB159980936",
+      "bdnsCode": "944775",
+      "convocatoria": "Convocatoria subvención nominativa Ayuntamiento de Ribarroja, Proyecto \"Yacimiento València la Vieja\": Campaña de consolidación y puesta en valor 2026",
+      "fecha": "2026-11-25T00:00:00.000Z",
+      "importe": 15000,
+      "instrumento": "SUBVENCIÓN y ENTREGA DINERARIA SIN CONTRAPRESTACIÓN",
+      "esSubvencion": true,
+      "organ": "LOCAL · DIPUTACIÓN PROV. DE VALENCIA · DIPUTACIÓN PROVINCIAL DE VALENCIA",
+      "level1": "LOCAL",
+      "sourceUrl": "https://www.pap.hacienda.gob.es/bdnstrans/GE/es/convocatoria/944775"
+    },
     {
       "id": 159849347,
       "codConcesion": "SB159849347",

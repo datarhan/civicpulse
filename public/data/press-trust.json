@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-11-26T13:27:26.698Z",
+  "generatedAt": "2026-11-26T14:40:12.004Z",
   "windowDays": 30,
   "articles": [
     {
-      "articleId": "1aq15hs",
-      "articleFingerprint": "gaotcc",
+      "articleId": "1rq7ruk",
+      "articleFingerprint": "7pmv6c",
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/nueva-urbanizaci%C3%B3n-en-calle-joan-martorell-y-colindantes",
-      "date": "2026-11-25T14:04:20.000Z",
+      "url": "https://www.ribarroja.es/es/noticia/uso-del-dispositivo-lector-de-midni",
+      "date": "2026-11-26T12:43:41.000Z",
       "indicators": {
         "localCoverage": false,
         "datedArticle": true,
@@ -20,12 +20,63 @@
       "score": 1
     },
     {
-      "articleId": "1gxxiqc",
-      "articleFingerprint": "1bfzid0",
-      "outlet": "MAKMA",
-      "outletHost": "makma.net",
-      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFA5ejhHTmlFSFZuZjhaWTJocndCc1ZlOUFEVkJnWDJwUWc4Y2R6am4yN2p1WEMyQ3JsbHNhc20tejdQME54ZTZsTGZjM3BlX3ExQjQ3cjhMMFhmZw?oc=5",
-      "date": "2026-11-25T13:35:03.000Z",
+      "articleId": "8jv1ic",
+      "articleFingerprint": "1dm74no",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/concurso-de-belenes-y-exteriores-2026%3A-%C2%A1comparte-la-magia-de-la-navidad%21",
+      "date": "2026-11-26T11:32:56.000Z",
+      "indicators": {
+        "localCoverage": false,
+        "datedArticle": true,
+        "municipalSourceMatch": null,
+        "corroboratedAcrossOutlets": null,
+        "factualClaimsPresent": null,
+        "opinionFraction": 0
+      },
+      "score": 1
+    },
+    {
+      "articleId": "1ficc0v",
+      "articleFingerprint": "yrm130",
+      "outlet": "El Correo",
+      "outletHost": "elcorreo.com",
+      "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPNDBINVFReW10VFJpNVl2bk5qQlJSYnFXZThoRGZqOVNlSUs0Ykg5LVlPUTBDVmh6SzFSSUhYSmpWdWoyTm1ja2N4b3d5Y0NIdVdBQ0JKUEVYUEF0aVpXSDBUZVNFSG10a2xWRk9hNThBOGRzLVJVajhPUDlMbGI5alJ2T0lJQUp4UVBKLXhpU1RiTDltNDVsd05kRTIwQkVlYjRHVzRqUzR2M0FYY29n?oc=5",
+      "date": "2026-11-26T07:40:23.000Z",
+      "indicators": {
+        "localCoverage": false,
+        "datedArticle": true,
+        "municipalSourceMatch": null,
+        "corroboratedAcrossOutlets": null,
+        "factualClaimsPresent": null,
+        "opinionFraction": 0
+      },
+      "score": 1
+    },
+    {
+      "articleId": "1kkbznc",
+      "articleFingerprint": "1fpb6k4",
+      "outlet": "elperiodic.com",
+      "outletHost": "elperiodic.com",
+      "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPRkk2V3VQVGtTdm11bTZHb2FfUk9SbXQxNjRxQ21hUEJhejdxZVdhZWZ4S3JkdFVqbzkwcXR3NGV1aWlHaEZxeUVaQmpMbUxqRmdMS29SbDR0MjU4bVlfMjhYd0kwZTY1bWNNcmcxQjU0SVFkdWxMdlhOSHAteXd2OGlBdG4wSGZ4dTVPUlM3TmktNktjc0JxZTJqekpHUnBJS3ZJSlhhWmNmbU5pdmNrblhqNDNLRm9sUXRRQjVMZGk1X2laMWhGc2FFOA?oc=5",
+      "date": "2026-11-25T15:11:19.000Z",
+      "indicators": {
+        "localCoverage": false,
+        "datedArticle": true,
+        "municipalSourceMatch": null,
+        "corroboratedAcrossOutlets": null,
+        "factualClaimsPresent": null,
+        "opinionFraction": 0
+      },
+      "score": 1
+    },
+    {
+      "articleId": "1aq15hs",
+      "articleFingerprint": "gaotcc",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/nueva-urbanizaci%C3%B3n-en-calle-joan-martorell-y-colindantes",
+      "date": "2026-11-25T14:04:20.000Z",
       "indicators": {
         "localCoverage": false,
         "datedArticle": true,
@@ -162,6 +213,23 @@
       "outletHost": "ribarroja.es",
       "url": "https://www.ribarroja.es/es/noticia/adjudicaci%C3%B3n-provisional-subvenciones-deportistas-locales-a%C3%B1o-2026",
       "date": "2026-11-25T11:11:46.000Z",
+      "indicators": {
+        "localCoverage": false,
+        "datedArticle": true,
+        "municipalSourceMatch": null,
+        "corroboratedAcrossOutlets": null,
+        "factualClaimsPresent": null,
+        "opinionFraction": 0
+      },
+      "score": 1
+    },
+    {
+      "articleId": "1gxxiqc",
+      "articleFingerprint": "1bfzid0",
+      "outlet": "MAKMA",
+      "outletHost": "makma.net",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFA5ejhHTmlFSFZuZjhaWTJocndCc1ZlOUFEVkJnWDJwUWc4Y2R6am4yN2p1WEMyQ3JsbHNhc20tejdQME54ZTZsTGZjM3BlX3ExQjQ3cjhMMFhmZw?oc=5",
+      "date": "2026-11-25T09:00:00.000Z",
       "indicators": {
         "localCoverage": false,
         "datedArticle": true,
@@ -511,23 +579,6 @@
         "opinionFraction": 0
       },
       "score": 2
-    },
-    {
-      "articleId": "1a3qtdm",
-      "articleFingerprint": "tadtf4",
-      "outlet": "elperiodic.com",
-      "outletHost": "elperiodic.com",
-      "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPcjJEMFZZWS1hZzd0Ymxqdi1semVpSTJUY0NFOUdGcnQ0R1hpV2NYamJKTTY4WGVDMFkwSGlzLUpoOHhzZnBfWWtKZ1VwRjlKT0Q2NzJwS1ZRbEtsSUpaaTRlLUEtZFJiSVNJU3hWa2MteHRYakdXTWxtNVdLVGpNX0RsdHZvUDU4Ykx0RTM1cmhFSW5wNU0teC1oOEJkVTVwNzVWdmUwZzRaV3JDU0R1TENxSDVQcHhoeFNMODlIdktyVFF2U0NYN3U1WV9EbTQzOXpfRVBGUlZjb20wSXhmZldmcHJFdw?oc=5",
-      "date": "2026-11-13T10:55:48.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": null,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 1
     },
     {
       "articleId": "5kqroo",
@@ -976,7 +1027,7 @@
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 26,
+      "articleCount": 28,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 2,
@@ -985,7 +1036,7 @@
         "promesa-repetida": 0
       },
       "checkedClaims": 9,
-      "meanTrustScore": 1.62,
+      "meanTrustScore": 1.57,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -1054,8 +1105,8 @@
       "contradictedRatio": null
     },
     {
-      "outlet": "Las Provincias",
-      "outletHost": "lasprovincias.es",
+      "outlet": "elperiodic.com",
+      "outletHost": "elperiodic.com",
       "articleCount": 2,
       "verdictCounts": {
         "verificado": 0,
@@ -1070,8 +1121,8 @@
       "contradictedRatio": null
     },
     {
-      "outlet": "elperiodic.com",
-      "outletHost": "elperiodic.com",
+      "outlet": "Las Provincias",
+      "outletHost": "lasprovincias.es",
       "articleCount": 2,
       "verdictCounts": {
         "verificado": 0,
@@ -1089,6 +1140,22 @@
       "outlet": "elDiario.es",
       "outletHost": "eldiario.es",
       "articleCount": 2,
+      "verdictCounts": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 0,
+        "promesa-repetida": 0
+      },
+      "checkedClaims": 0,
+      "meanTrustScore": 1,
+      "verifiedRatio": null,
+      "contradictedRatio": null
+    },
+    {
+      "outlet": "El Correo",
+      "outletHost": "elcorreo.com",
+      "articleCount": 1,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -1183,9 +1250,9 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "19cfc39518d5",
+    "plenos-agendas.json": "828cc53ed912",
     "press-claims-verified.json": "10e308fc2880",
-    "press.json": "b6149befe5e3",
+    "press.json": "a44d1051e3f1",
     "promises.json": "78479b1377ce"
   }
 }

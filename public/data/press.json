@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-25T14:52:48.608Z",
+  "generatedAt": "2026-11-26T14:18:13.851Z",
   "feeds": [
     {
       "url": "https://www.ribarroja.es/es/noticias/rss.xml",
@@ -22,8 +22,8 @@
   ],
   "stats": {
     "total": 156,
-    "sources": 23,
-    "latestDate": "2026-11-25T14:04:20.000Z",
+    "sources": 24,
+    "latestDate": "2026-11-26T12:43:41.000Z",
     "carriedForward": 0
   },
   "sources": [
@@ -32,6 +32,7 @@
     "Ayuntamiento de Riba-roja de Túria",
     "Cadena SER",
     "Comunica GVA",
+    "El Correo",
     "El Periódico de Aquí",
     "Fotocasa",
     "Interempresas Media",
@@ -53,6 +54,46 @@
   ],
   "items": [
     {
+      "id": "1rq7ruk",
+      "title": "Uso del dispositivo lector de MiDNI",
+      "link": "https://www.ribarroja.es/es/noticia/uso-del-dispositivo-lector-de-midni",
+      "source": "Ayuntamiento de Riba-roja de Túria",
+      "sourceHost": "ribarroja.es",
+      "date": "2026-11-26T12:43:41.000Z",
+      "fingerprint": "7pmv6c",
+      "official": true,
+      "section": null
+    },
+    {
+      "id": "8jv1ic",
+      "title": "Concurso de Belenes y Exteriores 2026: ¡comparte la magia de la Navidad!",
+      "link": "https://www.ribarroja.es/es/noticia/concurso-de-belenes-y-exteriores-2026%3A-%C2%A1comparte-la-magia-de-la-navidad%21",
+      "source": "Ayuntamiento de Riba-roja de Túria",
+      "sourceHost": "ribarroja.es",
+      "date": "2026-11-26T11:32:56.000Z",
+      "fingerprint": "1dm74no",
+      "official": true,
+      "section": "Participacion y Transparencia"
+    },
+    {
+      "id": "1ficc0v",
+      "title": "Resultados Elecciones Generales 2026 en Riba-roja de Túria | 29N",
+      "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPNDBINVFReW10VFJpNVl2bk5qQlJSYnFXZThoRGZqOVNlSUs0Ykg5LVlPUTBDVmh6SzFSSUhYSmpWdWoyTm1ja2N4b3d5Y0NIdVdBQ0JKUEVYUEF0aVpXSDBUZVNFSG10a2xWRk9hNThBOGRzLVJVajhPUDlMbGI5alJ2T0lJQUp4UVBKLXhpU1RiTDltNDVsd05kRTIwQkVlYjRHVzRqUzR2M0FYY29n?oc=5",
+      "source": "El Correo",
+      "sourceHost": "elcorreo.com",
+      "date": "2026-11-26T07:40:23.000Z",
+      "fingerprint": "yrm130"
+    },
+    {
+      "id": "1kkbznc",
+      "title": "GALERÍA | Gusi Bertomeu, Themis y Romí, Riba-roja y Yátova, premiados en los premios Celia Amorós este 25N",
+      "link": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPRkk2V3VQVGtTdm11bTZHb2FfUk9SbXQxNjRxQ21hUEJhejdxZVdhZWZ4S3JkdFVqbzkwcXR3NGV1aWlHaEZxeUVaQmpMbUxqRmdMS29SbDR0MjU4bVlfMjhYd0kwZTY1bWNNcmcxQjU0SVFkdWxMdlhOSHAteXd2OGlBdG4wSGZ4dTVPUlM3TmktNktjc0JxZTJqekpHUnBJS3ZJSlhhWmNmbU5pdmNrblhqNDNLRm9sUXRRQjVMZGk1X2laMWhGc2FFOA?oc=5",
+      "source": "elperiodic.com",
+      "sourceHost": "elperiodic.com",
+      "date": "2026-11-25T15:11:19.000Z",
+      "fingerprint": "1fpb6k4"
+    },
+    {
       "id": "1aq15hs",
       "title": "Nueva urbanización en calle Joan Martorell y colindantes",
       "link": "https://www.ribarroja.es/es/noticia/nueva-urbanizaci%C3%B3n-en-calle-joan-martorell-y-colindantes",
@@ -62,15 +103,6 @@
       "fingerprint": "gaotcc",
       "official": true,
       "section": "Urbanisme"
-    },
-    {
-      "id": "1gxxiqc",
-      "title": "Adiós a Paco Caparrós: ¡Nos vemos en el otro lado!",
-      "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFA5ejhHTmlFSFZuZjhaWTJocndCc1ZlOUFEVkJnWDJwUWc4Y2R6am4yN2p1WEMyQ3JsbHNhc20tejdQME54ZTZsTGZjM3BlX3ExQjQ3cjhMMFhmZw?oc=5",
-      "source": "MAKMA",
-      "sourceHost": "makma.net",
-      "date": "2026-11-25T13:35:03.000Z",
-      "fingerprint": "1bfzid0"
     },
     {
       "id": "9492vp",
@@ -155,6 +187,15 @@
       "fingerprint": "1s6nnnv",
       "official": true,
       "section": "Esports"
+    },
+    {
+      "id": "1gxxiqc",
+      "title": "Adiós a Paco Caparrós: ¡Nos vemos en el otro lado!",
+      "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFA5ejhHTmlFSFZuZjhaWTJocndCc1ZlOUFEVkJnWDJwUWc4Y2R6am4yN2p1WEMyQ3JsbHNhc20tejdQME54ZTZsTGZjM3BlX3ExQjQ3cjhMMFhmZw?oc=5",
+      "source": "MAKMA",
+      "sourceHost": "makma.net",
+      "date": "2026-11-25T09:00:00.000Z",
+      "fingerprint": "1bfzid0"
     },
     {
       "id": "1yhvwnj",
@@ -358,15 +399,6 @@
       "sourceHost": "infoturia.com",
       "date": "2026-11-15T18:08:29.000Z",
       "fingerprint": "d4ctsc"
-    },
-    {
-      "id": "1a3qtdm",
-      "title": "Riba-roja de Túria felicita al alumnado de la localidad con expedientes académicos de excelencia durante el curso 2025-2026",
-      "link": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPcjJEMFZZWS1hZzd0Ymxqdi1semVpSTJUY0NFOUdGcnQ0R1hpV2NYamJKTTY4WGVDMFkwSGlzLUpoOHhzZnBfWWtKZ1VwRjlKT0Q2NzJwS1ZRbEtsSUpaaTRlLUEtZFJiSVNJU3hWa2MteHRYakdXTWxtNVdLVGpNX0RsdHZvUDU4Ykx0RTM1cmhFSW5wNU0teC1oOEJkVTVwNzVWdmUwZzRaV3JDU0R1TENxSDVQcHhoeFNMODlIdktyVFF2U0NYN3U1WV9EbTQzOXpfRVBGUlZjb20wSXhmZldmcHJFdw?oc=5",
-      "source": "elperiodic.com",
-      "sourceHost": "elperiodic.com",
-      "date": "2026-11-13T10:55:48.000Z",
-      "fingerprint": "tadtf4"
     },
     {
       "id": "5kqroo",
@@ -883,15 +915,6 @@
       "section": "Esports"
     },
     {
-      "id": "q1qd62",
-      "title": "1 Casas y pisos en Calle Argentina, Riba-roja de Túria",
-      "link": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPSEx0NkRlaG10Unl3WVJVQkZUeGNMNWg2ZjY3OEVITmljSlZzRE5WTm02amYzZTlTYWE4T0hrS25zaFluSzc1Wnk3b2VHQTFxLVk3dUZNUFQwSjFDMV9hRkRnVHpjZXNBbldNblNxc25jQWlKNmo4bkUwRGRWZGxYT0h0LTJrYlh3VUNidjZtVQ?oc=5",
-      "source": "Fotocasa",
-      "sourceHost": "fotocasa.es",
-      "date": "2026-10-07T07:07:10.000Z",
-      "fingerprint": "1pmnzl4"
-    },
-    {
       "id": "8pt3dw",
       "title": "Riba-roja celebra el Nou d’Octubre con El Botifarra, Marea Mediterrània y un homenaje a Jaume I",
       "link": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxNcUpIMHVzMVVkSjNYNXpRLWdMekZiNzM3bXhnVm8tNFlNZ084YzVibmtfeVI2a2x6VVNYakM3V09vRFMtd1ktSlUyaXNiNjhXOVpnU1REckRsbFlYOUtNanVIVUlmbndmNDl2TkJQV1Y0UEE1YW02WWZKU0U5MmpFYkNJeWFScXI1dV9BS1NBWVhTQlF1cHVuVUhFdllHRXZLRjM5TUN0WXZBcjRRSVVtcXRPSnBQTm5zb3hweVNaMWYtUkd3RGtabVVGNVd1dU9WQXNaNVRjQ0JCT3AyS2tjUtIB5gFBVV95cUxOYkFXREZoaHBJQVg0V1k4NkZxMUUxUzQ3Nl9yQkttWF9USWdsOG8zSERCQkJ2RThsQUZyRVpXT3lDa2hzOWV6Tlhpd2ZCOHgxMXloS1hPejhVbnNzSTFSSU9Rb0ZwUkdmTl9jUXpzUkVTVUZVcEtLWVM1RjZkQkt4MW9CM3plbkNMblRSbzFIRG1CejNreGI0U0dUU0F4akxtd1RDNHk1aGczbnRVVURxRllrdUVidjdORkRhYUViblZJb0ptSmozLTNfTkd4UXRDZ3Y0eG1uX2RlZUp4NGNwM1BXNW9Sdw?oc=5",
@@ -1094,28 +1117,6 @@
       "section": "Igualtat"
     },
     {
-      "id": "d2zytc",
-      "title": "Cartelera de Cultura septiembre - noviembre 2026",
-      "link": "https://www.ribarroja.es/es/noticia/cartelera-de-cultura-septiembre-noviembre-2026",
-      "source": "Ayuntamiento de Riba-roja de Túria",
-      "sourceHost": "ribarroja.es",
-      "date": "2026-09-17T10:14:51.000Z",
-      "fingerprint": "90xnz4",
-      "official": true,
-      "section": "Cultura"
-    },
-    {
-      "id": "2gr6xp",
-      "title": "Riba-roja destina una partida de 7.000 euros en subvenciones para fomentar la práctica del deporte y mejorar el rendimiento en las competiciones oficiales",
-      "link": "https://www.ribarroja.es/es/noticia/riba-roja-destina-una-partida-de-7.000-euros-en-subvenciones-para-fomentar-la-pr%C3%A1ctica-del-deporte-y-mejorar-el-rendimiento-en-las-competiciones-oficiales",
-      "source": "Ayuntamiento de Riba-roja de Túria",
-      "sourceHost": "ribarroja.es",
-      "date": "2026-09-16T11:42:06.000Z",
-      "fingerprint": "1j0z0p4",
-      "official": true,
-      "section": "Esports"
-    },
-    {
       "id": "phmzn0",
       "title": "Riba-roja ultima la reconstrucción de su histórico puente",
       "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNaUJXV0RmYlZ3NGhnamZ3WWNkQVpfOXkxODAxSldDY2Q0VHNGeW1GdXdaQnBzUTlpLVJ1Y3dsMkRfTV9vTHBUZUJwOTYwa3VIMXg2ZmI4RlJGdVdEQm5mTnNzLVNuNlVMU2hoRmt3UHppczMxM0V1V0JDa3JRWFU4aU1ENVFVU09OZmhjX2xvNDZ2Umh6c0FBRzBwdHE0OEtua0M2SXZtZXJpNjVKZXFF0gG0AUFVX3lxTE9UV01Ga3BPZGFvT083bTNOQkpyTXhRNDhFMFFRNUpRZk9WQzNuZlowOUpqRXNUVEFiMG54TUF5VVBlWk5Eblppc1NTRllRVXYzM3pLOVN4MnhnczFIZmNTZzl1VDdhdmFveUhtekdoR1NFeXBxUWZDUmt5S3lRRnVzVWxfZy12TkpneklzWElIQ1hZM0RqUnpnN3ZiYzB6WTJicmNsRHVYLTFFYy1MQ0hIa0hmTg?oc=5",
@@ -1260,15 +1261,6 @@
       "fingerprint": "ijtlbc"
     },
     {
-      "id": "1hs4vrb",
-      "title": "Así será el nuevo centro de salud de Riba-roja de Túria",
-      "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQWWFLZEVzMmVDUWNOS0FvWEpoLWJhamFHOWV3M3hoR1JzV09pX3JQQkpoNFVZcEFHTGhMY0E1bWdoLUpBMFZTN2w0ejVHQ1JyRUZWZG5QRXVIU0RURmxjdE1KZ3d1LWt1bE1sRkRaQ0J2d0s0MmhsX3JCaXliWm50S2wxbmhOR081bnhqZTlYdE5XUmlYTmpGdGJzSG1Rd1pHa1NqcXZuVlg1dXprWnVmc3NB?oc=5",
-      "source": "El Periódico de Aquí",
-      "sourceHost": "elperiodicodeaqui.com",
-      "date": "2026-07-22T07:00:00.000Z",
-      "fingerprint": "1cnqqro"
-    },
-    {
       "id": "1cawiog",
       "title": "Riba-roja avanza hacia la construcción del futuro centro de salud",
       "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPTE00bnA2U2pMSkViVV8zT0k0a1RFcmxVcmVZOEhBb0x2WElhSzZHMEdjNmJnOVE1c3hpU2laVS1hRUJVSUFoazNKekFMaUE4UVNxbFZOcHZjdGJXRzE1TDJ3ZWprOFRrUTFCSFJFNi13a2wtakNDdmZjMncxS3BRVE9ha3ZlUnlpczdZdVBVa3ZBd2Z0QXVqUUlZNmU4RDFLSHRrUUw0OUE4UDJ5dG54cWhVZ2g2OFBRWjlFd2c5aG4?oc=5",
@@ -1348,6 +1340,15 @@
       "sourceHost": "valenciaplaza.com",
       "date": "2026-07-03T07:00:00.000Z",
       "fingerprint": "kwatf8"
+    },
+    {
+      "id": "62t9nq",
+      "title": "Riba-roja de Túria muestra el uso de drones en áreas industriales para logística y seguridad",
+      "link": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxOck9wMDB1QmVnbUhZZWV4VmdhaVNiU0J3S3VrQ3JmbkpROF85ZHhGNERsWEx5NFZvLW9qTENXRU9ZMW1adWg1ek52YXJZVWIxTGVOUjBjdkwxUFRjVWZseFBMWGsyRHlKYVowM1RaS1FoNG5KQnhSRlR0Wm55UTdKTmJ1NzZsQWZxQ0RSOTlZZGhKRGxkZWxGeTFseEVEZG9hT1ZId19RVnhzRWNUUzBTaWhvN21iME5lV0pUanRzMllWdmhBRWp1MFBQUDVaSmdqb0c0OdIB2gFBVV95cUxNdWNVTjdPVGs5Z0lYYjNDUi1KNEZjWVhpSWlnUndwSy1Pcm1Wa0NQeEFpS3pNT20yLUtPS2l4b09fTk14eDZFODA0OFlXQ2RLYXg1Y0FKV1l2Nmd1bUFkdW5uYmM0eDhiVE9YUnlUd2dxRzBBOGhScFFEQjd2TDh5d09JR0kwbnF3ODJ6RXVSTmg1ZngzdFdZZ19ENmVSdUoyNENsbF9Wb3g0QkU2UGVyaGVpNXpZLXFCbUdvaC1kYWYxNW9Bb2sxXzloS0NrNmtkWTFBUnF0cVdjQQ?oc=5",
+      "source": "Levante-EMV",
+      "sourceHost": "levante-emv.com",
+      "date": "2026-07-01T07:00:00.000Z",
+      "fingerprint": "1g57ty4"
     },
     {
       "id": "1sfw2ms",
@@ -1458,13 +1459,13 @@
       "fingerprint": "ddqyqc"
     },
     {
-      "id": "z0fd7w",
-      "title": "La Generalitat y Riba-roja de Túria acuerdan la construcción de 36 viviendas protegidas en el marco del Plan Vive Dana",
-      "link": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQUDZUUXF2WnBXR0l3cmpJZE1rUExhMWExNUtGSkFuZWhJaXBzNmVJdGgwN19uWHZacVZ2MTlYTTRqLWQ0Z0JPRmpZbW0xZkpvY3lqVUJ3Q3NNWFI3QjJSNUxwa196YkxEcXhCWk5FdTktMU5PUk1waVBkbHhXVUZtbDFtQjJtWUpRZ18xZFIxdTlqMEh6LTJlVDVoSEx3aDE2UEhlQ1h3bFRZNW96cm5HV2JaSmRMdmFTeVZKcWoya1B6bTdHSlJzSVM2SC1rbjRtckY2eERWWlVKbFNKMFBLdmVuNkt6SXh6d1BCQ0g3aXQ3Smljb3gtWVV5c19hN0Q0ME9GSzJ0Yw?oc=5",
-      "source": "Valencia Plaza",
-      "sourceHost": "valenciaplaza.com",
+      "id": "11uwwaw",
+      "title": "La Generalitat acuerda con Riba-roja de Túria la construcción de 36 viviendas protegidas industrializadas en el marco del Plan Vive Dana",
+      "link": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBZbEd6d0tIQVpvaGtySWY4VVFQR1JDREpvaEJMOV83V2ZUUmNXczllTjV1TDFrSGxPUHRycy05YkhKdWZicldYbnhJUm1XX1R1NFZhY2hjdFRVSjRoajd3RlZ3QVNJTEItSGtoY0hTbw?oc=5",
+      "source": "Comunica GVA",
+      "sourceHost": "comunica.gva.es",
       "date": "2026-05-18T07:00:00.000Z",
-      "fingerprint": "1kfbqfk"
+      "fingerprint": "hz8a60"
     },
     {
       "id": "6jjhh4",
