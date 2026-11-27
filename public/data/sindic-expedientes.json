@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-26T05:48:10.964Z",
+  "generatedAt": "2026-11-27T05:48:03.472Z",
   "note": "Índice de expedientes del Síndic de Greuges CV, transcrito del buscador del propio organismo. Materia, asunto, administración y el título de cada resolución van verbatim: este fichero NO emite ningún juicio. Las fichas firmadas —con resumen verbatim leído del PDF— viven en sindic.json y las escribe una persona con `npm run sindic:add`. «contraAyuntamiento» y «vecinosOtrasAdministraciones» responden a preguntas distintas y NO se suman.",
   "source": {
     "platform": "Síndic de Greuges de la Comunitat Valenciana",
@@ -19,8 +19,8 @@
           "frase": true,
           "anyoActual": 2026
         },
-        "declarado": 49,
-        "recogidas": 49,
+        "declarado": 50,
+        "recogidas": 50,
         "paginas": 5,
         "irreconocibles": 0
       },
@@ -46,6 +46,20 @@
     "limite": "El eje de texto llega al inicio del registro publicado; el facet de población no devuelve expedientes anteriores a 2023, así que la segunda lista no es una serie histórica y su ausencia de filas antiguas no significa que no las hubiera."
   },
   "contraAyuntamiento": [
+    {
+      "expediente": "202605161",
+      "anio": 2026,
+      "materia": "Transparencia",
+      "asunto": "Solicitud presentada con fecha 31/8/2026 sobre copia de la licencia ambiental y de la autorización de vertido a la red de saneamiento municipal de una industria.",
+      "administracion": "Ayuntamiento de Riba-roja de Túria",
+      "resoluciones": [
+        {
+          "tipo": "Resolución de consideraciones a la Administración",
+          "fecha": "2026-11-26",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2026/202605161/13004820.pdf"
+        }
+      ]
+    },
     {
       "expediente": "202604504",
       "anio": 2026,
@@ -811,23 +825,23 @@
     }
   ],
   "stats": {
-    "contraAyuntamiento": 36,
-    "conResolucionPublicada": 35,
+    "contraAyuntamiento": 37,
+    "conResolucionPublicada": 36,
     "vecinosOtrasAdministraciones": 12,
     "porTipoResolucion": {
-      "Resolución de consideraciones a la Administración": 15,
+      "Resolución de consideraciones a la Administración": 16,
       "Resolución de cierre": 20,
       "Petición de informe. Resolución.": 13
     },
     "porMateria": {
+      "Transparencia": 2,
       "Servicios públicos y medio ambiente": 18,
       "Hacienda pública": 3,
       "Procedimientos administrativos": 4,
       "Urbanismo": 1,
       "Empleo": 5,
       "Servicios sociales": 3,
-      "Educación": 1,
-      "Transparencia": 1
+      "Educación": 1
     },
     "tiposDesconocidos": 0,
     "anioMasAntiguo": 2016,

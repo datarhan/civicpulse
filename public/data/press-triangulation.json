@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-11-26T14:40:12.013Z",
+  "generatedAt": "2026-11-27T05:49:26.323Z",
   "clusters": [],
   "stats": {
     "totalClusters": 0,
     "triangulated3Plus": 0
   },
   "builtFrom": {
-    "plenos-agendas.json": "828cc53ed912",
+    "plenos-agendas.json": "61d83c844101",
     "press-claims-verified.json": "10e308fc2880",
     "press.json": "a44d1051e3f1",
     "promises.json": "78479b1377ce"
