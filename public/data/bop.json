@@ -1,18 +1,28 @@
 {
-  "generatedAt": "2026-11-26T14:18:03.038Z",
+  "generatedAt": "2026-11-27T14:14:18.663Z",
   "source": {
     "name": "Boletín Oficial de la Provincia de València",
     "home": "https://bop.dival.es/bop/",
     "note": "Last 30 days · anuncios del Ayuntamiento de Riba-roja de Túria"
   },
   "stats": {
-    "total": 5,
+    "total": 6,
     "daysCovered": 22,
     "daysRequested": 30,
     "fetchFailures": 0,
-    "latestDate": "2026-11-16"
+    "latestDate": "2026-11-27"
   },
   "anuncios": [
+    {
+      "id": "bfc970c3df09",
+      "regNumber": "2026/14499",
+      "title": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre la aprobación del Plan de Disposición de Fondos para el ejercicio 2026 y siguientes",
+      "entity": "Ayuntamiento de Riba-roja de Túria",
+      "date": "2026-11-27",
+      "bulletinDate": "27/11/2026",
+      "pdfUrl": "https://bop.dival.es/bop/downloads?anuncioNumReg=2026%2F14499",
+      "bulletinUrl": "https://bop.dival.es/bop/downloads?boletinFecha=27%2F11%2F2026"
+    },
     {
       "id": "ac526b540c0d",
       "regNumber": "2026/13865",
