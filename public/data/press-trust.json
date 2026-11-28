@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-28T06:17:16.664Z",
+  "generatedAt": "2026-11-28T12:38:50.948Z",
   "windowDays": 30,
   "articles": [
     {
@@ -698,56 +698,22 @@
         "opinionFraction": 0
       },
       "score": 1
-    },
-    {
-      "articleId": "mlxjcw",
-      "articleFingerprint": "j7916q",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/programa-reacciona-2024",
-      "date": "2026-10-29T08:37:14.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": null,
-        "factualClaimsPresent": true,
-        "opinionFraction": 0
-      },
-      "score": 3
-    },
-    {
-      "articleId": "p6dnms",
-      "articleFingerprint": "1mni4uk",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/riba-roja-acoge-la-jornada-de-presentaci%C3%B3n-del-programa-de-innovaci%C3%B3n-para-la-resiliencia-clim%C3%A1tica-impulsado-por-la-red-innpulso-0",
-      "date": "2026-10-29T08:24:45.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": null,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 1
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 29,
+      "articleCount": 27,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 2,
         "contradicho": 0,
-        "sin-datos": 37,
+        "sin-datos": 35,
         "promesa-repetida": 0
       },
       "checkedClaims": 9,
-      "meanTrustScore": 1.55,
+      "meanTrustScore": 1.52,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -833,7 +799,7 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "5ac7e79452b2",
+    "plenos-agendas.json": "9f4af0ad304e",
     "press-claims-verified.json": "10e308fc2880",
     "press.json": "5158a2d96708",
     "promises.json": "78479b1377ce"
